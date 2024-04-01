@@ -12,9 +12,7 @@ repos:
         name: Regenerate data modules classes from static assets
         # yamllint disable rule:line-length
         entry: |
-          bash -c 'if ! [ "$(git diff --cached --name-only | grep -e "example|schema")" ]; then echo "Skipping model generation because static files were not changed."; exit 0; fi'
-          bash -c 'python build_schemas.py'
-        # yamllint enable rule:line-length
+          bash -c 'datamodel-codegen --input ./dist/js/schema/ --input-file-type jsonschema --output ./dist/py --class-name ESSE --output-model-type pydantic_v2.BaseModel --use-field-description --use-double-quotes --enable-version-header --disable-timestamp --use-title-as-nam'
         language: system
         pass_filenames: false
         verbose: true
