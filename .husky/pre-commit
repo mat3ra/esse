@@ -9,6 +9,18 @@ then
   npm run transpile-and-build-assets
 fi
 
+if -d .venv/bin/activate
+then
+  echo "Python virtual environment not found. Running build scripts."
+  echo "Re-building JS and PY assets using JS script."
+  source .venv/bin/activate
+  # Note: resolved (no include statements) schemas have to exist by this time
+  datamodel-codegen --input ./dist/js/schema/ --input-file-type jsonschema --output ./dist/py --class-name ESSE --output-model-type pydantic_v2.BaseModel --use-field-description --use-double-quotes --enable-version-header --disable-timestamp --use-title-as-nam
+else
+  echo "Python virtual environment found. Create one in '.venv'."
+  exit 1
+fi
+
 npx lint-staged --allow-empty
 
 npm run lint:fix
