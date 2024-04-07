@@ -17,6 +17,7 @@ classifiers = [
 dependencies = [
     "exabyte-json-include>=2023.12.23.post0",
     "jsonschema>=2.6.0",
+    "datamodel-code-generator==0.21.5",
     # "python-slugify==2.0.1",
     # PyYAML install could be problematic, see https://github.com/yaml/pyyaml/issues/601
     # To avoid "AttributeError: cython_sources", consider "cython<3.0.0", the below might be needed:
