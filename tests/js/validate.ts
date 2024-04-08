@@ -37,8 +37,10 @@ describe("validate all examples", () => {
 
 describe("schema titles must be unique or empty", () => {
     JSONSchemasInterface.setSchemaFolder(schemasPath);
-    const schemas = JSONSchemasInterface.schemasCache.values();
-    const repeatedSchemaTitles = Object.entries(groupBy(schemas, "title"))
+
+    const repeatedSchemaTitles = Object.entries(
+        groupBy(Object.fromEntries(JSONSchemasInterface.schemasCache), "title"),
+    )
         .filter(([title, groupedValues]) => title !== "undefined" && groupedValues.length > 1)
         // @ts-ignore
         .map(([title, groupedValues]) => [title, groupedValues.map(({ $id }) => $id)]);

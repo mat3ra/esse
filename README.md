@@ -12,7 +12,6 @@ The latest variants of schemas and examples are available at [schemas.mat3ra.com
 
 ESSE has a dual-nature as both a Python and a Node.js package.
 
-
 ## 1. Installation
 
 ### 1.1. Python
@@ -41,7 +40,6 @@ pip install -e PATH_TO_ESSE_REPOSITORY
 npm install @mat3ra/esse
 ```
 
-
 ## 2. Usage
 
 ESSE contains separate but equivalent interfaces for Python and Javascript.
@@ -65,7 +63,6 @@ const helper = new ESSE();
 const schema = helper.getSchemaById("material");
 ```
 
-
 ## 3. Directory Structure
 
 ESSE contains 3 main directories, [schema](schema), [example](example) and [src](src) outlined below.
@@ -88,12 +85,11 @@ This directory contains the examples formed according to the schemas and impleme
 
 This directory contains Python and Javascript interfaces implementing the functionality to access and validate schemas and examples.
 
-
 ## 4. Conventions
 
 ### 4.1. Generative vs Non-generative keys
-Generative keys are the fields which allow for user input prior to calculation of the final property values. A flag is included in the schema comments on the fields in [property schemas](schema/properties_directory): `isGenerative:true` marks which fields to use as subschemas in the generation of a user input schema. On properties allowing user inputs, additional fields may be tagged, as in [the `file_content` property](schema/properties_directory/non-scalar/file_content.json)
 
+Generative keys are the fields which allow for user input prior to calculation of the final property values. A flag is included in the schema comments on the fields in [property schemas](schema/properties_directory): `isGenerative:true` marks which fields to use as subschemas in the generation of a user input schema. On properties allowing user inputs, additional fields may be tagged, as in [the `file_content` property](schema/properties_directory/non-scalar/file_content.json)
 
 ## 5. Development
 
@@ -118,13 +114,19 @@ NOTE: The PY and JS modules are built from the same JSON sources, but using diff
 When developing in python the following should be taken into account:
 
 1. The modules containing the schemas and examples are generated using the [build-schemas.py](./build_schemas.py) script. There is a setup for it to be run automatically on every commit, but it is recommended to run it manually before committing to make sure that the changes are reflected in the modules. This can be done with `pre-commit run --all-files`. The pre-commit package can be installed with `pip install pre-commit`. To rebuild schemas manually, run (note `-e` in install):
+
     ```bash
     virtualenv .venv
     source .venv/bin/activate
     pip install -e ."[tests]"
+    pip install pre-commit
+    pre-commit --install
+    git config --unset-all core.hooksPath
     python build_schemas.py
     ```
+
 2. Tests can be run using the following commands:
+
     ```bash
     virtualenv .venv
     source .venv/bin/activate
@@ -135,6 +137,7 @@ When developing in python the following should be taken into account:
 ### 5.2. Development in Javascript/Typescript
 
 See [package.json](package.json) for the list of available npm commands. The JS modules are generated using the [build_schema.js](./build_schema.js) script. There is a setup for it to be run automatically when the package is installed (see "transpile" directive). To rebuild schemas manually, run:
+
 ```bash
 npm install
 npm run transpile
@@ -148,7 +151,6 @@ Other suggestions:
 
 - Use unique IDs for schemas
 - Do not use circular references in the schemas, instead leave the type as object and add explanation to description.
-
 
 ## Links
 
