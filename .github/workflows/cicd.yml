@@ -34,7 +34,7 @@ jobs:
         uses: ./actions/py/lint
         with:
           python-version: ${{ matrix.python-version }}
-          exclude: dist/py*|src/py/mat3ra/esse/models*
+          exclude: src/py/mat3ra/esse/models*
 
   run-py-tests:
     runs-on: ubuntu-20.04
