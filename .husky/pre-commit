@@ -8,10 +8,24 @@ then
   echo "Re-building JS and PY assets using JS script."
   npm run transpile-and-build-assets
 fi
+pwd
+
+if test -f .venv/bin/activate
+then
+  echo "Python virtual environment found. Running build scripts"
+  echo "Re-building JS and PY assets using JS script."
+  source .venv/bin/activate
+  # Note: resolved (no include statements) schemas have to exist by this time
+  pre-commit run --all-files
+  #git add dist/py
+else
+  echo "ERROR: Python virtual environment found. Create one in '.venv' and install '.[all]'"
+  exit 1
+fi
 
 npx lint-staged --allow-empty
 
 npm run lint:fix
 npm run transpile
-git add dist
+#git add dist/js
 
