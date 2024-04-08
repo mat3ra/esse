@@ -27025,18 +27025,28 @@ export interface HistorySchema {
  * communication message between iframe and the parent window.
  */
 export interface IframeMessageSchema {
-  /**
-   * The type of the message to distinguish the direction of the message.
-   */
-  type: "from-iframe-to-host" | "from-host-to-iframe";
-  /**
-   * The action to be performed upon receiving the message.
-   */
-  action: "set-data" | "get-data" | "info";
+  type: Type;
+  action: Action;
   /**
    * The content of the message with actual data.
    */
   payload: {};
+}
+
+/**
+ * The type of the message to distinguish the direction of the message.
+ */
+export const enum Type {
+  fromIframeToHost = "from-iframe-to-host",
+  fromHostToIframe = "from-host-to-iframe"
+}
+/**
+ * The action to be performed upon receiving the message.
+ */
+export const enum Action {
+  setData = "set-data",
+  getData = "get-data",
+  info = "info"
 }
  
 /** Schema dist/js/schema/system/in_set.json */

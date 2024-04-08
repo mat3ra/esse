@@ -11,6 +11,10 @@
             "enum": [
                 "from-iframe-to-host",
                 "from-host-to-iframe"
+            ],
+            "tsEnumNames": [
+                "fromIframeToHost",
+                "fromHostToIframe"
             ]
         },
         "action": {
@@ -19,6 +23,11 @@
             "enum": [
                 "set-data",
                 "get-data",
+                "info"
+            ],
+            "tsEnumNames": [
+                "setData",
+                "getData",
                 "info"
             ]
         },
