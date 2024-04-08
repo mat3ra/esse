@@ -34,6 +34,7 @@ jobs:
         uses: ./actions/py/lint
         with:
           python-version: ${{ matrix.python-version }}
+          exclude: dist/py*
 
   run-py-tests:
     runs-on: ubuntu-20.04
