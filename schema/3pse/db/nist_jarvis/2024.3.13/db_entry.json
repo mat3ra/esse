@@ -1,7 +1,7 @@
 {
     "$id": "3pse/db/nist-jarvis/2024.3.13/db-entry",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "NIST JARVIS Atoms schema",
+    "title": "NIST JARVIS db entry schema",
     "description": "NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571",
     "additionalProperties": true,
     "type": "object",
