@@ -48,7 +48,7 @@ export interface NISTJARVISAtomsSchema {
 /**
  * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
  */
-export interface NISTJARVISAtomsSchema {
+export interface NISTJARVISDbEntrySchema {
   /**
    * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
    */
