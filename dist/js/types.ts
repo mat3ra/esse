@@ -1,6 +1,9 @@
 /** Schema dist/js/schema/3pse/db/nist_jarvis/2024.3.13/atoms.json */
 
-export interface NISTJARVISDbEntryAtomsKeySchemaBasedOnHttpsFigshareComArticlesDatasetMonolayerDataForHeterostructure22344571 {
+/**
+ * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
+ */
+export interface NISTJARVISAtomsSchema {
   /**
    * Crystal lattice vectors as a 3x3 matrix, in Angstroms
    *
@@ -42,7 +45,13 @@ export interface NISTJARVISDbEntryAtomsKeySchemaBasedOnHttpsFigshareComArticlesD
  
 /** Schema dist/js/schema/3pse/db/nist_jarvis/2024.3.13/db_entry.json */
 
-export interface NISTJARVISDbEntrySchemaBasedOnHttpsFigshareComArticlesDatasetMonolayerDataForHeterostructure22344571 {
+/**
+ * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
+ */
+export interface NISTJARVISAtomsSchema {
+  /**
+   * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
+   */
   atoms?: {
     /**
      * Crystal lattice vectors as a 3x3 matrix, in Angstroms
