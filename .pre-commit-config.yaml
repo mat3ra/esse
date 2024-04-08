@@ -3,9 +3,9 @@ repos:
     rev: 2023.6.13
     hooks:
       - id: ruff
-        exclude: ^src/py/mat3ra/esse/data|^dist*
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models
       - id: black
-        exclude: ^src/py/mat3ra/esse/data|^dist*
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models
   - repo: local
     hooks:
       # Note: only python 3.8.12 is tested for the model generation
@@ -13,7 +13,7 @@ repos:
         name: Regenerate data modules classes from static assets
         # yamllint disable rule:line-length
         entry: |
-          bash -c 'if ! [ "$(git diff --cached --name-only | grep "schema/")" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
+          bash -c 'if [ "$(git diff --cached --name-only | grep "schema/")" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
             datamodel-codegen \
                 --input ./dist/js/schema/ \
                 --input-file-type jsonschema \
