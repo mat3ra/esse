@@ -6,7 +6,7 @@
         "transpile": "tsc -p tsconfig-transpile.json",
         "build-schemas": "BUILD_ASSETS=true BUILD_PYTHON_MODULES=true BUILD_PATH='./dist/js' ts-node build_schemas.ts",
         "compile-types": "ts-node compile_ts.ts",
-        "transpile-and-build-assets": "npm run transpile && npm run build-schemas && npm run compile-types",
+        "transpile-and-build-assets": "npm run build-schemas && npm run compile-types && npm run transpile",
         "test": "npm run build-schemas && nyc --reporter=text mocha --recursive --timeout 15000 --bail tests/js",
         "test-only": "nyc --reporter=text mocha --recursive --bail tests/js",
         "lint": "eslint src/js && prettier --write src/js",
