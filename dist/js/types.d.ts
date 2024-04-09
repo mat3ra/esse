@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1621,23 +1605,7 @@ export interface DimensionalGridSchema {
  * @minItems 3
  * @maxItems 3
  */
-export type DimensionalTensorSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
 export interface DimensionalVectorBasis {
     /**
@@ -23683,14 +23651,14 @@ export interface IframeMessageSchema {
 /**
  * The type of the message to distinguish the direction of the message.
  */
-export declare const enum Type {
+export declare enum Type {
     fromIframeToHost = "from-iframe-to-host",
     fromHostToIframe = "from-host-to-iframe"
 }
 /**
  * The action to be performed upon receiving the message.
  */
-export declare const enum Action {
+export declare enum Action {
     setData = "set-data",
     getData = "get-data",
     info = "info"
