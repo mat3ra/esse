@@ -41,7 +41,7 @@ class NISTJARVISAtomsSchema(BaseModel):
     """
 
 
-class NISTJARVISAtomsSchema1(BaseModel):
+class NISTJARVISDbEntrySchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
