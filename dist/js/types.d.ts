@@ -10839,7 +10839,7 @@ export interface PseudopotentialCategorySchema {
          * machine-readable identifier
          */
         slug: string;
-    } | string) & ("us" | "nc" | "paw" | "coulomb");
+    } | string) & ("us" | "nc" | "nc-fr" | "paw" | "coulomb");
     /**
      * contains either object with slugified entry or slug only as a string
      */
@@ -12270,7 +12270,7 @@ export interface PseudopotentialFile {
          * MD5 hash of the pseudopotential file
          */
         hash?: string;
-        type: "us" | "nc" | "paw" | "coulomb";
+        type: "us" | "nc" | "nc-fr" | "paw" | "coulomb";
         /**
          * explains where this came from
          */
@@ -12341,7 +12341,7 @@ export interface FileDataItem {
      * MD5 hash of the pseudopotential file
      */
     hash?: string;
-    type: "us" | "nc" | "paw" | "coulomb";
+    type: "us" | "nc" | "nc-fr" | "paw" | "coulomb";
     /**
      * explains where this came from
      */
@@ -12428,7 +12428,7 @@ export interface UnitMethodPseudopotential {
              * machine-readable identifier
              */
             slug: string;
-        } | string) & ("us" | "nc" | "paw" | "coulomb");
+        } | string) & ("us" | "nc" | "nc-fr" | "paw" | "coulomb");
         /**
          * contains either object with slugified entry or slug only as a string
          */
@@ -12480,7 +12480,7 @@ export interface UnitMethodPseudopotential {
              * MD5 hash of the pseudopotential file
              */
             hash?: string;
-            type: "us" | "nc" | "paw" | "coulomb";
+            type: "us" | "nc" | "nc-fr" | "paw" | "coulomb";
             /**
              * explains where this came from
              */

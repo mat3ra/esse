@@ -17,6 +17,7 @@ class Slug(Enum):
 class Type(Enum):
     us = "us"
     nc = "nc"
+    nc_fr = "nc-fr"
     paw = "paw"
     coulomb = "coulomb"
 
