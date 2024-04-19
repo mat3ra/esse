@@ -51,6 +51,7 @@
                     "enum": [
                         "us",
                         "nc",
+                        "nc-fr",
                         "paw",
                         "coulomb"
                     ],
@@ -218,6 +219,7 @@
                                 "enum": [
                                     "us",
                                     "nc",
+                                    "nc-fr",
                                     "paw",
                                     "coulomb"
                                 ]
