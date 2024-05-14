@@ -233,7 +233,9 @@
                     "properties": {
                         "hubbardType": {
                             "enum": [
-                                "u"
+                                "u",
+                                "u+v",
+                                "u+j"
                             ]
                         }
                     }

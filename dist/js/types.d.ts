@@ -13147,7 +13147,7 @@ export interface ModelMixinsEnumOptions {
 }
 /** Schema dist/js/schema/model/mixins/hubbard.json */
 export interface HubbardModelMixin {
-    hubbardType?: "u";
+    hubbardType?: "u" | "u+v" | "u+j";
 }
 /** Schema dist/js/schema/model/mixins/spin_orbit_coupling.json */
 export interface SpinOrbitCouplingMixin {
@@ -13176,7 +13176,7 @@ export type ModelParameters2 = {
     functional?: "b2plyp";
 };
 export interface ModelParameters1 {
-    hubbardType?: "u";
+    hubbardType?: "u" | "u+v" | "u+j";
     spinPolarization?: "collinear" | "non-collinear";
     spinOrbitCoupling?: boolean;
     dispersionCorrection?: "dft-d2" | "dft-d3" | "xdm" | "ts";
@@ -14790,7 +14790,7 @@ export interface ModelGeneralizedGradientApproximation {
         spinPolarization?: "collinear" | "non-collinear";
         [k: string]: unknown;
     } | {
-        hubbardType?: "u";
+        hubbardType?: "u" | "u+v" | "u+j";
     };
     reference?: {
         type?: "literature";
@@ -15129,7 +15129,7 @@ export interface ModelHybridFunctional {
         spinPolarization?: "collinear" | "non-collinear";
         [k: string]: unknown;
     } | {
-        hubbardType?: "u";
+        hubbardType?: "u" | "u+v" | "u+j";
     };
     reference?: {
         type?: "literature";
@@ -15296,7 +15296,7 @@ export interface ModelLocalDensityApproximation {
         spinPolarization?: "collinear" | "non-collinear";
         [k: string]: unknown;
     } | {
-        hubbardType?: "u";
+        hubbardType?: "u" | "u+v" | "u+j";
     };
     reference?: {
         type?: "literature";
@@ -15588,7 +15588,7 @@ export interface ModelMetaGeneralizedGradientApproximation {
         spinPolarization?: "collinear" | "non-collinear";
         [k: string]: unknown;
     } | {
-        hubbardType?: "u";
+        hubbardType?: "u" | "u+v" | "u+j";
     };
     reference?: {
         type?: "literature";

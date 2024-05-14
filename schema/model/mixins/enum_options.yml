@@ -8,3 +8,5 @@ dispersionCorrection:
   - ts
 hubbardType:
   - u
+  - u+v
+  - u+j

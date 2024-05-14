@@ -106,6 +106,8 @@ class SpinPolarizationMixin(BaseModel):
 
 class HubbardType(Enum):
     u = "u"
+    u_v = "u+v"
+    u_j = "u+j"
 
 
 class HubbardModelMixin(BaseModel):
