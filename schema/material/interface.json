@@ -1,0 +1,69 @@
+{
+    "$id": "interface",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interface Schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "material"
+        }
+    ],
+    "properties": {
+        "interface_config": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["interface"]
+                },
+                "source": {
+                    "type": "object",
+                    "properties": {
+                        "slab_config1": {
+                            "$ref": "slab"
+                        },
+                        "slab_config2": {
+                            "$ref": "slab"
+                        }
+                    }
+                },
+                "interface_parameters": {
+                    "type": "object",
+                    "properties": {
+                        "distance_z": {
+                            "type": "number",
+                            "description": "Vertical distance between the two slabs."
+                        },
+                        "shift_x": {
+                            "type": "number",
+                            "description": "Horizontal shift along the x-axis of the second slab with respect to the first slab."
+                        },
+                        "shift_y": {
+                            "type": "number",
+                            "description": "Horizontal shift along the y-axis of the second slab with respect to the first slab."
+                        },
+                        "vacuum": {
+                            "type": "number",
+                            "description": "Vacuum spacing added between the interfaces."
+                        }
+                    }
+                },
+                "derived_properties": {
+                    "type": "object",
+                    "properties": {
+                        "strain": {
+                            "type": "number",
+                            "description": "Strain induced due to the interface."
+                        },
+                        "termination_pair": {
+                            "type": "string",
+                            "description": "Pair of terminations at the interface."
+                        }
+                    }
+                }
+            },
+            "required": ["type", "source", "interface_parameters"]
+        }
+    },
+    "required": ["interface_config"]
+}
