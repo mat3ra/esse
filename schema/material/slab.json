@@ -52,7 +52,7 @@
                             "items": {
                                 "type": "array",
                                 "items": {
-                                    "type": "integer"
+                                    "type": "number"
                                 }
                             },
                             "description": "Matrix used for scaling the slab."
