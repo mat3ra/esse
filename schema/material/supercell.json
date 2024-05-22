@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "material"
+            "$ref": "../material.json"
         }
     ],
     "properties": {
@@ -17,7 +17,7 @@
                     "enum": ["supercell"]
                 },
                 "source": {
-                    "$ref": "material"
+                    "$ref": "../material.json"
                 },
                 "supercell_parameters": {
                     "type": "object",

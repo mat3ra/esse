@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "material"
+            "$ref": "../material.json"
         }
     ],
     "properties": {
@@ -17,7 +17,7 @@
                     "enum": ["slab"]
                 },
                 "source": {
-                    "$ref": "material"
+                    "$ref": "../material.json"
                 },
                 "slab_parameters": {
                     "type": "object",
