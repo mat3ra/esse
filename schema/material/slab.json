@@ -27,7 +27,7 @@
                             "items": {
                                 "type": "integer"
                             },
-                            "description": "Miller indices defining the orientation of the slab."
+                            "description": "Miller indices of the slab surface."
                         },
                         "thickness": {
                             "type": "integer",
@@ -45,9 +45,9 @@
                                     "type": "integer"
                                 }
                             },
-                            "description": "Matrix to scale the slab in the xy plane."
+                            "description": "Matrix used for creating the xy supercell."
                         },
-                        "scaling_matrix": {
+                        "straining_matrix": {
                             "type": "array",
                             "items": {
                                 "type": "array",
@@ -55,11 +55,11 @@
                                     "type": "number"
                                 }
                             },
-                            "description": "Matrix used for scaling the slab."
+                            "description": "Matrix used for straining the slab."
                         },
                         "termination": {
                             "type": "string",
-                            "description": "Type of termination of the slab surface."
+                            "description": "Termination of the slab surface. e.g. 'C_P6/mmm_2'"
                         }
                     }
                 },
@@ -68,7 +68,7 @@
                     "properties": {
                         "strain": {
                             "type": "number",
-                            "description": "Strain applied to the slab."
+                            "description": "Mean absolute strain applied to the slab."
                         },
                         "transformation_matrix": {
                             "type": "array",

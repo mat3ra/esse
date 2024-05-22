@@ -19,10 +19,10 @@
                 "source": {
                     "type": "object",
                     "properties": {
-                        "slab_config1": {
+                        "slab1_config": {
                             "$ref": "slab.json"
                         },
-                        "slab_config2": {
+                        "slab2_config": {
                             "$ref": "slab.json"
                         }
                     }
@@ -44,7 +44,7 @@
                         },
                         "vacuum": {
                             "type": "number",
-                            "description": "Vacuum spacing added between the interfaces."
+                            "description": "Vacuum spacing added above the second slab."
                         }
                     }
                 },
@@ -53,7 +53,7 @@
                     "properties": {
                         "strain": {
                             "type": "number",
-                            "description": "Strain induced due to the interface."
+                            "description": "Strain of the second slab."
                         },
                         "termination_pair": {
                             "type": "string",
