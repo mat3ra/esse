@@ -1,0 +1,90 @@
+{
+    "$id": "slab",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "material"
+        }
+    ],
+    "properties": {
+        "slab_config": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["slab"]
+                },
+                "source": {
+                    "$ref": "material"
+                },
+                "slab_parameters": {
+                    "type": "object",
+                    "properties": {
+                        "miller_indices": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            },
+                            "description": "Miller indices defining the orientation of the slab."
+                        },
+                        "thickness": {
+                            "type": "integer",
+                            "description": "Thickness of the slab in layers."
+                        },
+                        "vacuum": {
+                            "type": "number",
+                            "description": "Vacuum spacing added above the slab."
+                        },
+                        "xy_supercell_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "description": "Matrix to scale the slab in the xy plane."
+                        },
+                        "scaling_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "integer"
+                                }
+                            },
+                            "description": "Matrix used for scaling the slab."
+                        },
+                        "termination": {
+                            "type": "string",
+                            "description": "Type of termination of the slab surface."
+                        }
+                    }
+                },
+                "derived_properties": {
+                    "type": "object",
+                    "properties": {
+                        "strain": {
+                            "type": "number",
+                            "description": "Strain applied to the slab."
+                        },
+                        "transformation_matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "description": "Matrix describing the slab transformation."
+                        }
+                    }
+                }
+            },
+            "required": ["type", "source", "slab_parameters"]
+        }
+    },
+    "required": ["slab_config"]
+}
