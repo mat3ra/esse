@@ -76,6 +76,7 @@ export default async function compileTS(schemaPath: string, savePath: string) {
         const compiledSchema = await compile(schema, schema.title || "", {
             unreachableDefinitions: true,
             additionalProperties: false,
+            enableConstEnums: false,
             bannerComment: `/** Schema ${filePath} */`,
         });
 

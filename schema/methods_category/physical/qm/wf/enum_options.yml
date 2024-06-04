@@ -20,6 +20,7 @@ pseudization:
 pseudoSubtypes:
   - us # ultra-soft
   - nc # norm-conserving
+  - nc-fr # norm-conserving full-relativistic
   - paw # projector augmented wave
   - coulomb # Coulomb potential
 #
