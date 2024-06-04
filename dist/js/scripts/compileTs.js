@@ -71,6 +71,7 @@ async function compileTS(schemaPath, savePath) {
         const compiledSchema = await (0, json_schema_to_typescript_1.compile)(schema, schema.title || "", {
             unreachableDefinitions: true,
             additionalProperties: false,
+            enableConstEnums: false,
             bannerComment: `/** Schema ${filePath} */`,
         });
         await fs_1.default.promises.appendFile(savePath, `${compiledSchema} \n`, { flag: "a+" });
