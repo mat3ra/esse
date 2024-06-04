@@ -61,3 +61,5 @@ schema.js
 
 # Static assets, if any
 site
+
+src/js/types.ts

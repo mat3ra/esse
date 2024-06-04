@@ -28,6 +28,7 @@ class SlugifiedEntryOrSlug(Enum):
 class SlugifiedEntryOrSlug213(Enum):
     us = "us"
     nc = "nc"
+    nc_fr = "nc-fr"
     paw = "paw"
     coulomb = "coulomb"
 
