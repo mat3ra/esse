@@ -93,7 +93,7 @@
         "./dist/js/esse/*": "./dist/js/esse/*.js",
         "./dist/js/json_include/*": "./dist/js/json_include/*.js",
         "./dist/js/scripts/*": "./dist/js/scripts/*.js",
-        "./dist/js/types": "./dist/js/types.ts",
+        "./dist/js/types": "./dist/js/types.js",
         "./dist/js/schemas.json": "./dist/js/schemas.json"
     }
 }
