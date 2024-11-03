@@ -24,6 +24,7 @@ class Summary(Enum):
 
 class Version(Enum):
     field_0_33_12 = "0.33.12"
+    field_4_3_0 = "4.3.0"
 
 
 class Exec(Enum):
