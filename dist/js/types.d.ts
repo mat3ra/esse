@@ -22943,7 +22943,7 @@ export interface PythonProgramingLanguageSchema {
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "2.7.5" | "3.6.1";
+    version?: "2.7.5" | "3.6.12" | "3.7.9" | "3.8.6" | "3.9.1" | "3.9.20" | "3.10.13" | "3.10.15" | "3.11.10" | "3.12.7" | "anaconda3-5.2.0" | "anaconda3-2024.10-1";
     exec?: "python";
     /**
      * Optional arguments passed to the Python script

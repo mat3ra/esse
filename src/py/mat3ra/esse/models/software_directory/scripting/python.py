@@ -25,7 +25,17 @@ class Summary(Enum):
 
 class Version(Enum):
     field_2_7_5 = "2.7.5"
-    field_3_6_1 = "3.6.1"
+    field_3_6_12 = "3.6.12"
+    field_3_7_9 = "3.7.9"
+    field_3_8_6 = "3.8.6"
+    field_3_9_1 = "3.9.1"
+    field_3_9_20 = "3.9.20"
+    field_3_10_13 = "3.10.13"
+    field_3_10_15 = "3.10.15"
+    field_3_11_10 = "3.11.10"
+    field_3_12_7 = "3.12.7"
+    anaconda3_5_2_0 = "anaconda3-5.2.0"
+    anaconda3_2024_10_1 = "anaconda3-2024.10-1"
 
 
 class Exec(Enum):
