@@ -23024,7 +23024,7 @@ export interface ShellScriptingLanguageSchema {
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "4.2.46";
+    version?: "4.2.46" | "5.1.8";
     exec?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Optional arguments passed to the Shell script
