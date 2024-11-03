@@ -23,7 +23,7 @@ class Summary(Enum):
 
 
 class Version(Enum):
-    field_0_33_12 = "0.33.12"
+    field_3_0_3 = "3.0.3"
     field_4_3_0 = "4.3.0"
 
 

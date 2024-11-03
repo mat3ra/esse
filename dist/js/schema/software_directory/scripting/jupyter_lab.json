@@ -26,7 +26,7 @@
         },
         "version": {
             "enum": [
-                "0.33.12",
+                "3.0.3",
                 "4.3.0"
             ],
             "description": "Application version. e.g. 5.3.5",

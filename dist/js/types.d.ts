@@ -22874,7 +22874,7 @@ export interface JupyterLabApplicationSchema {
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "0.33.12" | "4.3.0";
+    version?: "3.0.3" | "4.3.0";
     exec?: "jupyter";
     /**
      * The short name of the application. e.g. qe
