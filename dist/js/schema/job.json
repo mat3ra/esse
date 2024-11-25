@@ -6705,6 +6705,11 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "entity reference schema",
             "type": "object",
+            "required": [
+                "_id",
+                "cls",
+                "slug"
+            ],
             "properties": {
                 "_id": {
                     "description": "entity identity",
@@ -6724,6 +6729,11 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "entity reference schema",
             "type": "object",
+            "required": [
+                "_id",
+                "cls",
+                "slug"
+            ],
             "properties": {
                 "_id": {
                     "description": "entity identity",
@@ -6743,6 +6753,11 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "entity reference schema",
             "type": "object",
+            "required": [
+                "_id",
+                "cls",
+                "slug"
+            ],
             "properties": {
                 "_id": {
                     "description": "entity identity",

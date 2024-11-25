@@ -2225,15 +2225,15 @@ export interface InfoForCharacteristicObtainedByExabyteCalculation {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
 }
 /** Schema dist/js/schema/core/reference/modeling.json */
@@ -2247,15 +2247,15 @@ export type InfoForPropertyObtainedByModelingOnlySupportsExabyteOriginatedDataAt
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
 };
 /** Schema dist/js/schema/core/reference.json */
@@ -2269,15 +2269,15 @@ export type ReferenceSchemaUsingAnyOfInsteadOfOneOfBelowBCCurrentReferenceSchema
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
 } | {
     type?: "experiment";
@@ -3234,43 +3234,43 @@ export interface JobBaseSchema {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     _material?: {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     parent?: {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     /**
      * Context variables that the job will have access to at runtime
@@ -6512,43 +6512,43 @@ export interface JobSchema {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     _material?: {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     parent?: {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     /**
      * Context variables that the job will have access to at runtime
@@ -23474,45 +23474,45 @@ export interface MaterialEntityReferenceSchema {
     /**
      * Material class
      */
-    cls?: "Material";
+    cls: "Material";
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/_parent_job.json */
 export interface ParentJobEntityReferenceSchema {
     /**
      * Job class
      */
-    cls?: "Job";
+    cls: "Job";
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/_project.json */
 export interface ProjectEntityReferenceSchema {
     /**
      * Project class
      */
-    cls?: "Project";
+    cls: "Project";
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/bankable.json */
 export interface BankableSchema {
@@ -23552,15 +23552,15 @@ export interface CreatorEntityReferenceSchema {
     /**
      * Creator class
      */
-    cls?: "User";
+    cls: "User";
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/creator_account.json */
 export interface CreatorAccountSchema {
@@ -23568,15 +23568,15 @@ export interface CreatorAccountSchema {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
 }
 /** Schema dist/js/schema/system/database_source.json */
@@ -23629,15 +23629,15 @@ export interface EntityReferenceSchema {
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity class
      */
-    cls?: string;
+    cls: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/file_source.json */
 /**
@@ -23701,15 +23701,15 @@ export interface SystemInSetSchema {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
         type?: string;
         index?: number;
     }[];
@@ -23730,29 +23730,29 @@ export interface ExtendedJobSchema {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     }[];
     _materialsSet?: {
         /**
          * entity identity
          */
-        _id?: string;
+        _id: string;
         /**
          * entity class
          */
-        cls?: string;
+        cls: string;
         /**
          * entity slug
          */
-        slug?: string;
+        slug: string;
     };
     purged?: boolean;
     purgedAt?: number;
@@ -23812,15 +23812,15 @@ export interface EntityOwnerReferenceSchema {
     /**
      * Entity owner class
      */
-    cls?: "Account";
+    cls: "Account";
     /**
      * entity identity
      */
-    _id?: string;
+    _id: string;
     /**
      * entity slug
      */
-    slug?: string;
+    slug: string;
 }
 /** Schema dist/js/schema/system/path.json */
 export interface PathSchema {
