@@ -236,6 +236,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -532,6 +533,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -846,6 +848,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -1122,6 +1125,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -1383,6 +1387,7 @@
                                         "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                                     },
                                     "name": {
+                                        "type": "string",
                                         "enum": [
                                             "default",
                                             "atomsTooClose",
@@ -1474,6 +1479,7 @@
                                         "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                                     },
                                     "name": {
+                                        "type": "string",
                                         "enum": [
                                             "default",
                                             "atomsTooClose",
@@ -1697,6 +1703,7 @@
                                         "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                                     },
                                     "name": {
+                                        "type": "string",
                                         "enum": [
                                             "default",
                                             "atomsTooClose",
@@ -1925,6 +1932,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -2235,6 +2243,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -2518,6 +2527,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -2831,6 +2841,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
@@ -3097,6 +3108,7 @@
                                 "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                             },
                             "name": {
+                                "type": "string",
                                 "enum": [
                                     "default",
                                     "atomsTooClose",
