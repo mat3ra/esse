@@ -9,9 +9,7 @@
             "title": "entity reference schema",
             "type": "object",
             "required": [
-                "_id",
-                "cls",
-                "slug"
+                "_id"
             ],
             "properties": {
                 "_id": {

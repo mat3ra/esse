@@ -2229,11 +2229,11 @@ export interface InfoForCharacteristicObtainedByExabyteCalculation {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
 }
 /** Schema dist/js/schema/core/reference/modeling.json */
@@ -2251,11 +2251,11 @@ export type InfoForPropertyObtainedByModelingOnlySupportsExabyteOriginatedDataAt
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
 };
 /** Schema dist/js/schema/core/reference.json */
@@ -2273,11 +2273,11 @@ export type ReferenceSchemaUsingAnyOfInsteadOfOneOfBelowBCCurrentReferenceSchema
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
 } | {
     type?: "experiment";
@@ -3158,11 +3158,11 @@ export interface JobBaseSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     _material?: {
         /**
@@ -3172,11 +3172,11 @@ export interface JobBaseSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     parent?: {
         /**
@@ -3186,11 +3186,11 @@ export interface JobBaseSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     /**
      * Context variables that the job will have access to at runtime
@@ -5986,11 +5986,11 @@ export interface JobSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     _material?: {
         /**
@@ -6000,11 +6000,11 @@ export interface JobSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     parent?: {
         /**
@@ -6014,11 +6014,11 @@ export interface JobSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     /**
      * Context variables that the job will have access to at runtime
@@ -21850,7 +21850,7 @@ export interface MaterialEntityReferenceSchema {
     /**
      * Material class
      */
-    cls: "Material";
+    cls?: "Material";
     /**
      * entity identity
      */
@@ -21858,14 +21858,14 @@ export interface MaterialEntityReferenceSchema {
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/_parent_job.json */
 export interface ParentJobEntityReferenceSchema {
     /**
      * Job class
      */
-    cls: "Job";
+    cls?: "Job";
     /**
      * entity identity
      */
@@ -21873,14 +21873,14 @@ export interface ParentJobEntityReferenceSchema {
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/_project.json */
 export interface ProjectEntityReferenceSchema {
     /**
      * Project class
      */
-    cls: "Project";
+    cls?: "Project";
     /**
      * entity identity
      */
@@ -21888,7 +21888,7 @@ export interface ProjectEntityReferenceSchema {
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/bankable.json */
 export interface BankableSchema {
@@ -21928,7 +21928,7 @@ export interface CreatorEntityReferenceSchema {
     /**
      * Creator class
      */
-    cls: "User";
+    cls?: "User";
     /**
      * entity identity
      */
@@ -21936,7 +21936,7 @@ export interface CreatorEntityReferenceSchema {
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/creator_account.json */
 export interface CreatorAccountSchema {
@@ -21948,11 +21948,11 @@ export interface CreatorAccountSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
 }
 /** Schema dist/js/schema/system/database_source.json */
@@ -22009,11 +22009,11 @@ export interface EntityReferenceSchema {
     /**
      * entity class
      */
-    cls: string;
+    cls?: string;
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/file_source.json */
 /**
@@ -22087,11 +22087,11 @@ export interface SystemInSetSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
         type?: string;
         index?: number;
     }[];
@@ -22116,11 +22116,11 @@ export interface ExtendedJobSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     }[];
     _materialsSet?: {
         /**
@@ -22130,11 +22130,11 @@ export interface ExtendedJobSchema {
         /**
          * entity class
          */
-        cls: string;
+        cls?: string;
         /**
          * entity slug
          */
-        slug: string;
+        slug?: string;
     };
     purged?: boolean;
     purgedAt?: number;
@@ -22194,7 +22194,7 @@ export interface EntityOwnerReferenceSchema {
     /**
      * Entity owner class
      */
-    cls: "Account";
+    cls?: "Account";
     /**
      * entity identity
      */
@@ -22202,7 +22202,7 @@ export interface EntityOwnerReferenceSchema {
     /**
      * entity slug
      */
-    slug: string;
+    slug?: string;
 }
 /** Schema dist/js/schema/system/path.json */
 export interface PathSchema {
