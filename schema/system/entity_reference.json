@@ -17,5 +17,5 @@
             "type": "string"
         }
     },
-    "required": ["_id", "cls", "slug"]
+    "required": ["_id"]
 }
