@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -15,15 +14,15 @@ class Cls(Enum):
 
 
 class CreatorEntityReferenceSchema(BaseModel):
-    cls: Optional[Cls] = None
+    cls: Cls
     """
     Creator class
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     entity identity
     """
-    slug: Optional[str] = None
+    slug: str
     """
     entity slug
     """

@@ -36,7 +36,7 @@ class Exec(Enum):
     csh = "csh"
 
 
-class Name170(Enum):
+class Name172(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -53,7 +53,7 @@ class ConsistencyCheck(BaseModel):
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
     """
-    name: Name170
+    name: Name172
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

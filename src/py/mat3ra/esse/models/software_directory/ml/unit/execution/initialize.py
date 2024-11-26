@@ -104,7 +104,7 @@ class ApplicationSchemaBase(BaseModel):
     """
 
 
-class ConsistencyCheck50(BaseModel):
+class ConsistencyCheck51(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -152,7 +152,7 @@ class ExecutableSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck50]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck51]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -191,7 +191,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class ConsistencyCheck51(BaseModel):
+class ConsistencyCheck52(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -235,7 +235,7 @@ class FlavorSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck51]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck52]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -274,7 +274,7 @@ class Status(Enum):
     finished = "finished"
 
 
-class ConsistencyCheck52(BaseModel):
+class ConsistencyCheck53(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -349,7 +349,7 @@ class InitializeUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck52]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck53]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.

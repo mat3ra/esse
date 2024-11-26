@@ -270,7 +270,7 @@ class InputItem(BaseModel):
     """
 
 
-class ConsistencyCheck55(BaseModel):
+class ConsistencyCheck56(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -340,7 +340,7 @@ class ReduceUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck55]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck56]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -387,7 +387,7 @@ class WorkflowUnitInputSchema(BaseModel):
     """
 
 
-class ConsistencyCheck56(BaseModel):
+class ConsistencyCheck57(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -473,7 +473,7 @@ class ConditionUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck56]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck57]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -509,7 +509,7 @@ class Type37(Enum):
     assertion = "assertion"
 
 
-class ConsistencyCheck57(BaseModel):
+class ConsistencyCheck58(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -579,7 +579,7 @@ class AssertionUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck57]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck58]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -615,7 +615,7 @@ class Type38(Enum):
     execution = "execution"
 
 
-class ConsistencyCheck58(BaseModel):
+class ConsistencyCheck59(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -671,7 +671,7 @@ class ApplicationSchemaBase(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck58]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck59]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -686,7 +686,7 @@ class ApplicationSchemaBase(BaseModel):
     """
 
 
-class ConsistencyCheck59(BaseModel):
+class ConsistencyCheck60(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -727,7 +727,7 @@ class ExecutableSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck59]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck60]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -766,7 +766,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class ConsistencyCheck60(BaseModel):
+class ConsistencyCheck61(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -810,7 +810,7 @@ class FlavorSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck60]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck61]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -841,7 +841,7 @@ class FlavorSchema(BaseModel):
     """
 
 
-class ConsistencyCheck61(BaseModel):
+class ConsistencyCheck62(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -910,7 +910,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck61]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck62]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -946,7 +946,7 @@ class Type39(Enum):
     assignment = "assignment"
 
 
-class ConsistencyCheck62(BaseModel):
+class ConsistencyCheck63(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1020,7 +1020,7 @@ class AssignmentUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck62]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck63]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1057,7 +1057,7 @@ class Type40(Enum):
     processing = "processing"
 
 
-class ConsistencyCheck63(BaseModel):
+class ConsistencyCheck64(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1131,7 +1131,7 @@ class ProcessingUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck63]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck64]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1221,7 +1221,7 @@ class BaseModelModel(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class ConsistencyCheck64(BaseModel):
+class ConsistencyCheck65(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1277,7 +1277,7 @@ class ApplicationSchemaBase11(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck64]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck65]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1523,7 +1523,7 @@ class ObjectStorageIoSchema2(BaseModel):
     """
 
 
-class ConsistencyCheck65(BaseModel):
+class ConsistencyCheck66(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1594,7 +1594,7 @@ class DataIOUnitSchema2(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck65]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck66]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1630,7 +1630,7 @@ class Type42(Enum):
     reduce = "reduce"
 
 
-class ConsistencyCheck66(BaseModel):
+class ConsistencyCheck67(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1700,7 +1700,7 @@ class ReduceUnitSchema1(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck66]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck67]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1736,7 +1736,7 @@ class Type43(Enum):
     condition = "condition"
 
 
-class ConsistencyCheck67(BaseModel):
+class ConsistencyCheck68(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1822,7 +1822,7 @@ class ConditionUnitSchema2(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck67]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck68]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1858,7 +1858,7 @@ class Type44(Enum):
     assertion = "assertion"
 
 
-class ConsistencyCheck68(BaseModel):
+class ConsistencyCheck69(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -1928,7 +1928,7 @@ class AssertionUnitSchema2(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck68]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck69]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -1964,7 +1964,7 @@ class Type45(Enum):
     execution = "execution"
 
 
-class ConsistencyCheck69(BaseModel):
+class ConsistencyCheck70(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2020,7 +2020,7 @@ class ApplicationSchemaBase12(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck69]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck70]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2035,7 +2035,7 @@ class ApplicationSchemaBase12(BaseModel):
     """
 
 
-class ConsistencyCheck70(BaseModel):
+class ConsistencyCheck71(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2076,7 +2076,7 @@ class ExecutableSchema11(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck70]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck71]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2103,7 +2103,7 @@ class ExecutableSchema11(BaseModel):
     """
 
 
-class ConsistencyCheck71(BaseModel):
+class ConsistencyCheck72(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2147,7 +2147,7 @@ class FlavorSchema11(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck71]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck72]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2178,7 +2178,7 @@ class FlavorSchema11(BaseModel):
     """
 
 
-class ConsistencyCheck72(BaseModel):
+class ConsistencyCheck73(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2247,7 +2247,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck72]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck73]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2283,7 +2283,7 @@ class Type46(Enum):
     assignment = "assignment"
 
 
-class ConsistencyCheck73(BaseModel):
+class ConsistencyCheck74(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2357,7 +2357,7 @@ class AssignmentUnitSchema2(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck73]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck74]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2394,7 +2394,7 @@ class Type47(Enum):
     processing = "processing"
 
 
-class ConsistencyCheck74(BaseModel):
+class ConsistencyCheck75(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2468,7 +2468,7 @@ class ProcessingUnitSchema1(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck74]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck75]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2524,7 +2524,7 @@ class Input(BaseModel):
     useValues: Optional[bool] = None
 
 
-class ConsistencyCheck75(BaseModel):
+class ConsistencyCheck76(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2594,7 +2594,7 @@ class MapUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck75]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck76]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2630,7 +2630,7 @@ class Type49(Enum):
     subworkflow = "subworkflow"
 
 
-class ConsistencyCheck76(BaseModel):
+class ConsistencyCheck77(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2692,7 +2692,7 @@ class SubworkflowUnitSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck76]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck77]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2752,7 +2752,7 @@ class WorkflowUnitSchema(
     ] = Field(..., discriminator="type", title="workflow unit schema")
 
 
-class ConsistencyCheck77(BaseModel):
+class ConsistencyCheck78(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2801,7 +2801,7 @@ class WorkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck77]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck78]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2905,15 +2905,15 @@ class ComputeArgumentsSchema4(BaseModel):
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     entity identity
     """
-    cls: Optional[str] = None
+    cls: str
     """
     entity class
     """
-    slug: Optional[str] = None
+    slug: str
     """
     entity slug
     """
@@ -2929,7 +2929,7 @@ class ScopeTrackItem(BaseModel):
     scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
 
 
-class ConsistencyCheck78(BaseModel):
+class ConsistencyCheck79(BaseModel):
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -2990,7 +2990,7 @@ class JobSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck78]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck79]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
