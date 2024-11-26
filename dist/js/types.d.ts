@@ -21993,7 +21993,7 @@ export interface DefaultableEntitySchema {
     isDefault?: boolean;
 }
 /** Schema dist/js/schema/system/description.json */
-export interface ExtendedBaseEntitySchema {
+export interface DescriptionSchema {
     /**
      * entity description
      */
