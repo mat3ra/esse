@@ -11,11 +11,6 @@
         },
         "name": {
             "type": "string",
-            "enum": [
-                "default",
-                "atomsTooClose",
-                "atomsOverlap"
-            ],
             "description": "Name of the consistency check that is performed, which is listed in an enum."
         },
         "severity": {
