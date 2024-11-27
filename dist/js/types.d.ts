@@ -2906,7 +2906,7 @@ export interface HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySch
         /**
          * Name of the consistency check that is performed, which is listed in an enum.
          */
-        name: "default" | "atomsTooClose" | "atomsOverlap";
+        name: string;
         /**
          * Severity level of the problem, which is used in UI to differentiate.
          */
@@ -21931,7 +21931,7 @@ export interface ConsistencyCheck {
     /**
      * Name of the consistency check that is performed, which is listed in an enum.
      */
-    name: "default" | "atomsTooClose" | "atomsOverlap";
+    name: string;
     /**
      * Severity level of the problem, which is used in UI to differentiate.
      */
@@ -22068,7 +22068,7 @@ export interface HasConsistencyCheckSchema {
         /**
          * Name of the consistency check that is performed, which is listed in an enum.
          */
-        name: "default" | "atomsTooClose" | "atomsOverlap";
+        name: string;
         /**
          * Severity level of the problem, which is used in UI to differentiate.
          */
