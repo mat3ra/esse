@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -14,7 +15,7 @@ class Cls(Enum):
 
 
 class EntityOwnerReferenceSchema(BaseModel):
-    cls: Cls
+    cls: Optional[Cls] = None
     """
     Entity owner class
     """
@@ -22,7 +23,7 @@ class EntityOwnerReferenceSchema(BaseModel):
     """
     entity identity
     """
-    slug: str
+    slug: Optional[str] = None
     """
     entity slug
     """

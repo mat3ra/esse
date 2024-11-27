@@ -51,7 +51,6 @@ class HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySchema(BaseMod
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -65,3 +64,4 @@ class HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySchema(BaseMod
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+    consistencyChecks: Optional[List[ConsistencyCheck]] = None

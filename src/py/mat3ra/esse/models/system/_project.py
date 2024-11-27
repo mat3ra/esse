@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -14,7 +15,7 @@ class Cls(Enum):
 
 
 class ProjectEntityReferenceSchema(BaseModel):
-    cls: Cls
+    cls: Optional[Cls] = None
     """
     Project class
     """
@@ -22,7 +23,7 @@ class ProjectEntityReferenceSchema(BaseModel):
     """
     entity identity
     """
-    slug: str
+    slug: Optional[str] = None
     """
     entity slug
     """
