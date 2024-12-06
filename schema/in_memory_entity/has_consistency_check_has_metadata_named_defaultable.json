@@ -7,7 +7,7 @@
             "$ref": "named_defaultable_has_metadata.json"
         },
         {
-            "$ref": "../system/has-consistency-check.json"
+            "$ref": "../system/has_consistency_check.json"
         }
     ]
 }
