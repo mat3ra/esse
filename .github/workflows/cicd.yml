@@ -12,10 +12,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - 3.8.x
           - 3.9.x
           - 3.10.x
           - 3.11.x
+          - 3.12.x
+          - 3.13.x
 
     steps:
       - name: Checkout this repository
