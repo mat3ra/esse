@@ -4,7 +4,7 @@
 Vagrantfile
 htmlcov_*
 coverage_*.xml
-venv*/
+.venv/
 .coverage
 
 *.gem
