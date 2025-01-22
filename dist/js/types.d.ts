@@ -12322,6 +12322,28 @@ export interface PseudopotentialFile {
          * name of the data category
          */
         name?: "pseudopotential";
+        suggestedCutoffs?: {
+            wfc_cutoff?: {
+                /**
+                 * Suggested default cutoff for wave function in Ry.
+                 */
+                default?: number;
+                /**
+                 * Suggested stringent cutoff for wave function in Ry.
+                 */
+                precision?: number;
+            };
+            rho_cutoff?: {
+                /**
+                 * Suggested default cutoff for charge density in Ry.
+                 */
+                default?: number;
+                /**
+                 * Suggested stringent cutoff for charge density in Ry.
+                 */
+                precision?: number;
+            };
+        };
     };
     /**
      * TODO: remove in the future
@@ -12393,6 +12415,28 @@ export interface FileDataItem {
      * name of the data category
      */
     name?: "pseudopotential";
+    suggestedCutoffs?: {
+        wfc_cutoff?: {
+            /**
+             * Suggested default cutoff for wave function in Ry.
+             */
+            default?: number;
+            /**
+             * Suggested stringent cutoff for wave function in Ry.
+             */
+            precision?: number;
+        };
+        rho_cutoff?: {
+            /**
+             * Suggested default cutoff for charge density in Ry.
+             */
+            default?: number;
+            /**
+             * Suggested stringent cutoff for charge density in Ry.
+             */
+            precision?: number;
+        };
+    };
 }
 /** Schema dist/js/schema/methods_directory/physical/psp.json */
 /**
@@ -12532,6 +12576,28 @@ export interface UnitMethodPseudopotential {
              * name of the data category
              */
             name?: "pseudopotential";
+            suggestedCutoffs?: {
+                wfc_cutoff?: {
+                    /**
+                     * Suggested default cutoff for wave function in Ry.
+                     */
+                    default?: number;
+                    /**
+                     * Suggested stringent cutoff for wave function in Ry.
+                     */
+                    precision?: number;
+                };
+                rho_cutoff?: {
+                    /**
+                     * Suggested default cutoff for charge density in Ry.
+                     */
+                    default?: number;
+                    /**
+                     * Suggested stringent cutoff for charge density in Ry.
+                     */
+                    precision?: number;
+                };
+            };
         };
         /**
          * TODO: remove in the future

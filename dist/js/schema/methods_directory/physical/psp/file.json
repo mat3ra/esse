@@ -122,6 +122,37 @@
                     "enum": [
                         "pseudopotential"
                     ]
+                },
+                "suggestedCutoffs": {
+                    "type": "object",
+                    "properties": {
+                        "wfc_cutoff": {
+                            "type": "object",
+                            "properties": {
+                                "default": {
+                                    "type": "number",
+                                    "description": "Suggested default cutoff for wave function in Ry."
+                                },
+                                "precision": {
+                                    "type": "number",
+                                    "description": "Suggested stringent cutoff for wave function in Ry."
+                                }
+                            }
+                        },
+                        "rho_cutoff": {
+                            "type": "object",
+                            "properties": {
+                                "default": {
+                                    "type": "number",
+                                    "description": "Suggested default cutoff for charge density in Ry."
+                                },
+                                "precision": {
+                                    "type": "number",
+                                    "description": "Suggested stringent cutoff for charge density in Ry."
+                                }
+                            }
+                        }
+                    }
                 }
             }
         },
