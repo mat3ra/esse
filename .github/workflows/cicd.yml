@@ -38,15 +38,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - 3.9.x
-          - 3.10.x
-          - 3.11.x
-          # Re-enable after fixing the below:
-          # AttributeError: module 'pkgutil' has no attribute 'ImpImporter'. Did you mean: 'zipimporter'?
-          # https://stackoverflow.com/questions/77364550/attributeerror-module-pkgutil-has-no-attribute-impimporter-did-you-mean
-          # The python env in `actions` has to have an updated pip version
-          # - 3.12.x
-          # - 3.13.x
+          - "3.9"
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
 
     steps:
       - name: Checkout this repository
@@ -59,12 +55,14 @@ jobs:
         with:
           repository: Exabyte-io/actions
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
+          ref: feat/SOF-7449
           path: actions
 
       - name: Run python tests
         uses: ./actions/py/test
         with:
           python-version: ${{ matrix.python-version }}
+          ensurepip: true
           unit-test-directory: ./tests/py
 
   run-js-tests:
