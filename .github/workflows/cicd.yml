@@ -62,7 +62,6 @@ jobs:
         uses: ./actions/py/test
         with:
           python-version: ${{ matrix.python-version }}
-          ensurepip: true
           unit-test-directory: ./tests/py
 
   run-js-tests:
