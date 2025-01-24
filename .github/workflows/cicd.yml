@@ -55,7 +55,6 @@ jobs:
         with:
           repository: Exabyte-io/actions
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
-          ref: feat/SOF-7449
           path: actions
 
       - name: Run python tests
