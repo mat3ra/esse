@@ -12,6 +12,8 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 class HubbardType(Enum):
     u = "u"
+    u_v = "u+v"
+    u_j = "u+j"
 
 
 class SpinPolarization(Enum):
