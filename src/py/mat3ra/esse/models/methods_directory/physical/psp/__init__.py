@@ -106,31 +106,39 @@ class Name(Enum):
     pseudopotential = "pseudopotential"
 
 
-class WfcCutoff(BaseModel):
-    default: Optional[float] = None
+class Wfc(BaseModel):
+    standard: Optional[float] = None
     """
     Suggested default cutoff for wave function in Ry.
     """
-    precision: Optional[float] = None
+    high: Optional[float] = None
     """
-    Suggested stringent cutoff for wave function in Ry.
+    Suggested stringent cutoff for wave function in Ry for high precision calculation.
+    """
+    low: Optional[float] = None
+    """
+    Suggested cutoff for wave function in Ry for low precision calculation.
     """
 
 
-class RhoCutoff(BaseModel):
-    default: Optional[float] = None
+class Rho(BaseModel):
+    standard: Optional[float] = None
     """
     Suggested default cutoff for charge density in Ry.
     """
-    precision: Optional[float] = None
+    high: Optional[float] = None
     """
-    Suggested stringent cutoff for charge density in Ry.
+    Suggested stringent cutoff for charge density in Ry for high precision calculation.
+    """
+    low: Optional[float] = None
+    """
+    Suggested cutoff for charge density in Ry for low precision calculation.
     """
 
 
-class SuggestedCutoffs(BaseModel):
-    wfc_cutoff: Optional[WfcCutoff] = None
-    rho_cutoff: Optional[RhoCutoff] = None
+class Cutoffs(BaseModel):
+    wfc: Optional[Wfc] = None
+    rho: Optional[Rho] = None
 
 
 class FileDataItem(BaseModel):
@@ -172,7 +180,10 @@ class FileDataItem(BaseModel):
     """
     name of the data category
     """
-    suggestedCutoffs: Optional[SuggestedCutoffs] = None
+    cutoffs: Optional[Cutoffs] = None
+    """
+    Suggested cutoff values for wave function and charge density.
+    """
 
 
 class Source(BaseModel):

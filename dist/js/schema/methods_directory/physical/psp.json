@@ -308,32 +308,41 @@
                                     "pseudopotential"
                                 ]
                             },
-                            "suggestedCutoffs": {
+                            "cutoffs": {
                                 "type": "object",
+                                "description": "Suggested cutoff values for wave function and charge density.",
                                 "properties": {
-                                    "wfc_cutoff": {
+                                    "wfc": {
                                         "type": "object",
                                         "properties": {
-                                            "default": {
+                                            "standard": {
                                                 "type": "number",
                                                 "description": "Suggested default cutoff for wave function in Ry."
                                             },
-                                            "precision": {
+                                            "high": {
                                                 "type": "number",
-                                                "description": "Suggested stringent cutoff for wave function in Ry."
+                                                "description": "Suggested stringent cutoff for wave function in Ry for high precision calculation."
+                                            },
+                                            "low": {
+                                                "type": "number",
+                                                "description": "Suggested cutoff for wave function in Ry for low precision calculation."
                                             }
                                         }
                                     },
-                                    "rho_cutoff": {
+                                    "rho": {
                                         "type": "object",
                                         "properties": {
-                                            "default": {
+                                            "standard": {
                                                 "type": "number",
                                                 "description": "Suggested default cutoff for charge density in Ry."
                                             },
-                                            "precision": {
+                                            "high": {
                                                 "type": "number",
-                                                "description": "Suggested stringent cutoff for charge density in Ry."
+                                                "description": "Suggested stringent cutoff for charge density in Ry for high precision calculation."
+                                            },
+                                            "low": {
+                                                "type": "number",
+                                                "description": "Suggested cutoff for charge density in Ry for low precision calculation."
                                             }
                                         }
                                     }
