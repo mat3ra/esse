@@ -1,7 +1,7 @@
 {
-    "$id": "system/consistency-check",
+    "$id": "material/consistency-check",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "consistency check",
+    "title": "material consistency check schema",
     "type": "object",
     "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
     "required": [
@@ -11,13 +11,18 @@
         "message"
     ],
     "properties": {
+        "name": {
+            "type": "string",
+            "enum": [
+                "default",
+                "atomsTooClose",
+                "atomsOverlap"
+            ],
+            "description": "Name of the consistency check that is performed, which is listed in an enum."
+        },
         "key": {
             "type": "string",
             "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
-        },
-        "name": {
-            "type": "string",
-            "description": "Name of the consistency check that is performed, which is listed in an enum."
         },
         "severity": {
             "enum": [
