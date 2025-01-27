@@ -49,6 +49,12 @@
         "isNonPeriodic": {
             "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
             "type": "boolean"
+        },
+        "consistencyChecks": {
+            "type": "array",
+            "items": {
+                "$ref": "material/consistency_check.json"
+            }
         }
     },
     "required": [

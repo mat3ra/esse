@@ -16,5 +16,6 @@
             "description": "entity slug",
             "type": "string"
         }
-    }
+    },
+    "required": ["_id"]
 }

@@ -1,0 +1,16 @@
+{
+    "$id": "system/has-consistency-check",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Has consistency check schema",
+    "type": "object",
+    "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+    "properties": {
+        "consistencyChecks": {
+            "type": "array",
+            "items": {
+                "$ref": "consistency_check.json"
+            }
+        }
+    }
+    
+}

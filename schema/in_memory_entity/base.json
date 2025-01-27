@@ -20,12 +20,6 @@
         },
         "systemName": {
             "type": "string"
-        },
-        "consistencyChecks": {
-            "type": "array",
-            "items": {
-                "$ref": "../system/consistency_check.json"
-            }
         }
     }
 }

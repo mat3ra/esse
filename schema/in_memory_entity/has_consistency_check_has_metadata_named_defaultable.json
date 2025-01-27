@@ -1,0 +1,13 @@
+{
+    "$id": "in-memory-entity/has-consistency-check-has-metadata-named-defaultable",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "has consistency check has metadata named defaultable in-memory entity schema",
+    "allOf": [
+        {
+            "$ref": "named_defaultable_has_metadata.json"
+        },
+        {
+            "$ref": "../system/has_consistency_check.json"
+        }
+    ]
+}

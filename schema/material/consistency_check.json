@@ -1,0 +1,22 @@
+{
+    "$id": "material/consistency-check",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "material consistency check schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../system/consistency_check.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "enum": [
+                "default",
+                "atomsTooClose",
+                "atomsOverlap"
+            ],
+            "description": "Name of the consistency check that is performed, which is listed in an enum."
+        }
+    }
+}

@@ -27,6 +27,9 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "entity reference schema",
             "type": "object",
+            "required": [
+                "_id"
+            ],
             "properties": {
                 "_id": {
                     "description": "entity identity",

@@ -572,22 +572,11 @@
             "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
             "type": "boolean"
         },
-        "_id": {
-            "description": "entity identity",
-            "type": "string"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
         "consistencyChecks": {
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "consistency check",
+                "title": "material consistency check schema",
                 "type": "object",
                 "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
                 "required": [
@@ -597,17 +586,18 @@
                     "message"
                 ],
                 "properties": {
-                    "key": {
-                        "type": "string",
-                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
-                    },
                     "name": {
+                        "type": "string",
                         "enum": [
                             "default",
                             "atomsTooClose",
                             "atomsOverlap"
                         ],
                         "description": "Name of the consistency check that is performed, which is listed in an enum."
+                    },
+                    "key": {
+                        "type": "string",
+                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
                     },
                     "severity": {
                         "enum": [
@@ -623,6 +613,17 @@
                     }
                 }
             }
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
         },
         "schemaVersion": {
             "description": "entity's schema version. Used to distinct between different schemas.",
