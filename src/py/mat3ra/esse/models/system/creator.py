@@ -19,7 +19,7 @@ class CreatorEntityReferenceSchema(BaseModel):
     """
     Creator class
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     entity identity
     """

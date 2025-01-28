@@ -160,7 +160,7 @@ class LatticeSchema(BaseModel):
     """
 
 
-class Name128(Enum):
+class Name47(Enum):
     volume = "volume"
 
 
@@ -174,7 +174,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name129(Enum):
+class Name48(Enum):
     density = "density"
 
 
@@ -197,7 +197,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name130(Enum):
+class Name49(Enum):
     symmetry = "symmetry"
 
 
@@ -217,7 +217,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name131(Enum):
+class Name50(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -230,7 +230,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name132(Enum):
+class Name51(Enum):
     p_norm = "p-norm"
 
 
@@ -243,7 +243,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name133(Enum):
+class Name52(Enum):
     inchi = "inchi"
 
 
@@ -252,7 +252,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name134(Enum):
+class Name53(Enum):
     inchi_key = "inchi_key"
 
 
@@ -331,7 +331,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name135(Enum):
+class Name54(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -343,14 +343,14 @@ class Severity(Enum):
     error = "error"
 
 
-class ConsistencyCheck(BaseModel):
+class MaterialConsistencyCheckSchema(BaseModel):
+    name: Name54
+    """
+    Name of the consistency check that is performed, which is listed in an enum.
+    """
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
-    """
-    name: Name135
-    """
-    Name of the consistency check that is performed, which is listed in an enum.
     """
     severity: Severity
     """
@@ -394,6 +394,7 @@ class MaterialSchema(BaseModel):
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
+    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -403,7 +404,6 @@ class MaterialSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    consistencyChecks: Optional[List[ConsistencyCheck]] = None
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
