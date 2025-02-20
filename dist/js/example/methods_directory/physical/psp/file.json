@@ -49,6 +49,13 @@
         "name": "pseudopotential",
         "source": "dojo-oncv",
         "type": "nc",
-        "version": "0.4"
+        "version": "0.4",
+        "cutoffs": {
+            "wfc": {
+                "standard": 42,
+                "high": 50,
+                "low": 38
+            }
+        }
     }
 }
