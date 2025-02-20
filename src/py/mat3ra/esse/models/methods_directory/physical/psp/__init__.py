@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
 
 
 class SlugifiedEntry(BaseModel):
@@ -107,6 +107,9 @@ class Name(Enum):
 
 
 class Wfc(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     standard: Optional[float] = None
     """
     Suggested default cutoff for wave function in Ry.
@@ -137,6 +140,9 @@ class Rho(BaseModel):
 
 
 class Cutoffs(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     wfc: Optional[Wfc] = None
     rho: Optional[Rho] = None
 

@@ -126,9 +126,11 @@
                 "cutoffs": {
                     "type": "object",
                     "description": "Suggested cutoff values for wave function and charge density.",
+                    "additionalProperties": false,
                     "properties": {
                         "wfc": {
                             "type": "object",
+                            "additionalProperties": false,
                             "properties": {
                                 "standard": {
                                     "type": "number",
