@@ -76,10 +76,10 @@
             "description": "Suggested cutoff values for wave function and charge density.",
             "additionalProperties": false,
             "properties": {
-                "wfc": {
+                "wavefunction": {
                     "$ref": "../../../core/reusable/accuracy_levels.json"
                 },
-                "rho": {
+                "density": {
                     "$ref": "../../../core/reusable/accuracy_levels.json"
                 }
             }

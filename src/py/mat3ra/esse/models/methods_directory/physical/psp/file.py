@@ -74,11 +74,11 @@ class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wfc: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    wavefunction: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
     """
     Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
     """
-    rho: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    density: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
     """
     Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
     """

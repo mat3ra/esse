@@ -128,7 +128,7 @@
                     "description": "Suggested cutoff values for wave function and charge density.",
                     "additionalProperties": false,
                     "properties": {
-                        "wfc": {
+                        "wavefunction": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
                             "title": "Reusable accuracy levels schema",
                             "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
@@ -137,19 +137,19 @@
                             "properties": {
                                 "standard": {
                                     "type": "number",
-                                    "description": "Parameter value for standard or default accuracy calculation."
+                                    "description": "Parameter value suitable for standard or default accuracy calculation."
                                 },
                                 "high": {
                                     "type": "number",
-                                    "description": "Parameter value for high precision calculation."
+                                    "description": "Parameter value suitable for high precision calculation."
                                 },
                                 "low": {
                                     "type": "number",
-                                    "description": "Parameter value for low precision calculation."
+                                    "description": "Parameter value suitable for low precision calculation."
                                 }
                             }
                         },
-                        "rho": {
+                        "density": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
                             "title": "Reusable accuracy levels schema",
                             "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
@@ -158,15 +158,15 @@
                             "properties": {
                                 "standard": {
                                     "type": "number",
-                                    "description": "Parameter value for standard or default accuracy calculation."
+                                    "description": "Parameter value suitable for standard or default accuracy calculation."
                                 },
                                 "high": {
                                     "type": "number",
-                                    "description": "Parameter value for high precision calculation."
+                                    "description": "Parameter value suitable for high precision calculation."
                                 },
                                 "low": {
                                     "type": "number",
-                                    "description": "Parameter value for low precision calculation."
+                                    "description": "Parameter value suitable for low precision calculation."
                                 }
                             }
                         }

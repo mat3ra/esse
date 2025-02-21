@@ -8,15 +8,15 @@
     "properties": {
         "standard": {
             "type": "number",
-            "description": "Parameter value for standard or default accuracy calculation."
+            "description": "Parameter value suitable for standard or default accuracy calculation."
         },
         "high": {
             "type": "number",
-            "description": "Parameter value for high precision calculation."
+            "description": "Parameter value suitable for high precision calculation."
         },
         "low": {
             "type": "number",
-            "description": "Parameter value for low precision calculation."
+            "description": "Parameter value suitable for low precision calculation."
         }
     }
 }

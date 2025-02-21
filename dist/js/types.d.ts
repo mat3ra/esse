@@ -2473,15 +2473,15 @@ export type ReferenceSchemaUsingAnyOfInsteadOfOneOfBelowBCCurrentReferenceSchema
  */
 export interface ReusableAccuracyLevelsSchema {
     /**
-     * Parameter value for standard or default accuracy calculation.
+     * Parameter value suitable for standard or default accuracy calculation.
      */
     standard?: number;
     /**
-     * Parameter value for high precision calculation.
+     * Parameter value suitable for high precision calculation.
      */
     high?: number;
     /**
-     * Parameter value for low precision calculation.
+     * Parameter value suitable for low precision calculation.
      */
     low?: number;
 }
@@ -11839,34 +11839,34 @@ export interface PseudopotentialFile {
             /**
              * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
              */
-            wfc?: {
+            wavefunction?: {
                 /**
-                 * Parameter value for standard or default accuracy calculation.
+                 * Parameter value suitable for standard or default accuracy calculation.
                  */
                 standard?: number;
                 /**
-                 * Parameter value for high precision calculation.
+                 * Parameter value suitable for high precision calculation.
                  */
                 high?: number;
                 /**
-                 * Parameter value for low precision calculation.
+                 * Parameter value suitable for low precision calculation.
                  */
                 low?: number;
             };
             /**
              * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
              */
-            rho?: {
+            density?: {
                 /**
-                 * Parameter value for standard or default accuracy calculation.
+                 * Parameter value suitable for standard or default accuracy calculation.
                  */
                 standard?: number;
                 /**
-                 * Parameter value for high precision calculation.
+                 * Parameter value suitable for high precision calculation.
                  */
                 high?: number;
                 /**
-                 * Parameter value for low precision calculation.
+                 * Parameter value suitable for low precision calculation.
                  */
                 low?: number;
             };
@@ -11949,34 +11949,34 @@ export interface FileDataItem {
         /**
          * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
          */
-        wfc?: {
+        wavefunction?: {
             /**
-             * Parameter value for standard or default accuracy calculation.
+             * Parameter value suitable for standard or default accuracy calculation.
              */
             standard?: number;
             /**
-             * Parameter value for high precision calculation.
+             * Parameter value suitable for high precision calculation.
              */
             high?: number;
             /**
-             * Parameter value for low precision calculation.
+             * Parameter value suitable for low precision calculation.
              */
             low?: number;
         };
         /**
          * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
          */
-        rho?: {
+        density?: {
             /**
-             * Parameter value for standard or default accuracy calculation.
+             * Parameter value suitable for standard or default accuracy calculation.
              */
             standard?: number;
             /**
-             * Parameter value for high precision calculation.
+             * Parameter value suitable for high precision calculation.
              */
             high?: number;
             /**
-             * Parameter value for low precision calculation.
+             * Parameter value suitable for low precision calculation.
              */
             low?: number;
         };
@@ -12127,34 +12127,34 @@ export interface UnitMethodPseudopotential {
                 /**
                  * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
                  */
-                wfc?: {
+                wavefunction?: {
                     /**
-                     * Parameter value for standard or default accuracy calculation.
+                     * Parameter value suitable for standard or default accuracy calculation.
                      */
                     standard?: number;
                     /**
-                     * Parameter value for high precision calculation.
+                     * Parameter value suitable for high precision calculation.
                      */
                     high?: number;
                     /**
-                     * Parameter value for low precision calculation.
+                     * Parameter value suitable for low precision calculation.
                      */
                     low?: number;
                 };
                 /**
                  * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
                  */
-                rho?: {
+                density?: {
                     /**
-                     * Parameter value for standard or default accuracy calculation.
+                     * Parameter value suitable for standard or default accuracy calculation.
                      */
                     standard?: number;
                     /**
-                     * Parameter value for high precision calculation.
+                     * Parameter value suitable for high precision calculation.
                      */
                     high?: number;
                     /**
-                     * Parameter value for low precision calculation.
+                     * Parameter value suitable for low precision calculation.
                      */
                     low?: number;
                 };

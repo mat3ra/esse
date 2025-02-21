@@ -51,7 +51,7 @@
         "type": "nc",
         "version": "0.4",
         "cutoffs": {
-            "wfc": {
+            "wavefunction": {
                 "standard": 42,
                 "high": 50,
                 "low": 38
