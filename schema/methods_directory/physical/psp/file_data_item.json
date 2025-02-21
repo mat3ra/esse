@@ -77,39 +77,10 @@
             "additionalProperties": false,
             "properties": {
                 "wfc": {
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "standard": {
-                            "type": "number",
-                            "description": "Suggested default cutoff for wave function in Ry."
-                        },
-                        "high": {
-                            "type": "number",
-                            "description": "Suggested stringent cutoff for wave function in Ry for high precision calculation."
-                        },
-                        "low": {
-                            "type": "number",
-                            "description": "Suggested cutoff for wave function in Ry for low precision calculation."
-                        }
-                    }
+                    "$ref": "../../../core/reusable/accuracy_levels.json"
                 },
                 "rho": {
-                    "type": "object",
-                    "properties": {
-                        "standard": {
-                            "type": "number",
-                            "description": "Suggested default cutoff for charge density in Ry."
-                        },
-                        "high": {
-                            "type": "number",
-                            "description": "Suggested stringent cutoff for charge density in Ry for high precision calculation."
-                        },
-                        "low": {
-                            "type": "number",
-                            "description": "Suggested cutoff for charge density in Ry for low precision calculation."
-                        }
-                    }
+                    "$ref": "../../../core/reusable/accuracy_levels.json"
                 }
             }
         }

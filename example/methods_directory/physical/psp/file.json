@@ -46,11 +46,11 @@
         "type": "nc",
         "version": "0.4",
         "cutoffs": {
-        "wfc": {
-          "standard": 42.0,
-          "high": 50.0,
-          "low": 38.0
-        }
+            "wfc": {
+                "standard": 42.0,
+                "high": 50.0,
+                "low": 38.0
+            }
       }
     }
 }

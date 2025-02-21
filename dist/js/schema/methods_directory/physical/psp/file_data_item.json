@@ -119,37 +119,44 @@
             "additionalProperties": false,
             "properties": {
                 "wfc": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Reusable accuracy levels schema",
+                    "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
                     "type": "object",
                     "additionalProperties": false,
                     "properties": {
                         "standard": {
                             "type": "number",
-                            "description": "Suggested default cutoff for wave function in Ry."
+                            "description": "Parameter value for standard or default accuracy calculation."
                         },
                         "high": {
                             "type": "number",
-                            "description": "Suggested stringent cutoff for wave function in Ry for high precision calculation."
+                            "description": "Parameter value for high precision calculation."
                         },
                         "low": {
                             "type": "number",
-                            "description": "Suggested cutoff for wave function in Ry for low precision calculation."
+                            "description": "Parameter value for low precision calculation."
                         }
                     }
                 },
                 "rho": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Reusable accuracy levels schema",
+                    "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
                     "type": "object",
+                    "additionalProperties": false,
                     "properties": {
                         "standard": {
                             "type": "number",
-                            "description": "Suggested default cutoff for charge density in Ry."
+                            "description": "Parameter value for standard or default accuracy calculation."
                         },
                         "high": {
                             "type": "number",
-                            "description": "Suggested stringent cutoff for charge density in Ry for high precision calculation."
+                            "description": "Parameter value for high precision calculation."
                         },
                         "low": {
                             "type": "number",
-                            "description": "Suggested cutoff for charge density in Ry for low precision calculation."
+                            "description": "Parameter value for low precision calculation."
                         }
                     }
                 }

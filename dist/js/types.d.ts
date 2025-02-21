@@ -2467,6 +2467,24 @@ export type ReferenceSchemaUsingAnyOfInsteadOfOneOfBelowBCCurrentReferenceSchema
      */
     reference?: {}[];
 };
+/** Schema dist/js/schema/core/reusable/accuracy_level.json */
+/**
+ * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+ */
+export interface ReusableAccuracyLevelsSchema {
+    /**
+     * Parameter value for standard or default accuracy calculation.
+     */
+    standard?: number;
+    /**
+     * Parameter value for high precision calculation.
+     */
+    high?: number;
+    /**
+     * Parameter value for low precision calculation.
+     */
+    low?: number;
+}
 /** Schema dist/js/schema/core/reusable/atomic_data/per_orbital.json */
 /**
  * Atomic properties per orbital e.g., Hubbard U parameters.
@@ -11818,31 +11836,37 @@ export interface PseudopotentialFile {
          * Suggested cutoff values for wave function and charge density.
          */
         cutoffs?: {
+            /**
+             * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+             */
             wfc?: {
                 /**
-                 * Suggested default cutoff for wave function in Ry.
+                 * Parameter value for standard or default accuracy calculation.
                  */
                 standard?: number;
                 /**
-                 * Suggested stringent cutoff for wave function in Ry for high precision calculation.
+                 * Parameter value for high precision calculation.
                  */
                 high?: number;
                 /**
-                 * Suggested cutoff for wave function in Ry for low precision calculation.
+                 * Parameter value for low precision calculation.
                  */
                 low?: number;
             };
+            /**
+             * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+             */
             rho?: {
                 /**
-                 * Suggested default cutoff for charge density in Ry.
+                 * Parameter value for standard or default accuracy calculation.
                  */
                 standard?: number;
                 /**
-                 * Suggested stringent cutoff for charge density in Ry for high precision calculation.
+                 * Parameter value for high precision calculation.
                  */
                 high?: number;
                 /**
-                 * Suggested cutoff for charge density in Ry for low precision calculation.
+                 * Parameter value for low precision calculation.
                  */
                 low?: number;
             };
@@ -11922,31 +11946,37 @@ export interface FileDataItem {
      * Suggested cutoff values for wave function and charge density.
      */
     cutoffs?: {
+        /**
+         * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+         */
         wfc?: {
             /**
-             * Suggested default cutoff for wave function in Ry.
+             * Parameter value for standard or default accuracy calculation.
              */
             standard?: number;
             /**
-             * Suggested stringent cutoff for wave function in Ry for high precision calculation.
+             * Parameter value for high precision calculation.
              */
             high?: number;
             /**
-             * Suggested cutoff for wave function in Ry for low precision calculation.
+             * Parameter value for low precision calculation.
              */
             low?: number;
         };
+        /**
+         * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+         */
         rho?: {
             /**
-             * Suggested default cutoff for charge density in Ry.
+             * Parameter value for standard or default accuracy calculation.
              */
             standard?: number;
             /**
-             * Suggested stringent cutoff for charge density in Ry for high precision calculation.
+             * Parameter value for high precision calculation.
              */
             high?: number;
             /**
-             * Suggested cutoff for charge density in Ry for low precision calculation.
+             * Parameter value for low precision calculation.
              */
             low?: number;
         };
@@ -12094,31 +12124,37 @@ export interface UnitMethodPseudopotential {
              * Suggested cutoff values for wave function and charge density.
              */
             cutoffs?: {
+                /**
+                 * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+                 */
                 wfc?: {
                     /**
-                     * Suggested default cutoff for wave function in Ry.
+                     * Parameter value for standard or default accuracy calculation.
                      */
                     standard?: number;
                     /**
-                     * Suggested stringent cutoff for wave function in Ry for high precision calculation.
+                     * Parameter value for high precision calculation.
                      */
                     high?: number;
                     /**
-                     * Suggested cutoff for wave function in Ry for low precision calculation.
+                     * Parameter value for low precision calculation.
                      */
                     low?: number;
                 };
+                /**
+                 * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+                 */
                 rho?: {
                     /**
-                     * Suggested default cutoff for charge density in Ry.
+                     * Parameter value for standard or default accuracy calculation.
                      */
                     standard?: number;
                     /**
-                     * Suggested stringent cutoff for charge density in Ry for high precision calculation.
+                     * Parameter value for high precision calculation.
                      */
                     high?: number;
                     /**
-                     * Suggested cutoff for charge density in Ry for low precision calculation.
+                     * Parameter value for low precision calculation.
                      */
                     low?: number;
                 };

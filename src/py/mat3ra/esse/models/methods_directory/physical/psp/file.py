@@ -52,36 +52,21 @@ class Name(Enum):
     pseudopotential = "pseudopotential"
 
 
-class Wfc(BaseModel):
+class ReusableAccuracyLevelsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
     standard: Optional[float] = None
     """
-    Suggested default cutoff for wave function in Ry.
+    Parameter value for standard or default accuracy calculation.
     """
     high: Optional[float] = None
     """
-    Suggested stringent cutoff for wave function in Ry for high precision calculation.
+    Parameter value for high precision calculation.
     """
     low: Optional[float] = None
     """
-    Suggested cutoff for wave function in Ry for low precision calculation.
-    """
-
-
-class Rho(BaseModel):
-    standard: Optional[float] = None
-    """
-    Suggested default cutoff for charge density in Ry.
-    """
-    high: Optional[float] = None
-    """
-    Suggested stringent cutoff for charge density in Ry for high precision calculation.
-    """
-    low: Optional[float] = None
-    """
-    Suggested cutoff for charge density in Ry for low precision calculation.
+    Parameter value for low precision calculation.
     """
 
 
@@ -89,8 +74,14 @@ class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wfc: Optional[Wfc] = None
-    rho: Optional[Rho] = None
+    wfc: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    """
+    Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+    """
+    rho: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    """
+    Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+    """
 
 
 class FileDataItem(BaseModel):
