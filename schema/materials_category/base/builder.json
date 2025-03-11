@@ -1,0 +1,27 @@
+
+{
+    "$id": "materials-category/base/builder",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Base Builder Schema",
+    "type": "object",
+    "description": "Base schema for all material builders",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the builder"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of what this builder does"
+      },
+      "build_parameters": {
+        "$ref": "./builder_parameters.json",
+        "description": "Parameters used to initialize this builder"
+      },
+      "selector_parameters": {
+        "$ref": "./selector_parameters.json",
+        "description": "Parameters used to select from multiple generated items"
+      }
+    },
+    "required": ["build_parameters"]
+  }

@@ -1,0 +1,15 @@
+{
+    "$id": "materials-category/base/selector_parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Selector Parameters",
+      "type": "object",
+      "description": "Parameters used to select from multiple generated items",
+      "properties": {
+        "default_index": {
+          "type": "integer",
+          "description": "Default index to select from generated items",
+          "default": 0
+        }
+      }
+    }
+

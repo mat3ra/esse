@@ -1,0 +1,17 @@
+{
+    "$id": "materials-category/base/builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Base Builder Parameters Schema",
+    "type": "object",
+    "description": "Base schema for all material builder parameters",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "Name of the builder parameters"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of these parameters"
+      }
+    }
+  }
