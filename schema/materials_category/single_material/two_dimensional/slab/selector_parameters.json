@@ -1,4 +1,5 @@
 {
+  "$id": "materials-category/single-material/two-dimensional/slab/selector-parameters",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "SlabSelectorParameters",
   "description": "Parameters for selecting specific slabs from generated options",

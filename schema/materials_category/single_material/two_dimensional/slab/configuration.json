@@ -7,8 +7,6 @@
   "required": ["bulk"],
   "properties": {
     "bulk": {
-      "title": "Bulk Material",
-      "description": "The bulk material to create a slab from",
       "$ref": "../../../../material.json"
     },
     "miller_indices": {

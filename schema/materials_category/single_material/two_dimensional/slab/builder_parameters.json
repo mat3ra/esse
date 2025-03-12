@@ -1,9 +1,9 @@
 {
-  // TODO: Should be handled as a 3rd party schema
   "$id": "materials-category/single-material/two-dimensional/slab/pymatgen-builder-parameters",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "PymatgenSlabGeneratorParameters",
   "description": "Parameters for generating slabs using the Pymatgen library",
+  "$comment": "TODO: this should come from 3rd party definitions. https://github.com/materialsproject/pymatgen/blob/55d0934792c707447b75fe971b4b3bb299cf0e27/src/pymatgen/core/surface.py#L888",
   "type": "object",
   "properties": {
     "min_vacuum_size": {
