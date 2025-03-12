@@ -7,11 +7,13 @@
     "properties": {
         "build_parameters": {
             "description": "Parameters used for the build process, specific to each builder implementation",
+            "$ref": "builder_parameters.json"
         },
         "selector_parameters": {
             "description": "Parameters used to select from multiple generated items",
+            "$ref": "selector_parameters.json"
         },
-        "config_type": {
+        "configuration_type": {
             "description": "The configuration type used by this builder",
         },
         "generated_item_type": {

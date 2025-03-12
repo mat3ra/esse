@@ -3,15 +3,5 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Base Configuration Schema",
     "type": "object",
-    "description": "Base schema for all material transformation configurations",
-    "properties": {
-      "name": {
-        "type": "string",
-        "description": "Name of the configuration"
-      },
-      "description": {
-        "type": "string",
-        "description": "Description of the phenomenon that this configuration describes"
-      }
-    }
-  }
+    "description": "Base schema for all material transformation configurations"
+}
