@@ -1,0 +1,36 @@
+{
+  // TODO: Should be handled as a 3rd party schema
+  "$id": "materials-category/single-material/two-dimensional/slab/pymatgen-builder-parameters",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PymatgenSlabGeneratorParameters",
+  "description": "Parameters for generating slabs using the Pymatgen library",
+  "type": "object",
+  "properties": {
+    "min_vacuum_size": {
+      "title": "Minimum Vacuum Size",
+      "description": "Minimum vacuum size to add during generation",
+      "type": "integer",
+      "minimum": 0,
+      "default": 1
+    },
+    "in_unit_planes": {
+      "title": "In Unit Planes",
+      "description": "Whether thickness is specified in unit planes",
+      "type": "boolean",
+      "default": true
+    },
+    "reorient_lattice": {
+      "title": "Reorient Lattice",
+      "description": "Whether to reorient the lattice",
+      "type": "boolean",
+      "default": true
+    },
+    "symmetrize": {
+      "title": "Symmetrize",
+      "description": "Whether to preserve symmetric slabs for different terminations",
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "additionalProperties": false
+}

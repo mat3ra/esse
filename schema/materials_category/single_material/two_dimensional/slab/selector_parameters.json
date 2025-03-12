@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SlabSelectorParameters",
+  "description": "Parameters for selecting specific slabs from generated options",
+  "type": "object",
+  "required": ["termination"],
+  "properties": {
+    "termination": {
+      "$ref": "termination.json"
+    }
+  }
+}
