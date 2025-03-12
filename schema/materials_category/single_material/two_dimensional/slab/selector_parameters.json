@@ -5,6 +5,11 @@
   "description": "Parameters for selecting specific slabs from generated options",
   "type": "object",
   "required": ["termination"],
+  "allOf": [
+    {
+      "$ref": "../../../base/selector_parameters.json"
+    }
+  ],
   "properties": {
     "termination": {
       "$ref": "termination.json"
