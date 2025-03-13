@@ -1,0 +1,18 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoparticle/sphere-based/builder",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Sphere Slab-Based Nanoparticle Builder",
+  "description": "Builder for creating spherical nanoparticles from slabs",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../slab_based/builder.json"
+    }
+  ],
+  "properties": {
+    "configuration_type": {
+      "$comment": "This is a temporary type to be replaced with the actual type",
+      "const": "SphereSlabBasedNanoparticleConfiguration"
+    }
+  }
+}

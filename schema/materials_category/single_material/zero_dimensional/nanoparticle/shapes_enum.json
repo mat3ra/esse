@@ -1,0 +1,17 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoparticle/shapes-enum",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ASE Nanoparticle Shapes",
+  "description": "Enum for supported nanoparticle shapes",
+  "type": "string",
+  "enum": [
+    "icosahedron",
+    "octahedron",
+    "decahedron",
+    "simple_cubic",
+    "face_centered_cubic",
+    "body_centered_cubic",
+    "hexagonal_closed_packed",
+    "wulff_construction"
+  ]
+}

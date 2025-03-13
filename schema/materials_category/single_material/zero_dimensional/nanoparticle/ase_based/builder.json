@@ -1,0 +1,20 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoparticle/ase-based/builder",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ASE-Based Nanoparticle Builder",
+  "description": "Builder for creating nanoparticles using ASE cluster tools",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../../base/builder.json"
+    }
+  ],
+  "properties": {
+    "configuration_type": {
+      "const": "ASEBasedNanoparticleConfiguration"
+    },
+    "generated_item_type": {
+      "const": "ASEAtoms"
+    }
+  }
+}
