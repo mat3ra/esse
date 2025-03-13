@@ -1,0 +1,24 @@
+{
+  "$id": "materials-category/multi-material/interfaces/twisted/builder",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Commensurate Lattice Twisted Interface Builder",
+  "description": "Builder for creating twisted interfaces using commensurate lattice matching",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../base/builder.json"
+    }
+  ],
+  "properties": {
+    "build_parameters": {
+      "$ref": "builder_parameters.json"
+    },
+    "configuration_type": {
+      "$ref": "configuration.json"
+    },
+    "generated_item_type": {
+      "$comment": "This is a temporary type to be replaced with the actual type",
+      "const": "CommensurateLatticePair"
+    }
+  }
+} 

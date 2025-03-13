@@ -1,0 +1,33 @@
+{
+  "$id": "materials-category/multi-material/interfaces/strain-matching/zsl/parameters",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ZSL Strain Matching Parameters",
+  "description": "Parameters for ZSL matching algorithm",
+  "type": "object",
+  "properties": {
+    "max_area": {
+      "description": "Maximum area for the interface (in Angstroms squared)",
+      "type": "number",
+      "minimum": 1,
+      "default": 50.0
+    },
+    "max_area_ratio_tol": {
+      "description": "Maximum tolerance for area ratio",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.09
+    },
+    "max_length_tol": {
+      "description": "Maximum tolerance for length matching",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.03
+    },
+    "max_angle_tol": {
+      "description": "Maximum tolerance for angle matching",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.01
+    }
+  }
+} 

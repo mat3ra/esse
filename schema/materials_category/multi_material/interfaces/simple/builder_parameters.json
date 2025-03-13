@@ -1,0 +1,24 @@
+{
+    "$id": "materials-category/multi-material/interfaces/standard/builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Simple Interface Builder Parameters",
+    "description": "Parameters for the simple interface builder",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../base/builder_parameters.json"
+        }
+    ],
+    "properties": {
+        "scale_film": {
+            "description": "Whether to scale the film to match the substrate",
+            "type": "boolean",
+            "default": true
+        },
+        "create_slabs": {
+            "description": "Whether to create slabs from configurations or use the bulk",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+  "$id": "materials-category/multi-material/interfaces/common/strain-modes",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Strain Modes",
+  "description": "Enumeration of strain calculation modes for interface matching",
+  "type": "string",
+  "enum": [
+    "strain",
+    "von_mises_strain",
+    "mean_abs_strain"
+  ]
+} 

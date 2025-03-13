@@ -1,0 +1,17 @@
+{
+  "$id": "materials-category/multi-material/interfaces/common/supercell-matrix",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Angle to Supercell Matrix Map",
+  "description": "Map of twist angle to supercell matrix",
+  "type": "object",
+  "required": ["angle", "xy_supercell_matrix"],
+  "properties": {
+    "angle": {
+      "description": "Twist angle in degrees",
+      "type": "number"
+    },
+    "xy_supercell_matrix": {
+      "$ref": "../../../common/supercell_matrix.json"
+    }
+  }
+} 

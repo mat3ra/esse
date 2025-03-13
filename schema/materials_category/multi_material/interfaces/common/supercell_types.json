@@ -1,0 +1,11 @@
+{
+  "$id": "materials-category/multi-material/interfaces/common/supercell-types",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Supercell Types",
+  "description": "Types of supercells used in interface construction",
+  "type": "string",
+  "enum": [
+    "hexagonal",
+    "orthogonal"
+  ]
+} 

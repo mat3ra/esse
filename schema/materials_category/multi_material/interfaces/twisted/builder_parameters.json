@@ -1,0 +1,36 @@
+{
+  "$id": "materials-category/multi-material/interfaces/twisted/builder-parameters",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Commensurate Lattice Twisted Interface Builder Parameters",
+  "description": "Parameters for the commensurate lattice interface builder",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../base/builder_parameters.json"
+    }
+  ],
+  "properties": {
+    "max_supercell_matrix_int": {
+      "description": "The maximum integer for the transformation matrices",
+      "type": "integer",
+      "minimum": 1
+    },
+    "limit_max_int": {
+      "description": "The limit for maximum integer when searching",
+      "type": "integer",
+      "minimum": 1,
+      "default": 42
+    },
+    "angle_tolerance": {
+      "description": "The tolerance for angle between commensurate lattices and target angle, in degrees",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.1
+    },
+    "return_first_match": {
+      "description": "Whether to return the first match or all matches",
+      "type": "boolean",
+      "default": false
+    }
+  }
+} 

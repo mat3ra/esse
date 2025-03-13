@@ -1,0 +1,19 @@
+{
+    "$id": "materials-category/multi-material/interfaces/common/termination-pair",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Termination Pair",
+    "description": "A pair of terminations for an interface between two materials",
+    "type": "object",
+    "required": [
+        "film_termination",
+        "substrate_termination"
+    ],
+    "properties": {
+        "film_termination": {
+            "$ref": "../../../single_material/two_dimensional/slab/termination.json"
+        },
+        "substrate_termination": {
+            "$ref": "../../../single_material/two_dimensional/slab/termination.json"
+        }
+    }
+} 
