@@ -1,0 +1,39 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoribbon/configuration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NanoRibbon Configuration",
+  "description": "Configuration for building a nanoribbon from a material",
+  "type": "object",
+  "required": ["material", "width", "length"],
+  "properties": {
+    "material": {
+      "description": "The material to build the nanoribbon from",
+      "$ref": "../../../../material.json"
+    },
+    "width": {
+      "description": "The width of the nanoribbon in number of unit cells",
+      "type": "integer",
+      "minimum": 1
+    },
+    "length": {
+      "description": "The length of the nanoribbon in number of unit cells",
+      "type": "integer",
+      "minimum": 1
+    },
+    "vacuum_width": {
+      "description": "The width of the vacuum region in number of unit cells",
+      "type": "integer",
+      "minimum": 0,
+      "default": 3
+    },
+    "vacuum_length": {
+      "description": "The length of the vacuum region in number of unit cells",
+      "type": "integer",
+      "minimum": 0,
+      "default": 0
+    },
+    "edge_type": {
+      "$ref": "edge_types.json"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoribbon/builder",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NanoRibbon Builder",
+  "description": "Builder for creating nanoribbon structures from 2D materials",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../base/builder.json"
+    }
+  ],
+  "properties": {
+    "config_type": {
+      "$ref": "configuration.json"
+    },
+    "generated_item_type": {
+      "$ref": "../../../../material.json"
+    }
+  }
+}
