@@ -10,7 +10,7 @@
     }
   ],
   "properties": {
-    "config_type": {
+    "configuration_type": {
       "$ref": "configuration.json"
     },
     "generated_item_type": {
