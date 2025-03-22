@@ -1,7 +1,7 @@
 {
-    "$id": "materials-category/common/xy-supercell-matrix",
+    "$id": "primitive/crystal/supercell_matrix_2d",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "XY Supercell Matrix",
+    "title": "Supercell Matrix 2D",
     "description": "Supercell matrix for xy plane transformations",
     "type": "array",
     "items": {
