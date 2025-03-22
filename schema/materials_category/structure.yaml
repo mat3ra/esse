@@ -1,0 +1,107 @@
+material_category:
+  base:
+    - BaseConfiguration
+
+  single_material:
+    three_dimensional:
+      - supercell # No configuration, just a function
+
+    two_dimensional:
+      slab:
+        - Termination
+        - SlabConfiguration
+    #        - monolayer # Done in Notebooks
+
+    one_dimensional:
+      - nanotube # doesn't exist yet
+      - nanowire # doesn't exist yet
+
+    zero_dimensional:
+      nanoribbon:
+        - NanoribbonConfiguration
+        - EdgeTypes # Enum
+      nanoparticle:
+        - BaseNanoparticleConfiguration
+        - SlabBasedNanoparticleConfiguration
+        - SphereSlabBasedNanoparticleConfiguration
+        - ASEBasedNanoparticleConfiguration # Platonic solids shapes based
+        - ASENanoparticleShapesEnum # Enum
+
+  multi_material:
+    interfaces:
+      - InterfaceConfiguration
+      - TwistedInterfaceConfiguration
+      - TerminationPair
+      - CommensurateLatticePair # For twisted interfaces
+    stacked_nanoribbons:
+      - NanoRibbonTwistedInterfaceConfiguration
+  #    heterostructures:
+  #      - consecutive_interfaces # Done in notebooks
+
+  defects:
+    base:
+      - BaseDefectConfiguration
+
+    point_defects: # 0-dimensional defects
+      - PointDefectConfiguration
+      - PointDefectTypeEnum # Enum
+      - AtomPlacementMethodEnum # Enum
+
+    surface_defects: # 2-dimensional defects
+      - SlabDefectConfiguration
+      - SlabPointDefectConfiguration # 0D and Surface
+      - AdatomSlabPointDefectConfiguration # 0D and Surface
+      - IslandSlabDefectConfiguration # 2D and Surface
+      - TerraceSlabDefectConfiguration # 1D and Surface
+      - PointDefectPairConfiguration # 0D and bulk/surface
+      - ComplexDefectTypeEnum # Enum
+      - SlabDefectTypeEnum # Enum
+
+
+    planar_defects: # 2-dimensional defects
+      - GrainBoundaryConfiguration # 2D in bulk
+      - SlabGrainBoundaryConfiguration # 2D on surface
+      - SurfaceGrainBoundaryConfiguration # 1D on surface
+
+  passivation:
+    - PassivationConfiguration
+    - SurfaceTypes # Enum
+
+  perturbation:
+    - PerturbationConfiguration
+    - SineWavePerturbationFunctionHolder # Uses scipy class inside
+    - PerturbationFunctionHolder # Uses scipy class inside
+
+material:
+  builders:
+    base:
+      - BaseBuilderParameters
+      - BaseSelectorParameters
+    single_material:
+      two_dimensional:
+        - SlabSelectorParameters
+        - PymatgenSlabGeneratorParameters
+    multi_material:
+      interfaces:
+        - InterfaceBuilderParameters
+        - StrainMatchingInterfaceBuilderParameters
+        - ZSLStrainMatchingParameters
+        - ZSLStrainMatchingInterfaceBuilderParameters
+        - CommensurateLatticeTwistedInterfaceBuilderParameters
+    defects:
+      - PointDefectBuilderParameters
+      - VoronoiInterstitialPointDefectBuilderParameters
+      - SlabDefectBuilderParameters
+      - SlabGrainBoundaryBuilderParameters
+      - SurfaceGrainBoundaryBuilderParameters
+    passivation:
+      - SurfacePassivationBuilderParameters
+      - CoordinationBasedPassivationBuilderParameters
+
+reusable:
+  coordinate_conditions:
+    - CylinderCoordinateCondition
+    - SphereCoordinateCondition
+    - BoxCoordinateCondition
+    - TriangularPrismCoordinateCondition
+    - PlaneCoordinateCondition
