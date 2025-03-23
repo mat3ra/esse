@@ -1,0 +1,20 @@
+{
+  "$id": "materials-category/defects/configurations/slab-defect/adatom",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Adatom Configuration",
+  "description": "Configuration for an adatom on a slab surface",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "point_defect.json"
+    }
+  ],
+  "properties": {
+    "defect_type": {
+      "const": "adatom"
+    },
+    "placement_method": {
+      "default": "coordinate"
+    }
+  }
+}

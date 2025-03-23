@@ -1,0 +1,41 @@
+{
+  "$id": "materials-category/defects/configurations/defect-pair",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Point Defect Pair Configuration",
+  "description": "Configuration for a pair of point defects",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../base.json"
+    }
+  ],
+  "required": ["primary_defect_configuration", "secondary_defect_configuration"],
+  "properties": {
+    "defect_type": {
+      "$ref": "../../enums/complex_defect_type.json",
+      "default": "pair"
+    },
+    "primary_defect_configuration": {
+      "description": "Configuration for the first defect",
+      "oneOf": [
+        {
+          "$ref": "../zero_dimensional/point_defect/point_defect.json"
+        },
+        {
+          "$ref": "../surface/adatom.json"
+        }
+      ]
+    },
+    "secondary_defect_configuration": {
+      "description": "Configuration for the second defect",
+      "oneOf": [
+        {
+          "$ref": "../zero_dimensional/point_defect/point_defect.json"
+        },
+        {
+          "$ref": "../surface/adatom.json"
+        }
+      ]
+    }
+  }
+} 

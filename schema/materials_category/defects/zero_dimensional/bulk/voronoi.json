@@ -1,0 +1,21 @@
+{
+  "$id": "materials-category/defects/builders/point-defect/voronoi",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Voronoi Interstitial Point Defect Builder",
+  "description": "Builder for creating interstitial defects using Voronoi analysis",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "base.json"
+    }
+  ],
+  "properties": {
+    "build_parameters": {
+      "$ref": "voronoi_parameters.json"
+    },
+    "configuration_type": {
+      "const": "PointDefectConfiguration",
+      "format": "python-class-reference"
+    }
+  }
+} 

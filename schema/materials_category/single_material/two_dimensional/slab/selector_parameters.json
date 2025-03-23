@@ -7,7 +7,7 @@
   "required": ["termination"],
   "allOf": [
     {
-      "$ref": "../../../base/selector_parameters.json"
+      "$ref": "../../../../material_builders/base/selector_parameters.json"
     }
   ],
   "properties": {

@@ -1,0 +1,36 @@
+{
+  "$id": "materials-category/defects/surface/configurations/adatom/base",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Adatom Base Configuration",
+  "description": "Base configuration for adatom defects on a surface",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../base.json"
+    }
+  ],
+  "required": ["position_on_surface", "distance_z", "chemical_element"],
+  "properties": {
+    "defect_type": {
+      "const": "adatom"
+    },
+    "position_on_surface": {
+      "description": "Position on the surface in 2D crystal coordinates",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "distance_z": {
+      "description": "Distance from the surface in Angstroms",
+      "type": "number",
+      "minimum": 0
+    },
+    "chemical_element": {
+      "description": "Chemical element of the adatom",
+      "type": "string"
+    }
+  }
+} 

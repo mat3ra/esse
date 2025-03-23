@@ -1,0 +1,18 @@
+{
+  "$id": "materials-category/defects/point_defect/interstitial",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Interstitial Point Defect Builder",
+  "description": "Builder for creating interstitial defects",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "base.json"
+    }
+  ],
+  "properties": {
+    "configuration_type": {
+      "const": "PointDefectConfiguration",
+      "format": "python-class-reference"
+    }
+  }
+} 

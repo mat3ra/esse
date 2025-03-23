@@ -1,0 +1,44 @@
+{
+  "$id": "materials-category/defects/builders/point-defect/voronoi-parameters",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Voronoi Interstitial Point Defect Builder Parameters",
+  "description": "Parameters for Voronoi interstitial defect builders",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "builder_parameters.json"
+    }
+  ],
+  "properties": {
+    "clustering_tol": {
+      "description": "Clustering tolerance for merging interstitial sites",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.5
+    },
+    "min_dist": {
+      "description": "Minimum distance between interstitial and nearest atom",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.9
+    },
+    "ltol": {
+      "description": "Tolerance for lattice matching",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.2
+    },
+    "stol": {
+      "description": "Tolerance for structure matching",
+      "type": "number",
+      "minimum": 0,
+      "default": 0.3
+    },
+    "angle_tol": {
+      "description": "Angle tolerance for structure matching",
+      "type": "number",
+      "minimum": 0,
+      "default": 5
+    }
+  }
+} 

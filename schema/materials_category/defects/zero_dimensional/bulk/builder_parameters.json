@@ -1,0 +1,19 @@
+{
+  "$id": "materials-category/defects/builders/point_defect/builder-parameters",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Point Defect Builder Parameters",
+  "description": "Parameters for point defect builders",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../../../../material_builders_base/builder_parameters.json"
+    }
+  ],
+  "properties": {
+    "center_defect": {
+      "description": "Whether to center the defect in the material",
+      "type": "boolean",
+      "default": false
+    }
+  }
+} 

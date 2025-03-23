@@ -6,7 +6,7 @@
   "type": "object",
     "allOf": [
         {
-        "$ref": "../../../base/builder_parameters.json"
+        "$ref": "../../../../material_builders/base/builder_parameters.json"
         }
     ],
   "properties": {}
