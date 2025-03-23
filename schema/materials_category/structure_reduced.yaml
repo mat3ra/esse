@@ -1,0 +1,74 @@
+material_category:
+  base:
+    - BaseConfiguration
+  single_material:
+    three_dimensional:
+    #      - supercell # No configuration, just a function
+    two_dimensional:
+      slab:
+        - Termination
+        - SlabConfiguration
+    #        - monolayer # Done in Notebooks
+    one_dimensional:
+    #      - nanotube # doesn't exist yet
+    #      - nanowire # doesn't exist yet
+    zero_dimensional:
+      nanoribbon:
+        - NanoribbonConfiguration
+      nanoparticle:
+        - BaseNanoparticleConfiguration
+        - SlabBasedNanoparticleConfiguration
+        - SphereSlabBasedNanoparticleConfiguration
+  multi_material:
+    interfaces:
+      - InterfaceConfiguration
+      - TwistedInterfaceConfiguration
+    stacked_nanoribbons:
+      - NanoRibbonTwistedInterfaceConfiguration
+  #    heterostructures:
+  #      - consecutive_interfaces # Done in notebooks
+  defects:
+    base:
+      - BaseDefectConfiguration
+    point_defects: # 0-dimensional defects
+      - PointDefectConfiguration
+    surface_defects: # 2-dimensional defects
+      - SlabDefectConfiguration
+      - AdatomSlabPointDefectConfiguration # 0D and Surface
+      - IslandSlabDefectConfiguration # 2D and Surface
+    planar_defects: # 2-dimensional defects
+      - GrainBoundaryConfiguration # 2D in bulk
+  passivation:
+    - PassivationConfiguration
+  perturbation:
+    - PerturbationConfiguration
+
+material:
+  builders:
+    base:
+      - BaseBuilderParameters
+      - BaseSelectorParameters
+    single_material:
+      two_dimensional:
+        - SlabSelectorParameters
+        - PymatgenSlabGeneratorParameters
+    multi_material:
+      interfaces:
+        - InterfaceBuilderParameters
+        - StrainMatchingInterfaceBuilderParameters
+        - ZSLStrainMatchingParameters
+    defects:
+      - PointDefectBuilderParameters
+      - VoronoiInterstitialPointDefectBuilderParameters
+    passivation:
+      - SurfacePassivationBuilderParameters
+reusable:
+  material:
+    - slab:
+        - vacuum
+        - miller_indices
+    - repetitions
+
+  coordinate_conditions:
+    - CylinderCoordinateCondition
+
