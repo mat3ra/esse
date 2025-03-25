@@ -1,0 +1,16 @@
+{
+    "$id": "reusable/materials/miller_indices",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Miller Indices",
+    "description": "Miller indices for crystallographic plane designation",
+    "allOf": [
+        {
+            "$ref": "../../../abstract/vector.json"
+        }
+    ],
+    "default": [
+        0,
+        0,
+        1
+    ]
+}
