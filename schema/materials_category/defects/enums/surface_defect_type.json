@@ -1,0 +1,12 @@
+{
+  "$id": "materials-category/defects/surface/enums/surface-defect-type",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Surface Defect Type",
+  "description": "Enumeration of surface defect types",
+  "type": "string",
+  "enum": [
+    "adatom",
+    "island",
+    "terrace"
+  ]
+}

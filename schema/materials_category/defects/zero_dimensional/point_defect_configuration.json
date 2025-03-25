@@ -1,0 +1,42 @@
+{
+  "$id": "materials-category/defects/zero-dimensional/point-defect-configuration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Point Defect Configuration",
+  "description": "Configuration for point defects in a crystal",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../base_defect_configuration.json"
+    }
+  ],
+  "required": ["defect_type", "coordinate"],
+  "properties": {
+    "defect_type": {
+      "description": "The type of point defect",
+      "$ref": "../enums/point_defect_type.json"
+    },
+    "coordinate": {
+      "description": "The crystal coordinate of the defect",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 3,
+      "maxItems": 3,
+      "default": [0, 0, 0]
+    },
+    "chemical_element": {
+      "description": "The chemical element for substitution or interstitial defects",
+      "type": "string"
+    },
+    "use_cartesian_coordinates": {
+      "description": "Whether coordinates are in cartesian rather than fractional coordinates",
+      "type": "boolean",
+      "default": false
+    },
+    "placement_method": {
+      "description": "Method used to place the atom",
+      "$ref": "../enums/atom_placement_method.json"
+    }
+  }
+} 
