@@ -1,0 +1,34 @@
+{
+    "$id": "materials-category/multi-material/interfaces/nanoribbon/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NanoRibbon Twisted Interface Configuration",
+    "description": "Configuration for creating a twisted interface between two nanoribbons",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../twisted/configuration.json"
+        }
+    ],
+    "properties": {
+        "ribbon_width": {
+            "description": "Width of the nanoribbon in unit cells",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
+        "ribbon_length": {
+            "description": "Length of the nanoribbon in unit cells",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
+        "vacuum_x": {
+            "$ref": "../../../../core/reusable/material/slab/vacuum.json",
+            "description": "Vacuum along x on both sides, in Angstroms"
+        },
+        "vacuum_y": {
+            "$ref": "../../../../core/reusable/material/slab/vacuum.json",
+            "description": "Vacuum along y on both sides, in Angstroms"
+        }
+    }
+}
