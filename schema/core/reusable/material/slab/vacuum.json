@@ -1,5 +1,5 @@
 {
-    "$id": "primitive/crystal/slab/vacuum",
+    "$id": "reusable/material/slab/vacuum",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Vacuum",
     "description": "Vacuum thickness in Angstroms",

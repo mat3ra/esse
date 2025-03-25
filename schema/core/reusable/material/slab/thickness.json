@@ -1,5 +1,5 @@
 {
-    "$id": "primitive/crystal/slab/thickness",
+    "$id": "reusable/material/slab/thickness",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Thickness",
     "description": "Number of atomic layers in a structural component",

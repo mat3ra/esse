@@ -1,5 +1,5 @@
 {
-    "$id": "primitive/crystal/supercell_matrix_3d",
+    "$id": "reusable/material/supercell_matrix_3d",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Supercell Matrix 3D",
     "description": "3x3 matrix of integers for transforming a unit cell into a supercell",
