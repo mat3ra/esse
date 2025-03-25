@@ -6,7 +6,7 @@
   "type": "object",
   "allOf": [
     {
-      "$ref": "../../../two_dimensional/surface/base.json"
+      "$ref": "../slab_defect_configuration.json"
     }
   ],
   "properties": {
