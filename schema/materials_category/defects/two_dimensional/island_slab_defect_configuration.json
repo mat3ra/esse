@@ -1,5 +1,5 @@
 {
-  "$id": "materials-category/defects/configurations/slab-defect/island",
+  "$id": "materials-category/defects/one-dimensional/island-slab-defect-configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Island Slab Defect Configuration",
   "description": "Configuration for an island defect on a slab surface",
@@ -19,7 +19,7 @@
       "required": ["shape"],
       "properties": {
         "shape": {
-          "$ref": "../enums/coordinates_shape.json"
+          "$ref": "../enums.json#/coordinatesShape"
         },
         "center_position": {
           "description": "Center position for symmetric shapes",

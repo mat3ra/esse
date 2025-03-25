@@ -12,7 +12,7 @@
   "required": ["primary_defect_configuration", "secondary_defect_configuration"],
   "properties": {
     "defect_type": {
-      "$ref": "../enums/complex_defect_type.json",
+      "$ref": "../enums.json#/complexDefectType",
       "default": "pair"
     },
     "primary_defect_configuration": {

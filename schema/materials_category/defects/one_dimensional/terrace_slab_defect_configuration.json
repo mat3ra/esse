@@ -1,5 +1,5 @@
 {
-  "$id": "materials-category/defects/configurations/slab-defect/terrace",
+  "$id": "materials-category/defects/one-dimensional/terrace-slab-defect-configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Terrace Slab Defect Configuration",
   "description": "Configuration for a terrace defect on a slab surface",

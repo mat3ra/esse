@@ -13,7 +13,7 @@
   "properties": {
     "defect_type": {
       "description": "The type of point defect",
-      "$ref": "../enums/point_defect_type.json"
+      "$ref": "../enums.json#/pointDefectType"
     },
     "coordinate": {
       "description": "The crystal coordinate of the defect",
@@ -36,7 +36,7 @@
     },
     "placement_method": {
       "description": "Method used to place the atom",
-      "$ref": "../enums/atom_placement_method.json"
+      "$ref": "../enums.json#/atomPlacementMethod"
     }
   }
 } 
