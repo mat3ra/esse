@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/defects/base-defect-configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Base Defect Configuration",
+    "title": "Base Defect Configuration Schema",
     "description": "Base configuration for all defect types",
     "type": "object",
     "required": [

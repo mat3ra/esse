@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/single-material/zero-dimensional/nanoribbon/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "NanoRibbon Configuration",
+    "title": "NanoRibbon Configuration Schema",
     "description": "Configuration for building a nanoribbon from a material",
     "type": "object",
     "required": [

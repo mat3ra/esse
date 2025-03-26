@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/defects/zero-dimensional/defect-pair-configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Point Defect Pair Configuration",
+    "title": "Point Defect Pair Configuration Schema",
     "description": "Configuration for a pair of point defects",
     "type": "object",
     "required": [
@@ -20,7 +20,7 @@
             "oneOf": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Point Defect Configuration",
+                    "title": "Point Defect Configuration Schema",
                     "description": "Configuration for point defects in a crystal",
                     "type": "object",
                     "required": [
@@ -718,7 +718,7 @@
                 },
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Adatom  Configuration",
+                    "title": "Adatom Configuration Schema",
                     "description": "Base configuration for adatom defects on a surface",
                     "type": "object",
                     "required": [
@@ -1403,7 +1403,7 @@
             "oneOf": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Point Defect Configuration",
+                    "title": "Point Defect Configuration Schema",
                     "description": "Configuration for point defects in a crystal",
                     "type": "object",
                     "required": [
@@ -2101,7 +2101,7 @@
                 },
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Adatom  Configuration",
+                    "title": "Adatom Configuration Schema",
                     "description": "Base configuration for adatom defects on a surface",
                     "type": "object",
                     "required": [

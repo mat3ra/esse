@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/multi-material/interfaces/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Interface Configuration",
+    "title": "Interface Configuration Schema",
     "description": "Configuration for an interface between two slabs",
     "type": "object",
     "required": [
@@ -13,7 +13,7 @@
     "properties": {
         "film_configuration": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "SlabConfiguration",
+            "title": "SlabConfiguration Schema",
             "description": "Configuration for creating a slab from a bulk material",
             "type": "object",
             "required": [
@@ -667,7 +667,7 @@
                 },
                 "miller_indices": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Miller Indices",
+                    "title": "Miller Indices Schema",
                     "description": "Miller indices for crystallographic plane designation",
                     "default": [
                         0,
@@ -699,7 +699,7 @@
                 },
                 "thickness": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Thickness",
+                    "title": "Thickness Schema",
                     "description": "Number of atomic layers in a structural component",
                     "type": "integer",
                     "minimum": 1,
@@ -707,7 +707,7 @@
                 },
                 "vacuum": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Vacuum",
+                    "title": "Vacuum Schema",
                     "description": "Vacuum thickness in Angstroms",
                     "type": "number",
                     "minimum": 0,
@@ -715,7 +715,7 @@
                 },
                 "xy_supercell_matrix": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Supercell Matrix 2D",
+                    "title": "Supercell Matrix 2D Schema",
                     "description": "Supercell matrix for xy plane transformations",
                     "type": "array",
                     "minItems": 2,
@@ -761,7 +761,7 @@
         },
         "substrate_configuration": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "SlabConfiguration",
+            "title": "SlabConfiguration Schema",
             "description": "Configuration for creating a slab from a bulk material",
             "type": "object",
             "required": [
@@ -1415,7 +1415,7 @@
                 },
                 "miller_indices": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Miller Indices",
+                    "title": "Miller Indices Schema",
                     "description": "Miller indices for crystallographic plane designation",
                     "default": [
                         0,
@@ -1447,7 +1447,7 @@
                 },
                 "thickness": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Thickness",
+                    "title": "Thickness Schema",
                     "description": "Number of atomic layers in a structural component",
                     "type": "integer",
                     "minimum": 1,
@@ -1455,7 +1455,7 @@
                 },
                 "vacuum": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Vacuum",
+                    "title": "Vacuum Schema",
                     "description": "Vacuum thickness in Angstroms",
                     "type": "number",
                     "minimum": 0,
@@ -1463,7 +1463,7 @@
                 },
                 "xy_supercell_matrix": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Supercell Matrix 2D",
+                    "title": "Supercell Matrix 2D Schema",
                     "description": "Supercell matrix for xy plane transformations",
                     "type": "array",
                     "minItems": 2,
@@ -1509,7 +1509,7 @@
         },
         "film_termination": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Termination",
+            "title": "Termination Schema",
             "description": "Defines a specific termination of a slab",
             "type": "object",
             "required": [
@@ -1531,7 +1531,7 @@
         },
         "substrate_termination": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Termination",
+            "title": "Termination Schema",
             "description": "Defines a specific termination of a slab",
             "type": "object",
             "required": [
@@ -1559,7 +1559,7 @@
         },
         "vacuum": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Vacuum",
+            "title": "Vacuum Schema",
             "description": "Vacuum thickness in Angstroms",
             "type": "number",
             "minimum": 0,

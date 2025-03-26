@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/single-material/zero-dimensional/nanoparticle/sphere-based/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Sphere Slab-Based Nanoparticle Configuration",
+    "title": "Sphere Slab-Based Nanoparticle Configuration Schema",
     "description": "Configuration for spherical nanoparticles created from slabs",
     "type": "object",
     "required": [
@@ -22,7 +22,7 @@
         },
         "orientation_z": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Miller Indices",
+            "title": "Miller Indices Schema",
             "description": "Miller indices for crystallographic plane designation",
             "default": [
                 0,

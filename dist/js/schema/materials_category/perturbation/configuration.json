@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/perturbation/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Perturbation Configuration",
+    "title": "Perturbation Configuration Schema",
     "description": "Configuration for applying geometric perturbation to a material",
     "definitions": {
         "perturbationFunctionHolder": {

@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/defects/one-dimensional/surface-grain-boundary-configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Surface Grain Boundary Configuration",
+    "title": "Surface Grain Boundary Configuration Schema",
     "description": "Configuration for creating a surface grain boundary",
     "type": "object",
     "required": [
@@ -15,7 +15,7 @@
         },
         "xy_supercell_matrix": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Supercell Matrix 2D",
+            "title": "Supercell Matrix 2D Schema",
             "description": "Supercell matrix for xy plane transformations",
             "type": "array",
             "minItems": 2,
@@ -1342,7 +1342,7 @@
         },
         "vacuum": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Vacuum",
+            "title": "Vacuum Schema",
             "description": "Vacuum thickness in Angstroms",
             "type": "number",
             "minimum": 0,
