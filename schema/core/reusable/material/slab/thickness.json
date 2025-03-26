@@ -1,7 +1,7 @@
 {
     "$id": "reusable/material/slab/thickness",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Thickness",
+    "title": "Thickness Schema",
     "description": "Number of atomic layers in a structural component",
     "type": "integer",
     "minimum": 1,
