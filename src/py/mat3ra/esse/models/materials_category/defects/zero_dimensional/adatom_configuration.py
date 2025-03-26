@@ -420,7 +420,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class AdatomConfiguration(BaseModel):
+class AdatomConfigurationSchema(BaseModel):
     defect_type: Literal["adatom"] = "adatom"
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """

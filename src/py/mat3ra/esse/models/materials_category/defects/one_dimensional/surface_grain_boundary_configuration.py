@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field, RootModel, confloat
 from typing_extensions import Literal
 
 
-class SupercellMatrix2DItem(RootModel[List[Any]]):
+class SupercellMatrix2DSchemaItem(RootModel[List[Any]]):
     root: List[Any]
 
 
@@ -716,16 +716,16 @@ class MaterialSchema30(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class SurfaceGrainBoundaryConfiguration(BaseModel):
+class SurfaceGrainBoundaryConfigurationSchema(BaseModel):
     gap: Optional[float] = 0
     """
     The gap between the two phases
     """
-    xy_supercell_matrix: Optional[List[SupercellMatrix2DItem]] = Field(
-        default_factory=lambda: [SupercellMatrix2DItem.model_validate(v) for v in [[1, 0], [0, 1]]],
+    xy_supercell_matrix: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
+        default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,
         min_length=2,
-        title="Supercell Matrix 2D",
+        title="Supercell Matrix 2D Schema",
     )
     """
     Supercell matrix for xy plane transformations
@@ -740,7 +740,7 @@ class SurfaceGrainBoundaryConfiguration(BaseModel):
     """
     Vertical distance between layers in Angstroms
     """
-    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum")
+    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
     """
     Vacuum thickness in Angstroms
     """

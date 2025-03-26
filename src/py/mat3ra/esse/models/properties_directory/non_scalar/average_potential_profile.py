@@ -39,11 +39,11 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label1(Enum):
+class Label2(Enum):
     energy = "energy"
 
 
-class Units4(Enum):
+class Units9(Enum):
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -54,11 +54,11 @@ class Units4(Enum):
 
 
 class AxisSchema3(BaseModel):
-    label: Label1
+    label: Label2
     """
     label of an axis object
     """
-    units: Optional[Units4] = None
+    units: Optional[Units9] = None
     """
     units for an axis
     """

@@ -420,29 +420,29 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class SupercellMatrix2DItem(RootModel[List[Any]]):
+class SupercellMatrix2DSchemaItem(RootModel[List[Any]]):
     root: List[Any]
 
 
-class SlabConfiguration(BaseModel):
+class SlabConfigurationSchema(BaseModel):
     bulk: MaterialSchema = Field(..., title="material schema")
-    miller_indices: Optional[Union[List[float], List[bool]]] = Field([0, 0, 1], title="Miller Indices")
+    miller_indices: Optional[Union[List[float], List[bool]]] = Field([0, 0, 1], title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """
-    thickness: Optional[conint(ge=1)] = Field(1, title="Thickness")
+    thickness: Optional[conint(ge=1)] = Field(1, title="Thickness Schema")
     """
     Number of atomic layers in a structural component
     """
-    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum")
+    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
     """
     Vacuum thickness in Angstroms
     """
-    xy_supercell_matrix: Optional[List[SupercellMatrix2DItem]] = Field(
-        default_factory=lambda: [SupercellMatrix2DItem.model_validate(v) for v in [[1, 0], [0, 1]]],
+    xy_supercell_matrix: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
+        default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,
         min_length=2,
-        title="Supercell Matrix 2D",
+        title="Supercell Matrix 2D Schema",
     )
     """
     Supercell matrix for xy plane transformations
@@ -753,25 +753,25 @@ class MaterialSchema4(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class SlabConfiguration1(BaseModel):
+class SlabConfigurationSchema1(BaseModel):
     bulk: MaterialSchema4 = Field(..., title="material schema")
-    miller_indices: Optional[Union[List[float], List[bool]]] = Field([0, 0, 1], title="Miller Indices")
+    miller_indices: Optional[Union[List[float], List[bool]]] = Field([0, 0, 1], title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """
-    thickness: Optional[conint(ge=1)] = Field(1, title="Thickness")
+    thickness: Optional[conint(ge=1)] = Field(1, title="Thickness Schema")
     """
     Number of atomic layers in a structural component
     """
-    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum")
+    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
     """
     Vacuum thickness in Angstroms
     """
-    xy_supercell_matrix: Optional[List[SupercellMatrix2DItem]] = Field(
-        default_factory=lambda: [SupercellMatrix2DItem.model_validate(v) for v in [[1, 0], [0, 1]]],
+    xy_supercell_matrix: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
+        default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,
         min_length=2,
-        title="Supercell Matrix 2D",
+        title="Supercell Matrix 2D Schema",
     )
     """
     Supercell matrix for xy plane transformations
@@ -790,7 +790,7 @@ class SlabConfiguration1(BaseModel):
     """
 
 
-class Termination(BaseModel):
+class TerminationSchema(BaseModel):
     chemical_elements: str = Field(..., title="Chemical Elements")
     """
     Chemical elements at the termination
@@ -801,20 +801,20 @@ class Termination(BaseModel):
     """
 
 
-class InterfaceConfiguration(BaseModel):
-    film_configuration: SlabConfiguration = Field(..., title="SlabConfiguration")
+class InterfaceConfigurationSchema(BaseModel):
+    film_configuration: SlabConfigurationSchema = Field(..., title="SlabConfiguration Schema")
     """
     Configuration for creating a slab from a bulk material
     """
-    substrate_configuration: SlabConfiguration1 = Field(..., title="SlabConfiguration")
+    substrate_configuration: SlabConfigurationSchema1 = Field(..., title="SlabConfiguration Schema")
     """
     Configuration for creating a slab from a bulk material
     """
-    film_termination: Termination = Field(..., title="Termination")
+    film_termination: TerminationSchema = Field(..., title="Termination Schema")
     """
     Defines a specific termination of a slab
     """
-    substrate_termination: Termination = Field(..., title="Termination")
+    substrate_termination: TerminationSchema = Field(..., title="Termination Schema")
     """
     Defines a specific termination of a slab
     """
@@ -822,7 +822,7 @@ class InterfaceConfiguration(BaseModel):
     """
     The distance between the film and substrate in Angstroms
     """
-    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum")
+    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
     """
     Vacuum thickness in Angstroms
     """

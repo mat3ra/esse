@@ -472,7 +472,7 @@ class SineWavePerturbationFunctionHolder(BaseModel):
     """
 
 
-class PerturbationConfiguration(BaseModel):
+class PerturbationConfigurationSchema(BaseModel):
     material: MaterialSchema = Field(..., title="material schema")
     perturbation_function: Union[PerturbationFunctionHolder, SineWavePerturbationFunctionHolder]
     """

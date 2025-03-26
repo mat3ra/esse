@@ -420,7 +420,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class TerraceSlabDefectConfiguration(BaseModel):
+class TerraceSlabDefectConfigurationSchema(BaseModel):
     defect_type: Literal["terrace"] = "terrace"
     cut_direction: Optional[List[int]] = Field([1, 0, 0], max_length=3, min_length=3)
     """

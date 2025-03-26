@@ -439,7 +439,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class PointDefectConfiguration(BaseModel):
+class PointDefectConfigurationSchema(BaseModel):
     defect_type: DefectType1
     coordinate: List[float] = Field(..., max_length=3, min_length=3)
     """
@@ -749,7 +749,7 @@ class MaterialSchema16(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class AdatomConfiguration(BaseModel):
+class AdatomConfigurationSchema(BaseModel):
     defect_type: Literal["adatom"] = "adatom"
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """
@@ -1058,7 +1058,7 @@ class MaterialSchema17(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class PointDefectConfiguration1(BaseModel):
+class PointDefectConfigurationSchema1(BaseModel):
     defect_type: DefectType1
     coordinate: List[float] = Field(..., max_length=3, min_length=3)
     """
@@ -1368,7 +1368,7 @@ class MaterialSchema18(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class AdatomConfiguration2(BaseModel):
+class AdatomConfigurationSchema2(BaseModel):
     defect_type: Literal["adatom"] = "adatom"
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """
@@ -1677,13 +1677,13 @@ class MaterialSchema19(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class PointDefectPairConfiguration(BaseModel):
+class PointDefectPairConfigurationSchema(BaseModel):
     defect_type: Optional[DefectType] = None
-    primary_defect_configuration: Union[PointDefectConfiguration, AdatomConfiguration]
+    primary_defect_configuration: Union[PointDefectConfigurationSchema, AdatomConfigurationSchema]
     """
     Configuration for the first defect
     """
-    secondary_defect_configuration: Union[PointDefectConfiguration1, AdatomConfiguration2]
+    secondary_defect_configuration: Union[PointDefectConfigurationSchema1, AdatomConfigurationSchema2]
     """
     Configuration for the second defect
     """

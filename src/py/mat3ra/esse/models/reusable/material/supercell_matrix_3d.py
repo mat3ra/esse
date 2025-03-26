@@ -9,12 +9,12 @@ from typing import Any, List
 from pydantic import Field, RootModel
 
 
-class SupercellMatrix3DItem(RootModel[List[Any]]):
+class SupercellMatrix3DSchemaItem(RootModel[List[Any]]):
     root: List[Any]
 
 
-class SupercellMatrix3D(RootModel[List[SupercellMatrix3DItem]]):
-    root: List[SupercellMatrix3DItem] = Field(..., max_length=3, min_length=3, title="Supercell Matrix 3D")
+class SupercellMatrix3DSchema(RootModel[List[SupercellMatrix3DSchemaItem]]):
+    root: List[SupercellMatrix3DSchemaItem] = Field(..., max_length=3, min_length=3, title="Supercell Matrix 3D Schema")
     """
     3x3 matrix of integers for transforming a unit cell into a supercell
     """

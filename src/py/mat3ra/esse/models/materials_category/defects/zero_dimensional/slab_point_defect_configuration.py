@@ -435,7 +435,7 @@ class PlacementMethod(Enum):
     voronoi_site = "voronoi_site"
 
 
-class SlabPointDefectConfiguration(BaseModel):
+class SlabPointDefectConfigurationSchema(BaseModel):
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """
     Position on the slab surface in 2D crystal coordinates

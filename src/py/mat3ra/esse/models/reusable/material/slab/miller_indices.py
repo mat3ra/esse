@@ -10,7 +10,7 @@ from pydantic import Field, RootModel
 
 
 class ESSE(RootModel[Union[List[float], List[bool]]]):
-    root: Union[List[float], List[bool]] = Field(..., title="Miller Indices")
+    root: Union[List[float], List[bool]] = Field(..., title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """

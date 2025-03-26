@@ -426,7 +426,7 @@ class Surface(Enum):
     both = "both"
 
 
-class PassivationConfiguration(BaseModel):
+class PassivationConfigurationSchema(BaseModel):
     slab: MaterialSchema = Field(..., title="material schema")
     passivant: Optional[str] = "H"
     """

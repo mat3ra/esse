@@ -9,12 +9,12 @@ from typing import Any, List
 from pydantic import Field, RootModel
 
 
-class SupercellMatrix2DItem(RootModel[List[Any]]):
+class SupercellMatrix2DSchemaItem(RootModel[List[Any]]):
     root: List[Any]
 
 
-class SupercellMatrix2D(RootModel[List[SupercellMatrix2DItem]]):
-    root: List[SupercellMatrix2DItem] = Field(..., max_length=2, min_length=2, title="Supercell Matrix 2D")
+class SupercellMatrix2DSchema(RootModel[List[SupercellMatrix2DSchemaItem]]):
+    root: List[SupercellMatrix2DSchemaItem] = Field(..., max_length=2, min_length=2, title="Supercell Matrix 2D Schema")
     """
     Supercell matrix for xy plane transformations
     """

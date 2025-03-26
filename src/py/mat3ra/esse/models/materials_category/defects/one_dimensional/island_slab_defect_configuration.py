@@ -467,7 +467,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class IslandSlabDefectConfiguration(BaseModel):
+class IslandSlabDefectConfigurationSchema(BaseModel):
     defect_type: Literal["island"] = "island"
     condition: Optional[Condition] = None
     """

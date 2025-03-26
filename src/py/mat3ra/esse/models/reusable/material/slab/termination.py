@@ -7,7 +7,7 @@ from __future__ import annotations
 from pydantic import BaseModel, Field
 
 
-class Termination(BaseModel):
+class TerminationSchema(BaseModel):
     chemical_elements: str = Field(..., title="Chemical Elements")
     """
     Chemical elements at the termination

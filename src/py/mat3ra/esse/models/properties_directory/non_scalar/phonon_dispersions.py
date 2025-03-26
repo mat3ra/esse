@@ -39,22 +39,22 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label11(Enum):
+class Label33(Enum):
     frequency = "frequency"
 
 
-class Units46(Enum):
+class Units156(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
 
 
 class AxisSchema12(BaseModel):
-    label: Label11
+    label: Label33
     """
     label of an axis object
     """
-    units: Optional[Units46] = None
+    units: Optional[Units156] = None
     """
     units for an axis
     """

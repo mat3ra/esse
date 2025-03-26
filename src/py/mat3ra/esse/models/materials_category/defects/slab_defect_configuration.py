@@ -420,7 +420,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class SlabDefectConfiguration(BaseModel):
+class SlabDefectConfigurationSchema(BaseModel):
     number_of_added_layers: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 1
     """
     Number of layers to add to the slab

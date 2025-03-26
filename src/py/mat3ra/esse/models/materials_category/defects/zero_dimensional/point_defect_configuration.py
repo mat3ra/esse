@@ -435,7 +435,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class PointDefectConfiguration(BaseModel):
+class PointDefectConfigurationSchema(BaseModel):
     defect_type: DefectType
     coordinate: List[float] = Field(..., max_length=3, min_length=3)
     """

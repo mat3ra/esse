@@ -420,5 +420,5 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class BaseDefectConfiguration(BaseModel):
+class BaseDefectConfigurationSchema(BaseModel):
     crystal: MaterialSchema = Field(..., title="material schema")
