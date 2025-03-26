@@ -1,7 +1,7 @@
 {
   "$id": "materials-category/defects/two-dimensional/passivation-configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Passivation Configuration",
+  "title": "Passivation Configuration Schema",
   "description": "Configuration for passivating a slab surface",
   "type": "object",
   "required": [

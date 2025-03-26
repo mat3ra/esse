@@ -1,7 +1,7 @@
 {
   "$id": "materials-category/defects/two-dimensional/slab-grain-boundary-configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Slab Grain Boundary Configuration",
+  "title": "Slab Grain Boundary Configuration Schema",
   "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
   "type": "object",
   "required": [

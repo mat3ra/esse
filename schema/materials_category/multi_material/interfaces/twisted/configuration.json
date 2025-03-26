@@ -1,7 +1,7 @@
 {
   "$id": "materials-category/multi-material/interfaces/twisted/configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Twisted Interface Configuration",
+  "title": "Twisted Interface Configuration Schema",
   "description": "Configuration for creating a twisted interface between two layers",
   "type": "object",
   "required": ["film"],

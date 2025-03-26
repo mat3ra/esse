@@ -1,7 +1,7 @@
 {
     "$id": "material/builders/passivation/coordination-based/builder-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Coordination Based Passivation Builder Parameters",
+    "title": "Coordination Based Passivation Builder Parameters Schema",
     "description": "Parameters for the CoordinationPassivationBuilder",
     "type": "object",
     "allOf": [

@@ -1,7 +1,7 @@
 {
   "$id": "materials-category/single-material/two-dimensional/slab/configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "SlabConfiguration",
+  "title": "SlabConfiguration Schema",
   "description": "Configuration for creating a slab from a bulk material",
   "type": "object",
   "required": ["bulk"],

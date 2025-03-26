@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/single-material/zero-dimensional/nanoparticle/ase-based/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ASE-Based Nanoparticle Configuration",
+    "title": "ASE-Based Nanoparticle Configuration Schema",
     "description": "Configuration for nanoparticles created using ASE constructors",
     "type": "object",
     "allOf": [

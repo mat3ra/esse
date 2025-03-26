@@ -1,7 +1,7 @@
 {
     "$id": "material/builders/multi-material/interfaces/twisted/commensurate-lattice-twisted-interface-builder-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Commensurate Lattice Twisted Interface Builder Parameters",
+    "title": "Commensurate Lattice Twisted Interface Builder Parameters Schema",
     "description": "Parameters for the commensurate lattice interface builder",
     "type": "object",
     "properties": {

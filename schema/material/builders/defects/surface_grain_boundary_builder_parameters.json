@@ -1,7 +1,7 @@
 {
     "$id": "material/builders/multi-material/interfaces/surface-grain-boundary-builder-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Surface Grain Boundary Builder Parameters",
+    "title": "Surface Grain Boundary Builder Parameters Schema",
     "description": "Parameters for creating a grain boundary between two surface phases",
     "type": "object",
     "allOf": [

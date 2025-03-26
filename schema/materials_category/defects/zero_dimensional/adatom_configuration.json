@@ -1,7 +1,7 @@
 {
   "$id": "materials-category/defects/zero-dimensional/adatom-configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Adatom  Configuration",
+  "title": "Adatom Configuration Schema",
   "description": "Base configuration for adatom defects on a surface",
   "type": "object",
   "allOf": [

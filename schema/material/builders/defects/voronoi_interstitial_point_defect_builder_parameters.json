@@ -1,7 +1,7 @@
 {
     "$id": "material/builders/defects/voronoi-interstitial-point-defect-builder-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Voronoi Interstitial Point Defect Builder Parameters",
+    "title": "Voronoi Interstitial Point Defect Builder Parameters Schema",
     "description": "Parameters for the Voronoi interstitial point defect builder",
     "#comment": "According to https://github.com/materialsproject/pymatgen-analysis-defects/blob/e2cb285de8be07b38912ae1782285ef1f463a9a9/pymatgen/analysis/defects/generators.py#L343",
     "type": "object",

@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/multi-material/interfaces/nanoribbon/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "NanoRibbon Twisted Interface Configuration",
+    "title": "NanoRibbon Twisted Interface Configuration Schema",
     "description": "Configuration for creating a twisted interface between two nanoribbons",
     "type": "object",
     "allOf": [
