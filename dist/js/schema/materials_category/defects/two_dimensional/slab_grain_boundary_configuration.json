@@ -1,0 +1,2331 @@
+{
+    "$id": "materials-category/defects/two-dimensional/slab-grain-boundary-configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Grain Boundary Configuration",
+    "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
+    "type": "object",
+    "required": [
+        "phase_1_configuration",
+        "phase_2_configuration",
+        "phase_1_termination",
+        "phase_2_termination",
+        "slab_configuration"
+    ],
+    "properties": {
+        "phase_1_configuration": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "SlabConfiguration",
+            "description": "Configuration for creating a slab from a bulk material",
+            "type": "object",
+            "required": [
+                "bulk"
+            ],
+            "properties": {
+                "bulk": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "material schema",
+                    "type": "object",
+                    "required": [
+                        "basis",
+                        "lattice"
+                    ],
+                    "properties": {
+                        "formula": {
+                            "description": "reduced chemical formula",
+                            "type": "string"
+                        },
+                        "unitCellFormula": {
+                            "description": "chemical formula based on the number of atoms of each element in the supercell",
+                            "type": "string"
+                        },
+                        "basis": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "basis schema",
+                            "type": "object",
+                            "required": [
+                                "elements",
+                                "coordinates"
+                            ],
+                            "properties": {
+                                "elements": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic elements",
+                                        "description": "elements of atoms by ids, string, unitless",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "occurrence": {
+                                                "description": "Occurrence is for fractional occupations",
+                                                "type": "number"
+                                            },
+                                            "oxidationState": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "labels": {
+                                    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic coordinate",
+                                        "description": "coordinates of atoms by ids, vector, unitless",
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "vector schema",
+                                                "oneOf": [
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 number elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    },
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 boolean elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "units": {
+                                    "type": "string"
+                                },
+                                "bonds": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "bonds schema",
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "atomPair": {
+                                                "description": "indices of the two connected atoms",
+                                                "type": "array",
+                                                "minItems": 2,
+                                                "maxItems": 2,
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic ids",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "description": "integer id of this entry",
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "bondType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "single",
+                                                    "double",
+                                                    "triple",
+                                                    "quadruple",
+                                                    "aromatic",
+                                                    "tautomeric",
+                                                    "dative",
+                                                    "other"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "lattice": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "lattice schema",
+                            "type": "object",
+                            "required": [
+                                "a",
+                                "alpha",
+                                "b",
+                                "beta",
+                                "c",
+                                "gamma",
+                                "type"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "lattice"
+                                    ]
+                                },
+                                "vectors": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice explicit unit",
+                                    "type": "object",
+                                    "required": [
+                                        "a",
+                                        "b",
+                                        "c"
+                                    ],
+                                    "properties": {
+                                        "alat": {
+                                            "description": "lattice parameter for fractional coordinates",
+                                            "type": "number",
+                                            "default": 1
+                                        },
+                                        "units": {
+                                            "enum": [
+                                                "km",
+                                                "m",
+                                                "pm",
+                                                "nm",
+                                                "angstrom",
+                                                "a.u.",
+                                                "bohr",
+                                                "fractional",
+                                                "crystal",
+                                                "cartesian",
+                                                "alat"
+                                            ]
+                                        },
+                                        "a": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "b": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "c": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "type": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice type schema",
+                                    "type": "string",
+                                    "enum": [
+                                        "CUB",
+                                        "BCC",
+                                        "FCC",
+                                        "TET",
+                                        "MCL",
+                                        "ORC",
+                                        "ORCC",
+                                        "ORCF",
+                                        "ORCI",
+                                        "HEX",
+                                        "BCT",
+                                        "TRI",
+                                        "MCLC",
+                                        "RHL"
+                                    ]
+                                },
+                                "units": {
+                                    "type": "object",
+                                    "properties": {
+                                        "length": {
+                                            "type": "string",
+                                            "enum": [
+                                                "angstrom",
+                                                "bohr"
+                                            ]
+                                        },
+                                        "angle": {
+                                            "type": "string",
+                                            "enum": [
+                                                "degree",
+                                                "radian"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "a": {
+                                    "description": "length of the first lattice vector",
+                                    "type": "number"
+                                },
+                                "b": {
+                                    "description": "length of the second lattice vector",
+                                    "type": "number"
+                                },
+                                "c": {
+                                    "description": "length of the third lattice vector",
+                                    "type": "number"
+                                },
+                                "alpha": {
+                                    "description": "angle between first and second lattice vector",
+                                    "type": "number"
+                                },
+                                "beta": {
+                                    "description": "angle between second and third lattice vector",
+                                    "type": "number"
+                                },
+                                "gamma": {
+                                    "description": "angle between first and third lattice vector",
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "derivedProperties": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "derived properties schema",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "volume schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "volume"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "angstrom^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "density schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "density"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "g/cm^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "symmetry schema",
+                                        "type": "object",
+                                        "properties": {
+                                            "pointGroupSymbol": {
+                                                "description": "point group symbol in Schoenflies notation",
+                                                "type": "string"
+                                            },
+                                            "spaceGroupSymbol": {
+                                                "description": "space group symbol in Hermann–Mauguin notation",
+                                                "type": "string"
+                                            },
+                                            "tolerance": {
+                                                "type": "object",
+                                                "description": "tolerance used for symmetry calculation",
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "scalar schema",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "units": {
+                                                        "enum": [
+                                                            "angstrom"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            "name": {
+                                                "enum": [
+                                                    "symmetry"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "elemental-ratio",
+                                        "description": "ration of this element in the compound",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "elemental_ratio"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            },
+                                            "element": {
+                                                "type": "string",
+                                                "description": "the element this ratio is for"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "p_norm",
+                                        "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "p-norm"
+                                                ]
+                                            },
+                                            "degree": {
+                                                "type": "integer",
+                                                "description": "degree of the dimensionality of the norm"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI key representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi_key"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "discriminator": {
+                                    "propertyName": "name"
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        },
+                        "external": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "database source schema",
+                            "description": "information about a database source",
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "source",
+                                "origin"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "source": {
+                                    "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+                                    "type": "string"
+                                },
+                                "origin": {
+                                    "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "description": "Original response from external source.",
+                                    "type": "object"
+                                },
+                                "doi": {
+                                    "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "src": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "file source schema",
+                            "description": "file source with the information inside",
+                            "type": "object",
+                            "required": [
+                                "filename",
+                                "text",
+                                "hash"
+                            ],
+                            "properties": {
+                                "extension": {
+                                    "description": "file extension",
+                                    "type": "string"
+                                },
+                                "filename": {
+                                    "description": "file name without extension",
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "description": "file content as raw text",
+                                    "type": "string"
+                                },
+                                "hash": {
+                                    "description": "MD5 hash based on file content",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "scaledHash": {
+                            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
+                            "type": "string"
+                        },
+                        "icsdId": {
+                            "description": "Corresponding ICSD id of the material",
+                            "type": "integer"
+                        },
+                        "isNonPeriodic": {
+                            "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
+                            "type": "boolean"
+                        },
+                        "consistencyChecks": {
+                            "type": "array",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "material consistency check schema",
+                                "type": "object",
+                                "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+                                "required": [
+                                    "key",
+                                    "name",
+                                    "severity",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "enum": [
+                                            "default",
+                                            "atomsTooClose",
+                                            "atomsOverlap"
+                                        ],
+                                        "description": "Name of the consistency check that is performed, which is listed in an enum."
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
+                                    },
+                                    "severity": {
+                                        "enum": [
+                                            "info",
+                                            "warning",
+                                            "error"
+                                        ],
+                                        "description": "Severity level of the problem, which is used in UI to differentiate."
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message generated by the consistency check describing the problem."
+                                    }
+                                }
+                            }
+                        },
+                        "_id": {
+                            "description": "entity identity",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "entity slug",
+                            "type": "string"
+                        },
+                        "systemName": {
+                            "type": "string"
+                        },
+                        "schemaVersion": {
+                            "description": "entity's schema version. Used to distinct between different schemas.",
+                            "type": "string",
+                            "default": "2022.8.16"
+                        },
+                        "name": {
+                            "description": "entity name",
+                            "type": "string"
+                        },
+                        "isDefault": {
+                            "description": "Identifies that entity is defaultable",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "metadata": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "miller_indices": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Miller Indices",
+                    "description": "Miller indices for crystallographic plane designation",
+                    "default": [
+                        0,
+                        0,
+                        1
+                    ],
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 number elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 boolean elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        }
+                    ]
+                },
+                "thickness": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thickness",
+                    "description": "Number of atomic layers in a structural component",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "vacuum": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Vacuum",
+                    "description": "Vacuum thickness in Angstroms",
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 5
+                },
+                "xy_supercell_matrix": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Supercell Matrix 2D",
+                    "description": "Supercell matrix for xy plane transformations",
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "default": [
+                        [
+                            1,
+                            0
+                        ],
+                        [
+                            0,
+                            1
+                        ]
+                    ],
+                    "items": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "use_conventional_cell": {
+                    "title": "Use Conventional Cell",
+                    "description": "Whether to use conventional cell",
+                    "type": "boolean",
+                    "default": true
+                },
+                "use_orthogonal_z": {
+                    "title": "Use Orthogonal Z",
+                    "description": "Whether to make z-axis orthogonal",
+                    "type": "boolean",
+                    "default": false
+                },
+                "make_primitive": {
+                    "title": "Make Primitive",
+                    "description": "Whether to make the slab primitive",
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "phase_2_configuration": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "SlabConfiguration",
+            "description": "Configuration for creating a slab from a bulk material",
+            "type": "object",
+            "required": [
+                "bulk"
+            ],
+            "properties": {
+                "bulk": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "material schema",
+                    "type": "object",
+                    "required": [
+                        "basis",
+                        "lattice"
+                    ],
+                    "properties": {
+                        "formula": {
+                            "description": "reduced chemical formula",
+                            "type": "string"
+                        },
+                        "unitCellFormula": {
+                            "description": "chemical formula based on the number of atoms of each element in the supercell",
+                            "type": "string"
+                        },
+                        "basis": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "basis schema",
+                            "type": "object",
+                            "required": [
+                                "elements",
+                                "coordinates"
+                            ],
+                            "properties": {
+                                "elements": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic elements",
+                                        "description": "elements of atoms by ids, string, unitless",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "occurrence": {
+                                                "description": "Occurrence is for fractional occupations",
+                                                "type": "number"
+                                            },
+                                            "oxidationState": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "labels": {
+                                    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic coordinate",
+                                        "description": "coordinates of atoms by ids, vector, unitless",
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "vector schema",
+                                                "oneOf": [
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 number elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    },
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 boolean elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "units": {
+                                    "type": "string"
+                                },
+                                "bonds": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "bonds schema",
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "atomPair": {
+                                                "description": "indices of the two connected atoms",
+                                                "type": "array",
+                                                "minItems": 2,
+                                                "maxItems": 2,
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic ids",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "description": "integer id of this entry",
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "bondType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "single",
+                                                    "double",
+                                                    "triple",
+                                                    "quadruple",
+                                                    "aromatic",
+                                                    "tautomeric",
+                                                    "dative",
+                                                    "other"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "lattice": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "lattice schema",
+                            "type": "object",
+                            "required": [
+                                "a",
+                                "alpha",
+                                "b",
+                                "beta",
+                                "c",
+                                "gamma",
+                                "type"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "lattice"
+                                    ]
+                                },
+                                "vectors": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice explicit unit",
+                                    "type": "object",
+                                    "required": [
+                                        "a",
+                                        "b",
+                                        "c"
+                                    ],
+                                    "properties": {
+                                        "alat": {
+                                            "description": "lattice parameter for fractional coordinates",
+                                            "type": "number",
+                                            "default": 1
+                                        },
+                                        "units": {
+                                            "enum": [
+                                                "km",
+                                                "m",
+                                                "pm",
+                                                "nm",
+                                                "angstrom",
+                                                "a.u.",
+                                                "bohr",
+                                                "fractional",
+                                                "crystal",
+                                                "cartesian",
+                                                "alat"
+                                            ]
+                                        },
+                                        "a": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "b": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "c": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "type": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice type schema",
+                                    "type": "string",
+                                    "enum": [
+                                        "CUB",
+                                        "BCC",
+                                        "FCC",
+                                        "TET",
+                                        "MCL",
+                                        "ORC",
+                                        "ORCC",
+                                        "ORCF",
+                                        "ORCI",
+                                        "HEX",
+                                        "BCT",
+                                        "TRI",
+                                        "MCLC",
+                                        "RHL"
+                                    ]
+                                },
+                                "units": {
+                                    "type": "object",
+                                    "properties": {
+                                        "length": {
+                                            "type": "string",
+                                            "enum": [
+                                                "angstrom",
+                                                "bohr"
+                                            ]
+                                        },
+                                        "angle": {
+                                            "type": "string",
+                                            "enum": [
+                                                "degree",
+                                                "radian"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "a": {
+                                    "description": "length of the first lattice vector",
+                                    "type": "number"
+                                },
+                                "b": {
+                                    "description": "length of the second lattice vector",
+                                    "type": "number"
+                                },
+                                "c": {
+                                    "description": "length of the third lattice vector",
+                                    "type": "number"
+                                },
+                                "alpha": {
+                                    "description": "angle between first and second lattice vector",
+                                    "type": "number"
+                                },
+                                "beta": {
+                                    "description": "angle between second and third lattice vector",
+                                    "type": "number"
+                                },
+                                "gamma": {
+                                    "description": "angle between first and third lattice vector",
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "derivedProperties": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "derived properties schema",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "volume schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "volume"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "angstrom^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "density schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "density"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "g/cm^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "symmetry schema",
+                                        "type": "object",
+                                        "properties": {
+                                            "pointGroupSymbol": {
+                                                "description": "point group symbol in Schoenflies notation",
+                                                "type": "string"
+                                            },
+                                            "spaceGroupSymbol": {
+                                                "description": "space group symbol in Hermann–Mauguin notation",
+                                                "type": "string"
+                                            },
+                                            "tolerance": {
+                                                "type": "object",
+                                                "description": "tolerance used for symmetry calculation",
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "scalar schema",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "units": {
+                                                        "enum": [
+                                                            "angstrom"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            "name": {
+                                                "enum": [
+                                                    "symmetry"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "elemental-ratio",
+                                        "description": "ration of this element in the compound",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "elemental_ratio"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            },
+                                            "element": {
+                                                "type": "string",
+                                                "description": "the element this ratio is for"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "p_norm",
+                                        "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "p-norm"
+                                                ]
+                                            },
+                                            "degree": {
+                                                "type": "integer",
+                                                "description": "degree of the dimensionality of the norm"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI key representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi_key"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "discriminator": {
+                                    "propertyName": "name"
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        },
+                        "external": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "database source schema",
+                            "description": "information about a database source",
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "source",
+                                "origin"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "source": {
+                                    "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+                                    "type": "string"
+                                },
+                                "origin": {
+                                    "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "description": "Original response from external source.",
+                                    "type": "object"
+                                },
+                                "doi": {
+                                    "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "src": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "file source schema",
+                            "description": "file source with the information inside",
+                            "type": "object",
+                            "required": [
+                                "filename",
+                                "text",
+                                "hash"
+                            ],
+                            "properties": {
+                                "extension": {
+                                    "description": "file extension",
+                                    "type": "string"
+                                },
+                                "filename": {
+                                    "description": "file name without extension",
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "description": "file content as raw text",
+                                    "type": "string"
+                                },
+                                "hash": {
+                                    "description": "MD5 hash based on file content",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "scaledHash": {
+                            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
+                            "type": "string"
+                        },
+                        "icsdId": {
+                            "description": "Corresponding ICSD id of the material",
+                            "type": "integer"
+                        },
+                        "isNonPeriodic": {
+                            "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
+                            "type": "boolean"
+                        },
+                        "consistencyChecks": {
+                            "type": "array",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "material consistency check schema",
+                                "type": "object",
+                                "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+                                "required": [
+                                    "key",
+                                    "name",
+                                    "severity",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "enum": [
+                                            "default",
+                                            "atomsTooClose",
+                                            "atomsOverlap"
+                                        ],
+                                        "description": "Name of the consistency check that is performed, which is listed in an enum."
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
+                                    },
+                                    "severity": {
+                                        "enum": [
+                                            "info",
+                                            "warning",
+                                            "error"
+                                        ],
+                                        "description": "Severity level of the problem, which is used in UI to differentiate."
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message generated by the consistency check describing the problem."
+                                    }
+                                }
+                            }
+                        },
+                        "_id": {
+                            "description": "entity identity",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "entity slug",
+                            "type": "string"
+                        },
+                        "systemName": {
+                            "type": "string"
+                        },
+                        "schemaVersion": {
+                            "description": "entity's schema version. Used to distinct between different schemas.",
+                            "type": "string",
+                            "default": "2022.8.16"
+                        },
+                        "name": {
+                            "description": "entity name",
+                            "type": "string"
+                        },
+                        "isDefault": {
+                            "description": "Identifies that entity is defaultable",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "metadata": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "miller_indices": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Miller Indices",
+                    "description": "Miller indices for crystallographic plane designation",
+                    "default": [
+                        0,
+                        0,
+                        1
+                    ],
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 number elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 boolean elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        }
+                    ]
+                },
+                "thickness": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thickness",
+                    "description": "Number of atomic layers in a structural component",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "vacuum": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Vacuum",
+                    "description": "Vacuum thickness in Angstroms",
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 5
+                },
+                "xy_supercell_matrix": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Supercell Matrix 2D",
+                    "description": "Supercell matrix for xy plane transformations",
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "default": [
+                        [
+                            1,
+                            0
+                        ],
+                        [
+                            0,
+                            1
+                        ]
+                    ],
+                    "items": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "use_conventional_cell": {
+                    "title": "Use Conventional Cell",
+                    "description": "Whether to use conventional cell",
+                    "type": "boolean",
+                    "default": true
+                },
+                "use_orthogonal_z": {
+                    "title": "Use Orthogonal Z",
+                    "description": "Whether to make z-axis orthogonal",
+                    "type": "boolean",
+                    "default": false
+                },
+                "make_primitive": {
+                    "title": "Make Primitive",
+                    "description": "Whether to make the slab primitive",
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "phase_1_termination": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Termination",
+            "description": "Defines a specific termination of a slab",
+            "type": "object",
+            "required": [
+                "chemical_elements",
+                "space_group_symmetry_label"
+            ],
+            "properties": {
+                "chemical_elements": {
+                    "title": "Chemical Elements",
+                    "description": "Chemical elements at the termination",
+                    "type": "string"
+                },
+                "space_group_symmetry_label": {
+                    "title": "Space Group Symmetry Label",
+                    "description": "Space group symmetry designation for the termination",
+                    "type": "string"
+                }
+            }
+        },
+        "phase_2_termination": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Termination",
+            "description": "Defines a specific termination of a slab",
+            "type": "object",
+            "required": [
+                "chemical_elements",
+                "space_group_symmetry_label"
+            ],
+            "properties": {
+                "chemical_elements": {
+                    "title": "Chemical Elements",
+                    "description": "Chemical elements at the termination",
+                    "type": "string"
+                },
+                "space_group_symmetry_label": {
+                    "title": "Space Group Symmetry Label",
+                    "description": "Space group symmetry designation for the termination",
+                    "type": "string"
+                }
+            }
+        },
+        "gap": {
+            "description": "The gap between the two phases, in Angstroms",
+            "type": "number",
+            "default": 3
+        },
+        "slab_configuration": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "SlabConfiguration",
+            "description": "Configuration for creating a slab from a bulk material",
+            "type": "object",
+            "required": [
+                "bulk"
+            ],
+            "properties": {
+                "bulk": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "material schema",
+                    "type": "object",
+                    "required": [
+                        "basis",
+                        "lattice"
+                    ],
+                    "properties": {
+                        "formula": {
+                            "description": "reduced chemical formula",
+                            "type": "string"
+                        },
+                        "unitCellFormula": {
+                            "description": "chemical formula based on the number of atoms of each element in the supercell",
+                            "type": "string"
+                        },
+                        "basis": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "basis schema",
+                            "type": "object",
+                            "required": [
+                                "elements",
+                                "coordinates"
+                            ],
+                            "properties": {
+                                "elements": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic elements",
+                                        "description": "elements of atoms by ids, string, unitless",
+                                        "type": "object",
+                                        "required": [
+                                            "id",
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            },
+                                            "occurrence": {
+                                                "description": "Occurrence is for fractional occupations",
+                                                "type": "number"
+                                            },
+                                            "oxidationState": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "labels": {
+                                    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "coordinates": {
+                                    "type": "array",
+                                    "items": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "atomic coordinate",
+                                        "description": "coordinates of atoms by ids, vector, unitless",
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "number"
+                                            },
+                                            "value": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "vector schema",
+                                                "oneOf": [
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 number elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "number"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    },
+                                                    {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "array of 3 boolean elements schema",
+                                                        "type": "array",
+                                                        "items": {
+                                                            "type": "boolean"
+                                                        },
+                                                        "minItems": 3,
+                                                        "maxItems": 3
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "units": {
+                                    "type": "string"
+                                },
+                                "bonds": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "bonds schema",
+                                    "type": "array",
+                                    "uniqueItems": true,
+                                    "items": {
+                                        "type": "object",
+                                        "properties": {
+                                            "atomPair": {
+                                                "description": "indices of the two connected atoms",
+                                                "type": "array",
+                                                "minItems": 2,
+                                                "maxItems": 2,
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "atomic ids",
+                                                "items": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "description": "integer id of this entry",
+                                                            "type": "integer"
+                                                        }
+                                                    }
+                                                }
+                                            },
+                                            "bondType": {
+                                                "type": "string",
+                                                "enum": [
+                                                    "single",
+                                                    "double",
+                                                    "triple",
+                                                    "quadruple",
+                                                    "aromatic",
+                                                    "tautomeric",
+                                                    "dative",
+                                                    "other"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "lattice": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "lattice schema",
+                            "type": "object",
+                            "required": [
+                                "a",
+                                "alpha",
+                                "b",
+                                "beta",
+                                "c",
+                                "gamma",
+                                "type"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "lattice"
+                                    ]
+                                },
+                                "vectors": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice explicit unit",
+                                    "type": "object",
+                                    "required": [
+                                        "a",
+                                        "b",
+                                        "c"
+                                    ],
+                                    "properties": {
+                                        "alat": {
+                                            "description": "lattice parameter for fractional coordinates",
+                                            "type": "number",
+                                            "default": 1
+                                        },
+                                        "units": {
+                                            "enum": [
+                                                "km",
+                                                "m",
+                                                "pm",
+                                                "nm",
+                                                "angstrom",
+                                                "a.u.",
+                                                "bohr",
+                                                "fractional",
+                                                "crystal",
+                                                "cartesian",
+                                                "alat"
+                                            ]
+                                        },
+                                        "a": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "b": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        },
+                                        "c": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "array of 3 number elements schema",
+                                            "type": "array",
+                                            "minItems": 3,
+                                            "maxItems": 3,
+                                            "items": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    }
+                                },
+                                "type": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "lattice type schema",
+                                    "type": "string",
+                                    "enum": [
+                                        "CUB",
+                                        "BCC",
+                                        "FCC",
+                                        "TET",
+                                        "MCL",
+                                        "ORC",
+                                        "ORCC",
+                                        "ORCF",
+                                        "ORCI",
+                                        "HEX",
+                                        "BCT",
+                                        "TRI",
+                                        "MCLC",
+                                        "RHL"
+                                    ]
+                                },
+                                "units": {
+                                    "type": "object",
+                                    "properties": {
+                                        "length": {
+                                            "type": "string",
+                                            "enum": [
+                                                "angstrom",
+                                                "bohr"
+                                            ]
+                                        },
+                                        "angle": {
+                                            "type": "string",
+                                            "enum": [
+                                                "degree",
+                                                "radian"
+                                            ]
+                                        }
+                                    }
+                                },
+                                "a": {
+                                    "description": "length of the first lattice vector",
+                                    "type": "number"
+                                },
+                                "b": {
+                                    "description": "length of the second lattice vector",
+                                    "type": "number"
+                                },
+                                "c": {
+                                    "description": "length of the third lattice vector",
+                                    "type": "number"
+                                },
+                                "alpha": {
+                                    "description": "angle between first and second lattice vector",
+                                    "type": "number"
+                                },
+                                "beta": {
+                                    "description": "angle between second and third lattice vector",
+                                    "type": "number"
+                                },
+                                "gamma": {
+                                    "description": "angle between first and third lattice vector",
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "derivedProperties": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "derived properties schema",
+                            "type": "array",
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "volume schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "volume"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "angstrom^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "density schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "density"
+                                                ]
+                                            },
+                                            "units": {
+                                                "enum": [
+                                                    "g/cm^3"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "symmetry schema",
+                                        "type": "object",
+                                        "properties": {
+                                            "pointGroupSymbol": {
+                                                "description": "point group symbol in Schoenflies notation",
+                                                "type": "string"
+                                            },
+                                            "spaceGroupSymbol": {
+                                                "description": "space group symbol in Hermann–Mauguin notation",
+                                                "type": "string"
+                                            },
+                                            "tolerance": {
+                                                "type": "object",
+                                                "description": "tolerance used for symmetry calculation",
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "scalar schema",
+                                                "required": [
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "units": {
+                                                        "enum": [
+                                                            "angstrom"
+                                                        ]
+                                                    },
+                                                    "value": {
+                                                        "type": "number"
+                                                    }
+                                                }
+                                            },
+                                            "name": {
+                                                "enum": [
+                                                    "symmetry"
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "elemental-ratio",
+                                        "description": "ration of this element in the compound",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "elemental_ratio"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "number",
+                                                "minimum": 0,
+                                                "maximum": 1
+                                            },
+                                            "element": {
+                                                "type": "string",
+                                                "description": "the element this ratio is for"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "p_norm",
+                                        "description": "https://en.wikipedia.org/wiki/Norm_(mathematics)#p-norm",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "p-norm"
+                                                ]
+                                            },
+                                            "degree": {
+                                                "type": "integer",
+                                                "description": "degree of the dimensionality of the norm"
+                                            },
+                                            "value": {
+                                                "type": "number"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "InChI key representation schema",
+                                        "type": "object",
+                                        "required": [
+                                            "value"
+                                        ],
+                                        "properties": {
+                                            "name": {
+                                                "enum": [
+                                                    "inchi_key"
+                                                ]
+                                            },
+                                            "value": {
+                                                "type": "string"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "discriminator": {
+                                    "propertyName": "name"
+                                },
+                                "required": [
+                                    "name"
+                                ]
+                            }
+                        },
+                        "external": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "database source schema",
+                            "description": "information about a database source",
+                            "type": "object",
+                            "required": [
+                                "id",
+                                "source",
+                                "origin"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "type": "number"
+                                        }
+                                    ]
+                                },
+                                "source": {
+                                    "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
+                                    "type": "string"
+                                },
+                                "origin": {
+                                    "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
+                                    "type": "boolean"
+                                },
+                                "data": {
+                                    "description": "Original response from external source.",
+                                    "type": "object"
+                                },
+                                "doi": {
+                                    "description": "Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506",
+                                    "type": "string"
+                                },
+                                "url": {
+                                    "description": "The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "src": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "file source schema",
+                            "description": "file source with the information inside",
+                            "type": "object",
+                            "required": [
+                                "filename",
+                                "text",
+                                "hash"
+                            ],
+                            "properties": {
+                                "extension": {
+                                    "description": "file extension",
+                                    "type": "string"
+                                },
+                                "filename": {
+                                    "description": "file name without extension",
+                                    "type": "string"
+                                },
+                                "text": {
+                                    "description": "file content as raw text",
+                                    "type": "string"
+                                },
+                                "hash": {
+                                    "description": "MD5 hash based on file content",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "scaledHash": {
+                            "description": "Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).",
+                            "type": "string"
+                        },
+                        "icsdId": {
+                            "description": "Corresponding ICSD id of the material",
+                            "type": "integer"
+                        },
+                        "isNonPeriodic": {
+                            "description": "Whether to work in the finite molecular picture (usually with atomic orbital basis)",
+                            "type": "boolean"
+                        },
+                        "consistencyChecks": {
+                            "type": "array",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "material consistency check schema",
+                                "type": "object",
+                                "description": "The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.",
+                                "required": [
+                                    "key",
+                                    "name",
+                                    "severity",
+                                    "message"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "enum": [
+                                            "default",
+                                            "atomsTooClose",
+                                            "atomsOverlap"
+                                        ],
+                                        "description": "Name of the consistency check that is performed, which is listed in an enum."
+                                    },
+                                    "key": {
+                                        "type": "string",
+                                        "description": "Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'"
+                                    },
+                                    "severity": {
+                                        "enum": [
+                                            "info",
+                                            "warning",
+                                            "error"
+                                        ],
+                                        "description": "Severity level of the problem, which is used in UI to differentiate."
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "Message generated by the consistency check describing the problem."
+                                    }
+                                }
+                            }
+                        },
+                        "_id": {
+                            "description": "entity identity",
+                            "type": "string"
+                        },
+                        "slug": {
+                            "description": "entity slug",
+                            "type": "string"
+                        },
+                        "systemName": {
+                            "type": "string"
+                        },
+                        "schemaVersion": {
+                            "description": "entity's schema version. Used to distinct between different schemas.",
+                            "type": "string",
+                            "default": "2022.8.16"
+                        },
+                        "name": {
+                            "description": "entity name",
+                            "type": "string"
+                        },
+                        "isDefault": {
+                            "description": "Identifies that entity is defaultable",
+                            "type": "boolean",
+                            "default": false
+                        },
+                        "metadata": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "miller_indices": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Miller Indices",
+                    "description": "Miller indices for crystallographic plane designation",
+                    "default": [
+                        0,
+                        0,
+                        1
+                    ],
+                    "oneOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 number elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "array of 3 boolean elements schema",
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        }
+                    ]
+                },
+                "thickness": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thickness",
+                    "description": "Number of atomic layers in a structural component",
+                    "type": "integer",
+                    "minimum": 1,
+                    "default": 1
+                },
+                "vacuum": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Vacuum",
+                    "description": "Vacuum thickness in Angstroms",
+                    "type": "number",
+                    "minimum": 0,
+                    "default": 5
+                },
+                "xy_supercell_matrix": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Supercell Matrix 2D",
+                    "description": "Supercell matrix for xy plane transformations",
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "default": [
+                        [
+                            1,
+                            0
+                        ],
+                        [
+                            0,
+                            1
+                        ]
+                    ],
+                    "items": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": {
+                            "type": "integer"
+                        }
+                    }
+                },
+                "use_conventional_cell": {
+                    "title": "Use Conventional Cell",
+                    "description": "Whether to use conventional cell",
+                    "type": "boolean",
+                    "default": true
+                },
+                "use_orthogonal_z": {
+                    "title": "Use Orthogonal Z",
+                    "description": "Whether to make z-axis orthogonal",
+                    "type": "boolean",
+                    "default": false
+                },
+                "make_primitive": {
+                    "title": "Make Primitive",
+                    "description": "Whether to make the slab primitive",
+                    "type": "boolean",
+                    "default": false
+                }
+            }
+        },
+        "slab_termination": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Termination",
+            "description": "Defines a specific termination of a slab",
+            "type": "object",
+            "required": [
+                "chemical_elements",
+                "space_group_symmetry_label"
+            ],
+            "properties": {
+                "chemical_elements": {
+                    "title": "Chemical Elements",
+                    "description": "Chemical elements at the termination",
+                    "type": "string"
+                },
+                "space_group_symmetry_label": {
+                    "title": "Space Group Symmetry Label",
+                    "description": "Space group symmetry designation for the termination",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
