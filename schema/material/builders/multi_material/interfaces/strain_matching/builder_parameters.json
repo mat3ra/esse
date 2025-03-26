@@ -1,0 +1,15 @@
+{
+    "$id": "material/builders/multi-material/interfaces/strain-matching/builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Strain Matching Interface Builder Parameters",
+    "description": "Parameters for the strain matching interface builder",
+    "type": "object",
+    "properties": {
+        "strain_matching_parameters": {
+            "description": "Parameters for strain matching",
+            "type": ["object", "null"],
+            "default": null
+        }
+    }
+}
+
