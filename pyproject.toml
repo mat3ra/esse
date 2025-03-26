@@ -28,7 +28,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "datamodel-code-generator>=0.25.5"
+    "datamodel-code-generator==0.25.5"
 ]
 tests = [
     "coverage[toml]>=5.3",
