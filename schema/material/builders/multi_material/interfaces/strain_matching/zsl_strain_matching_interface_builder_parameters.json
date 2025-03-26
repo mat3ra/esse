@@ -1,0 +1,13 @@
+{
+    "$id": "material/builders/multi-material/interfaces/strain-matching/zsl-strain-matching-interface-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ZSL Strain Matching Interface Builder Parameters",
+    "description": "Parameters for the ZSL strain matching interface builder",
+    "type": "object",
+    "properties": {
+        "strain_matching_parameters": {
+            "description": "Parameters for ZSL strain matching",
+            "$ref": "zsl_strain_matching_parameters.json"
+        }
+    }
+}
