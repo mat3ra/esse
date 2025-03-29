@@ -34,7 +34,12 @@
             "type": "string"
         },
         "units": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "crystal",
+                "cartesian"
+            ],
+            "default": "crystal"
         },
         "bonds": {
             "$ref": "basis/bonds.json"
