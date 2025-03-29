@@ -31,6 +31,11 @@ class AtomicCoordinate(BaseModel):
     value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
 
 
+class Units(Enum):
+    crystal = "crystal"
+    cartesian = "cartesian"
+
+
 class AtomicId(BaseModel):
     id: Optional[int] = None
     """
@@ -65,7 +70,7 @@ class BasisSchema(BaseModel):
     """
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
-    units: Optional[str] = None
+    units: Optional[Units] = "crystal"
     bonds: Optional[List[BondsSchemaItem]] = Field(None, title="bonds schema")
 
 
@@ -73,7 +78,7 @@ class Name(Enum):
     lattice = "lattice"
 
 
-class Units(Enum):
+class Units42(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -92,7 +97,7 @@ class LatticeExplicitUnit(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units] = None
+    units: Optional[Units42] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
@@ -125,7 +130,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units41(BaseModel):
+class Units43(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -134,7 +139,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units41] = None
+    units: Optional[Units43] = None
     a: float
     """
     length of the first lattice vector
@@ -165,13 +170,13 @@ class Name47(Enum):
     volume = "volume"
 
 
-class Units42(Enum):
+class Units44(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units42] = None
+    units: Optional[Units44] = None
     value: float
 
 
@@ -179,22 +184,22 @@ class Name48(Enum):
     density = "density"
 
 
-class Units43(Enum):
+class Units45(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units43] = None
+    units: Optional[Units45] = None
     value: float
 
 
-class Units44(Enum):
+class Units46(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units44] = None
+    units: Optional[Units46] = None
     value: float
 
 

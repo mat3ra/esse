@@ -47,7 +47,7 @@ class Name25(Enum):
     ionization_potential = "ionization_potential"
 
 
-class Units20(Enum):
+class Units21(Enum):
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -59,7 +59,7 @@ class Units20(Enum):
 
 class IonizationPotential(BaseModel):
     name: Optional[Name25] = None
-    units: Optional[Units20] = None
+    units: Optional[Units21] = None
     value: float
 
 

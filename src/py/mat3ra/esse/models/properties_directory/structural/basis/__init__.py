@@ -30,6 +30,11 @@ class AtomicCoordinate(BaseModel):
     value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
 
 
+class Units(Enum):
+    crystal = "crystal"
+    cartesian = "cartesian"
+
+
 class AtomicId(BaseModel):
     id: Optional[int] = None
     """
@@ -64,5 +69,5 @@ class BasisSchema(BaseModel):
     """
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
-    units: Optional[str] = None
+    units: Optional[Units] = "crystal"
     bonds: Optional[List[BondsSchemaItem]] = Field(None, title="bonds schema")

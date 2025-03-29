@@ -66,7 +66,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units36(BaseModel):
+class Units37(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -75,7 +75,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units36] = None
+    units: Optional[Units37] = None
     a: float
     """
     length of the first lattice vector
