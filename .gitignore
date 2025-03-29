@@ -4,7 +4,7 @@
 Vagrantfile
 htmlcov_*
 coverage_*.xml
-venv*/
+.venv*/
 .coverage
 
 *.gem
@@ -63,3 +63,5 @@ schema.js
 site
 
 src/js/types.ts
+
+.python-version
