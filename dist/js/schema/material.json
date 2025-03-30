@@ -53,20 +53,6 @@
                         }
                     }
                 },
-                "labels": {
-                    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
-                    "type": "array",
-                    "items": {
-                        "properties": {
-                            "id": {
-                                "type": "number"
-                            },
-                            "value": {
-                                "type": "number"
-                            }
-                        }
-                    }
-                },
                 "coordinates": {
                     "type": "array",
                     "items": {
@@ -107,9 +93,6 @@
                         }
                     }
                 },
-                "name": {
-                    "type": "string"
-                },
                 "units": {
                     "type": "string",
                     "enum": [
@@ -118,43 +101,23 @@
                     ],
                     "default": "crystal"
                 },
-                "bonds": {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "bonds schema",
+                "labels": {
                     "type": "array",
-                    "uniqueItems": true,
                     "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "atomic label",
+                        "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
                         "type": "object",
                         "properties": {
-                            "atomPair": {
-                                "description": "indices of the two connected atoms",
-                                "type": "array",
-                                "minItems": 2,
-                                "maxItems": 2,
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "atomic ids",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "description": "integer id of this entry",
-                                            "type": "integer"
-                                        }
-                                    }
-                                }
+                            "id": {
+                                "type": "number"
                             },
-                            "bondType": {
-                                "type": "string",
-                                "enum": [
-                                    "single",
-                                    "double",
-                                    "triple",
-                                    "quadruple",
-                                    "aromatic",
-                                    "tautomeric",
-                                    "dative",
-                                    "other"
-                                ]
+                            "value": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "integer positive single digit",
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 9
                             }
                         }
                     }
