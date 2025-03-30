@@ -32,7 +32,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label19(Enum):
+class Label17(Enum):
     Intensity = "Intensity"
     Absorbance = "Absorbance"
     Absorption_coefficient = "Absorption coefficient"
@@ -46,7 +46,7 @@ class Units67(Enum):
 
 
 class AxisSchema20(BaseModel):
-    label: Label19
+    label: Label17
     """
     label of an axis object
     """

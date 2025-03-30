@@ -25,7 +25,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label6(Enum):
+class Label5(Enum):
     charge_density = "charge density"
 
 
@@ -34,7 +34,7 @@ class Units(Enum):
 
 
 class AxisSchema8(BaseModel):
-    label: Label6
+    label: Label5
     """
     label of an axis object
     """

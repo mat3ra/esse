@@ -31,7 +31,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label13(Enum):
+class Label11(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
@@ -42,7 +42,7 @@ class Units50(Enum):
 
 
 class AxisSchema14(BaseModel):
-    label: Label13
+    label: Label11
     """
     label of an axis object
     """

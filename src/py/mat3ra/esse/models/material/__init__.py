@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat
+from pydantic import BaseModel, Field, RootModel, confloat, conint
 from typing_extensions import Literal
 
 
@@ -21,11 +21,6 @@ class AtomicElements(BaseModel):
     oxidationState: Optional[float] = None
 
 
-class Label(BaseModel):
-    id: Optional[float] = None
-    value: Optional[float] = None
-
-
 class AtomicCoordinate(BaseModel):
     id: Optional[float] = None
     value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
@@ -36,42 +31,16 @@ class Units(Enum):
     cartesian = "cartesian"
 
 
-class AtomicId(BaseModel):
-    id: Optional[int] = None
-    """
-    integer id of this entry
-    """
-
-
-class BondType(Enum):
-    single = "single"
-    double = "double"
-    triple = "triple"
-    quadruple = "quadruple"
-    aromatic = "aromatic"
-    tautomeric = "tautomeric"
-    dative = "dative"
-    other = "other"
-
-
-class BondsSchemaItem(BaseModel):
-    atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
-    """
-    indices of the two connected atoms
-    """
-    bondType: Optional[BondType] = None
+class AtomicLabel(BaseModel):
+    id: Optional[float] = None
+    value: Optional[conint(ge=1, le=9)] = Field(None, title="integer positive single digit")
 
 
 class BasisSchema(BaseModel):
     elements: List[AtomicElements]
-    labels: Optional[List[Label]] = None
-    """
-    Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-    """
     coordinates: List[AtomicCoordinate]
-    name: Optional[str] = None
     units: Optional[Units] = "crystal"
-    bonds: Optional[List[BondsSchemaItem]] = Field(None, title="bonds schema")
+    labels: Optional[List[AtomicLabel]] = None
 
 
 class Name(Enum):

@@ -39,7 +39,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label11(Enum):
+class Label9(Enum):
     frequency = "frequency"
 
 
@@ -50,7 +50,7 @@ class Units48(Enum):
 
 
 class AxisSchema12(BaseModel):
-    label: Label11
+    label: Label9
     """
     label of an axis object
     """
