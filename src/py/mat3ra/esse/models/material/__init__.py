@@ -96,8 +96,8 @@ class Angle(Enum):
 
 
 class LatticeUnits(BaseModel):
-    length: Optional[Length] = None
-    angle: Optional[Angle] = None
+    length: Optional[Length] = "angstrom"
+    angle: Optional[Angle] = "degree"
 
 
 class LatticeSchema(BaseModel):

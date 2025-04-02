@@ -13,7 +13,7 @@ repos:
         name: Regenerate data modules classes from static assets
         # yamllint disable rule:line-length
         entry: |
-          bash -c 'if [ "$(git diff --cached --name-only | grep "schema/")" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
+          bash -c 'if [ ! "$(git diff --cached --name-only | grep schema)" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
             datamodel-codegen \
                 --input ./dist/js/schema/ \
                 --input-file-type jsonschema \
