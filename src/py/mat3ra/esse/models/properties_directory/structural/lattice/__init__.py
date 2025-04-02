@@ -10,10 +10,6 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class Name(Enum):
-    lattice = "lattice"
-
-
 class Units(Enum):
     km = "km"
     m = "m"
@@ -66,16 +62,15 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units37(BaseModel):
+class LatticeUnits(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
 
 class LatticeSchema(BaseModel):
-    name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units37] = None
+    units: Optional[LatticeUnits] = Field(None, title="Lattice units")
     a: float
     """
     length of the first lattice vector
