@@ -24,7 +24,8 @@ repos:
                 --enable-version-header \
                 --use-title-as-name \
                 --class-name ESSE \
-                --disable-timestamp && \
+                --disable-timestamp \
+                --use-default && \
             # Move 3rd party modules to a separate directory with a PEP8 compliant name
             rm -rf ./dist/py/third_party && \
             mv ./dist/py/3pse ./dist/py/third_party'

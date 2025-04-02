@@ -70,7 +70,10 @@ class LatticeUnits(BaseModel):
 class LatticeSchema(BaseModel):
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[LatticeUnits] = Field(None, title="Lattice units")
+    units: Optional[LatticeUnits] = Field(
+        default_factory=lambda: LatticeUnits.model_validate({"length": "angstrom", "angle": "degree"}),
+        title="Lattice units",
+    )
     a: float
     """
     length of the first lattice vector

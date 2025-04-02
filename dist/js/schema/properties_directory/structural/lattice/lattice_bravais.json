@@ -37,6 +37,10 @@
         "units": {
             "title": "Lattice units",
             "type": "object",
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
+            },
             "properties": {
                 "length": {
                     "type": "string",

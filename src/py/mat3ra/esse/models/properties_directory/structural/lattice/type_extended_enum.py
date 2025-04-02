@@ -30,5 +30,6 @@ class LatticeTypeExtendedSchema(Enum):
     RHL_2 = "RHL-2"
     TET = "TET"
     TRI_1a = "TRI_1a"
-    TRI_2a = "TRI_2a"
     TRI_1b = "TRI_1b"
+    TRI_2a = "TRI_2a"
+    TRI_2b = "TRI_2b"

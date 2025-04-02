@@ -42,7 +42,7 @@ class PerFeatureItem(BaseModel):
 
 
 class InputData(BaseModel):
-    scaler: Scaler
+    scaler: Optional[Scaler] = "standard_scaler"
     """
     type of scaler to be applied
     """
