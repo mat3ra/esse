@@ -22,17 +22,19 @@
                     "enum": [
                         "angstrom",
                         "bohr"
-                    ],
-                    "default": "angstrom"
+                    ]
                 },
                 "angle": {
                     "type": "string",
                     "enum": [
                         "degree",
                         "radian"
-                    ],
-                    "default": "degree"
+                    ]
                 }
+            },
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
             }
         }
     },
