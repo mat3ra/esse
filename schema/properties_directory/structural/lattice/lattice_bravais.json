@@ -11,8 +11,7 @@
     "properties": {
         "type": {
             "description": "Bravais lattice type in short notation",
-            "$ref": "type_enum.json",
-            "default": "TRI"
+            "$ref": "type_enum.json"
         },
         "units": {
             "title": "Lattice units",

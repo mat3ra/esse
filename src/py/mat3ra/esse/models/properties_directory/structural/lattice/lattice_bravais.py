@@ -43,7 +43,7 @@ class LatticeUnits(BaseModel):
 
 
 class LatticeImplicitSchema(BaseModel):
-    type: LatticeTypeSchema = Field(..., title="lattice type schema")
+    type: Optional[LatticeTypeSchema] = Field("TRI", title="lattice type schema")
     units: Optional[LatticeUnits] = Field(
         default_factory=lambda: LatticeUnits.model_validate({"length": "angstrom", "angle": "degree"}),
         title="Lattice units",

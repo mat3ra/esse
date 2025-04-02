@@ -18,5 +18,6 @@
         "TRI",
         "MCLC",
         "RHL"
-    ]
+    ],
+    "default": "TRI"
 }

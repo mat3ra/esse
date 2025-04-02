@@ -32,7 +32,8 @@
                 "TRI",
                 "MCLC",
                 "RHL"
-            ]
+            ],
+            "default": "TRI"
         },
         "units": {
             "title": "Lattice units",
