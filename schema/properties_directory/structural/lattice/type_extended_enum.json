@@ -26,7 +26,9 @@
         "RHL-2",
         "TET",
         "TRI_1a",
+        "TRI_1b",
         "TRI_2a",
-        "TRI_1b"
-    ]
+        "TRI_2b"
+    ],
+    "default": "TRI_1a"
 }
