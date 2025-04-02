@@ -11,7 +11,8 @@
     "properties": {
         "type": {
             "description": "Bravais lattice type in short notation",
-            "$ref": "type_enum.json"
+            "$ref": "type_enum.json",
+            "default": "TRI"
         },
         "units": {
             "title": "Lattice units",
@@ -22,17 +23,19 @@
                     "enum": [
                         "angstrom",
                         "bohr"
-                    ],
-                    "default": "angstrom"
+                    ]
                 },
                 "angle": {
                     "type": "string",
                     "enum": [
                         "degree",
                         "radian"
-                    ],
-                    "default": "degree"
+                    ]
                 }
+            },
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
             }
         }
     },
