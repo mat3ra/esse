@@ -18,20 +18,10 @@
             "type": "object",
             "properties": {
                 "length": {
-                    "type": "string",
-                    "enum": [
-                        "angstrom",
-                        "bohr"
-                    ],
-                    "default": "angstrom"
+                    "$ref": "../../../definitions/units.json#/length_atomic"
                 },
                 "angle": {
-                    "type": "string",
-                    "enum": [
-                        "degree",
-                        "radian"
-                    ],
-                    "default": "degree"
+                    "$ref": "../../../definitions/units.json#/angle"
                 }
             },
             "default": {

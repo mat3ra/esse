@@ -1,19 +1,40 @@
 {
     "$id": "definitions/units",
+    "title": "all units definitions",
+    "angle": {
+        "enum": [
+            "degree",
+            "radian"
+        ],
+        "default": "degree"
+    },
+    "coordinates_basis": {
+        "enum": [
+            "crystal",
+            "cartesian"
+        ],
+        "default": "crystal"
+    },
     "length": {
         "enum": [
             "km",
             "m",
-            "pm",
+            "cm",
+            "mm",
+            "um",
             "nm",
             "angstrom",
             "a.u.",
             "bohr",
-            "fractional",
-            "crystal",
-            "cartesian",
-            "alat"
+            "pm"
         ]
+    },
+    "length_atomic": {
+        "enum": [
+            "angstrom",
+            "bohr"
+        ],
+        "default": "angstrom"
     },
     "energy": {
         "enum": [
@@ -25,6 +46,14 @@
             "rydberg",
             "eV/atom"
         ]
+    },
+    "energy_atomic": {
+        "enum": [
+            "eV",
+            "hartree",
+            "rydberg"
+        ],
+        "default": "eV"
     },
     "surface_energy": {
         "enum": [

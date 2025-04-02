@@ -1,0 +1,52 @@
+{
+    "$id": "definitions/constants",
+    "title": "fundamental constants",
+    "description": "Fundamental physical constants, 2022 NIST CODATA (https://doi.org/10.48550/arXiv.2409.03787)",
+    "type": "object",
+    "properties": {
+        "c": {
+            "description": "speed of light in vacuum, \"units\": \"m/s\"",
+            "type": "number",
+            "default": 299792458.0
+        },
+        "h": {
+            "description": "Planck constant, \"units\": \"J s\"",
+            "type": "number",
+            "default": 6.62607015e-34
+        },
+        "e": {
+            "description": "elementary charge, \"units\": \"C\"",
+            "type": "number",
+            "default": 1.602176634e-19
+        },
+        "G": {
+            "description": "Newtonian constant of gravitation, \"units\": \"m^3/kg/s^2\"",
+            "type": "number",
+            "default": 6.6743015e-11
+        },
+        "me": {
+            "description": "electron mass \"units\": \"kg\"",
+            "type": "number",
+            "default": 9.109383713928e-31
+        },
+        "eps0": {
+            "description": "vacuum permittivity, \"units\": \"F/m\"",
+            "type": "number",
+            "default": 8.854187818814e-12
+        },
+        "mu0": {
+            "description": "vacuum permeability, \"units\": \"N/A^2\"",
+            "type": "number",
+            "default": 1.2566370612720e-6
+        }
+    },
+    "required": [
+        "c",
+        "h",
+        "e",
+        "G",
+        "me",
+        "eps0",
+        "mu0"
+    ]
+}

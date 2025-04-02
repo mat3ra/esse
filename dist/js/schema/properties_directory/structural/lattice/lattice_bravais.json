@@ -44,7 +44,6 @@
             },
             "properties": {
                 "length": {
-                    "type": "string",
                     "enum": [
                         "angstrom",
                         "bohr"
@@ -52,7 +51,6 @@
                     "default": "angstrom"
                 },
                 "angle": {
-                    "type": "string",
                     "enum": [
                         "degree",
                         "radian"

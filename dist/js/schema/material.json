@@ -157,15 +157,14 @@
                             "enum": [
                                 "km",
                                 "m",
-                                "pm",
+                                "cm",
+                                "mm",
+                                "um",
                                 "nm",
                                 "angstrom",
                                 "a.u.",
                                 "bohr",
-                                "fractional",
-                                "crystal",
-                                "cartesian",
-                                "alat"
+                                "pm"
                             ]
                         },
                         "a": {
@@ -231,7 +230,6 @@
                     },
                     "properties": {
                         "length": {
-                            "type": "string",
                             "enum": [
                                 "angstrom",
                                 "bohr"
@@ -239,7 +237,6 @@
                             "default": "angstrom"
                         },
                         "angle": {
-                            "type": "string",
                             "enum": [
                                 "degree",
                                 "radian"

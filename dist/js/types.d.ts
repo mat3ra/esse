@@ -2779,8 +2779,42 @@ export interface ObjectStorageContainerData {
      */
     TIMESTAMP?: string;
 }
+/** Schema dist/js/schema/definitions/constants.json */
+/**
+ * Fundamental physical constants, 2022 NIST CODATA (https://doi.org/10.48550/arXiv.2409.03787)
+ */
+export interface FundamentalConstants {
+    /**
+     * speed of light in vacuum, "units": "m/s"
+     */
+    c: number;
+    /**
+     * Planck constant, "units": "J s"
+     */
+    h: number;
+    /**
+     * elementary charge, "units": "C"
+     */
+    e: number;
+    /**
+     * Newtonian constant of gravitation, "units": "m^3/kg/s^2"
+     */
+    G: number;
+    /**
+     * electron mass "units": "kg"
+     */
+    me: number;
+    /**
+     * vacuum permittivity, "units": "F/m"
+     */
+    eps0: number;
+    /**
+     * vacuum permeability, "units": "N/A^2"
+     */
+    mu0: number;
+}
 /** Schema dist/js/schema/definitions/units.json */
-export interface DefinitionsUnits {
+export interface AllUnitsDefinitions {
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/element.json */
@@ -2794,7 +2828,7 @@ export interface ElementSchema {
      */
     properties?: ({
         name?: "atomic_radius";
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
         value: number;
     } | {
         name?: "electronegativity";
@@ -6111,7 +6145,7 @@ export interface MaterialSchema {
              * lattice parameter for fractional coordinates
              */
             alat?: number;
-            units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+            units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
             /**
              * @minItems 3
              * @maxItems 3
@@ -15367,7 +15401,7 @@ export interface ElectronicConfigurationSchema {
  */
 export interface AtomicRadius {
     name?: "atomic_radius";
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/elemental/electronegativity.json */
@@ -15397,7 +15431,7 @@ export interface AveragePotentialProfileSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     };
     yAxis: {
         /**
@@ -15476,7 +15510,7 @@ export interface BandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     };
     yAxis: {
         /**
@@ -15781,7 +15815,7 @@ export interface PhononBandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     };
     yAxis: {
         /**
@@ -16174,7 +16208,7 @@ export interface AtomicCoordinates {
         id?: number;
         value?: [number, number, number] | [boolean, boolean, boolean];
     }[];
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_element.json */
 /**
@@ -16308,7 +16342,7 @@ export interface LatticeExplicitUnit {
      * lattice parameter for fractional coordinates
      */
     alat?: number;
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     /**
      * @minItems 3
      * @maxItems 3
@@ -16336,7 +16370,7 @@ export interface LatticeSchema {
          * lattice parameter for fractional coordinates
          */
         alat?: number;
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
         /**
          * @minItems 3
          * @maxItems 3
