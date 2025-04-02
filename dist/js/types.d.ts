@@ -1712,6 +1712,8 @@ export interface GroupInfoSchemaForNodesInAGraph {
 }
 /** Schema dist/js/schema/core/primitive/integer_one_or_zero.json */
 export type IntegerOneOrZero = number;
+/** Schema dist/js/schema/core/primitive/integer_positive_single_digit.json */
+export type IntegerPositiveSingleDigit = number;
 /** Schema dist/js/schema/core/primitive/linked_list/base_node.json */
 export interface BasicNodeSchemaLinkedList {
     /**
@@ -6093,45 +6095,17 @@ export interface MaterialSchema {
             occurrence?: number;
             oxidationState?: number;
         }[];
-        /**
-         * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-         */
-        labels?: {
-            id?: number;
-            value?: number;
-        }[];
         coordinates: {
             id?: number;
             value?: [number, number, number] | [boolean, boolean, boolean];
         }[];
-        name?: string;
         units?: "crystal" | "cartesian";
-        bonds?: {
-            /**
-             * indices of the two connected atoms
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            atomPair?: [
-                {
-                    /**
-                     * integer id of this entry
-                     */
-                    id?: number;
-                },
-                {
-                    /**
-                     * integer id of this entry
-                     */
-                    id?: number;
-                }
-            ];
-            bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+        labels?: {
+            id?: number;
+            value?: number;
         }[];
     };
     lattice: {
-        name?: "lattice";
         vectors?: {
             /**
              * lattice parameter for fractional coordinates
@@ -16215,6 +16189,14 @@ export interface AtomicElements {
     occurrence?: number;
     oxidationState?: number;
 }
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_label.json */
+/**
+ * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+ */
+export interface AtomicLabel {
+    id?: number;
+    value?: number;
+}
 /** Schema dist/js/schema/properties_directory/structural/basis/bonds.json */
 export type BondsSchema = {
     /**
@@ -16250,41 +16232,14 @@ export interface BasisSchema {
         occurrence?: number;
         oxidationState?: number;
     }[];
-    /**
-     * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-     */
-    labels?: {
-        id?: number;
-        value?: number;
-    }[];
     coordinates: {
         id?: number;
         value?: [number, number, number] | [boolean, boolean, boolean];
     }[];
-    name?: string;
     units?: "crystal" | "cartesian";
-    bonds?: {
-        /**
-         * indices of the two connected atoms
-         *
-         * @minItems 2
-         * @maxItems 2
-         */
-        atomPair?: [
-            {
-                /**
-                 * integer id of this entry
-                 */
-                id?: number;
-            },
-            {
-                /**
-                 * integer id of this entry
-                 */
-                id?: number;
-            }
-        ];
-        bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+    labels?: {
+        id?: number;
+        value?: number;
     }[];
 }
 /** Schema dist/js/schema/properties_directory/structural/density.json */
@@ -16376,7 +16331,6 @@ export type LatticeTypeSchema = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | 
 export type LatticeTypeExtendedSchema = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_2a" | "TRI_1b";
 /** Schema dist/js/schema/properties_directory/structural/lattice.json */
 export interface LatticeSchema {
-    name?: "lattice";
     vectors?: {
         /**
          * lattice parameter for fractional coordinates

@@ -138,11 +138,6 @@
                 "type"
             ],
             "properties": {
-                "name": {
-                    "enum": [
-                        "lattice"
-                    ]
-                },
                 "vectors": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "lattice explicit unit",
@@ -227,6 +222,7 @@
                     ]
                 },
                 "units": {
+                    "title": "Lattice units",
                     "type": "object",
                     "properties": {
                         "length": {

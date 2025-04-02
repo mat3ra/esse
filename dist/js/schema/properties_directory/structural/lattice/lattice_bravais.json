@@ -35,6 +35,7 @@
             ]
         },
         "units": {
+            "title": "Lattice units",
             "type": "object",
             "properties": {
                 "length": {
