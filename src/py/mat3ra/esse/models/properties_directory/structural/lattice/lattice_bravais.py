@@ -10,7 +10,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class LatticeTypeSchema(Enum):
+class LatticeTypeEnum(Enum):
     CUB = "CUB"
     BCC = "BCC"
     FCC = "FCC"
@@ -37,16 +37,16 @@ class Angle(Enum):
     radian = "radian"
 
 
-class LatticeUnits(BaseModel):
+class LatticeUnitsSchema(BaseModel):
     length: Optional[Length] = "angstrom"
     angle: Optional[Angle] = "degree"
 
 
 class LatticeImplicitSchema(BaseModel):
-    type: Optional[LatticeTypeSchema] = Field("TRI", title="lattice type schema")
-    units: Optional[LatticeUnits] = Field(
-        default_factory=lambda: LatticeUnits.model_validate({"length": "angstrom", "angle": "degree"}),
-        title="Lattice units",
+    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
+    units: Optional[LatticeUnitsSchema] = Field(
+        default_factory=lambda: LatticeUnitsSchema.model_validate({"length": "angstrom", "angle": "degree"}),
+        title="Lattice units schema",
     )
     a: float
     """

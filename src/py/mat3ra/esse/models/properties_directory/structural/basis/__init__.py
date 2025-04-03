@@ -39,4 +39,4 @@ class BasisSchema(BaseModel):
     elements: List[AtomicElements]
     coordinates: List[AtomicCoordinate]
     units: Optional[Units] = "crystal"
-    labels: Optional[List[AtomicLabel]] = None
+    labels: Optional[List[AtomicLabel]] = []

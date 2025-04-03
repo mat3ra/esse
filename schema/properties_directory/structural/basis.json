@@ -28,7 +28,8 @@
             "type": "array",
             "items": {
                 "$ref": "basis/atomic_label.json"
-            }
+            },
+            "default": []
         }
     },
     "required": [

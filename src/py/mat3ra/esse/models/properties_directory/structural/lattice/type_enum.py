@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 
 
-class LatticeTypeSchema(Enum):
+class LatticeTypeEnum(Enum):
     CUB = "CUB"
     BCC = "BCC"
     FCC = "FCC"

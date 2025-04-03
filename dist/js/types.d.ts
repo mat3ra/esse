@@ -16360,9 +16360,9 @@ export interface LatticeExplicitUnit {
     c: [number, number, number];
 }
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_enum.json */
-export type LatticeTypeSchema = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+export type LatticeTypeEnum = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_extended_enum.json */
-export type LatticeTypeExtendedSchema = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_1b" | "TRI_2a" | "TRI_2b";
+export type LatticeTypeExtendedEnum = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_1b" | "TRI_2a" | "TRI_2b";
 /** Schema dist/js/schema/properties_directory/structural/lattice.json */
 export interface LatticeSchema {
     vectors?: {

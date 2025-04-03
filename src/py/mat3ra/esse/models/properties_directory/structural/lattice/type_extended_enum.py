@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 
 
-class LatticeTypeExtendedSchema(Enum):
+class LatticeTypeExtendedEnum(Enum):
     BCC = "BCC"
     BCT_1 = "BCT-1"
     BCT_2 = "BCT-2"

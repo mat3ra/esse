@@ -40,7 +40,7 @@ class BasisSchema(BaseModel):
     elements: List[AtomicElements]
     coordinates: List[AtomicCoordinate]
     units: Optional[Units] = "crystal"
-    labels: Optional[List[AtomicLabel]] = None
+    labels: Optional[List[AtomicLabel]] = []
 
 
 class Units40(Enum):
@@ -67,7 +67,7 @@ class LatticeExplicitUnit(BaseModel):
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class LatticeTypeSchema(Enum):
+class LatticeTypeEnum(Enum):
     CUB = "CUB"
     BCC = "BCC"
     FCC = "FCC"
@@ -94,17 +94,17 @@ class Angle(Enum):
     radian = "radian"
 
 
-class LatticeUnits(BaseModel):
+class LatticeUnitsSchema(BaseModel):
     length: Optional[Length] = "angstrom"
     angle: Optional[Angle] = "degree"
 
 
 class LatticeSchema(BaseModel):
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
-    type: Optional[LatticeTypeSchema] = Field("TRI", title="lattice type schema")
-    units: Optional[LatticeUnits] = Field(
-        default_factory=lambda: LatticeUnits.model_validate({"length": "angstrom", "angle": "degree"}),
-        title="Lattice units",
+    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
+    units: Optional[LatticeUnitsSchema] = Field(
+        default_factory=lambda: LatticeUnitsSchema.model_validate({"length": "angstrom", "angle": "degree"}),
+        title="Lattice units schema",
     )
     a: float
     """

@@ -14,7 +14,7 @@
             "$ref": "type_enum.json"
         },
         "units": {
-            "title": "Lattice units",
+            "title": "Lattice units schema",
             "type": "object",
             "properties": {
                 "length": {
