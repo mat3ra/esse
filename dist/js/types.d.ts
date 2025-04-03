@@ -15510,7 +15510,7 @@ export interface BandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
+        units?: "crystal" | "cartesian";
     };
     yAxis: {
         /**
@@ -15815,7 +15815,7 @@ export interface PhononBandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
+        units?: "crystal" | "cartesian";
     };
     yAxis: {
         /**

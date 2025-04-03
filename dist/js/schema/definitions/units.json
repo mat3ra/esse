@@ -15,6 +15,13 @@
         ],
         "default": "crystal"
     },
+    "coordinates_lattice_reciprocal": {
+        "enum": [
+            "crystal",
+            "cartesian"
+        ],
+        "default": "crystal"
+    },
     "length": {
         "enum": [
             "km",
