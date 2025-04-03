@@ -15,7 +15,7 @@
     "properties": {
         "type": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "lattice type schema",
+            "title": "lattice type enum",
             "type": "string",
             "enum": [
                 "CUB",
@@ -32,24 +32,30 @@
                 "TRI",
                 "MCLC",
                 "RHL"
-            ]
+            ],
+            "default": "TRI"
         },
         "units": {
+            "title": "Lattice units schema",
             "type": "object",
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
+            },
             "properties": {
                 "length": {
-                    "type": "string",
                     "enum": [
                         "angstrom",
                         "bohr"
-                    ]
+                    ],
+                    "default": "angstrom"
                 },
                 "angle": {
-                    "type": "string",
                     "enum": [
                         "degree",
                         "radian"
-                    ]
+                    ],
+                    "default": "degree"
                 }
             }
         },

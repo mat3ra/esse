@@ -14,12 +14,5 @@
         {
             "$ref": "lattice/lattice_bravais.json"
         }
-    ],
-    "properties": {
-        "name": {
-            "enum": [
-                "lattice"
-            ]
-        }
-    }
+    ]
 }

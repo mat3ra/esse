@@ -10,34 +10,26 @@
                 "$ref": "basis/atomic_element.json"
             }
         },
-        "labels": {
-            "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
-            "type": "array",
-            "items": {
-                "properties": {
-                    "id": {
-                        "type": "number"
-                    },
-                    "value": {
-                        "type": "number"
-                    }
-                }
-            }
-        },
         "coordinates": {
             "type": "array",
             "items": {
                 "$ref": "basis/atomic_coordinate.json"
             }
         },
-        "name": {
-            "type": "string"
-        },
         "units": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+                "crystal",
+                "cartesian"
+            ],
+            "default": "crystal"
         },
-        "bonds": {
-            "$ref": "basis/bonds.json"
+        "labels": {
+            "type": "array",
+            "items": {
+                "$ref": "basis/atomic_label.json"
+            },
+            "default": []
         }
     },
     "required": [

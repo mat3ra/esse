@@ -13,7 +13,7 @@ repos:
         name: Regenerate data modules classes from static assets
         # yamllint disable rule:line-length
         entry: |
-          bash -c 'if [ "$(git diff --cached --name-only | grep "schema/")" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
+          bash -c 'if [ ! "$(git diff --cached --name-only | grep schema)" ]; then echo "Skipping model generation because schemas were not changed."; exit 0; fi && \
             datamodel-codegen \
                 --input ./dist/js/schema/ \
                 --input-file-type jsonschema \
@@ -24,7 +24,8 @@ repos:
                 --enable-version-header \
                 --use-title-as-name \
                 --class-name ESSE \
-                --disable-timestamp && \
+                --disable-timestamp \
+                --use-default && \
             # Move 3rd party modules to a separate directory with a PEP8 compliant name
             rm -rf ./dist/py/third_party && \
             mv ./dist/py/3pse ./dist/py/third_party'
