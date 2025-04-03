@@ -13,11 +13,6 @@
         "type"
     ],
     "properties": {
-        "name": {
-            "enum": [
-                "lattice"
-            ]
-        },
         "vectors": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "lattice explicit unit",
@@ -37,15 +32,14 @@
                     "enum": [
                         "km",
                         "m",
-                        "pm",
+                        "cm",
+                        "mm",
+                        "um",
                         "nm",
                         "angstrom",
                         "a.u.",
                         "bohr",
-                        "fractional",
-                        "crystal",
-                        "cartesian",
-                        "alat"
+                        "pm"
                     ]
                 },
                 "a": {
@@ -82,7 +76,7 @@
         },
         "type": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "lattice type schema",
+            "title": "lattice type enum",
             "type": "string",
             "enum": [
                 "CUB",
@@ -99,24 +93,30 @@
                 "TRI",
                 "MCLC",
                 "RHL"
-            ]
+            ],
+            "default": "TRI"
         },
         "units": {
+            "title": "Lattice units schema",
             "type": "object",
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
+            },
             "properties": {
                 "length": {
-                    "type": "string",
                     "enum": [
                         "angstrom",
                         "bohr"
-                    ]
+                    ],
+                    "default": "angstrom"
                 },
                 "angle": {
-                    "type": "string",
                     "enum": [
                         "degree",
                         "radian"
-                    ]
+                    ],
+                    "default": "degree"
                 }
             }
         },
