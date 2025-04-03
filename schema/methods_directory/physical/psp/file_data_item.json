@@ -77,10 +77,18 @@
             "additionalProperties": false,
             "properties": {
                 "wavefunction": {
-                    "$ref": "../../../core/reusable/accuracy_levels.json"
+                    "type": "array",
+                    "description": "Energy cutoff values for wavefunction plane wave expansion.",
+                    "items": {
+                        "$ref": "../../../core/reusable/energy_accuracy_levels.json"
+                    }
                 },
                 "density": {
-                    "$ref": "../../../core/reusable/accuracy_levels.json"
+                    "type": "array",
+                    "description": "Energy cutoff values for charge density plane wave expansion.",
+                    "items": {
+                        "$ref": "../../../core/reusable/energy_accuracy_levels.json"
+                    }
                 }
             }
         }

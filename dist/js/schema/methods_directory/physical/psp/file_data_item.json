@@ -119,44 +119,80 @@
             "additionalProperties": false,
             "properties": {
                 "wavefunction": {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Reusable accuracy levels schema",
-                    "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "standard": {
-                            "type": "number",
-                            "description": "Parameter value suitable for standard or default accuracy calculation."
-                        },
-                        "high": {
-                            "type": "number",
-                            "description": "Parameter value suitable for high precision calculation."
-                        },
-                        "low": {
-                            "type": "number",
-                            "description": "Parameter value suitable for low precision calculation."
+                    "type": "array",
+                    "description": "Energy cutoff values for wavefunction plane wave expansion.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Reusable schema for accuracy levels with value and energy unit",
+                        "type": "object",
+                        "required": [
+                            "accuracy_level",
+                            "unit",
+                            "value"
+                        ],
+                        "properties": {
+                            "accuracy_level": {
+                                "description": "Parameter value suitable for a specific accuracy level.",
+                                "type": "string",
+                                "enum": [
+                                    "standard",
+                                    "low",
+                                    "high"
+                                ]
+                            },
+                            "unit": {
+                                "enum": [
+                                    "kJ/mol",
+                                    "eV",
+                                    "J/mol",
+                                    "hartree",
+                                    "cm-1",
+                                    "rydberg",
+                                    "eV/atom"
+                                ]
+                            },
+                            "value": {
+                                "type": "number"
+                            }
                         }
                     }
                 },
                 "density": {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Reusable accuracy levels schema",
-                    "description": "Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.",
-                    "type": "object",
-                    "additionalProperties": false,
-                    "properties": {
-                        "standard": {
-                            "type": "number",
-                            "description": "Parameter value suitable for standard or default accuracy calculation."
-                        },
-                        "high": {
-                            "type": "number",
-                            "description": "Parameter value suitable for high precision calculation."
-                        },
-                        "low": {
-                            "type": "number",
-                            "description": "Parameter value suitable for low precision calculation."
+                    "type": "array",
+                    "description": "Energy cutoff values for charge density plane wave expansion.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Reusable schema for accuracy levels with value and energy unit",
+                        "type": "object",
+                        "required": [
+                            "accuracy_level",
+                            "unit",
+                            "value"
+                        ],
+                        "properties": {
+                            "accuracy_level": {
+                                "description": "Parameter value suitable for a specific accuracy level.",
+                                "type": "string",
+                                "enum": [
+                                    "standard",
+                                    "low",
+                                    "high"
+                                ]
+                            },
+                            "unit": {
+                                "enum": [
+                                    "kJ/mol",
+                                    "eV",
+                                    "J/mol",
+                                    "hartree",
+                                    "cm-1",
+                                    "rydberg",
+                                    "eV/atom"
+                                ]
+                            },
+                            "value": {
+                                "type": "number"
+                            }
                         }
                     }
                 }

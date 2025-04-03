@@ -62,11 +62,23 @@
                 "type": "nc",
                 "version": "0.4",
                 "cutoffs": {
-                    "wavefunction": {
-                        "standard": 42,
-                        "high": 50,
-                        "low": 38
-                    }
+                    "wavefunction": [
+                        {
+                            "accuracy_level": "standard",
+                            "value": 42,
+                            "unit": "rydberg"
+                        },
+                        {
+                            "accuracy_level": "high",
+                            "value": 50,
+                            "unit": "rydberg"
+                        },
+                        {
+                            "accuracy_level": "low",
+                            "value": 38,
+                            "unit": "rydberg"
+                        }
+                    ]
                 }
             }
         }

@@ -48,35 +48,51 @@ class Name(Enum):
     pseudopotential = "pseudopotential"
 
 
-class ReusableAccuracyLevelsSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    standard: Optional[float] = None
+class AccuracyLevel(Enum):
+    standard = "standard"
+    low = "low"
+    high = "high"
+
+
+class Unit(Enum):
+    kJ_mol = "kJ/mol"
+    eV = "eV"
+    J_mol = "J/mol"
+    hartree = "hartree"
+    cm_1 = "cm-1"
+    rydberg = "rydberg"
+    eV_atom = "eV/atom"
+
+
+class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit(BaseModel):
+    accuracy_level: AccuracyLevel
     """
-    Parameter value for standard or default accuracy calculation.
+    Parameter value suitable for a specific accuracy level.
     """
-    high: Optional[float] = None
+    unit: Unit
+    value: float
+
+
+class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit4(BaseModel):
+    accuracy_level: AccuracyLevel
     """
-    Parameter value for high precision calculation.
+    Parameter value suitable for a specific accuracy level.
     """
-    low: Optional[float] = None
-    """
-    Parameter value for low precision calculation.
-    """
+    unit: Unit
+    value: float
 
 
 class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wavefunction: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    wavefunction: Optional[List[ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit]] = None
     """
-    Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+    Energy cutoff values for wavefunction plane wave expansion.
     """
-    density: Optional[ReusableAccuracyLevelsSchema] = Field(None, title="Reusable accuracy levels schema")
+    density: Optional[List[ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit4]] = None
     """
-    Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+    Energy cutoff values for charge density plane wave expansion.
     """
 
 

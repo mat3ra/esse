@@ -1,0 +1,29 @@
+{
+    "$id": "core/reusable/energy-accuracy-levels",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Reusable schema for accuracy levels with value and energy unit",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "accuracy_level": {
+            "description": "Parameter value suitable for a specific accuracy level.",
+            "type": "string",
+            "enum": [
+                "standard",
+                "low",
+                "high"
+            ]
+        },
+        "unit": {
+            "$ref": "../../definitions/units.json#/energy"
+        }
+    },
+    "required": [
+        "accuracy_level",
+        "unit"
+    ]
+}

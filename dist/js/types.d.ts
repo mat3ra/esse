@@ -2467,24 +2467,6 @@ export type ReferenceSchemaUsingAnyOfInsteadOfOneOfBelowBCCurrentReferenceSchema
      */
     reference?: {}[];
 };
-/** Schema dist/js/schema/core/reusable/accuracy_level.json */
-/**
- * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
- */
-export interface ReusableAccuracyLevelsSchema {
-    /**
-     * Parameter value suitable for standard or default accuracy calculation.
-     */
-    standard?: number;
-    /**
-     * Parameter value suitable for high precision calculation.
-     */
-    high?: number;
-    /**
-     * Parameter value suitable for low precision calculation.
-     */
-    low?: number;
-}
 /** Schema dist/js/schema/core/reusable/atomic_data/per_orbital.json */
 /**
  * Atomic properties per orbital e.g., Hubbard U parameters.
@@ -2769,6 +2751,15 @@ export interface DielectricTensor {
 export interface EnergySchema {
     name: string;
     units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    value: number;
+}
+/** Schema dist/js/schema/core/reusable/energy_accuracy_levels.json */
+export interface ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit {
+    /**
+     * Parameter value suitable for a specific accuracy level.
+     */
+    accuracy_level: "standard" | "low" | "high";
+    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/file_metadata.json */
@@ -11837,39 +11828,27 @@ export interface PseudopotentialFile {
          */
         cutoffs?: {
             /**
-             * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+             * Energy cutoff values for wavefunction plane wave expansion.
              */
             wavefunction?: {
                 /**
-                 * Parameter value suitable for standard or default accuracy calculation.
+                 * Parameter value suitable for a specific accuracy level.
                  */
-                standard?: number;
-                /**
-                 * Parameter value suitable for high precision calculation.
-                 */
-                high?: number;
-                /**
-                 * Parameter value suitable for low precision calculation.
-                 */
-                low?: number;
-            };
+                accuracy_level: "standard" | "low" | "high";
+                unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+                value: number;
+            }[];
             /**
-             * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+             * Energy cutoff values for charge density plane wave expansion.
              */
             density?: {
                 /**
-                 * Parameter value suitable for standard or default accuracy calculation.
+                 * Parameter value suitable for a specific accuracy level.
                  */
-                standard?: number;
-                /**
-                 * Parameter value suitable for high precision calculation.
-                 */
-                high?: number;
-                /**
-                 * Parameter value suitable for low precision calculation.
-                 */
-                low?: number;
-            };
+                accuracy_level: "standard" | "low" | "high";
+                unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+                value: number;
+            }[];
         };
     };
     /**
@@ -11947,39 +11926,27 @@ export interface FileDataItem {
      */
     cutoffs?: {
         /**
-         * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+         * Energy cutoff values for wavefunction plane wave expansion.
          */
         wavefunction?: {
             /**
-             * Parameter value suitable for standard or default accuracy calculation.
+             * Parameter value suitable for a specific accuracy level.
              */
-            standard?: number;
-            /**
-             * Parameter value suitable for high precision calculation.
-             */
-            high?: number;
-            /**
-             * Parameter value suitable for low precision calculation.
-             */
-            low?: number;
-        };
+            accuracy_level: "standard" | "low" | "high";
+            unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+            value: number;
+        }[];
         /**
-         * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+         * Energy cutoff values for charge density plane wave expansion.
          */
         density?: {
             /**
-             * Parameter value suitable for standard or default accuracy calculation.
+             * Parameter value suitable for a specific accuracy level.
              */
-            standard?: number;
-            /**
-             * Parameter value suitable for high precision calculation.
-             */
-            high?: number;
-            /**
-             * Parameter value suitable for low precision calculation.
-             */
-            low?: number;
-        };
+            accuracy_level: "standard" | "low" | "high";
+            unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+            value: number;
+        }[];
     };
 }
 /** Schema dist/js/schema/methods_directory/physical/psp.json */
@@ -12125,39 +12092,27 @@ export interface UnitMethodPseudopotential {
              */
             cutoffs?: {
                 /**
-                 * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+                 * Energy cutoff values for wavefunction plane wave expansion.
                  */
                 wavefunction?: {
                     /**
-                     * Parameter value suitable for standard or default accuracy calculation.
+                     * Parameter value suitable for a specific accuracy level.
                      */
-                    standard?: number;
-                    /**
-                     * Parameter value suitable for high precision calculation.
-                     */
-                    high?: number;
-                    /**
-                     * Parameter value suitable for low precision calculation.
-                     */
-                    low?: number;
-                };
+                    accuracy_level: "standard" | "low" | "high";
+                    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+                    value: number;
+                }[];
                 /**
-                 * Used to specify different accuracy levels of a parameter, e.g., wavefunction and charge density cutoffs.
+                 * Energy cutoff values for charge density plane wave expansion.
                  */
                 density?: {
                     /**
-                     * Parameter value suitable for standard or default accuracy calculation.
+                     * Parameter value suitable for a specific accuracy level.
                      */
-                    standard?: number;
-                    /**
-                     * Parameter value suitable for high precision calculation.
-                     */
-                    high?: number;
-                    /**
-                     * Parameter value suitable for low precision calculation.
-                     */
-                    low?: number;
-                };
+                    accuracy_level: "standard" | "low" | "high";
+                    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+                    value: number;
+                }[];
             };
         };
         /**
