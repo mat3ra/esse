@@ -20,7 +20,7 @@ class Units(Enum):
 
 class Units31(Enum):
     eV = "eV"
-    rydberg = "rydberg"
+    Ry = "Ry"
     hartree = "hartree"
 
 

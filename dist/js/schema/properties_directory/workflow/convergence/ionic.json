@@ -43,7 +43,7 @@
                                 "description": "units for force tolerance",
                                 "enum": [
                                     "eV",
-                                    "rydberg",
+                                    "Ry",
                                     "hartree"
                                 ]
                             },

@@ -50,17 +50,17 @@
                 {
                     "accuracy_level": "standard",
                     "value": 42.0,
-                    "unit": "rydberg"
+                    "unit": "Ry"
                 },
                 {
                     "accuracy_level": "high",
                     "value": 50.0,
-                    "unit": "rydberg"
+                    "unit": "Ry"
                 },
                 {
                     "accuracy_level": "low",
                     "value": 38.0,
-                    "unit": "rydberg"
+                    "unit": "Ry"
                 }
             ]
       }

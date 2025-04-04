@@ -16,7 +16,7 @@ class Name(Enum):
 
 class Units(Enum):
     eV = "eV"
-    rydberg = "rydberg"
+    Ry = "Ry"
     hartree = "hartree"
 
 
