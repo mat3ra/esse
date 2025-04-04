@@ -15,17 +15,8 @@ class Label(Enum):
 
 
 class Units(Enum):
-    km = "km"
-    m = "m"
-    pm = "pm"
-    nm = "nm"
-    angstrom = "angstrom"
-    a_u_ = "a.u."
-    bohr = "bohr"
-    fractional = "fractional"
     crystal = "crystal"
     cartesian = "cartesian"
-    alat = "alat"
 
 
 class AxisSchema(BaseModel):
@@ -33,28 +24,28 @@ class AxisSchema(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units] = None
+    units: Optional[Units] = "crystal"
     """
     units for an axis
     """
 
 
-class Label11(Enum):
+class Label9(Enum):
     frequency = "frequency"
 
 
-class Units46(Enum):
+class Units45(Enum):
     cm_1 = "cm-1"
     THz = "THz"
     meV = "meV"
 
 
 class AxisSchema12(BaseModel):
-    label: Label11
+    label: Label9
     """
     label of an axis object
     """
-    units: Optional[Units46] = None
+    units: Optional[Units45] = None
     """
     units for an axis
     """

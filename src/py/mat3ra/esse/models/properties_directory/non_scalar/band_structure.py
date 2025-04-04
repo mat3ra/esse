@@ -15,17 +15,8 @@ class Label(Enum):
 
 
 class Units(Enum):
-    km = "km"
-    m = "m"
-    pm = "pm"
-    nm = "nm"
-    angstrom = "angstrom"
-    a_u_ = "a.u."
-    bohr = "bohr"
-    fractional = "fractional"
     crystal = "crystal"
     cartesian = "cartesian"
-    alat = "alat"
 
 
 class AxisSchema(BaseModel):
@@ -33,7 +24,7 @@ class AxisSchema(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units] = None
+    units: Optional[Units] = "crystal"
     """
     units for an axis
     """

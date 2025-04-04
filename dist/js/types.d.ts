@@ -1744,6 +1744,8 @@ export interface GroupInfoSchemaForNodesInAGraph {
 }
 /** Schema dist/js/schema/core/primitive/integer_one_or_zero.json */
 export type IntegerOneOrZero = number;
+/** Schema dist/js/schema/core/primitive/integer_positive_single_digit.json */
+export type IntegerPositiveSingleDigit = number;
 /** Schema dist/js/schema/core/primitive/linked_list/base_node.json */
 export interface BasicNodeSchemaLinkedList {
     /**
@@ -2818,8 +2820,42 @@ export interface ObjectStorageContainerData {
      */
     TIMESTAMP?: string;
 }
+/** Schema dist/js/schema/definitions/constants.json */
+/**
+ * Fundamental physical constants, 2022 NIST CODATA (https://doi.org/10.48550/arXiv.2409.03787)
+ */
+export interface FundamentalConstants {
+    /**
+     * speed of light in vacuum, "units": "m/s"
+     */
+    c: number;
+    /**
+     * Planck constant, "units": "J s"
+     */
+    h: number;
+    /**
+     * elementary charge, "units": "C"
+     */
+    e: number;
+    /**
+     * Newtonian constant of gravitation, "units": "m^3/kg/s^2"
+     */
+    G: number;
+    /**
+     * electron mass "units": "kg"
+     */
+    me: number;
+    /**
+     * vacuum permittivity, "units": "F/m"
+     */
+    eps0: number;
+    /**
+     * vacuum permeability, "units": "N/A^2"
+     */
+    mu0: number;
+}
 /** Schema dist/js/schema/definitions/units.json */
-export interface DefinitionsUnits {
+export interface AllUnitsDefinitions {
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/element.json */
@@ -2833,7 +2869,7 @@ export interface ElementSchema {
      */
     properties?: ({
         name?: "atomic_radius";
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
         value: number;
     } | {
         name?: "electronegativity";
@@ -6134,51 +6170,23 @@ export interface MaterialSchema {
             occurrence?: number;
             oxidationState?: number;
         }[];
-        /**
-         * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-         */
-        labels?: {
-            id?: number;
-            value?: number;
-        }[];
         coordinates: {
             id?: number;
             value?: [number, number, number] | [boolean, boolean, boolean];
         }[];
-        name?: string;
-        units?: string;
-        bonds?: {
-            /**
-             * indices of the two connected atoms
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            atomPair?: [
-                {
-                    /**
-                     * integer id of this entry
-                     */
-                    id?: number;
-                },
-                {
-                    /**
-                     * integer id of this entry
-                     */
-                    id?: number;
-                }
-            ];
-            bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+        units?: "crystal" | "cartesian";
+        labels?: {
+            id?: number;
+            value?: number;
         }[];
     };
     lattice: {
-        name?: "lattice";
         vectors?: {
             /**
              * lattice parameter for fractional coordinates
              */
             alat?: number;
-            units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+            units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
             /**
              * @minItems 3
              * @maxItems 3
@@ -15515,7 +15523,7 @@ export interface ElectronicConfigurationSchema {
  */
 export interface AtomicRadius {
     name?: "atomic_radius";
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/elemental/electronegativity.json */
@@ -15545,7 +15553,7 @@ export interface AveragePotentialProfileSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     };
     yAxis: {
         /**
@@ -15624,7 +15632,7 @@ export interface BandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "crystal" | "cartesian";
     };
     yAxis: {
         /**
@@ -15929,7 +15937,7 @@ export interface PhononBandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "crystal" | "cartesian";
     };
     yAxis: {
         /**
@@ -16322,7 +16330,7 @@ export interface AtomicCoordinates {
         id?: number;
         value?: [number, number, number] | [boolean, boolean, boolean];
     }[];
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_element.json */
 /**
@@ -16336,6 +16344,14 @@ export interface AtomicElements {
      */
     occurrence?: number;
     oxidationState?: number;
+}
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_label.json */
+/**
+ * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+ */
+export interface AtomicLabel {
+    id?: number;
+    value?: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/bonds.json */
 export type BondsSchema = {
@@ -16372,41 +16388,14 @@ export interface BasisSchema {
         occurrence?: number;
         oxidationState?: number;
     }[];
-    /**
-     * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-     */
-    labels?: {
-        id?: number;
-        value?: number;
-    }[];
     coordinates: {
         id?: number;
         value?: [number, number, number] | [boolean, boolean, boolean];
     }[];
-    name?: string;
-    units?: string;
-    bonds?: {
-        /**
-         * indices of the two connected atoms
-         *
-         * @minItems 2
-         * @maxItems 2
-         */
-        atomPair?: [
-            {
-                /**
-                 * integer id of this entry
-                 */
-                id?: number;
-            },
-            {
-                /**
-                 * integer id of this entry
-                 */
-                id?: number;
-            }
-        ];
-        bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+    units?: "crystal" | "cartesian";
+    labels?: {
+        id?: number;
+        value?: number;
     }[];
 }
 /** Schema dist/js/schema/properties_directory/structural/density.json */
@@ -16475,7 +16464,7 @@ export interface LatticeExplicitUnit {
      * lattice parameter for fractional coordinates
      */
     alat?: number;
-    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
     /**
      * @minItems 3
      * @maxItems 3
@@ -16493,18 +16482,17 @@ export interface LatticeExplicitUnit {
     c: [number, number, number];
 }
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_enum.json */
-export type LatticeTypeSchema = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+export type LatticeTypeEnum = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_extended_enum.json */
-export type LatticeTypeExtendedSchema = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_2a" | "TRI_1b";
+export type LatticeTypeExtendedEnum = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_1b" | "TRI_2a" | "TRI_2b";
 /** Schema dist/js/schema/properties_directory/structural/lattice.json */
 export interface LatticeSchema {
-    name?: "lattice";
     vectors?: {
         /**
          * lattice parameter for fractional coordinates
          */
         alat?: number;
-        units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
         /**
          * @minItems 3
          * @maxItems 3

@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
@@ -27,7 +27,7 @@ class DataIODatabaseInputOutputSchema1(BaseModel):
     """
     db collection name
     """
-    draft: bool
+    draft: Optional[bool] = True
     """
     whether the result should be saved as draft
     """

@@ -25,7 +25,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label17(Enum):
+class Label15(Enum):
     energy = "energy"
 
 
@@ -40,7 +40,7 @@ class Units(Enum):
 
 
 class AxisSchema18(BaseModel):
-    label: Label17
+    label: Label15
     """
     label of an axis object
     """

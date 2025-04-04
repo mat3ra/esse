@@ -1,0 +1,15 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-label",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic label",
+    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "number"
+        },
+        "value": {
+            "$ref": "../../../core/primitive/integer_positive_single_digit.json"
+        }
+    }
+}

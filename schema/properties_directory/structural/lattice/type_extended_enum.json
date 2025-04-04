@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/structural/lattice/type-extended-enum",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "lattice type extended schema",
+    "title": "lattice type extended enum",
     "type": "string",
     "enum": [
         "BCC",
@@ -26,7 +26,8 @@
         "RHL-2",
         "TET",
         "TRI_1a",
+        "TRI_1b",
         "TRI_2a",
-        "TRI_1b"
+        "TRI_2b"
     ]
 }

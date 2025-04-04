@@ -63,3 +63,5 @@ schema.js
 site
 
 src/js/types.ts
+
+.python-version
