@@ -19,7 +19,11 @@
             ]
         },
         "unit": {
-            "$ref": "../../definitions/units.json#/energy"
+            "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+            "type": "string",
+            "enum": [
+                "Ry"
+            ]
         }
     },
     "required": [

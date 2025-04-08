@@ -2761,7 +2761,10 @@ export interface ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit {
      * Parameter value suitable for a specific accuracy level.
      */
     accuracy_level: "standard" | "low" | "high";
-    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+    /**
+     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+     */
+    unit: "Ry";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/file_metadata.json */
@@ -11843,7 +11846,10 @@ export interface PseudopotentialFile {
                  * Parameter value suitable for a specific accuracy level.
                  */
                 accuracy_level: "standard" | "low" | "high";
-                unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+                /**
+                 * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                 */
+                unit: "Ry";
                 value: number;
             }[];
             /**
@@ -11854,7 +11860,10 @@ export interface PseudopotentialFile {
                  * Parameter value suitable for a specific accuracy level.
                  */
                 accuracy_level: "standard" | "low" | "high";
-                unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+                /**
+                 * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                 */
+                unit: "Ry";
                 value: number;
             }[];
         };
@@ -11941,7 +11950,10 @@ export interface FileDataItem {
              * Parameter value suitable for a specific accuracy level.
              */
             accuracy_level: "standard" | "low" | "high";
-            unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            /**
+             * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+             */
+            unit: "Ry";
             value: number;
         }[];
         /**
@@ -11952,7 +11964,10 @@ export interface FileDataItem {
              * Parameter value suitable for a specific accuracy level.
              */
             accuracy_level: "standard" | "low" | "high";
-            unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            /**
+             * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+             */
+            unit: "Ry";
             value: number;
         }[];
     };
@@ -12107,7 +12122,10 @@ export interface UnitMethodPseudopotential {
                      * Parameter value suitable for a specific accuracy level.
                      */
                     accuracy_level: "standard" | "low" | "high";
-                    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+                    /**
+                     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                     */
+                    unit: "Ry";
                     value: number;
                 }[];
                 /**
@@ -12118,7 +12136,10 @@ export interface UnitMethodPseudopotential {
                      * Parameter value suitable for a specific accuracy level.
                      */
                     accuracy_level: "standard" | "low" | "high";
-                    unit: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+                    /**
+                     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                     */
+                    unit: "Ry";
                     value: number;
                 }[];
             };

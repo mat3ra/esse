@@ -336,14 +336,10 @@
                                                     ]
                                                 },
                                                 "unit": {
+                                                    "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                                    "type": "string",
                                                     "enum": [
-                                                        "kJ/mol",
-                                                        "eV",
-                                                        "J/mol",
-                                                        "hartree",
-                                                        "cm-1",
-                                                        "Ry",
-                                                        "eV/atom"
+                                                        "Ry"
                                                     ]
                                                 },
                                                 "value": {
@@ -375,14 +371,10 @@
                                                     ]
                                                 },
                                                 "unit": {
+                                                    "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                                    "type": "string",
                                                     "enum": [
-                                                        "kJ/mol",
-                                                        "eV",
-                                                        "J/mol",
-                                                        "hartree",
-                                                        "cm-1",
-                                                        "Ry",
-                                                        "eV/atom"
+                                                        "Ry"
                                                     ]
                                                 },
                                                 "value": {

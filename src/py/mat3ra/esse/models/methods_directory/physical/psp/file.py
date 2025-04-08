@@ -59,13 +59,7 @@ class AccuracyLevel(Enum):
 
 
 class Unit(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
-    hartree = "hartree"
-    cm_1 = "cm-1"
     Ry = "Ry"
-    eV_atom = "eV/atom"
 
 
 class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit(BaseModel):
@@ -74,6 +68,9 @@ class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit(BaseModel):
     Parameter value suitable for a specific accuracy level.
     """
     unit: Unit
+    """
+    Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+    """
     value: float
 
 
@@ -83,6 +80,9 @@ class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit2(BaseModel):
     Parameter value suitable for a specific accuracy level.
     """
     unit: Unit
+    """
+    Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+    """
     value: float
 
 
