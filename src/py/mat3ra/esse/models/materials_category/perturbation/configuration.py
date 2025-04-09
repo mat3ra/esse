@@ -125,7 +125,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units56(BaseModel):
+class Units57(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -134,7 +134,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units56] = None
+    units: Optional[Units57] = None
     a: float
     """
     length of the first lattice vector
@@ -165,13 +165,13 @@ class Name90(Enum):
     volume = "volume"
 
 
-class Units57(Enum):
+class Units58(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units57] = None
+    units: Optional[Units58] = None
     value: float
 
 
@@ -179,22 +179,22 @@ class Name91(Enum):
     density = "density"
 
 
-class Units58(Enum):
+class Units59(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units58] = None
+    units: Optional[Units59] = None
     value: float
 
 
-class Units59(Enum):
+class Units60(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units59] = None
+    units: Optional[Units60] = None
     value: float
 
 
@@ -429,7 +429,7 @@ class PerturbationFunctionHolder(BaseModel):
     """
     String representation of the mathematical function
     """
-    variables: List[str]
+    variables: Optional[List[str]] = ["x", "y", "z"]
     """
     List of variable names used in the function
     """
@@ -466,7 +466,7 @@ class SineWavePerturbationFunctionHolder(BaseModel):
     """
     String representation of the mathematical function
     """
-    variables: List[str]
+    variables: Optional[List[str]] = ["x", "y", "z"]
     """
     List of variable names used in the function
     """
@@ -509,7 +509,7 @@ class SineWavePerturbationFunctionHolder1(BaseModel):
     """
     String representation of the mathematical function
     """
-    variables: List[str]
+    variables: Optional[List[str]] = ["x", "y", "z"]
     """
     List of variable names used in the function
     """

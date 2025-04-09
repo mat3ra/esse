@@ -53,20 +53,6 @@
                         }
                     }
                 },
-                "labels": {
-                    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
-                    "type": "array",
-                    "items": {
-                        "properties": {
-                            "id": {
-                                "type": "number"
-                            },
-                            "value": {
-                                "type": "number"
-                            }
-                        }
-                    }
-                },
                 "coordinates": {
                     "type": "array",
                     "items": {
@@ -107,49 +93,32 @@
                         }
                     }
                 },
-                "name": {
-                    "type": "string"
-                },
                 "units": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "crystal",
+                        "cartesian"
+                    ],
+                    "default": "crystal"
                 },
-                "bonds": {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "bonds schema",
+                "labels": {
                     "type": "array",
-                    "uniqueItems": true,
+                    "default": [],
                     "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "atomic label",
+                        "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
                         "type": "object",
                         "properties": {
-                            "atomPair": {
-                                "description": "indices of the two connected atoms",
-                                "type": "array",
-                                "minItems": 2,
-                                "maxItems": 2,
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "atomic ids",
-                                "items": {
-                                    "type": "object",
-                                    "properties": {
-                                        "id": {
-                                            "description": "integer id of this entry",
-                                            "type": "integer"
-                                        }
-                                    }
-                                }
+                            "id": {
+                                "type": "number"
                             },
-                            "bondType": {
-                                "type": "string",
-                                "enum": [
-                                    "single",
-                                    "double",
-                                    "triple",
-                                    "quadruple",
-                                    "aromatic",
-                                    "tautomeric",
-                                    "dative",
-                                    "other"
-                                ]
+                            "value": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "integer positive single digit",
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 9
                             }
                         }
                     }
@@ -170,11 +139,6 @@
                 "type"
             ],
             "properties": {
-                "name": {
-                    "enum": [
-                        "lattice"
-                    ]
-                },
                 "vectors": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "lattice explicit unit",
@@ -194,15 +158,14 @@
                             "enum": [
                                 "km",
                                 "m",
-                                "pm",
+                                "cm",
+                                "mm",
+                                "um",
                                 "nm",
                                 "angstrom",
                                 "a.u.",
                                 "bohr",
-                                "fractional",
-                                "crystal",
-                                "cartesian",
-                                "alat"
+                                "pm"
                             ]
                         },
                         "a": {
@@ -239,7 +202,7 @@
                 },
                 "type": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "lattice type schema",
+                    "title": "lattice type enum",
                     "type": "string",
                     "enum": [
                         "CUB",
@@ -256,24 +219,30 @@
                         "TRI",
                         "MCLC",
                         "RHL"
-                    ]
+                    ],
+                    "default": "TRI"
                 },
                 "units": {
+                    "title": "Lattice units schema",
                     "type": "object",
+                    "default": {
+                        "length": "angstrom",
+                        "angle": "degree"
+                    },
                     "properties": {
                         "length": {
-                            "type": "string",
                             "enum": [
                                 "angstrom",
                                 "bohr"
-                            ]
+                            ],
+                            "default": "angstrom"
                         },
                         "angle": {
-                            "type": "string",
                             "enum": [
                                 "degree",
                                 "radian"
-                            ]
+                            ],
+                            "default": "degree"
                         }
                     }
                 },

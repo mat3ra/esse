@@ -4,11 +4,13 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from pydantic import Field, RootModel, confloat
 
 
-class VacuumSchema(RootModel[confloat(ge=0.0)]):
-    root: confloat(ge=0.0) = Field(..., title="Vacuum Schema")
+class VacuumSchema(RootModel[Optional[confloat(ge=0.0)]]):
+    root: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
     """
     Vacuum thickness in Angstroms
     """

@@ -63,7 +63,7 @@ class DataIODatabaseInputOutputSchema5(BaseModel):
     """
     db collection name
     """
-    draft: bool
+    draft: Optional[bool] = True
     """
     whether the result should be saved as draft
     """
@@ -1211,7 +1211,7 @@ class DataIODatabaseInputOutputSchema7(BaseModel):
     """
     db collection name
     """
-    draft: bool
+    draft: Optional[bool] = True
     """
     whether the result should be saved as draft
     """

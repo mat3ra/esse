@@ -125,7 +125,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units36(BaseModel):
+class Units37(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -134,7 +134,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units36] = None
+    units: Optional[Units37] = None
     a: float
     """
     length of the first lattice vector
@@ -165,13 +165,13 @@ class Name54(Enum):
     volume = "volume"
 
 
-class Units37(Enum):
+class Units38(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units37] = None
+    units: Optional[Units38] = None
     value: float
 
 
@@ -179,22 +179,22 @@ class Name55(Enum):
     density = "density"
 
 
-class Units38(Enum):
+class Units39(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units38] = None
+    units: Optional[Units39] = None
     value: float
 
 
-class Units39(Enum):
+class Units40(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units39] = None
+    units: Optional[Units40] = None
     value: float
 
 
@@ -420,7 +420,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class BondsSchemaItem8(BaseModel):
+class BondsSchemaItem7(BaseModel):
     atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
     """
     indices of the two connected atoms
@@ -437,14 +437,14 @@ class BasisSchema7(BaseModel):
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
     units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem8]] = Field(None, title="bonds schema")
+    bonds: Optional[List[BondsSchemaItem7]] = Field(None, title="bonds schema")
 
 
 class Name62(Enum):
     lattice = "lattice"
 
 
-class Units40(Enum):
+class Units41(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -463,13 +463,13 @@ class LatticeExplicitUnit6(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units40] = None
+    units: Optional[Units41] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class Units41(BaseModel):
+class Units42(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -478,7 +478,7 @@ class LatticeSchema6(BaseModel):
     name: Optional[Name62] = None
     vectors: Optional[LatticeExplicitUnit6] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units41] = None
+    units: Optional[Units42] = None
     a: float
     """
     length of the first lattice vector
@@ -509,13 +509,13 @@ class Name63(Enum):
     volume = "volume"
 
 
-class Units42(Enum):
+class Units43(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema6(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units42] = None
+    units: Optional[Units43] = None
     value: float
 
 
@@ -523,22 +523,22 @@ class Name64(Enum):
     density = "density"
 
 
-class Units43(Enum):
+class Units44(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema6(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units43] = None
+    units: Optional[Units44] = None
     value: float
 
 
-class Units44(Enum):
+class Units45(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema7(BaseModel):
-    units: Optional[Units44] = None
+    units: Optional[Units45] = None
     value: float
 
 

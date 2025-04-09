@@ -125,7 +125,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units61(BaseModel):
+class Units62(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -134,7 +134,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units61] = None
+    units: Optional[Units62] = None
     a: float
     """
     length of the first lattice vector
@@ -165,13 +165,13 @@ class Name99(Enum):
     volume = "volume"
 
 
-class Units62(Enum):
+class Units63(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units62] = None
+    units: Optional[Units63] = None
     value: float
 
 
@@ -179,22 +179,22 @@ class Name100(Enum):
     density = "density"
 
 
-class Units63(Enum):
+class Units64(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units63] = None
+    units: Optional[Units64] = None
     value: float
 
 
-class Units64(Enum):
+class Units65(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units64] = None
+    units: Optional[Units65] = None
     value: float
 
 

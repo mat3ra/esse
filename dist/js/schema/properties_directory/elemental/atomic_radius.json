@@ -17,15 +17,14 @@
             "enum": [
                 "km",
                 "m",
-                "pm",
+                "cm",
+                "mm",
+                "um",
                 "nm",
                 "angstrom",
                 "a.u.",
                 "bohr",
-                "fractional",
-                "crystal",
-                "cartesian",
-                "alat"
+                "pm"
             ]
         },
         "value": {

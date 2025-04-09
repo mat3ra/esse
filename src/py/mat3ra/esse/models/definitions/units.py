@@ -6,8 +6,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import RootModel
+from pydantic import Field, RootModel
 
 
-class ESSE(RootModel[Any]):
-    root: Any
+class AllUnitsDefinitions(RootModel[Any]):
+    root: Any = Field(..., title="all units definitions")

@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from pydantic import Field, RootModel, conint
 
@@ -13,9 +13,12 @@ class CrystalRepetitionsSchemaItem(RootModel[conint(ge=1)]):
     root: conint(ge=1)
 
 
-class CrystalRepetitionsSchema(RootModel[List[CrystalRepetitionsSchemaItem]]):
-    root: List[CrystalRepetitionsSchemaItem] = Field(
-        ..., max_length=3, min_length=3, title="Crystal Repetitions Schema"
+class CrystalRepetitionsSchema(RootModel[Optional[List[CrystalRepetitionsSchemaItem]]]):
+    root: Optional[List[CrystalRepetitionsSchemaItem]] = Field(
+        default_factory=lambda: [CrystalRepetitionsSchemaItem.model_validate(v) for v in [1, 1, 1]],
+        max_length=3,
+        min_length=3,
+        title="Crystal Repetitions Schema",
     )
     """
     Number of unit cells to repeat in each direction for a crystal structure

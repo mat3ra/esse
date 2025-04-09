@@ -17,15 +17,14 @@ class Name(Enum):
 class Units(Enum):
     km = "km"
     m = "m"
-    pm = "pm"
+    cm = "cm"
+    mm = "mm"
+    um = "um"
     nm = "nm"
     angstrom = "angstrom"
     a_u_ = "a.u."
     bohr = "bohr"
-    fractional = "fractional"
-    crystal = "crystal"
-    cartesian = "cartesian"
-    alat = "alat"
+    pm = "pm"
 
 
 class AtomicRadius(BaseModel):
@@ -47,7 +46,7 @@ class Name205(Enum):
     ionization_potential = "ionization_potential"
 
 
-class Units120(Enum):
+class Units121(Enum):
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -59,7 +58,7 @@ class Units120(Enum):
 
 class IonizationPotential(BaseModel):
     name: Optional[Name205] = None
-    units: Optional[Units120] = None
+    units: Optional[Units121] = None
     value: float
 
 

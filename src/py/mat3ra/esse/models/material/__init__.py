@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat
+from pydantic import BaseModel, Field, RootModel, confloat, conint
 from typing_extensions import Literal
 
 
@@ -21,70 +21,39 @@ class AtomicElements(BaseModel):
     oxidationState: Optional[float] = None
 
 
-class Label(BaseModel):
-    id: Optional[float] = None
-    value: Optional[float] = None
-
-
 class AtomicCoordinate(BaseModel):
     id: Optional[float] = None
     value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
 
 
-class AtomicId(BaseModel):
-    id: Optional[int] = None
-    """
-    integer id of this entry
-    """
+class Units(Enum):
+    crystal = "crystal"
+    cartesian = "cartesian"
 
 
-class BondType(Enum):
-    single = "single"
-    double = "double"
-    triple = "triple"
-    quadruple = "quadruple"
-    aromatic = "aromatic"
-    tautomeric = "tautomeric"
-    dative = "dative"
-    other = "other"
-
-
-class BondsSchemaItem(BaseModel):
-    atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
-    """
-    indices of the two connected atoms
-    """
-    bondType: Optional[BondType] = None
+class AtomicLabel(BaseModel):
+    id: Optional[float] = None
+    value: Optional[conint(ge=1, le=9)] = Field(None, title="integer positive single digit")
 
 
 class BasisSchema(BaseModel):
     elements: List[AtomicElements]
-    labels: Optional[List[Label]] = None
-    """
-    Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
-    """
     coordinates: List[AtomicCoordinate]
-    name: Optional[str] = None
-    units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem]] = Field(None, title="bonds schema")
+    units: Optional[Units] = "crystal"
+    labels: Optional[List[AtomicLabel]] = []
 
 
-class Name(Enum):
-    lattice = "lattice"
-
-
-class Units(Enum):
+class Units145(Enum):
     km = "km"
     m = "m"
-    pm = "pm"
+    cm = "cm"
+    mm = "mm"
+    um = "um"
     nm = "nm"
     angstrom = "angstrom"
     a_u_ = "a.u."
     bohr = "bohr"
-    fractional = "fractional"
-    crystal = "crystal"
-    cartesian = "cartesian"
-    alat = "alat"
+    pm = "pm"
 
 
 class LatticeExplicitUnit(BaseModel):
@@ -92,13 +61,13 @@ class LatticeExplicitUnit(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units] = None
+    units: Optional[Units145] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class LatticeTypeSchema(Enum):
+class LatticeTypeEnum(Enum):
     CUB = "CUB"
     BCC = "BCC"
     FCC = "FCC"
@@ -125,16 +94,18 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units146(BaseModel):
-    length: Optional[Length] = None
-    angle: Optional[Angle] = None
+class LatticeUnitsSchema(BaseModel):
+    length: Optional[Length] = "angstrom"
+    angle: Optional[Angle] = "degree"
 
 
 class LatticeSchema(BaseModel):
-    name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
-    type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units146] = None
+    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
+    units: Optional[LatticeUnitsSchema] = Field(
+        default_factory=lambda: LatticeUnitsSchema.model_validate({"length": "angstrom", "angle": "degree"}),
+        title="Lattice units schema",
+    )
     a: float
     """
     length of the first lattice vector
@@ -161,44 +132,44 @@ class LatticeSchema(BaseModel):
     """
 
 
-class Name236(Enum):
+class Name(Enum):
     volume = "volume"
 
 
-class Units147(Enum):
+class Units146(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units147] = None
+    units: Optional[Units146] = None
     value: float
 
 
-class Name237(Enum):
+class Name235(Enum):
     density = "density"
 
 
-class Units148(Enum):
+class Units147(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units148] = None
+    units: Optional[Units147] = None
     value: float
 
 
-class Units149(Enum):
+class Units148(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units149] = None
+    units: Optional[Units148] = None
     value: float
 
 
-class Name238(Enum):
+class Name236(Enum):
     symmetry = "symmetry"
 
 
@@ -218,7 +189,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name239(Enum):
+class Name237(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -231,7 +202,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name240(Enum):
+class Name238(Enum):
     p_norm = "p-norm"
 
 
@@ -244,7 +215,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name241(Enum):
+class Name239(Enum):
     inchi = "inchi"
 
 
@@ -253,7 +224,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name242(Enum):
+class Name240(Enum):
     inchi_key = "inchi_key"
 
 
@@ -332,7 +303,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name243(Enum):
+class Name241(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -345,7 +316,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name243
+    name: Name241
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

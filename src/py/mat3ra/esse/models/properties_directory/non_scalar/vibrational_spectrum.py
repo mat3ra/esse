@@ -32,13 +32,13 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label50(Enum):
+class Label48(Enum):
     Intensity = "Intensity"
     Absorbance = "Absorbance"
     Absorption_coefficient = "Absorption coefficient"
 
 
-class Units220(Enum):
+class Units219(Enum):
     field_debye_angstrom__2 = "(debye/angstrom)^2"
     km_mol = "km/mol"
     m_mol = "m/mol"
@@ -46,11 +46,11 @@ class Units220(Enum):
 
 
 class AxisSchema20(BaseModel):
-    label: Label50
+    label: Label48
     """
     label of an axis object
     """
-    units: Optional[Units220] = None
+    units: Optional[Units219] = None
     """
     units for an axis
     """

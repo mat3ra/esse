@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import Any, List
+from typing import Any, List, Optional
 
 from pydantic import Field, RootModel
 
@@ -13,8 +13,15 @@ class SupercellMatrix3DSchemaItem(RootModel[List[Any]]):
     root: List[Any]
 
 
-class SupercellMatrix3DSchema(RootModel[List[SupercellMatrix3DSchemaItem]]):
-    root: List[SupercellMatrix3DSchemaItem] = Field(..., max_length=3, min_length=3, title="Supercell Matrix 3D Schema")
+class SupercellMatrix3DSchema(RootModel[Optional[List[SupercellMatrix3DSchemaItem]]]):
+    root: Optional[List[SupercellMatrix3DSchemaItem]] = Field(
+        default_factory=lambda: [
+            SupercellMatrix3DSchemaItem.model_validate(v) for v in [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
+        ],
+        max_length=3,
+        min_length=3,
+        title="Supercell Matrix 3D Schema",
+    )
     """
     3x3 matrix of integers for transforming a unit cell into a supercell
     """

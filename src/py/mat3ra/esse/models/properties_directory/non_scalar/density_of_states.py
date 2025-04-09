@@ -35,20 +35,20 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label28(Enum):
+class Label27(Enum):
     density_of_states = "density of states"
 
 
-class Units112(Enum):
+class Units113(Enum):
     states_unitcell = "states/unitcell"
 
 
 class AxisSchema10(BaseModel):
-    label: Label28
+    label: Label27
     """
     label of an axis object
     """
-    units: Optional[Units112] = None
+    units: Optional[Units113] = None
     """
     units for an axis
     """

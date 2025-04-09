@@ -19,15 +19,15 @@ class OperationType(Enum):
 
 
 class InputData(BaseModel):
-    cleanMissingData: bool
+    cleanMissingData: Optional[bool] = True
     """
     whether to clean missing data, eg. NaN
     """
-    removeDuplicateRows: bool
+    removeDuplicateRows: Optional[bool] = True
     """
     whether to remove duplicate rows
     """
-    replaceNoneValuesWith: float
+    replaceNoneValuesWith: Optional[float] = 0
     """
     replace None values with a given value
     """

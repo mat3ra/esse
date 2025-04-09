@@ -14,23 +14,19 @@
             "$ref": "type_enum.json"
         },
         "units": {
-            "title": "Lattice units",
+            "title": "Lattice units schema",
             "type": "object",
             "properties": {
                 "length": {
-                    "type": "string",
-                    "enum": [
-                        "angstrom",
-                        "bohr"
-                    ]
+                    "$ref": "../../../definitions/units.json#/length_atomic"
                 },
                 "angle": {
-                    "type": "string",
-                    "enum": [
-                        "degree",
-                        "radian"
-                    ]
+                    "$ref": "../../../definitions/units.json#/angle"
                 }
+            },
+            "default": {
+                "length": "angstrom",
+                "angle": "degree"
             }
         }
     },

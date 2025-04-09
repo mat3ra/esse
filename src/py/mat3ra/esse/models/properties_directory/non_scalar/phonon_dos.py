@@ -31,22 +31,22 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label35(Enum):
+class Label33(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
-class Units158(Enum):
+class Units157(Enum):
     states_cm_1 = "states/cm-1"
     states_THz = "states/THz"
     states_meV = "states/meV"
 
 
 class AxisSchema14(BaseModel):
-    label: Label35
+    label: Label33
     """
     label of an axis object
     """
-    units: Optional[Units158] = None
+    units: Optional[Units157] = None
     """
     units for an axis
     """

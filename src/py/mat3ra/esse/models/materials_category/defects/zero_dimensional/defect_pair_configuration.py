@@ -144,7 +144,7 @@ class Angle(Enum):
     radian = "radian"
 
 
-class Units86(BaseModel):
+class Units87(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -153,7 +153,7 @@ class LatticeSchema(BaseModel):
     name: Optional[Name] = None
     vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units86] = None
+    units: Optional[Units87] = None
     a: float
     """
     length of the first lattice vector
@@ -184,13 +184,13 @@ class Name146(Enum):
     volume = "volume"
 
 
-class Units87(Enum):
+class Units88(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units87] = None
+    units: Optional[Units88] = None
     value: float
 
 
@@ -198,22 +198,22 @@ class Name147(Enum):
     density = "density"
 
 
-class Units88(Enum):
+class Units89(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units88] = None
+    units: Optional[Units89] = None
     value: float
 
 
-class Units89(Enum):
+class Units90(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units89] = None
+    units: Optional[Units90] = None
     value: float
 
 
@@ -441,7 +441,7 @@ class MaterialSchema(BaseModel):
 
 class PointDefectConfigurationSchema(BaseModel):
     defect_type: DefectType1
-    coordinate: List[float] = Field(..., max_length=3, min_length=3)
+    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
     """
     The crystal coordinate of the defect
     """
@@ -457,7 +457,7 @@ class PointDefectConfigurationSchema(BaseModel):
     crystal: MaterialSchema = Field(..., title="material schema")
 
 
-class BondsSchemaItem18(BaseModel):
+class BondsSchemaItem17(BaseModel):
     atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
     """
     indices of the two connected atoms
@@ -474,14 +474,14 @@ class BasisSchema17(BaseModel):
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
     units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem18]] = Field(None, title="bonds schema")
+    bonds: Optional[List[BondsSchemaItem17]] = Field(None, title="bonds schema")
 
 
 class Name154(Enum):
     lattice = "lattice"
 
 
-class Units90(Enum):
+class Units91(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -500,13 +500,13 @@ class LatticeExplicitUnit16(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units90] = None
+    units: Optional[Units91] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class Units91(BaseModel):
+class Units92(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -515,7 +515,7 @@ class LatticeSchema16(BaseModel):
     name: Optional[Name154] = None
     vectors: Optional[LatticeExplicitUnit16] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units91] = None
+    units: Optional[Units92] = None
     a: float
     """
     length of the first lattice vector
@@ -546,13 +546,13 @@ class Name155(Enum):
     volume = "volume"
 
 
-class Units92(Enum):
+class Units93(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema16(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units92] = None
+    units: Optional[Units93] = None
     value: float
 
 
@@ -560,22 +560,22 @@ class Name156(Enum):
     density = "density"
 
 
-class Units93(Enum):
+class Units94(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema16(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units93] = None
+    units: Optional[Units94] = None
     value: float
 
 
-class Units94(Enum):
+class Units95(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema17(BaseModel):
-    units: Optional[Units94] = None
+    units: Optional[Units95] = None
     value: float
 
 
@@ -766,7 +766,7 @@ class AdatomConfigurationSchema(BaseModel):
     crystal: MaterialSchema16 = Field(..., title="material schema")
 
 
-class BondsSchemaItem19(BaseModel):
+class BondsSchemaItem18(BaseModel):
     atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
     """
     indices of the two connected atoms
@@ -783,14 +783,14 @@ class BasisSchema18(BaseModel):
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
     units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem19]] = Field(None, title="bonds schema")
+    bonds: Optional[List[BondsSchemaItem18]] = Field(None, title="bonds schema")
 
 
 class Name163(Enum):
     lattice = "lattice"
 
 
-class Units95(Enum):
+class Units96(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -809,13 +809,13 @@ class LatticeExplicitUnit17(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units95] = None
+    units: Optional[Units96] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class Units96(BaseModel):
+class Units97(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -824,7 +824,7 @@ class LatticeSchema17(BaseModel):
     name: Optional[Name163] = None
     vectors: Optional[LatticeExplicitUnit17] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units96] = None
+    units: Optional[Units97] = None
     a: float
     """
     length of the first lattice vector
@@ -855,13 +855,13 @@ class Name164(Enum):
     volume = "volume"
 
 
-class Units97(Enum):
+class Units98(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema17(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units97] = None
+    units: Optional[Units98] = None
     value: float
 
 
@@ -869,22 +869,22 @@ class Name165(Enum):
     density = "density"
 
 
-class Units98(Enum):
+class Units99(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema17(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units98] = None
+    units: Optional[Units99] = None
     value: float
 
 
-class Units99(Enum):
+class Units100(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema18(BaseModel):
-    units: Optional[Units99] = None
+    units: Optional[Units100] = None
     value: float
 
 
@@ -1060,7 +1060,7 @@ class MaterialSchema17(BaseModel):
 
 class PointDefectConfigurationSchema1(BaseModel):
     defect_type: DefectType1
-    coordinate: List[float] = Field(..., max_length=3, min_length=3)
+    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
     """
     The crystal coordinate of the defect
     """
@@ -1076,7 +1076,7 @@ class PointDefectConfigurationSchema1(BaseModel):
     crystal: MaterialSchema17 = Field(..., title="material schema")
 
 
-class BondsSchemaItem20(BaseModel):
+class BondsSchemaItem19(BaseModel):
     atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
     """
     indices of the two connected atoms
@@ -1093,14 +1093,14 @@ class BasisSchema19(BaseModel):
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
     units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem20]] = Field(None, title="bonds schema")
+    bonds: Optional[List[BondsSchemaItem19]] = Field(None, title="bonds schema")
 
 
 class Name172(Enum):
     lattice = "lattice"
 
 
-class Units100(Enum):
+class Units101(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -1119,13 +1119,13 @@ class LatticeExplicitUnit18(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units100] = None
+    units: Optional[Units101] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class Units101(BaseModel):
+class Units102(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -1134,7 +1134,7 @@ class LatticeSchema18(BaseModel):
     name: Optional[Name172] = None
     vectors: Optional[LatticeExplicitUnit18] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units101] = None
+    units: Optional[Units102] = None
     a: float
     """
     length of the first lattice vector
@@ -1165,13 +1165,13 @@ class Name173(Enum):
     volume = "volume"
 
 
-class Units102(Enum):
+class Units103(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema18(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units102] = None
+    units: Optional[Units103] = None
     value: float
 
 
@@ -1179,22 +1179,22 @@ class Name174(Enum):
     density = "density"
 
 
-class Units103(Enum):
+class Units104(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema18(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units103] = None
+    units: Optional[Units104] = None
     value: float
 
 
-class Units104(Enum):
+class Units105(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema19(BaseModel):
-    units: Optional[Units104] = None
+    units: Optional[Units105] = None
     value: float
 
 
@@ -1385,7 +1385,7 @@ class AdatomConfigurationSchema2(BaseModel):
     crystal: MaterialSchema18 = Field(..., title="material schema")
 
 
-class BondsSchemaItem21(BaseModel):
+class BondsSchemaItem20(BaseModel):
     atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
     """
     indices of the two connected atoms
@@ -1402,14 +1402,14 @@ class BasisSchema20(BaseModel):
     coordinates: List[AtomicCoordinate]
     name: Optional[str] = None
     units: Optional[str] = None
-    bonds: Optional[List[BondsSchemaItem21]] = Field(None, title="bonds schema")
+    bonds: Optional[List[BondsSchemaItem20]] = Field(None, title="bonds schema")
 
 
 class Name181(Enum):
     lattice = "lattice"
 
 
-class Units105(Enum):
+class Units106(Enum):
     km = "km"
     m = "m"
     pm = "pm"
@@ -1428,13 +1428,13 @@ class LatticeExplicitUnit19(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units105] = None
+    units: Optional[Units106] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
-class Units106(BaseModel):
+class Units107(BaseModel):
     length: Optional[Length] = None
     angle: Optional[Angle] = None
 
@@ -1443,7 +1443,7 @@ class LatticeSchema19(BaseModel):
     name: Optional[Name181] = None
     vectors: Optional[LatticeExplicitUnit19] = Field(None, title="lattice explicit unit")
     type: LatticeTypeSchema = Field(..., title="lattice type schema")
-    units: Optional[Units106] = None
+    units: Optional[Units107] = None
     a: float
     """
     length of the first lattice vector
@@ -1474,13 +1474,13 @@ class Name182(Enum):
     volume = "volume"
 
 
-class Units107(Enum):
+class Units108(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema19(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units107] = None
+    units: Optional[Units108] = None
     value: float
 
 
@@ -1488,22 +1488,22 @@ class Name183(Enum):
     density = "density"
 
 
-class Units108(Enum):
+class Units109(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema19(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units108] = None
+    units: Optional[Units109] = None
     value: float
 
 
-class Units109(Enum):
+class Units110(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema20(BaseModel):
-    units: Optional[Units109] = None
+    units: Optional[Units110] = None
     value: float
 
 

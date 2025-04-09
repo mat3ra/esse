@@ -22,15 +22,14 @@ class AtomicCoordinate(BaseModel):
 class Units(Enum):
     km = "km"
     m = "m"
-    pm = "pm"
+    cm = "cm"
+    mm = "mm"
+    um = "um"
     nm = "nm"
     angstrom = "angstrom"
     a_u_ = "a.u."
     bohr = "bohr"
-    fractional = "fractional"
-    crystal = "crystal"
-    cartesian = "cartesian"
-    alat = "alat"
+    pm = "pm"
 
 
 class AtomicCoordinates(BaseModel):

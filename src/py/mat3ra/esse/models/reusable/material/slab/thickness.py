@@ -4,11 +4,13 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from pydantic import Field, RootModel, conint
 
 
-class ThicknessSchema(RootModel[conint(ge=1)]):
-    root: conint(ge=1) = Field(..., title="Thickness Schema")
+class ThicknessSchema(RootModel[Optional[conint(ge=1)]]):
+    root: Optional[conint(ge=1)] = Field(1, title="Thickness Schema")
     """
     Number of atomic layers in a structural component
     """
