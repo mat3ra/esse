@@ -1,0 +1,33 @@
+{
+    "$id": "reusable/material/slab/miller-indices",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Miller Indices Schema",
+    "description": "Miller indices for crystallographic plane designation",
+    "default": [
+        0,
+        0,
+        1
+    ],
+    "oneOf": [
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "array of 3 number elements schema",
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "array of 3 boolean elements schema",
+            "type": "array",
+            "items": {
+                "type": "boolean"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        }
+    ]
+}
