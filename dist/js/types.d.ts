@@ -6083,6 +6083,303 @@ export interface JobSchema {
     isDefault?: boolean;
     metadata?: {};
 }
+/** Schema dist/js/schema/material/builders/base/selector_parameters.json */
+/**
+ * Base parameters for all builder selectors
+ */
+export interface BaseSelectorParametersSchema {
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/defects/point_defect_builder_parameters.json */
+/**
+ * Parameters for the point defect builder
+ */
+export interface PointDefectBuilderParametersSchema {
+    /**
+     * Whether to center the defect
+     */
+    center_defect?: boolean;
+}
+/** Schema dist/js/schema/material/builders/defects/slab_defect_builder_parameters.json */
+/**
+ * Parameters for the slab defect builder
+ */
+export interface SlabDefectBuilderParametersSchema {
+    /**
+     * Whether to automatically add vacuum
+     */
+    auto_add_vacuum?: boolean;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum_thickness?: number;
+}
+/** Schema dist/js/schema/material/builders/defects/voronoi_interstitial_point_defect_builder_parameters.json */
+/**
+ * Parameters for the Voronoi interstitial point defect builder
+ */
+export interface VoronoiInterstitialPointDefectBuilderParametersSchema {
+    /**
+     * Clustering tolerance for merging interstitial sites
+     */
+    clustering_tol?: number;
+    /**
+     * Minimum distance between interstitial and nearest atom
+     */
+    min_dist?: number;
+    /**
+     * Tolerance for lattice matching
+     */
+    ltol?: number;
+    /**
+     * Tolerance for structure matching
+     */
+    stol?: number;
+    /**
+     * Angle tolerance for structure matching
+     */
+    angle_tol?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/simple/builder_parameters.json */
+/**
+ * Parameters for the simple interface builder
+ */
+export interface SimpleInterfaceBuilderParametersSchema {
+    /**
+     * Whether to scale the film to match the substrate
+     */
+    scale_film?: boolean;
+    /**
+     * Whether to create slabs from the configurations or use the bulk
+     */
+    create_slabs?: boolean;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/slab_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for the slab grain boundary builder
+ */
+export interface SlabGrainBoundaryBuilderParametersSchema {
+    /**
+     * Parameters for ZSL strain matching
+     */
+    strain_matching_parameters?: {
+        /**
+         * Maximum area for strain matching
+         */
+        max_area?: number;
+        /**
+         * Maximum area ratio tolerance
+         */
+        max_area_ratio_tol?: number;
+        /**
+         * Maximum length tolerance
+         */
+        max_length_tol?: number;
+        /**
+         * Maximum angle tolerance
+         */
+        max_angle_tol?: number;
+    };
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/builder_parameters.json */
+/**
+ * Parameters for the strain matching interface builder
+ */
+export interface StrainMatchingInterfaceBuilderParametersSchema {
+    /**
+     * Parameters for strain matching
+     */
+    strain_matching_parameters?: {} | null;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/zsl_strain_matching_interface_builder_parameters.json */
+/**
+ * Parameters for the ZSL strain matching interface builder
+ */
+export interface ZSLStrainMatchingInterfaceBuilderParametersSchema {
+    /**
+     * Parameters for ZSL strain matching
+     */
+    strain_matching_parameters?: {
+        /**
+         * Maximum area for strain matching
+         */
+        max_area?: number;
+        /**
+         * Maximum area ratio tolerance
+         */
+        max_area_ratio_tol?: number;
+        /**
+         * Maximum length tolerance
+         */
+        max_length_tol?: number;
+        /**
+         * Maximum angle tolerance
+         */
+        max_angle_tol?: number;
+    };
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/zsl_strain_matching_parameters.json */
+/**
+ * Parameters for ZSL strain matching
+ */
+export interface ZSLStrainMatchingParametersSchema {
+    /**
+     * Maximum area for strain matching
+     */
+    max_area?: number;
+    /**
+     * Maximum area ratio tolerance
+     */
+    max_area_ratio_tol?: number;
+    /**
+     * Maximum length tolerance
+     */
+    max_length_tol?: number;
+    /**
+     * Maximum angle tolerance
+     */
+    max_angle_tol?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/surface_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for creating a grain boundary between two surface phases
+ */
+export interface SurfaceGrainBoundaryBuilderParametersSchema {
+    /**
+     * The tolerance to include atoms on the edge of each phase, in angstroms
+     */
+    edge_inclusion_tolerance?: number;
+    /**
+     * The distance tolerance to remove atoms that are too close, in angstroms
+     */
+    distance_tolerance?: number;
+    /**
+     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
+     */
+    max_supercell_matrix_int?: number | null;
+    /**
+     * The limit for the maximum integer for the transformation matrices when searching
+     */
+    limit_max_int?: number | null;
+    /**
+     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
+     */
+    angle_tolerance?: number;
+    /**
+     * Whether to return the first match or all matches.
+     */
+    return_first_match?: boolean;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/twisted/commensurate_lattice_twisted_interface_builder_parameters.json */
+/**
+ * Parameters for the commensurate lattice interface builder
+ */
+export interface CommensurateLatticeTwistedInterfaceBuilderParametersSchema {
+    /**
+     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
+     */
+    max_supercell_matrix_int?: number | null;
+    /**
+     * The limit for the maximum integer for the transformation matrices when searching
+     */
+    limit_max_int?: number | null;
+    /**
+     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
+     */
+    angle_tolerance?: number;
+    /**
+     * Whether to return the first match or all matches.
+     */
+    return_first_match?: boolean;
+}
+/** Schema dist/js/schema/material/builders/passivation/coordination_based/builder_parameters.json */
+/**
+ * Parameters for the CoordinationPassivationBuilder
+ */
+export interface CoordinationBasedPassivationBuilderParametersSchema {
+    /**
+     * The coordination number threshold for an atom to be considered undercoordinated
+     */
+    coordination_threshold?: number;
+    /**
+     * The maximum number of bonds to passivate for each undercoordinated atom
+     */
+    bonds_to_passivate?: number;
+    /**
+     * The tolerance for symmetry comparison of vectors for bonds
+     */
+    symmetry_tolerance?: number;
+    /**
+     * Radius around each surface atom to exclude underlying atoms from passivation
+     */
+    shadowing_radius?: number;
+    /**
+     * Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces
+     */
+    depth?: number;
+}
+/** Schema dist/js/schema/material/builders/passivation/surface/builder_parameters.json */
+/**
+ * Parameters for the SurfacePassivationBuilder, defining how atoms near the surface are detected and passivated
+ */
+export interface SurfacePassivationBuilderParametersSchema {
+    /**
+     * Radius around each surface atom to exclude underlying atoms from passivation
+     */
+    shadowing_radius?: number;
+    /**
+     * Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces
+     */
+    depth?: number;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/pymatgen_slab_generator_parameters.json */
+/**
+ * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ */
+export interface PymatgenSlabGeneratorParametersSchema {
+    /**
+     * Minimum size of the vacuum in layers or angstroms
+     */
+    min_vacuum_size?: number;
+    /**
+     * Whether to cleave in unit planes
+     */
+    in_unit_planes?: boolean;
+    /**
+     * Whether to reorient the lattice
+     */
+    reorient_lattice?: boolean;
+    /**
+     * Whether to symmetrize the slab
+     */
+    symmetrize?: boolean;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/selector_parameters.json */
+/**
+ * Parameters for slab selection
+ */
+export interface SlabSelectorParametersSchema {
+    /**
+     * Defines a specific termination of a slab
+     */
+    termination?: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+}
 /** Schema dist/js/schema/material/consistency_check.json */
 /**
  * The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.
@@ -6340,6 +6637,8937 @@ export interface MaterialSchema {
      */
     isDefault?: boolean;
     metadata?: {};
+}
+/** Schema dist/js/schema/materials_category/defects/base_defect_configuration.json */
+/**
+ * Base configuration for all defect types
+ */
+export interface BaseDefectConfigurationSchema {
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/enums.json */
+export interface MaterialsCategoryDefectsEnums {
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/island_slab_defect_configuration.json */
+/**
+ * Configuration for an island defect on a slab surface
+ */
+export interface IslandSlabDefectConfigurationSchema {
+    defect_type?: "island";
+    /**
+     * Spatial condition defining the shape of the island
+     */
+    condition?: {
+        shape: "sphere" | "cylinder" | "rectangle" | "triangular_prism";
+        /**
+         * Center position for symmetric shapes
+         *
+         * @minItems 2
+         * @maxItems 3
+         */
+        center_position?: [number, number] | [number, number, number];
+        /**
+         * Radius for circular shapes
+         */
+        radius?: number;
+        /**
+         * Minimum z-coordinate in Angstroms
+         */
+        min_z?: number;
+        /**
+         * Maximum z-coordinate in Angstroms
+         */
+        max_z?: number;
+        /**
+         * Minimum coordinates for box shapes
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        min_coordinate?: [number, number, number];
+        /**
+         * Maximum coordinates for box shapes
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        max_coordinate?: [number, number, number];
+        /**
+         * First vertex for triangular prism
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_1?: [number, number];
+        /**
+         * Second vertex for triangular prism
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_2?: [number, number];
+        /**
+         * Third vertex for triangular prism
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_3?: [number, number];
+    };
+    /**
+     * Number of layers to add to the slab
+     */
+    number_of_added_layers?: number;
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/surface_grain_boundary_configuration.json */
+/**
+ * Configuration for creating a surface grain boundary
+ */
+export interface SurfaceGrainBoundaryConfigurationSchema {
+    /**
+     * The gap between the two phases
+     */
+    gap?: number;
+    /**
+     * Supercell matrix for xy plane transformations
+     *
+     * @minItems 2
+     * @maxItems 2
+     */
+    xy_supercell_matrix?: [[number, number], [number, number]];
+    film: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    substrate?: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Twist angle in degrees
+     */
+    twist_angle?: number;
+    /**
+     * Vertical distance between layers in Angstroms
+     */
+    distance_z?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum?: number;
+}
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/terrace_slab_defect_configuration.json */
+/**
+ * Configuration for a terrace defect on a slab surface
+ */
+export interface TerraceSlabDefectConfigurationSchema {
+    defect_type?: "terrace";
+    /**
+     * Direction of the cut as lattice vector
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    cut_direction?: [number, number, number];
+    /**
+     * Pivot coordinate where the cut plane passes through
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    pivot_coordinate?: [number, number, number];
+    /**
+     * Whether to use Cartesian coordinates
+     */
+    use_cartesian_coordinates?: boolean;
+    /**
+     * Whether to rotate the slab to match periodic boundary conditions
+     */
+    rotate_to_match_pbc?: boolean;
+    /**
+     * Number of layers to add to the slab
+     */
+    number_of_added_layers?: number;
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/slab_defect_configuration.json */
+/**
+ * Base configuration for defects in slab structures
+ */
+export interface SlabDefectConfigurationSchema {
+    /**
+     * Number of layers to add to the slab
+     */
+    number_of_added_layers?: number;
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/passivation_configuration.json */
+/**
+ * Configuration for passivating a slab surface
+ */
+export interface PassivationConfigurationSchema {
+    slab: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * The passivating element
+     */
+    passivant?: string;
+    /**
+     * The bond length between surface atoms and passivants
+     */
+    bond_length?: number;
+    surface?: "top" | "bottom" | "both";
+}
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/slab_grain_boundary_configuration.json */
+/**
+ * Configuration for a grain boundary between two phases with different surfaces facing each other
+ */
+export interface SlabGrainBoundaryConfigurationSchema {
+    /**
+     * Configuration for creating a slab from a bulk material
+     */
+    phase_1_configuration: {
+        bulk: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+        /**
+         * Miller indices for crystallographic plane designation
+         */
+        miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * Number of atomic layers in a structural component
+         */
+        thickness?: number;
+        /**
+         * Vacuum thickness in Angstroms
+         */
+        vacuum?: number;
+        /**
+         * Supercell matrix for xy plane transformations
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        xy_supercell_matrix?: [[number, number], [number, number]];
+        /**
+         * Whether to use conventional cell
+         */
+        use_conventional_cell?: boolean;
+        /**
+         * Whether to make z-axis orthogonal
+         */
+        use_orthogonal_z?: boolean;
+        /**
+         * Whether to make the slab primitive
+         */
+        make_primitive?: boolean;
+    };
+    /**
+     * Configuration for creating a slab from a bulk material
+     */
+    phase_2_configuration: {
+        bulk: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+        /**
+         * Miller indices for crystallographic plane designation
+         */
+        miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * Number of atomic layers in a structural component
+         */
+        thickness?: number;
+        /**
+         * Vacuum thickness in Angstroms
+         */
+        vacuum?: number;
+        /**
+         * Supercell matrix for xy plane transformations
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        xy_supercell_matrix?: [[number, number], [number, number]];
+        /**
+         * Whether to use conventional cell
+         */
+        use_conventional_cell?: boolean;
+        /**
+         * Whether to make z-axis orthogonal
+         */
+        use_orthogonal_z?: boolean;
+        /**
+         * Whether to make the slab primitive
+         */
+        make_primitive?: boolean;
+    };
+    /**
+     * Defines a specific termination of a slab
+     */
+    phase_1_termination: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+    /**
+     * Defines a specific termination of a slab
+     */
+    phase_2_termination: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+    /**
+     * The gap between the two phases, in Angstroms
+     */
+    gap?: number;
+    /**
+     * Configuration for creating a slab from a bulk material
+     */
+    slab_configuration: {
+        bulk: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+        /**
+         * Miller indices for crystallographic plane designation
+         */
+        miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * Number of atomic layers in a structural component
+         */
+        thickness?: number;
+        /**
+         * Vacuum thickness in Angstroms
+         */
+        vacuum?: number;
+        /**
+         * Supercell matrix for xy plane transformations
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        xy_supercell_matrix?: [[number, number], [number, number]];
+        /**
+         * Whether to use conventional cell
+         */
+        use_conventional_cell?: boolean;
+        /**
+         * Whether to make z-axis orthogonal
+         */
+        use_orthogonal_z?: boolean;
+        /**
+         * Whether to make the slab primitive
+         */
+        make_primitive?: boolean;
+    };
+    /**
+     * Defines a specific termination of a slab
+     */
+    slab_termination?: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/adatom_configuration.json */
+/**
+ * Base configuration for adatom defects on a surface
+ */
+export interface AdatomConfigurationSchema {
+    defect_type?: "adatom";
+    /**
+     * Position on the surface in 2D crystal coordinates
+     *
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface: [number, number];
+    /**
+     * Distance from the surface in Angstroms
+     */
+    distance_z: number;
+    /**
+     * Chemical element of the adatom
+     */
+    chemical_element: string;
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/defect_pair_configuration.json */
+/**
+ * Configuration for a pair of point defects
+ */
+export interface PointDefectPairConfigurationSchema {
+    defect_type?: "pair";
+    /**
+     * Configuration for the first defect
+     */
+    primary_defect_configuration: {
+        defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
+        /**
+         * The crystal coordinate of the defect
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        coordinate: [number, number, number];
+        /**
+         * The chemical element for substitution or interstitial defects
+         */
+        chemical_element?: string;
+        /**
+         * Whether coordinates are in cartesian rather than fractional coordinates
+         */
+        use_cartesian_coordinates?: boolean;
+        placement_method?: "coordinate" | "closest_site" | "equidistant" | "crystal_site" | "voronoi_site";
+        crystal: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+    } | {
+        defect_type?: "adatom";
+        /**
+         * Position on the surface in 2D crystal coordinates
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface: [number, number];
+        /**
+         * Distance from the surface in Angstroms
+         */
+        distance_z: number;
+        /**
+         * Chemical element of the adatom
+         */
+        chemical_element: string;
+        crystal: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+    };
+    /**
+     * Configuration for the second defect
+     */
+    secondary_defect_configuration: {
+        defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
+        /**
+         * The crystal coordinate of the defect
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        coordinate: [number, number, number];
+        /**
+         * The chemical element for substitution or interstitial defects
+         */
+        chemical_element?: string;
+        /**
+         * Whether coordinates are in cartesian rather than fractional coordinates
+         */
+        use_cartesian_coordinates?: boolean;
+        placement_method?: "coordinate" | "closest_site" | "equidistant" | "crystal_site" | "voronoi_site";
+        crystal: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+    } | {
+        defect_type?: "adatom";
+        /**
+         * Position on the surface in 2D crystal coordinates
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface: [number, number];
+        /**
+         * Distance from the surface in Angstroms
+         */
+        distance_z: number;
+        /**
+         * Chemical element of the adatom
+         */
+        chemical_element: string;
+        crystal: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+    };
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/point_defect_configuration.json */
+/**
+ * Configuration for point defects in a crystal
+ */
+export interface PointDefectConfigurationSchema {
+    defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
+    /**
+     * The crystal coordinate of the defect
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    coordinate: [number, number, number];
+    /**
+     * The chemical element for substitution or interstitial defects
+     */
+    chemical_element?: string;
+    /**
+     * Whether coordinates are in cartesian rather than fractional coordinates
+     */
+    use_cartesian_coordinates?: boolean;
+    placement_method?: "coordinate" | "closest_site" | "equidistant" | "crystal_site" | "voronoi_site";
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+}
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/slab_point_defect_configuration.json */
+/**
+ * Configuration for point defects on a slab surface
+ */
+export interface SlabPointDefectConfigurationSchema {
+    /**
+     * Position on the slab surface in 2D crystal coordinates
+     *
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface: [number, number];
+    /**
+     * Distance from the surface in Angstroms
+     */
+    distance_z: number;
+    /**
+     * Number of layers to add to the slab
+     */
+    number_of_added_layers?: number;
+    crystal: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
+    /**
+     * The crystal coordinate of the defect
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    coordinate: [number, number, number];
+    /**
+     * The chemical element for substitution or interstitial defects
+     */
+    chemical_element?: string;
+    /**
+     * Whether coordinates are in cartesian rather than fractional coordinates
+     */
+    use_cartesian_coordinates?: boolean;
+    placement_method?: "coordinate" | "closest_site" | "equidistant" | "crystal_site" | "voronoi_site";
+}
+/** Schema dist/js/schema/materials_category/multi_material/interfaces/configuration.json */
+/**
+ * Configuration for an interface between two slabs
+ */
+export interface InterfaceConfigurationSchema {
+    /**
+     * Configuration for creating a slab from a bulk material
+     */
+    film_configuration: {
+        bulk: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+        /**
+         * Miller indices for crystallographic plane designation
+         */
+        miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * Number of atomic layers in a structural component
+         */
+        thickness?: number;
+        /**
+         * Vacuum thickness in Angstroms
+         */
+        vacuum?: number;
+        /**
+         * Supercell matrix for xy plane transformations
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        xy_supercell_matrix?: [[number, number], [number, number]];
+        /**
+         * Whether to use conventional cell
+         */
+        use_conventional_cell?: boolean;
+        /**
+         * Whether to make z-axis orthogonal
+         */
+        use_orthogonal_z?: boolean;
+        /**
+         * Whether to make the slab primitive
+         */
+        make_primitive?: boolean;
+    };
+    /**
+     * Configuration for creating a slab from a bulk material
+     */
+    substrate_configuration: {
+        bulk: {
+            /**
+             * reduced chemical formula
+             */
+            formula?: string;
+            /**
+             * chemical formula based on the number of atoms of each element in the supercell
+             */
+            unitCellFormula?: string;
+            basis: {
+                elements: {
+                    id: number;
+                    value: string;
+                    /**
+                     * Occurrence is for fractional occupations
+                     */
+                    occurrence?: number;
+                    oxidationState?: number;
+                }[];
+                /**
+                 * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+                 */
+                labels?: {
+                    id?: number;
+                    value?: number;
+                }[];
+                coordinates: {
+                    id?: number;
+                    value?: [number, number, number] | [boolean, boolean, boolean];
+                }[];
+                name?: string;
+                units?: string;
+                bonds?: {
+                    /**
+                     * indices of the two connected atoms
+                     *
+                     * @minItems 2
+                     * @maxItems 2
+                     */
+                    atomPair?: [
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        },
+                        {
+                            /**
+                             * integer id of this entry
+                             */
+                            id?: number;
+                        }
+                    ];
+                    bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+                }[];
+            };
+            lattice: {
+                name?: "lattice";
+                vectors?: {
+                    /**
+                     * lattice parameter for fractional coordinates
+                     */
+                    alat?: number;
+                    units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    a: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    b: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    c: [number, number, number];
+                };
+                type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+                units?: {
+                    length?: "angstrom" | "bohr";
+                    angle?: "degree" | "radian";
+                };
+                /**
+                 * length of the first lattice vector
+                 */
+                a: number;
+                /**
+                 * length of the second lattice vector
+                 */
+                b: number;
+                /**
+                 * length of the third lattice vector
+                 */
+                c: number;
+                /**
+                 * angle between first and second lattice vector
+                 */
+                alpha: number;
+                /**
+                 * angle between second and third lattice vector
+                 */
+                beta: number;
+                /**
+                 * angle between first and third lattice vector
+                 */
+                gamma: number;
+            };
+            derivedProperties?: ({
+                name?: "volume";
+                units?: "angstrom^3";
+                value: number;
+            } | {
+                name?: "density";
+                units?: "g/cm^3";
+                value: number;
+            } | {
+                /**
+                 * point group symbol in Schoenflies notation
+                 */
+                pointGroupSymbol?: string;
+                /**
+                 * space group symbol in Hermann–Mauguin notation
+                 */
+                spaceGroupSymbol?: string;
+                /**
+                 * tolerance used for symmetry calculation
+                 */
+                tolerance?: {
+                    units?: "angstrom";
+                    value: number;
+                };
+                name?: "symmetry";
+            } | {
+                name?: "elemental_ratio";
+                value: number;
+                /**
+                 * the element this ratio is for
+                 */
+                element?: string;
+            } | {
+                name?: "p-norm";
+                /**
+                 * degree of the dimensionality of the norm
+                 */
+                degree?: number;
+                value: number;
+            } | {
+                name?: "inchi";
+                value: string;
+            } | {
+                name?: "inchi_key";
+                value: string;
+            })[];
+            /**
+             * information about a database source
+             */
+            external?: {
+                /**
+                 * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+                 */
+                id: string | number;
+                /**
+                 * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+                 */
+                source: string;
+                /**
+                 * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+                 */
+                origin: boolean;
+                /**
+                 * Original response from external source.
+                 */
+                data?: {};
+                /**
+                 * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+                 */
+                doi?: string;
+                /**
+                 * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+                 */
+                url?: string;
+            };
+            /**
+             * file source with the information inside
+             */
+            src?: {
+                /**
+                 * file extension
+                 */
+                extension?: string;
+                /**
+                 * file name without extension
+                 */
+                filename: string;
+                /**
+                 * file content as raw text
+                 */
+                text: string;
+                /**
+                 * MD5 hash based on file content
+                 */
+                hash: string;
+            };
+            /**
+             * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+             */
+            scaledHash?: string;
+            /**
+             * Corresponding ICSD id of the material
+             */
+            icsdId?: number;
+            /**
+             * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+             */
+            isNonPeriodic?: boolean;
+            consistencyChecks?: {
+                /**
+                 * Name of the consistency check that is performed, which is listed in an enum.
+                 */
+                name: "default" | "atomsTooClose" | "atomsOverlap";
+                /**
+                 * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+                 */
+                key: string;
+                /**
+                 * Severity level of the problem, which is used in UI to differentiate.
+                 */
+                severity: "info" | "warning" | "error";
+                /**
+                 * Message generated by the consistency check describing the problem.
+                 */
+                message: string;
+            }[];
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            metadata?: {};
+        };
+        /**
+         * Miller indices for crystallographic plane designation
+         */
+        miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * Number of atomic layers in a structural component
+         */
+        thickness?: number;
+        /**
+         * Vacuum thickness in Angstroms
+         */
+        vacuum?: number;
+        /**
+         * Supercell matrix for xy plane transformations
+         *
+         * @minItems 2
+         * @maxItems 2
+         */
+        xy_supercell_matrix?: [[number, number], [number, number]];
+        /**
+         * Whether to use conventional cell
+         */
+        use_conventional_cell?: boolean;
+        /**
+         * Whether to make z-axis orthogonal
+         */
+        use_orthogonal_z?: boolean;
+        /**
+         * Whether to make the slab primitive
+         */
+        make_primitive?: boolean;
+    };
+    /**
+     * Defines a specific termination of a slab
+     */
+    film_termination: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+    /**
+     * Defines a specific termination of a slab
+     */
+    substrate_termination: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+    /**
+     * The distance between the film and substrate in Angstroms
+     */
+    distance_z?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum?: number;
+}
+/** Schema dist/js/schema/materials_category/multi_material/interfaces/nanoribbon/configuration.json */
+/**
+ * Configuration for creating a twisted interface between two nanoribbons
+ */
+export interface NanoRibbonTwistedInterfaceConfigurationSchema {
+    /**
+     * Width of the nanoribbon in unit cells
+     */
+    ribbon_width?: number;
+    /**
+     * Length of the nanoribbon in unit cells
+     */
+    ribbon_length?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum_x?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum_y?: number;
+    film: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    substrate?: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Twist angle in degrees
+     */
+    twist_angle?: number;
+    /**
+     * Vertical distance between layers in Angstroms
+     */
+    distance_z?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum?: number;
+}
+/** Schema dist/js/schema/materials_category/multi_material/interfaces/twisted/configuration.json */
+/**
+ * Configuration for creating a twisted interface between two layers
+ */
+export interface TwistedInterfaceConfigurationSchema {
+    film: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    substrate?: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Twist angle in degrees
+     */
+    twist_angle?: number;
+    /**
+     * Vertical distance between layers in Angstroms
+     */
+    distance_z?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum?: number;
+}
+/** Schema dist/js/schema/materials_category/perturbation/configuration.json */
+/**
+ * Configuration for applying geometric perturbation to a material
+ */
+export interface PerturbationConfigurationSchema {
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * The perturbation function to apply
+     */
+    perturbation_function: {
+        /**
+         * The type of function holder
+         */
+        type: "PerturbationFunctionHolder";
+        /**
+         * String representation of the mathematical function
+         */
+        function: string;
+        /**
+         * List of variable names used in the function
+         */
+        variables: string[];
+    } | {
+        /**
+         * The type of function holder
+         */
+        type: "SineWavePerturbationFunctionHolder";
+        /**
+         * Amplitude of the sine wave
+         */
+        amplitude?: number;
+        /**
+         * Wavelength of the sine wave
+         */
+        wavelength?: number;
+        /**
+         * Phase of the sine wave
+         */
+        phase?: number;
+        /**
+         * The axis along which the sine wave is applied
+         */
+        axis?: "x" | "y" | "z";
+        /**
+         * String representation of the mathematical function
+         */
+        function: string;
+        /**
+         * List of variable names used in the function
+         */
+        variables: string[];
+    };
+    /**
+     * Whether to use cartesian coordinates for perturbation
+     */
+    use_cartesian_coordinates?: boolean;
+}
+/**
+ * Holds a mathematical function for geometric perturbation
+ *
+ * This interface was referenced by `PerturbationConfigurationSchema`'s JSON-Schema
+ * via the `definition` "perturbationFunctionHolder".
+ */
+export interface PerturbationFunctionHolder {
+    /**
+     * The type of function holder
+     */
+    type: "PerturbationFunctionHolder";
+    /**
+     * String representation of the mathematical function
+     */
+    function: string;
+    /**
+     * List of variable names used in the function
+     */
+    variables: string[];
+}
+/**
+ * Holds a sine wave function for geometric perturbation
+ *
+ * This interface was referenced by `PerturbationConfigurationSchema`'s JSON-Schema
+ * via the `definition` "sineWavePerturbationFunctionHolder".
+ */
+export interface SineWavePerturbationFunctionHolder {
+    /**
+     * The type of function holder
+     */
+    type: "SineWavePerturbationFunctionHolder";
+    /**
+     * Amplitude of the sine wave
+     */
+    amplitude?: number;
+    /**
+     * Wavelength of the sine wave
+     */
+    wavelength?: number;
+    /**
+     * Phase of the sine wave
+     */
+    phase?: number;
+    /**
+     * The axis along which the sine wave is applied
+     */
+    axis?: "x" | "y" | "z";
+    /**
+     * String representation of the mathematical function
+     */
+    function: string;
+    /**
+     * List of variable names used in the function
+     */
+    variables: string[];
+}
+/** Schema dist/js/schema/materials_category/single_material/two_dimensional/slab/configuration.json */
+/**
+ * Configuration for creating a slab from a bulk material
+ */
+export interface SlabConfigurationSchema {
+    bulk: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Miller indices for crystallographic plane designation
+     */
+    miller_indices?: [number, number, number] | [boolean, boolean, boolean];
+    /**
+     * Number of atomic layers in a structural component
+     */
+    thickness?: number;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum?: number;
+    /**
+     * Supercell matrix for xy plane transformations
+     *
+     * @minItems 2
+     * @maxItems 2
+     */
+    xy_supercell_matrix?: [[number, number], [number, number]];
+    /**
+     * Whether to use conventional cell
+     */
+    use_conventional_cell?: boolean;
+    /**
+     * Whether to make z-axis orthogonal
+     */
+    use_orthogonal_z?: boolean;
+    /**
+     * Whether to make the slab primitive
+     */
+    make_primitive?: boolean;
+}
+/** Schema dist/js/schema/materials_category/single_material/zero_dimensional/nanoparticle/ase_based/configuration.json */
+/**
+ * Configuration for nanoparticles created using ASE constructors
+ */
+export interface ASEBasedNanoparticleConfigurationSchema {
+    /**
+     * Enum for supported nanoparticle shapes
+     */
+    shape: "icosahedron" | "octahedron" | "decahedron" | "simple_cubic" | "face_centered_cubic" | "body_centered_cubic" | "hexagonal_closed_packed" | "wulff_construction";
+    /**
+     * Shape-specific parameters to pass to the ASE constructor
+     */
+    parameters?: {
+        [k: string]: unknown;
+    };
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Vacuum padding around the nanoparticle in Angstroms
+     */
+    vacuum_padding?: number;
+}
+/** Schema dist/js/schema/materials_category/single_material/zero_dimensional/nanoparticle/base_configuration.json */
+/**
+ * Base configuration for all nanoparticle types
+ */
+export interface BaseNanoparticleConfigurationSchema {
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Vacuum padding around the nanoparticle in Angstroms
+     */
+    vacuum_padding?: number;
+}
+/** Schema dist/js/schema/materials_category/single_material/zero_dimensional/nanoparticle/slab_based/configuration.json */
+/**
+ * Configuration for nanoparticles created by filtering slabs
+ */
+export interface SlabBasedNanoparticleConfigurationSchema {
+    /**
+     * Size of the supercell in the xy-plane
+     */
+    supercell_size?: number;
+    /**
+     * Miller indices for crystallographic plane designation
+     */
+    orientation_z?: [number, number, number] | [boolean, boolean, boolean];
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Vacuum padding around the nanoparticle in Angstroms
+     */
+    vacuum_padding?: number;
+}
+/** Schema dist/js/schema/materials_category/single_material/zero_dimensional/nanoparticle/sphere_based/configuration.json */
+/**
+ * Configuration for spherical nanoparticles created from slabs
+ */
+export interface SphereSlabBasedNanoparticleConfigurationSchema {
+    /**
+     * Radius of the spherical nanoparticle in Angstroms
+     */
+    radius?: number;
+    /**
+     * Size of the supercell in the xy-plane
+     */
+    supercell_size?: number;
+    /**
+     * Miller indices for crystallographic plane designation
+     */
+    orientation_z?: [number, number, number] | [boolean, boolean, boolean];
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * Vacuum padding around the nanoparticle in Angstroms
+     */
+    vacuum_padding?: number;
+}
+/** Schema dist/js/schema/materials_category/single_material/zero_dimensional/nanoribbon/configuration.json */
+/**
+ * Configuration for building a nanoribbon from a material
+ */
+export interface NanoRibbonConfigurationSchema {
+    material: {
+        /**
+         * reduced chemical formula
+         */
+        formula?: string;
+        /**
+         * chemical formula based on the number of atoms of each element in the supercell
+         */
+        unitCellFormula?: string;
+        basis: {
+            elements: {
+                id: number;
+                value: string;
+                /**
+                 * Occurrence is for fractional occupations
+                 */
+                occurrence?: number;
+                oxidationState?: number;
+            }[];
+            /**
+             * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+             */
+            labels?: {
+                id?: number;
+                value?: number;
+            }[];
+            coordinates: {
+                id?: number;
+                value?: [number, number, number] | [boolean, boolean, boolean];
+            }[];
+            name?: string;
+            units?: string;
+            bonds?: {
+                /**
+                 * indices of the two connected atoms
+                 *
+                 * @minItems 2
+                 * @maxItems 2
+                 */
+                atomPair?: [
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    },
+                    {
+                        /**
+                         * integer id of this entry
+                         */
+                        id?: number;
+                    }
+                ];
+                bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
+            }[];
+        };
+        lattice: {
+            name?: "lattice";
+            vectors?: {
+                /**
+                 * lattice parameter for fractional coordinates
+                 */
+                alat?: number;
+                units?: "km" | "m" | "pm" | "nm" | "angstrom" | "a.u." | "bohr" | "fractional" | "crystal" | "cartesian" | "alat";
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                a: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                b: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                c: [number, number, number];
+            };
+            type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+            units?: {
+                length?: "angstrom" | "bohr";
+                angle?: "degree" | "radian";
+            };
+            /**
+             * length of the first lattice vector
+             */
+            a: number;
+            /**
+             * length of the second lattice vector
+             */
+            b: number;
+            /**
+             * length of the third lattice vector
+             */
+            c: number;
+            /**
+             * angle between first and second lattice vector
+             */
+            alpha: number;
+            /**
+             * angle between second and third lattice vector
+             */
+            beta: number;
+            /**
+             * angle between first and third lattice vector
+             */
+            gamma: number;
+        };
+        derivedProperties?: ({
+            name?: "volume";
+            units?: "angstrom^3";
+            value: number;
+        } | {
+            name?: "density";
+            units?: "g/cm^3";
+            value: number;
+        } | {
+            /**
+             * point group symbol in Schoenflies notation
+             */
+            pointGroupSymbol?: string;
+            /**
+             * space group symbol in Hermann–Mauguin notation
+             */
+            spaceGroupSymbol?: string;
+            /**
+             * tolerance used for symmetry calculation
+             */
+            tolerance?: {
+                units?: "angstrom";
+                value: number;
+            };
+            name?: "symmetry";
+        } | {
+            name?: "elemental_ratio";
+            value: number;
+            /**
+             * the element this ratio is for
+             */
+            element?: string;
+        } | {
+            name?: "p-norm";
+            /**
+             * degree of the dimensionality of the norm
+             */
+            degree?: number;
+            value: number;
+        } | {
+            name?: "inchi";
+            value: string;
+        } | {
+            name?: "inchi_key";
+            value: string;
+        })[];
+        /**
+         * information about a database source
+         */
+        external?: {
+            /**
+             * ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+             */
+            id: string | number;
+            /**
+             * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+             */
+            source: string;
+            /**
+             * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+             */
+            origin: boolean;
+            /**
+             * Original response from external source.
+             */
+            data?: {};
+            /**
+             * Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+             */
+            doi?: string;
+            /**
+             * The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+             */
+            url?: string;
+        };
+        /**
+         * file source with the information inside
+         */
+        src?: {
+            /**
+             * file extension
+             */
+            extension?: string;
+            /**
+             * file name without extension
+             */
+            filename: string;
+            /**
+             * file content as raw text
+             */
+            text: string;
+            /**
+             * MD5 hash based on file content
+             */
+            hash: string;
+        };
+        /**
+         * Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+         */
+        scaledHash?: string;
+        /**
+         * Corresponding ICSD id of the material
+         */
+        icsdId?: number;
+        /**
+         * Whether to work in the finite molecular picture (usually with atomic orbital basis)
+         */
+        isNonPeriodic?: boolean;
+        consistencyChecks?: {
+            /**
+             * Name of the consistency check that is performed, which is listed in an enum.
+             */
+            name: "default" | "atomsTooClose" | "atomsOverlap";
+            /**
+             * Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
+             */
+            key: string;
+            /**
+             * Severity level of the problem, which is used in UI to differentiate.
+             */
+            severity: "info" | "warning" | "error";
+            /**
+             * Message generated by the consistency check describing the problem.
+             */
+            message: string;
+        }[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+    };
+    /**
+     * The width of the nanoribbon in number of unit cells
+     */
+    width: number;
+    /**
+     * The length of the nanoribbon in number of unit cells
+     */
+    length: number;
+    /**
+     * The width of the vacuum region in number of unit cells
+     */
+    vacuum_width?: number;
+    /**
+     * The length of the vacuum region in number of unit cells
+     */
+    vacuum_length?: number;
+    /**
+     * Enum for nanoribbon edge types
+     */
+    edge_type?: "zigzag" | "armchair";
 }
 /** Schema dist/js/schema/method/categorized_method.json */
 export interface CategorizedMethod {
@@ -17350,6 +26578,63 @@ export interface TheSourceOfAPropertyThisCouldBeAnArticleASimulationOnExabyteAnE
         }[];
     };
 }
+/** Schema dist/js/schema/reusable/material/slab/enums.json */
+export interface ReusableMaterialSlabEnums {
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/reusable/material/slab/miller_indices.json */
+/**
+ * Miller indices for crystallographic plane designation
+ */
+export type MillerIndicesSchema = [number, number, number] | [boolean, boolean, boolean];
+/** Schema dist/js/schema/reusable/material/slab/repetitions.json */
+/**
+ * Number of unit cells to repeat in each direction for a crystal structure
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type CrystalRepetitionsSchema = [number, number, number];
+/** Schema dist/js/schema/reusable/material/slab/termination.json */
+/**
+ * Defines a specific termination of a slab
+ */
+export interface TerminationSchema {
+    /**
+     * Chemical elements at the termination
+     */
+    chemical_elements: string;
+    /**
+     * Space group symmetry designation for the termination
+     */
+    space_group_symmetry_label: string;
+}
+/** Schema dist/js/schema/reusable/material/slab/thickness.json */
+/**
+ * Number of atomic layers in a structural component
+ */
+export type ThicknessSchema = number;
+/** Schema dist/js/schema/reusable/material/slab/vacuum.json */
+/**
+ * Vacuum thickness in Angstroms
+ */
+export type VacuumSchema = number;
+/** Schema dist/js/schema/reusable/material/supercell_matrix_2d.json */
+/**
+ * Supercell matrix for xy plane transformations
+ *
+ * @minItems 2
+ * @maxItems 2
+ */
+export type SupercellMatrix2DSchema = [[number, number], [number, number]];
+/** Schema dist/js/schema/reusable/material/supercell_matrix_3d.json */
+/**
+ * 3x3 matrix of integers for transforming a unit cell into a supercell
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**

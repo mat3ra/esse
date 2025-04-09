@@ -1,0 +1,22 @@
+{
+    "$id": "material/builders/defects/slab-defect-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Defect Builder Parameters Schema",
+    "description": "Parameters for the slab defect builder",
+    "type": "object",
+    "properties": {
+        "auto_add_vacuum": {
+            "description": "Whether to automatically add vacuum",
+            "type": "boolean",
+            "default": true
+        },
+        "vacuum_thickness": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Vacuum Schema",
+            "description": "Vacuum thickness in Angstroms",
+            "type": "number",
+            "minimum": 0,
+            "default": 5
+        }
+    }
+}
