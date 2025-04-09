@@ -1,0 +1,33 @@
+{
+  "$id": "materials-category/multi-material/interfaces/twisted/configuration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Twisted Interface Configuration Schema",
+  "description": "Configuration for creating a twisted interface between two layers",
+  "type": "object",
+  "required": ["film"],
+  "properties": {
+    "film": {
+      "description": "The film material",
+      "$ref": "../../../../material.json"
+    },
+    "substrate": {
+      "description": "The substrate material",
+      "$comment": "Substrate is optional, in case of absence, copy of film is used instead",
+      "$ref": "../../../../material.json"
+    },
+    "twist_angle": {
+      "description": "Twist angle in degrees",
+      "type": "number",
+      "default": 0.0
+    },
+    "distance_z": {
+      "description": "Vertical distance between layers in Angstroms",
+      "type": "number",
+      "minimum": 0,
+      "default": 3.0
+    },
+    "vacuum": {
+      "$ref": "../../../../core/reusable/material/slab/vacuum.json"
+    }
+  }
+} 

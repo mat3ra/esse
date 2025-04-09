@@ -1,0 +1,20 @@
+{
+  "$id": "materials-category/single-material/zero-dimensional/nanoparticle/base-configuration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Base Nanoparticle Configuration Schema",
+  "description": "Base configuration for all nanoparticle types",
+  "type": "object",
+  "required": ["material"],
+  "properties": {
+    "material": {
+      "description": "The base material for the nanoparticle",
+      "$ref": "../../../../material.json"
+    },
+    "vacuum_padding": {
+      "description": "Vacuum padding around the nanoparticle in Angstroms",
+      "type": "number",
+      "minimum": 0,
+      "default": 10.0
+    }
+  }
+}

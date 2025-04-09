@@ -1,0 +1,36 @@
+{
+    "$id": "materials-category/single-material/zero-dimensional/nanoparticle/ase-based/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ASE-Based Nanoparticle Configuration Schema",
+    "description": "Configuration for nanoparticles created using ASE constructors",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../base_configuration.json"
+        }
+    ],
+    "required": [
+        "shape"
+    ],
+    "properties": {
+        "shape": {
+            "description": "Enum for supported nanoparticle shapes",
+            "type": "string",
+            "enum": [
+                "icosahedron",
+                "octahedron",
+                "decahedron",
+                "simple_cubic",
+                "face_centered_cubic",
+                "body_centered_cubic",
+                "hexagonal_closed_packed",
+                "wulff_construction"
+            ]
+        },
+        "parameters": {
+            "description": "Shape-specific parameters to pass to the ASE constructor",
+            "type": "object",
+            "additionalProperties": true
+        }
+    }
+}

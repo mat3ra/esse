@@ -1,0 +1,32 @@
+{
+  "$id": "materials-category/defects/zero-dimensional/slab-point-defect-configuration",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Slab Point Defect Configuration Schema",
+  "description": "Configuration for point defects on a slab surface",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "../slab_defect_configuration.json"
+    },
+    {
+      "$ref": "point_defect_configuration.json"
+    }
+  ],
+  "required": ["position_on_surface", "distance_z"],
+  "properties": {
+    "position_on_surface": {
+      "description": "Position on the slab surface in 2D crystal coordinates",
+      "type": "array",
+      "items": {
+        "type": "number"
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "distance_z": {
+      "description": "Distance from the surface in Angstroms",
+      "type": "number",
+      "minimum": 0
+    }
+  }
+} 

@@ -1,0 +1,40 @@
+{
+    "$id": "materials-category/multi-material/interfaces/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interface Configuration Schema",
+    "description": "Configuration for an interface between two slabs",
+    "type": "object",
+    "required": [
+        "film_configuration",
+        "substrate_configuration",
+        "film_termination",
+        "substrate_termination"
+    ],
+    "properties": {
+        "film_configuration": {
+            "description": "The configuration of the film slab",
+            "$ref": "../../single_material/two_dimensional/slab/configuration.json"
+        },
+        "substrate_configuration": {
+            "description": "The configuration of the substrate slab",
+            "$ref": "../../single_material/two_dimensional/slab/configuration.json"
+        },
+        "film_termination": {
+            "description": "The termination of the film",
+            "$ref": "../../../core/reusable/material/slab/termination.json"
+        },
+        "substrate_termination": {
+            "description": "The termination of the substrate",
+            "$ref": "../../../core/reusable/material/slab/termination.json"
+        },
+        "distance_z": {
+            "description": "The distance between the film and substrate in Angstroms",
+            "type": "number",
+            "minimum": 0,
+            "default": 3.0
+        },
+        "vacuum": {
+            "$ref": "../../../core/reusable/material/slab/vacuum.json"
+        }
+    }
+} 
