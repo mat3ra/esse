@@ -1,12 +1,12 @@
 {
-  "$id": "materials-category/defects/one-dimensional/surface-grain-boundary-configuration",
+  "$id": "materials-category/defects/one-dimensional/surface-grain-boundary/configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Surface Grain Boundary Configuration Schema",
   "description": "Configuration for creating a surface grain boundary",
   "type": "object",
   "allOf": [
     {
-      "$ref": "../../multi_material/interfaces/twisted/configuration.json",
+      "$ref": "../../../multi_material/interfaces/twisted/configuration.json",
       "$comment": "This is equivalent to the configuration for twisted interface created with commensurate lattices"
     }
   ],
@@ -18,7 +18,7 @@
     },
     "xy_supercell_matrix": {
         "description": "The supercell matrix for the xy plane",
-        "$ref": "../../../core/reusable/material/supercell_matrix_2d.json"
+        "$ref": "../../../../core/reusable/material/supercell_matrix_2d.json"
     }
   }
 } 

@@ -1,12 +1,12 @@
 {
-  "$id": "materials-category/defects/zero-dimensional/adatom-configuration",
+  "$id": "materials-category/defects/zero-dimensional/adatom/configuration",
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Adatom Configuration Schema",
   "description": "Base configuration for adatom defects on a surface",
   "type": "object",
   "allOf": [
     {
-      "$ref": "../base_defect_configuration.json"
+      "$ref": "../../configuration.json"
     }
   ],
   "required": ["position_on_surface", "distance_z", "chemical_element"],
