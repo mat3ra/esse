@@ -1,36 +1,54 @@
 {
-    "$id": "materials-category/defects/zero-dimensional/adatom-configuration",
+    "$id": "materials-category/defects/zero-dimensional/point/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Adatom Configuration Schema",
-    "description": "Base configuration for adatom defects on a surface",
+    "title": "Point Defect Configuration Schema",
+    "description": "Configuration for point defects in a crystal",
     "type": "object",
     "required": [
-        "chemical_element",
+        "coordinate",
         "crystal",
-        "distance_z",
-        "position_on_surface"
+        "defect_type"
     ],
     "properties": {
         "defect_type": {
-            "const": "adatom"
+            "enum": [
+                "vacancy",
+                "substitution",
+                "interstitial",
+                "adatom"
+            ]
         },
-        "position_on_surface": {
-            "description": "Position on the surface in 2D crystal coordinates",
+        "coordinate": {
+            "description": "The crystal coordinate of the defect",
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
+            "minItems": 3,
+            "maxItems": 3,
+            "default": [
+                0,
+                0,
+                0
+            ],
             "items": {
                 "type": "number"
             }
         },
-        "distance_z": {
-            "description": "Distance from the surface in Angstroms",
-            "type": "number",
-            "minimum": 0
-        },
         "chemical_element": {
-            "description": "Chemical element of the adatom",
+            "description": "The chemical element for substitution or interstitial defects",
             "type": "string"
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether coordinates are in cartesian rather than fractional coordinates",
+            "type": "boolean",
+            "default": false
+        },
+        "placement_method": {
+            "enum": [
+                "coordinate",
+                "closest_site",
+                "equidistant",
+                "crystal_site",
+                "voronoi_site"
+            ]
         },
         "crystal": {
             "$schema": "http://json-schema.org/draft-07/schema#",

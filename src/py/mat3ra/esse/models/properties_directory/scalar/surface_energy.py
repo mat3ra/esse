@@ -24,11 +24,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units195(Enum):
+class Units210(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class SurfaceEnergySchema(BaseModel):
     name: Name
-    units: Union[Units, Units195]
+    units: Union[Units, Units210]
     value: float

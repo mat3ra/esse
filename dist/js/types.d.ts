@@ -6614,7 +6614,7 @@ export interface BaseDefectConfigurationSchema {
 export interface MaterialsCategoryDefectsEnums {
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/materials_category/defects/one_dimensional/island_slab_defect_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/island/configuration.json */
 /**
  * Configuration for an island defect on a slab surface
  */
@@ -6916,7 +6916,7 @@ export interface IslandSlabDefectConfigurationSchema {
         metadata?: {};
     };
 }
-/** Schema dist/js/schema/materials_category/defects/one_dimensional/surface_grain_boundary_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/surface_grain_boundary/configuration.json */
 /**
  * Configuration for creating a surface grain boundary
  */
@@ -7407,7 +7407,7 @@ export interface SurfaceGrainBoundaryConfigurationSchema {
      */
     vacuum?: number;
 }
-/** Schema dist/js/schema/materials_category/defects/one_dimensional/terrace_slab_defect_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/one_dimensional/terrace/configuration.json */
 /**
  * Configuration for a terrace defect on a slab surface
  */
@@ -7671,7 +7671,7 @@ export interface TerraceSlabDefectConfigurationSchema {
         metadata?: {};
     };
 }
-/** Schema dist/js/schema/materials_category/defects/slab_defect_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/slab/configuration.json */
 /**
  * Base configuration for defects in slab structures
  */
@@ -8158,7 +8158,7 @@ export interface PassivationConfigurationSchema {
     bond_length?: number;
     surface?: "top" | "bottom" | "both";
 }
-/** Schema dist/js/schema/materials_category/defects/two_dimensional/slab_grain_boundary_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/slab_grain_boundary/configuration.json */
 /**
  * Configuration for a grain boundary between two phases with different surfaces facing each other
  */
@@ -9008,7 +9008,7 @@ export interface SlabGrainBoundaryConfigurationSchema {
         space_group_symmetry_label: string;
     };
 }
-/** Schema dist/js/schema/materials_category/defects/zero_dimensional/adatom_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/adatom/configuration.json */
 /**
  * Base configuration for adatom defects on a surface
  */
@@ -9261,7 +9261,7 @@ export interface AdatomConfigurationSchema {
         metadata?: {};
     };
 }
-/** Schema dist/js/schema/materials_category/defects/zero_dimensional/defect_pair_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/defect_pair/configuration.json */
 /**
  * Configuration for a pair of point defects
  */
@@ -10501,7 +10501,7 @@ export interface PointDefectPairConfigurationSchema {
         metadata?: {};
     };
 }
-/** Schema dist/js/schema/materials_category/defects/zero_dimensional/point_defect_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/point/configuration.json */
 /**
  * Configuration for point defects in a crystal
  */
@@ -10755,7 +10755,7 @@ export interface PointDefectConfigurationSchema {
         metadata?: {};
     };
 }
-/** Schema dist/js/schema/materials_category/defects/zero_dimensional/slab_point_defect_configuration.json */
+/** Schema dist/js/schema/materials_category/defects/zero_dimensional/slab/configuration.json */
 /**
  * Configuration for point defects on a slab surface
  */
