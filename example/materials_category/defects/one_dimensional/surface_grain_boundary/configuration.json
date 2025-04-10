@@ -1,0 +1,7 @@
+{
+  "material_1": "include(material.json)",
+  "material_2": "include(material.json)",
+  "rotation_angle": 15.0,
+  "gap": 0.5,
+  "xy_supercell_matrix": [[2, 0], [0, 2]]
+}
