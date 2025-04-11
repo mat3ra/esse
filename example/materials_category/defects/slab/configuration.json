@@ -1,4 +1,4 @@
 {
-  "crystal": "include(material.json)",
+  "crystal": {"...":"include(../../../material.json)"},
   "number_of_added_layers": 2
 } 

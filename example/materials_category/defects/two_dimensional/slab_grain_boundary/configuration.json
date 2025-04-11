@@ -1,27 +1,45 @@
 {
-  "phase_1_configuration": {
-    "bulk": "include(material.json)",
-    "miller_indices": [1, 0, 0],
-    "thickness": 10.0,
-    "vacuum": 15.0
-  },
-  "phase_2_configuration": {
-    "bulk": "include(material.json)",
-    "miller_indices": [1, 1, 0],
-    "thickness": 10.0,
-    "vacuum": 15.0
-  },
-  "phase_1_termination": {
-    "termination_layer": 0
-  },
-  "phase_2_termination": {
-    "termination_layer": 0
-  },
-  "gap": 2.5,
-  "slab_configuration": {
-    "miller_indices": [1, 0, 0],
-    "thickness": 20.0,
-    "vacuum": 15.0
-  },
-  "slab_termination": "include(core/reusable/material/slab/termination.json)"
-} 
+    "phase_1_configuration": {
+        "bulk": {
+            "...": "include(../../../../material.json)"
+        },
+        "miller_indices": [
+            1,
+            0,
+            0
+        ],
+        "thickness": 3,
+        "vacuum": 15.0
+    },
+    "phase_2_configuration": {
+        "bulk": {
+            "...": "include(../../../../material.json)"
+        },
+        "miller_indices": [
+            1,
+            1,
+            0
+        ],
+        "thickness": 3,
+        "vacuum": 15.0
+    },
+    "phase_1_termination": {
+        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+    },
+    "phase_2_termination": {
+        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+    },
+    "gap": 2.5,
+    "slab_configuration": {
+        "miller_indices": [
+            0,
+            0,
+            1
+        ],
+        "thickness": 3,
+        "vacuum": 15.0
+    },
+    "slab_termination": {
+        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+    }
+}

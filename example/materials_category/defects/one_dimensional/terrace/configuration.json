@@ -1,5 +1,5 @@
 {
-  "crystal": "include(material.json)",
+  "crystal": {"..." : "include(../../../../material.json)"},
   "number_of_added_layers": 3,
   "defect_type": "terrace",
   "cut_direction": [1, 0, 0],
