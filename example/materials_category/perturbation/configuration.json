@@ -1,13 +1,17 @@
 {
-  "material": "include(material.json)",
-  "perturbation_function": {
-    "type": "SineWavePerturbationFunctionHolder",
-    "function": "0.1*sin(2*pi*x/2 + 0)",
-    "variables": ["x"],
-    "amplitude": 0.1,
-    "wavelength": 2.0,
-    "phase": 0.0,
-    "axis": "x"
-  },
-  "use_cartesian_coordinates": true
+    "material": {
+        "...": "include(../../material.json)"
+    },
+    "perturbation_function": {
+        "type": "SineWavePerturbationFunctionHolder",
+        "function": "0.1*sin(2*pi*x/2 + 0)",
+        "variables": [
+            "x"
+        ],
+        "amplitude": 0.1,
+        "wavelength": 2.0,
+        "phase": 0.0,
+        "axis": "x"
+    },
+    "use_cartesian_coordinates": true
 } 
