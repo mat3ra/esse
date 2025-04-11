@@ -56,7 +56,23 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
+        lattice_mat?: [
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ]
+        ];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1605,7 +1621,23 @@ export interface DimensionalGridSchema {
  * @minItems 3
  * @maxItems 3
  */
-export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
+export type DimensionalTensorSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
 export interface DimensionalVectorBasis {
     /**
@@ -2752,6 +2784,79 @@ export interface CoreReusableFrequencyFunctionMatrix {
      */
     components?: [number, number, number][];
 }
+/** Schema dist/js/schema/core/reusable/material/repetitions.json */
+/**
+ * Number of unit cells to repeat in each direction for a crystal structure.
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type CrystalRepetitionsSchema = [number, number, number];
+/** Schema dist/js/schema/core/reusable/material/slab/enums.json */
+export interface CoreReusableMaterialSlabEnums {
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/core/reusable/material/slab/miller_indices.json */
+/**
+ * Miller indices for crystallographic plane designation
+ */
+export type MillerIndicesSchema = [number, number, number] | [boolean, boolean, boolean];
+/** Schema dist/js/schema/core/reusable/material/slab/termination.json */
+/**
+ * Defines a specific termination of a slab
+ */
+export interface TerminationSchema {
+    /**
+     * Chemical elements at the termination
+     */
+    chemical_elements: string;
+    /**
+     * Space group symmetry designation for the termination
+     */
+    space_group_symmetry_label: string;
+}
+/** Schema dist/js/schema/core/reusable/material/slab/thickness.json */
+/**
+ * Number of atomic layers in a structural component
+ */
+export type ThicknessSchema = number;
+/** Schema dist/js/schema/core/reusable/material/slab/vacuum.json */
+/**
+ * Vacuum thickness in Angstroms
+ */
+export type VacuumSchema = number;
+/** Schema dist/js/schema/core/reusable/material/supercell_matrix_2d.json */
+/**
+ * Supercell matrix for xy plane transformations
+ *
+ * @minItems 2
+ * @maxItems 2
+ */
+export type SupercellMatrix2DSchema = [[number, number], [number, number]];
+/** Schema dist/js/schema/core/reusable/material/supercell_matrix_3d.json */
+/**
+ * 3x3 matrix of integers for transforming a unit cell into a supercell
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type SupercellMatrix3DSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -6082,6 +6187,303 @@ export interface JobSchema {
      */
     isDefault?: boolean;
     metadata?: {};
+}
+/** Schema dist/js/schema/material/builders/base/selector_parameters.json */
+/**
+ * Base parameters for all builder selectors
+ */
+export interface BaseSelectorParametersSchema {
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/defects/point_defect_builder_parameters.json */
+/**
+ * Parameters for the point defect builder
+ */
+export interface PointDefectBuilderParametersSchema {
+    /**
+     * Whether to center the defect
+     */
+    center_defect?: boolean;
+}
+/** Schema dist/js/schema/material/builders/defects/slab_defect_builder_parameters.json */
+/**
+ * Parameters for the slab defect builder
+ */
+export interface SlabDefectBuilderParametersSchema {
+    /**
+     * Whether to automatically add vacuum
+     */
+    auto_add_vacuum?: boolean;
+    /**
+     * Vacuum thickness in Angstroms
+     */
+    vacuum_thickness?: number;
+}
+/** Schema dist/js/schema/material/builders/defects/voronoi_interstitial_point_defect_builder_parameters.json */
+/**
+ * Parameters for the Voronoi interstitial point defect builder
+ */
+export interface VoronoiInterstitialPointDefectBuilderParametersSchema {
+    /**
+     * Clustering tolerance for merging interstitial sites
+     */
+    clustering_tol?: number;
+    /**
+     * Minimum distance between interstitial and nearest atom
+     */
+    min_dist?: number;
+    /**
+     * Tolerance for lattice matching
+     */
+    ltol?: number;
+    /**
+     * Tolerance for structure matching
+     */
+    stol?: number;
+    /**
+     * Angle tolerance for structure matching
+     */
+    angle_tol?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/simple/builder_parameters.json */
+/**
+ * Parameters for the simple interface builder
+ */
+export interface SimpleInterfaceBuilderParametersSchema {
+    /**
+     * Whether to scale the film to match the substrate
+     */
+    scale_film?: boolean;
+    /**
+     * Whether to create slabs from the configurations or use the bulk
+     */
+    create_slabs?: boolean;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/slab_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for the slab grain boundary builder
+ */
+export interface SlabGrainBoundaryBuilderParametersSchema {
+    /**
+     * Parameters for ZSL strain matching
+     */
+    strain_matching_parameters?: {
+        /**
+         * Maximum area for strain matching
+         */
+        max_area?: number;
+        /**
+         * Maximum area ratio tolerance
+         */
+        max_area_ratio_tol?: number;
+        /**
+         * Maximum length tolerance
+         */
+        max_length_tol?: number;
+        /**
+         * Maximum angle tolerance
+         */
+        max_angle_tol?: number;
+    };
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/builder_parameters.json */
+/**
+ * Parameters for the strain matching interface builder
+ */
+export interface StrainMatchingInterfaceBuilderParametersSchema {
+    /**
+     * Parameters for strain matching
+     */
+    strain_matching_parameters?: {} | null;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/zsl_strain_matching_interface_builder_parameters.json */
+/**
+ * Parameters for the ZSL strain matching interface builder
+ */
+export interface ZSLStrainMatchingInterfaceBuilderParametersSchema {
+    /**
+     * Parameters for ZSL strain matching
+     */
+    strain_matching_parameters?: {
+        /**
+         * Maximum area for strain matching
+         */
+        max_area?: number;
+        /**
+         * Maximum area ratio tolerance
+         */
+        max_area_ratio_tol?: number;
+        /**
+         * Maximum length tolerance
+         */
+        max_length_tol?: number;
+        /**
+         * Maximum angle tolerance
+         */
+        max_angle_tol?: number;
+    };
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/zsl_strain_matching_parameters.json */
+/**
+ * Parameters for ZSL strain matching
+ */
+export interface ZSLStrainMatchingParametersSchema {
+    /**
+     * Maximum area for strain matching
+     */
+    max_area?: number;
+    /**
+     * Maximum area ratio tolerance
+     */
+    max_area_ratio_tol?: number;
+    /**
+     * Maximum length tolerance
+     */
+    max_length_tol?: number;
+    /**
+     * Maximum angle tolerance
+     */
+    max_angle_tol?: number;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/surface_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for creating a grain boundary between two surface phases
+ */
+export interface SurfaceGrainBoundaryBuilderParametersSchema {
+    /**
+     * The tolerance to include atoms on the edge of each phase, in angstroms
+     */
+    edge_inclusion_tolerance?: number;
+    /**
+     * The distance tolerance to remove atoms that are too close, in angstroms
+     */
+    distance_tolerance?: number;
+    /**
+     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
+     */
+    max_supercell_matrix_int?: number | null;
+    /**
+     * The limit for the maximum integer for the transformation matrices when searching
+     */
+    limit_max_int?: number | null;
+    /**
+     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
+     */
+    angle_tolerance?: number;
+    /**
+     * Whether to return the first match or all matches.
+     */
+    return_first_match?: boolean;
+}
+/** Schema dist/js/schema/material/builders/multi_material/interfaces/twisted/commensurate_lattice_twisted_interface_builder_parameters.json */
+/**
+ * Parameters for the commensurate lattice interface builder
+ */
+export interface CommensurateLatticeTwistedInterfaceBuilderParametersSchema {
+    /**
+     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
+     */
+    max_supercell_matrix_int?: number | null;
+    /**
+     * The limit for the maximum integer for the transformation matrices when searching
+     */
+    limit_max_int?: number | null;
+    /**
+     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
+     */
+    angle_tolerance?: number;
+    /**
+     * Whether to return the first match or all matches.
+     */
+    return_first_match?: boolean;
+}
+/** Schema dist/js/schema/material/builders/passivation/coordination_based/builder_parameters.json */
+/**
+ * Parameters for the CoordinationPassivationBuilder
+ */
+export interface CoordinationBasedPassivationBuilderParametersSchema {
+    /**
+     * The coordination number threshold for an atom to be considered undercoordinated
+     */
+    coordination_threshold?: number;
+    /**
+     * The maximum number of bonds to passivate for each undercoordinated atom
+     */
+    bonds_to_passivate?: number;
+    /**
+     * The tolerance for symmetry comparison of vectors for bonds
+     */
+    symmetry_tolerance?: number;
+    /**
+     * Radius around each surface atom to exclude underlying atoms from passivation
+     */
+    shadowing_radius?: number;
+    /**
+     * Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces
+     */
+    depth?: number;
+}
+/** Schema dist/js/schema/material/builders/passivation/surface/builder_parameters.json */
+/**
+ * Parameters for the SurfacePassivationBuilder, defining how atoms near the surface are detected and passivated
+ */
+export interface SurfacePassivationBuilderParametersSchema {
+    /**
+     * Radius around each surface atom to exclude underlying atoms from passivation
+     */
+    shadowing_radius?: number;
+    /**
+     * Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces
+     */
+    depth?: number;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/pymatgen_slab_generator_parameters.json */
+/**
+ * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ */
+export interface PymatgenSlabGeneratorParametersSchema {
+    /**
+     * Minimum size of the vacuum in layers or angstroms
+     */
+    min_vacuum_size?: number;
+    /**
+     * Whether to cleave in unit planes
+     */
+    in_unit_planes?: boolean;
+    /**
+     * Whether to reorient the lattice
+     */
+    reorient_lattice?: boolean;
+    /**
+     * Whether to symmetrize the slab
+     */
+    symmetrize?: boolean;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/selector_parameters.json */
+/**
+ * Parameters for slab selection
+ */
+export interface SlabSelectorParametersSchema {
+    /**
+     * Defines a specific termination of a slab
+     */
+    termination?: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
 }
 /** Schema dist/js/schema/material/consistency_check.json */
 /**
