@@ -16,9 +16,6 @@
             "title": "SlabConfiguration Schema",
             "description": "Configuration for creating a slab from a bulk material",
             "type": "object",
-            "required": [
-                "bulk"
-            ],
             "properties": {
                 "bulk": {
                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -733,9 +730,6 @@
             "title": "SlabConfiguration Schema",
             "description": "Configuration for creating a slab from a bulk material",
             "type": "object",
-            "required": [
-                "bulk"
-            ],
             "properties": {
                 "bulk": {
                     "$schema": "http://json-schema.org/draft-07/schema#",

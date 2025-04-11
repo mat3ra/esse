@@ -11,27 +11,6 @@
         "position_on_surface"
     ],
     "properties": {
-        "defect_type": {
-            "const": "adatom"
-        },
-        "position_on_surface": {
-            "description": "Position on the surface in 2D crystal coordinates",
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "items": {
-                "type": "number"
-            }
-        },
-        "distance_z": {
-            "description": "Distance from the surface in Angstroms",
-            "type": "number",
-            "minimum": 0
-        },
-        "chemical_element": {
-            "description": "Chemical element of the adatom",
-            "type": "string"
-        },
         "crystal": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "material schema",
@@ -645,6 +624,27 @@
                     "type": "object"
                 }
             }
+        },
+        "defect_type": {
+            "const": "adatom"
+        },
+        "position_on_surface": {
+            "description": "Position on the surface in 2D crystal coordinates",
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+                "type": "number"
+            }
+        },
+        "distance_z": {
+            "description": "Distance from the surface in Angstroms",
+            "type": "number",
+            "minimum": 0
+        },
+        "chemical_element": {
+            "description": "Chemical element of the adatom",
+            "type": "string"
         }
     }
 }

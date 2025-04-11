@@ -1,11 +1,13 @@
 {
-    "$id": "materials-category/defects/base-defect-configuration",
+    "$id": "materials-category/defects/zero-dimensional/adatom/configuration-without-crystal",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Base Defect Configuration Schema",
-    "description": "Base configuration for all defect types",
+    "title": "Adatom Configuration Without Crystal Schema",
+    "description": "Base configuration for adatom defects on a surface",
     "type": "object",
     "required": [
-        "crystal"
+        "position_on_surface",
+        "distance_z",
+        "chemical_element"
     ],
     "properties": {
         "crystal": {
@@ -621,6 +623,27 @@
                     "type": "object"
                 }
             }
+        },
+        "defect_type": {
+            "const": "adatom"
+        },
+        "position_on_surface": {
+            "description": "Position on the surface in 2D crystal coordinates",
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+                "type": "number"
+            }
+        },
+        "distance_z": {
+            "description": "Distance from the surface in Angstroms",
+            "type": "number",
+            "minimum": 0
+        },
+        "chemical_element": {
+            "description": "Chemical element of the adatom",
+            "type": "string"
         }
     }
 }

@@ -1,109 +1,14 @@
 {
-    "$id": "materials-category/defects/one-dimensional/island/configuration",
+    "$id": "materials-category/defects/zero-dimensional/point/configuration-without-crystal",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Island Slab Defect Configuration Schema",
-    "description": "Configuration for an island defect on a slab surface",
+    "title": "Point Defect Configuration Without Crystal Schema",
+    "description": "Configuration for point defects in a crystal",
     "type": "object",
     "required": [
-        "crystal"
+        "defect_type",
+        "coordinate"
     ],
     "properties": {
-        "defect_type": {
-            "const": "island"
-        },
-        "condition": {
-            "description": "Spatial condition defining the shape of the island",
-            "type": "object",
-            "required": [
-                "shape"
-            ],
-            "properties": {
-                "shape": {
-                    "enum": [
-                        "sphere",
-                        "cylinder",
-                        "rectangle",
-                        "triangular_prism"
-                    ]
-                },
-                "center_position": {
-                    "description": "Center position for symmetric shapes",
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 3,
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "radius": {
-                    "description": "Radius for circular shapes",
-                    "type": "number",
-                    "minimum": 0
-                },
-                "min_z": {
-                    "description": "Minimum z-coordinate in Angstroms",
-                    "type": "number"
-                },
-                "max_z": {
-                    "description": "Maximum z-coordinate in Angstroms",
-                    "type": "number"
-                },
-                "min_coordinate": {
-                    "description": "Minimum coordinates for box shapes",
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "max_coordinate": {
-                    "description": "Maximum coordinates for box shapes",
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "position_on_surface_1": {
-                    "description": "First vertex for triangular prism",
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "position_on_surface_2": {
-                    "description": "Second vertex for triangular prism",
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "position_on_surface_3": {
-                    "description": "Third vertex for triangular prism",
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": {
-                        "type": "number"
-                    }
-                }
-            }
-        },
-        "number_of_added_layers": {
-            "description": "Number of layers to add to the slab",
-            "type": [
-                "integer",
-                "number"
-            ],
-            "minimum": 0,
-            "default": 1
-        },
         "crystal": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "material schema",
@@ -717,6 +622,46 @@
                     "type": "object"
                 }
             }
+        },
+        "defect_type": {
+            "enum": [
+                "vacancy",
+                "substitution",
+                "interstitial",
+                "adatom"
+            ]
+        },
+        "coordinate": {
+            "description": "The crystal coordinate of the defect",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "default": [
+                0,
+                0,
+                0
+            ],
+            "items": {
+                "type": "number"
+            }
+        },
+        "chemical_element": {
+            "description": "The chemical element for substitution or interstitial defects",
+            "type": "string"
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether coordinates are in cartesian rather than fractional coordinates",
+            "type": "boolean",
+            "default": false
+        },
+        "placement_method": {
+            "enum": [
+                "coordinate",
+                "closest_site",
+                "equidistant",
+                "crystal_site",
+                "voronoi_site"
+            ]
         }
     }
 }

@@ -38,7 +38,7 @@ class Label17(Enum):
     Absorption_coefficient = "Absorption coefficient"
 
 
-class Units219(Enum):
+class Units224(Enum):
     field_debye_angstrom__2 = "(debye/angstrom)^2"
     km_mol = "km/mol"
     m_mol = "m/mol"
@@ -50,7 +50,7 @@ class AxisSchema20(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units219] = None
+    units: Optional[Units224] = None
     """
     units for an axis
     """

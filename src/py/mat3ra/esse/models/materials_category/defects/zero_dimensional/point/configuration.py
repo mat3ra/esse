@@ -10,21 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel, confloat, conint
 
 
-class DefectType(Enum):
-    vacancy = "vacancy"
-    substitution = "substitution"
-    interstitial = "interstitial"
-    adatom = "adatom"
-
-
-class PlacementMethod(Enum):
-    coordinate = "coordinate"
-    closest_site = "closest_site"
-    equidistant = "equidistant"
-    crystal_site = "crystal_site"
-    voronoi_site = "voronoi_site"
-
-
 class AtomicElements(BaseModel):
     id: float
     value: str
@@ -57,7 +42,7 @@ class BasisSchema(BaseModel):
     labels: Optional[List[AtomicLabel]] = []
 
 
-class Units82(Enum):
+class Units77(Enum):
     km = "km"
     m = "m"
     cm = "cm"
@@ -75,7 +60,7 @@ class LatticeExplicitUnit(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units82] = None
+    units: Optional[Units77] = None
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
@@ -150,40 +135,40 @@ class Name(Enum):
     volume = "volume"
 
 
-class Units83(Enum):
+class Units78(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units83] = None
+    units: Optional[Units78] = None
     value: float
 
 
-class Name121(Enum):
+class Name113(Enum):
     density = "density"
 
 
-class Units84(Enum):
+class Units79(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units84] = None
+    units: Optional[Units79] = None
     value: float
 
 
-class Units85(Enum):
+class Units80(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units85] = None
+    units: Optional[Units80] = None
     value: float
 
 
-class Name122(Enum):
+class Name114(Enum):
     symmetry = "symmetry"
 
 
@@ -203,7 +188,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name123(Enum):
+class Name115(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -216,7 +201,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name124(Enum):
+class Name116(Enum):
     p_norm = "p-norm"
 
 
@@ -229,7 +214,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name125(Enum):
+class Name117(Enum):
     inchi = "inchi"
 
 
@@ -238,7 +223,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name126(Enum):
+class Name118(Enum):
     inchi_key = "inchi_key"
 
 
@@ -317,7 +302,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name127(Enum):
+class Name119(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -330,7 +315,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name127
+    name: Name119
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -405,7 +390,23 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
+class DefectType(Enum):
+    vacancy = "vacancy"
+    substitution = "substitution"
+    interstitial = "interstitial"
+    adatom = "adatom"
+
+
+class PlacementMethod(Enum):
+    coordinate = "coordinate"
+    closest_site = "closest_site"
+    equidistant = "equidistant"
+    crystal_site = "crystal_site"
+    voronoi_site = "voronoi_site"
+
+
 class PointDefectConfigurationSchema(BaseModel):
+    crystal: MaterialSchema = Field(..., title="material schema")
     defect_type: DefectType
     coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
     """
@@ -420,4 +421,3 @@ class PointDefectConfigurationSchema(BaseModel):
     Whether coordinates are in cartesian rather than fractional coordinates
     """
     placement_method: Optional[PlacementMethod] = None
-    crystal: MaterialSchema = Field(..., title="material schema")

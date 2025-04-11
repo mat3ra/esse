@@ -14,21 +14,6 @@ class DefectType(Enum):
     pair = "pair"
 
 
-class DefectType1(Enum):
-    vacancy = "vacancy"
-    substitution = "substitution"
-    interstitial = "interstitial"
-    adatom = "adatom"
-
-
-class PlacementMethod(Enum):
-    coordinate = "coordinate"
-    closest_site = "closest_site"
-    equidistant = "equidistant"
-    crystal_site = "crystal_site"
-    voronoi_site = "voronoi_site"
-
-
 class AtomicElements(BaseModel):
     id: float
     value: str
@@ -409,7 +394,23 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
+class DefectType1(Enum):
+    vacancy = "vacancy"
+    substitution = "substitution"
+    interstitial = "interstitial"
+    adatom = "adatom"
+
+
+class PlacementMethod(Enum):
+    coordinate = "coordinate"
+    closest_site = "closest_site"
+    equidistant = "equidistant"
+    crystal_site = "crystal_site"
+    voronoi_site = "voronoi_site"
+
+
 class PointDefectConfigurationSchema(BaseModel):
+    crystal: MaterialSchema = Field(..., title="material schema")
     defect_type: DefectType1
     coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
     """
@@ -424,7 +425,6 @@ class PointDefectConfigurationSchema(BaseModel):
     Whether coordinates are in cartesian rather than fractional coordinates
     """
     placement_method: Optional[PlacementMethod] = None
-    crystal: MaterialSchema = Field(..., title="material schema")
 
 
 class Units56(Enum):
@@ -709,6 +709,7 @@ class MaterialSchema9(BaseModel):
 
 
 class AdatomConfigurationSchema(BaseModel):
+    crystal: MaterialSchema9 = Field(..., title="material schema")
     defect_type: Literal["adatom"] = "adatom"
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """
@@ -722,7 +723,6 @@ class AdatomConfigurationSchema(BaseModel):
     """
     Chemical element of the adatom
     """
-    crystal: MaterialSchema9 = Field(..., title="material schema")
 
 
 class Units61(Enum):
@@ -1006,7 +1006,8 @@ class MaterialSchema10(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class PointDefectConfigurationSchema1(BaseModel):
+class PointDefectConfigurationWithoutCrystalSchema(BaseModel):
+    crystal: Optional[MaterialSchema10] = Field(None, title="material schema")
     defect_type: DefectType1
     coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
     """
@@ -1021,7 +1022,6 @@ class PointDefectConfigurationSchema1(BaseModel):
     Whether coordinates are in cartesian rather than fractional coordinates
     """
     placement_method: Optional[PlacementMethod] = None
-    crystal: MaterialSchema10 = Field(..., title="material schema")
 
 
 class Units66(Enum):
@@ -1305,7 +1305,8 @@ class MaterialSchema11(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class AdatomConfigurationSchema1(BaseModel):
+class AdatomConfigurationWithoutCrystalSchema(BaseModel):
+    crystal: Optional[MaterialSchema11] = Field(None, title="material schema")
     defect_type: Literal["adatom"] = "adatom"
     position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
     """
@@ -1319,298 +1320,17 @@ class AdatomConfigurationSchema1(BaseModel):
     """
     Chemical element of the adatom
     """
-    crystal: MaterialSchema11 = Field(..., title="material schema")
-
-
-class Units71(Enum):
-    crystal = "crystal"
-    cartesian = "cartesian"
-
-
-class BasisSchema13(BaseModel):
-    elements: List[AtomicElements]
-    coordinates: List[AtomicCoordinate]
-    units: Optional[Units71] = "crystal"
-    labels: Optional[List[AtomicLabel]] = []
-
-
-class Units72(Enum):
-    km = "km"
-    m = "m"
-    cm = "cm"
-    mm = "mm"
-    um = "um"
-    nm = "nm"
-    angstrom = "angstrom"
-    a_u_ = "a.u."
-    bohr = "bohr"
-    pm = "pm"
-
-
-class LatticeExplicitUnit12(BaseModel):
-    alat: Optional[float] = 1
-    """
-    lattice parameter for fractional coordinates
-    """
-    units: Optional[Units72] = None
-    a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-
-
-class LatticeUnitsSchema12(BaseModel):
-    length: Optional[Length] = "angstrom"
-    angle: Optional[Angle] = "degree"
-
-
-class LatticeSchema12(BaseModel):
-    vectors: Optional[LatticeExplicitUnit12] = Field(None, title="lattice explicit unit")
-    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema12] = Field(
-        default_factory=lambda: LatticeUnitsSchema12.model_validate({"length": "angstrom", "angle": "degree"}),
-        title="Lattice units schema",
-    )
-    a: float
-    """
-    length of the first lattice vector
-    """
-    b: float
-    """
-    length of the second lattice vector
-    """
-    c: float
-    """
-    length of the third lattice vector
-    """
-    alpha: float
-    """
-    angle between first and second lattice vector
-    """
-    beta: float
-    """
-    angle between second and third lattice vector
-    """
-    gamma: float
-    """
-    angle between first and third lattice vector
-    """
-
-
-class Name104(Enum):
-    volume = "volume"
-
-
-class Units73(Enum):
-    angstrom_3 = "angstrom^3"
-
-
-class VolumeSchema12(BaseModel):
-    name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units73] = None
-    value: float
-
-
-class Name105(Enum):
-    density = "density"
-
-
-class Units74(Enum):
-    g_cm_3 = "g/cm^3"
-
-
-class DensitySchema12(BaseModel):
-    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units74] = None
-    value: float
-
-
-class Units75(Enum):
-    angstrom = "angstrom"
-
-
-class ScalarSchema13(BaseModel):
-    units: Optional[Units75] = None
-    value: float
-
-
-class Name106(Enum):
-    symmetry = "symmetry"
-
-
-class SymmetrySchema12(BaseModel):
-    pointGroupSymbol: Optional[str] = None
-    """
-    point group symbol in Schoenflies notation
-    """
-    spaceGroupSymbol: Optional[str] = None
-    """
-    space group symbol in Hermann–Mauguin notation
-    """
-    tolerance: Optional[ScalarSchema13] = Field(None, title="scalar schema")
-    """
-    tolerance used for symmetry calculation
-    """
-    name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-
-
-class Name107(Enum):
-    elemental_ratio = "elemental_ratio"
-
-
-class ElementalRatio12(BaseModel):
-    name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    value: confloat(ge=0.0, le=1.0)
-    element: Optional[str] = None
-    """
-    the element this ratio is for
-    """
-
-
-class Name108(Enum):
-    p_norm = "p-norm"
-
-
-class PNorm12(BaseModel):
-    name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    degree: Optional[int] = None
-    """
-    degree of the dimensionality of the norm
-    """
-    value: float
-
-
-class Name109(Enum):
-    inchi = "inchi"
-
-
-class InChIRepresentationSchema12(BaseModel):
-    name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    value: str
-
-
-class Name110(Enum):
-    inchi_key = "inchi_key"
-
-
-class InChIKeyRepresentationSchema12(BaseModel):
-    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    value: str
-
-
-class DerivedPropertiesSchema12(
-    RootModel[
-        Union[
-            VolumeSchema12,
-            DensitySchema12,
-            SymmetrySchema12,
-            ElementalRatio12,
-            PNorm12,
-            InChIRepresentationSchema12,
-            InChIKeyRepresentationSchema12,
-        ]
-    ]
-):
-    root: Union[
-        VolumeSchema12,
-        DensitySchema12,
-        SymmetrySchema12,
-        ElementalRatio12,
-        PNorm12,
-        InChIRepresentationSchema12,
-        InChIKeyRepresentationSchema12,
-    ] = Field(..., discriminator="name")
-
-
-class Name111(Enum):
-    default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
-
-
-class MaterialConsistencyCheckSchema12(BaseModel):
-    name: Name111
-    """
-    Name of the consistency check that is performed, which is listed in an enum.
-    """
-    key: str
-    """
-    Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
-    """
-    severity: Severity
-    """
-    Severity level of the problem, which is used in UI to differentiate.
-    """
-    message: str
-    """
-    Message generated by the consistency check describing the problem.
-    """
-
-
-class MaterialSchema12(BaseModel):
-    formula: Optional[str] = None
-    """
-    reduced chemical formula
-    """
-    unitCellFormula: Optional[str] = None
-    """
-    chemical formula based on the number of atoms of each element in the supercell
-    """
-    basis: BasisSchema13 = Field(..., title="basis schema")
-    lattice: LatticeSchema12 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema12]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
-    """
-    information about a database source
-    """
-    src: Optional[FileSourceSchema] = Field(None, title="file source schema")
-    """
-    file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
-    icsdId: Optional[int] = None
-    """
-    Corresponding ICSD id of the material
-    """
-    isNonPeriodic: Optional[bool] = None
-    """
-    Whether to work in the finite molecular picture (usually with atomic orbital basis)
-    """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema12]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class PointDefectPairConfigurationSchema(BaseModel):
     defect_type: Optional[DefectType] = None
     primary_defect_configuration: Union[PointDefectConfigurationSchema, AdatomConfigurationSchema]
     """
-    Configuration for the first defect
+    Primary defect requires explicit crystal definition
     """
-    secondary_defect_configuration: Union[PointDefectConfigurationSchema1, AdatomConfigurationSchema1]
+    secondary_defect_configuration: Union[
+        PointDefectConfigurationWithoutCrystalSchema, AdatomConfigurationWithoutCrystalSchema
+    ]
     """
     Configuration for the second defect
     """
-    crystal: MaterialSchema12 = Field(..., title="material schema")
