@@ -1,8 +1,8 @@
 {
-    "$id": "reusable/material/slab/repetitions",
+    "$id": "core/reusable/material/repetitions",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Crystal Repetitions Schema",
-    "description": "Number of unit cells to repeat in each direction for a crystal structure",
+    "description": "Number of unit cells to repeat in each direction for a crystal structure.",
     "type": "array",
     "items": {
         "type": "integer",
