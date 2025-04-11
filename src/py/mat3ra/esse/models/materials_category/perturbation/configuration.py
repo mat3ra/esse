@@ -454,6 +454,17 @@ class PerturbationConfigurationSchema(BaseModel):
     """
 
 
+class BasePerturbationFunctionHolder(BaseModel):
+    function: str
+    """
+    String representation of the mathematical function
+    """
+    variables: Optional[List[str]] = ["x", "y", "z"]
+    """
+    List of variable names used in the function
+    """
+
+
 class SineWavePerturbationFunctionHolder1(BaseModel):
     type: Literal["SineWavePerturbationFunctionHolder"]
     """

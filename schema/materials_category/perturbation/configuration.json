@@ -1,95 +1,129 @@
 {
-  "$id": "materials-category/perturbation/configuration",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Perturbation Configuration Schema",
-  "description": "Configuration for applying geometric perturbation to a material",
-  "definitions": {
-    "perturbationFunctionHolder": {
-      "title": "Perturbation Function Holder",
-      "description": "Holds a mathematical function for geometric perturbation",
-      "type": "object",
-      "required": ["type", "function", "variables"],
-      "properties": {
-        "type": {
-          "description": "The type of function holder",
-          "type": "string",
-          "const": "PerturbationFunctionHolder"
+    "$id": "materials-category/perturbation/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Perturbation Configuration Schema",
+    "description": "Configuration for applying geometric perturbation to a material",
+    "definitions": {
+        "basePerturbationFunctionHolder": {
+            "title": "Base Perturbation Function Holder",
+            "description": "Base structure for any perturbation function",
+            "type": "object",
+            "required": [
+                "function",
+                "variables"
+            ],
+            "properties": {
+                "function": {
+                    "description": "String representation of the mathematical function",
+                    "type": "string"
+                },
+                "variables": {
+                    "description": "List of variable names used in the function",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "default": [
+                        "x",
+                        "y",
+                        "z"
+                    ]
+                }
+            }
         },
-        "function": {
-          "description": "String representation of the mathematical function",
-          "type": "string"
+        "perturbationFunctionHolder": {
+            "title": "Perturbation Function Holder",
+            "description": "Holds a mathematical function for geometric perturbation",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/basePerturbationFunctionHolder"
+                }
+            ],
+            "required": [
+                "type"
+            ],
+            "properties": {
+                "type": {
+                    "description": "The type of function holder",
+                    "type": "string",
+                    "const": "PerturbationFunctionHolder"
+                }
+            }
         },
-        "variables": {
-          "description": "List of variable names used in the function",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "default": ["x", "y", "z"]
+        "sineWavePerturbationFunctionHolder": {
+            "title": "Sine Wave Perturbation Function Holder",
+            "description": "Holds a sine wave function for geometric perturbation",
+            "allOf": [
+                {
+                    "$ref": "#/definitions/basePerturbationFunctionHolder"
+                }
+            ],
+            "required": [
+                "type",
+                "amplitude",
+                "wavelength",
+                "phase",
+                "axis"
+            ],
+            "properties": {
+                "type": {
+                    "description": "The type of function holder",
+                    "type": "string",
+                    "const": "SineWavePerturbationFunctionHolder"
+                },
+                "amplitude": {
+                    "description": "Amplitude of the sine wave",
+                    "type": "number",
+                    "default": 0.05
+                },
+                "wavelength": {
+                    "description": "Wavelength of the sine wave",
+                    "type": "number",
+                    "default": 1
+                },
+                "phase": {
+                    "description": "Phase of the sine wave",
+                    "type": "number",
+                    "default": 0
+                },
+                "axis": {
+                    "description": "The axis along which the sine wave is applied",
+                    "type": "string",
+                    "enum": [
+                        "x",
+                        "y",
+                        "z"
+                    ],
+                    "default": "x"
+                }
+            }
         }
-      }
     },
-    "sineWavePerturbationFunctionHolder": {
-      "title": "Sine Wave Perturbation Function Holder",
-      "description": "Holds a sine wave function for geometric perturbation",
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/perturbationFunctionHolder"
+    "type": "object",
+    "required": [
+        "material",
+        "perturbation_function"
+    ],
+    "properties": {
+        "material": {
+            "description": "The material to be perturbed",
+            "$ref": "../../material.json"
+        },
+        "perturbation_function": {
+            "description": "The perturbation function to apply",
+            "oneOf": [
+                {
+                    "$ref": "#/definitions/perturbationFunctionHolder"
+                },
+                {
+                    "$ref": "#/definitions/sineWavePerturbationFunctionHolder"
+                }
+            ]
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether to use cartesian coordinates for perturbation",
+            "type": "boolean",
+            "default": true
         }
-      ],
-      "properties": {
-        "type": {
-          "description": "The type of function holder",
-          "type": "string",
-          "const": "SineWavePerturbationFunctionHolder"
-        },
-        "amplitude": {
-          "description": "Amplitude of the sine wave",
-          "type": "number",
-          "default": 0.05
-        },
-        "wavelength": {
-          "description": "Wavelength of the sine wave",
-          "type": "number",
-          "default": 1
-        },
-        "phase": {
-          "description": "Phase of the sine wave",
-          "type": "number",
-          "default": 0
-        },
-        "axis": {
-          "description": "The axis along which the sine wave is applied",
-          "type": "string",
-          "enum": ["x", "y", "z"],
-          "default": "x"
-        }
-      }
     }
-  },
-  "type": "object",
-  "required": ["material", "perturbation_function"],
-  "properties": {
-    "material": {
-      "description": "The material to be perturbed",
-      "$ref": "../../material.json"
-    },
-    "perturbation_function": {
-      "description": "The perturbation function to apply",
-      "oneOf": [
-        {
-          "$ref": "#/definitions/perturbationFunctionHolder"
-        },
-        {
-          "$ref": "#/definitions/sineWavePerturbationFunctionHolder"
-        }
-      ]
-    },
-    "use_cartesian_coordinates": {
-      "description": "Whether to use cartesian coordinates for perturbation",
-      "type": "boolean",
-      "default": true
-    }
-  }
-} 
+}

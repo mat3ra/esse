@@ -13183,19 +13183,19 @@ export interface PerturbationConfigurationSchema {
         /**
          * Amplitude of the sine wave
          */
-        amplitude?: number;
+        amplitude: number;
         /**
          * Wavelength of the sine wave
          */
-        wavelength?: number;
+        wavelength: number;
         /**
          * Phase of the sine wave
          */
-        phase?: number;
+        phase: number;
         /**
          * The axis along which the sine wave is applied
          */
-        axis?: "x" | "y" | "z";
+        axis: "x" | "y" | "z";
         /**
          * String representation of the mathematical function
          */
@@ -13209,6 +13209,22 @@ export interface PerturbationConfigurationSchema {
      * Whether to use cartesian coordinates for perturbation
      */
     use_cartesian_coordinates?: boolean;
+}
+/**
+ * Base structure for any perturbation function
+ *
+ * This interface was referenced by `PerturbationConfigurationSchema`'s JSON-Schema
+ * via the `definition` "basePerturbationFunctionHolder".
+ */
+export interface BasePerturbationFunctionHolder {
+    /**
+     * String representation of the mathematical function
+     */
+    function: string;
+    /**
+     * List of variable names used in the function
+     */
+    variables: string[];
 }
 /**
  * Holds a mathematical function for geometric perturbation
@@ -13244,19 +13260,19 @@ export interface SineWavePerturbationFunctionHolder {
     /**
      * Amplitude of the sine wave
      */
-    amplitude?: number;
+    amplitude: number;
     /**
      * Wavelength of the sine wave
      */
-    wavelength?: number;
+    wavelength: number;
     /**
      * Phase of the sine wave
      */
-    phase?: number;
+    phase: number;
     /**
      * The axis along which the sine wave is applied
      */
-    axis?: "x" | "y" | "z";
+    axis: "x" | "y" | "z";
     /**
      * String representation of the mathematical function
      */

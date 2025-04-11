@@ -4,15 +4,42 @@
     "title": "Perturbation Configuration Schema",
     "description": "Configuration for applying geometric perturbation to a material",
     "definitions": {
-        "perturbationFunctionHolder": {
-            "title": "Perturbation Function Holder",
-            "description": "Holds a mathematical function for geometric perturbation",
+        "basePerturbationFunctionHolder": {
+            "title": "Base Perturbation Function Holder",
+            "description": "Base structure for any perturbation function",
             "type": "object",
             "required": [
-                "type",
                 "function",
                 "variables"
             ],
+            "properties": {
+                "function": {
+                    "description": "String representation of the mathematical function",
+                    "type": "string"
+                },
+                "variables": {
+                    "description": "List of variable names used in the function",
+                    "type": "array",
+                    "default": [
+                        "x",
+                        "y",
+                        "z"
+                    ],
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "perturbationFunctionHolder": {
+            "title": "Perturbation Function Holder",
+            "description": "Holds a mathematical function for geometric perturbation",
+            "required": [
+                "function",
+                "type",
+                "variables"
+            ],
+            "type": "object",
             "properties": {
                 "type": {
                     "description": "The type of function holder",
@@ -40,12 +67,16 @@
         "sineWavePerturbationFunctionHolder": {
             "title": "Sine Wave Perturbation Function Holder",
             "description": "Holds a sine wave function for geometric perturbation",
-            "type": "object",
             "required": [
-                "type",
+                "amplitude",
+                "axis",
                 "function",
-                "variables"
+                "phase",
+                "type",
+                "variables",
+                "wavelength"
             ],
+            "type": "object",
             "properties": {
                 "type": {
                     "description": "The type of function holder",
@@ -722,12 +753,12 @@
                 {
                     "title": "Perturbation Function Holder",
                     "description": "Holds a mathematical function for geometric perturbation",
-                    "type": "object",
                     "required": [
-                        "type",
                         "function",
+                        "type",
                         "variables"
                     ],
+                    "type": "object",
                     "properties": {
                         "type": {
                             "description": "The type of function holder",
@@ -755,12 +786,16 @@
                 {
                     "title": "Sine Wave Perturbation Function Holder",
                     "description": "Holds a sine wave function for geometric perturbation",
-                    "type": "object",
                     "required": [
-                        "type",
+                        "amplitude",
+                        "axis",
                         "function",
-                        "variables"
+                        "phase",
+                        "type",
+                        "variables",
+                        "wavelength"
                     ],
+                    "type": "object",
                     "properties": {
                         "type": {
                             "description": "The type of function holder",
