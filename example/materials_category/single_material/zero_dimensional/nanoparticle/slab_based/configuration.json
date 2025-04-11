@@ -1,0 +1,14 @@
+{
+    "material": {
+        "...": "include(../../../../../material.json)"
+    },
+    "vacuum_padding": 10.0,
+    "dimensions": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 2.0
+    },
+    "shape": "octahedron",
+    "passivant": "H",
+    "bond_length": 1.1
+}

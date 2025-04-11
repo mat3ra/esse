@@ -1,0 +1,10 @@
+{
+    "material": {
+        "...": "include(../../../../../material.json)"
+    },
+    "vacuum_padding": 10.0,
+    "radius": 5.0,
+    "shape": "sphere",
+    "passivant": "H",
+    "bond_length": 1.1
+}
