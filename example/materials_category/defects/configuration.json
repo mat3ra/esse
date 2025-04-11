@@ -1,3 +1,3 @@
 {
-  "crystal": "include(material.json)"
+  "crystal": { "...":"include(../../material.json)"}
 } 
