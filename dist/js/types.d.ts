@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1621,23 +1605,7 @@ export interface DimensionalGridSchema {
  * @minItems 3
  * @maxItems 3
  */
-export type DimensionalTensorSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
 export interface DimensionalVectorBasis {
     /**
@@ -25445,6 +25413,14 @@ export interface TheSourceOfAPropertyThisCouldBeAnArticleASimulationOnExabyteAnE
         }[];
     };
 }
+/** Schema dist/js/schema/reusable/material/repetitions.json */
+/**
+ * Number of unit cells to repeat in each direction for a crystal structure
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type CrystalRepetitionsSchema = [number, number, number];
 /** Schema dist/js/schema/reusable/material/slab/enums.json */
 export interface ReusableMaterialSlabEnums {
     [k: string]: unknown;
@@ -25454,14 +25430,6 @@ export interface ReusableMaterialSlabEnums {
  * Miller indices for crystallographic plane designation
  */
 export type MillerIndicesSchema = [number, number, number] | [boolean, boolean, boolean];
-/** Schema dist/js/schema/reusable/material/slab/repetitions.json */
-/**
- * Number of unit cells to repeat in each direction for a crystal structure
- *
- * @minItems 3
- * @maxItems 3
- */
-export type CrystalRepetitionsSchema = [number, number, number];
 /** Schema dist/js/schema/reusable/material/slab/termination.json */
 /**
  * Defines a specific termination of a slab
@@ -25501,23 +25469,7 @@ export type SupercellMatrix2DSchema = [[number, number], [number, number]];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**
