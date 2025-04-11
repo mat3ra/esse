@@ -25415,7 +25415,7 @@ export interface TheSourceOfAPropertyThisCouldBeAnArticleASimulationOnExabyteAnE
 }
 /** Schema dist/js/schema/reusable/material/repetitions.json */
 /**
- * Number of unit cells to repeat in each direction for a crystal structure
+ * Number of unit cells to repeat in each direction for a crystal structure.
  *
  * @minItems 3
  * @maxItems 3

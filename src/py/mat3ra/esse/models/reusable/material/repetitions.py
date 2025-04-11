@@ -21,5 +21,5 @@ class CrystalRepetitionsSchema(RootModel[Optional[List[CrystalRepetitionsSchemaI
         title="Crystal Repetitions Schema",
     )
     """
-    Number of unit cells to repeat in each direction for a crystal structure
+    Number of unit cells to repeat in each direction for a crystal structure.
     """
