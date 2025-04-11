@@ -1,0 +1,15 @@
+{
+    "film": {
+        "...": "include(../../../../material.json)"
+    },
+    "substrate": {
+        "...": "include(../../../../material.json)"
+    },
+    "twist_angle": 30.0,
+    "distance_z": 3.0,
+    "vacuum": 15.0,
+    "ribbon_width": 5,
+    "ribbon_length": 10,
+    "vacuum_x": 10.0,
+    "vacuum_y": 10.0
+}
