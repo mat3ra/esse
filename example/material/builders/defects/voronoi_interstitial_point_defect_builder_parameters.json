@@ -1,0 +1,7 @@
+{
+    "clustering_tol": 0.5,
+    "min_dist": 0.9,
+    "ltol": 0.2,
+    "stol": 0.3,
+    "angle_tol": 5
+}
