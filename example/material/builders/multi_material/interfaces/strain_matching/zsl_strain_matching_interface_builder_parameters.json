@@ -1,13 +1,8 @@
 {
-    "$id": "material/builders/multi-material/interfaces/strain-matching/zsl-strain-matching-interface-builder-parameters",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ZSL Strain Matching Interface Builder Parameters Schema",
-    "description": "Parameters for the ZSL strain matching interface builder",
-    "type": "object",
-    "properties": {
-        "strain_matching_parameters": {
-            "description": "Parameters for ZSL strain matching",
-            "$ref": "zsl_strain_matching_parameters.json"
-        }
+    "strain_matching_parameters": {
+        "max_area": 50.0,
+        "max_area_ratio_tol": 0.09,
+        "max_length_tol": 0.03,
+        "max_angle_tol": 0.01
     }
 }
