@@ -1,19 +1,4 @@
 {
-    "$id": "material/builders/passivation/surface/builder_parameters",
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Surface Passivation Builder Parameters Schema",
-    "description": "Parameters for the SurfacePassivationBuilder, defining how atoms near the surface are detected and passivated",
-    "type": "object",
-    "properties": {
-        "shadowing_radius": {
-            "description": "Radius around each surface atom to exclude underlying atoms from passivation",
-            "type": "number",
-            "default": 2.5
-        },
-        "depth": {
-            "description": "Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces",
-            "type": "number",
-            "default": 5.0
-        }
-    }
+    "shadowing_radius": 2.5,
+    "depth": 5.0
 }
