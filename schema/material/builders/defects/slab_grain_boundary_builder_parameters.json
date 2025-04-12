@@ -1,5 +1,5 @@
 {
-    "$id": "material/builders/multi-material/interfaces/slab-grain-boundary-builder-parameters",
+    "$id": "material/builders/defects/slab-grain-boundary-builder-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Slab Grain Boundary Builder Parameters Schema",
     "description": "Parameters for the slab grain boundary builder",
