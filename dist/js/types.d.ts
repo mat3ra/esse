@@ -6222,6 +6222,67 @@ export interface SlabDefectBuilderParametersSchema {
      */
     vacuum_thickness?: number;
 }
+/** Schema dist/js/schema/material/builders/defects/slab_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for the slab grain boundary builder
+ */
+export interface SlabGrainBoundaryBuilderParametersSchema {
+    /**
+     * Parameters for ZSL strain matching
+     */
+    strain_matching_parameters?: {
+        /**
+         * Maximum area for strain matching
+         */
+        max_area?: number;
+        /**
+         * Maximum area ratio tolerance
+         */
+        max_area_ratio_tol?: number;
+        /**
+         * Maximum length tolerance
+         */
+        max_length_tol?: number;
+        /**
+         * Maximum angle tolerance
+         */
+        max_angle_tol?: number;
+    };
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/defects/surface_grain_boundary_builder_parameters.json */
+/**
+ * Parameters for creating a grain boundary between two surface phases
+ */
+export interface SurfaceGrainBoundaryBuilderParametersSchema {
+    /**
+     * The tolerance to include atoms on the edge of each phase, in angstroms
+     */
+    edge_inclusion_tolerance?: number;
+    /**
+     * The distance tolerance to remove atoms that are too close, in angstroms
+     */
+    distance_tolerance?: number;
+    /**
+     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
+     */
+    max_supercell_matrix_int?: number | null;
+    /**
+     * The limit for the maximum integer for the transformation matrices when searching
+     */
+    limit_max_int?: number | null;
+    /**
+     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
+     */
+    angle_tolerance?: number;
+    /**
+     * Whether to return the first match or all matches.
+     */
+    return_first_match?: boolean;
+}
 /** Schema dist/js/schema/material/builders/defects/voronoi_interstitial_point_defect_builder_parameters.json */
 /**
  * Parameters for the Voronoi interstitial point defect builder
@@ -6261,37 +6322,6 @@ export interface SimpleInterfaceBuilderParametersSchema {
      * Whether to create slabs from the configurations or use the bulk
      */
     create_slabs?: boolean;
-}
-/** Schema dist/js/schema/material/builders/multi_material/interfaces/slab_grain_boundary_builder_parameters.json */
-/**
- * Parameters for the slab grain boundary builder
- */
-export interface SlabGrainBoundaryBuilderParametersSchema {
-    /**
-     * Parameters for ZSL strain matching
-     */
-    strain_matching_parameters?: {
-        /**
-         * Maximum area for strain matching
-         */
-        max_area?: number;
-        /**
-         * Maximum area ratio tolerance
-         */
-        max_area_ratio_tol?: number;
-        /**
-         * Maximum length tolerance
-         */
-        max_length_tol?: number;
-        /**
-         * Maximum angle tolerance
-         */
-        max_angle_tol?: number;
-    };
-    /**
-     * Default index for the selector
-     */
-    default_index?: number;
 }
 /** Schema dist/js/schema/material/builders/multi_material/interfaces/strain_matching/builder_parameters.json */
 /**
@@ -6351,36 +6381,6 @@ export interface ZSLStrainMatchingParametersSchema {
      * Maximum angle tolerance
      */
     max_angle_tol?: number;
-}
-/** Schema dist/js/schema/material/builders/multi_material/interfaces/surface_grain_boundary_builder_parameters.json */
-/**
- * Parameters for creating a grain boundary between two surface phases
- */
-export interface SurfaceGrainBoundaryBuilderParametersSchema {
-    /**
-     * The tolerance to include atoms on the edge of each phase, in angstroms
-     */
-    edge_inclusion_tolerance?: number;
-    /**
-     * The distance tolerance to remove atoms that are too close, in angstroms
-     */
-    distance_tolerance?: number;
-    /**
-     * The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.
-     */
-    max_supercell_matrix_int?: number | null;
-    /**
-     * The limit for the maximum integer for the transformation matrices when searching
-     */
-    limit_max_int?: number | null;
-    /**
-     * The tolerance for the angle between the commensurate lattices and the target angle, in degrees.
-     */
-    angle_tolerance?: number;
-    /**
-     * Whether to return the first match or all matches.
-     */
-    return_first_match?: boolean;
 }
 /** Schema dist/js/schema/material/builders/multi_material/interfaces/twisted/commensurate_lattice_twisted_interface_builder_parameters.json */
 /**
