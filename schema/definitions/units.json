@@ -50,7 +50,7 @@
             "J/mol",
             "hartree",
             "cm-1",
-            "rydberg",
+            "Ry",
             "eV/atom"
         ]
     },
@@ -71,7 +71,7 @@
         "enum": [
             "eV/bohr",
             "eV/angstrom",
-            "rydberg/a.u.",
+            "Ry/a.u.",
             "newton",
             "kg*m/s^2",
             "eV/a.u."

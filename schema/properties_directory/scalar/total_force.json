@@ -16,7 +16,7 @@
             "enum": [
                 "eV/bohr",
                 "eV/angstrom",
-                "rydberg/a.u.",
+                "Ry/a.u.",
                 "newton",
                 "kg*m/s^2",
                 "eV/a.u."
