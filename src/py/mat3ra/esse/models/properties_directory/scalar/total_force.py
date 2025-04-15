@@ -17,7 +17,7 @@ class Name(Enum):
 class Units(Enum):
     eV_bohr = "eV/bohr"
     eV_angstrom = "eV/angstrom"
-    rydberg_a_u_ = "rydberg/a.u."
+    Ry_a_u_ = "Ry/a.u."
     newton = "newton"
     kg_m_s_2 = "kg*m/s^2"
     eV_a_u_ = "eV/a.u."

@@ -56,7 +56,23 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
+        lattice_mat?: [
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ]
+        ];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1605,7 +1621,23 @@ export interface DimensionalGridSchema {
  * @minItems 3
  * @maxItems 3
  */
-export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
+export type DimensionalTensorSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
 export interface DimensionalVectorBasis {
     /**
@@ -2619,7 +2651,7 @@ export interface BandGapSchema {
     eigenvalueValence?: number;
     spin?: number;
     type: "direct" | "indirect";
-    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/categories.json */
@@ -2720,7 +2752,19 @@ export interface DielectricTensor {
 /** Schema dist/js/schema/core/reusable/energy.json */
 export interface EnergySchema {
     name: string;
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
+/** Schema dist/js/schema/core/reusable/energy_accuracy_levels.json */
+export interface ReusableSchemaForEnergyValueWithUnitCorrespondingToASpecificAccuracyLevelEGUsedForSuggestedWavefunctionAndChargeDensityCutoffs {
+    /**
+     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+     */
+    unit: "Ry";
+    /**
+     * Accuracy level determines suggested scalar value.
+     */
+    accuracy_level: "standard" | "low" | "high";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/file_metadata.json */
@@ -2779,6 +2823,14 @@ export interface ObjectStorageContainerData {
      */
     TIMESTAMP?: string;
 }
+/** Schema dist/js/schema/core/reusable/scalar_with_accuracy_levels.json */
+export interface ReusableSchemaForScalarValuesWithAccuracyLevels {
+    /**
+     * Accuracy level determines suggested scalar value.
+     */
+    accuracy_level: "standard" | "low" | "high";
+    value: number;
+}
 /** Schema dist/js/schema/definitions/constants.json */
 /**
  * Fundamental physical constants, 2022 NIST CODATA (https://doi.org/10.48550/arXiv.2409.03787)
@@ -2835,7 +2887,7 @@ export interface ElementSchema {
         value: number;
     } | {
         name?: "ionization_potential";
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         value: number;
     })[];
 }
@@ -11790,6 +11842,39 @@ export interface PseudopotentialFile {
          * name of the data category
          */
         name?: "pseudopotential";
+        /**
+         * Suggested cutoff values for wave function and charge density.
+         */
+        cutoffs?: {
+            /**
+             * Energy cutoff values for wavefunction plane wave expansion.
+             */
+            wavefunction?: {
+                /**
+                 * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                 */
+                unit: "Ry";
+                /**
+                 * Accuracy level determines suggested scalar value.
+                 */
+                accuracy_level: "standard" | "low" | "high";
+                value: number;
+            }[];
+            /**
+             * Energy cutoff values for charge density plane wave expansion.
+             */
+            density?: {
+                /**
+                 * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                 */
+                unit: "Ry";
+                /**
+                 * Accuracy level determines suggested scalar value.
+                 */
+                accuracy_level: "standard" | "low" | "high";
+                value: number;
+            }[];
+        };
     };
     /**
      * TODO: remove in the future
@@ -11861,6 +11946,39 @@ export interface FileDataItem {
      * name of the data category
      */
     name?: "pseudopotential";
+    /**
+     * Suggested cutoff values for wave function and charge density.
+     */
+    cutoffs?: {
+        /**
+         * Energy cutoff values for wavefunction plane wave expansion.
+         */
+        wavefunction?: {
+            /**
+             * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+             */
+            unit: "Ry";
+            /**
+             * Accuracy level determines suggested scalar value.
+             */
+            accuracy_level: "standard" | "low" | "high";
+            value: number;
+        }[];
+        /**
+         * Energy cutoff values for charge density plane wave expansion.
+         */
+        density?: {
+            /**
+             * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+             */
+            unit: "Ry";
+            /**
+             * Accuracy level determines suggested scalar value.
+             */
+            accuracy_level: "standard" | "low" | "high";
+            value: number;
+        }[];
+    };
 }
 /** Schema dist/js/schema/methods_directory/physical/psp.json */
 /**
@@ -12000,6 +12118,39 @@ export interface UnitMethodPseudopotential {
              * name of the data category
              */
             name?: "pseudopotential";
+            /**
+             * Suggested cutoff values for wave function and charge density.
+             */
+            cutoffs?: {
+                /**
+                 * Energy cutoff values for wavefunction plane wave expansion.
+                 */
+                wavefunction?: {
+                    /**
+                     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                     */
+                    unit: "Ry";
+                    /**
+                     * Accuracy level determines suggested scalar value.
+                     */
+                    accuracy_level: "standard" | "low" | "high";
+                    value: number;
+                }[];
+                /**
+                 * Energy cutoff values for charge density plane wave expansion.
+                 */
+                density?: {
+                    /**
+                     * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
+                     */
+                    unit: "Ry";
+                    /**
+                     * Accuracy level determines suggested scalar value.
+                     */
+                    accuracy_level: "standard" | "low" | "high";
+                    value: number;
+                }[];
+            };
         };
         /**
          * TODO: remove in the future
@@ -15418,7 +15569,7 @@ export interface Electronegativity {
  */
 export interface IonizationPotential {
     name?: "ionization_potential";
-    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/average_potential_profile.json */
@@ -15441,7 +15592,7 @@ export interface AveragePotentialProfileSchema {
         /**
          * units for an axis
          */
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name?: "average_potential_profile";
     /**
@@ -15483,7 +15634,7 @@ export interface BandGapsSchema {
         eigenvalueValence?: number;
         spin?: number;
         type: "direct" | "indirect";
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         value: number;
     }[];
     eigenvalues?: {
@@ -15520,7 +15671,7 @@ export interface BandStructureSchema {
         /**
          * units for an axis
          */
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name?: "band_structure";
     /**
@@ -15584,7 +15735,7 @@ export interface DensityOfStatesSchema {
         /**
          * units for an axis
          */
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     yAxis: {
         /**
@@ -15895,7 +16046,7 @@ export interface PotentialProfileSchema {
         /**
          * units for an axis
          */
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name?: "potential_profile";
     /**
@@ -15930,7 +16081,7 @@ export interface ReactionEnergyProfileSchema {
         /**
          * units for an axis
          */
-        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name?: "reaction_energy_profile";
     /**
@@ -16049,7 +16200,7 @@ export interface TotalEnergyContributionsSchema {
         value: number;
     };
     name?: "total_energy_contributions";
-    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom";
+    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/vibrational_spectrum.json */
 export interface VibrationalSpectrumSchema {
@@ -16089,25 +16240,25 @@ export interface VibrationalSpectrumSchema {
 /** Schema dist/js/schema/properties_directory/scalar/electron_affinity.json */
 export interface ElectronAffinitySchema {
     name: "electron_affinity";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/fermi_energy.json */
 export interface FermiEnergySchema {
     name: "fermi_energy";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/formation_energy.json */
 export interface FormationEnergySchema {
     name: "formation_energy";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/ionization_potential.json */
 export interface IonizationPotentialSchema {
     name: "ionization_potential";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/pressure.json */
@@ -16122,37 +16273,37 @@ export interface Pressure {
 /** Schema dist/js/schema/properties_directory/scalar/reaction_energy_barrier.json */
 export interface ReactionEnergyBarrierSchema {
     name: "reaction_energy_barrier";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/surface_energy.json */
 export interface SurfaceEnergySchema {
     name: "surface_energy";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/total_energy.json */
 export interface TotalEnergySchema {
     name: "total_energy";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/total_force.json */
 export interface TotalForcesSchema {
     name?: "total_force";
-    units?: "eV/bohr" | "eV/angstrom" | "rydberg/a.u." | "newton" | "kg*m/s^2" | "eV/a.u.";
+    units?: "eV/bohr" | "eV/angstrom" | "Ry/a.u." | "newton" | "kg*m/s^2" | "eV/a.u.";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/valence_band_offset.json */
 export interface ValenceBandOffsetSchema {
     name: "valence_band_offset";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/zero_point_energy.json */
 export interface ZeroPointEnergySchema {
     name: "zero_point_energy";
-    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "rydberg" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/atomic_forces.json */
@@ -16171,7 +16322,7 @@ export interface AtomicForces {
          */
         id?: number;
     }[];
-    units?: "eV/bohr" | "eV/angstrom" | "rydberg/a.u." | "newton" | "kg*m/s^2" | "eV/a.u.";
+    units?: "eV/bohr" | "eV/angstrom" | "Ry/a.u." | "newton" | "kg*m/s^2" | "eV/a.u.";
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_constraints.json */
 /**
@@ -16586,7 +16737,7 @@ export interface VolumeSchema {
 /** Schema dist/js/schema/properties_directory/workflow/convergence/electronic.json */
 export interface ElectronicSelfConsistencyConvergenceSchema {
     name?: "convergence_electronic";
-    units?: "eV" | "rydberg" | "hartree";
+    units?: "eV" | "Ry" | "hartree";
     data: number[][];
 }
 /** Schema dist/js/schema/properties_directory/workflow/convergence/ionic.json */
@@ -16621,7 +16772,7 @@ export interface IonicConvergenceSchema {
             /**
              * units for force tolerance
              */
-            units?: "eV" | "rydberg" | "hartree";
+            units?: "eV" | "Ry" | "hartree";
             data?: number[];
         };
     }[];

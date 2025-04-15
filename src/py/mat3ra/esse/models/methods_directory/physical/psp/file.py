@@ -7,7 +7,11 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
+
+from .Reusable_schema_for_energy_value_with_unit_corresponding_to_a_specific_accuracy_level__e import (
+    g,
+)
 
 
 class Slug(Enum):
@@ -52,6 +56,20 @@ class Name(Enum):
     pseudopotential = "pseudopotential"
 
 
+class Cutoffs(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    """
+    Energy cutoff values for wavefunction plane wave expansion.
+    """
+    density: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    """
+    Energy cutoff values for charge density plane wave expansion.
+    """
+
+
 class FileDataItem(BaseModel):
     element: str
     """
@@ -90,6 +108,10 @@ class FileDataItem(BaseModel):
     name: Optional[Name] = None
     """
     name of the data category
+    """
+    cutoffs: Optional[Cutoffs] = None
+    """
+    Suggested cutoff values for wave function and charge density.
     """
 
 

@@ -58,7 +58,7 @@
                         "J/mol",
                         "hartree",
                         "cm-1",
-                        "rydberg",
+                        "Ry",
                         "eV/atom"
                     ],
                     "description": "units for an axis",
