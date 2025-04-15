@@ -1,23 +1,14 @@
 {
     "$id": "core/reusable/energy-accuracy-levels",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Reusable schema for accuracy levels with value and energy unit",
+    "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
     "type": "object",
     "allOf": [
         {
-            "$ref": "../primitive/scalar.json"
+            "$ref": "./scalar_with_accuracy_levels.json"
         }
     ],
     "properties": {
-        "accuracy_level": {
-            "description": "Parameter value suitable for a specific accuracy level.",
-            "type": "string",
-            "enum": [
-                "standard",
-                "low",
-                "high"
-            ]
-        },
         "unit": {
             "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
             "type": "string",
@@ -27,7 +18,6 @@
         }
     },
     "required": [
-        "accuracy_level",
         "unit"
     ]
 }

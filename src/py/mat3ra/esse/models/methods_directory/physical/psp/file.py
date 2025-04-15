@@ -9,6 +9,10 @@ from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
 
+from .Reusable_schema_for_energy_value_with_unit_corresponding_to_a_specific_accuracy_level__e import (
+    g,
+)
+
 
 class Slug(Enum):
     pseudopotential = "pseudopotential"
@@ -52,49 +56,15 @@ class Name(Enum):
     pseudopotential = "pseudopotential"
 
 
-class AccuracyLevel(Enum):
-    standard = "standard"
-    low = "low"
-    high = "high"
-
-
-class Unit(Enum):
-    Ry = "Ry"
-
-
-class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit(BaseModel):
-    accuracy_level: AccuracyLevel
-    """
-    Parameter value suitable for a specific accuracy level.
-    """
-    unit: Unit
-    """
-    Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
-    """
-    value: float
-
-
-class ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit2(BaseModel):
-    accuracy_level: AccuracyLevel
-    """
-    Parameter value suitable for a specific accuracy level.
-    """
-    unit: Unit
-    """
-    Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
-    """
-    value: float
-
-
 class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wavefunction: Optional[List[ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit]] = None
+    wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for wavefunction plane wave expansion.
     """
-    density: Optional[List[ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit2]] = None
+    density: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for charge density plane wave expansion.
     """

@@ -2756,15 +2756,15 @@ export interface EnergySchema {
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/energy_accuracy_levels.json */
-export interface ReusableSchemaForAccuracyLevelsWithValueAndEnergyUnit {
-    /**
-     * Parameter value suitable for a specific accuracy level.
-     */
-    accuracy_level: "standard" | "low" | "high";
+export interface ReusableSchemaForEnergyValueWithUnitCorrespondingToASpecificAccuracyLevelEGUsedForSuggestedWavefunctionAndChargeDensityCutoffs {
     /**
      * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
      */
     unit: "Ry";
+    /**
+     * Accuracy level determines suggested scalar value.
+     */
+    accuracy_level: "standard" | "low" | "high";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/file_metadata.json */
@@ -2822,6 +2822,14 @@ export interface ObjectStorageContainerData {
      * Unix timestamp showing when the file was last modified
      */
     TIMESTAMP?: string;
+}
+/** Schema dist/js/schema/core/reusable/scalar_with_accuracy_levels.json */
+export interface ReusableSchemaForScalarValuesWithAccuracyLevels {
+    /**
+     * Accuracy level determines suggested scalar value.
+     */
+    accuracy_level: "standard" | "low" | "high";
+    value: number;
 }
 /** Schema dist/js/schema/definitions/constants.json */
 /**
@@ -11843,13 +11851,13 @@ export interface PseudopotentialFile {
              */
             wavefunction?: {
                 /**
-                 * Parameter value suitable for a specific accuracy level.
-                 */
-                accuracy_level: "standard" | "low" | "high";
-                /**
                  * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
                  */
                 unit: "Ry";
+                /**
+                 * Accuracy level determines suggested scalar value.
+                 */
+                accuracy_level: "standard" | "low" | "high";
                 value: number;
             }[];
             /**
@@ -11857,13 +11865,13 @@ export interface PseudopotentialFile {
              */
             density?: {
                 /**
-                 * Parameter value suitable for a specific accuracy level.
-                 */
-                accuracy_level: "standard" | "low" | "high";
-                /**
                  * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
                  */
                 unit: "Ry";
+                /**
+                 * Accuracy level determines suggested scalar value.
+                 */
+                accuracy_level: "standard" | "low" | "high";
                 value: number;
             }[];
         };
@@ -11947,13 +11955,13 @@ export interface FileDataItem {
          */
         wavefunction?: {
             /**
-             * Parameter value suitable for a specific accuracy level.
-             */
-            accuracy_level: "standard" | "low" | "high";
-            /**
              * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
              */
             unit: "Ry";
+            /**
+             * Accuracy level determines suggested scalar value.
+             */
+            accuracy_level: "standard" | "low" | "high";
             value: number;
         }[];
         /**
@@ -11961,13 +11969,13 @@ export interface FileDataItem {
          */
         density?: {
             /**
-             * Parameter value suitable for a specific accuracy level.
-             */
-            accuracy_level: "standard" | "low" | "high";
-            /**
              * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
              */
             unit: "Ry";
+            /**
+             * Accuracy level determines suggested scalar value.
+             */
+            accuracy_level: "standard" | "low" | "high";
             value: number;
         }[];
     };
@@ -12119,13 +12127,13 @@ export interface UnitMethodPseudopotential {
                  */
                 wavefunction?: {
                     /**
-                     * Parameter value suitable for a specific accuracy level.
-                     */
-                    accuracy_level: "standard" | "low" | "high";
-                    /**
                      * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
                      */
                     unit: "Ry";
+                    /**
+                     * Accuracy level determines suggested scalar value.
+                     */
+                    accuracy_level: "standard" | "low" | "high";
                     value: number;
                 }[];
                 /**
@@ -12133,13 +12141,13 @@ export interface UnitMethodPseudopotential {
                  */
                 density?: {
                     /**
-                     * Parameter value suitable for a specific accuracy level.
-                     */
-                    accuracy_level: "standard" | "low" | "high";
-                    /**
                      * Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.
                      */
                     unit: "Ry";
+                    /**
+                     * Accuracy level determines suggested scalar value.
+                     */
+                    accuracy_level: "standard" | "low" | "high";
                     value: number;
                 }[];
             };
