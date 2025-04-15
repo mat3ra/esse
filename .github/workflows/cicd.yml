@@ -38,11 +38,11 @@ jobs:
     strategy:
       matrix:
         python-version:
-          - "3.9"
-          - "3.10"
-          - "3.11"
-          - "3.12"
-          - "3.13"
+          - 3.9.x
+          - 3.10.x
+          - 3.11.x
+          - 3.12.x
+          - 3.13.x
 
     steps:
       - name: Checkout this repository
