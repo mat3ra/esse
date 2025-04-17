@@ -43,16 +43,8 @@ class BasisSchema(BaseModel):
 
 
 class Units40(Enum):
-    km = "km"
-    m = "m"
-    cm = "cm"
-    mm = "mm"
-    um = "um"
-    nm = "nm"
     angstrom = "angstrom"
-    a_u_ = "a.u."
     bohr = "bohr"
-    pm = "pm"
 
 
 class LatticeExplicitUnit(BaseModel):
@@ -60,7 +52,7 @@ class LatticeExplicitUnit(BaseModel):
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units40] = None
+    units: Optional[Units40] = "angstrom"
     a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
