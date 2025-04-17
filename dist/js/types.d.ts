@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -156,19 +140,7 @@ export interface AtomicSpeciesSchema {
     }[];
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell.json */
-export type CellSchema = CellSchema1 & CellSchema2;
-export type CellSchema2 = {
-    /**
-     * CASE ( calculation == 'vc-relax' )
-     */
-    cell_dynamics?: "none" | "sd" | "damp-pr" | "damp-w" | "bfgs";
-} | {
-    /**
-     * CASE ( calculation == 'vc-md' )
-     */
-    cell_dynamics?: "none" | "pr" | "w";
-};
-export interface CellSchema1 {
+export type CellSchema = {
     /**
      * Target pressure [KBar] in a variable-cell md or relaxation run.
      */
@@ -189,7 +161,17 @@ export interface CellSchema1 {
      * Select which of the cell parameters should be moved
      */
     cell_dofree?: "all" | "ibrav" | "a" | "b" | "c" | "fixa" | "fixb" | "fixc" | "x" | "y" | "xy" | "xz" | "xyz" | "shape" | "volume" | "2Dxy" | "2Dshape" | "epitaxial_ab" | "epitaxial_ac" | "epitaxial_bc";
-}
+} & ({
+    /**
+     * CASE ( calculation == 'vc-relax' )
+     */
+    cell_dynamics?: "none" | "sd" | "damp-pr" | "damp-w" | "bfgs";
+} | {
+    /**
+     * CASE ( calculation == 'vc-md' )
+     */
+    cell_dynamics?: "none" | "pr" | "w";
+});
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell_parameters.json */
 export interface CellParametersSchema {
     /**
@@ -552,29 +534,7 @@ export interface HubbardSchema {
     })[];
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/ions.json */
-export type IonsSchema = IonsSchema1 & IonsSchema2;
-export type IonsSchema2 = {
-    /**
-     * CASE: calculation == 'relax'
-     */
-    ion_dynamics?: "bfgs" | "damp" | "fire";
-} | {
-    /**
-     * CASE: calculation == 'md'
-     */
-    ion_dynamics?: "verlet" | "langevin" | "langevin-smc";
-} | {
-    /**
-     * CASE: calculation == 'vc-relax'
-     */
-    ion_dynamics?: "bfgs" | "damp";
-} | {
-    /**
-     * CASE: calculation == 'vc-md'
-     */
-    ion_dynamics?: "beeman";
-};
-export interface IonsSchema1 {
+export type IonsSchema = {
     ion_positions?: "default" | "from_input";
     ion_velocities?: "default" | "from_input";
     /**
@@ -653,7 +613,27 @@ export interface IonsSchema1 {
      * Determines the maximum value of dt in the FIRE minimization; dtmax = fire_dtmax*dt
      */
     fire_dtmax?: number;
-}
+} & ({
+    /**
+     * CASE: calculation == 'relax'
+     */
+    ion_dynamics?: "bfgs" | "damp" | "fire";
+} | {
+    /**
+     * CASE: calculation == 'md'
+     */
+    ion_dynamics?: "verlet" | "langevin" | "langevin-smc";
+} | {
+    /**
+     * CASE: calculation == 'vc-relax'
+     */
+    ion_dynamics?: "bfgs" | "damp";
+} | {
+    /**
+     * CASE: calculation == 'vc-md'
+     */
+    ion_dynamics?: "beeman";
+});
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/k_points.json */
 export interface KPointsSchema {
     card_option?: "tpiba" | "automatic" | "crystal" | "gamma" | "tpiba_b" | "crystal_b" | "tpiba_c" | "crystal_c";
@@ -694,8 +674,7 @@ export interface KPointsSchema {
     } | null;
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/system.json */
-export type SystemSchema = SystemSchema1 & SystemSchema2;
-export type SystemSchema1 = {
+export type SystemSchema = ({
     /**
      * @minItems 6
      * @maxItems 6
@@ -708,8 +687,7 @@ export type SystemSchema1 = {
     cosAB?: number;
     cosAC?: number;
     cosBC?: number;
-};
-export interface SystemSchema2 {
+}) & {
     ibrav: number;
     /**
      * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
@@ -1073,7 +1051,7 @@ export interface SystemSchema2 {
      * Number of activated external ionic force fields.
      */
     nextffield?: number;
-}
+};
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x.json */
 export interface PwxMainSchema {
     "&CONTROL"?: {
@@ -1621,23 +1599,7 @@ export interface DimensionalGridSchema {
  * @minItems 3
  * @maxItems 3
  */
-export type DimensionalTensorSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
 export interface DimensionalVectorBasis {
     /**
@@ -6197,7 +6159,7 @@ export interface MaterialSchema {
              * lattice parameter for fractional coordinates
              */
             alat?: number;
-            units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
+            units?: "angstrom" | "bohr";
             /**
              * @minItems 3
              * @maxItems 3
@@ -12779,8 +12741,13 @@ export interface SpinPolarizationMixin {
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/model/model_parameters.json */
-export type ModelParameters = ModelParameters1 & ModelParameters2;
-export type ModelParameters2 = {
+export type ModelParameters = {
+    hubbardType?: "u";
+    spinPolarization?: "collinear" | "non-collinear";
+    spinOrbitCoupling?: boolean;
+    dispersionCorrection?: "dft-d2" | "dft-d3" | "xdm" | "ts";
+    [k: string]: unknown;
+} & ({
     functional?: "pz";
     [k: string]: unknown;
 } | {
@@ -12793,14 +12760,7 @@ export type ModelParameters2 = {
     functional?: "hse06" | "b3lyp";
 } | {
     functional?: "b2plyp";
-};
-export interface ModelParameters1 {
-    hubbardType?: "u";
-    spinPolarization?: "collinear" | "non-collinear";
-    spinOrbitCoupling?: boolean;
-    dispersionCorrection?: "dft-d2" | "dft-d3" | "xdm" | "ts";
-    [k: string]: unknown;
-}
+});
 /** Schema dist/js/schema/model/model_without_method.json */
 export interface ModelWithoutMethodSchemaBase {
     /**
@@ -14999,18 +14959,7 @@ export interface ModelLocalDensityApproximation {
     tags?: string[];
 }
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
-export type LegacyModelDensityFunctionalTheory = LegacyModelDensityFunctionalTheory1 & LegacyModelDensityFunctionalTheory2;
-export type LegacyModelDensityFunctionalTheory2 = {
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
-} | {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
-} | {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
-};
-export interface LegacyModelDensityFunctionalTheory1 {
+export type LegacyModelDensityFunctionalTheory = {
     /**
      * general type of the model, eg. `dft`
      */
@@ -15038,9 +14987,18 @@ export interface LegacyModelDensityFunctionalTheory1 {
         data?: {};
     };
     [k: string]: unknown;
-}
+} & ({
+    subtype?: "lda";
+    functional?: "pz" | "pw" | "vwn" | "other";
+} | {
+    subtype?: "gga";
+    functional?: "pbe" | "pbesol" | "pw91" | "other";
+} | {
+    subtype?: "hybrid";
+    functional?: "b3lyp" | "hse06";
+});
 /**
- * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
+ * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "lda".
  */
 export interface Lda {
@@ -15048,7 +15006,7 @@ export interface Lda {
     functional?: "pz" | "pw" | "vwn" | "other";
 }
 /**
- * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
+ * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "gga".
  */
 export interface Gga {
@@ -15056,7 +15014,7 @@ export interface Gga {
     functional?: "pbe" | "pbesol" | "pw91" | "other";
 }
 /**
- * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
+ * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "hybrid".
  */
 export interface Hybrid {
@@ -16493,7 +16451,7 @@ export interface LatticeExplicitUnit {
      * lattice parameter for fractional coordinates
      */
     alat?: number;
-    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
+    units?: "angstrom" | "bohr";
     /**
      * @minItems 3
      * @maxItems 3
@@ -16521,7 +16479,7 @@ export interface LatticeSchema {
          * lattice parameter for fractional coordinates
          */
         alat?: number;
-        units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
+        units?: "angstrom" | "bohr";
         /**
          * @minItems 3
          * @maxItems 3

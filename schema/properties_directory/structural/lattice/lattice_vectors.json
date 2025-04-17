@@ -15,7 +15,7 @@
             "default": 1
         },
         "units": {
-            "$ref": "../../../definitions/units.json#/length"
+            "$ref": "../../../definitions/units.json#/length_atomic"
         }
     }
 }
