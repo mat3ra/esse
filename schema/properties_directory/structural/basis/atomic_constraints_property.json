@@ -1,0 +1,17 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-constraints-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic constraints property schema",
+    "description": "atomic constraints property schema (as stored in a database)",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "atomic_constraints"
+            ]
+        },
+        "values": {
+            "$ref": "./atomic_constraints.json"
+        }
+    }
+}

@@ -11,11 +11,11 @@
     "properties": {
         "kpointConduction": {
             "description": "kpoint inside conduction band in crystal coordinates",
-            "$ref": "../abstract/point.json"
+            "$ref": "../reusable/kpoint.json"
         },
         "kpointValence": {
             "description": "kpoint inside valence band in crystal coordinates",
-            "$ref": "../abstract/point.json"
+            "$ref": "../reusable/kpoint.json"
         },
         "eigenvalueConduction": {
             "description": "eigenvalue at k-point in conduction band",
