@@ -1,5 +1,5 @@
 {
-    "$id": "core/abstract/coordinate_3d",
+    "$id": "core/abstract/coordinate-3d",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "coordinate 3d schema",
     "allOf": [

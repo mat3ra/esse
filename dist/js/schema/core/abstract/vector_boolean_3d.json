@@ -1,5 +1,5 @@
 {
-    "$id": "core/abstract/vector_boolean_3d",
+    "$id": "core/abstract/vector-boolean-3d",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "vector boolean 3d schema",
     "oneOf": [
