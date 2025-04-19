@@ -3,12 +3,19 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "lattice vectors schema",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../../../core/abstract/3d_vector_basis.json"
-        }
-    ],
     "properties": {
+        "a": {
+            "description": "first vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
+        "b": {
+            "description": "second vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
+        "c": {
+            "description": "third vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
         "alat": {
             "description": "lattice parameter for fractional coordinates",
             "type": "number",

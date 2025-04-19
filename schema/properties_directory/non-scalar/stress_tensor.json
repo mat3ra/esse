@@ -5,7 +5,7 @@
     "type": "object",
     "properties": {
         "value": {
-            "$ref": "../../core/abstract/3d_tensor.json"
+            "$ref": "../../core/abstract/matrix_3x3.json"
         },
         "name": {
             "enum": [

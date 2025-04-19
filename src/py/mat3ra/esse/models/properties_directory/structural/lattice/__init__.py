@@ -16,14 +16,14 @@ class LatticeVectorsUnitsEnum(Enum):
 
 
 class LatticeVectorsSchema(BaseModel):
+    a: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
+    b: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
+    c: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
     alat: Optional[float] = 1
     """
     lattice parameter for fractional coordinates
     """
     units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
-    a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
 class LatticeTypeEnum(Enum):

@@ -165,12 +165,37 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "lattice vectors schema",
                     "type": "object",
-                    "required": [
-                        "a",
-                        "b",
-                        "c"
-                    ],
                     "properties": {
+                        "a": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "vector 3d schema",
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "b": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "vector 3d schema",
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
+                        },
+                        "c": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "vector 3d schema",
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
+                        },
                         "alat": {
                             "description": "lattice parameter for fractional coordinates",
                             "type": "number",
@@ -184,36 +209,6 @@
                                 "bohr"
                             ],
                             "default": "angstrom"
-                        },
-                        "a": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "array of 3 number elements schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "b": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "array of 3 number elements schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "c": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "array of 3 number elements schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
                         }
                     }
                 },

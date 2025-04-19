@@ -1600,30 +1600,6 @@ export interface DimensionalGridSchema {
      */
     shifts: [number, number, number];
 }
-/** Schema dist/js/schema/core/abstract/3d_tensor.json */
-/**
- * @minItems 3
- * @maxItems 3
- */
-export type DimensionalTensorSchema = [[number, number, number], [number, number, number], [number, number, number]];
-/** Schema dist/js/schema/core/abstract/3d_vector_basis.json */
-export interface DimensionalVectorBasis {
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    a: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    b: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    c: [number, number, number];
-}
 /** Schema dist/js/schema/core/abstract/coordinate_3d.json */
 /**
  * @minItems 3
@@ -1638,6 +1614,12 @@ export type Coordinate3DSchema = [number, number, number];
  * @maxItems 3
  */
 export type KpointSchema = [number, number, number];
+/** Schema dist/js/schema/core/abstract/matrix_3x3.json */
+/**
+ * @minItems 3
+ * @maxItems 3
+ */
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -6244,25 +6226,25 @@ export interface MaterialSchema {
         gamma?: number;
         vectors?: {
             /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            a?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            b?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            c?: [number, number, number];
+            /**
              * lattice parameter for fractional coordinates
              */
             alat?: number;
             units?: "angstrom" | "bohr";
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            a: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            b: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            c: [number, number, number];
         };
         type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
         units?: {
@@ -16591,25 +16573,25 @@ export type LatticeVectorsUnitsEnum = "angstrom" | "bohr";
 /** Schema dist/js/schema/properties_directory/structural/lattice/vectors.json */
 export interface LatticeVectorsSchema {
     /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    a?: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    b?: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    c?: [number, number, number];
+    /**
      * lattice parameter for fractional coordinates
      */
     alat?: number;
     units?: "angstrom" | "bohr";
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    a: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    b: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    c: [number, number, number];
 }
 /** Schema dist/js/schema/properties_directory/structural/lattice.json */
 export interface LatticeSchema {
@@ -16639,25 +16621,25 @@ export interface LatticeSchema {
     gamma?: number;
     vectors?: {
         /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        a?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        b?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        c?: [number, number, number];
+        /**
          * lattice parameter for fractional coordinates
          */
         alat?: number;
         units?: "angstrom" | "bohr";
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        a: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        b: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        c: [number, number, number];
     };
     type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
     units?: {

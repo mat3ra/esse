@@ -1,7 +1,7 @@
 {
-    "$id": "core/abstract/3d-tensor",
+    "$id": "core/abstract/matrix-3x3",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "3 dimensional tensor schema",
+    "title": "matrix 3x3 schema",
     "type": "array",
     "minItems": 3,
     "maxItems": 3,

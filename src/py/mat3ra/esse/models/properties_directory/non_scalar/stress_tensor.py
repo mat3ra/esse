@@ -25,7 +25,7 @@ class Units(Enum):
 
 class StressTensorSchema(BaseModel):
     value: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
-        None, max_length=3, min_length=3, title="3 dimensional tensor schema"
+        None, max_length=3, min_length=3, title="matrix 3x3 schema"
     )
     name: Optional[Name] = None
     units: Optional[Units] = None
