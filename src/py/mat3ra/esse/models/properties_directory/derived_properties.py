@@ -24,30 +24,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name13(Enum):
+class Name12(Enum):
     density = "density"
 
 
-class Units15(Enum):
+class Units13(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units15] = None
+    units: Optional[Units13] = None
     value: float
 
 
-class Units16(Enum):
+class Units14(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units16] = None
+    units: Optional[Units14] = None
     value: float
 
 
-class Name14(Enum):
+class Name13(Enum):
     symmetry = "symmetry"
 
 
@@ -67,7 +67,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name15(Enum):
+class Name14(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -80,7 +80,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name16(Enum):
+class Name15(Enum):
     p_norm = "p-norm"
 
 
@@ -93,7 +93,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name17(Enum):
+class Name16(Enum):
     inchi = "inchi"
 
 
@@ -102,7 +102,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name18(Enum):
+class Name17(Enum):
     inchi_key = "inchi_key"
 
 

@@ -1,18 +1,8 @@
 {
-    "$id": "core/abstract/vector",
+    "$id": "core/abstract/vector_boolean_3d",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "vector schema",
+    "title": "vector boolean 3d schema",
     "oneOf": [
-        {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "array of 3 number elements schema",
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
-        },
         {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "array of 3 boolean elements schema",

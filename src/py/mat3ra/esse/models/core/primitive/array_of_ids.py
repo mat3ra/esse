@@ -4,20 +4,20 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field, RootModel
 
 
-class AtomicId(BaseModel):
-    id: Optional[int] = None
+class ObjectWithId(BaseModel):
+    id: int
     """
     integer id of this entry
     """
 
 
-class AtomicIds(RootModel[List[AtomicId]]):
-    root: List[AtomicId] = Field(..., title="atomic ids")
+class ArrayOfIds(RootModel[List[ObjectWithId]]):
+    root: List[ObjectWithId] = Field(..., title="array of ids")
     """
     array of objects containing integer id each
     """

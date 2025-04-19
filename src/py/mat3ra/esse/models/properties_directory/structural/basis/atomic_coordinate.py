@@ -4,11 +4,14 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
 
-class AtomicCoordinate(BaseModel):
-    id: Optional[float] = None
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
+class AtomicCoordinateSchema(BaseModel):
+    value: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    id: int
+    """
+    integer id of this entry
+    """

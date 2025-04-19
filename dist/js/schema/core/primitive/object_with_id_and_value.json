@@ -1,0 +1,28 @@
+{
+    "$id": "core/primitive/object-with-id-and-value",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "object with id and value schema",
+    "description": "object containing integer id and value each",
+    "type": "object",
+    "required": [
+        "id",
+        "value"
+    ],
+    "properties": {
+        "value": {
+            "description": "value of this entry",
+            "type": [
+                "integer",
+                "string",
+                "number",
+                "boolean",
+                "object",
+                "array"
+            ]
+        },
+        "id": {
+            "description": "integer id of this entry",
+            "type": "integer"
+        }
+    }
+}

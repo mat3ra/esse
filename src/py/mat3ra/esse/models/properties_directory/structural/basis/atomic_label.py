@@ -4,11 +4,14 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Optional, Union
 
-from pydantic import BaseModel, Field, conint
+from pydantic import BaseModel, conint
 
 
 class AtomicLabel(BaseModel):
-    id: Optional[float] = None
-    value: Optional[conint(ge=1, le=9)] = Field(None, title="integer positive single digit")
+    value: Optional[Union[Union[int, str, float], conint(ge=1, le=9)]] = None
+    id: int
+    """
+    integer id of this entry
+    """

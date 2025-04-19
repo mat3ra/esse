@@ -13,16 +13,16 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class AtomicScalarsVectorsSchemaItem(BaseModel):
+class ObjectWithId(BaseModel):
     value: Optional[ScalarSchema] = Field(None, title="scalar schema")
-    id: Optional[int] = None
+    id: int
     """
     integer id of this entry
     """
 
 
-class AtomicScalarsVectorsSchema(RootModel[List[AtomicScalarsVectorsSchemaItem]]):
-    root: List[AtomicScalarsVectorsSchemaItem] = Field(..., title="atomic scalars vectors schema")
+class AtomicScalarsVectorsSchema(RootModel[List[ObjectWithId]]):
+    root: List[ObjectWithId] = Field(..., title="atomic scalars vectors schema")
     """
     array of objects containing integer id each
     """

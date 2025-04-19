@@ -13,9 +13,15 @@
                 "minItems": 2,
                 "maxItems": 2,
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "atomic ids",
+                "title": "array of ids",
                 "items": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "object with id",
+                    "description": "object containing integer id",
                     "type": "object",
+                    "required": [
+                        "id"
+                    ],
                     "properties": {
                         "id": {
                             "description": "integer id of this entry",

@@ -156,7 +156,19 @@ export interface AtomicSpeciesSchema {
     }[];
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell.json */
-export type CellSchema = {
+export type CellSchema = CellSchema1 & CellSchema2;
+export type CellSchema2 = {
+    /**
+     * CASE ( calculation == 'vc-relax' )
+     */
+    cell_dynamics?: "none" | "sd" | "damp-pr" | "damp-w" | "bfgs";
+} | {
+    /**
+     * CASE ( calculation == 'vc-md' )
+     */
+    cell_dynamics?: "none" | "pr" | "w";
+};
+export interface CellSchema1 {
     /**
      * Target pressure [KBar] in a variable-cell md or relaxation run.
      */
@@ -177,17 +189,7 @@ export type CellSchema = {
      * Select which of the cell parameters should be moved
      */
     cell_dofree?: "all" | "ibrav" | "a" | "b" | "c" | "fixa" | "fixb" | "fixc" | "x" | "y" | "xy" | "xz" | "xyz" | "shape" | "volume" | "2Dxy" | "2Dshape" | "epitaxial_ab" | "epitaxial_ac" | "epitaxial_bc";
-} & ({
-    /**
-     * CASE ( calculation == 'vc-relax' )
-     */
-    cell_dynamics?: "none" | "sd" | "damp-pr" | "damp-w" | "bfgs";
-} | {
-    /**
-     * CASE ( calculation == 'vc-md' )
-     */
-    cell_dynamics?: "none" | "pr" | "w";
-});
+}
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell_parameters.json */
 export interface CellParametersSchema {
     /**
@@ -550,7 +552,29 @@ export interface HubbardSchema {
     })[];
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/ions.json */
-export type IonsSchema = {
+export type IonsSchema = IonsSchema1 & IonsSchema2;
+export type IonsSchema2 = {
+    /**
+     * CASE: calculation == 'relax'
+     */
+    ion_dynamics?: "bfgs" | "damp" | "fire";
+} | {
+    /**
+     * CASE: calculation == 'md'
+     */
+    ion_dynamics?: "verlet" | "langevin" | "langevin-smc";
+} | {
+    /**
+     * CASE: calculation == 'vc-relax'
+     */
+    ion_dynamics?: "bfgs" | "damp";
+} | {
+    /**
+     * CASE: calculation == 'vc-md'
+     */
+    ion_dynamics?: "beeman";
+};
+export interface IonsSchema1 {
     ion_positions?: "default" | "from_input";
     ion_velocities?: "default" | "from_input";
     /**
@@ -629,27 +653,7 @@ export type IonsSchema = {
      * Determines the maximum value of dt in the FIRE minimization; dtmax = fire_dtmax*dt
      */
     fire_dtmax?: number;
-} & ({
-    /**
-     * CASE: calculation == 'relax'
-     */
-    ion_dynamics?: "bfgs" | "damp" | "fire";
-} | {
-    /**
-     * CASE: calculation == 'md'
-     */
-    ion_dynamics?: "verlet" | "langevin" | "langevin-smc";
-} | {
-    /**
-     * CASE: calculation == 'vc-relax'
-     */
-    ion_dynamics?: "bfgs" | "damp";
-} | {
-    /**
-     * CASE: calculation == 'vc-md'
-     */
-    ion_dynamics?: "beeman";
-});
+}
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/k_points.json */
 export interface KPointsSchema {
     card_option?: "tpiba" | "automatic" | "crystal" | "gamma" | "tpiba_b" | "crystal_b" | "tpiba_c" | "crystal_c";
@@ -690,7 +694,8 @@ export interface KPointsSchema {
     } | null;
 }
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/system.json */
-export type SystemSchema = ({
+export type SystemSchema = SystemSchema1 & SystemSchema2;
+export type SystemSchema1 = {
     /**
      * @minItems 6
      * @maxItems 6
@@ -703,7 +708,8 @@ export type SystemSchema = ({
     cosAB?: number;
     cosAC?: number;
     cosBC?: number;
-}) & {
+};
+export interface SystemSchema2 {
     ibrav: number;
     /**
      * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
@@ -1067,7 +1073,7 @@ export type SystemSchema = ({
      * Number of activated external ionic force fields.
      */
     nextffield?: number;
-};
+}
 /** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x.json */
 export interface PwxMainSchema {
     "&CONTROL"?: {
@@ -1650,43 +1656,30 @@ export interface DimensionalVectorBasis {
      */
     c: [number, number, number];
 }
-/** Schema dist/js/schema/core/abstract/point.json */
+/** Schema dist/js/schema/core/abstract/coordinate_3d.json */
 /**
  * @minItems 3
  * @maxItems 3
  */
-export type PointSchema = [number, number, number];
-/** Schema dist/js/schema/core/abstract/vector.json */
-export type VectorSchema = [number, number, number] | [boolean, boolean, boolean];
+export type Coordinate3DSchema = [number, number, number];
+/** Schema dist/js/schema/core/abstract/kpoint.json */
+/**
+ * A k-point is a point in reciprocal space of a crystal.
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type KpointSchema = [number, number, number];
+/** Schema dist/js/schema/core/abstract/vector_3d.json */
+/**
+ * @minItems 3
+ * @maxItems 3
+ */
+export type Vector3DSchema = [number, number, number];
+/** Schema dist/js/schema/core/abstract/vector_boolean_3d.json */
+export type VectorBoolean3DSchema = [boolean, boolean, boolean];
 /** Schema dist/js/schema/core/primitive/1d_data_series.json */
 export type DimensionDataSeriesSchema = [number | string, ...(number | string)[]][];
-/** Schema dist/js/schema/core/primitive/3d_lattice.json */
-export interface DimensionalLatticeSchema {
-    /**
-     * length of the first lattice vector
-     */
-    a: number;
-    /**
-     * length of the second lattice vector
-     */
-    b: number;
-    /**
-     * length of the third lattice vector
-     */
-    c: number;
-    /**
-     * angle between first and second lattice vector
-     */
-    alpha: number;
-    /**
-     * angle between second and third lattice vector
-     */
-    beta: number;
-    /**
-     * angle between first and third lattice vector
-     */
-    gamma: number;
-}
 /** Schema dist/js/schema/core/primitive/array_of_3_booleans.json */
 /**
  * @minItems 3
@@ -1703,11 +1696,11 @@ export type ArrayOf3NumberElementsSchema = [number, number, number];
 /**
  * array of objects containing integer id each
  */
-export type AtomicIds = {
+export type ArrayOfIds = {
     /**
      * integer id of this entry
      */
-    id?: number;
+    id: number;
 }[];
 /** Schema dist/js/schema/core/primitive/array_of_strings.json */
 /**
@@ -1928,6 +1921,30 @@ export type LinkedListSchema = ({
      */
     flowchartId: string;
 })[];
+/** Schema dist/js/schema/core/primitive/object_with_id.json */
+/**
+ * object containing integer id
+ */
+export interface ObjectWithId {
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}
+/** Schema dist/js/schema/core/primitive/object_with_id_and_value.json */
+/**
+ * object containing integer id and value each
+ */
+export interface ObjectWithIdAndValueSchema {
+    /**
+     * value of this entry
+     */
+    value: number | string | boolean | {} | unknown[];
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}
 /** Schema dist/js/schema/core/primitive/scalar.json */
 export interface ScalarSchema {
     value: number;
@@ -2599,38 +2616,65 @@ export type AtomicScalarsVectorsSchema = {
     /**
      * integer id of this entry
      */
-    id?: number;
+    id: number;
 }[];
-/** Schema dist/js/schema/core/reusable/atomic_strings.json */
+/** Schema dist/js/schema/core/reusable/atomic_string.json */
 /**
- * array of objects containing integer id each
+ * object containing integer id and value each
  */
-export type AtomicStringsVectorsSchema = {
-    value?: string;
+export interface AtomicStringSchema {
+    /**
+     * value of this entry
+     */
+    value: string;
     /**
      * integer id of this entry
      */
-    id?: number;
-}[];
+    id: number;
+}
+/** Schema dist/js/schema/core/reusable/atomic_vector.json */
+/**
+ * object containing integer id and value each
+ */
+export interface AtomicVectorSchema {
+    /**
+     * value of this entry
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    value: [number, number, number];
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}
 /** Schema dist/js/schema/core/reusable/atomic_vectors.json */
-/**
- * array of objects containing integer id each
- */
 export type AtomicVectorsSchema = {
-    value?: [number, number, number] | [boolean, boolean, boolean];
+    /**
+     * value of this entry
+     *
+     * @minItems 3
+     * @maxItems 3
+     */
+    value: [number, number, number];
     /**
      * integer id of this entry
      */
-    id?: number;
+    id: number;
 }[];
 /** Schema dist/js/schema/core/reusable/band_gap.json */
 export interface BandGapSchema {
     /**
+     * A k-point is a point in reciprocal space of a crystal.
+     *
      * @minItems 3
      * @maxItems 3
      */
     kpointConduction?: [number, number, number];
     /**
+     * A k-point is a point in reciprocal space of a crystal.
+     *
      * @minItems 3
      * @maxItems 3
      */
@@ -6166,26 +6210,70 @@ export interface MaterialSchema {
      */
     unitCellFormula?: string;
     basis: {
+        /**
+         * atomic elements schema
+         */
         elements: {
-            id: number;
+            /**
+             * value of this entry
+             */
             value: string;
             /**
-             * Occurrence is for fractional occupations
+             * integer id of this entry
              */
-            occurrence?: number;
-            oxidationState?: number;
+            id: number;
         }[];
+        /**
+         * atomic coordinates schema
+         */
         coordinates: {
-            id?: number;
-            value?: [number, number, number] | [boolean, boolean, boolean];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            value?: [number, number, number];
+            /**
+             * integer id of this entry
+             */
+            id: number;
         }[];
         units?: "crystal" | "cartesian";
+        /**
+         * atomic labels schema
+         */
         labels?: {
-            id?: number;
-            value?: number;
+            value?: (number | string | number) | number;
+            /**
+             * integer id of this entry
+             */
+            id: number;
         }[];
     };
     lattice: {
+        /**
+         * length of the first lattice vector
+         */
+        a?: number;
+        /**
+         * length of the second lattice vector
+         */
+        b?: number;
+        /**
+         * length of the third lattice vector
+         */
+        c?: number;
+        /**
+         * angle between first and second lattice vector
+         */
+        alpha?: number;
+        /**
+         * angle between second and third lattice vector
+         */
+        beta?: number;
+        /**
+         * angle between first and third lattice vector
+         */
+        gamma?: number;
         vectors?: {
             /**
              * lattice parameter for fractional coordinates
@@ -6208,35 +6296,11 @@ export interface MaterialSchema {
              */
             c: [number, number, number];
         };
-        type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+        type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
         units?: {
             length?: "angstrom" | "bohr";
             angle?: "degree" | "radian";
         };
-        /**
-         * length of the first lattice vector
-         */
-        a: number;
-        /**
-         * length of the second lattice vector
-         */
-        b: number;
-        /**
-         * length of the third lattice vector
-         */
-        c: number;
-        /**
-         * angle between first and second lattice vector
-         */
-        alpha: number;
-        /**
-         * angle between second and third lattice vector
-         */
-        beta: number;
-        /**
-         * angle between first and third lattice vector
-         */
-        gamma: number;
     };
     derivedProperties?: ({
         name?: "volume";
@@ -12773,13 +12837,8 @@ export interface SpinPolarizationMixin {
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/model/model_parameters.json */
-export type ModelParameters = {
-    hubbardType?: "u";
-    spinPolarization?: "collinear" | "non-collinear";
-    spinOrbitCoupling?: boolean;
-    dispersionCorrection?: "dft-d2" | "dft-d3" | "xdm" | "ts";
-    [k: string]: unknown;
-} & ({
+export type ModelParameters = ModelParameters1 & ModelParameters2;
+export type ModelParameters2 = {
     functional?: "pz";
     [k: string]: unknown;
 } | {
@@ -12792,7 +12851,14 @@ export type ModelParameters = {
     functional?: "hse06" | "b3lyp";
 } | {
     functional?: "b2plyp";
-});
+};
+export interface ModelParameters1 {
+    hubbardType?: "u";
+    spinPolarization?: "collinear" | "non-collinear";
+    spinOrbitCoupling?: boolean;
+    dispersionCorrection?: "dft-d2" | "dft-d3" | "xdm" | "ts";
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/model/model_without_method.json */
 export interface ModelWithoutMethodSchemaBase {
     /**
@@ -14991,7 +15057,18 @@ export interface ModelLocalDensityApproximation {
     tags?: string[];
 }
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
-export type LegacyModelDensityFunctionalTheory = {
+export type LegacyModelDensityFunctionalTheory = LegacyModelDensityFunctionalTheory1 & LegacyModelDensityFunctionalTheory2;
+export type LegacyModelDensityFunctionalTheory2 = {
+    subtype?: "lda";
+    functional?: "pz" | "pw" | "vwn" | "other";
+} | {
+    subtype?: "gga";
+    functional?: "pbe" | "pbesol" | "pw91" | "other";
+} | {
+    subtype?: "hybrid";
+    functional?: "b3lyp" | "hse06";
+};
+export interface LegacyModelDensityFunctionalTheory1 {
     /**
      * general type of the model, eg. `dft`
      */
@@ -15019,18 +15096,9 @@ export type LegacyModelDensityFunctionalTheory = {
         data?: {};
     };
     [k: string]: unknown;
-} & ({
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
-} | {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
-} | {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
-});
+}
 /**
- * This interface was referenced by `undefined`'s JSON-Schema
+ * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
  * via the `definition` "lda".
  */
 export interface Lda {
@@ -15038,7 +15106,7 @@ export interface Lda {
     functional?: "pz" | "pw" | "vwn" | "other";
 }
 /**
- * This interface was referenced by `undefined`'s JSON-Schema
+ * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
  * via the `definition` "gga".
  */
 export interface Gga {
@@ -15046,7 +15114,7 @@ export interface Gga {
     functional?: "pbe" | "pbesol" | "pw91" | "other";
 }
 /**
- * This interface was referenced by `undefined`'s JSON-Schema
+ * This interface was referenced by `LegacyModelDensityFunctionalTheory1`'s JSON-Schema
  * via the `definition` "hybrid".
  */
 export interface Hybrid {
@@ -15605,11 +15673,15 @@ export interface BandGapsSchema {
     name: "band_gaps";
     values?: {
         /**
+         * A k-point is a point in reciprocal space of a crystal.
+         *
          * @minItems 3
          * @maxItems 3
          */
         kpointConduction?: [number, number, number];
         /**
+         * A k-point is a point in reciprocal space of a crystal.
+         *
          * @minItems 3
          * @maxItems 3
          */
@@ -15629,6 +15701,8 @@ export interface BandGapsSchema {
     }[];
     eigenvalues?: {
         /**
+         * A k-point is a point in reciprocal space of a crystal.
+         *
          * @minItems 3
          * @maxItems 3
          */
@@ -16302,76 +16376,140 @@ export interface ZeroPointEnergySchema {
  */
 export interface AtomicForces {
     name?: "atomic_forces";
-    /**
-     * array of objects containing integer id each
-     */
     values?: {
-        value?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * value of this entry
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        value: [number, number, number];
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     units?: "eV/bohr" | "eV/angstrom" | "Ry/a.u." | "newton" | "kg*m/s^2" | "eV/a.u.";
+}
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_constraint.json */
+/**
+ * constraint of atoms by ids, used to constraint the position etc.
+ */
+export interface AtomicConstraintSchema {
+    value?: [boolean, boolean, boolean];
+    /**
+     * integer id of this entry
+     */
+    id: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_constraints.json */
 /**
  * atomic constraints schema
  */
-export interface AtomicConstraints {
+export type AtomicConstraintsSchema = {
+    value?: [boolean, boolean, boolean];
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}[];
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_constraints_property.json */
+/**
+ * atomic constraints property schema (as stored in a database)
+ */
+export interface AtomicConstraintsPropertySchema {
     name?: "atomic_constraints";
     /**
-     * array of objects containing integer id each
+     * atomic constraints schema
      */
     values?: {
-        value?: [number, number, number] | [boolean, boolean, boolean];
+        value?: [boolean, boolean, boolean];
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_coordinate.json */
 /**
- * coordinates of atoms by ids, vector, unitless
+ * coordinate of an atom
  */
-export interface AtomicCoordinate {
-    id?: number;
-    value?: [number, number, number] | [boolean, boolean, boolean];
+export interface AtomicCoordinateSchema {
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    value?: [number, number, number];
+    /**
+     * integer id of this entry
+     */
+    id: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_coordinates.json */
 /**
- * coordinates of atoms by ids, vector, unitless
+ * atomic coordinates schema
  */
-export interface AtomicCoordinates {
-    name?: "atomic_coordinates";
-    values?: {
-        id?: number;
-        value?: [number, number, number] | [boolean, boolean, boolean];
-    }[];
-    units?: "km" | "m" | "cm" | "mm" | "um" | "nm" | "angstrom" | "a.u." | "bohr" | "pm";
-}
+export type AtomicCoordinatesSchema = {
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    value?: [number, number, number];
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}[];
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_element.json */
 /**
- * elements of atoms by ids, string, unitless
+ * chemical element of an atom according to the periodic table
  */
-export interface AtomicElements {
-    id: number;
+export interface AtomicElementSchema {
+    /**
+     * value of this entry
+     */
     value: string;
     /**
-     * Occurrence is for fractional occupations
+     * integer id of this entry
      */
-    occurrence?: number;
-    oxidationState?: number;
+    id: number;
 }
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_elements.json */
+/**
+ * atomic elements schema
+ */
+export type AtomicElementsSchema = {
+    /**
+     * value of this entry
+     */
+    value: string;
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}[];
 /** Schema dist/js/schema/properties_directory/structural/basis/atomic_label.json */
 /**
- * Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.
+ * Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.
  */
 export interface AtomicLabel {
-    id?: number;
-    value?: number;
+    value?: (number | string) | number;
+    /**
+     * integer id of this entry
+     */
+    id: number;
 }
+/** Schema dist/js/schema/properties_directory/structural/basis/atomic_labels.json */
+/**
+ * atomic labels schema
+ */
+export type AtomicLabelsSchema = {
+    value?: (number | string | number) | number;
+    /**
+     * integer id of this entry
+     */
+    id: number;
+}[];
 /** Schema dist/js/schema/properties_directory/structural/basis/bonds.json */
 export type BondsSchema = {
     /**
@@ -16385,36 +16523,58 @@ export type BondsSchema = {
             /**
              * integer id of this entry
              */
-            id?: number;
+            id: number;
         },
         {
             /**
              * integer id of this entry
              */
-            id?: number;
+            id: number;
         }
     ];
     bondType?: "single" | "double" | "triple" | "quadruple" | "aromatic" | "tautomeric" | "dative" | "other";
 }[];
+/** Schema dist/js/schema/properties_directory/structural/basis/units_enum.json */
+export type BasisUnitsEnum = "crystal" | "cartesian";
 /** Schema dist/js/schema/properties_directory/structural/basis.json */
 export interface BasisSchema {
+    /**
+     * atomic elements schema
+     */
     elements: {
-        id: number;
+        /**
+         * value of this entry
+         */
         value: string;
         /**
-         * Occurrence is for fractional occupations
+         * integer id of this entry
          */
-        occurrence?: number;
-        oxidationState?: number;
+        id: number;
     }[];
+    /**
+     * atomic coordinates schema
+     */
     coordinates: {
-        id?: number;
-        value?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        value?: [number, number, number];
+        /**
+         * integer id of this entry
+         */
+        id: number;
     }[];
     units?: "crystal" | "cartesian";
+    /**
+     * atomic labels schema
+     */
     labels?: {
-        id?: number;
-        value?: number;
+        value?: (number | string | number) | number;
+        /**
+         * integer id of this entry
+         */
+        id: number;
     }[];
 }
 /** Schema dist/js/schema/properties_directory/structural/density.json */
@@ -16445,40 +16605,23 @@ export interface InChIKeyRepresentationSchema {
     name?: "inchi_key";
     value: string;
 }
-/** Schema dist/js/schema/properties_directory/structural/lattice/lattice_bravais.json */
-export interface LatticeImplicitSchema {
-    type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
-    units?: {
-        length?: "angstrom" | "bohr";
-        angle?: "degree" | "radian";
-    };
-    /**
-     * length of the first lattice vector
-     */
-    a: number;
-    /**
-     * length of the second lattice vector
-     */
-    b: number;
-    /**
-     * length of the third lattice vector
-     */
-    c: number;
-    /**
-     * angle between first and second lattice vector
-     */
-    alpha: number;
-    /**
-     * angle between second and third lattice vector
-     */
-    beta: number;
-    /**
-     * angle between first and third lattice vector
-     */
-    gamma: number;
-}
 /** Schema dist/js/schema/properties_directory/structural/lattice/lattice_vectors.json */
-export interface LatticeExplicitUnit {
+export interface LatticeUnitsSchema {
+    length?: "angstrom" | "bohr";
+    angle?: "degree" | "radian";
+}
+/** Schema dist/js/schema/properties_directory/structural/lattice/type_enum.json */
+export type LatticeTypeEnum = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+/** Schema dist/js/schema/properties_directory/structural/lattice/type_extended_enum.json */
+export type LatticeTypeExtendedEnum = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_1b" | "TRI_2a" | "TRI_2b";
+/** Schema dist/js/schema/properties_directory/structural/lattice/units/angle_enum.json */
+export type LatticeUnitsAngleEnum = "degree" | "radian";
+/** Schema dist/js/schema/properties_directory/structural/lattice/units/length_enum.json */
+export type LatticeUnitsLengthEnum = "angstrom" | "bohr";
+/** Schema dist/js/schema/properties_directory/structural/lattice/vectors/units_enum.json */
+export type LatticeVectorsUnitsEnum = "angstrom" | "bohr";
+/** Schema dist/js/schema/properties_directory/structural/lattice/vectors.json */
+export interface LatticeVectorsSchema {
     /**
      * lattice parameter for fractional coordinates
      */
@@ -16500,12 +16643,32 @@ export interface LatticeExplicitUnit {
      */
     c: [number, number, number];
 }
-/** Schema dist/js/schema/properties_directory/structural/lattice/type_enum.json */
-export type LatticeTypeEnum = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
-/** Schema dist/js/schema/properties_directory/structural/lattice/type_extended_enum.json */
-export type LatticeTypeExtendedEnum = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" | "HEX" | "MCL" | "MCLC-1" | "MCLC-2" | "MCLC-3" | "MCLC-4" | "MCLC-5" | "ORC" | "ORCC" | "ORCF-1" | "ORCF-2" | "ORCF-3" | "ORCI" | "RHL-1" | "RHL-2" | "TET" | "TRI_1a" | "TRI_1b" | "TRI_2a" | "TRI_2b";
 /** Schema dist/js/schema/properties_directory/structural/lattice.json */
 export interface LatticeSchema {
+    /**
+     * length of the first lattice vector
+     */
+    a?: number;
+    /**
+     * length of the second lattice vector
+     */
+    b?: number;
+    /**
+     * length of the third lattice vector
+     */
+    c?: number;
+    /**
+     * angle between first and second lattice vector
+     */
+    alpha?: number;
+    /**
+     * angle between second and third lattice vector
+     */
+    beta?: number;
+    /**
+     * angle between first and third lattice vector
+     */
+    gamma?: number;
     vectors?: {
         /**
          * lattice parameter for fractional coordinates
@@ -16528,35 +16691,11 @@ export interface LatticeSchema {
          */
         c: [number, number, number];
     };
-    type: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
+    type?: "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
     units?: {
         length?: "angstrom" | "bohr";
         angle?: "degree" | "radian";
     };
-    /**
-     * length of the first lattice vector
-     */
-    a: number;
-    /**
-     * length of the second lattice vector
-     */
-    b: number;
-    /**
-     * length of the third lattice vector
-     */
-    c: number;
-    /**
-     * angle between first and second lattice vector
-     */
-    alpha: number;
-    /**
-     * angle between second and third lattice vector
-     */
-    beta: number;
-    /**
-     * angle between first and third lattice vector
-     */
-    gamma: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/magnetic_moments.json */
 /**
@@ -16564,15 +16703,18 @@ export interface LatticeSchema {
  */
 export interface MagneticMoments {
     name?: "magnetic_moments";
-    /**
-     * array of objects containing integer id each
-     */
     values?: {
-        value?: [number, number, number] | [boolean, boolean, boolean];
+        /**
+         * value of this entry
+         *
+         * @minItems 3
+         * @maxItems 3
+         */
+        value: [number, number, number];
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     units?: "uB";
 }
@@ -16590,7 +16732,7 @@ export type MolecularPatternSchema = ({
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     /**
      * SMARTS string for classification of FG; https://en.wikipedia.org/wiki/SMILES_arbitrary_target_specification
@@ -16609,7 +16751,7 @@ export type MolecularPatternSchema = ({
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     isAromatic?: boolean;
 } | {
@@ -16625,7 +16767,7 @@ export type MolecularPatternSchema = ({
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
 })[];
 /** Schema dist/js/schema/properties_directory/structural/p_norm.json */
@@ -16654,7 +16796,7 @@ export interface FunctionalGroupPatternSchema {
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     /**
      * SMARTS string for classification of FG; https://en.wikipedia.org/wiki/SMILES_arbitrary_target_specification
@@ -16675,7 +16817,7 @@ export interface RingPatternSchema {
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
     isAromatic?: boolean;
 }
@@ -16696,7 +16838,7 @@ export interface SpecialBondPatternSchema {
         /**
          * integer id of this entry
          */
-        id?: number;
+        id: number;
     }[];
 }
 /** Schema dist/js/schema/properties_directory/structural/symmetry.json */

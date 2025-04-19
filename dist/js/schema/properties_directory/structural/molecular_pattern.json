@@ -18,10 +18,16 @@
                     "atoms": {
                         "type": "array",
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "atomic ids",
+                        "title": "array of ids",
                         "description": "array of objects containing integer id each",
                         "items": {
                             "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "object with id",
+                            "description": "object containing integer id",
+                            "required": [
+                                "id"
+                            ],
                             "properties": {
                                 "isConnector": {
                                     "description": "whether atom connects to atoms outside of functional group.",
@@ -53,10 +59,16 @@
                     "atoms": {
                         "type": "array",
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "atomic ids",
+                        "title": "array of ids",
                         "description": "array of objects containing integer id each",
                         "items": {
                             "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "object with id",
+                            "description": "object containing integer id",
+                            "required": [
+                                "id"
+                            ],
                             "properties": {
                                 "isConnector": {
                                     "description": "whether atom connects to atoms outside of functional group.",
@@ -88,10 +100,16 @@
                     "atoms": {
                         "type": "array",
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "atomic ids",
+                        "title": "array of ids",
                         "description": "array of objects containing integer id each",
                         "items": {
                             "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "object with id",
+                            "description": "object containing integer id",
+                            "required": [
+                                "id"
+                            ],
                             "properties": {
                                 "isConnector": {
                                     "description": "whether atom connects to atoms outside of functional group.",
