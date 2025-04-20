@@ -9,7 +9,7 @@ var Type;
 (function (Type) {
     Type["fromIframeToHost"] = "from-iframe-to-host";
     Type["fromHostToIframe"] = "from-host-to-iframe";
-})((Type = exports.Type || (exports.Type = {})));
+})(Type = exports.Type || (exports.Type = {}));
 /**
  * The action to be performed upon receiving the message.
  */
@@ -18,4 +18,4 @@ var Action;
     Action["setData"] = "set-data";
     Action["getData"] = "get-data";
     Action["info"] = "info";
-})((Action = exports.Action || (exports.Action = {})));
+})(Action = exports.Action || (exports.Action = {}));
