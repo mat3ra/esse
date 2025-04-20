@@ -1,5 +1,5 @@
 {
-    "$id": "3pse/file/applications/espresso/7.2/pw.x/k-points",
+    "$id": "apse/file/applications/espresso/7.2/pw.x/k-points",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "k points schema",
     "type": "object",

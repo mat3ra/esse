@@ -1,5 +1,5 @@
 {
-    "$id": "3pse/file/applications/espresso/7.2/pw.x/atomic-positions",
+    "$id": "apse/file/applications/espresso/7.2/pw.x/atomic-positions",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic positions schema",
     "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493",
