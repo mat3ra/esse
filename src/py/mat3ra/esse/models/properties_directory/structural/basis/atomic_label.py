@@ -9,7 +9,7 @@ from typing import Union
 from pydantic import BaseModel, conint
 
 
-class AtomicLabel(BaseModel):
+class AtomicLabelSchema(BaseModel):
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry

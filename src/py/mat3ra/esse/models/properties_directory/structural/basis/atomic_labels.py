@@ -9,7 +9,7 @@ from typing import List, Union
 from pydantic import BaseModel, Field, RootModel, conint
 
 
-class AtomicLabel(BaseModel):
+class AtomicLabelSchema(BaseModel):
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry
@@ -20,8 +20,8 @@ class AtomicLabel(BaseModel):
     """
 
 
-class AtomicLabelsSchema(RootModel[List[AtomicLabel]]):
-    root: List[AtomicLabel] = Field(..., title="atomic labels schema")
+class AtomicLabelsSchema(RootModel[List[AtomicLabelSchema]]):
+    root: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
     """
     atomic labels schema
     """

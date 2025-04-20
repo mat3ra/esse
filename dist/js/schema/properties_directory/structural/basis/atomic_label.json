@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/structural/basis/atomic-label",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic label",
+    "title": "atomic label schema",
     "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
     "type": "object",
     "required": [

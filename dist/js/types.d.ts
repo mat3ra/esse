@@ -16462,7 +16462,7 @@ export type AtomicElementsSchema = {
 /**
  * Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.
  */
-export interface AtomicLabel {
+export interface AtomicLabelSchema {
     /**
      * value of this entry
      */

@@ -37,7 +37,7 @@ class BasisUnitsEnum(Enum):
     cartesian = "cartesian"
 
 
-class AtomicLabel(BaseModel):
+class AtomicLabelSchema(BaseModel):
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry
@@ -58,7 +58,7 @@ class BasisSchema(BaseModel):
     atomic coordinates schema
     """
     units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
-    labels: Optional[List[AtomicLabel]] = Field(None, title="atomic labels schema")
+    labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
     """
     atomic labels schema
     """
