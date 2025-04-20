@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field, conint
 
@@ -22,7 +22,10 @@ class AtomicElementSchema(BaseModel):
 
 
 class AtomicCoordinateSchema(BaseModel):
-    value: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    """
+    value of this entry
+    """
     id: int
     """
     integer id of this entry
@@ -35,7 +38,10 @@ class BasisUnitsEnum(Enum):
 
 
 class AtomicLabel(BaseModel):
-    value: Optional[Union[Union[int, str, float], conint(ge=1, le=9)]] = None
+    value: Union[Union[int, str, float, bool, Dict[str, Any], List[Any]], conint(ge=1, le=9)]
+    """
+    value of this entry
+    """
     id: int
     """
     integer id of this entry

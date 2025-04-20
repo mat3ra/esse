@@ -5,7 +5,8 @@
     "description": "coordinate of an atom",
     "type": "object",
     "required": [
-        "id"
+        "id",
+        "value"
     ],
     "properties": {
         "value": {
@@ -14,6 +15,7 @@
             "type": "array",
             "minItems": 3,
             "maxItems": 3,
+            "description": "value of this entry",
             "items": {
                 "type": "number"
             }

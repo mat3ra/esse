@@ -4,13 +4,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field, RootModel
 
 
 class AtomicCoordinateSchema(BaseModel):
-    value: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    """
+    value of this entry
+    """
     id: int
     """
     integer id of this entry

@@ -10,7 +10,8 @@
         "description": "constraint of atoms by ids, used to constraint the position etc.",
         "type": "object",
         "required": [
-            "id"
+            "id",
+            "value"
         ],
         "properties": {
             "value": {
@@ -27,6 +28,15 @@
                         "minItems": 3,
                         "maxItems": 3
                     }
+                ],
+                "description": "value of this entry",
+                "type": [
+                    "integer",
+                    "string",
+                    "number",
+                    "boolean",
+                    "object",
+                    "array"
                 ]
             },
             "id": {

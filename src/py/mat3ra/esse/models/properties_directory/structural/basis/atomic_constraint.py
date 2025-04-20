@@ -4,13 +4,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field
 
 
 class AtomicConstraintSchema(BaseModel):
-    value: Optional[List[bool]] = Field(None, title="vector boolean 3d schema")
+    value: List[bool] = Field(..., title="vector boolean 3d schema")
+    """
+    value of this entry
+    """
     id: int
     """
     integer id of this entry

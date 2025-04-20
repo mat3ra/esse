@@ -3,9 +3,9 @@ repos:
     rev: 2023.6.13
     hooks:
       - id: ruff
-        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist*
       - id: black
-        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist*
   - repo: local
     hooks:
       # Note: only python 3.8.12 is tested for the model generation

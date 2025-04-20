@@ -6,7 +6,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../../core/primitive/object_with_id.json"
+            "$ref": "../../../core/primitive/object_with_id_and_value.json"
         }
     ],
     "properties": {

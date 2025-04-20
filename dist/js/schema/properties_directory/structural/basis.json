@@ -45,7 +45,8 @@
                 "description": "coordinate of an atom",
                 "type": "object",
                 "required": [
-                    "id"
+                    "id",
+                    "value"
                 ],
                 "properties": {
                     "value": {
@@ -54,6 +55,7 @@
                         "type": "array",
                         "minItems": 3,
                         "maxItems": 3,
+                        "description": "value of this entry",
                         "items": {
                             "type": "number"
                         }
@@ -85,7 +87,8 @@
                 "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                 "type": "object",
                 "required": [
-                    "id"
+                    "id",
+                    "value"
                 ],
                 "properties": {
                     "value": {
@@ -104,6 +107,15 @@
                                 "minimum": 1,
                                 "maximum": 9
                             }
+                        ],
+                        "description": "value of this entry",
+                        "type": [
+                            "integer",
+                            "string",
+                            "number",
+                            "boolean",
+                            "object",
+                            "array"
                         ]
                     },
                     "id": {
