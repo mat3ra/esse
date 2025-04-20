@@ -1,4 +1,4 @@
-/** Schema dist/js/schema/3pse/db/nist_jarvis/2024.3.13/atoms.json */
+/** Schema dist/js/schema/apse/db/nist_jarvis/2024.3.13/atoms.json */
 /**
  * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
  */
@@ -41,7 +41,7 @@ export interface NISTJARVISAtomsSchema {
      */
     props?: string[];
 }
-/** Schema dist/js/schema/3pse/db/nist_jarvis/2024.3.13/db_entry.json */
+/** Schema dist/js/schema/apse/db/nist_jarvis/2024.3.13/db_entry.json */
 /**
  * NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571
  */
@@ -110,7 +110,7 @@ export interface NISTJARVISDbEntrySchema {
     jid?: string;
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/atomic_positions.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/atomic_positions.json */
 /**
  * https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
  */
@@ -138,7 +138,7 @@ export interface AtomicPositionsSchema {
         "if_pos(3)"?: number;
     }[];
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/atomic_species.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/atomic_species.json */
 export interface AtomicSpeciesSchema {
     values?: {
         /**
@@ -155,7 +155,7 @@ export interface AtomicSpeciesSchema {
         PseudoPot_X?: string;
     }[];
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/cell.json */
 export type CellSchema = CellSchema1 & CellSchema2;
 export type CellSchema2 = {
     /**
@@ -190,7 +190,7 @@ export interface CellSchema1 {
      */
     cell_dofree?: "all" | "ibrav" | "a" | "b" | "c" | "fixa" | "fixb" | "fixc" | "x" | "y" | "xy" | "xz" | "xyz" | "shape" | "volume" | "2Dxy" | "2Dshape" | "epitaxial_ab" | "epitaxial_ac" | "epitaxial_bc";
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/cell_parameters.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/cell_parameters.json */
 export interface CellParametersSchema {
     /**
      * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
@@ -214,7 +214,7 @@ export interface CellParametersSchema {
         v3?: [number, number, number];
     };
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/control.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/control.json */
 export interface ControlSchema {
     /**
      * A string describing the task to be performed
@@ -334,7 +334,7 @@ export interface ControlSchema {
      */
     trism?: boolean;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/electrons.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/electrons.json */
 export interface ElectronsSchema {
     /**
      * maximum number of iterations in a scf step. If exact exchange is active, this will affect the inner loops.
@@ -428,7 +428,7 @@ export interface ElectronsSchema {
      */
     real_space?: boolean;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/hubbard.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/hubbard.json */
 export interface HubbardSchema {
     card_option?: "atomic" | "ortho-atomic" | "norm-atomic" | "wf" | "pseudo";
     values?: ({
@@ -551,7 +551,7 @@ export interface HubbardSchema {
         "v_val(I,J)"?: number;
     })[];
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/ions.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/ions.json */
 export type IonsSchema = IonsSchema1 & IonsSchema2;
 export type IonsSchema2 = {
     /**
@@ -654,7 +654,7 @@ export interface IonsSchema1 {
      */
     fire_dtmax?: number;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/k_points.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/k_points.json */
 export interface KPointsSchema {
     card_option?: "tpiba" | "automatic" | "crystal" | "gamma" | "tpiba_b" | "crystal_b" | "tpiba_c" | "crystal_c";
     values?: {
@@ -693,7 +693,7 @@ export interface KPointsSchema {
         sk3?: number;
     } | null;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x/system.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/system.json */
 export type SystemSchema = SystemSchema1 & SystemSchema2;
 export type SystemSchema1 = {
     /**
@@ -1074,7 +1074,7 @@ export interface SystemSchema2 {
      */
     nextffield?: number;
 }
-/** Schema dist/js/schema/3pse/file/applications/espresso/7.2/pw.x.json */
+/** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x.json */
 export interface PwxMainSchema {
     "&CONTROL"?: {
         /**
