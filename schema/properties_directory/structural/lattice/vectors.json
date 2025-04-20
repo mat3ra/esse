@@ -24,5 +24,10 @@
         "units": {
             "$ref": "./vectors/units_enum.json"
         }
-    }
+    },
+    "required": [
+        "a",
+        "b",
+        "c"
+    ]
 }

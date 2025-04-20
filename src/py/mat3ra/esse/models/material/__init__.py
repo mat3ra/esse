@@ -64,9 +64,9 @@ class LatticeVectorsUnitsEnum(Enum):
 
 
 class LatticeVectorsSchema(BaseModel):
-    a: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
-    b: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
-    c: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="vector 3d schema")
+    a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     alat: Optional[float] = 1
     """
     lattice parameter for fractional coordinates
