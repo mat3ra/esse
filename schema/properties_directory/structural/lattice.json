@@ -37,5 +37,13 @@
         "units": {
             "$ref": "./lattice/units.json"
         }
-    }
+    },
+    "required": [
+        "a",
+        "b",
+        "c",
+        "alpha",
+        "beta",
+        "gamma"
+    ]
 }

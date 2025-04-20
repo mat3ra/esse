@@ -136,6 +136,14 @@
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "lattice schema",
             "type": "object",
+            "required": [
+                "a",
+                "b",
+                "c",
+                "alpha",
+                "beta",
+                "gamma"
+            ],
             "properties": {
                 "a": {
                     "description": "length of the first lattice vector",

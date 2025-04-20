@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1635,23 +1619,7 @@ export type KpointSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -6235,27 +6203,27 @@ export interface MaterialSchema {
         /**
          * length of the first lattice vector
          */
-        a?: number;
+        a: number;
         /**
          * length of the second lattice vector
          */
-        b?: number;
+        b: number;
         /**
          * length of the third lattice vector
          */
-        c?: number;
+        c: number;
         /**
          * angle between first and second lattice vector
          */
-        alpha?: number;
+        alpha: number;
         /**
          * angle between second and third lattice vector
          */
-        beta?: number;
+        beta: number;
         /**
          * angle between first and third lattice vector
          */
-        gamma?: number;
+        gamma: number;
         vectors?: {
             /**
              * @minItems 3
@@ -16630,27 +16598,27 @@ export interface LatticeSchema {
     /**
      * length of the first lattice vector
      */
-    a?: number;
+    a: number;
     /**
      * length of the second lattice vector
      */
-    b?: number;
+    b: number;
     /**
      * length of the third lattice vector
      */
-    c?: number;
+    c: number;
     /**
      * angle between first and second lattice vector
      */
-    alpha?: number;
+    alpha: number;
     /**
      * angle between second and third lattice vector
      */
-    beta?: number;
+    beta: number;
     /**
      * angle between first and third lattice vector
      */
-    gamma?: number;
+    gamma: number;
     vectors?: {
         /**
          * @minItems 3

@@ -107,27 +107,27 @@ class LatticeUnitsSchema(BaseModel):
 
 
 class LatticeSchema(BaseModel):
-    a: Optional[float] = None
+    a: float
     """
     length of the first lattice vector
     """
-    b: Optional[float] = None
+    b: float
     """
     length of the second lattice vector
     """
-    c: Optional[float] = None
+    c: float
     """
     length of the third lattice vector
     """
-    alpha: Optional[float] = None
+    alpha: float
     """
     angle between first and second lattice vector
     """
-    beta: Optional[float] = None
+    beta: float
     """
     angle between second and third lattice vector
     """
-    gamma: Optional[float] = None
+    gamma: float
     """
     angle between first and third lattice vector
     """
