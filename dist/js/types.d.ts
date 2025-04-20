@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1635,23 +1619,7 @@ export type KpointSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -1921,7 +1889,9 @@ export interface ObjectWithIdAndValueSchema {
     /**
      * value of this entry
      */
-    value: number | string | boolean | {} | unknown[];
+    value: {
+        [k: string]: unknown;
+    };
     /**
      * integer id of this entry
      */
@@ -6229,7 +6199,7 @@ export interface MaterialSchema {
             /**
              * value of this entry
              */
-            value: ((number | string | number) | number) & ((((number | string | number) | number) & number) | (((number | string | number) | number) & string) | (((number | string | number) | number) & number) | (((number | string | number) | number) & boolean) | ((number | string | number) | number) | (((number | string | number) | number) & unknown[]));
+            value: (number | string | number) | number;
             /**
              * integer id of this entry
              */
@@ -16386,7 +16356,7 @@ export interface AtomicConstraintSchema {
     /**
      * value of this entry
      */
-    value: [boolean, boolean, boolean] & ((number & [boolean, boolean, boolean]) | ([boolean, boolean, boolean] & string) | (boolean & [boolean, boolean, boolean]) | [boolean, boolean, boolean] | ([boolean, boolean, boolean] & unknown[]));
+    value: [boolean, boolean, boolean];
     /**
      * integer id of this entry
      */
@@ -16400,7 +16370,7 @@ export type AtomicConstraintsSchema = {
     /**
      * value of this entry
      */
-    value: [boolean, boolean, boolean] & ((number & [boolean, boolean, boolean]) | ([boolean, boolean, boolean] & string) | (number & [boolean, boolean, boolean]) | (boolean & [boolean, boolean, boolean]) | [boolean, boolean, boolean] | ([boolean, boolean, boolean] & unknown[]));
+    value: [boolean, boolean, boolean];
     /**
      * integer id of this entry
      */
@@ -16419,7 +16389,7 @@ export interface AtomicConstraintsPropertySchema {
         /**
          * value of this entry
          */
-        value: [boolean, boolean, boolean] & ((number & [boolean, boolean, boolean]) | ([boolean, boolean, boolean] & string) | (number & [boolean, boolean, boolean]) | (boolean & [boolean, boolean, boolean]) | [boolean, boolean, boolean] | ([boolean, boolean, boolean] & unknown[]));
+        value: [boolean, boolean, boolean];
         /**
          * integer id of this entry
          */
@@ -16496,7 +16466,7 @@ export interface AtomicLabel {
     /**
      * value of this entry
      */
-    value: ((number | string) | number) & ((((number | string) | number) & number) | (((number | string) | number) & string) | (((number | string) | number) & boolean) | ((number | string) | number) | (((number | string) | number) & unknown[]));
+    value: (number | string) | number;
     /**
      * integer id of this entry
      */
@@ -16510,7 +16480,7 @@ export type AtomicLabelsSchema = {
     /**
      * value of this entry
      */
-    value: ((number | string | number) | number) & ((((number | string | number) | number) & number) | (((number | string | number) | number) & string) | (((number | string | number) | number) & number) | (((number | string | number) | number) & boolean) | ((number | string | number) | number) | (((number | string | number) | number) & unknown[]));
+    value: (number | string | number) | number;
     /**
      * integer id of this entry
      */
@@ -16581,7 +16551,7 @@ export interface BasisSchema {
         /**
          * value of this entry
          */
-        value: ((number | string | number) | number) & ((((number | string | number) | number) & number) | (((number | string | number) | number) & string) | (((number | string | number) | number) & number) | (((number | string | number) | number) & boolean) | ((number | string | number) | number) | (((number | string | number) | number) & unknown[]));
+        value: (number | string | number) | number;
         /**
          * integer id of this entry
          */

@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, List, Union
+from typing import Any
 
 from pydantic import BaseModel
 
 
 class ObjectWithIdAndValueSchema(BaseModel):
-    value: Union[int, str, float, bool, Dict[str, Any], List[Any]]
+    value: Any
     """
     value of this entry
     """

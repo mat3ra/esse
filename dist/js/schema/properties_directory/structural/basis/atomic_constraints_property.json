@@ -40,15 +40,7 @@
                                 "maxItems": 3
                             }
                         ],
-                        "description": "value of this entry",
-                        "type": [
-                            "integer",
-                            "string",
-                            "number",
-                            "boolean",
-                            "object",
-                            "array"
-                        ]
+                        "description": "value of this entry"
                     },
                     "id": {
                         "description": "integer id of this entry",
