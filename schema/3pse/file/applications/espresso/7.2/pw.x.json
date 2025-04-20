@@ -5,16 +5,16 @@
     "additionalProperties": false,
     "type": "object",
     "properties": {
-        "&CONTROL": {
+        "control": {
             "$ref": "./pw.x/control.json"
         },
-        "&SYSTEM": {
+        "system": {
             "$ref": "./pw.x/system.json"
         },
-        "&ELECTRONS": {
+        "electrons": {
             "$ref": "./pw.x/electrons.json"
         },
-        "&IONS": {
+        "ions": {
             "oneOf": [
                 {
                     "$ref": "./pw.x/ions.json"
@@ -24,7 +24,7 @@
                 }
             ]
         },
-        "&CELL": {
+        "cell": {
             "oneOf": [
                 {
                     "$ref": "./pw.x/cell.json"
@@ -34,19 +34,19 @@
                 }
             ]
         },
-        "ATOMIC_SPECIES": {
+        "atomic_species": {
             "$ref": "./pw.x/atomic_species.json"
         },
-        "ATOMIC_POSITIONS": {
+        "atomic_positions": {
             "$ref": "./pw.x/atomic_positions.json"
         },
-        "K_POINTS": {
+        "kpoints": {
             "$ref": "./pw.x/k_points.json"
         },
-        "CELL_PARAMETERS": {
+        "cell_parameters": {
             "$ref": "./pw.x/cell_parameters.json"
         },
-        "HUBBARD": {
+        "hubbard": {
             "$ref": "./pw.x/hubbard.json"
         }
     }

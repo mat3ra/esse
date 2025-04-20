@@ -1,5 +1,5 @@
 {
-    "&CONTROL": {
+    "control": {
         "calculation": "scf",
         "title": "",
         "verbosity": "low",
@@ -12,7 +12,7 @@
         "prefix": "__prefix__",
         "pseudo_dir": "{{ JOB_WORK_DIR }}/pseudo"
     },
-    "&SYSTEM": {
+    "system": {
         "ibrav": 0,
         "nat": 2,
         "ntyp": 2,
@@ -21,8 +21,8 @@
         "occupations": "smearing",
         "degauss": 0.005,
         "starting_magnetization": [
-            0.01,
-            0.02
+            [1, 0.01],
+            [2, 0.02]
         ],
         "Hubbard_occ": [
             [
@@ -37,16 +37,16 @@
             ]
         ]
     },
-    "&ELECTRONS": {
+    "electrons": {
         "diagonalization": "david",
         "diago_david_ndim": 4,
         "diago_full_acc": true,
         "mixing_beta": 0.3,
         "startingwfc": "atomic+random"
     },
-    "&IONS": null,
-    "&CELL": null,
-    "ATOMIC_SPECIES": {
+    "ions": null,
+    "cell": null,
+    "atomic_species": {
         "values": [
             {
                 "X": "Cs",
@@ -60,7 +60,7 @@
             }
         ]
     },
-    "CELL_PARAMETERS": {
+    "cell_parameters": {
         "card_option": "angstrom",
         "values": {
             "v1": [
@@ -80,7 +80,7 @@
             ]
         }
     },
-    "K_POINTS": {
+    "kpoints": {
         "card_option": "automatic",
         "values": {
             "nk1": 2,

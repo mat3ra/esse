@@ -27,7 +27,7 @@
                                 "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1764",
                                 "additionalProperties": false,
                                 "properties": {
-                                    "U": {
+                                    "paramType": {
                                         "type": "string",
                                         "enum": [
                                             "U"
@@ -42,7 +42,7 @@
                                         "type": "string",
                                         "description": "specs of the manifold (e.g., 3d, 2p...)"
                                     },
-                                    "u_val": {
+                                    "paramValue": {
                                         "type": "number",
                                         "description": "value of the U parameter (in eV)"
                                     }
@@ -53,7 +53,7 @@
                                 "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1784",
                                 "additionalProperties": false,
                                 "properties": {
-                                    "J0": {
+                                    "paramType": {
                                         "type": "string",
                                         "enum": [
                                             "J0"
@@ -68,7 +68,7 @@
                                         "type": "string",
                                         "description": "specs of the manifold (e.g., 3d, 2p...)"
                                     },
-                                    "j0_val": {
+                                    "paramValue": {
                                         "type": "number",
                                         "description": "value of the J0 parameter (in eV)"
                                     }
@@ -121,7 +121,7 @@
                                 "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1847",
                                 "additionalProperties": false,
                                 "properties": {
-                                    "U": {
+                                    "paramType": {
                                         "type": "string",
                                         "enum": [
                                             "U"
@@ -136,7 +136,7 @@
                                         "type": "string",
                                         "description": "specs of the manifold (e.g., 3d, 2p...)"
                                     },
-                                    "u_val": {
+                                    "paramValue": {
                                         "type": "number",
                                         "description": "value of the U parameter (in eV)"
                                     }
@@ -147,7 +147,7 @@
                                 "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1865",
                                 "additionalProperties": false,
                                 "properties": {
-                                    "J0": {
+                                    "paramType": {
                                         "type": "string",
                                         "enum": [
                                             "J0"
@@ -162,7 +162,7 @@
                                         "type": "string",
                                         "description": "specs of the manifold (e.g., 3d, 2p...)"
                                     },
-                                    "j0_val": {
+                                    "paramValue": {
                                         "type": "number",
                                         "description": "value of the J0 parameter (in eV)"
                                     }
@@ -173,7 +173,7 @@
                                 "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1884",
                                 "additionalProperties": false,
                                 "properties": {
-                                    "V": {
+                                    "paramType": {
                                         "type": "string",
                                         "enum": [
                                             "V"
@@ -204,7 +204,7 @@
                                         "type": "integer",
                                         "description": "index of the atom J"
                                     },
-                                    "v_val(I,J)": {
+                                    "paramValue": {
                                         "type": "number",
                                         "description": "value of the V parameter for the atom pair I,J (in eV)"
                                     }

@@ -10,7 +10,16 @@
                 "celldm": {
                     "type": "array",
                     "items": {
-                        "type": "number"
+                        "type": "array",
+                        "items": [
+                            {
+                                "type": "integer",
+                                "minimum": 1
+                            },
+                            {
+                                "type": "number"
+                            }
+                        ]
                     },
                     "minItems": 6,
                     "maxItems": 6
@@ -77,10 +86,19 @@
         "starting_magnetization": {
             "type": "array",
             "items": {
-                "type": "number",
-                "default": 0,
-                "minimum": -1,
-                "maximum": 1
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number",
+                        "default": 0,
+                        "minimum": -1,
+                        "maximum": 1
+                    }
+                ]
             }
         },
         "ecutwfc": {
@@ -327,27 +345,57 @@
         "Hubbard_alpha": {
             "type": "array",
             "items": {
-                "type": "number",
-                "default": 0
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number",
+                        "default": 0
+                    }
+                ]
             }
         },
         "Hubbard_beta": {
             "type": "array",
             "items": {
-                "type": "number",
-                "default": 0
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number",
+                        "default": 0
+                    }
+                ]
             }
         },
         "starting_ns_eigenvalue": {
             "type": "array",
             "items": {
                 "type": "array",
-                "items": {
-                    "type": "array",
-                    "items": {
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
                         "type": "number"
                     }
-                }
+                ]
+
             }
         },
         "dmft": {
@@ -385,7 +433,16 @@
         "angle1": {
             "type": "array",
             "items": {
-                "type": "number"
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
             },
             "maxItems": 1,
             "minItems": 1,
@@ -394,7 +451,16 @@
         "angle2": {
             "type": "array",
             "items": {
-                "type": "number"
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number"
+                    }
+                ]
             },
             "maxItems": 1,
             "minItems": 1,
@@ -419,8 +485,18 @@
         "fixed_magnetization": {
             "type": "array",
             "items": {
-                "type": "number",
-                "default": 0
+                "type": "array",
+                "items": [
+                    {
+                        "type": "integer",
+                        "minimum": 1
+                    },
+                    {
+                        "type": "number",
+                        "default": 0
+                    }
+                ]
+
             },
             "maxItems": 3,
             "minItems": 3
