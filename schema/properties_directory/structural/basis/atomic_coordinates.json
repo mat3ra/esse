@@ -1,67 +1,34 @@
 {
     "$id": "properties-directory/structural/basis/atomic-coordinates",
-    "title": "atomic coordinates",
-    "description": "coordinates of atoms by ids, vector, unitless",
-    "type": "object",
-    "properties": {
-        "name": {
-            "enum": [
-                "atomic_coordinates"
-            ]
-        },
-        "values": {
-            "type": "array",
-            "items": {
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic coordinates schema",
+    "description": "atomic coordinates schema",
+    "type": "array",
+    "items": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "atomic coordinate schema",
+        "description": "coordinate of an atom",
+        "type": "object",
+        "required": [
+            "id",
+            "value"
+        ],
+        "properties": {
+            "value": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "atomic coordinate",
-                "description": "coordinates of atoms by ids, vector, unitless",
-                "type": "object",
-                "properties": {
-                    "id": {
-                        "type": "number"
-                    },
-                    "value": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "vector schema",
-                        "oneOf": [
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 number elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "number"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 boolean elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "boolean"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            }
-                        ]
-                    }
+                "title": "coordinate 3d schema",
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "description": "value of this entry",
+                "items": {
+                    "type": "number"
                 }
+            },
+            "id": {
+                "description": "integer id of this entry",
+                "type": "integer"
             }
-        },
-        "units": {
-            "enum": [
-                "km",
-                "m",
-                "cm",
-                "mm",
-                "um",
-                "nm",
-                "angstrom",
-                "a.u.",
-                "bohr",
-                "pm"
-            ]
         }
     }
 }

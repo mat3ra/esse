@@ -1,55 +1,30 @@
 {
     "$id": "properties-directory/structural/lattice/lattice-vectors",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "lattice explicit unit",
+    "title": "Lattice units schema",
     "type": "object",
-    "required": [
-        "a",
-        "b",
-        "c"
-    ],
+    "default": {
+        "length": "angstrom",
+        "angle": "degree"
+    },
     "properties": {
-        "alat": {
-            "description": "lattice parameter for fractional coordinates",
-            "type": "number",
-            "default": 1
-        },
-        "units": {
+        "length": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "lattice units length enum",
             "enum": [
                 "angstrom",
                 "bohr"
             ],
             "default": "angstrom"
         },
-        "a": {
+        "angle": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "array of 3 number elements schema",
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "type": "number"
-            }
-        },
-        "b": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "array of 3 number elements schema",
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "type": "number"
-            }
-        },
-        "c": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "array of 3 number elements schema",
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "type": "number"
-            }
+            "title": "lattice units angle enum",
+            "enum": [
+                "degree",
+                "radian"
+            ],
+            "default": "degree"
         }
     }
 }
