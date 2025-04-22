@@ -14,12 +14,12 @@ class Name(Enum):
     functional_group = "functional_group"
 
 
-class AtomicId(BaseModel):
+class ObjectWithId(BaseModel):
     isConnector: Optional[bool] = None
     """
     whether atom connects to atoms outside of functional group.
     """
-    id: Optional[int] = None
+    id: int
     """
     integer id of this entry
     """
@@ -27,7 +27,7 @@ class AtomicId(BaseModel):
 
 class FunctionalGroupPatternSchema(BaseModel):
     name: Optional[Name] = None
-    atoms: Optional[List[AtomicId]] = Field(None, title="atomic ids")
+    atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
     """
@@ -37,26 +37,26 @@ class FunctionalGroupPatternSchema(BaseModel):
     """
 
 
-class Name55(Enum):
+class Name54(Enum):
     ring = "ring"
 
 
 class RingPatternSchema(BaseModel):
-    name: Optional[Name55] = None
-    atoms: Optional[List[AtomicId]] = Field(None, title="atomic ids")
+    name: Optional[Name54] = None
+    atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
     """
     isAromatic: Optional[bool] = None
 
 
-class Name56(Enum):
+class Name55(Enum):
     special_bond = "special_bond"
 
 
 class SpecialBondPatternSchema(BaseModel):
-    name: Optional[Name56] = None
-    atoms: Optional[List[AtomicId]] = Field(None, title="atomic ids")
+    name: Optional[Name55] = None
+    atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
     """

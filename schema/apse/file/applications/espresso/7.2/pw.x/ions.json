@@ -1,0 +1,216 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/ions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ions schema",
+    "type": "object",
+    "additionalProperties": false,
+    "oneOf": [
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ion_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "bfgs",
+                        "damp",
+                        "fire"
+                    ],
+                    "default": "bfgs",
+                    "description": "CASE: calculation == 'relax'"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ion_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "verlet",
+                        "langevin",
+                        "langevin-smc"
+                    ],
+                    "default": "verlet",
+                    "description": "CASE: calculation == 'md'"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ion_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "bfgs",
+                        "damp"
+                    ],
+                    "default": "bfgs",
+                    "description": "CASE: calculation == 'vc-relax'"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "ion_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "beeman"
+                    ],
+                    "default": "beeman",
+                    "description": "CASE: calculation == 'vc-md'"
+                }
+            }
+        }
+    ],
+    "properties": {
+        "ion_positions": {
+            "type": "string",
+            "enum": [
+                "default",
+                "from_input"
+            ],
+            "default": "default"
+        },
+        "ion_velocities": {
+            "type": "string",
+            "enum": [
+                "default",
+                "from_input"
+            ],
+            "default": "default"
+        },
+        "pot_extrapolation": {
+            "type": "string",
+            "enum": [
+                "none",
+                "atomic",
+                "first_order",
+                "second_order"
+            ],
+            "default": "atomic",
+            "description": "Used to extrapolate the potential from preceding ionic steps."
+        },
+        "wfc_extrapolation": {
+            "type": "string",
+            "enum": [
+                "none",
+                "first_order",
+                "second_order"
+            ],
+            "default": "none",
+            "description": "Used to extrapolate the wavefunctions from preceding ionic steps."
+        },
+        "remove_rigid_rot": {
+            "type": "boolean",
+            "default": false,
+            "description": "This keyword is useful when simulating the dynamics and/or the thermodynamics of an isolated system. If set to true the total torque of the internal forces is set to zero by adding new forces that compensate the spurious interaction with the periodic images. This allows for the use of smaller supercells."
+        },
+        "ion_temperature": {
+            "type": "string",
+            "enum": [
+                "rescaling",
+                "rescale-v",
+                "rescale-T",
+                "reduce-T",
+                "berendsen",
+                "andersen",
+                "svr",
+                "initial",
+                "not_controlled"
+            ],
+            "default": "not_controlled"
+        },
+        "tempw": {
+            "type": "number",
+            "description": "Starting temperature (Kelvin) in MD runs target temperature for most thermostats.",
+            "default": 300
+        },
+        "tolp": {
+            "type": "number",
+            "description": "Tolerance for velocity rescaling. Velocities are rescaled if the run-averaged and target temperature differ more than tolp.",
+            "default": 100
+        },
+        "delta_t": {
+            "type": "number",
+            "default": 1
+        },
+        "nraise": {
+            "type": "integer",
+            "default": 1
+        },
+        "refold_pos": {
+            "type": "boolean",
+            "default": false,
+            "description": "This keyword applies only in the case of molecular dynamics or damped dynamics. If true the ions are refolded at each step into the supercell."
+        },
+        "upscale": {
+            "type": "number",
+            "description": "Max reduction factor for conv_thr during structural optimization conv_thr is automatically reduced when the relaxation approaches convergence so that forces are still accurate, but conv_thr will not be reduced to less that conv_thr / upscale.",
+            "default": 100
+        },
+        "bfgs_ndim": {
+            "type": "integer",
+            "default": 1,
+            "description": "Number of old forces and displacements vectors used in the PULAY mixing of the residual vectors obtained on the basis of the inverse hessian matrix given by the BFGS algorithm."
+        },
+        "trust_radius_max": {
+            "type": "number",
+            "description": "Maximum ionic displacement in the structural relaxation. (bfgs only)",
+            "default": 0.8
+        },
+        "trust_radius_min": {
+            "type": "number",
+            "description": "Minimum ionic displacement in the structural relaxation BFGS is reset when trust_radius < trust_radius_min. (bfgs only)",
+            "default": 0.001
+        },
+        "trust_radius_ini": {
+            "type": "number",
+            "description": "Initial ionic displacement in the structural relaxation. (bfgs only)",
+            "default": 0.5
+        },
+        "w_1": {
+            "type": "number",
+            "default": 0.01
+        },
+        "w_2": {
+            "type": "number",
+            "description": "Parameters used in line search based on the Wolfe conditions. (bfgs only)",
+            "default": 0.5
+        },
+        "fire_alpha_init": {
+            "type": "number",
+            "description": "Initial value of the alpha mixing factor in the FIRE minimization scheme; recommended values are between 0.1 and 0.3",
+            "default": 0.2
+        },
+        "fire_falpha": {
+            "type": "number",
+            "description": "Scaling of the alpha mixing parameter for steps with P > 0;",
+            "default": 0.99
+        },
+        "fire_nmin": {
+            "type": "integer",
+            "default": 5,
+            "description": "Minimum number of steps with P > 0 before increase of dt"
+        },
+        "fire_f_inc": {
+            "type": "number",
+            "description": "Factor for increasing dt",
+            "default": 1.1
+        },
+        "fire_f_dec": {
+            "type": "number",
+            "description": "Factor for decreasing dt",
+            "default": 0.5
+        },
+        "fire_dtmax": {
+            "type": "number",
+            "description": "Determines the maximum value of dt in the FIRE minimization; dtmax = fire_dtmax*dt",
+            "default": 10
+        }
+    }
+}

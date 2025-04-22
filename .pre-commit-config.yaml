@@ -3,9 +3,9 @@ repos:
     rev: 2023.6.13
     hooks:
       - id: ruff
-        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist*
       - id: black
-        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models
+        exclude: ^src/py/mat3ra/esse/data|^src/py/mat3ra/esse/models|^dist*
   - repo: local
     hooks:
       # Note: only python 3.8.12 is tested for the model generation
@@ -25,10 +25,7 @@ repos:
                 --use-title-as-name \
                 --class-name ESSE \
                 --disable-timestamp \
-                --use-default && \
-            # Move 3rd party modules to a separate directory with a PEP8 compliant name
-            rm -rf ./dist/py/third_party && \
-            mv ./dist/py/3pse ./dist/py/third_party'
+                --use-default'
         language: system
         pass_filenames: false
         verbose: true

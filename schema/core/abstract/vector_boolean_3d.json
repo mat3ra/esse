@@ -1,0 +1,10 @@
+{
+    "$id": "core/abstract/vector-boolean-3d",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "vector boolean 3d schema",
+    "oneOf": [
+        {
+            "$ref": "../primitive/array_of_3_booleans.json"
+        }
+    ]
+}

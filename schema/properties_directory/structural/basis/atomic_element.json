@@ -1,26 +1,11 @@
 {
     "$id": "properties-directory/structural/basis/atomic-element",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic elements",
-    "description": "elements of atoms by ids, string, unitless",
-    "type": "object",
-    "properties": {
-        "id": {
-            "type": "number"
-        },
-        "value": {
-            "type": "string"
-        },
-        "occurrence": {
-            "description": "Occurrence is for fractional occupations",
-            "type": "number"
-        },
-        "oxidationState": {
-            "type": "number"
+    "title": "atomic element schema",
+    "description": "chemical element of an atom according to the periodic table",
+    "allOf": [
+        {
+            "$ref": "../../../core/reusable/atomic_string.json"
         }
-    },
-    "required": [
-        "id",
-        "value"
     ]
 }

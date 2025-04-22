@@ -1,0 +1,10 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-elements",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic elements schema",
+    "description": "atomic elements schema",
+    "type": "array",
+    "items": {
+        "$ref": "./atomic_element.json"
+    }
+}

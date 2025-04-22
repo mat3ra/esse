@@ -10,33 +10,55 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, Field, conint
 
 
-class AtomicElements(BaseModel):
-    id: float
+class AtomicElementSchema(BaseModel):
     value: str
-    occurrence: Optional[float] = None
     """
-    Occurrence is for fractional occupations
+    value of this entry
     """
-    oxidationState: Optional[float] = None
+    id: int
+    """
+    integer id of this entry
+    """
 
 
-class AtomicCoordinate(BaseModel):
-    id: Optional[float] = None
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
+class AtomicCoordinateSchema(BaseModel):
+    value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
 
 
-class Units(Enum):
+class BasisUnitsEnum(Enum):
     crystal = "crystal"
     cartesian = "cartesian"
 
 
-class AtomicLabel(BaseModel):
-    id: Optional[float] = None
-    value: Optional[conint(ge=1, le=9)] = Field(None, title="integer positive single digit")
+class AtomicLabelSchema(BaseModel):
+    value: Union[Union[int, str, float], conint(ge=1, le=9)]
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
 
 
 class BasisSchema(BaseModel):
-    elements: List[AtomicElements]
-    coordinates: List[AtomicCoordinate]
-    units: Optional[Units] = "crystal"
-    labels: Optional[List[AtomicLabel]] = []
+    elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
+    """
+    atomic elements schema
+    """
+    coordinates: List[AtomicCoordinateSchema] = Field(..., title="atomic coordinates schema")
+    """
+    atomic coordinates schema
+    """
+    units: Optional[BasisUnitsEnum] = Field("crystal", title="basis units enum")
+    labels: Optional[List[AtomicLabelSchema]] = Field(None, title="atomic labels schema")
+    """
+    atomic labels schema
+    """

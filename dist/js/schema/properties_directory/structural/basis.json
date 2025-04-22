@@ -9,75 +9,67 @@
     ],
     "properties": {
         "elements": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic elements schema",
+            "description": "atomic elements schema",
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "atomic elements",
-                "description": "elements of atoms by ids, string, unitless",
+                "title": "atomic element schema",
+                "description": "chemical element of an atom according to the periodic table",
                 "type": "object",
                 "required": [
                     "id",
                     "value"
                 ],
                 "properties": {
-                    "id": {
-                        "type": "number"
-                    },
                     "value": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "value of this entry"
                     },
-                    "occurrence": {
-                        "description": "Occurrence is for fractional occupations",
-                        "type": "number"
-                    },
-                    "oxidationState": {
-                        "type": "number"
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
                     }
                 }
             }
         },
         "coordinates": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic coordinates schema",
+            "description": "atomic coordinates schema",
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "atomic coordinate",
-                "description": "coordinates of atoms by ids, vector, unitless",
+                "title": "atomic coordinate schema",
+                "description": "coordinate of an atom",
                 "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
                 "properties": {
-                    "id": {
-                        "type": "number"
-                    },
                     "value": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "vector schema",
-                        "oneOf": [
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 number elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "number"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 boolean elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "boolean"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            }
-                        ]
+                        "title": "coordinate 3d schema",
+                        "type": "array",
+                        "minItems": 3,
+                        "maxItems": 3,
+                        "description": "value of this entry",
+                        "items": {
+                            "type": "number"
+                        }
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
                     }
                 }
             }
         },
         "units": {
-            "type": "string",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "basis units enum",
             "enum": [
                 "crystal",
                 "cartesian"
@@ -85,23 +77,42 @@
             "default": "crystal"
         },
         "labels": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "atomic labels schema",
+            "description": "atomic labels schema",
             "type": "array",
-            "default": [],
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "atomic label",
-                "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                "title": "atomic label schema",
+                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                 "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
                 "properties": {
-                    "id": {
-                        "type": "number"
-                    },
                     "value": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "integer positive single digit",
-                        "type": "integer",
-                        "minimum": 1,
-                        "maximum": 9
+                        "anyOf": [
+                            {
+                                "type": [
+                                    "integer",
+                                    "string",
+                                    "number"
+                                ]
+                            },
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "integer positive single digit",
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 9
+                            }
+                        ],
+                        "description": "value of this entry"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
+                        "type": "integer"
                     }
                 }
             }

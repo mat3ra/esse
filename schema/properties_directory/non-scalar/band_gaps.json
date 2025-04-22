@@ -22,7 +22,7 @@
                 "type": "object",
                 "properties": {
                     "kpoint": {
-                        "$ref": "../../core/abstract/point.json"
+                        "$ref": "../../core/reusable/kpoint.json"
                     },
                     "weight": {
                         "type": "number"

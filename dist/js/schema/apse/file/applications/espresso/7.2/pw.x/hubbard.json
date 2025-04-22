@@ -1,0 +1,219 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/hubbard",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "hubbard schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "card_option": {
+            "type": "string",
+            "enum": [
+                "atomic",
+                "ortho-atomic",
+                "norm-atomic",
+                "wf",
+                "pseudo"
+            ]
+        },
+        "values": {
+            "oneOf": [
+                {
+                    "description": "IF DFT+U",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1764",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "U": {
+                                        "type": "string",
+                                        "enum": [
+                                            "U"
+                                        ],
+                                        "description": "string constant \"U\"; indicates the specs for the U parameter will be given"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "label of the atom (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold": {
+                                        "type": "string",
+                                        "description": "specs of the manifold (e.g., 3d, 2p...)"
+                                    },
+                                    "u_val": {
+                                        "type": "number",
+                                        "description": "value of the U parameter (in eV)"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1784",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "J0": {
+                                        "type": "string",
+                                        "enum": [
+                                            "J0"
+                                        ],
+                                        "description": "string constant \"J0\"; indicates the specs for the J0 parameter will be given"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "label of the atom (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold": {
+                                        "type": "string",
+                                        "description": "specs of the manifold (e.g., 3d, 2p...)"
+                                    },
+                                    "j0_val": {
+                                        "type": "number",
+                                        "description": "value of the J0 parameter (in eV)"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "description": "IF DFT+U+J",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1817",
+                        "additionalProperties": false,
+                        "properties": {
+                            "paramType": {
+                                "type": "string",
+                                "enum": [
+                                    "U",
+                                    "J",
+                                    "B",
+                                    "E2",
+                                    "E3"
+                                ],
+                                "description": "character describing the type of Hubbard parameter allowed values: U, J and either B (for d-orbitals) or E2 and E3 (for f-orbitals)"
+                            },
+                            "label": {
+                                "type": "string",
+                                "description": "label of the atom (as defined in ATOMIC_SPECIES)"
+                            },
+                            "manifold": {
+                                "type": "string",
+                                "description": "specs of the manifold (e.g., 3d, 2p...)"
+                            },
+                            "paramValue": {
+                                "type": "number",
+                                "description": "value of the J0 parameter (in eV)"
+                            }
+                        }
+                    }
+                },
+                {
+                    "description": "IF DFT+U+V",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "object",
+                                "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1847",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "U": {
+                                        "type": "string",
+                                        "enum": [
+                                            "U"
+                                        ],
+                                        "description": "string constant \"U\"; indicates the specs for the U parameter will be given"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "label of the atom (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold": {
+                                        "type": "string",
+                                        "description": "specs of the manifold (e.g., 3d, 2p...)"
+                                    },
+                                    "u_val": {
+                                        "type": "number",
+                                        "description": "value of the U parameter (in eV)"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1865",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "J0": {
+                                        "type": "string",
+                                        "enum": [
+                                            "J0"
+                                        ],
+                                        "description": "string constant \"J0\"; indicates the specs for the J0 parameter will be given"
+                                    },
+                                    "label": {
+                                        "type": "string",
+                                        "description": "label of the atom (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold": {
+                                        "type": "string",
+                                        "description": "specs of the manifold (e.g., 3d, 2p...)"
+                                    },
+                                    "j0_val": {
+                                        "type": "number",
+                                        "description": "value of the J0 parameter (in eV)"
+                                    }
+                                }
+                            },
+                            {
+                                "type": "object",
+                                "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1884",
+                                "additionalProperties": false,
+                                "properties": {
+                                    "V": {
+                                        "type": "string",
+                                        "enum": [
+                                            "V"
+                                        ],
+                                        "description": "string constant \"V\"; indicates the specs for the V parameter will be given"
+                                    },
+                                    "label(I)": {
+                                        "type": "string",
+                                        "description": "label of the atom I (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold(I)": {
+                                        "type": "string",
+                                        "description": "specs of the manifold for atom I (e.g., 3d, 2p...)"
+                                    },
+                                    "label(J)": {
+                                        "type": "string",
+                                        "description": "label of the atom J (as defined in ATOMIC_SPECIES)"
+                                    },
+                                    "manifold(J)": {
+                                        "type": "string",
+                                        "description": "specs of the manifold for atom J (e.g., 3d, 2p...)"
+                                    },
+                                    "I": {
+                                        "type": "integer",
+                                        "description": "index of the atom I"
+                                    },
+                                    "J": {
+                                        "type": "integer",
+                                        "description": "index of the atom J"
+                                    },
+                                    "v_val(I,J)": {
+                                        "type": "number",
+                                        "description": "value of the V parameter for the atom pair I,J (in eV)"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

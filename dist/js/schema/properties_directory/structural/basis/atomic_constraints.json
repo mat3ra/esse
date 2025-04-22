@@ -1,54 +1,39 @@
 {
     "$id": "properties-directory/structural/basis/atomic-constraints",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic constraints",
+    "title": "atomic constraints schema",
     "description": "atomic constraints schema",
-    "type": "object",
-    "properties": {
-        "name": {
-            "enum": [
-                "atomic_constraints"
-            ]
-        },
-        "values": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "atomic vectors schema",
-            "type": "array",
-            "description": "array of objects containing integer id each",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "value": {
+    "type": "array",
+    "items": {
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "title": "atomic constraint schema",
+        "description": "constraint of atoms by ids, used to constraint the position etc.",
+        "type": "object",
+        "required": [
+            "id",
+            "value"
+        ],
+        "properties": {
+            "value": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "vector boolean 3d schema",
+                "oneOf": [
+                    {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "vector schema",
-                        "oneOf": [
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 number elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "number"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "array of 3 boolean elements schema",
-                                "type": "array",
-                                "items": {
-                                    "type": "boolean"
-                                },
-                                "minItems": 3,
-                                "maxItems": 3
-                            }
-                        ]
-                    },
-                    "id": {
-                        "description": "integer id of this entry",
-                        "type": "integer"
+                        "title": "array of 3 boolean elements schema",
+                        "type": "array",
+                        "items": {
+                            "type": "boolean"
+                        },
+                        "minItems": 3,
+                        "maxItems": 3
                     }
-                }
+                ],
+                "description": "value of this entry"
+            },
+            "id": {
+                "description": "integer id of this entry",
+                "type": "integer"
             }
         }
     }

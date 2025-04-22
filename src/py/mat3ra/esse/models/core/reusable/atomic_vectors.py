@@ -4,21 +4,21 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List
 
 from pydantic import BaseModel, Field, RootModel
 
 
-class AtomicVectorsSchemaItem(BaseModel):
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
-    id: Optional[int] = None
+class AtomicVectorSchema(BaseModel):
+    value: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    """
+    value of this entry
+    """
+    id: int
     """
     integer id of this entry
     """
 
 
-class AtomicVectorsSchema(RootModel[List[AtomicVectorsSchemaItem]]):
-    root: List[AtomicVectorsSchemaItem] = Field(..., title="atomic vectors schema")
-    """
-    array of objects containing integer id each
-    """
+class AtomicVectorsSchema(RootModel[List[AtomicVectorSchema]]):
+    root: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")

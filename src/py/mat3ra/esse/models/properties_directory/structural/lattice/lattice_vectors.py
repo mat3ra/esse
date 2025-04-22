@@ -5,22 +5,21 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel, Field
 
 
-class Units(Enum):
+class LatticeUnitsLengthEnum(Enum):
     angstrom = "angstrom"
     bohr = "bohr"
 
 
-class LatticeExplicitUnit(BaseModel):
-    alat: Optional[float] = 1
-    """
-    lattice parameter for fractional coordinates
-    """
-    units: Optional[Units] = "angstrom"
-    a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
+class LatticeUnitsAngleEnum(Enum):
+    degree = "degree"
+    radian = "radian"
+
+
+class LatticeUnitsSchema(BaseModel):
+    length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
+    angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")

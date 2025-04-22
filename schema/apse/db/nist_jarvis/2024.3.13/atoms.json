@@ -1,0 +1,54 @@
+{
+    "$id": "apse/db/nist-jarvis/2024.3.13/atoms",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NIST JARVIS Atoms schema",
+    "description": "NIST J.A.R.V.I.S. db entry `atoms` key schema. Based on https://figshare.com/articles/dataset/Monolayer_data_for_heterostructure/22344571",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "lattice_mat": {
+            "type": "array",
+            "description": "Crystal lattice vectors as a 3x3 matrix, in Angstroms",
+            "items": {
+                "$ref": "../../../../core/primitive/array_of_3_numbers.json"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "coords": {
+            "type": "array",
+            "description": "Atomic coordinates for each atom in the unit cell",
+            "items": {
+                "$ref": "../../../../core/primitive/array_of_3_numbers.json"
+            },
+            "minItems": 1
+        },
+        "elements": {
+            "type": "array",
+            "description": "Atomic elements for each atom in the unit cell in the same order as `coords`",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "abc": {
+            "description": "Lattice constants a, b, and c, in Angstroms",
+            "$ref": "../../../../core/primitive/array_of_3_numbers.json"
+        },
+        "angles": {
+            "description": "Angles between lattice vectors alpha, beta, and gamma, in degrees",
+            "$ref": "../../../../core/primitive/array_of_3_numbers.json"
+        },
+        "cartesian": {
+            "type": "boolean",
+            "description": "True if the coordinates are in Cartesian space, false if in fractional space"
+        },
+        "props": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Additional properties for each of the atoms"
+        }
+    }
+}
