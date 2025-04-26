@@ -85,6 +85,17 @@
             "isNonPeriodic": false,
             "lattice": {
                 "name": "lattice",
+                "a": 5.14,
+                "alpha": 90,
+                "b": 5.14,
+                "beta": 90,
+                "c": 5.14,
+                "gamma": 90,
+                "type": "CUB",
+                "units": {
+                    "angle": "degree",
+                    "length": "angstrom"
+                },
                 "vectors": {
                     "a": [
                         5,
@@ -103,17 +114,6 @@
                         5
                     ],
                     "units": "angstrom"
-                },
-                "a": 5.14,
-                "alpha": 90,
-                "b": 5.14,
-                "beta": 90,
-                "c": 5.14,
-                "gamma": 90,
-                "type": "CUB",
-                "units": {
-                    "angle": "degree",
-                    "length": "angstrom"
                 }
             },
             "name": "Silicon FCC",
@@ -222,6 +222,17 @@
             "isNonPeriodic": false,
             "lattice": {
                 "name": "lattice",
+                "a": 5.14,
+                "alpha": 90,
+                "b": 5.14,
+                "beta": 90,
+                "c": 5.14,
+                "gamma": 90,
+                "type": "CUB",
+                "units": {
+                    "angle": "degree",
+                    "length": "angstrom"
+                },
                 "vectors": {
                     "a": [
                         5,
@@ -240,17 +251,6 @@
                         5
                     ],
                     "units": "angstrom"
-                },
-                "a": 5.14,
-                "alpha": 90,
-                "b": 5.14,
-                "beta": 90,
-                "c": 5.14,
-                "gamma": 90,
-                "type": "CUB",
-                "units": {
-                    "angle": "degree",
-                    "length": "angstrom"
                 }
             },
             "name": "Silicon FCC",

@@ -12,7 +12,7 @@
         "units": {
             "enum": [
                 "eV",
-                "rydberg",
+                "Ry",
                 "hartree"
             ]
         },

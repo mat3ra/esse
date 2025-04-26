@@ -70,6 +70,27 @@
             "enum": [
                 "pseudopotential"
             ]
+        },
+        "cutoffs": {
+            "type": "object",
+            "description": "Suggested cutoff values for wave function and charge density.",
+            "additionalProperties": false,
+            "properties": {
+                "wavefunction": {
+                    "type": "array",
+                    "description": "Energy cutoff values for wavefunction plane wave expansion.",
+                    "items": {
+                        "$ref": "../../../core/reusable/energy_accuracy_levels.json"
+                    }
+                },
+                "density": {
+                    "type": "array",
+                    "description": "Energy cutoff values for charge density plane wave expansion.",
+                    "items": {
+                        "$ref": "../../../core/reusable/energy_accuracy_levels.json"
+                    }
+                }
+            }
         }
     },
     "required": [

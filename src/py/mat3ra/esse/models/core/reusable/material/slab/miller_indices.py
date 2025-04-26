@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import Field, RootModel
 
 
-class ESSE(RootModel[Optional[Union[List[float], List[bool]]]]):
-    root: Optional[Union[List[float], List[bool]]] = Field([0, 0, 1], title="Miller Indices Schema")
+class MillerIndicesSchema(RootModel[Optional[List[float]]]):
+    root: Optional[List[float]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """

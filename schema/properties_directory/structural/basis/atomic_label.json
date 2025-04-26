@@ -1,15 +1,29 @@
 {
     "$id": "properties-directory/structural/basis/atomic-label",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic label",
-    "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+    "title": "atomic label schema",
+    "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../core/primitive/object_with_id_and_value.json"
+        }
+    ],
     "properties": {
-        "id": {
-            "type": "number"
-        },
         "value": {
-            "$ref": "../../../core/primitive/integer_positive_single_digit.json"
+            "anyOf": [
+                {
+                    "type": [
+                        "integer",
+                        "string",
+                        "number"
+                    ]
+                },
+                {
+                    "description": "Atomic label according to QE format. TODO: move to workflow context.",
+                    "$ref": "../../../core/primitive/integer_positive_single_digit.json"
+                }
+            ]
         }
     }
 }

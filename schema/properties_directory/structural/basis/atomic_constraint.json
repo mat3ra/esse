@@ -1,0 +1,17 @@
+{
+    "$id": "properties-directory/structural/basis/atomic-constraint",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic constraint schema",
+    "description": "constraint of atoms by ids, used to constraint the position etc.",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../core/primitive/object_with_id_and_value.json"
+        }
+    ],
+    "properties": {
+        "value": {
+            "$ref": "../../../core/abstract/vector_boolean_3d.json"
+        }
+    }
+}

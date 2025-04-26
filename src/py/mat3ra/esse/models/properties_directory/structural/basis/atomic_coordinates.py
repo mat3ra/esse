@@ -4,35 +4,24 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional, Union
+from typing import List
 
-from pydantic import BaseModel, Field
-
-
-class Name(Enum):
-    atomic_coordinates = "atomic_coordinates"
+from pydantic import BaseModel, Field, RootModel
 
 
-class AtomicCoordinate(BaseModel):
-    id: Optional[float] = None
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
+class AtomicCoordinateSchema(BaseModel):
+    value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    """
+    value of this entry
+    """
+    id: int
+    """
+    integer id of this entry
+    """
 
 
-class Units(Enum):
-    km = "km"
-    m = "m"
-    cm = "cm"
-    mm = "mm"
-    um = "um"
-    nm = "nm"
-    angstrom = "angstrom"
-    a_u_ = "a.u."
-    bohr = "bohr"
-    pm = "pm"
-
-
-class AtomicCoordinates(BaseModel):
-    name: Optional[Name] = None
-    values: Optional[List[AtomicCoordinate]] = None
-    units: Optional[Units] = None
+class AtomicCoordinatesSchema(RootModel[List[AtomicCoordinateSchema]]):
+    root: List[AtomicCoordinateSchema] = Field(..., title="atomic coordinates schema")
+    """
+    atomic coordinates schema
+    """

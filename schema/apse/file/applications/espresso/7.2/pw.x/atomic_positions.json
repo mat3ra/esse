@@ -1,0 +1,66 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/atomic-positions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic positions schema",
+    "description": "https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "card_option": {
+            "type": "string",
+            "enum": [
+                "alat",
+                "bohr",
+                "angstrom",
+                "crystal",
+                "crystal_sg"
+            ],
+            "default": "alat"
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "X": {
+                        "type": "string",
+                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                    },
+                    "x": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "y": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "z": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "if_pos(1)": {
+                        "$ref": "../../../../../../core/primitive/integer_one_or_zero.json",
+                        "default": 1,
+                        "description": "component i of the force for this atom is multiplied by if_pos(i), which must be either 0 or 1.  Used to keep selected atoms and/or selected components fixed in MD dynamics or structural optimization run."
+                    },
+                    "if_pos(2)": {
+                        "$ref": "../../../../../../core/primitive/integer_one_or_zero.json",
+                        "default": 1,
+                        "description": "component i of the force for this atom is multiplied by if_pos(i), which must be either 0 or 1.  Used to keep selected atoms and/or selected components fixed in MD dynamics or structural optimization run."
+                    },
+                    "if_pos(3)": {
+                        "$ref": "../../../../../../core/primitive/integer_one_or_zero.json",
+                        "default": 1,
+                        "description": "component i of the force for this atom is multiplied by if_pos(i), which must be either 0 or 1.  Used to keep selected atoms and/or selected components fixed in MD dynamics or structural optimization run."
+                    }
+                },
+                "required": [
+                    "x",
+                    "y",
+                    "z"
+                ]
+            }
+        }
+    }
+}

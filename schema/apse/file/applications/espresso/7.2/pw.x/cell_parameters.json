@@ -1,0 +1,36 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/cell-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "cell parameters schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "card_option": {
+            "type": "string",
+            "enum": [
+                "alat",
+                "bohr",
+                "angstrom"
+            ],
+            "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+        },
+        "values": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "v1": {
+                    "$ref": "../../../../../../core/primitive/array_of_3_numbers.json",
+                    "description": "1st lattice vector"
+                },
+                "v2": {
+                    "$ref": "../../../../../../core/primitive/array_of_3_numbers.json",
+                    "description": "2nd lattice vector"
+                },
+                "v3": {
+                    "$ref": "../../../../../../core/primitive/array_of_3_numbers.json",
+                    "description": "3rd lattice vector"
+                }
+            }
+        }
+    }
+}

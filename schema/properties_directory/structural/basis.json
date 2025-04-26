@@ -5,31 +5,16 @@
     "type": "object",
     "properties": {
         "elements": {
-            "type": "array",
-            "items": {
-                "$ref": "basis/atomic_element.json"
-            }
+            "$ref": "./basis/atomic_elements.json"
         },
         "coordinates": {
-            "type": "array",
-            "items": {
-                "$ref": "basis/atomic_coordinate.json"
-            }
+            "$ref": "./basis/atomic_coordinates.json"
         },
         "units": {
-            "type": "string",
-            "enum": [
-                "crystal",
-                "cartesian"
-            ],
-            "default": "crystal"
+            "$ref": "basis/units_enum.json"
         },
         "labels": {
-            "type": "array",
-            "items": {
-                "$ref": "basis/atomic_label.json"
-            },
-            "default": []
+            "$ref": "./basis/atomic_labels.json"
         }
     },
     "required": [

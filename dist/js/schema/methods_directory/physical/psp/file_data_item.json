@@ -112,6 +112,83 @@
             "enum": [
                 "pseudopotential"
             ]
+        },
+        "cutoffs": {
+            "type": "object",
+            "description": "Suggested cutoff values for wave function and charge density.",
+            "additionalProperties": false,
+            "properties": {
+                "wavefunction": {
+                    "type": "array",
+                    "description": "Energy cutoff values for wavefunction plane wave expansion.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
+                        "type": "object",
+                        "required": [
+                            "accuracy_level",
+                            "unit",
+                            "value"
+                        ],
+                        "properties": {
+                            "unit": {
+                                "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                "type": "string",
+                                "enum": [
+                                    "Ry"
+                                ]
+                            },
+                            "accuracy_level": {
+                                "description": "Accuracy level determines suggested scalar value.",
+                                "type": "string",
+                                "enum": [
+                                    "standard",
+                                    "low",
+                                    "high"
+                                ]
+                            },
+                            "value": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                "density": {
+                    "type": "array",
+                    "description": "Energy cutoff values for charge density plane wave expansion.",
+                    "items": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
+                        "type": "object",
+                        "required": [
+                            "accuracy_level",
+                            "unit",
+                            "value"
+                        ],
+                        "properties": {
+                            "unit": {
+                                "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+                                "type": "string",
+                                "enum": [
+                                    "Ry"
+                                ]
+                            },
+                            "accuracy_level": {
+                                "description": "Accuracy level determines suggested scalar value.",
+                                "type": "string",
+                                "enum": [
+                                    "standard",
+                                    "low",
+                                    "high"
+                                ]
+                            },
+                            "value": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

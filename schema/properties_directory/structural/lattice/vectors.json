@@ -1,0 +1,33 @@
+{
+    "$id": "properties-directory/structural/lattice/vectors",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "lattice vectors schema",
+    "type": "object",
+    "properties": {
+        "a": {
+            "description": "first vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
+        "b": {
+            "description": "second vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
+        "c": {
+            "description": "third vector",
+            "$ref": "../../../core/abstract/vector_3d.json"
+        },
+        "alat": {
+            "description": "lattice parameter for fractional coordinates",
+            "type": "number",
+            "default": 1
+        },
+        "units": {
+            "$ref": "./vectors/units_enum.json"
+        }
+    },
+    "required": [
+        "a",
+        "b",
+        "c"
+    ]
+}

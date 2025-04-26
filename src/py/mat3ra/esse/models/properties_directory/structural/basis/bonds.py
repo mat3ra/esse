@@ -10,8 +10,8 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, RootModel
 
 
-class AtomicId(BaseModel):
-    id: Optional[int] = None
+class ObjectWithId(BaseModel):
+    id: int
     """
     integer id of this entry
     """
@@ -29,7 +29,7 @@ class BondType(Enum):
 
 
 class BondsSchemaItem(BaseModel):
-    atomPair: Optional[List[AtomicId]] = Field(None, max_length=2, min_length=2, title="atomic ids")
+    atomPair: Optional[List[ObjectWithId]] = Field(None, max_length=2, min_length=2, title="array of ids")
     """
     indices of the two connected atoms
     """

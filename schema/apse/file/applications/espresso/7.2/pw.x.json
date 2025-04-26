@@ -1,0 +1,53 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "pwx main schema",
+    "additionalProperties": false,
+    "type": "object",
+    "properties": {
+        "&CONTROL": {
+            "$ref": "./pw.x/control.json"
+        },
+        "&SYSTEM": {
+            "$ref": "./pw.x/system.json"
+        },
+        "&ELECTRONS": {
+            "$ref": "./pw.x/electrons.json"
+        },
+        "&IONS": {
+            "oneOf": [
+                {
+                    "$ref": "./pw.x/ions.json"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "&CELL": {
+            "oneOf": [
+                {
+                    "$ref": "./pw.x/cell.json"
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "ATOMIC_SPECIES": {
+            "$ref": "./pw.x/atomic_species.json"
+        },
+        "ATOMIC_POSITIONS": {
+            "$ref": "./pw.x/atomic_positions.json"
+        },
+        "K_POINTS": {
+            "$ref": "./pw.x/k_points.json"
+        },
+        "CELL_PARAMETERS": {
+            "$ref": "./pw.x/cell_parameters.json"
+        },
+        "HUBBARD": {
+            "$ref": "./pw.x/hubbard.json"
+        }
+    }
+}

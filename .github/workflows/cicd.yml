@@ -41,12 +41,8 @@ jobs:
           - 3.9.x
           - 3.10.x
           - 3.11.x
-          # Re-enable after fixing the below:
-          # AttributeError: module 'pkgutil' has no attribute 'ImpImporter'. Did you mean: 'zipimporter'?
-          # https://stackoverflow.com/questions/77364550/attributeerror-module-pkgutil-has-no-attribute-impimporter-did-you-mean
-          # The python env in `actions` has to have an updated pip version
-          # - 3.12.x
-          # - 3.13.x
+          - 3.12.x
+          - 3.13.x
 
     steps:
       - name: Checkout this repository

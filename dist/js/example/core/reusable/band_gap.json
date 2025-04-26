@@ -11,6 +11,6 @@
     ],
     "name": "band_gap",
     "type": "direct",
-    "units": "rydberg",
+    "units": "Ry",
     "value": 0.0947
 }

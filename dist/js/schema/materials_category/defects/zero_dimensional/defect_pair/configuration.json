@@ -55,75 +55,67 @@
                                     ],
                                     "properties": {
                                         "elements": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic elements schema",
+                                            "description": "atomic elements schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic elements",
-                                                "description": "elements of atoms by ids, string, unitless",
+                                                "title": "atomic element schema",
+                                                "description": "chemical element of an atom according to the periodic table",
                                                 "type": "object",
                                                 "required": [
                                                     "id",
                                                     "value"
                                                 ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "value of this entry"
                                                     },
-                                                    "occurrence": {
-                                                        "description": "Occurrence is for fractional occupations",
-                                                        "type": "number"
-                                                    },
-                                                    "oxidationState": {
-                                                        "type": "number"
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "coordinates": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic coordinates schema",
+                                            "description": "atomic coordinates schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic coordinate",
-                                                "description": "coordinates of atoms by ids, vector, unitless",
+                                                "title": "atomic coordinate schema",
+                                                "description": "coordinate of an atom",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
                                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "vector schema",
-                                                        "oneOf": [
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 number elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "number"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            },
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 boolean elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            }
-                                                        ]
+                                                        "title": "coordinate 3d schema",
+                                                        "type": "array",
+                                                        "minItems": 3,
+                                                        "maxItems": 3,
+                                                        "description": "value of this entry",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "units": {
-                                            "type": "string",
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "basis units enum",
                                             "enum": [
                                                 "crystal",
                                                 "cartesian"
@@ -131,23 +123,42 @@
                                             "default": "crystal"
                                         },
                                         "labels": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic labels schema",
+                                            "description": "atomic labels schema",
                                             "type": "array",
-                                            "default": [],
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic label",
-                                                "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                                "title": "atomic label schema",
+                                                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "integer positive single digit",
-                                                        "type": "integer",
-                                                        "minimum": 1,
-                                                        "maximum": 9
+                                                        "anyOf": [
+                                                            {
+                                                                "type": [
+                                                                    "integer",
+                                                                    "string",
+                                                                    "number"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "integer positive single digit",
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "maximum": 9
+                                                            }
+                                                        ],
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
@@ -160,17 +171,40 @@
                                     "type": "object",
                                     "required": [
                                         "a",
-                                        "alpha",
                                         "b",
-                                        "beta",
                                         "c",
-                                        "gamma",
-                                        "type"
+                                        "alpha",
+                                        "beta",
+                                        "gamma"
                                     ],
                                     "properties": {
+                                        "a": {
+                                            "description": "length of the first lattice vector",
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "description": "length of the second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "c": {
+                                            "description": "length of the third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "alpha": {
+                                            "description": "angle between first and second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "beta": {
+                                            "description": "angle between second and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "gamma": {
+                                            "description": "angle between first and third lattice vector",
+                                            "type": "number"
+                                        },
                                         "vectors": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "lattice explicit unit",
+                                            "title": "lattice vectors schema",
                                             "type": "object",
                                             "required": [
                                                 "a",
@@ -178,28 +212,9 @@
                                                 "c"
                                             ],
                                             "properties": {
-                                                "alat": {
-                                                    "description": "lattice parameter for fractional coordinates",
-                                                    "type": "number",
-                                                    "default": 1
-                                                },
-                                                "units": {
-                                                    "enum": [
-                                                        "km",
-                                                        "m",
-                                                        "cm",
-                                                        "mm",
-                                                        "um",
-                                                        "nm",
-                                                        "angstrom",
-                                                        "a.u.",
-                                                        "bohr",
-                                                        "pm"
-                                                    ]
-                                                },
                                                 "a": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -209,7 +224,7 @@
                                                 },
                                                 "b": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -219,13 +234,27 @@
                                                 },
                                                 "c": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
                                                     "items": {
                                                         "type": "number"
                                                     }
+                                                },
+                                                "alat": {
+                                                    "description": "lattice parameter for fractional coordinates",
+                                                    "type": "number",
+                                                    "default": 1
+                                                },
+                                                "units": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice vectors units enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
                                                 }
                                             }
                                         },
@@ -252,6 +281,7 @@
                                             "default": "TRI"
                                         },
                                         "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "Lattice units schema",
                                             "type": "object",
                                             "default": {
@@ -260,6 +290,8 @@
                                             },
                                             "properties": {
                                                 "length": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units length enum",
                                                     "enum": [
                                                         "angstrom",
                                                         "bohr"
@@ -267,6 +299,8 @@
                                                     "default": "angstrom"
                                                 },
                                                 "angle": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units angle enum",
                                                     "enum": [
                                                         "degree",
                                                         "radian"
@@ -274,30 +308,6 @@
                                                     "default": "degree"
                                                 }
                                             }
-                                        },
-                                        "a": {
-                                            "description": "length of the first lattice vector",
-                                            "type": "number"
-                                        },
-                                        "b": {
-                                            "description": "length of the second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "c": {
-                                            "description": "length of the third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "alpha": {
-                                            "description": "angle between first and second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "beta": {
-                                            "description": "angle between second and third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "gamma": {
-                                            "description": "angle between first and third lattice vector",
-                                            "type": "number"
                                         }
                                     }
                                 },
@@ -723,75 +733,67 @@
                                     ],
                                     "properties": {
                                         "elements": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic elements schema",
+                                            "description": "atomic elements schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic elements",
-                                                "description": "elements of atoms by ids, string, unitless",
+                                                "title": "atomic element schema",
+                                                "description": "chemical element of an atom according to the periodic table",
                                                 "type": "object",
                                                 "required": [
                                                     "id",
                                                     "value"
                                                 ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "value of this entry"
                                                     },
-                                                    "occurrence": {
-                                                        "description": "Occurrence is for fractional occupations",
-                                                        "type": "number"
-                                                    },
-                                                    "oxidationState": {
-                                                        "type": "number"
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "coordinates": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic coordinates schema",
+                                            "description": "atomic coordinates schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic coordinate",
-                                                "description": "coordinates of atoms by ids, vector, unitless",
+                                                "title": "atomic coordinate schema",
+                                                "description": "coordinate of an atom",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
                                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "vector schema",
-                                                        "oneOf": [
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 number elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "number"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            },
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 boolean elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            }
-                                                        ]
+                                                        "title": "coordinate 3d schema",
+                                                        "type": "array",
+                                                        "minItems": 3,
+                                                        "maxItems": 3,
+                                                        "description": "value of this entry",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "units": {
-                                            "type": "string",
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "basis units enum",
                                             "enum": [
                                                 "crystal",
                                                 "cartesian"
@@ -799,23 +801,42 @@
                                             "default": "crystal"
                                         },
                                         "labels": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic labels schema",
+                                            "description": "atomic labels schema",
                                             "type": "array",
-                                            "default": [],
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic label",
-                                                "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                                "title": "atomic label schema",
+                                                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "integer positive single digit",
-                                                        "type": "integer",
-                                                        "minimum": 1,
-                                                        "maximum": 9
+                                                        "anyOf": [
+                                                            {
+                                                                "type": [
+                                                                    "integer",
+                                                                    "string",
+                                                                    "number"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "integer positive single digit",
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "maximum": 9
+                                                            }
+                                                        ],
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
@@ -828,17 +849,40 @@
                                     "type": "object",
                                     "required": [
                                         "a",
-                                        "alpha",
                                         "b",
-                                        "beta",
                                         "c",
-                                        "gamma",
-                                        "type"
+                                        "alpha",
+                                        "beta",
+                                        "gamma"
                                     ],
                                     "properties": {
+                                        "a": {
+                                            "description": "length of the first lattice vector",
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "description": "length of the second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "c": {
+                                            "description": "length of the third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "alpha": {
+                                            "description": "angle between first and second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "beta": {
+                                            "description": "angle between second and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "gamma": {
+                                            "description": "angle between first and third lattice vector",
+                                            "type": "number"
+                                        },
                                         "vectors": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "lattice explicit unit",
+                                            "title": "lattice vectors schema",
                                             "type": "object",
                                             "required": [
                                                 "a",
@@ -846,28 +890,9 @@
                                                 "c"
                                             ],
                                             "properties": {
-                                                "alat": {
-                                                    "description": "lattice parameter for fractional coordinates",
-                                                    "type": "number",
-                                                    "default": 1
-                                                },
-                                                "units": {
-                                                    "enum": [
-                                                        "km",
-                                                        "m",
-                                                        "cm",
-                                                        "mm",
-                                                        "um",
-                                                        "nm",
-                                                        "angstrom",
-                                                        "a.u.",
-                                                        "bohr",
-                                                        "pm"
-                                                    ]
-                                                },
                                                 "a": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -877,7 +902,7 @@
                                                 },
                                                 "b": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -887,13 +912,27 @@
                                                 },
                                                 "c": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
                                                     "items": {
                                                         "type": "number"
                                                     }
+                                                },
+                                                "alat": {
+                                                    "description": "lattice parameter for fractional coordinates",
+                                                    "type": "number",
+                                                    "default": 1
+                                                },
+                                                "units": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice vectors units enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
                                                 }
                                             }
                                         },
@@ -920,6 +959,7 @@
                                             "default": "TRI"
                                         },
                                         "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "Lattice units schema",
                                             "type": "object",
                                             "default": {
@@ -928,6 +968,8 @@
                                             },
                                             "properties": {
                                                 "length": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units length enum",
                                                     "enum": [
                                                         "angstrom",
                                                         "bohr"
@@ -935,6 +977,8 @@
                                                     "default": "angstrom"
                                                 },
                                                 "angle": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units angle enum",
                                                     "enum": [
                                                         "degree",
                                                         "radian"
@@ -942,30 +986,6 @@
                                                     "default": "degree"
                                                 }
                                             }
-                                        },
-                                        "a": {
-                                            "description": "length of the first lattice vector",
-                                            "type": "number"
-                                        },
-                                        "b": {
-                                            "description": "length of the second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "c": {
-                                            "description": "length of the third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "alpha": {
-                                            "description": "angle between first and second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "beta": {
-                                            "description": "angle between second and third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "gamma": {
-                                            "description": "angle between first and third lattice vector",
-                                            "type": "number"
                                         }
                                     }
                                 },
@@ -1375,75 +1395,67 @@
                                     ],
                                     "properties": {
                                         "elements": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic elements schema",
+                                            "description": "atomic elements schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic elements",
-                                                "description": "elements of atoms by ids, string, unitless",
+                                                "title": "atomic element schema",
+                                                "description": "chemical element of an atom according to the periodic table",
                                                 "type": "object",
                                                 "required": [
                                                     "id",
                                                     "value"
                                                 ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "value of this entry"
                                                     },
-                                                    "occurrence": {
-                                                        "description": "Occurrence is for fractional occupations",
-                                                        "type": "number"
-                                                    },
-                                                    "oxidationState": {
-                                                        "type": "number"
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "coordinates": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic coordinates schema",
+                                            "description": "atomic coordinates schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic coordinate",
-                                                "description": "coordinates of atoms by ids, vector, unitless",
+                                                "title": "atomic coordinate schema",
+                                                "description": "coordinate of an atom",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
                                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "vector schema",
-                                                        "oneOf": [
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 number elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "number"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            },
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 boolean elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            }
-                                                        ]
+                                                        "title": "coordinate 3d schema",
+                                                        "type": "array",
+                                                        "minItems": 3,
+                                                        "maxItems": 3,
+                                                        "description": "value of this entry",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "units": {
-                                            "type": "string",
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "basis units enum",
                                             "enum": [
                                                 "crystal",
                                                 "cartesian"
@@ -1451,23 +1463,42 @@
                                             "default": "crystal"
                                         },
                                         "labels": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic labels schema",
+                                            "description": "atomic labels schema",
                                             "type": "array",
-                                            "default": [],
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic label",
-                                                "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                                "title": "atomic label schema",
+                                                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "integer positive single digit",
-                                                        "type": "integer",
-                                                        "minimum": 1,
-                                                        "maximum": 9
+                                                        "anyOf": [
+                                                            {
+                                                                "type": [
+                                                                    "integer",
+                                                                    "string",
+                                                                    "number"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "integer positive single digit",
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "maximum": 9
+                                                            }
+                                                        ],
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
@@ -1480,17 +1511,40 @@
                                     "type": "object",
                                     "required": [
                                         "a",
-                                        "alpha",
                                         "b",
-                                        "beta",
                                         "c",
-                                        "gamma",
-                                        "type"
+                                        "alpha",
+                                        "beta",
+                                        "gamma"
                                     ],
                                     "properties": {
+                                        "a": {
+                                            "description": "length of the first lattice vector",
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "description": "length of the second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "c": {
+                                            "description": "length of the third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "alpha": {
+                                            "description": "angle between first and second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "beta": {
+                                            "description": "angle between second and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "gamma": {
+                                            "description": "angle between first and third lattice vector",
+                                            "type": "number"
+                                        },
                                         "vectors": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "lattice explicit unit",
+                                            "title": "lattice vectors schema",
                                             "type": "object",
                                             "required": [
                                                 "a",
@@ -1498,28 +1552,9 @@
                                                 "c"
                                             ],
                                             "properties": {
-                                                "alat": {
-                                                    "description": "lattice parameter for fractional coordinates",
-                                                    "type": "number",
-                                                    "default": 1
-                                                },
-                                                "units": {
-                                                    "enum": [
-                                                        "km",
-                                                        "m",
-                                                        "cm",
-                                                        "mm",
-                                                        "um",
-                                                        "nm",
-                                                        "angstrom",
-                                                        "a.u.",
-                                                        "bohr",
-                                                        "pm"
-                                                    ]
-                                                },
                                                 "a": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -1529,7 +1564,7 @@
                                                 },
                                                 "b": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -1539,13 +1574,27 @@
                                                 },
                                                 "c": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
                                                     "items": {
                                                         "type": "number"
                                                     }
+                                                },
+                                                "alat": {
+                                                    "description": "lattice parameter for fractional coordinates",
+                                                    "type": "number",
+                                                    "default": 1
+                                                },
+                                                "units": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice vectors units enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
                                                 }
                                             }
                                         },
@@ -1572,6 +1621,7 @@
                                             "default": "TRI"
                                         },
                                         "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "Lattice units schema",
                                             "type": "object",
                                             "default": {
@@ -1580,6 +1630,8 @@
                                             },
                                             "properties": {
                                                 "length": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units length enum",
                                                     "enum": [
                                                         "angstrom",
                                                         "bohr"
@@ -1587,6 +1639,8 @@
                                                     "default": "angstrom"
                                                 },
                                                 "angle": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units angle enum",
                                                     "enum": [
                                                         "degree",
                                                         "radian"
@@ -1594,30 +1648,6 @@
                                                     "default": "degree"
                                                 }
                                             }
-                                        },
-                                        "a": {
-                                            "description": "length of the first lattice vector",
-                                            "type": "number"
-                                        },
-                                        "b": {
-                                            "description": "length of the second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "c": {
-                                            "description": "length of the third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "alpha": {
-                                            "description": "angle between first and second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "beta": {
-                                            "description": "angle between second and third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "gamma": {
-                                            "description": "angle between first and third lattice vector",
-                                            "type": "number"
                                         }
                                     }
                                 },
@@ -2042,75 +2072,67 @@
                                     ],
                                     "properties": {
                                         "elements": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic elements schema",
+                                            "description": "atomic elements schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic elements",
-                                                "description": "elements of atoms by ids, string, unitless",
+                                                "title": "atomic element schema",
+                                                "description": "chemical element of an atom according to the periodic table",
                                                 "type": "object",
                                                 "required": [
                                                     "id",
                                                     "value"
                                                 ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "type": "string"
+                                                        "type": "string",
+                                                        "description": "value of this entry"
                                                     },
-                                                    "occurrence": {
-                                                        "description": "Occurrence is for fractional occupations",
-                                                        "type": "number"
-                                                    },
-                                                    "oxidationState": {
-                                                        "type": "number"
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "coordinates": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic coordinates schema",
+                                            "description": "atomic coordinates schema",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic coordinate",
-                                                "description": "coordinates of atoms by ids, vector, unitless",
+                                                "title": "atomic coordinate schema",
+                                                "description": "coordinate of an atom",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
                                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "vector schema",
-                                                        "oneOf": [
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 number elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "number"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            },
-                                                            {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "array of 3 boolean elements schema",
-                                                                "type": "array",
-                                                                "items": {
-                                                                    "type": "boolean"
-                                                                },
-                                                                "minItems": 3,
-                                                                "maxItems": 3
-                                                            }
-                                                        ]
+                                                        "title": "coordinate 3d schema",
+                                                        "type": "array",
+                                                        "minItems": 3,
+                                                        "maxItems": 3,
+                                                        "description": "value of this entry",
+                                                        "items": {
+                                                            "type": "number"
+                                                        }
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
                                         },
                                         "units": {
-                                            "type": "string",
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "basis units enum",
                                             "enum": [
                                                 "crystal",
                                                 "cartesian"
@@ -2118,23 +2140,42 @@
                                             "default": "crystal"
                                         },
                                         "labels": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "atomic labels schema",
+                                            "description": "atomic labels schema",
                                             "type": "array",
-                                            "default": [],
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "atomic label",
-                                                "description": "Optional numeric label (e.g., 1, 2, as in Fe1, Fe2) to distinguish same atomic species to attach different spin magnetic moment.",
+                                                "title": "atomic label schema",
+                                                "description": "Optional label (e.g., 1, 2, as in Fe1, Fe2) to distinguish species, e.g. to have magnetic moment.",
                                                 "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
                                                 "properties": {
-                                                    "id": {
-                                                        "type": "number"
-                                                    },
                                                     "value": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "integer positive single digit",
-                                                        "type": "integer",
-                                                        "minimum": 1,
-                                                        "maximum": 9
+                                                        "anyOf": [
+                                                            {
+                                                                "type": [
+                                                                    "integer",
+                                                                    "string",
+                                                                    "number"
+                                                                ]
+                                                            },
+                                                            {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "integer positive single digit",
+                                                                "type": "integer",
+                                                                "minimum": 1,
+                                                                "maximum": 9
+                                                            }
+                                                        ],
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
+                                                        "type": "integer"
                                                     }
                                                 }
                                             }
@@ -2147,17 +2188,40 @@
                                     "type": "object",
                                     "required": [
                                         "a",
-                                        "alpha",
                                         "b",
-                                        "beta",
                                         "c",
-                                        "gamma",
-                                        "type"
+                                        "alpha",
+                                        "beta",
+                                        "gamma"
                                     ],
                                     "properties": {
+                                        "a": {
+                                            "description": "length of the first lattice vector",
+                                            "type": "number"
+                                        },
+                                        "b": {
+                                            "description": "length of the second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "c": {
+                                            "description": "length of the third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "alpha": {
+                                            "description": "angle between first and second lattice vector",
+                                            "type": "number"
+                                        },
+                                        "beta": {
+                                            "description": "angle between second and third lattice vector",
+                                            "type": "number"
+                                        },
+                                        "gamma": {
+                                            "description": "angle between first and third lattice vector",
+                                            "type": "number"
+                                        },
                                         "vectors": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "lattice explicit unit",
+                                            "title": "lattice vectors schema",
                                             "type": "object",
                                             "required": [
                                                 "a",
@@ -2165,28 +2229,9 @@
                                                 "c"
                                             ],
                                             "properties": {
-                                                "alat": {
-                                                    "description": "lattice parameter for fractional coordinates",
-                                                    "type": "number",
-                                                    "default": 1
-                                                },
-                                                "units": {
-                                                    "enum": [
-                                                        "km",
-                                                        "m",
-                                                        "cm",
-                                                        "mm",
-                                                        "um",
-                                                        "nm",
-                                                        "angstrom",
-                                                        "a.u.",
-                                                        "bohr",
-                                                        "pm"
-                                                    ]
-                                                },
                                                 "a": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -2196,7 +2241,7 @@
                                                 },
                                                 "b": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
@@ -2206,13 +2251,27 @@
                                                 },
                                                 "c": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "array of 3 number elements schema",
+                                                    "title": "vector 3d schema",
                                                     "type": "array",
                                                     "minItems": 3,
                                                     "maxItems": 3,
                                                     "items": {
                                                         "type": "number"
                                                     }
+                                                },
+                                                "alat": {
+                                                    "description": "lattice parameter for fractional coordinates",
+                                                    "type": "number",
+                                                    "default": 1
+                                                },
+                                                "units": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice vectors units enum",
+                                                    "enum": [
+                                                        "angstrom",
+                                                        "bohr"
+                                                    ],
+                                                    "default": "angstrom"
                                                 }
                                             }
                                         },
@@ -2239,6 +2298,7 @@
                                             "default": "TRI"
                                         },
                                         "units": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "Lattice units schema",
                                             "type": "object",
                                             "default": {
@@ -2247,6 +2307,8 @@
                                             },
                                             "properties": {
                                                 "length": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units length enum",
                                                     "enum": [
                                                         "angstrom",
                                                         "bohr"
@@ -2254,6 +2316,8 @@
                                                     "default": "angstrom"
                                                 },
                                                 "angle": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "lattice units angle enum",
                                                     "enum": [
                                                         "degree",
                                                         "radian"
@@ -2261,30 +2325,6 @@
                                                     "default": "degree"
                                                 }
                                             }
-                                        },
-                                        "a": {
-                                            "description": "length of the first lattice vector",
-                                            "type": "number"
-                                        },
-                                        "b": {
-                                            "description": "length of the second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "c": {
-                                            "description": "length of the third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "alpha": {
-                                            "description": "angle between first and second lattice vector",
-                                            "type": "number"
-                                        },
-                                        "beta": {
-                                            "description": "angle between second and third lattice vector",
-                                            "type": "number"
-                                        },
-                                        "gamma": {
-                                            "description": "angle between first and third lattice vector",
-                                            "type": "number"
                                         }
                                     }
                                 },

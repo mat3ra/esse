@@ -1,0 +1,15 @@
+{
+    "$id": "core/reusable/atomic-string",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic string schema",
+    "allOf": [
+        {
+            "$ref": "../primitive/object_with_id_and_value.json"
+        }
+    ],
+    "properties": {
+        "value": {
+            "type": "string"
+        }
+    }
+}
