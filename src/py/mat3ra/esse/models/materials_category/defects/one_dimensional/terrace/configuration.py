@@ -404,16 +404,14 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class TerraceSlabDefectConfigurationSchema(BaseModel):
-    defect_type: Literal["terrace"] = "terrace"
-    cut_direction: Optional[List[int]] = Field([1, 0, 0], max_length=3, min_length=3)
+class TerraceConfigurationSchema(BaseModel):
+    cut_direction: Optional[List[float]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
-    Direction of the cut as lattice vector
+    Miller indices for crystallographic plane designation
     """
-    pivot_coordinate: Optional[List[float]] = Field([0.5, 0.5, 0.5], max_length=3, min_length=3)
-    """
-    Pivot coordinate where the cut plane passes through
-    """
+    pivot_coordinate: Optional[List[float]] = Field(
+        None, max_length=3, min_length=3, title="array of 3 number elements schema"
+    )
     use_cartesian_coordinates: Optional[bool] = False
     """
     Whether to use Cartesian coordinates
@@ -422,8 +420,8 @@ class TerraceSlabDefectConfigurationSchema(BaseModel):
     """
     Whether to rotate the slab to match periodic boundary conditions
     """
-    number_of_added_layers: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 1
+    number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="Thickness Schema")
     """
-    Number of layers to add to the slab
+    Number of atomic layers in a structural component
     """
     crystal: MaterialSchema = Field(..., title="material schema")

@@ -457,8 +457,8 @@ class IslandSlabDefectConfigurationSchema(BaseModel):
     """
     Spatial condition defining the shape of the island
     """
-    number_of_added_layers: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 1
+    number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="Thickness Schema")
     """
-    Number of layers to add to the slab
+    Number of atomic layers in a structural component
     """
     crystal: MaterialSchema = Field(..., title="material schema")

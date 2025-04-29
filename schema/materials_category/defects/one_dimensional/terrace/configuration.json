@@ -1,47 +1,41 @@
 {
-  "$id": "materials-category/defects/one-dimensional/terrace/configuration",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Terrace Slab Defect Configuration Schema",
-  "description": "Configuration for a terrace defect on a slab surface",
-  "type": "object",
-  "allOf": [
-    {
-      "$ref": "../../slab/configuration.json"
+    "$id": "materials-category/defects/one-dimensional/terrace/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Terrace Configuration Schema",
+    "description": "Configuration for creating a terrace",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../slab/configuration.json"
+        }
+    ],
+    "properties": {
+        "cut_direction": {
+            "$ref": "../../../../core/reusable/material/slab/miller_indices.json",
+            "default": [
+                1,
+                0,
+                0
+            ]
+        },
+        "pivot_coordinate": {
+            "description": "Pivot coordinate where the cut plane passes through",
+            "$ref": "../../../../core/primitive/array_of_3_numbers.json",
+            "default": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether to use Cartesian coordinates",
+            "type": "boolean",
+            "default": false
+        },
+        "rotate_to_match_pbc": {
+            "description": "Whether to rotate the slab to match periodic boundary conditions",
+            "type": "boolean",
+            "default": true
+        }
     }
-  ],
-  "properties": {
-    "defect_type": {
-      "const": "terrace"
-    },
-    "cut_direction": {
-      "description": "Direction of the cut as lattice vector",
-      "type": "array",
-      "items": {
-        "type": "integer"
-      },
-      "minItems": 3,
-      "maxItems": 3,
-      "default": [1, 0, 0]
-    },
-    "pivot_coordinate": {
-      "description": "Pivot coordinate where the cut plane passes through",
-      "type": "array",
-      "items": {
-        "type": "number"
-      },
-      "minItems": 3,
-      "maxItems": 3,
-      "default": [0.5, 0.5, 0.5]
-    },
-    "use_cartesian_coordinates": {
-      "description": "Whether to use Cartesian coordinates",
-      "type": "boolean",
-      "default": false
-    },
-    "rotate_to_match_pbc": {
-      "description": "Whether to rotate the slab to match periodic boundary conditions",
-      "type": "boolean",
-      "default": true
-    }
-  }
 } 

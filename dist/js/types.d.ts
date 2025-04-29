@@ -56,7 +56,23 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
+        lattice_mat?: [
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ]
+        ];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1619,7 +1635,23 @@ export type KpointSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
+export type Matrix3X3Schema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -2845,7 +2877,23 @@ export type SupercellMatrix2DSchema = [[number, number], [number, number]];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
+export type SupercellMatrix3DSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -7277,20 +7325,17 @@ export interface SurfaceGrainBoundaryConfigurationSchema {
 }
 /** Schema dist/js/schema/materials_category/defects/one_dimensional/terrace/configuration.json */
 /**
- * Configuration for a terrace defect on a slab surface
+ * Configuration for creating a terrace
  */
-export interface TerraceSlabDefectConfigurationSchema {
-    defect_type?: "terrace";
+export interface TerraceConfigurationSchema {
     /**
-     * Direction of the cut as lattice vector
+     * Miller indices for crystallographic plane designation
      *
      * @minItems 3
      * @maxItems 3
      */
     cut_direction?: [number, number, number];
     /**
-     * Pivot coordinate where the cut plane passes through
-     *
      * @minItems 3
      * @maxItems 3
      */
@@ -7304,7 +7349,7 @@ export interface TerraceSlabDefectConfigurationSchema {
      */
     rotate_to_match_pbc?: boolean;
     /**
-     * Number of layers to add to the slab
+     * Number of atomic layers in a structural component
      */
     number_of_added_layers?: number;
     crystal: {
@@ -7570,7 +7615,7 @@ export interface TerraceSlabDefectConfigurationSchema {
  */
 export interface SlabDefectConfigurationSchema {
     /**
-     * Number of layers to add to the slab
+     * Number of atomic layers in a structural component
      */
     number_of_added_layers?: number;
     crystal: {
@@ -7897,7 +7942,7 @@ export interface IslandSlabDefectConfigurationSchema {
         position_on_surface_3?: [number, number];
     };
     /**
-     * Number of layers to add to the slab
+     * Number of atomic layers in a structural component
      */
     number_of_added_layers?: number;
     crystal: {
@@ -11331,7 +11376,7 @@ export interface SlabPointDefectConfigurationSchema {
      */
     distance_z: number;
     /**
-     * Number of layers to add to the slab
+     * Number of atomic layers in a structural component
      */
     number_of_added_layers?: number;
     crystal: {
