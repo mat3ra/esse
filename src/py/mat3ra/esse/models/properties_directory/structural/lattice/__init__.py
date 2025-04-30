@@ -10,28 +10,20 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class Units(Enum):
-    km = "km"
-    m = "m"
-    cm = "cm"
-    mm = "mm"
-    um = "um"
-    nm = "nm"
+class LatticeVectorsUnitsEnum(Enum):
     angstrom = "angstrom"
-    a_u_ = "a.u."
     bohr = "bohr"
-    pm = "pm"
 
 
-class LatticeExplicitUnit(BaseModel):
+class LatticeVectorsSchema(BaseModel):
+    a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     alat: Optional[float] = 1
     """
     lattice parameter for fractional coordinates
     """
-    units: Optional[Units] = None
-    a: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    b: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
-    c: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
+    units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
 
 
 class LatticeTypeEnum(Enum):
@@ -51,28 +43,22 @@ class LatticeTypeEnum(Enum):
     RHL = "RHL"
 
 
-class Length(Enum):
+class LatticeUnitsLengthEnum(Enum):
     angstrom = "angstrom"
     bohr = "bohr"
 
 
-class Angle(Enum):
+class LatticeUnitsAngleEnum(Enum):
     degree = "degree"
     radian = "radian"
 
 
 class LatticeUnitsSchema(BaseModel):
-    length: Optional[Length] = "angstrom"
-    angle: Optional[Angle] = "degree"
+    length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
+    angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema(BaseModel):
-    vectors: Optional[LatticeExplicitUnit] = Field(None, title="lattice explicit unit")
-    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema] = Field(
-        default_factory=lambda: LatticeUnitsSchema.model_validate({"length": "angstrom", "angle": "degree"}),
-        title="Lattice units schema",
-    )
     a: float
     """
     length of the first lattice vector
@@ -97,3 +83,9 @@ class LatticeSchema(BaseModel):
     """
     angle between first and third lattice vector
     """
+    vectors: Optional[LatticeVectorsSchema] = Field(None, title="lattice vectors schema")
+    type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
+    units: Optional[LatticeUnitsSchema] = Field(
+        default_factory=lambda: LatticeUnitsSchema.model_validate({"length": "angstrom", "angle": "degree"}),
+        title="Lattice units schema",
+    )

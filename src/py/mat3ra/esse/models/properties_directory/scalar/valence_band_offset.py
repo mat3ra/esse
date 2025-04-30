@@ -20,15 +20,15 @@ class Units(Enum):
     J_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    rydberg = "rydberg"
+    Ry = "Ry"
     eV_atom = "eV/atom"
 
 
-class Units62(Enum):
+class Units56(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ValenceBandOffsetSchema(BaseModel):
     name: Name
-    units: Union[Units, Units62]
+    units: Union[Units, Units56]
     value: float

@@ -3,17 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "atomic vectors schema",
     "type": "array",
-    "allOf": [
-        {
-            "$ref": "../primitive/array_of_ids.json"
-        }
-    ],
     "items": {
-        "type": "object",
-        "properties": {
-            "value": {
-                "$ref": "../abstract/vector.json"
-            }
-        }
+        "$ref": "./atomic_vector.json"
     }
 }

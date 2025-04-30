@@ -11,5 +11,5 @@
         ]
     ],
     "tolerance": 0.001,
-    "units": "rydberg"
+    "units": "Ry"
 }

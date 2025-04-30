@@ -1,7 +1,17 @@
 {
-    "...": "include(lattice/lattice_bravais.json)",
     "name": "lattice",
+    "a": 5.14,
+    "alpha": 90.0,
+    "b": 5.14,
+    "beta": 90.0,
+    "c": 5.14,
+    "gamma": 90.0,
+    "type": "CUB",
+    "units": {
+        "angle": "degree",
+        "length": "angstrom"
+    },
     "vectors": {
-        "...": "include(lattice/lattice_vectors.json)"
+        "...": "include(lattice/vectors.json)"
     }
 }

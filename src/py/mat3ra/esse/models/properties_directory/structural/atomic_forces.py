@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -14,9 +14,12 @@ class Name(Enum):
     atomic_forces = "atomic_forces"
 
 
-class AtomicVectorsSchemaItem(BaseModel):
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
-    id: Optional[int] = None
+class AtomicVectorSchema(BaseModel):
+    value: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    """
+    value of this entry
+    """
+    id: int
     """
     integer id of this entry
     """
@@ -25,7 +28,7 @@ class AtomicVectorsSchemaItem(BaseModel):
 class Units(Enum):
     eV_bohr = "eV/bohr"
     eV_angstrom = "eV/angstrom"
-    rydberg_a_u_ = "rydberg/a.u."
+    Ry_a_u_ = "Ry/a.u."
     newton = "newton"
     kg_m_s_2 = "kg*m/s^2"
     eV_a_u_ = "eV/a.u."
@@ -33,8 +36,5 @@ class Units(Enum):
 
 class AtomicForces(BaseModel):
     name: Optional[Name] = None
-    values: Optional[List[AtomicVectorsSchemaItem]] = Field(None, title="atomic vectors schema")
-    """
-    array of objects containing integer id each
-    """
+    values: Optional[List[AtomicVectorSchema]] = Field(None, title="atomic vectors schema")
     units: Optional[Units] = None

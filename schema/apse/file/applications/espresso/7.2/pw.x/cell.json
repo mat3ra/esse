@@ -1,0 +1,89 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/cell",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "cell schema",
+    "type": "object",
+    "additionalProperties": false,
+    "oneOf": [
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cell_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "sd",
+                        "damp-pr",
+                        "damp-w",
+                        "bfgs"
+                    ],
+                    "default": "bfgs",
+                    "description": "CASE ( calculation == 'vc-relax' )"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+                "cell_dynamics": {
+                    "type": "string",
+                    "enum": [
+                        "none",
+                        "pr",
+                        "w"
+                    ],
+                    "description": "CASE ( calculation == 'vc-md' )"
+                }
+            }
+        }
+    ],
+    "properties": {
+        "press": {
+            "type": "number",
+            "description": "Target pressure [KBar] in a variable-cell md or relaxation run.",
+            "default": 0
+        },
+        "wmass": {
+            "type": "number",
+            "description": "Fictitious cell mass [amu] for variable-cell simulations (both 'vc-md' and 'vc-relax'). Default: 0.75*Tot_Mass/pi**2 for Parrinello-Rahman MD; 0.75*Tot_Mass/pi**2/Omega**(2/3) for Wentzcovitch MD"
+        },
+        "cell_factor": {
+            "type": "number",
+            "description": "Used in the construction of the pseudopotential tables. It should exceed the maximum linear contraction of the cell during a simulation. Default: 2.0 for variable-cell calculations, 1.0 otherwise"
+        },
+        "press_conv_thr": {
+            "type": "number",
+            "default": 0.5,
+            "description": "Convergence threshold on the pressure for variable cell relaxation ('vc-relax' : note that the other convergence thresholds for ionic relaxation apply as well)."
+        },
+        "cell_dofree": {
+            "type": "string",
+            "enum": [
+                "all",
+                "ibrav",
+                "a",
+                "b",
+                "c",
+                "fixa",
+                "fixb",
+                "fixc",
+                "x",
+                "y",
+                "xy",
+                "xz",
+                "xyz",
+                "shape",
+                "volume",
+                "2Dxy",
+                "2Dshape",
+                "epitaxial_ab",
+                "epitaxial_ac",
+                "epitaxial_bc"
+            ],
+            "default": "all",
+            "description": "Select which of the cell parameters should be moved"
+        }
+    }
+}

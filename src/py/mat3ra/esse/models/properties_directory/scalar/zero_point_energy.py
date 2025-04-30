@@ -20,15 +20,15 @@ class Units(Enum):
     J_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    rydberg = "rydberg"
+    Ry = "Ry"
     eV_atom = "eV/atom"
 
 
-class Units67(Enum):
+class Units61(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ZeroPointEnergySchema(BaseModel):
     name: Name
-    units: Union[Units, Units67]
+    units: Union[Units, Units61]
     value: float

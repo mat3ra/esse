@@ -60,7 +60,26 @@
                 "name": "pseudopotential",
                 "source": "dojo-oncv",
                 "type": "nc",
-                "version": "0.4"
+                "version": "0.4",
+                "cutoffs": {
+                    "wavefunction": [
+                        {
+                            "accuracy_level": "standard",
+                            "value": 42,
+                            "unit": "Ry"
+                        },
+                        {
+                            "accuracy_level": "high",
+                            "value": 50,
+                            "unit": "Ry"
+                        },
+                        {
+                            "accuracy_level": "low",
+                            "value": 38,
+                            "unit": "Ry"
+                        }
+                    ]
+                }
             }
         }
     ]

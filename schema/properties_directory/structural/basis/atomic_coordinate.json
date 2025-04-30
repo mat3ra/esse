@@ -1,15 +1,17 @@
 {
     "$id": "properties-directory/structural/basis/atomic-coordinate",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic coordinate",
-    "description": "coordinates of atoms by ids, vector, unitless",
+    "title": "atomic coordinate schema",
+    "description": "coordinate of an atom",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../core/primitive/object_with_id_and_value.json"
+        }
+    ],
     "properties": {
-        "id": {
-            "type": "number"
-        },
         "value": {
-            "$ref": "../../../core/abstract/vector.json"
+            "$ref": "../../../core/abstract/coordinate_3d.json"
         }
     }
 }

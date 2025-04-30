@@ -13,12 +13,12 @@
                 0
             ],
             "type": "direct",
-            "units": "rydberg",
+            "units": "Ry",
             "value": 0.0947
         },
         {
             "type": "indirect",
-            "units": "rydberg",
+            "units": "Ry",
             "value": 0
         }
     ]

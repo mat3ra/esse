@@ -21,13 +21,19 @@ class Units(Enum):
     J_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    rydberg = "rydberg"
+    Ry = "Ry"
     eV_atom = "eV/atom"
 
 
 class BandGapSchema(BaseModel):
-    kpointConduction: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="point schema")
-    kpointValence: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="point schema")
+    kpointConduction: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
+    """
+    A k-point is a point in reciprocal space of a crystal.
+    """
+    kpointValence: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
+    """
+    A k-point is a point in reciprocal space of a crystal.
+    """
     eigenvalueConduction: Optional[float] = None
     """
     eigenvalue at k-point in conduction band

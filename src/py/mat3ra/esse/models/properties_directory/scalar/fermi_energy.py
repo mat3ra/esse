@@ -20,15 +20,15 @@ class Units(Enum):
     J_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    rydberg = "rydberg"
+    Ry = "Ry"
     eV_atom = "eV/atom"
 
 
-class Units25(Enum):
+class Units23(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class FermiEnergySchema(BaseModel):
     name: Name
-    units: Union[Units, Units25]
+    units: Union[Units, Units23]
     value: float

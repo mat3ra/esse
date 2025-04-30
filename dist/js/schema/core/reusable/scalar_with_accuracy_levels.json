@@ -1,0 +1,24 @@
+{
+    "$id": "core/reusable/scalar-with-accuracy-levels",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Reusable schema for scalar values with accuracy levels",
+    "type": "object",
+    "required": [
+        "accuracy_level",
+        "value"
+    ],
+    "properties": {
+        "accuracy_level": {
+            "description": "Accuracy level determines suggested scalar value.",
+            "type": "string",
+            "enum": [
+                "standard",
+                "low",
+                "high"
+            ]
+        },
+        "value": {
+            "type": "number"
+        }
+    }
+}

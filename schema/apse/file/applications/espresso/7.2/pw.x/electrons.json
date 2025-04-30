@@ -1,0 +1,157 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/electrons",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "electrons schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "electron_maxstep": {
+            "type": "integer",
+            "default": 100,
+            "description": "maximum number of iterations in a scf step. If exact exchange is active, this will affect the inner loops."
+        },
+        "exx_maxstep": {
+            "type": "integer",
+            "default": 100,
+            "description": "maximum number of outer iterations in a scf calculation with exact exchange."
+        },
+        "scf_must_converge": {
+            "type": "boolean",
+            "default": true,
+            "description": "If .false. do not stop molecular dynamics or ionic relaxation when electron_maxstep is reached. Use with care."
+        },
+        "conv_thr": {
+            "type": "number"
+        },
+        "adaptive_thr": {
+            "type": "boolean",
+            "default": false,
+            "description": "If .TRUE. this turns on the use of an adaptive conv_thr for the inner scf loops when using EXX."
+        },
+        "conv_thr_init": {
+            "type": "number",
+            "description": "When adaptive_thr = .TRUE. this is the convergence threshold used for the first scf cycle."
+        },
+        "conv_thr_multi": {
+            "type": "number",
+            "description": "When adaptive_thr = .TRUE. the convergence threshold for each scf cycle is given by: max( conv_thr, conv_thr_multi * dexx )"
+        },
+        "mixing_mode": {
+            "type": "string",
+            "enum": [
+                "plain",
+                "TF",
+                "local-TF"
+            ],
+            "default": "plain"
+        },
+        "mixing_beta": {
+            "type": "number",
+            "description": "mixing factor for self-consistency"
+        },
+        "mixing_ndim": {
+            "type": "integer",
+            "default": 8,
+            "description": "number of iterations used in mixing scheme"
+        },
+        "mixing_fixed_ns": {
+            "type": "integer",
+            "default": 0,
+            "description": "For DFT+U : number of iterations with fixed ns ( ns is the atomic density appearing in the Hubbard term )."
+        },
+        "diagonalization": {
+            "type": "string",
+            "enum": [
+                "david",
+                "cg",
+                "ppcg",
+                "paro",
+                "ParO",
+                "rmm-davidson",
+                "rmm-paro"
+            ],
+            "default": "david"
+        },
+        "diago_thr_init": {
+            "type": "number",
+            "description": "Convergence threshold (ethr) for iterative diagonalization (the check is on eigenvalue convergence)."
+        },
+        "diago_cg_maxiter": {
+            "type": "integer",
+            "description": "For conjugate gradient diagonalization:  max number of iterations"
+        },
+        "diago_ppcg_maxiter": {
+            "type": "integer",
+            "description": "For ppcg diagonalization:  max number of iterations"
+        },
+        "diago_david_ndim": {
+            "type": "integer",
+            "default": 2,
+            "description": "For Davidson diagonalization: dimension of workspace (number of wavefunction packets, at least 2 needed)."
+        },
+        "diago_rmm_ndim": {
+            "type": "integer",
+            "default": 4,
+            "description": "For RMM-DIIS diagonalization: dimension of workspace (number of wavefunction packets, at least 2 needed)."
+        },
+        "diago_rmm_conv": {
+            "type": "boolean",
+            "default": false,
+            "description": "If .TRUE., RMM-DIIS is performed up to converge. If .FALSE., RMM-DIIS is performed only once."
+        },
+        "diago_gs_nblock": {
+            "type": "integer",
+            "default": 16,
+            "description": "For RMM-DIIS diagonalization: blocking size of Gram-Schmidt orthogonalization"
+        },
+        "diago_full_acc": {
+            "type": "boolean",
+            "default": false,
+            "description": "If .TRUE. all the empty states are diagonalized at the same level of accuracy of the occupied ones. Otherwise the empty states are diagonalized using a larger threshold (this should not affect total energy, forces, and other ground-state properties)."
+        },
+        "efield": {
+            "type": "number",
+            "description": "Amplitude of the finite electric field (in Ry a.u.; 1 a.u. = 36.3609*10^10 V/m). Used only if lelfield==.TRUE. and if k-points (K_POINTS card) are not automatic."
+        },
+        "efield_cart": {
+            "$ref": "../../../../../../core/primitive/array_of_3_numbers.json",
+            "description": "Finite electric field (in Ry a.u.=36.3609*10^10 V/m) in cartesian axis. Used only if lelfield==.TRUE. and if k-points (K_POINTS card) are automatic."
+        },
+        "efield_phase": {
+            "type": "string",
+            "enum": [
+                "read",
+                "write",
+                "none"
+            ],
+            "default": "none"
+        },
+        "startingpot": {
+            "type": "string",
+            "enum": [
+                "atomic",
+                "file"
+            ]
+        },
+        "startingwfc": {
+            "type": "string",
+            "enum": [
+                "atomic",
+                "atomic+random",
+                "random",
+                "file"
+            ],
+            "default": "atomic+random"
+        },
+        "tqr": {
+            "type": "boolean",
+            "default": false,
+            "description": "If .true., use a real-space algorithm for augmentation charges of ultrasoft pseudopotentials and PAWsets. Faster but numerically less accurate than the default G-space algorithm. Use with care and after testing!"
+        },
+        "real_space": {
+            "type": "boolean",
+            "default": false,
+            "description": "If .true., exploit real-space localization to compute matrix elements for nonlocal projectors. Faster and in principle better scaling than the default G-space algorithm, but numerically less accurate, may lead to some loss of translational invariance. Use with care and after testing!"
+        }
+    }
+}

@@ -1,16 +1,10 @@
 {
     "$id": "core/primitive/array-of-ids",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic ids",
+    "title": "array of ids",
     "description": "array of objects containing integer id each",
     "type": "array",
     "items": {
-        "type": "object",
-        "properties": {
-            "id": {
-                "description": "integer id of this entry",
-                "type": "integer"
-            }
-        }
+        "$ref": "./object_with_id.json"
     }
 }

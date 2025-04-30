@@ -1,0 +1,87 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/k-points",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "k points schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "card_option": {
+            "type": "string",
+            "enum": [
+                "tpiba",
+                "automatic",
+                "crystal",
+                "gamma",
+                "tpiba_b",
+                "crystal_b",
+                "tpiba_c",
+                "crystal_c"
+            ]
+        },
+        "values": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "description": "K_POINTS tpiba | crystal | tpiba_b | crystal_b | tpiba_c | crystal_c",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "nks": {
+                                "type": "integer",
+                                "description": "Number of supplied special k-points."
+                            },
+                            "xk_x": {
+                                "type": "number"
+                            },
+                            "xk_y": {
+                                "type": "number"
+                            },
+                            "xk_z": {
+                                "type": "number"
+                            },
+                            "wk": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
+                {
+                    "type": "object",
+                    "description": "K_POINTS automatic",
+                    "additionalProperties": false,
+                    "properties": {
+                        "nk1": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        },
+                        "nk2": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        },
+                        "nk3": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        },
+                        "sk1": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        },
+                        "sk2": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        },
+                        "sk3": {
+                            "type": "integer",
+                            "description": "Number of supplied special k-points."
+                        }
+                    }
+                },
+                {
+                    "type": "null",
+                    "description": "K_POINTS gamma"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "$id": "apse/file/applications/espresso/7.2/pw.x/atomic-species",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "atomic species schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+        "values": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "X": {
+                        "type": "string",
+                        "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+                    },
+                    "Mass_X": {
+                        "type": "number",
+                        "description": "mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)"
+                    },
+                    "PseudoPot_X": {
+                        "type": "string",
+                        "description": "PseudoPot_X"
+                    }
+                }
+            }
+        }
+    }
+}

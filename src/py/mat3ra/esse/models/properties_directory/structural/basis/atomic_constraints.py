@@ -4,27 +4,24 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional, Union
+from typing import List
 
-from pydantic import BaseModel, Field
-
-
-class Name(Enum):
-    atomic_constraints = "atomic_constraints"
+from pydantic import BaseModel, Field, RootModel
 
 
-class AtomicVectorsSchemaItem(BaseModel):
-    value: Optional[Union[List[float], List[bool]]] = Field(None, title="vector schema")
-    id: Optional[int] = None
+class AtomicConstraintSchema(BaseModel):
+    value: List[bool] = Field(..., title="vector boolean 3d schema")
+    """
+    value of this entry
+    """
+    id: int
     """
     integer id of this entry
     """
 
 
-class AtomicConstraints(BaseModel):
-    name: Optional[Name] = None
-    values: Optional[List[AtomicVectorsSchemaItem]] = Field(None, title="atomic vectors schema")
+class AtomicConstraintsSchema(RootModel[List[AtomicConstraintSchema]]):
+    root: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
-    array of objects containing integer id each
+    atomic constraints schema
     """

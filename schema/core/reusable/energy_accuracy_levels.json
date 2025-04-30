@@ -1,0 +1,23 @@
+{
+    "$id": "core/reusable/energy-accuracy-levels",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Reusable schema for energy value with unit corresponding to a specific accuracy level, e.g., used for suggested wavefunction and charge density cutoffs",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "./scalar_with_accuracy_levels.json"
+        }
+    ],
+    "properties": {
+        "unit": {
+            "description": "Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.",
+            "type": "string",
+            "enum": [
+                "Ry"
+            ]
+        }
+    },
+    "required": [
+        "unit"
+    ]
+}

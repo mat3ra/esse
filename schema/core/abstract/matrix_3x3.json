@@ -1,0 +1,11 @@
+{
+    "$id": "core/abstract/matrix-3x3",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "matrix 3x3 schema",
+    "type": "array",
+    "items": {
+        "$ref": "../primitive/array_of_3_numbers.json"
+    },
+    "minItems": 3,
+    "maxItems": 3
+}
