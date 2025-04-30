@@ -56,23 +56,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1616,6 +1600,12 @@ export interface DimensionalGridSchema {
      */
     shifts: [number, number, number];
 }
+/** Schema dist/js/schema/core/abstract/coordinate_2d.json */
+/**
+ * @minItems 2
+ * @maxItems 2
+ */
+export type Coordinate2DSchema = [number, number];
 /** Schema dist/js/schema/core/abstract/coordinate_3d.json */
 /**
  * @minItems 3
@@ -1635,23 +1625,7 @@ export type KpointSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -2877,23 +2851,7 @@ export type SupercellMatrix2DSchema = [[number, number], [number, number]];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -7888,9 +7846,6 @@ export interface IslandSlabDefectConfigurationSchema {
         shape: "sphere" | "cylinder" | "rectangle" | "triangular_prism";
         /**
          * Center position for symmetric shapes
-         *
-         * @minItems 2
-         * @maxItems 3
          */
         center_position?: [number, number] | [number, number, number];
         /**
@@ -7906,36 +7861,26 @@ export interface IslandSlabDefectConfigurationSchema {
          */
         max_z?: number;
         /**
-         * Minimum coordinates for box shapes
-         *
          * @minItems 3
          * @maxItems 3
          */
         min_coordinate?: [number, number, number];
         /**
-         * Maximum coordinates for box shapes
-         *
          * @minItems 3
          * @maxItems 3
          */
         max_coordinate?: [number, number, number];
         /**
-         * First vertex for triangular prism
-         *
          * @minItems 2
          * @maxItems 2
          */
         position_on_surface_1?: [number, number];
         /**
-         * Second vertex for triangular prism
-         *
          * @minItems 2
          * @maxItems 2
          */
         position_on_surface_2?: [number, number];
         /**
-         * Third vertex for triangular prism
-         *
          * @minItems 2
          * @maxItems 2
          */
@@ -9399,8 +9344,6 @@ export interface AdatomConfigurationSchema {
     };
     defect_type?: "adatom";
     /**
-     * Position on the surface in 2D crystal coordinates
-     *
      * @minItems 2
      * @maxItems 2
      */
@@ -9677,8 +9620,6 @@ export interface AdatomConfigurationWithoutCrystalSchema {
     };
     defect_type?: "adatom";
     /**
-     * Position on the surface in 2D crystal coordinates
-     *
      * @minItems 2
      * @maxItems 2
      */
@@ -9960,8 +9901,6 @@ export interface PointDefectPairConfigurationSchema {
         };
         defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
         /**
-         * The crystal coordinate of the defect
-         *
          * @minItems 3
          * @maxItems 3
          */
@@ -10234,8 +10173,6 @@ export interface PointDefectPairConfigurationSchema {
         };
         defect_type?: "adatom";
         /**
-         * Position on the surface in 2D crystal coordinates
-         *
          * @minItems 2
          * @maxItems 2
          */
@@ -10511,8 +10448,6 @@ export interface PointDefectPairConfigurationSchema {
         };
         defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
         /**
-         * The crystal coordinate of the defect
-         *
          * @minItems 3
          * @maxItems 3
          */
@@ -10785,8 +10720,6 @@ export interface PointDefectPairConfigurationSchema {
         };
         defect_type?: "adatom";
         /**
-         * Position on the surface in 2D crystal coordinates
-         *
          * @minItems 2
          * @maxItems 2
          */
@@ -11064,8 +10997,6 @@ export interface PointDefectConfigurationSchema {
     };
     defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
     /**
-     * The crystal coordinate of the defect
-     *
      * @minItems 3
      * @maxItems 3
      */
@@ -11343,8 +11274,6 @@ export interface PointDefectConfigurationWithoutCrystalSchema {
     };
     defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
     /**
-     * The crystal coordinate of the defect
-     *
      * @minItems 3
      * @maxItems 3
      */
@@ -11365,8 +11294,6 @@ export interface PointDefectConfigurationWithoutCrystalSchema {
  */
 export interface SlabPointDefectConfigurationSchema {
     /**
-     * Position on the slab surface in 2D crystal coordinates
-     *
      * @minItems 2
      * @maxItems 2
      */
@@ -11637,8 +11564,6 @@ export interface SlabPointDefectConfigurationSchema {
     };
     defect_type: "vacancy" | "substitution" | "interstitial" | "adatom";
     /**
-     * The crystal coordinate of the defect
-     *
      * @minItems 3
      * @maxItems 3
      */

@@ -1,94 +1,73 @@
 {
-  "$id": "materials-category/defects/two-dimensional/island/configuration",
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Island Slab Defect Configuration Schema",
-  "description": "Configuration for an island defect on a slab surface",
-  "type": "object",
-  "allOf": [
-    {
-      "$ref": "../../slab/configuration.json"
-    }
-  ],
-  "properties": {
-    "defect_type": {
-      "const": "island"
-    },
-    "condition": {
-      "description": "Spatial condition defining the shape of the island",
-      "type": "object",
-      "required": ["shape"],
-      "properties": {
-        "shape": {
-          "$ref": "../../enums.json#/coordinatesShape"
-        },
-        "center_position": {
-          "description": "Center position for symmetric shapes",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2,
-          "maxItems": 3
-        },
-        "radius": {
-          "description": "Radius for circular shapes",
-          "type": "number",
-          "minimum": 0
-        },
-        "min_z": {
-          "description": "Minimum z-coordinate in Angstroms",
-          "type": "number"
-        },
-        "max_z": {
-          "description": "Maximum z-coordinate in Angstroms",
-          "type": "number"
-        },
-        "min_coordinate": {
-          "description": "Minimum coordinates for box shapes",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 3,
-          "maxItems": 3
-        },
-        "max_coordinate": {
-          "description": "Maximum coordinates for box shapes",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 3,
-          "maxItems": 3
-        },
-        "position_on_surface_1": {
-          "description": "First vertex for triangular prism",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2,
-          "maxItems": 2
-        },
-        "position_on_surface_2": {
-          "description": "Second vertex for triangular prism",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2,
-          "maxItems": 2
-        },
-        "position_on_surface_3": {
-          "description": "Third vertex for triangular prism",
-          "type": "array",
-          "items": {
-            "type": "number"
-          },
-          "minItems": 2,
-          "maxItems": 2
+    "$id": "materials-category/defects/two-dimensional/island/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Island Slab Defect Configuration Schema",
+    "description": "Configuration for an island defect on a slab surface",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../slab/configuration.json"
         }
-      }
+    ],
+    "properties": {
+        "defect_type": {
+            "const": "island"
+        },
+        "condition": {
+            "description": "Spatial condition defining the shape of the island",
+            "type": "object",
+            "required": [
+                "shape"
+            ],
+            "properties": {
+                "shape": {
+                    "$ref": "../../enums.json#/coordinatesShape"
+                },
+                "center_position": {
+                    "description": "Center position for symmetric shapes",
+                    "anyOf": [
+                        {
+                            "$ref": "../../../../core/abstract/coordinate_2d.json"
+                        },
+                        {
+                            "$ref": "../../../../core/abstract/coordinate_3d.json"
+                        }
+                    ]
+                },
+                "radius": {
+                    "description": "Radius for circular shapes",
+                    "type": "number",
+                    "minimum": 0
+                },
+                "min_z": {
+                    "description": "Minimum z-coordinate in Angstroms",
+                    "type": "number"
+                },
+                "max_z": {
+                    "description": "Maximum z-coordinate in Angstroms",
+                    "type": "number"
+                },
+                "min_coordinate": {
+                    "description": "Minimum coordinates for box shapes",
+                    "$ref": "../../../../core/abstract/coordinate_3d.json"
+                },
+                "max_coordinate": {
+                    "description": "Maximum coordinates for box shapes",
+                    "$ref": "../../../../core/abstract/coordinate_3d.json"
+                },
+                "position_on_surface_1": {
+                    "description": "First vertex for triangular prism",
+                    "$ref": "../../../../core/abstract/coordinate_2d.json"
+                },
+                "position_on_surface_2": {
+                    "description": "Second vertex for triangular prism",
+                    "$ref": "../../../../core/abstract/coordinate_2d.json"
+                },
+                "position_on_surface_3": {
+                    "description": "Third vertex for triangular prism",
+                    "$ref": "../../../../core/abstract/coordinate_2d.json"
+                }
+            }
+        }
     }
-  }
 } 

@@ -426,10 +426,7 @@ class PlacementMethod(Enum):
 class PointDefectConfigurationSchema(BaseModel):
     crystal: MaterialSchema = Field(..., title="material schema")
     defect_type: DefectType1
-    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
-    """
-    The crystal coordinate of the defect
-    """
+    coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     chemical_element: Optional[str] = None
     """
     The chemical element for substitution or interstitial defects
@@ -716,10 +713,7 @@ class MaterialSchema10(BaseModel):
 class AdatomConfigurationSchema(BaseModel):
     crystal: MaterialSchema10 = Field(..., title="material schema")
     defect_type: Literal["adatom"] = "adatom"
-    position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
-    """
-    Position on the surface in 2D crystal coordinates
-    """
+    position_on_surface: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
     distance_z: confloat(ge=0.0)
     """
     Distance from the surface in Angstroms
@@ -1005,10 +999,7 @@ class MaterialSchema11(BaseModel):
 class PointDefectConfigurationWithoutCrystalSchema(BaseModel):
     crystal: Optional[MaterialSchema11] = Field(None, title="material schema")
     defect_type: DefectType1
-    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
-    """
-    The crystal coordinate of the defect
-    """
+    coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     chemical_element: Optional[str] = None
     """
     The chemical element for substitution or interstitial defects
@@ -1295,10 +1286,7 @@ class MaterialSchema12(BaseModel):
 class AdatomConfigurationWithoutCrystalSchema(BaseModel):
     crystal: Optional[MaterialSchema12] = Field(None, title="material schema")
     defect_type: Literal["adatom"] = "adatom"
-    position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
-    """
-    Position on the surface in 2D crystal coordinates
-    """
+    position_on_surface: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
     distance_z: confloat(ge=0.0)
     """
     Distance from the surface in Angstroms

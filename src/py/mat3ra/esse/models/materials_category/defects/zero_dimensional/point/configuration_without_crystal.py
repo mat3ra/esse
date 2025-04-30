@@ -422,10 +422,7 @@ class PlacementMethod(Enum):
 class PointDefectConfigurationWithoutCrystalSchema(BaseModel):
     crystal: Optional[MaterialSchema] = Field(None, title="material schema")
     defect_type: DefectType
-    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
-    """
-    The crystal coordinate of the defect
-    """
+    coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     chemical_element: Optional[str] = None
     """
     The chemical element for substitution or interstitial defects

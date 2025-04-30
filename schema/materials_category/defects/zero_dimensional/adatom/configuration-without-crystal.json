@@ -19,12 +19,7 @@
         },
         "position_on_surface": {
             "description": "Position on the surface in 2D crystal coordinates",
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
+            "$ref": "../../../../core/abstract/coordinate_2d.json"
         },
         "distance_z": {
             "description": "Distance from the surface in Angstroms",

@@ -661,15 +661,11 @@
                             ]
                         },
                         "coordinate": {
-                            "description": "The crystal coordinate of the defect",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 3d schema",
                             "type": "array",
                             "minItems": 3,
                             "maxItems": 3,
-                            "default": [
-                                0,
-                                0,
-                                0
-                            ],
                             "items": {
                                 "type": "number"
                             }
@@ -1334,7 +1330,8 @@
                             "const": "adatom"
                         },
                         "position_on_surface": {
-                            "description": "Position on the surface in 2D crystal coordinates",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 2d schema",
                             "type": "array",
                             "minItems": 2,
                             "maxItems": 2,
@@ -2001,15 +1998,11 @@
                             ]
                         },
                         "coordinate": {
-                            "description": "The crystal coordinate of the defect",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 3d schema",
                             "type": "array",
                             "minItems": 3,
                             "maxItems": 3,
-                            "default": [
-                                0,
-                                0,
-                                0
-                            ],
                             "items": {
                                 "type": "number"
                             }
@@ -2673,7 +2666,8 @@
                             "const": "adatom"
                         },
                         "position_on_surface": {
-                            "description": "Position on the surface in 2D crystal coordinates",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 2d schema",
                             "type": "array",
                             "minItems": 2,
                             "maxItems": 2,

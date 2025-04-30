@@ -420,10 +420,7 @@ class PlacementMethod(Enum):
 
 
 class SlabPointDefectConfigurationSchema(BaseModel):
-    position_on_surface: List[float] = Field(..., max_length=2, min_length=2)
-    """
-    Position on the slab surface in 2D crystal coordinates
-    """
+    position_on_surface: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
     distance_z: confloat(ge=0.0)
     """
     Distance from the surface in Angstroms
@@ -434,10 +431,7 @@ class SlabPointDefectConfigurationSchema(BaseModel):
     """
     crystal: MaterialSchema = Field(..., title="material schema")
     defect_type: DefectType
-    coordinate: Optional[List[float]] = Field([0, 0, 0], max_length=3, min_length=3)
-    """
-    The crystal coordinate of the defect
-    """
+    coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     chemical_element: Optional[str] = None
     """
     The chemical element for substitution or interstitial defects

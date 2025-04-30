@@ -20,7 +20,7 @@
         },
         "pivot_coordinate": {
             "description": "Pivot coordinate where the cut plane passes through",
-            "$ref": "../../../../core/primitive/array_of_3_numbers.json",
+            "$ref": "../../../../core/abstract/coordinate_3d.json",
             "default": [
                 0.5,
                 0.5,

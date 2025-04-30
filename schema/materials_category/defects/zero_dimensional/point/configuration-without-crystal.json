@@ -19,17 +19,7 @@
         },
         "coordinate": {
             "description": "The crystal coordinate of the defect",
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3,
-            "default": [
-                0,
-                0,
-                0
-            ]
+            "$ref": "../../../../core/abstract/coordinate_3d.json"
         },
         "chemical_element": {
             "description": "The chemical element for substitution or interstitial defects",

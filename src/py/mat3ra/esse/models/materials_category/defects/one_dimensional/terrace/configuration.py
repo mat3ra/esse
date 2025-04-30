@@ -409,9 +409,7 @@ class TerraceConfigurationSchema(BaseModel):
     """
     Miller indices for crystallographic plane designation
     """
-    pivot_coordinate: Optional[List[float]] = Field(
-        None, max_length=3, min_length=3, title="array of 3 number elements schema"
-    )
+    pivot_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
     use_cartesian_coordinates: Optional[bool] = False
     """
     Whether to use Cartesian coordinates

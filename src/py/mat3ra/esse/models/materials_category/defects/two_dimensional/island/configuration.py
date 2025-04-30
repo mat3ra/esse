@@ -19,7 +19,7 @@ class Shape(Enum):
 
 class Condition(BaseModel):
     shape: Shape
-    center_position: Optional[List[float]] = Field(None, max_length=3, min_length=2)
+    center_position: Optional[List[float]] = None
     """
     Center position for symmetric shapes
     """
@@ -35,26 +35,11 @@ class Condition(BaseModel):
     """
     Maximum z-coordinate in Angstroms
     """
-    min_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    """
-    Minimum coordinates for box shapes
-    """
-    max_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    """
-    Maximum coordinates for box shapes
-    """
-    position_on_surface_1: Optional[List[float]] = Field(None, max_length=2, min_length=2)
-    """
-    First vertex for triangular prism
-    """
-    position_on_surface_2: Optional[List[float]] = Field(None, max_length=2, min_length=2)
-    """
-    Second vertex for triangular prism
-    """
-    position_on_surface_3: Optional[List[float]] = Field(None, max_length=2, min_length=2)
-    """
-    Third vertex for triangular prism
-    """
+    min_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    max_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    position_on_surface_1: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
+    position_on_surface_2: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
+    position_on_surface_3: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
 
 
 class AtomicElementSchema(BaseModel):

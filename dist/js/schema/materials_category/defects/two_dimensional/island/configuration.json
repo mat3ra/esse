@@ -28,12 +28,28 @@
                 },
                 "center_position": {
                     "description": "Center position for symmetric shapes",
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 3,
-                    "items": {
-                        "type": "number"
-                    }
+                    "anyOf": [
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 2d schema",
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            },
+                            "minItems": 2,
+                            "maxItems": 2
+                        },
+                        {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "coordinate 3d schema",
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    ]
                 },
                 "radius": {
                     "description": "Radius for circular shapes",
@@ -49,7 +65,8 @@
                     "type": "number"
                 },
                 "min_coordinate": {
-                    "description": "Minimum coordinates for box shapes",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "coordinate 3d schema",
                     "type": "array",
                     "minItems": 3,
                     "maxItems": 3,
@@ -58,7 +75,8 @@
                     }
                 },
                 "max_coordinate": {
-                    "description": "Maximum coordinates for box shapes",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "coordinate 3d schema",
                     "type": "array",
                     "minItems": 3,
                     "maxItems": 3,
@@ -67,7 +85,8 @@
                     }
                 },
                 "position_on_surface_1": {
-                    "description": "First vertex for triangular prism",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "coordinate 2d schema",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2,
@@ -76,7 +95,8 @@
                     }
                 },
                 "position_on_surface_2": {
-                    "description": "Second vertex for triangular prism",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "coordinate 2d schema",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2,
@@ -85,7 +105,8 @@
                     }
                 },
                 "position_on_surface_3": {
-                    "description": "Third vertex for triangular prism",
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "coordinate 2d schema",
                     "type": "array",
                     "minItems": 2,
                     "maxItems": 2,
