@@ -1,0 +1,6 @@
+{
+  "material": {
+      "...": "include(../../../../material.json)"
+  },
+  "vacuum_padding": 10.0
+}

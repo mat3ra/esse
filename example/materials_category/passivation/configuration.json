@@ -1,0 +1,8 @@
+{
+    "slab": {
+        "...": "include(../../material.json)"
+    },
+    "passivant": "H",
+    "bond_length": 1.1,
+    "surface": "top"
+}

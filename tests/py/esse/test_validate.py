@@ -10,8 +10,6 @@ all_schemas = esse.schemas
 for index, example_config in enumerate(all_wrapped_examples):
     example = example_config.get("data")
     schema_id = example_config.get("path")
-    # print(schema_id)
-    print([s.get("$id") for s in all_schemas if "_" in s.get("$id", "")])
     schema = next(s for s in all_schemas if s.get("$id") == schema_id.replace("_", "-"))
     tests_parameters.append([schema_id, example, schema])
 

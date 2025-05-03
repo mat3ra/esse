@@ -1,0 +1,8 @@
+{
+  "film": {"...":"include(../../../../material.json)"},
+  "substrate": {"...":"include(../../../../material.json)"},
+  "twist_angle": 15.0,
+  "gap": 0.5,
+  "vacuum": 10.0,
+  "xy_supercell_matrix": [[2, 0], [0, 2]]
+}

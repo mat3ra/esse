@@ -1,0 +1,10 @@
+{
+    "material": {
+        "...": "include(../../../../material.json)"
+    },
+    "width": 5,
+    "length": 10,
+    "vacuum_width": 3,
+    "vacuum_length": 0,
+    "edge_type": "zigzag"
+}

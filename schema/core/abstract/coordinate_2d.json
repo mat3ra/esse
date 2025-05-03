@@ -1,0 +1,11 @@
+{
+    "$id": "core/abstract/coordinate-2d",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "coordinate 2d schema",
+    "type": "array",
+    "items": {
+        "type": "number"
+    },
+    "minItems": 2,
+    "maxItems": 2
+}

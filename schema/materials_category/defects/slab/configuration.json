@@ -1,0 +1,17 @@
+{
+    "$id": "materials-category/defects/slab/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Defect Configuration Schema",
+    "description": "Base configuration for defects in slab structures",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../configuration.json"
+        }
+    ],
+    "properties": {
+        "number_of_added_layers": {
+            "$ref": "../../../core/reusable/material/slab/thickness.json"
+        }
+    }
+} 

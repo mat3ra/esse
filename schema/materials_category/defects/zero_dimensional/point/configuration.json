@@ -1,0 +1,17 @@
+{
+    "$id": "materials-category/defects/zero-dimensional/point/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Point Defect Configuration Schema",
+    "description": "Configuration for point defects in a crystal",
+    "type": "object",
+    "required": [
+        "crystal",
+        "defect_type",
+        "coordinate"
+    ],
+    "allOf": [
+        {
+            "$ref": "configuration-without-crystal.json"
+        }
+    ]
+} 
