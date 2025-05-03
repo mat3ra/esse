@@ -1,0 +1,34 @@
+{
+    "$id": "material/builders/passivation/coordination-based/builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Coordination Based Passivation Builder Parameters Schema",
+    "description": "Parameters for the CoordinationPassivationBuilder",
+    "type": "object",
+    "properties": {
+        "coordination_threshold": {
+            "description": "The coordination number threshold for an atom to be considered undercoordinated",
+            "type": "integer",
+            "default": 3
+        },
+        "bonds_to_passivate": {
+            "description": "The maximum number of bonds to passivate for each undercoordinated atom",
+            "type": "integer",
+            "default": 1
+        },
+        "symmetry_tolerance": {
+            "description": "The tolerance for symmetry comparison of vectors for bonds",
+            "type": "number",
+            "default": 0.1
+        },
+        "shadowing_radius": {
+            "description": "Radius around each surface atom to exclude underlying atoms from passivation",
+            "type": "number",
+            "default": 2.5
+        },
+        "depth": {
+            "description": "Depth from the topmost (or bottommost) atom into the material to consider for passivation, accounting for features like islands, adatoms, and terraces",
+            "type": "number",
+            "default": 5
+        }
+    }
+}

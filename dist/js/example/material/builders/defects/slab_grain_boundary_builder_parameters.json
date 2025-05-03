@@ -1,0 +1,9 @@
+{
+    "default_index": 0,
+    "strain_matching_parameters": {
+        "max_strain": 0.05,
+        "max_angle_strain": 0.1,
+        "max_area": 200,
+        "max_area_ratio_tol": 0.02
+    }
+}

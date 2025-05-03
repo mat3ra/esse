@@ -1,0 +1,14 @@
+{
+    "$id": "material/builders/defects/point-defect-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Point Defect Builder Parameters Schema",
+    "description": "Parameters for the point defect builder",
+    "type": "object",
+    "properties": {
+        "center_defect": {
+            "description": "Whether to center the defect",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

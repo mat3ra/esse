@@ -1,0 +1,10 @@
+{
+    "edge_inclusion_tolerance": 1,
+    "distance_tolerance": 1,
+    "twist_angle": 30,
+    "max_area": 200,
+    "max_area_ratio_tol": 0.1,
+    "max_angle_tol": 1,
+    "max_length_tol": 0.2,
+    "default_index": 0
+}

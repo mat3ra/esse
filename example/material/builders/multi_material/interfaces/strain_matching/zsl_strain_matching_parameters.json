@@ -1,0 +1,6 @@
+{
+    "max_area": 50.0,
+    "max_area_ratio_tol": 0.09,
+    "max_length_tol": 0.03,
+    "max_angle_tol": 0.01
+}

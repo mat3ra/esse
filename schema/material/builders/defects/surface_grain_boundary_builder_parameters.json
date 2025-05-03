@@ -1,0 +1,24 @@
+{
+    "$id": "material/builders/defects/surface-grain-boundary-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Surface Grain Boundary Builder Parameters Schema",
+    "description": "Parameters for creating a grain boundary between two surface phases",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../multi_material/interfaces/twisted/commensurate_lattice_twisted_interface_builder_parameters.json"
+        }
+    ],
+    "properties": {
+        "edge_inclusion_tolerance": {
+            "description": "The tolerance to include atoms on the edge of each phase, in angstroms",
+            "type": "number",
+            "default": 1.0
+        },
+        "distance_tolerance": {
+            "description": "The distance tolerance to remove atoms that are too close, in angstroms",
+            "type": "number",
+            "default": 1.0
+        }
+    }
+}

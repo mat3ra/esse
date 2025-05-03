@@ -1,0 +1,44 @@
+{
+    "$id": "material/builders/defects/slab-grain-boundary-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Grain Boundary Builder Parameters Schema",
+    "description": "Parameters for the slab grain boundary builder",
+    "type": "object",
+    "properties": {
+        "strain_matching_parameters": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "ZSL Strain Matching Parameters Schema",
+            "description": "Parameters for ZSL strain matching",
+            "$comment": "Described in https://pymatgen.org/pymatgen.analysis.interfaces.html#pymatgen.analysis.interfaces.zsl.ZSLGenerator",
+            "type": "object",
+            "properties": {
+                "max_area": {
+                    "description": "Maximum area for strain matching",
+                    "type": "number",
+                    "default": 50
+                },
+                "max_area_ratio_tol": {
+                    "description": "Maximum area ratio tolerance",
+                    "type": "number",
+                    "default": 0.09
+                },
+                "max_length_tol": {
+                    "description": "Maximum length tolerance",
+                    "type": "number",
+                    "default": 0.03
+                },
+                "max_angle_tol": {
+                    "description": "Maximum angle tolerance",
+                    "type": "number",
+                    "default": 0.01
+                }
+            }
+        },
+        "default_index": {
+            "description": "Default index for the selector",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        }
+    }
+}

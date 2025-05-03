@@ -1,0 +1,7 @@
+{
+    "shadowing_radius": 2.5,
+    "depth": 5.0,
+    "coordination_threshold": 3,
+    "bonds_to_passivate": 1,
+    "symmetry_tolerance": 0.1
+}

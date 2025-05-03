@@ -1,0 +1,6 @@
+{
+    "max_supercell_matrix_int": null,
+    "limit_max_int": 42,
+    "angle_tolerance": 0.1,
+    "return_first_match": false
+}

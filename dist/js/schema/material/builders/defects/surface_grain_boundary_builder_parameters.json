@@ -1,0 +1,45 @@
+{
+    "$id": "material/builders/defects/surface-grain-boundary-builder-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Surface Grain Boundary Builder Parameters Schema",
+    "description": "Parameters for creating a grain boundary between two surface phases",
+    "type": "object",
+    "properties": {
+        "edge_inclusion_tolerance": {
+            "description": "The tolerance to include atoms on the edge of each phase, in angstroms",
+            "type": "number",
+            "default": 1
+        },
+        "distance_tolerance": {
+            "description": "The distance tolerance to remove atoms that are too close, in angstroms",
+            "type": "number",
+            "default": 1
+        },
+        "max_supercell_matrix_int": {
+            "description": "The maximum integer for the transformation matrices. If not provided, it will be determined based on the target angle and the lattice vectors automatically.",
+            "type": [
+                "integer",
+                "null"
+            ],
+            "default": null
+        },
+        "limit_max_int": {
+            "description": "The limit for the maximum integer for the transformation matrices when searching",
+            "type": [
+                "integer",
+                "null"
+            ],
+            "default": 42
+        },
+        "angle_tolerance": {
+            "description": "The tolerance for the angle between the commensurate lattices and the target angle, in degrees.",
+            "type": "number",
+            "default": 0.1
+        },
+        "return_first_match": {
+            "description": "Whether to return the first match or all matches.",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
