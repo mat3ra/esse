@@ -410,7 +410,7 @@ class SupercellMatrix2DSchemaItem(RootModel[List[int]]):
 
 class SlabConfigurationSchema(BaseModel):
     bulk: Optional[MaterialSchema] = Field(None, title="material schema")
-    miller_indices: Optional[List[float]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """

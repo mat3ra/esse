@@ -409,7 +409,7 @@ class SlabBasedNanoparticleConfigurationSchema(BaseModel):
     """
     Size of the supercell in the xy-plane
     """
-    orientation_z: Optional[List[float]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    orientation_z: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """

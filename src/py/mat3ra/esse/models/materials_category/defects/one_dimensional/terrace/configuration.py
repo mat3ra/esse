@@ -405,7 +405,7 @@ class MaterialSchema(BaseModel):
 
 
 class TerraceConfigurationSchema(BaseModel):
-    cut_direction: Optional[List[float]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    cut_direction: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """

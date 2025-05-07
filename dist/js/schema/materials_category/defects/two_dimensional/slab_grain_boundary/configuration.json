@@ -646,16 +646,16 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Miller Indices Schema",
                     "description": "Miller indices for crystallographic plane designation",
+                    "type": "array",
+                    "minItems": 3,
+                    "maxItems": 3,
                     "default": [
                         0,
                         0,
                         1
                     ],
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
                     "items": {
-                        "type": "number"
+                        "type": "integer"
                     }
                 },
                 "thickness": {
@@ -1354,16 +1354,16 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Miller Indices Schema",
                     "description": "Miller indices for crystallographic plane designation",
+                    "type": "array",
+                    "minItems": 3,
+                    "maxItems": 3,
                     "default": [
                         0,
                         0,
                         1
                     ],
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
                     "items": {
-                        "type": "number"
+                        "type": "integer"
                     }
                 },
                 "thickness": {
@@ -2111,16 +2111,16 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Miller Indices Schema",
                     "description": "Miller indices for crystallographic plane designation",
+                    "type": "array",
+                    "minItems": 3,
+                    "maxItems": 3,
                     "default": [
                         0,
                         0,
                         1
                     ],
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
                     "items": {
-                        "type": "number"
+                        "type": "integer"
                     }
                 },
                 "thickness": {
