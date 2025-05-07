@@ -9,16 +9,16 @@
             "$ref": "../../../../material.json"
         },
         "miller_indices": {
-            "$ref": "../../../../core/reusable/material/slab/miller_indices.json"
+            "$ref": "../../../../material/reusable/slab/miller_indices.json"
         },
         "thickness": {
-            "$ref": "../../../../core/reusable/material/slab/thickness.json"
+            "$ref": "../../../../material/reusable/slab/thickness.json"
         },
         "vacuum": {
-            "$ref": "../../../../core/reusable/material/slab/vacuum.json"
+            "$ref": "../../../../material/reusable/slab/vacuum.json"
         },
         "xy_supercell_matrix": {
-            "$ref": "../../../../core/reusable/material/supercell_matrix_2d.json"
+            "$ref": "../../../../material/reusable/supercell_matrix_2d.json"
         },
         "use_conventional_cell": {
             "title": "Use Conventional Cell",

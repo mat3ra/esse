@@ -11,7 +11,7 @@
     ],
     "properties": {
         "number_of_added_layers": {
-            "$ref": "../../../core/reusable/material/slab/thickness.json"
+            "$ref": "../../../material/reusable/slab/thickness.json"
         }
     }
 } 

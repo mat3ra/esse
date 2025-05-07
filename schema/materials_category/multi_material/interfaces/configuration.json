@@ -21,11 +21,11 @@
         },
         "film_termination": {
             "description": "The termination of the film",
-            "$ref": "../../../core/reusable/material/slab/termination.json"
+            "$ref": "../../../material/reusable/slab/termination.json"
         },
         "substrate_termination": {
             "description": "The termination of the substrate",
-            "$ref": "../../../core/reusable/material/slab/termination.json"
+            "$ref": "../../../material/reusable/slab/termination.json"
         },
         "distance_z": {
             "description": "The distance between the film and substrate in Angstroms",
@@ -34,7 +34,7 @@
             "default": 3.0
         },
         "vacuum": {
-            "$ref": "../../../core/reusable/material/slab/vacuum.json"
+            "$ref": "../../../material/reusable/slab/vacuum.json"
         }
     }
 } 

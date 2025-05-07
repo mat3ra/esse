@@ -11,7 +11,7 @@
     ],
     "properties": {
         "cut_direction": {
-            "$ref": "../../../../core/reusable/material/slab/miller_indices.json",
+            "$ref": "../../../../material/reusable/slab/miller_indices.json",
             "default": [
                 1,
                 0,

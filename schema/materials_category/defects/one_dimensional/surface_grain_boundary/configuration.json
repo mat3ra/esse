@@ -18,7 +18,7 @@
         },
         "xy_supercell_matrix": {
             "description": "The supercell matrix for the xy plane",
-            "$ref": "../../../../core/reusable/material/supercell_matrix_2d.json"
+            "$ref": "../../../../material/reusable/supercell_matrix_2d.json"
         }
     }
 } 

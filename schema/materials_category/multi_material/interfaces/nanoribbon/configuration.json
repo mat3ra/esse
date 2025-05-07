@@ -23,11 +23,11 @@
             "default": 1
         },
         "vacuum_x": {
-            "$ref": "../../../../core/reusable/material/slab/vacuum.json",
+            "$ref": "../../../../material/reusable/slab/vacuum.json",
             "description": "Vacuum along x on both sides, in Angstroms"
         },
         "vacuum_y": {
-            "$ref": "../../../../core/reusable/material/slab/vacuum.json",
+            "$ref": "../../../../material/reusable/slab/vacuum.json",
             "description": "Vacuum along y on both sides, in Angstroms"
         }
     }

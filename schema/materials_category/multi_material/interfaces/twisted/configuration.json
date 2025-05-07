@@ -29,7 +29,7 @@
             "default": 3.0
         },
         "vacuum": {
-            "$ref": "../../../../core/reusable/material/slab/vacuum.json"
+            "$ref": "../../../../material/reusable/slab/vacuum.json"
         }
     }
 } 
