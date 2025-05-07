@@ -84,6 +84,18 @@ jobs:
           token: ${{ secrets.BOT_GITHUB_TOKEN }}
           path: actions
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check JSON formatting
+        run: npm run prettier
+
       - name: Run JS validate
         uses: ./actions/js/validate
         with:
