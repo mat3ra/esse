@@ -6,10 +6,10 @@
         "...": "include(../../single_material/two_dimensional/slab/configuration.json)"
     },
     "film_termination": {
-        "...": "include(../../../core/reusable/material/slab/termination.json)"
+        "...": "include(../../../material/reusable/slab/termination.json)"
     },
     "substrate_termination": {
-        "...": "include(../../../core/reusable/material/slab/termination.json)"
+        "...": "include(../../../material/reusable/slab/termination.json)"
     },
     "distance_z": 3.0,
     "vacuum": 15.0

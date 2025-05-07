@@ -24,10 +24,10 @@
         "vacuum": 15.0
     },
     "phase_1_termination": {
-        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+        "...": "include(../../../../material/reusable/slab/termination.json)"
     },
     "phase_2_termination": {
-        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+        "...": "include(../../../../material/reusable/slab/termination.json)"
     },
     "gap": 2.5,
     "slab_configuration": {
@@ -40,6 +40,6 @@
         "vacuum": 15.0
     },
     "slab_termination": {
-        "...": "include(../../../../core/reusable/material/slab/termination.json)"
+        "...": "include(../../../../material/reusable/slab/termination.json)"
     }
 }
