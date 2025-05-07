@@ -11,7 +11,7 @@
         "test-only": "nyc --reporter=text mocha --recursive --bail tests/js",
         "lint": "eslint src/js && prettier --write src/js",
         "lint:fix": "eslint --fix --cache src/js && prettier --write src/js",
-        "prettier": "prettier --check src/js",
+        "prettier": "prettier --check \"src/js/**/*.{js,json}\" \"**/*.json\"",
         "prepare": "husky install || exit 0",
         "set-schema-ids": "ts-node set_schema_ids.ts"
     },
