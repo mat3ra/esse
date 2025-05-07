@@ -1,5 +1,5 @@
 {
-    "$id": "core/reusable/material/slab/miller-indices",
+    "$id": "material/reusable/slab/miller-indices",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Miller Indices Schema",
     "description": "Miller indices for crystallographic plane designation",

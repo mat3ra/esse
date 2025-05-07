@@ -2824,82 +2824,6 @@ export interface CoreReusableFrequencyFunctionMatrix {
      */
     components?: [number, number, number][];
 }
-/** Schema dist/js/schema/core/reusable/material/repetitions.json */
-/**
- * Number of unit cells to repeat in each direction for a crystal structure.
- *
- * @minItems 3
- * @maxItems 3
- */
-export type CrystalRepetitionsSchema = [number, number, number];
-/** Schema dist/js/schema/core/reusable/material/slab/enums.json */
-export interface CoreReusableMaterialSlabEnums {
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/core/reusable/material/slab/miller_indices.json */
-/**
- * Miller indices for crystallographic plane designation
- *
- * @minItems 3
- * @maxItems 3
- */
-export type MillerIndicesSchema = [number, number, number];
-/** Schema dist/js/schema/core/reusable/material/slab/termination.json */
-/**
- * Defines a specific termination of a slab
- */
-export interface TerminationSchema {
-    /**
-     * Chemical elements at the termination
-     */
-    chemical_elements: string;
-    /**
-     * Space group symmetry designation for the termination
-     */
-    space_group_symmetry_label: string;
-}
-/** Schema dist/js/schema/core/reusable/material/slab/thickness.json */
-/**
- * Number of atomic layers in a structural component
- */
-export type ThicknessSchema = number;
-/** Schema dist/js/schema/core/reusable/material/slab/vacuum.json */
-/**
- * Vacuum thickness in Angstroms
- */
-export type VacuumSchema = number;
-/** Schema dist/js/schema/core/reusable/material/supercell_matrix_2d.json */
-/**
- * Supercell matrix for xy plane transformations
- *
- * @minItems 2
- * @maxItems 2
- */
-export type SupercellMatrix2DSchema = [[number, number], [number, number]];
-/** Schema dist/js/schema/core/reusable/material/supercell_matrix_3d.json */
-/**
- * 3x3 matrix of integers for transforming a unit cell into a supercell
- *
- * @minItems 3
- * @maxItems 3
- */
-export type SupercellMatrix3DSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -6265,6 +6189,82 @@ export interface MaterialConsistencyCheckSchema {
 export interface MaterialConventionalSchema {
     conventional?: {};
 }
+/** Schema dist/js/schema/material/reusable/repetitions.json */
+/**
+ * Number of unit cells to repeat in each direction for a crystal structure.
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type CrystalRepetitionsSchema = [number, number, number];
+/** Schema dist/js/schema/material/reusable/slab/enums.json */
+export interface MaterialReusableSlabEnums {
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/material/reusable/slab/miller_indices.json */
+/**
+ * Miller indices for crystallographic plane designation
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type MillerIndicesSchema = [number, number, number];
+/** Schema dist/js/schema/material/reusable/slab/termination.json */
+/**
+ * Defines a specific termination of a slab
+ */
+export interface TerminationSchema {
+    /**
+     * Chemical elements at the termination
+     */
+    chemical_elements: string;
+    /**
+     * Space group symmetry designation for the termination
+     */
+    space_group_symmetry_label: string;
+}
+/** Schema dist/js/schema/material/reusable/slab/thickness.json */
+/**
+ * Number of atomic layers in a structural component
+ */
+export type ThicknessSchema = number;
+/** Schema dist/js/schema/material/reusable/slab/vacuum.json */
+/**
+ * Vacuum thickness in Angstroms
+ */
+export type VacuumSchema = number;
+/** Schema dist/js/schema/material/reusable/supercell_matrix_2d.json */
+/**
+ * Supercell matrix for xy plane transformations
+ *
+ * @minItems 2
+ * @maxItems 2
+ */
+export type SupercellMatrix2DSchema = [[number, number], [number, number]];
+/** Schema dist/js/schema/material/reusable/supercell_matrix_3d.json */
+/**
+ * 3x3 matrix of integers for transforming a unit cell into a supercell
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type SupercellMatrix3DSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/material.json */
 export interface MaterialSchema {
     /**
