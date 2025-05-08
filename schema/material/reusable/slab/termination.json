@@ -1,0 +1,23 @@
+{
+    "$id": "material/reusable/slab/termination",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Termination Schema",
+    "description": "Defines a specific termination of a slab",
+    "type": "object",
+    "required": [
+        "chemical_elements",
+        "space_group_symmetry_label"
+    ],
+    "properties": {
+        "chemical_elements": {
+            "title": "Chemical Elements",
+            "description": "Chemical elements at the termination",
+            "type": "string"
+        },
+        "space_group_symmetry_label": {
+            "title": "Space Group Symmetry Label",
+            "description": "Space group symmetry designation for the termination",
+            "type": "string"
+        }
+    }
+}
