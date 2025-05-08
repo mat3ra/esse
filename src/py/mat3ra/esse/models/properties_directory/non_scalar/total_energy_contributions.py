@@ -19,115 +19,115 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name74(Enum):
+class Name82(Enum):
     harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema6(BaseModel):
-    name: Optional[Name74] = None
-    value: float
-
-
-class Name75(Enum):
-    one_electron = "one_electron"
-
-
 class ScalarSchema7(BaseModel):
-    name: Optional[Name75] = None
-    value: float
-
-
-class Name76(Enum):
-    hartree = "hartree"
-
-
-class ScalarSchema8(BaseModel):
-    name: Optional[Name76] = None
-    value: float
-
-
-class Name77(Enum):
-    exchange = "exchange"
-
-
-class ScalarSchema9(BaseModel):
-    name: Optional[Name77] = None
-    value: float
-
-
-class Name78(Enum):
-    exchange_correlation = "exchange_correlation"
-
-
-class ScalarSchema10(BaseModel):
-    name: Optional[Name78] = None
-    value: float
-
-
-class Name79(Enum):
-    ewald = "ewald"
-
-
-class ScalarSchema11(BaseModel):
-    name: Optional[Name79] = None
-    value: float
-
-
-class Name80(Enum):
-    alphaZ = "alphaZ"
-
-
-class ScalarSchema12(BaseModel):
-    name: Optional[Name80] = None
-    value: float
-
-
-class Name81(Enum):
-    atomic_energy = "atomic_energy"
-
-
-class ScalarSchema13(BaseModel):
-    name: Optional[Name81] = None
-    value: float
-
-
-class Name82(Enum):
-    eigenvalues = "eigenvalues"
-
-
-class ScalarSchema14(BaseModel):
     name: Optional[Name82] = None
     value: float
 
 
 class Name83(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    one_electron = "one_electron"
 
 
-class ScalarSchema15(BaseModel):
+class ScalarSchema8(BaseModel):
     name: Optional[Name83] = None
     value: float
 
 
 class Name84(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    hartree = "hartree"
 
 
-class ScalarSchema16(BaseModel):
+class ScalarSchema9(BaseModel):
     name: Optional[Name84] = None
     value: float
 
 
 class Name85(Enum):
-    hartree_fock = "hartree_fock"
+    exchange = "exchange"
 
 
-class ScalarSchema17(BaseModel):
+class ScalarSchema10(BaseModel):
     name: Optional[Name85] = None
     value: float
 
 
 class Name86(Enum):
+    exchange_correlation = "exchange_correlation"
+
+
+class ScalarSchema11(BaseModel):
+    name: Optional[Name86] = None
+    value: float
+
+
+class Name87(Enum):
+    ewald = "ewald"
+
+
+class ScalarSchema12(BaseModel):
+    name: Optional[Name87] = None
+    value: float
+
+
+class Name88(Enum):
+    alphaZ = "alphaZ"
+
+
+class ScalarSchema13(BaseModel):
+    name: Optional[Name88] = None
+    value: float
+
+
+class Name89(Enum):
+    atomic_energy = "atomic_energy"
+
+
+class ScalarSchema14(BaseModel):
+    name: Optional[Name89] = None
+    value: float
+
+
+class Name90(Enum):
+    eigenvalues = "eigenvalues"
+
+
+class ScalarSchema15(BaseModel):
+    name: Optional[Name90] = None
+    value: float
+
+
+class Name91(Enum):
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+
+
+class ScalarSchema16(BaseModel):
+    name: Optional[Name91] = None
+    value: float
+
+
+class Name92(Enum):
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+
+
+class ScalarSchema17(BaseModel):
+    name: Optional[Name92] = None
+    value: float
+
+
+class Name93(Enum):
+    hartree_fock = "hartree_fock"
+
+
+class ScalarSchema18(BaseModel):
+    name: Optional[Name93] = None
+    value: float
+
+
+class Name94(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -146,53 +146,53 @@ class TotalEnergyContributionsSchema(BaseModel):
     """
     product of temperature and configurational entropy
     """
-    harrisFoulkes: Optional[ScalarSchema6] = Field(None, title="scalar schema")
+    harrisFoulkes: Optional[ScalarSchema7] = Field(None, title="scalar schema")
     """
     non self-consitent energy based on an input charge density
     """
-    oneElectron: Optional[ScalarSchema7] = Field(None, title="scalar schema")
+    oneElectron: Optional[ScalarSchema8] = Field(None, title="scalar schema")
     """
     kinetic + pseudopotential energy
     """
-    hartree: Optional[ScalarSchema8] = Field(None, title="scalar schema")
+    hartree: Optional[ScalarSchema9] = Field(None, title="scalar schema")
     """
     energy due to coulomb potential
     """
-    exchange: Optional[ScalarSchema9] = Field(None, title="scalar schema")
+    exchange: Optional[ScalarSchema10] = Field(None, title="scalar schema")
     """
     exchange energy
     """
-    exchangeCorrelation: Optional[ScalarSchema10] = Field(None, title="scalar schema")
+    exchangeCorrelation: Optional[ScalarSchema11] = Field(None, title="scalar schema")
     """
     exchange and correlation energy per particle
     """
-    ewald: Optional[ScalarSchema11] = Field(None, title="scalar schema")
+    ewald: Optional[ScalarSchema12] = Field(None, title="scalar schema")
     """
     summation of interaction energies at long length scales due to coloumbic interactions
     """
-    alphaZ: Optional[ScalarSchema12] = Field(None, title="scalar schema")
+    alphaZ: Optional[ScalarSchema13] = Field(None, title="scalar schema")
     """
     divergent electrostatic ion interaction in compensating electron gas
     """
-    atomicEnergy: Optional[ScalarSchema13] = Field(None, title="scalar schema")
+    atomicEnergy: Optional[ScalarSchema14] = Field(None, title="scalar schema")
     """
     kinetic energy of wavefunctions in the atomic limit
     """
-    eigenvalues: Optional[ScalarSchema14] = Field(None, title="scalar schema")
+    eigenvalues: Optional[ScalarSchema15] = Field(None, title="scalar schema")
     """
     sum of one electron energies of kinetic, electrostatic, and exchange correlation
     """
-    PAWDoubleCounting2: Optional[ScalarSchema15] = Field(None, title="scalar schema")
+    PAWDoubleCounting2: Optional[ScalarSchema16] = Field(None, title="scalar schema")
     """
     double counting correction 2
     """
-    PAWDoubleCounting3: Optional[ScalarSchema16] = Field(None, title="scalar schema")
+    PAWDoubleCounting3: Optional[ScalarSchema17] = Field(None, title="scalar schema")
     """
     double counting correction 3
     """
-    hartreeFock: Optional[ScalarSchema17] = Field(None, title="scalar schema")
+    hartreeFock: Optional[ScalarSchema18] = Field(None, title="scalar schema")
     """
     hartree-fock contribution
     """
-    name: Optional[Name86] = None
+    name: Optional[Name94] = None
     units: Optional[Units] = None
