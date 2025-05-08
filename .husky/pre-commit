@@ -22,19 +22,6 @@ else
   echo "ERROR: Python virtual environment found. Create one in '.venv' and install '.[all]'"
   exit 1
 fi
-
-# Check for 4-space indentation in staged JSON files in schema and example
-STAGED_JSON=$(git diff --cached --name-only --diff-filter=ACM | grep -E '^(schema|example)/.*\.json$' || true)
-if [ -n "$STAGED_JSON" ]; then
-  for file in $STAGED_JSON; do
-    # Check for lines that start with 1-3 spaces (not a multiple of 4)
-    if grep -P '^( {1,3})[^ ]' "$file" >/dev/null; then
-      echo "❌ $file: Not all indentation is a multiple of 4 spaces."
-      exit 1
-    fi
-  done
-fi
-
 npx lint-staged --allow-empty
 
 npm run lint:fix

@@ -84,7 +84,9 @@
     },
     "lint-staged": {
         "*.js,!dist/**/*": "eslint --cache --fix",
-        "*.{js,css},!dist/**/*": "prettier --write"
+        "*.{js,css},!dist/**/*": "prettier --write",
+        "schema/**/*.json": "eslint --cache --fix",
+        "example/**/*.json": "eslint --cache --fix"
     },
     "exports": {
         "./dist/js/schema/*.json": "./dist/js/schema/*.json",
