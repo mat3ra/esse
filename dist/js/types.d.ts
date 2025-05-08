@@ -6192,9 +6192,7 @@ export interface MaterialConventionalSchema {
  */
 export type CrystalRepetitionsSchema = [number, number, number];
 /** Schema dist/js/schema/material/reusable/slab/enums.json */
-export interface MaterialReusableSlabEnums {
-    [k: string]: unknown;
-}
+export type SurfaceTypesEnum = "top" | "bottom" | "both";
 /** Schema dist/js/schema/material/reusable/slab/miller_indices.json */
 /**
  * Miller indices for crystallographic plane designation

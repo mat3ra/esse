@@ -4,10 +4,10 @@
 
 from __future__ import annotations
 
-from typing import Any
-
-from pydantic import RootModel
+from enum import Enum
 
 
-class ESSE(RootModel[Any]):
-    root: Any
+class SurfaceTypesEnum(Enum):
+    top = "top"
+    bottom = "bottom"
+    both = "both"
