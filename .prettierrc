@@ -2,14 +2,5 @@
     "singleQuote": false,
     "printWidth": 100,
     "trailingComma": "all",
-    "tabWidth": 4,
-    "overrides": [
-        {
-            "files": "*.json",
-            "options": {
-                "tabWidth": 4,
-                "useTabs": false
-            }
-        }
-    ]
+    "tabWidth": 4
 }
