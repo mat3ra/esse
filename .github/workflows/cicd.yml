@@ -1,6 +1,6 @@
 name: Continuous Testing and Publication from 'dev'
 
-on: [push]
+on: [ push ]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
@@ -96,7 +96,7 @@ jobs:
         run: npm ci
 
       - name: Check JSON tab size
-        run: prettier --check "**/*.json" --tab-width 4 --use-tabs false
+        run: npx prettier --check "**/*.json" --tab-width 4 --use-tabs false
 
       - name: Run JS validate
         uses: ./actions/js/validate
@@ -109,7 +109,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
   publish-js-package:
-    needs: [run-py-linter, run-py-tests, run-js-tests]
+    needs: [ run-py-linter, run-py-tests, run-js-tests ]
     runs-on: ubuntu-latest
     if: github.ref_name == 'dev'
 
@@ -134,7 +134,7 @@ jobs:
 
 
   publish-py-package:
-    needs: [run-py-linter, run-py-tests, run-js-tests]
+    needs: [ run-py-linter, run-py-tests, run-js-tests ]
     runs-on: ubuntu-latest
     if: github.ref_name == 'dev'
 
@@ -160,7 +160,7 @@ jobs:
           publish-tag: 'false'
 
   deploy-docs:
-    needs: [publish-py-package, publish-js-package]
+    needs: [ publish-py-package, publish-js-package ]
     runs-on: ubuntu-latest
     strategy:
       matrix:
