@@ -84,9 +84,12 @@
         "node": ">=14.0.0"
     },
     "lint-staged": {
-        "*.js,!dist/**/*": "eslint --cache --fix",
-        "*.{js,css},!dist/**/*": "prettier --write",
-        "schema/**/*.json": "eslint --cache --fix",
+        "src/**/*.js": [
+            "eslint --cache --fix",
+            "prettier --write"
+        ],
+        "src/**/*.css": "prettier --write",
+        "schemas/**/*.json": "eslint --cache --fix",
         "example/**/*.json": "eslint --cache --fix"
     },
     "exports": {
