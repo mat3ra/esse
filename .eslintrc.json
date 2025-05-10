@@ -1,11 +1,52 @@
 {
-    "extends": ["@exabyte-io/eslint-config"],
-    "ignorePatterns": ["dist/js/**/*.js", "dist/js/**/*.ts", "src/js/types.ts"],
+    "extends": [
+        "@exabyte-io/eslint-config"
+    ],
+    "ignorePatterns": [
+        "dist/js/**/*.js",
+        "dist/js/**/*.ts",
+        "dist/js/**/*.d.ts",
+        "src/js/types.ts"
+    ],
     "settings": {
         "import/resolver": {
-          "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"]
-          }
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
         }
-    }
+    },
+    "overrides": [
+        {
+            "files": [
+                "**/*.json"
+            ],
+            "parser": "jsonc-eslint-parser",
+            "plugins": [
+                "jsonc"
+            ],
+            "rules": {
+                "jsonc/indent": [
+                    "error",
+                    4
+                ],
+                "jsonc/no-comments": "error",
+                "jsonc/key-spacing": [
+                    "error",
+                    {
+                        "beforeColon": false,
+                        "afterColon": true
+                    }
+                ],
+                "jsonc/comma-dangle": [
+                    "error",
+                    "never"
+                ]
+            }
+        }
+    ]
 }
