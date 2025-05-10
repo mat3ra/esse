@@ -1,0 +1,9 @@
+{
+  "crystal": {"...": "include(../../../../material.json)"},
+  "number_of_added_layers": 2,
+  "defect_type": "vacancy",
+  "coordinate": [0.5, 0.5, 0.9],
+  "position_on_surface": [0.5, 0.5],
+  "distance_z": 0.0,
+  "use_cartesian_coordinates": false
+}
