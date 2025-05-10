@@ -5,6 +5,7 @@
     "ignorePatterns": [
         "dist/js/**/*.js",
         "dist/js/**/*.ts",
+        "dist/js/**/*.d.ts",
         "src/js/types.ts"
     ],
     "settings": {
