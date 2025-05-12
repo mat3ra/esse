@@ -23,7 +23,8 @@
     "overrides": [
         {
             "files": [
-                "**/*.json"
+                "schemas/**/*.json",
+                "example/**/*.json"
             ],
             "parser": "jsonc-eslint-parser",
             "plugins": [
