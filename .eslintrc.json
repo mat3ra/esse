@@ -45,7 +45,19 @@
                 "jsonc/comma-dangle": [
                     "error",
                     "never"
-                ]
+                ],
+                "jsonc/array-bracket-spacing": [
+                    "error",
+                    "always"
+                ],
+                "jsonc/array-element-newline": [
+                    "error",
+                    {
+                        "multiline": true,
+                        "minItems": 1
+                    }
+                ],
+                "prettier/prettier": "off"
             }
         }
     ]
