@@ -24,7 +24,8 @@ else
 fi
 npx lint-staged --allow-empty
 
-npm run lint:fix
+# Skip linting after build to preserve generated files
+# npm run lint:fix
 npm run transpile
 #git add dist/js
 
