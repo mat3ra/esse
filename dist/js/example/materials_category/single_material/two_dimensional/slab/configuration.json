@@ -132,18 +132,9 @@
         0,
         1
     ],
-    "thickness": 3,
+    "number_of_layers": 3,
     "vacuum": 15,
-    "xy_supercell_matrix": [
-        [
-            1,
-            0
-        ],
-        [
-            0,
-            1
-        ]
-    ],
+    "xy_supercell_matrix": "include(../../../../material/reusable/supercell_matrix_2d.json)",
     "use_conventional_cell": true,
     "use_orthogonal_z": true,
     "make_primitive": true

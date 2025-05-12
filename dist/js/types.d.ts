@@ -56,7 +56,23 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
+        lattice_mat?: [
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ],
+            [
+                number,
+                number,
+                number
+            ]
+        ];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -1600,6 +1616,12 @@ export interface DimensionalGridSchema {
      */
     shifts: [number, number, number];
 }
+/** Schema dist/js/schema/core/abstract/coordinate_2d.json */
+/**
+ * @minItems 2
+ * @maxItems 2
+ */
+export type Coordinate2DSchema = [number, number];
 /** Schema dist/js/schema/core/abstract/coordinate_3d.json */
 /**
  * @minItems 3
@@ -1619,7 +1641,23 @@ export type KpointSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
+export type Matrix3X3Schema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -6169,6 +6207,11 @@ export type SurfaceTypesEnum = "top" | "bottom" | "both";
  * @maxItems 3
  */
 export type MillerIndicesSchema = [number, number, number];
+/** Schema dist/js/schema/material/reusable/slab/number_of_layers.json */
+/**
+ * Number of atomic layers in a structural component
+ */
+export type NumberOfLayersSchema = number;
 /** Schema dist/js/schema/material/reusable/slab/termination.json */
 /**
  * Defines a specific termination of a slab
@@ -6183,11 +6226,6 @@ export interface TerminationSchema {
      */
     space_group_symmetry_label: string;
 }
-/** Schema dist/js/schema/material/reusable/slab/thickness.json */
-/**
- * Number of atomic layers in a structural component
- */
-export type ThicknessSchema = number;
 /** Schema dist/js/schema/material/reusable/slab/vacuum.json */
 /**
  * Vacuum thickness in Angstroms
@@ -6208,7 +6246,23 @@ export type SupercellMatrix2DSchema = [[number, number], [number, number]];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
+export type SupercellMatrix3DSchema = [
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ],
+    [
+        number,
+        number,
+        number
+    ]
+];
 /** Schema dist/js/schema/material.json */
 export interface MaterialSchema {
     /**
@@ -6737,7 +6791,7 @@ export interface SlabConfigurationSchema {
     /**
      * Number of atomic layers in a structural component
      */
-    thickness?: number;
+    number_of_layers?: number;
     /**
      * Vacuum thickness in Angstroms
      */
