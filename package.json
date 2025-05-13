@@ -89,8 +89,8 @@
             "prettier --write"
         ],
         "src/**/*.css": "prettier --write",
-        "schemas/**/*.json": "eslint --cache --fix",
-        "example/**/*.json": "eslint --cache --fix"
+        "schemas/**/*.json": "eslint --cache --fix --no-ignore",
+        "example/**/*.json": "eslint --cache --fix --no-ignore"
     },
     "exports": {
         "./dist/js/schema/*.json": "./dist/js/schema/*.json",

@@ -8,19 +8,17 @@
         "dist/js/**/*.d.ts",
         "src/js/types.ts"
     ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        }
-    },
     "overrides": [
+        {
+            "files": [
+                "*.js",
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "prettier/prettier": "error"
+            }
+        },
         {
             "files": [
                 "schemas/**/*.json",
@@ -58,7 +56,15 @@
                         "minItems": 1
                     }
                 ],
-                "prettier/prettier": "off"
+                "prettier/prettier": [
+                    "off",
+                    {
+                        "singleQuote": false,
+                        "trailingComma": "none",
+                        "bracketSpacing": true,
+                        "printWidth": 100
+                    }
+                ]
             }
         }
     ]

@@ -3,14 +3,5 @@
     "printWidth": 100,
     "trailingComma": "all",
     "tabWidth": 4,
-    "bracketSpacing": true,
-    "overrides": [
-        {
-            "files": "*.json",
-            "options": {
-                "parser": "json",
-                "arrayExpand": true
-            }
-        }
-    ]
+    "bracketSpacing": true
 }
