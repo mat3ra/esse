@@ -10,7 +10,7 @@
     "properties": {
         "number_of_added_layers": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Thickness Schema",
+            "title": "number_of_layers Schema",
             "description": "Number of atomic layers in a structural component",
             "type": "integer",
             "minimum": 1,

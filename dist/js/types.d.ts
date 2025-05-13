@@ -6175,6 +6175,11 @@ export type SurfaceTypesEnum = "top" | "bottom" | "both";
  * @maxItems 3
  */
 export type MillerIndicesSchema = [number, number, number];
+/** Schema dist/js/schema/material/reusable/slab/number_of_layers.json */
+/**
+ * Number of atomic layers in a structural component
+ */
+export type NumberOfLayersSchema = number;
 /** Schema dist/js/schema/material/reusable/slab/termination.json */
 /**
  * Defines a specific termination of a slab
@@ -6189,11 +6194,6 @@ export interface TerminationSchema {
      */
     space_group_symmetry_label: string;
 }
-/** Schema dist/js/schema/material/reusable/slab/thickness.json */
-/**
- * Number of atomic layers in a structural component
- */
-export type ThicknessSchema = number;
 /** Schema dist/js/schema/material/reusable/slab/vacuum.json */
 /**
  * Vacuum thickness in Angstroms
@@ -6733,6 +6733,26 @@ export interface BaseDefectConfigurationSchema {
         isDefault?: boolean;
         metadata?: {};
     };
+}
+/** Schema dist/js/schema/materials_category/defects/enums/atom_placement_method.json */
+export interface AtomPlacementMethodEnum {
+    atomPlacementMethod?: "coordinate" | "closest_site" | "equidistant" | "crystal_site" | "voronoi_site";
+}
+/** Schema dist/js/schema/materials_category/defects/enums/complex_defect_type.json */
+export interface ComplexDefectTypeEnum {
+    complexDefectType?: "pair";
+}
+/** Schema dist/js/schema/materials_category/defects/enums/coordinates_shape.json */
+export interface CoordinatesShapeEnum {
+    coordinatesShape?: "sphere" | "cylinder" | "rectangle" | "triangular_prism";
+}
+/** Schema dist/js/schema/materials_category/defects/enums/point_defect_type.json */
+export interface PointDefectTypeEnum {
+    pointDefectType?: "vacancy" | "substitution" | "interstitial" | "adatom";
+}
+/** Schema dist/js/schema/materials_category/defects/enums/slab_defect_type.json */
+export interface SlabDefectTypeEnum {
+    slabDefectType?: "island" | "terrace";
 }
 /** Schema dist/js/schema/materials_category/defects/enums.json */
 export interface MaterialsCategoryDefectsEnums {
@@ -9255,7 +9275,7 @@ export interface SlabConfigurationSchema {
     /**
      * Number of atomic layers in a structural component
      */
-    thickness?: number;
+    number_of_layers?: number;
     /**
      * Vacuum thickness in Angstroms
      */

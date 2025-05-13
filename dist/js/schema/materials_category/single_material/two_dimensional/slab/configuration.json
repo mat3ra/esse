@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/single-material/two-dimensional/slab/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "SlabConfiguration Schema",
+    "title": "Slab Configuration Schema",
     "description": "Configuration for creating a slab from a bulk material",
     "type": "object",
     "properties": {
@@ -645,9 +645,9 @@
                 "type": "integer"
             }
         },
-        "thickness": {
+        "number_of_layers": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Thickness Schema",
+            "title": "number_of_layers Schema",
             "description": "Number of atomic layers in a structural component",
             "type": "integer",
             "minimum": 1,

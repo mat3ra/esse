@@ -8,22 +8,21 @@
         "dist/js/**/*.d.ts",
         "src/js/types.ts"
     ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".ts",
-                    ".tsx"
-                ]
-            }
-        }
-    },
     "overrides": [
         {
             "files": [
-                "**/*.json"
+                "*.js",
+                "*.ts",
+                "*.tsx"
+            ],
+            "rules": {
+                "prettier/prettier": "error"
+            }
+        },
+        {
+            "files": [
+                "schemas/**/*.json",
+                "example/**/*.json"
             ],
             "parser": "jsonc-eslint-parser",
             "plugins": [
@@ -45,6 +44,26 @@
                 "jsonc/comma-dangle": [
                     "error",
                     "never"
+                ],
+                "jsonc/array-bracket-spacing": [
+                    "error",
+                    "always"
+                ],
+                "jsonc/array-element-newline": [
+                    "error",
+                    {
+                        "multiline": true,
+                        "minItems": 1
+                    }
+                ],
+                "prettier/prettier": [
+                    "off",
+                    {
+                        "singleQuote": false,
+                        "trailingComma": "none",
+                        "bracketSpacing": true,
+                        "printWidth": 100
+                    }
                 ]
             }
         }

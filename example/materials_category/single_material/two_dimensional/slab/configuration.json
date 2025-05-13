@@ -7,7 +7,7 @@
         0,
         1
     ],
-    "thickness": 3,
+    "number_of_layers": 3,
     "vacuum": 15.0,
     "xy_supercell_matrix": [
         [

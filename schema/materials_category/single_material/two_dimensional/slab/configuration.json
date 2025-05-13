@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/single-material/two-dimensional/slab/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "SlabConfiguration Schema",
+    "title": "Slab Configuration Schema",
     "description": "Configuration for creating a slab from a bulk material",
     "type": "object",
     "properties": {
@@ -11,8 +11,8 @@
         "miller_indices": {
             "$ref": "../../../../material/reusable/slab/miller_indices.json"
         },
-        "thickness": {
-            "$ref": "../../../../material/reusable/slab/thickness.json"
+        "number_of_layers": {
+            "$ref": "../../../../material/reusable/slab/number_of_layers.json"
         },
         "vacuum": {
             "$ref": "../../../../material/reusable/slab/vacuum.json"

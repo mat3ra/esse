@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import Field, RootModel, conint
 
 
-class number_of_layersSchema(RootModel[Optional[conint(ge=1)]]):
+class NumberOfLayersSchema(RootModel[Optional[conint(ge=1)]]):
     root: Optional[conint(ge=1)] = Field(1, title="number_of_layers Schema")
     """
     Number of atomic layers in a structural component
