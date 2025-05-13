@@ -27,7 +27,7 @@
     },
     "homepage": "https://github.com/Exabyte-io/esse",
     "devDependencies": {
-        "@exabyte-io/eslint-config": "^2025.1.15-0",
+        "@exabyte-io/eslint-config": "2025.5.13-0",
         "@mat3ra/tsconfig": "^2024.6.3-0",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "^5.62.0",
@@ -40,6 +40,7 @@
         "eslint-import-resolver-node": "^0.3.9",
         "eslint-plugin-import": "^2.31.0",
         "eslint-plugin-jsdoc": "^50.6.9",
+        "eslint-plugin-jsonc": "^2.20.0",
         "eslint-plugin-jsx-a11y": "^6.10.2",
         "eslint-plugin-mui-path-imports": "0.0.15",
         "eslint-plugin-prettier": "^4.2.1",
@@ -83,8 +84,13 @@
         "node": ">=14.0.0"
     },
     "lint-staged": {
-        "*.js,!dist/**/*": "eslint --cache --fix",
-        "*.{js,css},!dist/**/*": "prettier --write"
+        "src/**/*.js": [
+            "eslint --cache --fix",
+            "prettier --write"
+        ],
+        "src/**/*.css": "prettier --write",
+        "schemas/**/*.json": "eslint --cache --fix --no-ignore",
+        "example/**/*.json": "eslint --cache --fix --no-ignore"
     },
     "exports": {
         "./dist/js/schema/*.json": "./dist/js/schema/*.json",

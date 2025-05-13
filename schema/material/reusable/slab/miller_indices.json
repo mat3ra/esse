@@ -1,0 +1,17 @@
+{
+    "$id": "material/reusable/slab/miller-indices",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Miller Indices Schema",
+    "description": "Miller indices for crystallographic plane designation",
+    "type": "array",
+    "items": {
+        "type": "integer"
+    },
+    "minItems": 3,
+    "maxItems": 3,
+    "default": [
+        0,
+        0,
+        1
+    ]
+}

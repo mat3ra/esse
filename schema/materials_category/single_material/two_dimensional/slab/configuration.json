@@ -1,0 +1,42 @@
+{
+    "$id": "materials-category/single-material/two-dimensional/slab/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Configuration Schema",
+    "description": "Configuration for creating a slab from a bulk material",
+    "type": "object",
+    "properties": {
+        "bulk": {
+            "$ref": "../../../../material.json"
+        },
+        "miller_indices": {
+            "$ref": "../../../../material/reusable/slab/miller_indices.json"
+        },
+        "number_of_layers": {
+            "$ref": "../../../../material/reusable/slab/number_of_layers.json"
+        },
+        "vacuum": {
+            "$ref": "../../../../material/reusable/slab/vacuum.json"
+        },
+        "xy_supercell_matrix": {
+            "$ref": "../../../../material/reusable/supercell_matrix_2d.json"
+        },
+        "use_conventional_cell": {
+            "title": "Use Conventional Cell",
+            "description": "Whether to use conventional cell",
+            "type": "boolean",
+            "default": true
+        },
+        "use_orthogonal_z": {
+            "title": "Use Orthogonal Z",
+            "description": "Whether to make z-axis orthogonal",
+            "type": "boolean",
+            "default": false
+        },
+        "make_primitive": {
+            "title": "Make Primitive",
+            "description": "Whether to make the slab primitive",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}
