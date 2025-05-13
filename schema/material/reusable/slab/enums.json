@@ -1,0 +1,11 @@
+{
+    "$id": "material/reusable/slab/enums",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Surface Types Enum",
+    "$comment": "The surface types used by passivation and surface analysis",
+    "enum": [
+        "top",
+        "bottom",
+        "both"
+    ]
+}

@@ -1,0 +1,9 @@
+{
+    "$id": "material/reusable/slab/number-of-layers",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "number_of_layers Schema",
+    "description": "Number of atomic layers in a structural component",
+    "type": "integer",
+    "minimum": 1,
+    "default": 1
+}
