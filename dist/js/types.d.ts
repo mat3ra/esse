@@ -6131,6 +6131,57 @@ export interface JobSchema {
     isDefault?: boolean;
     metadata?: {};
 }
+/** Schema dist/js/schema/material/builders/base/selector_parameters.json */
+/**
+ * Base parameters for all builder selectors
+ */
+export interface BaseSelectorParametersSchema {
+    /**
+     * Default index for the selector
+     */
+    default_index?: number;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/pymatgen_slab_generator_parameters.json */
+/**
+ * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ */
+export interface PymatgenSlabGeneratorParametersSchema {
+    /**
+     * Minimum size of the vacuum in layers or angstroms
+     */
+    min_vacuum_size?: number;
+    /**
+     * Whether to cleave in unit planes
+     */
+    in_unit_planes?: boolean;
+    /**
+     * Whether to reorient the lattice
+     */
+    reorient_lattice?: boolean;
+    /**
+     * Whether to symmetrize the slab
+     */
+    symmetrize?: boolean;
+}
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/selector_parameters.json */
+/**
+ * Parameters for slab selection
+ */
+export interface SlabSelectorParametersSchema {
+    /**
+     * Defines a specific termination of a slab
+     */
+    termination?: {
+        /**
+         * Chemical elements at the termination
+         */
+        chemical_elements: string;
+        /**
+         * Space group symmetry designation for the termination
+         */
+        space_group_symmetry_label: string;
+    };
+}
 /** Schema dist/js/schema/material/consistency_check.json */
 /**
  * The output of consistency checks performed on data adhering to JSON schema, but inconsistent with scientific or logical rules, to show problems in UI.
@@ -22902,6 +22953,28 @@ export interface TimestampableEntitySchema {
 /** Schema dist/js/schema/system/use_values.json */
 export interface UseValuesSchema {
     useValues?: boolean;
+}
+/** Schema dist/js/schema/undefined.json */
+/**
+ * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ */
+export interface PymatgenSlabGeneratorParametersSchema {
+    /**
+     * Minimum size of the vacuum in layers or angstroms
+     */
+    min_vacuum_size?: number;
+    /**
+     * Whether to cleave in unit planes
+     */
+    in_unit_planes?: boolean;
+    /**
+     * Whether to reorient the lattice
+     */
+    reorient_lattice?: boolean;
+    /**
+     * Whether to symmetrize the slab
+     */
+    symmetrize?: boolean;
 }
 /** Schema dist/js/schema/workflow/base.json */
 export interface BaseWorkflowSchema {
