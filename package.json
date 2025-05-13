@@ -27,7 +27,7 @@
     },
     "homepage": "https://github.com/Exabyte-io/esse",
     "devDependencies": {
-        "@exabyte-io/eslint-config": "git+https://github.com/Exabyte-io/eslint-config.git#c30035761c801a2ae4a0e69100ad9d1932293262",
+        "@exabyte-io/eslint-config": "2025.5.13-0",
         "@mat3ra/tsconfig": "^2024.6.3-0",
         "@typescript-eslint/eslint-plugin": "^5.62.0",
         "@typescript-eslint/parser": "^5.62.0",
