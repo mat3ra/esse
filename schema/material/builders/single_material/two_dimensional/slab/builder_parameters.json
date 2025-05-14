@@ -4,5 +4,9 @@
     "title": "Slab Builder Parameters Schema",
     "description": "Parameters for the slab builder",
     "type": "object",
-    "$ref": "../../../../../apse/materials/builders/slab/pymatgen/parameters.json"
+    "allOf": [
+        {
+            "$ref": "../../../../../apse/materials/builders/slab/pymatgen/parameters.json"
+        }
+    ]
 }

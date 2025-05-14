@@ -6165,9 +6165,9 @@ export interface BaseSelectorParametersSchema {
 }
 /** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/builder_parameters.json */
 /**
- * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ * Parameters for the slab builder
  */
-export interface PymatgenSlabGeneratorParametersSchema {
+export interface SlabBuilderParametersSchema {
     /**
      * Minimum size of the vacuum in layers or angstroms
      */
