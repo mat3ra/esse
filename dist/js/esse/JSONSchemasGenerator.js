@@ -39,10 +39,12 @@ class JSONSchemasGenerator {
             resolvers: { defaultResolver: json_schema_merge_allof_1.default.options.resolvers.title },
         };
         const schemas = this.schemas.map((schema) => {
-            var _a;
+            var _a, _b;
             console.log(`Resolving schema: ${schema.$id}`);
             const mergedSchema = skipMergeAllOff ? schema : (0, json_schema_merge_allof_1.default)(schema, mergeAllOfConfig);
-            const idAsPath = (_a = mergedSchema.$id) === null || _a === void 0 ? void 0 : _a.replace(/-/g, "_");
+            const idAsPath = ((_a = mergedSchema.$id) === null || _a === void 0 ? void 0 : _a.includes("-"))
+                ? (_b = mergedSchema.$id) === null || _b === void 0 ? void 0 : _b.replace(/-/g, "_")
+                : mergedSchema.$id;
             const fullPath = `${schemasFolder}/${idAsPath}.json`;
             fs_1.default.mkdirSync(path_1.default.dirname(fullPath), { recursive: true });
             fs_1.default.writeFileSync(fullPath, JSON.stringify(mergedSchema, null, 4), "utf8");
