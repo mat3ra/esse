@@ -5,8 +5,7 @@
     "type": "object",
     "properties": {
         "symbol": {
-            "description": "Element symbol.",
-            "type": "string"
+            "$ref": "./definitions/chemical_elements.json#periodic_table"
         },
         "properties": {
             "type": "array",

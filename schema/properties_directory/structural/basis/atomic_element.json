@@ -7,5 +7,10 @@
         {
             "$ref": "../../../core/reusable/atomic_string.json"
         }
-    ]
+    ],
+    "properties": {
+        "value": {
+            "$ref": "../../../definitions/chemical_elements.json#all"
+        }
+    }
 }
