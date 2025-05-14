@@ -10,10 +10,136 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel, confloat, conint
 
 
+class Value(Enum):
+    H = "H"
+    He = "He"
+    Li = "Li"
+    Be = "Be"
+    B = "B"
+    C = "C"
+    N = "N"
+    O = "O"
+    F = "F"
+    Ne = "Ne"
+    Na = "Na"
+    Mg = "Mg"
+    Al = "Al"
+    Si = "Si"
+    P = "P"
+    S = "S"
+    Cl = "Cl"
+    Ar = "Ar"
+    K = "K"
+    Ca = "Ca"
+    Sc = "Sc"
+    Ti = "Ti"
+    V = "V"
+    Cr = "Cr"
+    Mn = "Mn"
+    Fe = "Fe"
+    Co = "Co"
+    Ni = "Ni"
+    Cu = "Cu"
+    Zn = "Zn"
+    Ga = "Ga"
+    Ge = "Ge"
+    As = "As"
+    Se = "Se"
+    Br = "Br"
+    Kr = "Kr"
+    Rb = "Rb"
+    Sr = "Sr"
+    Y = "Y"
+    Zr = "Zr"
+    Nb = "Nb"
+    Mo = "Mo"
+    Tc = "Tc"
+    Ru = "Ru"
+    Rh = "Rh"
+    Pd = "Pd"
+    Ag = "Ag"
+    Cd = "Cd"
+    In = "In"
+    Sn = "Sn"
+    Sb = "Sb"
+    Te = "Te"
+    I = "I"
+    Xe = "Xe"
+    Cs = "Cs"
+    Ba = "Ba"
+    La = "La"
+    Ce = "Ce"
+    Pr = "Pr"
+    Nd = "Nd"
+    Pm = "Pm"
+    Sm = "Sm"
+    Eu = "Eu"
+    Gd = "Gd"
+    Tb = "Tb"
+    Dy = "Dy"
+    Ho = "Ho"
+    Er = "Er"
+    Tm = "Tm"
+    Yb = "Yb"
+    Lu = "Lu"
+    Hf = "Hf"
+    Ta = "Ta"
+    W = "W"
+    Re = "Re"
+    Os = "Os"
+    Ir = "Ir"
+    Pt = "Pt"
+    Au = "Au"
+    Hg = "Hg"
+    Tl = "Tl"
+    Pb = "Pb"
+    Bi = "Bi"
+    Po = "Po"
+    At = "At"
+    Rn = "Rn"
+    Fr = "Fr"
+    Ra = "Ra"
+    Ac = "Ac"
+    Th = "Th"
+    Pa = "Pa"
+    U = "U"
+    Np = "Np"
+    Pu = "Pu"
+    Am = "Am"
+    Cm = "Cm"
+    Bk = "Bk"
+    Cf = "Cf"
+    Es = "Es"
+    Fm = "Fm"
+    Md = "Md"
+    No = "No"
+    Lr = "Lr"
+    Rf = "Rf"
+    Db = "Db"
+    Sg = "Sg"
+    Bh = "Bh"
+    Hs = "Hs"
+    Mt = "Mt"
+    Ds = "Ds"
+    Rg = "Rg"
+    Cn = "Cn"
+    Nh = "Nh"
+    Fl = "Fl"
+    Mc = "Mc"
+    Lv = "Lv"
+    Ts = "Ts"
+    Og = "Og"
+
+
+class Value17(Enum):
+    X = "X"
+    Vac = "Vac"
+
+
 class AtomicElementSchema(BaseModel):
-    value: str
+    value: Union[Value, Value17]
     """
-    value of this entry
+    All elements, including extra elements
     """
     id: int
     """
@@ -159,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name165(Enum):
+class Name69(Enum):
     density = "density"
 
 
-class Units81(Enum):
+class Units45(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units81] = None
+    units: Optional[Units45] = None
     value: float
 
 
-class Units82(Enum):
+class Units46(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units82] = None
+    units: Optional[Units46] = None
     value: float
 
 
-class Name166(Enum):
+class Name70(Enum):
     symmetry = "symmetry"
 
 
@@ -202,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name167(Enum):
+class Name71(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -215,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name168(Enum):
+class Name72(Enum):
     p_norm = "p-norm"
 
 
@@ -228,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name169(Enum):
+class Name73(Enum):
     inchi = "inchi"
 
 
@@ -237,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name170(Enum):
+class Name74(Enum):
     inchi_key = "inchi_key"
 
 
@@ -316,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name171(Enum):
+class Name75(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -329,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name171
+    name: Name75
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

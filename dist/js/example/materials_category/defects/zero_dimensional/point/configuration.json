@@ -1,5 +1,13 @@
 {
-    "crystal": {
+    "type": "vacancy",
+    "coordinate": [
+        0.25,
+        0.25,
+        0.25
+    ],
+    "use_cartesian_coordinates": false,
+    "placement_method": "crystal_site",
+    "host": {
         "_id": "LCthJ6E2QabYCZqf3",
         "basis": {
             "coordinates": [
@@ -126,13 +134,5 @@
         "slug": "silicon-fcc",
         "unitCellFormula": "Si2",
         "updatedAt": "2016-04-04T17:58:42.867Z"
-    },
-    "defect_type": "vacancy",
-    "coordinate": [
-        0.25,
-        0.25,
-        0.25
-    ],
-    "use_cartesian_coordinates": false,
-    "placement_method": "crystal_site"
+    }
 }

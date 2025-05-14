@@ -5,17 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
-
-from pydantic import BaseModel
 
 
-class PointDefectType(Enum):
+class PointDefectTypeEnum(Enum):
     vacancy = "vacancy"
     substitution = "substitution"
     interstitial = "interstitial"
-    adatom = "adatom"
-
-
-class PointDefectTypeEnum(BaseModel):
-    pointDefectType: Optional[PointDefectType] = None

@@ -1,17 +1,11 @@
 {
     "$id": "materials-category/defects/enums/point-defect-type",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "PointDefectTypeEnum",
-    "type": "object",
-    "properties": {
-        "pointDefectType": {
-            "type": "string",
-            "enum": [
-                "vacancy",
-                "substitution",
-                "interstitial",
-                "adatom"
-            ]
-        }
-    }
+    "title": "Point Defect Type Enum",
+    "type": "string",
+    "enum": [
+        "vacancy",
+        "substitution",
+        "interstitial"
+    ]
 }

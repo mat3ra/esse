@@ -1,3 +1,5 @@
 {
-    "crystal": { "...": "include(../../material.json)"}
+    "host": {
+        "...": "include(../../material.json)"
+    }
 }
