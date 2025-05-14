@@ -1,0 +1,15 @@
+{
+    "crystal": {
+        "...": "include(../../../../material.json)"
+    },
+    "number_of_added_layers": 2,
+    "defect_type": "island",
+    "condition": {
+        "shape": "cylinder",
+        "center_position": [
+            0.5,
+            0.5
+        ],
+        "radius": 3.0
+    }
+}
