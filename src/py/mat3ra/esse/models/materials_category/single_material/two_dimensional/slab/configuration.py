@@ -414,11 +414,11 @@ class SlabConfigurationSchema(BaseModel):
     """
     Miller indices for crystallographic plane designation
     """
-    number_of_layers: Optional[conint(ge=1)] = Field(1, title="number_of_layers Schema")
+    number_of_layers: Optional[conint(ge=1)] = Field(1, title="Number of Layers Schema")
     """
     Number of atomic layers in a structural component
     """
-    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
+    vacuum: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Thickness Schema")
     """
     Vacuum thickness in Angstroms
     """

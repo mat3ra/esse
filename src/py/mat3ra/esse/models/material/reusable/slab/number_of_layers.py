@@ -10,7 +10,7 @@ from pydantic import Field, RootModel, conint
 
 
 class NumberOfLayersSchema(RootModel[Optional[conint(ge=1)]]):
-    root: Optional[conint(ge=1)] = Field(1, title="number_of_layers Schema")
+    root: Optional[conint(ge=1)] = Field(1, title="Number of Layers Schema")
     """
     Number of atomic layers in a structural component
     """

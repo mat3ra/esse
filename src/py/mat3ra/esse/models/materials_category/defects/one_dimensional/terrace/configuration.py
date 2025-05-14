@@ -418,7 +418,7 @@ class TerraceConfigurationSchema(BaseModel):
     """
     Whether to rotate the slab to match periodic boundary conditions
     """
-    number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="number_of_layers Schema")
+    number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="Number of Layers Schema")
     """
     Number of atomic layers in a structural component
     """

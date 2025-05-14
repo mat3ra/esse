@@ -6165,8 +6165,8 @@ export interface MaterialConventionalSchema {
  * @maxItems 3
  */
 export type CrystalRepetitionsSchema = [number, number, number];
-/** Schema dist/js/schema/material/reusable/slab/enums.json */
-export type SurfaceTypesEnum = "top" | "bottom" | "both";
+/** Schema dist/js/schema/material/reusable/slab/enums/exposed_face.json */
+export type SlabExposedFaceEnum = "top" | "bottom" | "both";
 /** Schema dist/js/schema/material/reusable/slab/miller_indices.json */
 /**
  * Miller indices for crystallographic plane designation
@@ -6198,7 +6198,7 @@ export interface TerminationSchema {
 /**
  * Vacuum thickness in Angstroms
  */
-export type VacuumSchema = number;
+export type VacuumThicknessSchema = number;
 /** Schema dist/js/schema/material/reusable/supercell_matrix_2d.json */
 /**
  * Supercell matrix for xy plane transformations
