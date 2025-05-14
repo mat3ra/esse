@@ -72,6 +72,10 @@ export default class JSONSchemasGenerator implements JSONSchemasGeneratorConfig 
             const idAsPath = mergedSchema.$id?.includes("-")
                 ? mergedSchema.$id?.replace(/-/g, "_")
                 : mergedSchema.$id;
+            if (!idAsPath) {
+                throw new Error(`Schema ID is missing or invalid:
+                ${JSON.stringify(mergedSchema)}`);
+            }
 
             const fullPath = `${schemasFolder}/${idAsPath}.json`;
 

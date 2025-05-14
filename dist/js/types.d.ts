@@ -6163,6 +6163,28 @@ export interface BaseSelectorParametersSchema {
      */
     default_index?: number;
 }
+/** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/builder_parameters.json */
+/**
+ * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
+ */
+export interface PymatgenSlabGeneratorParametersSchema {
+    /**
+     * Minimum size of the vacuum in layers or angstroms
+     */
+    min_vacuum_size?: number;
+    /**
+     * Whether to cleave in unit planes
+     */
+    in_unit_planes?: boolean;
+    /**
+     * Whether to reorient the lattice
+     */
+    reorient_lattice?: boolean;
+    /**
+     * Whether to symmetrize the slab
+     */
+    symmetrize?: boolean;
+}
 /** Schema dist/js/schema/material/builders/single_material/two_dimensional/slab/selector_parameters.json */
 /**
  * Parameters for slab selection
@@ -22953,28 +22975,6 @@ export interface TimestampableEntitySchema {
 /** Schema dist/js/schema/system/use_values.json */
 export interface UseValuesSchema {
     useValues?: boolean;
-}
-/** Schema dist/js/schema/undefined.json */
-/**
- * Parameters for the Pymatgen slab generator. https://github.com/materialsproject/pymatgen/blob/585bb673c4aa222669c4b0d72ffeec3dbf092630/pymatgen/core/surface.py#L1187
- */
-export interface PymatgenSlabGeneratorParametersSchema {
-    /**
-     * Minimum size of the vacuum in layers or angstroms
-     */
-    min_vacuum_size?: number;
-    /**
-     * Whether to cleave in unit planes
-     */
-    in_unit_planes?: boolean;
-    /**
-     * Whether to reorient the lattice
-     */
-    reorient_lattice?: boolean;
-    /**
-     * Whether to symmetrize the slab
-     */
-    symmetrize?: boolean;
 }
 /** Schema dist/js/schema/workflow/base.json */
 export interface BaseWorkflowSchema {

@@ -45,6 +45,10 @@ class JSONSchemasGenerator {
             const idAsPath = ((_a = mergedSchema.$id) === null || _a === void 0 ? void 0 : _a.includes("-"))
                 ? (_b = mergedSchema.$id) === null || _b === void 0 ? void 0 : _b.replace(/-/g, "_")
                 : mergedSchema.$id;
+            if (!idAsPath) {
+                throw new Error(`Schema ID is missing or invalid:
+                ${JSON.stringify(mergedSchema)}`);
+            }
             const fullPath = `${schemasFolder}/${idAsPath}.json`;
             fs_1.default.mkdirSync(path_1.default.dirname(fullPath), { recursive: true });
             fs_1.default.writeFileSync(fullPath, JSON.stringify(mergedSchema, null, 4), "utf8");
