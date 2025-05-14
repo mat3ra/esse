@@ -24,11 +24,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units19(Enum):
+class Units46(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ElectronAffinitySchema(BaseModel):
     name: Name
-    units: Union[Units, Units19]
+    units: Union[Units, Units46]
     value: float

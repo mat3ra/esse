@@ -1,0 +1,25 @@
+{
+    "defect_type": "pair",
+    "primary_defect_configuration": {
+        "crystal": {
+            "...": "include(../../../../material.json)"
+        },
+        "defect_type": "vacancy",
+        "coordinate": [
+            0.0,
+            0.0,
+            0.0
+        ],
+        "use_cartesian_coordinates": false
+    },
+    "secondary_defect_configuration": {
+        "defect_type": "substitution",
+        "coordinate": [
+            0.25,
+            0.25,
+            0.25
+        ],
+        "chemical_element": "Ge",
+        "use_cartesian_coordinates": false
+    }
+}

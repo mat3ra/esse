@@ -1,0 +1,17 @@
+{
+    "$id": "materials-category/defects/enums/coordinates-shape",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "CoordinatesShapeEnum",
+    "type": "object",
+    "properties": {
+        "coordinatesShape": {
+            "type": "string",
+            "enum": [
+                "sphere",
+                "cylinder",
+                "rectangle",
+                "triangular_prism"
+            ]
+        }
+    }
+}
