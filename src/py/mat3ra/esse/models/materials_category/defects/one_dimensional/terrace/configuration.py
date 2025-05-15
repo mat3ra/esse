@@ -10,10 +10,136 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel, confloat, conint
 
 
+class Value(Enum):
+    H = "H"
+    He = "He"
+    Li = "Li"
+    Be = "Be"
+    B = "B"
+    C = "C"
+    N = "N"
+    O = "O"
+    F = "F"
+    Ne = "Ne"
+    Na = "Na"
+    Mg = "Mg"
+    Al = "Al"
+    Si = "Si"
+    P = "P"
+    S = "S"
+    Cl = "Cl"
+    Ar = "Ar"
+    K = "K"
+    Ca = "Ca"
+    Sc = "Sc"
+    Ti = "Ti"
+    V = "V"
+    Cr = "Cr"
+    Mn = "Mn"
+    Fe = "Fe"
+    Co = "Co"
+    Ni = "Ni"
+    Cu = "Cu"
+    Zn = "Zn"
+    Ga = "Ga"
+    Ge = "Ge"
+    As = "As"
+    Se = "Se"
+    Br = "Br"
+    Kr = "Kr"
+    Rb = "Rb"
+    Sr = "Sr"
+    Y = "Y"
+    Zr = "Zr"
+    Nb = "Nb"
+    Mo = "Mo"
+    Tc = "Tc"
+    Ru = "Ru"
+    Rh = "Rh"
+    Pd = "Pd"
+    Ag = "Ag"
+    Cd = "Cd"
+    In = "In"
+    Sn = "Sn"
+    Sb = "Sb"
+    Te = "Te"
+    I = "I"
+    Xe = "Xe"
+    Cs = "Cs"
+    Ba = "Ba"
+    La = "La"
+    Ce = "Ce"
+    Pr = "Pr"
+    Nd = "Nd"
+    Pm = "Pm"
+    Sm = "Sm"
+    Eu = "Eu"
+    Gd = "Gd"
+    Tb = "Tb"
+    Dy = "Dy"
+    Ho = "Ho"
+    Er = "Er"
+    Tm = "Tm"
+    Yb = "Yb"
+    Lu = "Lu"
+    Hf = "Hf"
+    Ta = "Ta"
+    W = "W"
+    Re = "Re"
+    Os = "Os"
+    Ir = "Ir"
+    Pt = "Pt"
+    Au = "Au"
+    Hg = "Hg"
+    Tl = "Tl"
+    Pb = "Pb"
+    Bi = "Bi"
+    Po = "Po"
+    At = "At"
+    Rn = "Rn"
+    Fr = "Fr"
+    Ra = "Ra"
+    Ac = "Ac"
+    Th = "Th"
+    Pa = "Pa"
+    U = "U"
+    Np = "Np"
+    Pu = "Pu"
+    Am = "Am"
+    Cm = "Cm"
+    Bk = "Bk"
+    Cf = "Cf"
+    Es = "Es"
+    Fm = "Fm"
+    Md = "Md"
+    No = "No"
+    Lr = "Lr"
+    Rf = "Rf"
+    Db = "Db"
+    Sg = "Sg"
+    Bh = "Bh"
+    Hs = "Hs"
+    Mt = "Mt"
+    Ds = "Ds"
+    Rg = "Rg"
+    Cn = "Cn"
+    Nh = "Nh"
+    Fl = "Fl"
+    Mc = "Mc"
+    Lv = "Lv"
+    Ts = "Ts"
+    Og = "Og"
+
+
+class Value31(Enum):
+    X = "X"
+    Vac = "Vac"
+
+
 class AtomicElementSchema(BaseModel):
-    value: str
+    value: Union[Value, Value31]
     """
-    value of this entry
+    All elements, including extra elements
     """
     id: int
     """
@@ -159,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name112(Enum):
+class Name96(Enum):
     density = "density"
 
 
-class Units49(Enum):
+class Units43(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units49] = None
+    units: Optional[Units43] = None
     value: float
 
 
-class Units50(Enum):
+class Units44(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units50] = None
+    units: Optional[Units44] = None
     value: float
 
 
-class Name113(Enum):
+class Name97(Enum):
     symmetry = "symmetry"
 
 
@@ -202,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name114(Enum):
+class Name98(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -215,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name115(Enum):
+class Name99(Enum):
     p_norm = "p-norm"
 
 
@@ -228,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name116(Enum):
+class Name100(Enum):
     inchi = "inchi"
 
 
@@ -237,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name117(Enum):
+class Name101(Enum):
     inchi_key = "inchi_key"
 
 
@@ -316,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name118(Enum):
+class Name102(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -329,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name118
+    name: Name102
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -405,14 +531,15 @@ class MaterialSchema(BaseModel):
 
 
 class TerraceConfigurationSchema(BaseModel):
-    cut_direction: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    cut_direction: Optional[List[int]] = Field([1, 0, 0], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
     """
-    pivot_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
-    use_cartesian_coordinates: Optional[bool] = False
+    pivot_coordinate: Optional[List[float]] = Field(
+        [0.5, 0.5, 0.5], max_length=3, min_length=3, title="coordinate 3d schema"
+    )
     """
-    Whether to use Cartesian coordinates
+    Pivot coordinate where the cut plane passes through
     """
     rotate_to_match_pbc: Optional[bool] = True
     """
@@ -422,4 +549,15 @@ class TerraceConfigurationSchema(BaseModel):
     """
     Number of atomic layers in a structural component
     """
-    crystal: MaterialSchema = Field(..., title="material schema")
+    host: Optional[MaterialSchema] = None
+    """
+    The base host for the defect
+    """
+    use_cartesian_coordinates: Optional[bool] = False
+    """
+    Whether to use Cartesian coordinates
+    """
+    isExternal: Optional[bool] = False
+    """
+    Whether the defect is external to the host material
+    """

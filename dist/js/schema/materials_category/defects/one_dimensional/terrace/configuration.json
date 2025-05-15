@@ -1,13 +1,58 @@
 {
-    "$id": "materials-category/defects/configuration",
+    "$id": "materials-category/defects/one-dimensional/terrace/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Base Defect Configuration Schema",
-    "description": "Base configuration for all defect types",
+    "title": "Terrace Configuration Schema",
+    "description": "Configuration for creating a terrace",
     "type": "object",
     "required": [
         "host"
     ],
     "properties": {
+        "cut_direction": {
+            "default": [
+                1,
+                0,
+                0
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Miller Indices Schema",
+            "description": "Miller indices for crystallographic plane designation",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "integer"
+            }
+        },
+        "pivot_coordinate": {
+            "description": "Pivot coordinate where the cut plane passes through",
+            "default": [
+                0.5,
+                0.5,
+                0.5
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "number"
+            }
+        },
+        "rotate_to_match_pbc": {
+            "description": "Whether to rotate the slab to match periodic boundary conditions",
+            "type": "boolean",
+            "default": true
+        },
+        "number_of_added_layers": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Number of Layers Schema",
+            "description": "Number of atomic layers in a structural component",
+            "type": "integer",
+            "minimum": 1,
+            "default": 1
+        },
         "host": {
             "description": "The base host for the defect",
             "oneOf": [

@@ -535,6 +535,10 @@ class BaseDefectConfigurationSchema(BaseModel):
     """
     The base host for the defect
     """
+    use_cartesian_coordinates: Optional[bool] = False
+    """
+    Whether to use Cartesian coordinates
+    """
     isExternal: Optional[bool] = False
     """
     Whether the defect is external to the host material
