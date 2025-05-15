@@ -1,0 +1,16 @@
+{
+    "$id": "materials-category/defects/zero-dimensional/point/substitution/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Substitution Point Defect Configuration Schema",
+    "description": "Substitution Point Defect Configuration Schema",
+    "allOf": [
+        {
+            "$ref": "../configuration.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "const": "substitution"
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "$id": "materials-category/defects/by-host/two-dimensional/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Two Dimensional Defect Configuration Schema",
+    "description": "Configuration for defects in two-dimensional hosts",
+    "allOf": [
+        {
+            "$ref": "../../../defects/configuration.json"
+        }
+    ],
+    "properties": {
+        "position_on_surface": {
+            "description": "Position on the surface in 2D crystal coordinates",
+            "$ref": "../../../../core/abstract/coordinate_2d.json"
+        },
+        "distance_z": {
+            "description": "Distance from the surface in Angstroms",
+            "type": "number",
+            "minimum": 0
+        }
+    },
+    "required": [
+        "position_on_surface",
+        "distance_z"
+    ]
+}

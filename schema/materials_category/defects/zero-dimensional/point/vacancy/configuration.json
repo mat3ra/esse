@@ -1,0 +1,16 @@
+{
+    "$id": "materials-category/defects/zero-dimensional/point/vacancy/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Vacancy Point Defect Configuration Schema",
+    "description": "Vacancy Point Defect Configuration Schema",
+    "allOf": [
+        {
+            "$ref": "../configuration.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "const": "vacancy"
+        }
+    }
+}

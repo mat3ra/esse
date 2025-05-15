@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category/defects/zero-dimensional/complex/pair",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Pair Defect Schema",
+    "description": "Schema for pair defects, which are a type of zero-dimensional defect",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../configuration.json"
+        }
+    ],
+    "properties": {
+        "point_defect_configuration_1": {
+            "$ref": "../point/configuration.json"
+        },
+        "point_defect_configuration_2": {
+            "$ref": "../point/configuration.json"
+        }
+    }
+}
