@@ -4,13 +4,6 @@
     "title": "Grain Boundary Plane Configuration Schema",
     "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
     "type": "object",
-    "required": [
-        "phase_1_configuration",
-        "phase_2_configuration",
-        "phase_1_termination",
-        "phase_2_termination",
-        "slab_configuration"
-    ],
     "properties": {
         "phase_1_configuration": {
             "description": "The configuration of the first phase",
@@ -41,5 +34,12 @@
             "description": "The termination of the grain boundary slab",
             "$ref": "../../../../material/reusable/slab/termination.json"
         }
-    }
+    },
+    "required": [
+        "phase_1_configuration",
+        "phase_2_configuration",
+        "phase_1_termination",
+        "phase_2_termination",
+        "slab_configuration"
+    ]
 }
