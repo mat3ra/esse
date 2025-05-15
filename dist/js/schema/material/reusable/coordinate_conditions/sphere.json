@@ -1,0 +1,42 @@
+{
+    "$id": "material/reusable/coordinate-conditions/sphere",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Sphere Coordinate Condition Schema",
+    "type": "object",
+    "required": [
+        "radius",
+        "shape"
+    ],
+    "description": "Base interface for coordinate shape filters",
+    "properties": {
+        "shape": {
+            "const": "sphere",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Coordinate Shape Enum",
+            "type": "string",
+            "enum": [
+                "cylinder",
+                "sphere",
+                "box",
+                "triangular_prism",
+                "plane"
+            ]
+        },
+        "center_position": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "default": [
+                0.5,
+                0.5
+            ],
+            "items": {
+                "type": "number"
+            }
+        },
+        "radius": {
+            "type": "number",
+            "default": 0.25
+        }
+    }
+}

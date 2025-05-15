@@ -1,0 +1,52 @@
+{
+    "$id": "material/reusable/coordinate-conditions/cylinder",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Cylinder Coordinate Condition Schema",
+    "type": "object",
+    "required": [
+        "max_z",
+        "min_z",
+        "radius",
+        "shape"
+    ],
+    "description": "Base interface for coordinate shape filters",
+    "properties": {
+        "shape": {
+            "const": "cylinder",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Coordinate Shape Enum",
+            "type": "string",
+            "enum": [
+                "cylinder",
+                "sphere",
+                "box",
+                "triangular_prism",
+                "plane"
+            ]
+        },
+        "center_position": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "default": [
+                0.5,
+                0.5
+            ],
+            "items": {
+                "type": "number"
+            }
+        },
+        "radius": {
+            "type": "number",
+            "default": 0.25
+        },
+        "min_z": {
+            "type": "number",
+            "default": 0
+        },
+        "max_z": {
+            "type": "number",
+            "default": 1
+        }
+    }
+}

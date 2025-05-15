@@ -1,0 +1,39 @@
+{
+    "$id": "materials-category/defects/two-dimensional/island/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Island Slab Defect Configuration Schema",
+    "description": "Configuration for an island defect on a slab surface",
+    "type": "object",
+    "properties": {
+        "condition": {
+            "anyOf": [
+                {
+                    "$ref": "../../../../material/reusable/coordinate_conditions/cylinder.json"
+                },
+                {
+                    "$ref": "../../../../material/reusable/coordinate_conditions/sphere.json"
+                },
+                {
+                    "$ref": "../../../../material/reusable/coordinate_conditions/plane.json"
+                },
+                {
+                    "$ref": "../../../../material/reusable/coordinate_conditions/box.json"
+                },
+                {
+                    "$ref": "../../../../material/reusable/coordinate_conditions/triangular_prism.json"
+                }
+            ]
+        },
+        "center_position": {
+            "description": "Center position for symmetric shapes",
+            "anyOf": [
+                {
+                    "$ref": "../../../../core/abstract/coordinate_2d.json"
+                },
+                {
+                    "$ref": "../../../../core/abstract/coordinate_3d.json"
+                }
+            ]
+        }
+    }
+}
