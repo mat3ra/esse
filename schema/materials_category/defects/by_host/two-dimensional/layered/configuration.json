@@ -1,0 +1,16 @@
+{
+    "$id": "materials-category/defects/by-host/two-dimensional/layered/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Two Dimensional Layered Defect Configuration Schema",
+    "description": "Two Dimensional Layered Defect Configuration Schema",
+    "allOf": [
+        {
+            "$ref": "../../../configuration.json"
+        }
+    ],
+    "properties": {
+        "number_of_added_layers": {
+            "$ref": "../../../../../material/reusable/slab/number_of_layers.json"
+        }
+    }
+}
