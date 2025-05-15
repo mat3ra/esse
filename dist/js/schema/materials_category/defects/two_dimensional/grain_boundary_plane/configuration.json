@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/defects/two-dimensional/grain_boundary_plane/configuration",
+    "$id": "materials-category/defects/two-dimensional/grain-boundary-plane/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Grain Boundary Plane Configuration Schema",
     "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
