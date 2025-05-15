@@ -1,0 +1,21 @@
+{
+    "phase_1_configuration": {
+        "...": "include(../../../single_material/two_dimensional/slab/configuration.json)"
+    },
+    "phase_2_configuration": {
+        "...": "include(../../../single_material/two_dimensional/slab/configuration.json)"
+    },
+    "phase_1_termination": {
+        "...": "include(../../../../material/reusable/slab/termination.json)"
+    },
+    "phase_2_termination": {
+        "...": "include(../../../../material/reusable/slab/termination.json)"
+    },
+    "gap": 2.5,
+    "slab_configuration": {
+        "...": "include(../../../single_material/two_dimensional/slab/configuration.json)"
+    },
+    "slab_termination": {
+        "...": "include(../../../../material/reusable/slab/termination.json)"
+    }
+}
