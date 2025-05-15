@@ -7,7 +7,15 @@
     "properties": {
         "host": {
             "description": "The base host for the defect",
-            "$ref": "../../material.json"
+            "oneOf": [
+                {
+                    "$ref": "../../material.json"
+                },
+                {
+                    "description": "Omit the host material when inferred from another defect (e.g. defect pair)",
+                    "type": "null"
+                }
+            ]
         },
         "isExternal": {
             "description": "Whether the defect is external to the host material",
