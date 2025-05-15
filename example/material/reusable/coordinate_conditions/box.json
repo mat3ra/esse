@@ -1,0 +1,13 @@
+{
+    "shape": "box",
+    "min_coordinate": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "max_coordinate": [
+        0.5,
+        0.5,
+        0.5
+    ]
+}

@@ -6162,6 +6162,82 @@ export interface MaterialConsistencyCheckSchema {
 export interface MaterialConventionalSchema {
     conventional?: {};
 }
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/base.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface CoordinateConditionSchema {
+    shape: "cylinder" | "sphere" | "box" | "triangular_prism" | "plane";
+}
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/box.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface BoxCoordinateConditionSchema {
+    shape: "box";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    min_coordinate: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    max_coordinate: [number, number, number];
+}
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/cylinder.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface CylinderCoordinateConditionSchema {
+    shape: "cylinder";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    center_position?: [number, number];
+    radius: number;
+    min_z: number;
+    max_z: number;
+}
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/sphere.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface SphereCoordinateConditionSchema {
+    shape: "sphere";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    center_position?: [number, number];
+    radius: number;
+}
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/triangular_prism.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface TriangularPrismCoordinateConditionSchema {
+    shape: "triangular_prism";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_1: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_2: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_3: [number, number];
+    min_z: number;
+    max_z: number;
+}
 /** Schema dist/js/schema/material/reusable/repetitions.json */
 /**
  * Number of unit cells to repeat in each direction for a crystal structure.
@@ -8822,6 +8898,97 @@ export interface GrainBoundaryPlaneConfigurationSchema {
          */
         space_group_symmetry_label: string;
     };
+}
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/island/configuration.json */
+/**
+ * Configuration for an island defect on a slab surface
+ */
+export interface IslandSlabDefectConfigurationSchema {
+    condition?: {
+        shape: "cylinder";
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        center_position?: [number, number];
+        radius: number;
+        min_z: number;
+        max_z: number;
+    } | {
+        shape: "sphere";
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        center_position?: [number, number];
+        radius: number;
+    } | {
+        shape: "plane";
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_normal: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_point_coordinate: [number, number, number];
+    } | {
+        shape: "box";
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        min_coordinate: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        max_coordinate: [number, number, number];
+    } | {
+        shape: "triangular_prism";
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_1: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_2: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_3: [number, number];
+        min_z: number;
+        max_z: number;
+    };
+    /**
+     * Center position for symmetric shapes
+     */
+    center_position?: [number, number] | [number, number, number];
+}
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/island/coordinate_conditions/enum.json */
+export type CoordinateShapeEnum = "cylinder" | "sphere" | "box" | "triangular_prism" | "plane";
+/** Schema dist/js/schema/materials_category/defects/two_dimensional/island/coordinate_conditions/plane.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface PlaneCoordinateConditionSchema {
+    shape: "plane";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_normal: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_point_coordinate: [number, number, number];
 }
 /** Schema dist/js/schema/materials_category/defects/zero_dimensional/complex/pair/configuration.json */
 /**
