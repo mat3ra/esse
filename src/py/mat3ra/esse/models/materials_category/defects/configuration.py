@@ -531,7 +531,10 @@ class MaterialSchema(BaseModel):
 
 
 class BaseDefectConfigurationSchema(BaseModel):
-    host: MaterialSchema = Field(..., title="material schema")
+    host: Optional[MaterialSchema] = None
+    """
+    The base host for the defect
+    """
     isExternal: Optional[bool] = False
     """
     Whether the defect is external to the host material
