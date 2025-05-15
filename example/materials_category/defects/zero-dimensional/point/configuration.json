@@ -7,5 +7,5 @@
         0.25
     ],
     "use_cartesian_coordinates": false,
-    "placement_method": "crystal_site"
+    "placement_method": "coordinate"
 }

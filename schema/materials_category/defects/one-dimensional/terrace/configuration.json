@@ -1,0 +1,44 @@
+{
+    "$id": "materials-category/defects/one-dimensional/terrace/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Terrace Configuration Schema",
+    "description": "Configuration for creating a terrace",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../by_host/two-dimensional/layered/configuration.json"
+        }
+    ],
+    "properties": {
+        "cut_direction": {
+            "allOf": [
+                {
+                    "$ref": "../../../../material/reusable/slab/miller_indices.json"
+                }
+            ],
+            "default": [
+                1,
+                0,
+                0
+            ]
+        },
+        "pivot_coordinate": {
+            "description": "Pivot coordinate where the cut plane passes through",
+            "allOf": [
+                {
+                    "$ref": "../../../../core/abstract/coordinate_3d.json"
+                }
+            ],
+            "default": [
+                0.5,
+                0.5,
+                0.5
+            ]
+        },
+        "rotate_to_match_pbc": {
+            "description": "Whether to rotate the slab to match periodic boundary conditions",
+            "type": "boolean",
+            "default": true
+        }
+    }
+}

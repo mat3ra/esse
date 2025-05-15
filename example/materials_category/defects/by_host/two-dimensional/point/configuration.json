@@ -1,5 +1,5 @@
 {
-    "...": "include(../../configuration.json)",
+    "...": "include(../../../configuration.json)",
     "position_on_surface": [
         0.25,
         0.25
