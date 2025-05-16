@@ -252,13 +252,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value15(Enum):
+class Value19(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value15]
+    value: Union[Value, Value19]
     """
     All elements, including extra elements
     """
@@ -406,30 +406,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name32(Enum):
+class Name48(Enum):
     density = "density"
 
 
-class Units19(Enum):
+class Units25(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units19] = None
+    units: Optional[Units25] = None
     value: float
 
 
-class Units20(Enum):
+class Units26(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units20] = None
+    units: Optional[Units26] = None
     value: float
 
 
-class Name33(Enum):
+class Name49(Enum):
     symmetry = "symmetry"
 
 
@@ -449,7 +449,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name34(Enum):
+class Name50(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -462,7 +462,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name35(Enum):
+class Name51(Enum):
     p_norm = "p-norm"
 
 
@@ -475,7 +475,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name36(Enum):
+class Name52(Enum):
     inchi = "inchi"
 
 
@@ -484,7 +484,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name37(Enum):
+class Name53(Enum):
     inchi_key = "inchi_key"
 
 
@@ -563,7 +563,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name38(Enum):
+class Name54(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -576,7 +576,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name38
+    name: Name54
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

@@ -1,0 +1,23 @@
+{
+    "$id": "material/reusable/slab/two_slabs_stack",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Two Slabs Stack Configuration Schema",
+    "description": "Configuration for two slabs stacked on top of each other with a gap and vacuum region. First slab is on top.",
+    "type": "object",
+    "properties": {
+        "slab_with_termination_configuration_1": {
+            "$ref": "./slab_with_termination.json"
+        },
+        "slab_with_termination_configuration_2": {
+            "$ref": "./slab_with_termination.json"
+        },
+        "gap": {
+            "type": "number",
+            "description": "Gap between the two slabs"
+        },
+        "vacuum": {
+            "type": "number",
+            "description": "Thickness of the vacuum region above the first slab"
+        }
+    }
+}
