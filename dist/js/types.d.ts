@@ -6201,6 +6201,23 @@ export interface CylinderCoordinateConditionSchema {
     min_z: number;
     max_z: number;
 }
+/** Schema dist/js/schema/material/reusable/coordinate_conditions/plane.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface PlaneCoordinateConditionSchema {
+    shape: "plane";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_normal: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_point_coordinate: [number, number, number];
+}
 /** Schema dist/js/schema/material/reusable/coordinate_conditions/sphere.json */
 /**
  * Base interface for coordinate shape filters
@@ -8973,23 +8990,6 @@ export interface IslandSlabDefectConfigurationSchema {
 }
 /** Schema dist/js/schema/materials_category/defects/two_dimensional/island/coordinate_conditions/enum.json */
 export type CoordinateShapeEnum = "cylinder" | "sphere" | "box" | "triangular_prism" | "plane";
-/** Schema dist/js/schema/materials_category/defects/two_dimensional/island/coordinate_conditions/plane.json */
-/**
- * Base interface for coordinate shape filters
- */
-export interface PlaneCoordinateConditionSchema {
-    shape: "plane";
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    plane_normal: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    plane_point_coordinate: [number, number, number];
-}
 /** Schema dist/js/schema/materials_category/defects/zero_dimensional/complex/pair/configuration.json */
 /**
  * Schema for pair defects, which are a type of zero-dimensional defect
