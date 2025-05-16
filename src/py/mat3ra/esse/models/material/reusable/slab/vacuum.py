@@ -9,8 +9,8 @@ from typing import Optional
 from pydantic import Field, RootModel, confloat
 
 
-class VacuumSchema(RootModel[Optional[confloat(ge=0.0)]]):
-    root: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Schema")
+class VacuumThicknessSchema(RootModel[Optional[confloat(ge=0.0)]]):
+    root: Optional[confloat(ge=0.0)] = Field(5, title="Vacuum Thickness Schema")
     """
     Vacuum thickness in Angstroms
     """

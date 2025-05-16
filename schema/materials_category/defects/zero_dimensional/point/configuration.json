@@ -1,0 +1,30 @@
+{
+    "$id": "materials-category/defects/zero-dimensional/point/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Point Defect Configuration Schema",
+    "description": "Configuration for point defects that require a crystal reference",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../configuration.json"
+        }
+    ],
+    "properties": {
+        "type": {
+            "description": "The type of point defect",
+            "$ref": "enums/type.json"
+        },
+        "coordinate": {
+            "description": "The crystal coordinate of the defect",
+            "$ref": "../../../../core/abstract/coordinate_3d.json"
+        },
+        "chemical_element": {
+            "$ref": "../../../../definitions/chemical_elements.json#periodic_table"
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether coordinates are in cartesian rather than fractional coordinates",
+            "type": "boolean",
+            "default": false
+        }
+    }
+}

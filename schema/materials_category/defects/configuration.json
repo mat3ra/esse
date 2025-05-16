@@ -1,0 +1,21 @@
+{
+    "$id": "materials-category/defects/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Base Defect Configuration Schema",
+    "description": "Base configuration for all defect types",
+    "type": "object",
+    "properties": {
+        "host": {
+            "description": "The base host for the defect",
+            "$ref": "../../material.json"
+        },
+        "isExternal": {
+            "description": "Whether the defect is external to the host material",
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "required": [
+        "host"
+    ]
+}
