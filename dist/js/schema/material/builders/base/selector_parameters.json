@@ -1,0 +1,15 @@
+{
+    "$id": "material/builders/base/selector-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Base Selector Parameters Schema",
+    "description": "Base parameters for all builder selectors",
+    "type": "object",
+    "properties": {
+        "default_index": {
+            "description": "Default index for the selector",
+            "type": "integer",
+            "minimum": 0,
+            "default": 0
+        }
+    }
+}
