@@ -15,10 +15,10 @@
         "stacking_direction": {
             "type": "string",
             "description": "Direction in which the slabs are stacked",
-            "enum": [
-                "x",
-                "y",
-                "z"
+            "allOf": [
+                {
+                    "$ref": "../../../core/reusable/axis_enum.json"
+                }
             ],
             "default": "z"
         }

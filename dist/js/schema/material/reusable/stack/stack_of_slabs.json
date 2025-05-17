@@ -1,9 +1,8 @@
 {
-    "$id": "materials-category/multi-material/interfaces/configuration",
+    "$id": "material/reusable/stack/stack-of-slabs",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Interface Configuration Schema",
-    "description": "Configuration for an interface between two materials",
-    "type": "object",
+    "title": "Stack of Slabs Configuration Schema",
+    "description": "Configuration for a stack of multiple slabs.",
     "required": [
         "slab_configurations"
     ],
@@ -12,7 +11,6 @@
             "type": "array",
             "description": "List of slab configurations for the slabs in the stack",
             "minItems": 2,
-            "maxItems": 2,
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "Slab in Stack Configuration Schema",

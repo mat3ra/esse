@@ -1,14 +1,23 @@
 {
-    "$id": "material/reusable/slab/slab_with_termination",
+    "$id": "material/reusable/stack/slab-in-stack",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Slab with Termination Configuration Schema",
-    "description": "Configuration for a slab with termination",
-    "type": "object",
+    "title": "Slab in Stack Configuration Schema",
+    "description": "Configuration for a slab in a stack with termination",
     "required": [
         "slab_configuration",
         "termination"
     ],
+    "type": "object",
     "properties": {
+        "stack_component": {
+            "type": "string",
+            "description": "Component of the stack (e.g., slab1, slab2)"
+        },
+        "distance_to_next_slab": {
+            "type": "number",
+            "description": "Distance to the next slab in the stack, in Angstroms",
+            "default": 3
+        },
         "slab_configuration": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Slab Configuration Schema",
