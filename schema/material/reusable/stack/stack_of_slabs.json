@@ -17,7 +17,7 @@
             "description": "The axis along which the slabs are stacked",
             "allOf": [
                 {
-                    "$ref": "../../../core/reusable/axis_enum.json"
+                    "$ref": "../../../core/primitive/axis_3d_names_enum.json"
                 }
             ],
             "default": "z"
