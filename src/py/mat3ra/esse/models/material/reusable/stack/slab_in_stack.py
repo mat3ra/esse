@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value55(Enum):
+class Value53(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value55]
+    value: Union[Value, Value53]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name221(Enum):
+class Name213(Enum):
     density = "density"
 
 
-class Units105(Enum):
+class Units102(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units105] = None
+    units: Optional[Units102] = None
     value: float
 
 
-class Units106(Enum):
+class Units103(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units106] = None
+    units: Optional[Units103] = None
     value: float
 
 
-class Name222(Enum):
+class Name214(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name223(Enum):
+class Name215(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name224(Enum):
+class Name216(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name225(Enum):
+class Name217(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name226(Enum):
+class Name218(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name227(Enum):
+class Name219(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name227
+    name: Name219
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -559,15 +559,11 @@ class SlabConfigurationSchema(BaseModel):
     """
     use_conventional_cell: Optional[bool] = Field(True, title="Use Conventional Cell")
     """
-    Whether to use conventional cell
+    Whether to use conventional cell when generating the slab.
     """
-    use_orthogonal_z: Optional[bool] = Field(False, title="Use Orthogonal Z")
+    use_orthogonal_z: Optional[bool] = Field(True, title="Use Orthogonal Z")
     """
-    Whether to make z-axis orthogonal
-    """
-    make_primitive: Optional[bool] = Field(False, title="Make Primitive")
-    """
-    Whether to make the slab primitive
+    Whether to make vector c orthogonal to ab plane for the slab cell.
     """
 
 

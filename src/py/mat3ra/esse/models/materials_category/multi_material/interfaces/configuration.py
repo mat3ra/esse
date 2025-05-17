@@ -559,15 +559,11 @@ class SlabConfigurationSchema(BaseModel):
     """
     use_conventional_cell: Optional[bool] = Field(True, title="Use Conventional Cell")
     """
-    Whether to use conventional cell
+    Whether to use conventional cell when generating the slab.
     """
-    use_orthogonal_z: Optional[bool] = Field(False, title="Use Orthogonal Z")
+    use_orthogonal_z: Optional[bool] = Field(True, title="Use Orthogonal Z")
     """
-    Whether to make z-axis orthogonal
-    """
-    make_primitive: Optional[bool] = Field(False, title="Make Primitive")
-    """
-    Whether to make the slab primitive
+    Whether to make vector c orthogonal to ab plane for the slab cell.
     """
 
 
@@ -608,11 +604,11 @@ class AxisEnum(Enum):
 
 
 class InterfaceConfigurationSchema(BaseModel):
-    slab_configurations: List[SlabInStackConfigurationSchema] = Field(..., max_length=2, min_length=2)
+    stack_slab_configurations: List[SlabInStackConfigurationSchema] = Field(..., max_length=2, min_length=2)
     """
     List of slab configurations for the slabs in the stack
     """
     stacking_direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
-    Direction in which the slabs are stacked
+    The axis along which the slabs are stacked
     """

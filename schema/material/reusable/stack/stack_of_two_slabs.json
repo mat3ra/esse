@@ -9,7 +9,7 @@
         }
     ],
     "properties": {
-        "slab_configurations": {
+        "stack_slab_configurations": {
             "minItems": 2,
             "maxItems": 2
         }

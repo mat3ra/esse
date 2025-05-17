@@ -1,7 +1,7 @@
 {
-    "$id": "material/reusable/slab/slab-configuration-with-termination",
+    "$id": "material/reusable/slab-configuration-with-termination",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Slab with Termination Configuration Schema",
+    "title": "Slab Configuration With Termination Schema",
     "description": "Configuration for a slab with termination",
     "type": "object",
     "properties": {

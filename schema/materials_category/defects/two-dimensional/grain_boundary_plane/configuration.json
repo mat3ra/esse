@@ -4,42 +4,17 @@
     "title": "Grain Boundary Plane Configuration Schema",
     "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
     "type": "object",
-    "properties": {
-        "phase_1_configuration": {
-            "description": "The configuration of the first phase",
-            "$ref": "../../../single_material/two_dimensional/slab/configuration.json"
+    "allOf": [
+        {
+            "$ref": "../../../../material/reusable/slab_configuration_with_termination.json"
         },
-        "phase_2_configuration": {
-            "description": "The configuration of the second phase",
-            "$ref": "../../../single_material/two_dimensional/slab/configuration.json"
-        },
-        "phase_1_termination": {
-            "description": "The termination of the first phase",
-            "$ref": "../../../../material/reusable/slab/termination.json"
-        },
-        "phase_2_termination": {
-            "description": "The termination of the second phase",
-            "$ref": "../../../../material/reusable/slab/termination.json"
-        },
-        "gap": {
-            "description": "The gap between the two phases, in Angstroms",
-            "type": "number",
-            "default": 3.0
-        },
-        "slab_configuration": {
-            "description": "The configuration of the grain boundary slab",
-            "$ref": "../../../single_material/two_dimensional/slab/configuration.json"
-        },
-        "slab_termination": {
-            "description": "The termination of the grain boundary slab",
-            "$ref": "../../../../material/reusable/slab/termination.json"
+        {
+            "$ref": "../../../../material/reusable/stack/stack_of_two_slabs.json"
         }
-    },
-    "required": [
-        "phase_1_configuration",
-        "phase_2_configuration",
-        "phase_1_termination",
-        "phase_2_termination",
-        "slab_configuration"
-    ]
+    ],
+    "properties": {
+        "stacking_direction": {
+            "default": "x"
+        }
+    }
 }

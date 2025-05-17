@@ -4,10 +4,10 @@
     "title": "Stack Of Two Slabs Configuration Schema",
     "description": "Configuration for two slabs stacked on top of each other.",
     "required": [
-        "slab_configurations"
+        "stack_slab_configurations"
     ],
     "properties": {
-        "slab_configurations": {
+        "stack_slab_configurations": {
             "minItems": 2,
             "maxItems": 2,
             "type": "array",
@@ -852,21 +852,15 @@
                             },
                             "use_conventional_cell": {
                                 "title": "Use Conventional Cell",
-                                "description": "Whether to use conventional cell",
+                                "description": "Whether to use conventional cell when generating the slab.",
                                 "type": "boolean",
                                 "default": true
                             },
                             "use_orthogonal_z": {
                                 "title": "Use Orthogonal Z",
-                                "description": "Whether to make z-axis orthogonal",
+                                "description": "Whether to make vector c orthogonal to ab plane for the slab cell.",
                                 "type": "boolean",
-                                "default": false
-                            },
-                            "make_primitive": {
-                                "title": "Make Primitive",
-                                "description": "Whether to make the slab primitive",
-                                "type": "boolean",
-                                "default": false
+                                "default": true
                             }
                         }
                     },
@@ -897,7 +891,7 @@
         },
         "stacking_direction": {
             "type": "string",
-            "description": "Direction in which the slabs are stacked",
+            "description": "The axis along which the slabs are stacked",
             "default": "z",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Axis Enum",

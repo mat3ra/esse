@@ -1,0 +1,8 @@
+{
+    "slab_configuration": {
+        "...": "include(../../materials_category/single_material/two_dimensional/slab/configuration.json)"
+    },
+    "termination": {
+        "...": "include(./slab/termination.json)"
+    }
+}

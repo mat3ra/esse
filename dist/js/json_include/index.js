@@ -64,6 +64,7 @@ class JSONInclude {
      */
     parseIncludeStatements(filePath) {
         const data = (0, common_1.safeParseJSON)(fs_1.default.readFileSync(filePath, "utf8"));
+        console.log("Parsing file: ", filePath);
         if (settings_1.OBJECT_ONLY && !(0, common_1.isInstanceOf)(data, "Object")) {
             throw new Error("The JSON file being included should always be a dict rather than a list");
         }
