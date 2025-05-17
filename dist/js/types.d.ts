@@ -8541,7 +8541,7 @@ export interface StackOfTwoSlabsConfigurationSchema {
      */
     stacking_direction?: "x" | "y" | "z";
 }
-/** Schema dist/js/schema/material/reusable/supercell_matrix_2d.json */
+/** Schema dist/js/schema/material/reusable/supercell/supercell_matrix_2d.json */
 /**
  * Supercell matrix for xy plane transformations
  *
@@ -8549,7 +8549,7 @@ export interface StackOfTwoSlabsConfigurationSchema {
  * @maxItems 2
  */
 export type SupercellMatrix2DSchema = [[number, number], [number, number]];
-/** Schema dist/js/schema/material/reusable/supercell_matrix_3d.json */
+/** Schema dist/js/schema/material/reusable/supercell/supercell_matrix_3d.json */
 /**
  * 3x3 matrix of integers for transforming a unit cell into a supercell
  *
