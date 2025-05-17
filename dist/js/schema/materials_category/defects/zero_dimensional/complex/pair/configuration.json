@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/defects/zero-dimensional/complex/pair",
+    "$id": "materials-category/defects/zero-dimensional/complex/pair/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Pair Defect Schema",
     "description": "Schema for pair defects, which are a type of zero-dimensional defect",
@@ -2619,6 +2619,11 @@
                     "type": "null"
                 }
             ]
+        },
+        "use_cartesian_coordinates": {
+            "description": "Whether to use Cartesian coordinates",
+            "type": "boolean",
+            "default": false
         },
         "isExternal": {
             "description": "Whether the defect is external to the host material",

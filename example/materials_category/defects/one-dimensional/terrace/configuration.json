@@ -1,0 +1,19 @@
+{
+    "host": {
+        "...": "include(../../../../material.json)"
+    },
+    "number_of_added_layers": 3,
+    "defect_type": "terrace",
+    "cut_direction": [
+        1,
+        0,
+        0
+    ],
+    "pivot_coordinate": [
+        0.5,
+        0.5,
+        0.5
+    ],
+    "use_cartesian_coordinates": false,
+    "rotate_to_match_pbc": true
+}

@@ -1,0 +1,13 @@
+{
+    "type": "substitution",
+    "chemical_element": "C",
+    "coordinate": [
+        0,
+        0,
+        0
+    ],
+    "use_cartesian_coordinates": false,
+    "host": {
+        "...": "include(../../../../../material.json)"
+    }
+}

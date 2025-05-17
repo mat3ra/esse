@@ -772,6 +772,11 @@
                 }
             ]
         },
+        "use_cartesian_coordinates": {
+            "description": "Whether to use Cartesian coordinates",
+            "type": "boolean",
+            "default": false
+        },
         "isExternal": {
             "description": "Whether the defect is external to the host material",
             "type": "boolean",

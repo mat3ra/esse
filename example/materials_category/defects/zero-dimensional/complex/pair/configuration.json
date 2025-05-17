@@ -1,0 +1,9 @@
+{
+    "...": "include(../../../configuration.json)",
+    "point_defect_configuration_1": {
+        "...": "include(../../point/configuration.json)"
+    },
+    "point_defect_configuration_2": {
+        "...": "include(../../point/configuration.json)"
+    }
+}
