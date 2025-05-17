@@ -17,10 +17,16 @@ function parseIncludeReferenceStatements(filePath) {
     const jsonResolver = new json_include_1.JSONInclude();
     const parsed = jsonResolver.parseIncludeStatements(filePath);
     const dirPath = path_1.default.dirname(filePath);
+    // Store the original $id before dereferencing
+    const originalId = parsed.$id;
     let dereferenced = (0, json_schema_deref_sync_1.default)(parsed, { baseFolder: dirPath, removeIds: true });
     // handle circular references and use non-dereferenced source
     if (dereferenced instanceof Error && dereferenced.message === "Circular self reference") {
         dereferenced = parsed;
+    }
+    // Restore the original $id after dereferencing
+    if (originalId) {
+        dereferenced.$id = originalId;
     }
     return dereferenced;
 }

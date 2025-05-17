@@ -69,7 +69,17 @@ export default class JSONSchemasGenerator implements JSONSchemasGeneratorConfig 
         const schemas = this.schemas.map((schema) => {
             console.log(`Resolving schema: ${schema.$id}`);
             const mergedSchema = skipMergeAllOff ? schema : mergeAllOf(schema, mergeAllOfConfig);
-            const idAsPath = mergedSchema.$id?.replace(/-/g, "_");
+            let idAsPath = mergedSchema.$id;
+            if (!idAsPath) {
+                throw new Error(`Schema ID is missing:
+                ${JSON.stringify(mergedSchema)}`);
+            }
+            const schemaHasDash = idAsPath.includes("-");
+            if (schemaHasDash) {
+                // replace dashes with underscores
+                idAsPath = idAsPath.replace(/-/g, "_");
+            }
+
             const fullPath = `${schemasFolder}/${idAsPath}.json`;
 
             fs.mkdirSync(path.dirname(fullPath), { recursive: true });
