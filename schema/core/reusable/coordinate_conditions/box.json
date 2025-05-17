@@ -1,0 +1,25 @@
+{
+    "$id": "core/reusable/coordinate-conditions/box",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Box Coordinate Condition Schema",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "shape": {
+            "const": "box"
+        },
+        "min_coordinate": {
+            "$ref": "../../abstract/coordinate_3d.json"
+        },
+        "max_coordinate": {
+            "$ref": "../../abstract/coordinate_3d.json"
+        }
+    },
+    "required": [
+        "min_coordinate",
+        "max_coordinate"
+    ]
+}

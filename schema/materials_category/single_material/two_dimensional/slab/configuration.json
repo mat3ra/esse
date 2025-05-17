@@ -18,25 +18,19 @@
             "$ref": "../../../../material/reusable/slab/vacuum.json"
         },
         "xy_supercell_matrix": {
-            "$ref": "../../../../material/reusable/supercell_matrix_2d.json"
+            "$ref": "../../../../material/reusable/supercell/supercell_matrix_2d.json"
         },
         "use_conventional_cell": {
             "title": "Use Conventional Cell",
-            "description": "Whether to use conventional cell",
+            "description": "Whether to use conventional cell when generating the slab.",
             "type": "boolean",
             "default": true
         },
         "use_orthogonal_z": {
             "title": "Use Orthogonal Z",
-            "description": "Whether to make z-axis orthogonal",
+            "description": "Whether to make vector c orthogonal to ab plane for the slab cell.",
             "type": "boolean",
-            "default": false
-        },
-        "make_primitive": {
-            "title": "Make Primitive",
-            "description": "Whether to make the slab primitive",
-            "type": "boolean",
-            "default": false
+            "default": true
         }
     }
 }

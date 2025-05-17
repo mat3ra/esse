@@ -1,0 +1,12 @@
+{
+    "$id": "materials-category/multi-material/interfaces/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interface Configuration Schema",
+    "description": "Configuration for an interface between two materials",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../material/reusable/stack/stack_of_two_slabs.json"
+        }
+    ]
+}

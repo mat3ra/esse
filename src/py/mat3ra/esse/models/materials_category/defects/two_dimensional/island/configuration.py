@@ -10,42 +10,150 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel, confloat, conint
 
 
-class Shape(Enum):
-    sphere = "sphere"
+class CoordinateShapeEnum(Enum):
     cylinder = "cylinder"
-    rectangle = "rectangle"
+    sphere = "sphere"
+    box = "box"
     triangular_prism = "triangular_prism"
+    plane = "plane"
 
 
-class Condition(BaseModel):
-    shape: Shape
-    center_position: Optional[List[float]] = None
-    """
-    Center position for symmetric shapes
-    """
-    radius: Optional[confloat(ge=0.0)] = None
-    """
-    Radius for circular shapes
-    """
-    min_z: Optional[float] = None
-    """
-    Minimum z-coordinate in Angstroms
-    """
-    max_z: Optional[float] = None
-    """
-    Maximum z-coordinate in Angstroms
-    """
-    min_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
-    max_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
-    position_on_surface_1: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
-    position_on_surface_2: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
-    position_on_surface_3: Optional[List[float]] = Field(None, max_length=2, min_length=2, title="coordinate 2d schema")
+class BoxCoordinateConditionSchema(BaseModel):
+    shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
+    min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+
+
+class Value(Enum):
+    H = "H"
+    He = "He"
+    Li = "Li"
+    Be = "Be"
+    B = "B"
+    C = "C"
+    N = "N"
+    O = "O"
+    F = "F"
+    Ne = "Ne"
+    Na = "Na"
+    Mg = "Mg"
+    Al = "Al"
+    Si = "Si"
+    P = "P"
+    S = "S"
+    Cl = "Cl"
+    Ar = "Ar"
+    K = "K"
+    Ca = "Ca"
+    Sc = "Sc"
+    Ti = "Ti"
+    V = "V"
+    Cr = "Cr"
+    Mn = "Mn"
+    Fe = "Fe"
+    Co = "Co"
+    Ni = "Ni"
+    Cu = "Cu"
+    Zn = "Zn"
+    Ga = "Ga"
+    Ge = "Ge"
+    As = "As"
+    Se = "Se"
+    Br = "Br"
+    Kr = "Kr"
+    Rb = "Rb"
+    Sr = "Sr"
+    Y = "Y"
+    Zr = "Zr"
+    Nb = "Nb"
+    Mo = "Mo"
+    Tc = "Tc"
+    Ru = "Ru"
+    Rh = "Rh"
+    Pd = "Pd"
+    Ag = "Ag"
+    Cd = "Cd"
+    In = "In"
+    Sn = "Sn"
+    Sb = "Sb"
+    Te = "Te"
+    I = "I"
+    Xe = "Xe"
+    Cs = "Cs"
+    Ba = "Ba"
+    La = "La"
+    Ce = "Ce"
+    Pr = "Pr"
+    Nd = "Nd"
+    Pm = "Pm"
+    Sm = "Sm"
+    Eu = "Eu"
+    Gd = "Gd"
+    Tb = "Tb"
+    Dy = "Dy"
+    Ho = "Ho"
+    Er = "Er"
+    Tm = "Tm"
+    Yb = "Yb"
+    Lu = "Lu"
+    Hf = "Hf"
+    Ta = "Ta"
+    W = "W"
+    Re = "Re"
+    Os = "Os"
+    Ir = "Ir"
+    Pt = "Pt"
+    Au = "Au"
+    Hg = "Hg"
+    Tl = "Tl"
+    Pb = "Pb"
+    Bi = "Bi"
+    Po = "Po"
+    At = "At"
+    Rn = "Rn"
+    Fr = "Fr"
+    Ra = "Ra"
+    Ac = "Ac"
+    Th = "Th"
+    Pa = "Pa"
+    U = "U"
+    Np = "Np"
+    Pu = "Pu"
+    Am = "Am"
+    Cm = "Cm"
+    Bk = "Bk"
+    Cf = "Cf"
+    Es = "Es"
+    Fm = "Fm"
+    Md = "Md"
+    No = "No"
+    Lr = "Lr"
+    Rf = "Rf"
+    Db = "Db"
+    Sg = "Sg"
+    Bh = "Bh"
+    Hs = "Hs"
+    Mt = "Mt"
+    Ds = "Ds"
+    Rg = "Rg"
+    Cn = "Cn"
+    Nh = "Nh"
+    Fl = "Fl"
+    Mc = "Mc"
+    Lv = "Lv"
+    Ts = "Ts"
+    Og = "Og"
+
+
+class Value37(Enum):
+    X = "X"
+    Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: str
+    value: Union[Value, Value37]
     """
-    value of this entry
+    All elements, including extra elements
     """
     id: int
     """
@@ -191,30 +299,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name104(Enum):
+class Name120(Enum):
     density = "density"
 
 
-class Units46(Enum):
+class Units52(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units46] = None
+    units: Optional[Units52] = None
     value: float
 
 
-class Units47(Enum):
+class Units53(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units47] = None
+    units: Optional[Units53] = None
     value: float
 
 
-class Name105(Enum):
+class Name121(Enum):
     symmetry = "symmetry"
 
 
@@ -234,7 +342,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name106(Enum):
+class Name122(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -247,7 +355,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name107(Enum):
+class Name123(Enum):
     p_norm = "p-norm"
 
 
@@ -260,7 +368,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name108(Enum):
+class Name124(Enum):
     inchi = "inchi"
 
 
@@ -269,7 +377,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name109(Enum):
+class Name125(Enum):
     inchi_key = "inchi_key"
 
 
@@ -348,7 +456,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name110(Enum):
+class Name126(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -361,7 +469,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name110
+    name: Name126
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -437,13 +545,20 @@ class MaterialSchema(BaseModel):
 
 
 class IslandSlabDefectConfigurationSchema(BaseModel):
-    defect_type: Literal["island"] = "island"
-    condition: Optional[Condition] = None
-    """
-    Spatial condition defining the shape of the island
-    """
+    condition: Optional[BoxCoordinateConditionSchema] = None
     number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="Number of Layers Schema")
     """
     Number of atomic layers in a structural component
     """
-    crystal: MaterialSchema = Field(..., title="material schema")
+    host: Optional[MaterialSchema] = None
+    """
+    The base host for the defect
+    """
+    use_cartesian_coordinates: Optional[bool] = False
+    """
+    Whether to use Cartesian coordinates
+    """
+    isExternal: Optional[bool] = False
+    """
+    Whether the defect is external to the host material
+    """

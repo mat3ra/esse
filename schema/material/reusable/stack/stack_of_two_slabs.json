@@ -1,0 +1,17 @@
+{
+    "$id": "material/reusable/stack/stack-of-two-slabs",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stack Of Two Slabs Configuration Schema",
+    "description": "Configuration for two slabs stacked on top of each other.",
+    "allOf": [
+        {
+            "$ref": "./stack_of_slabs.json"
+        }
+    ],
+    "properties": {
+        "stack_slab_configurations": {
+            "minItems": 2,
+            "maxItems": 2
+        }
+    }
+}

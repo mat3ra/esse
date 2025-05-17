@@ -1,0 +1,18 @@
+{
+    "$id": "materials-category/defects/two-dimensional/island/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Island Slab Defect Configuration Schema",
+    "description": "Configuration for an island defect on a slab surface",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../by_host/two-dimensional/layered/configuration.json"
+        }
+    ],
+    "properties": {
+        "condition": {
+            "description": "Coordinate condition for the island defect",
+            "$ref": "./condition.json"
+        }
+    }
+}

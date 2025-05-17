@@ -1,0 +1,21 @@
+{
+    "stack_slab_configurations": [
+        {
+            "...": "include(../../../../material/reusable/slab_configuration_with_termination.json)",
+            "stack_component": "phase1",
+            "distance_to_next_slab": 3.0
+        },
+        {
+            "...": "include(../../../../material/reusable/slab_configuration_with_termination.json)",
+            "stack_component": "phase2",
+            "distance_to_next_slab": 3.0
+        }
+    ],
+    "stacking_direction": "x",
+    "slab_configuration": {
+        "...": "include(../../../single_material/two_dimensional/slab/configuration.json)"
+    },
+    "termination": {
+        "...": "include(../../../../material/reusable/slab/termination.json)"
+    }
+}

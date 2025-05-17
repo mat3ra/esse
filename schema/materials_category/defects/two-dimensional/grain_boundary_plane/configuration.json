@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category/defects/two-dimensional/grain-boundary-plane/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Grain Boundary Plane Configuration Schema",
+    "description": "Configuration for a grain boundary between two phases with different surfaces facing each other",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../../../material/reusable/slab_configuration_with_termination.json"
+        },
+        {
+            "$ref": "../../../../material/reusable/stack/stack_of_two_slabs.json"
+        }
+    ],
+    "properties": {
+        "stacking_direction": {
+            "default": "x"
+        }
+    }
+}
