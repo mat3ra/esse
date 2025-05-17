@@ -1,0 +1,8 @@
+{
+    "...": "include(../../configuration.json)",
+    "position_on_surface": [
+        0.25,
+        0.25
+    ],
+    "distance_z": 1.0
+}

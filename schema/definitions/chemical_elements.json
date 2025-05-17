@@ -1,5 +1,5 @@
 {
-    "$id": "enums/chemical-elements",
+    "$id": "definitions/chemical-elements",
     "title": "Chemical Element Symbols",
     "periodic_table": {
         "enum": [

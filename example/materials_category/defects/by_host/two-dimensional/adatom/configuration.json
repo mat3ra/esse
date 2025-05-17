@@ -1,0 +1,11 @@
+{
+    "...": "include(../../../configuration.json)",
+    "isExternal": false,
+    "type": "adatom",
+    "coordinate": [
+        0.25,
+        0.25,
+        0.25
+    ],
+    "use_cartesian_coordinates": false
+}

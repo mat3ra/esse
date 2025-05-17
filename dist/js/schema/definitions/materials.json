@@ -1,0 +1,22 @@
+{
+    "$id": "definitions/materials",
+    "title": "Materials Definitions",
+    "form_factor": {
+        "description": "Form factor of the material",
+        "enum": [
+            "bulk",
+            "slab",
+            "monolayer",
+            "nanoribbon"
+        ]
+    },
+    "dimensionality": {
+        "description": "Dimensionality of the material",
+        "enum": [
+            "zero-dimensional",
+            "one-dimensional",
+            "two-dimensional",
+            "three-dimensional"
+        ]
+    }
+}

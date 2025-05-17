@@ -10,12 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel, confloat, conint
 
 
-class PointDefectTypeEnum(Enum):
-    vacancy = "vacancy"
-    substitution = "substitution"
-    interstitial = "interstitial"
-
-
 class ChemicalElement(Enum):
     H = "H"
     He = "He"
@@ -258,13 +252,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value11(Enum):
+class Value15(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value11]
+    value: Union[Value, Value15]
     """
     All elements, including extra elements
     """
@@ -412,30 +406,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name16(Enum):
+class Name32(Enum):
     density = "density"
 
 
-class Units13(Enum):
+class Units19(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units13] = None
+    units: Optional[Units19] = None
     value: float
 
 
-class Units14(Enum):
+class Units20(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units14] = None
+    units: Optional[Units20] = None
     value: float
 
 
-class Name17(Enum):
+class Name33(Enum):
     symmetry = "symmetry"
 
 
@@ -455,7 +449,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name18(Enum):
+class Name34(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -468,7 +462,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name19(Enum):
+class Name35(Enum):
     p_norm = "p-norm"
 
 
@@ -481,7 +475,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name20(Enum):
+class Name36(Enum):
     inchi = "inchi"
 
 
@@ -490,7 +484,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name21(Enum):
+class Name37(Enum):
     inchi_key = "inchi_key"
 
 
@@ -569,7 +563,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name22(Enum):
+class Name38(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -582,7 +576,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name22
+    name: Name38
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -658,14 +652,20 @@ class MaterialSchema(BaseModel):
 
 
 class PointDefectConfigurationSchema(BaseModel):
-    type: Optional[PointDefectTypeEnum] = Field(None, title="Point Defect Type Enum")
-    coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
+    type: str
+    """
+    The type of point defect
+    """
+    coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     chemical_element: Optional[ChemicalElement] = None
     use_cartesian_coordinates: Optional[bool] = False
     """
     Whether coordinates are in cartesian rather than fractional coordinates
     """
-    host: MaterialSchema = Field(..., title="material schema")
+    host: Optional[MaterialSchema] = None
+    """
+    The base host for the defect
+    """
     isExternal: Optional[bool] = False
     """
     Whether the defect is external to the host material
