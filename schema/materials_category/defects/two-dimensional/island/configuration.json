@@ -8,19 +8,19 @@
         "condition": {
             "anyOf": [
                 {
-                    "$ref": "../../../../material/reusable/coordinate_conditions/cylinder.json"
+                    "$ref": "../../../../core/reusable/coordinate_conditions/cylinder.json"
                 },
                 {
-                    "$ref": "../../../../material/reusable/coordinate_conditions/sphere.json"
+                    "$ref": "../../../../core/reusable/coordinate_conditions/sphere.json"
                 },
                 {
-                    "$ref": "../../../../material/reusable/coordinate_conditions/plane.json"
+                    "$ref": "../../../../core/reusable/coordinate_conditions/plane.json"
                 },
                 {
-                    "$ref": "../../../../material/reusable/coordinate_conditions/box.json"
+                    "$ref": "../../../../core/reusable/coordinate_conditions/box.json"
                 },
                 {
-                    "$ref": "../../../../material/reusable/coordinate_conditions/triangular_prism.json"
+                    "$ref": "../../../../core/reusable/coordinate_conditions/triangular_prism.json"
                 }
             ]
         },
