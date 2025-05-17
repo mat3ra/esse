@@ -1,0 +1,31 @@
+{
+    "$id": "material/reusable/stack/stack-of-slabs",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stack of Slabs Configuration Schema",
+    "description": "Configuration for a stack of multiple slabs.",
+    "properties": {
+        "slab_configurations": {
+            "type": "array",
+            "description": "List of slab configurations for the slabs in the stack",
+            "items": {
+                "$ref": "./slab_in_stack.json"
+            },
+            "minItems": 2
+        },
+        "stacking_direction": {
+            "type": "string",
+            "description": "Direction in which the slabs are stacked",
+            "enum": [
+                "x",
+                "y",
+                "z"
+            ],
+            "default": "z"
+        }
+    },
+    "required": [
+        "slab_configurations"
+    ]
+}
+
+
