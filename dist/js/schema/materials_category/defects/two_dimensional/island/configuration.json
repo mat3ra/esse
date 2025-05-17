@@ -13,145 +13,14 @@
             "anyOf": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Cylinder Coordinate Condition Schema",
-                    "type": "object",
-                    "required": [
-                        "max_z",
-                        "min_z",
-                        "radius",
-                        "shape"
-                    ],
-                    "description": "Base interface for coordinate shape filters",
-                    "properties": {
-                        "shape": {
-                            "const": "cylinder",
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "Coordinate Shape Enum",
-                            "type": "string",
-                            "enum": [
-                                "cylinder",
-                                "sphere",
-                                "box",
-                                "triangular_prism",
-                                "plane"
-                            ]
-                        },
-                        "center_coordinate": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 3d schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "radius": {
-                            "type": "number"
-                        },
-                        "min_z": {
-                            "type": "number"
-                        },
-                        "max_z": {
-                            "type": "number"
-                        }
-                    }
-                },
-                {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Sphere Coordinate Condition Schema",
-                    "description": "Coordinate condition for a sphere (or ellipsoid when using crystal coordinates).",
-                    "type": "object",
-                    "required": [
-                        "center_coordinate",
-                        "radius",
-                        "shape"
-                    ],
-                    "properties": {
-                        "shape": {
-                            "const": "sphere",
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "Coordinate Shape Enum",
-                            "type": "string",
-                            "enum": [
-                                "cylinder",
-                                "sphere",
-                                "box",
-                                "triangular_prism",
-                                "plane"
-                            ]
-                        },
-                        "center_coordinate": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 3d schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "radius": {
-                            "type": "number"
-                        }
-                    }
-                },
-                {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Plane Coordinate Condition Schema",
-                    "type": "object",
-                    "required": [
-                        "plane_normal",
-                        "plane_point_coordinate",
-                        "shape"
-                    ],
-                    "description": "Base interface for coordinate shape filters",
-                    "properties": {
-                        "shape": {
-                            "const": "plane",
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "Coordinate Shape Enum",
-                            "type": "string",
-                            "enum": [
-                                "cylinder",
-                                "sphere",
-                                "box",
-                                "triangular_prism",
-                                "plane"
-                            ]
-                        },
-                        "plane_normal": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "vector 3d schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "plane_point_coordinate": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 3d schema",
-                            "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
-                            "items": {
-                                "type": "number"
-                            }
-                        }
-                    }
-                },
-                {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Box Coordinate Condition Schema",
-                    "type": "object",
                     "required": [
                         "max_coordinate",
                         "min_coordinate",
                         "shape"
                     ],
                     "description": "Base interface for coordinate shape filters",
+                    "type": "object",
                     "properties": {
                         "shape": {
                             "const": "box",
@@ -185,71 +54,6 @@
                             "items": {
                                 "type": "number"
                             }
-                        }
-                    }
-                },
-                {
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Triangular Prism Coordinate Condition Schema",
-                    "type": "object",
-                    "required": [
-                        "max_z",
-                        "min_z",
-                        "position_on_surface_1",
-                        "position_on_surface_2",
-                        "position_on_surface_3",
-                        "shape"
-                    ],
-                    "description": "Base interface for coordinate shape filters",
-                    "properties": {
-                        "shape": {
-                            "const": "triangular_prism",
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "Coordinate Shape Enum",
-                            "type": "string",
-                            "enum": [
-                                "cylinder",
-                                "sphere",
-                                "box",
-                                "triangular_prism",
-                                "plane"
-                            ]
-                        },
-                        "position_on_surface_1": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 2d schema",
-                            "type": "array",
-                            "minItems": 2,
-                            "maxItems": 2,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "position_on_surface_2": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 2d schema",
-                            "type": "array",
-                            "minItems": 2,
-                            "maxItems": 2,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "position_on_surface_3": {
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "coordinate 2d schema",
-                            "type": "array",
-                            "minItems": 2,
-                            "maxItems": 2,
-                            "items": {
-                                "type": "number"
-                            }
-                        },
-                        "min_z": {
-                            "type": "number"
-                        },
-                        "max_z": {
-                            "type": "number"
                         }
                     }
                 }

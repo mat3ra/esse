@@ -3,19 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "anyOf": [
         {
-            "$ref": "../../../../core/reusable/coordinate_conditions/cylinder.json"
-        },
-        {
-            "$ref": "../../../../core/reusable/coordinate_conditions/sphere.json"
-        },
-        {
-            "$ref": "../../../../core/reusable/coordinate_conditions/plane.json"
-        },
-        {
             "$ref": "../../../../core/reusable/coordinate_conditions/box.json"
-        },
-        {
-            "$ref": "../../../../core/reusable/coordinate_conditions/triangular_prism.json"
         }
     ]
 }

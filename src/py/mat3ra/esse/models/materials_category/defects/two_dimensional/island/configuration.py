@@ -18,39 +18,10 @@ class CoordinateShapeEnum(Enum):
     plane = "plane"
 
 
-class CylinderCoordinateConditionSchema(BaseModel):
-    shape: Literal["cylinder"] = Field(..., title="Coordinate Shape Enum")
-    center_coordinate: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="coordinate 3d schema")
-    radius: float
-    min_z: float
-    max_z: float
-
-
-class SphereCoordinateConditionSchema(BaseModel):
-    shape: Literal["sphere"] = Field(..., title="Coordinate Shape Enum")
-    center_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
-    radius: float
-
-
-class PlaneCoordinateConditionSchema(BaseModel):
-    shape: Literal["plane"] = Field(..., title="Coordinate Shape Enum")
-    plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
-    plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
-
-
 class BoxCoordinateConditionSchema(BaseModel):
     shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
-
-
-class TriangularPrismCoordinateConditionSchema(BaseModel):
-    shape: Literal["triangular_prism"] = Field(..., title="Coordinate Shape Enum")
-    position_on_surface_1: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
-    position_on_surface_2: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
-    position_on_surface_3: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
-    min_z: float
-    max_z: float
 
 
 class Value(Enum):
@@ -574,15 +545,7 @@ class MaterialSchema(BaseModel):
 
 
 class IslandSlabDefectConfigurationSchema(BaseModel):
-    condition: Optional[
-        Union[
-            CylinderCoordinateConditionSchema,
-            SphereCoordinateConditionSchema,
-            PlaneCoordinateConditionSchema,
-            BoxCoordinateConditionSchema,
-            TriangularPrismCoordinateConditionSchema,
-        ]
-    ] = None
+    condition: Optional[BoxCoordinateConditionSchema] = None
     center_position: Optional[List[float]] = None
     """
     Center position for symmetric shapes
