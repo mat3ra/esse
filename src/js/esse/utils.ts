@@ -16,12 +16,18 @@ export type JSONSchemaDefinition = JSONSchema7Definition;
  */
 export function parseIncludeReferenceStatements(filePath: string): JSONSchema {
     const jsonResolver = new JSONInclude();
-    const parsed = jsonResolver.parseIncludeStatements(filePath);
+    const parsed = jsonResolver.parseIncludeStatements(filePath) as JSONSchema;
     const dirPath = path.dirname(filePath);
+    // Store the original $id before dereferencing
+    const originalId = parsed.$id;
     let dereferenced = deref(parsed, { baseFolder: dirPath, removeIds: true });
     // handle circular references and use non-dereferenced source
     if (dereferenced instanceof Error && dereferenced.message === "Circular self reference") {
-        dereferenced = parsed as JSONSchema;
+        dereferenced = parsed;
+    }
+    // Restore the original $id after dereferencing
+    if (originalId) {
+        dereferenced.$id = originalId;
     }
     return dereferenced;
 }

@@ -11,8 +11,17 @@
     "properties": {
         "chemical_elements": {
             "title": "Chemical Elements",
-            "description": "Chemical elements at the termination",
-            "type": "string"
+            "description": "Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')",
+            "type": "string",
+            "anyOf": [
+                {
+                    "$ref": "../../../definitions/chemical_elements.json#/periodic_table"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[A-Z][a-z]?([A-Z][a-z]?)*$"
+                }
+            ]
         },
         "space_group_symmetry_label": {
             "title": "Space Group Symmetry Label",
