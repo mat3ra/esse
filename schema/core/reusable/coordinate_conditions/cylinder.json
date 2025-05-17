@@ -12,33 +12,20 @@
         "shape": {
             "const": "cylinder"
         },
-        "center_position": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2,
-            "default": [
-                0.5,
-                0.5
-            ]
+        "center_coordinate": {
+            "$ref": "../../abstract/coordinate_3d.json"
         },
         "radius": {
-            "type": "number",
-            "default": 0.25
+            "type": "number"
         },
         "min_z": {
-            "type": "number",
-            "default": 0
+            "type": "number"
         },
         "max_z": {
-            "type": "number",
-            "default": 1
+            "type": "number"
         }
     },
     "required": [
-        "shape",
         "radius",
         "min_z",
         "max_z"

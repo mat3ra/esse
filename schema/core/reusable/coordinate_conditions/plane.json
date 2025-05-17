@@ -13,24 +13,14 @@
             "const": "plane"
         },
         "plane_normal": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
+            "$ref": "../../abstract/vector_3d.json"
         },
         "plane_point_coordinate": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
+            "description": "A point on the plane to define its position.",
+            "$ref": "../../abstract/coordinate_3d.json"
         }
     },
     "required": [
-        "shape",
         "plane_normal",
         "plane_point_coordinate"
     ]

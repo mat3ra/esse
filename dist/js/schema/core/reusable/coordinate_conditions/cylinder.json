@@ -24,29 +24,24 @@
                 "plane"
             ]
         },
-        "center_position": {
+        "center_coordinate": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "default": [
-                0.5,
-                0.5
-            ],
+            "minItems": 3,
+            "maxItems": 3,
             "items": {
                 "type": "number"
             }
         },
         "radius": {
-            "type": "number",
-            "default": 0.25
+            "type": "number"
         },
         "min_z": {
-            "type": "number",
-            "default": 0
+            "type": "number"
         },
         "max_z": {
-            "type": "number",
-            "default": 1
+            "type": "number"
         }
     }
 }

@@ -24,6 +24,8 @@
             ]
         },
         "plane_normal": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "vector 3d schema",
             "type": "array",
             "minItems": 3,
             "maxItems": 3,
@@ -32,6 +34,8 @@
             }
         },
         "plane_point_coordinate": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
             "type": "array",
             "minItems": 3,
             "maxItems": 3,

@@ -6,7 +6,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../../material/reusable/stack/two_slabs_stack.json"
+            "$ref": "../../../material/reusable/stack/stack_of_two_slabs.json"
         }
     ]
 }

@@ -20,5 +20,5 @@ class CoordinateShapeEnum(Enum):
 
 class PlaneCoordinateConditionSchema(BaseModel):
     shape: Literal["plane"] = Field(..., title="Coordinate Shape Enum")
-    plane_normal: List[float] = Field(..., max_length=3, min_length=3)
-    plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3)
+    plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
+    plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")

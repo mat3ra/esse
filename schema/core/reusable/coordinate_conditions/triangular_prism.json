@@ -13,28 +13,13 @@
             "const": "triangular_prism"
         },
         "position_on_surface_1": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
+            "$ref": "../../abstract/coordinate_2d.json"
         },
         "position_on_surface_2": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
+            "$ref": "../../abstract/coordinate_2d.json"
         },
         "position_on_surface_3": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 2,
-            "maxItems": 2
+            "$ref": "../../abstract/coordinate_2d.json"
         },
         "min_z": {
             "type": "number"

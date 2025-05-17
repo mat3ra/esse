@@ -18,7 +18,7 @@
             "$ref": "../../../../material/reusable/slab/vacuum.json"
         },
         "xy_supercell_matrix": {
-            "$ref": "../../../../material/reusable/supercell_matrix_2d.json"
+            "$ref": "../../../../material/reusable/supercell/supercell_matrix_2d.json"
         },
         "use_conventional_cell": {
             "title": "Use Conventional Cell",

@@ -4,25 +4,15 @@
     "title": "Island Slab Defect Configuration Schema",
     "description": "Configuration for an island defect on a slab surface",
     "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../by_host/two-dimensional/layered/configuration.json"
+        }
+    ],
     "properties": {
         "condition": {
-            "anyOf": [
-                {
-                    "$ref": "../../../../core/reusable/coordinate_conditions/cylinder.json"
-                },
-                {
-                    "$ref": "../../../../core/reusable/coordinate_conditions/sphere.json"
-                },
-                {
-                    "$ref": "../../../../core/reusable/coordinate_conditions/plane.json"
-                },
-                {
-                    "$ref": "../../../../core/reusable/coordinate_conditions/box.json"
-                },
-                {
-                    "$ref": "../../../../core/reusable/coordinate_conditions/triangular_prism.json"
-                }
-            ]
+            "description": "Coordinate condition for the island defect",
+            "$ref": "./condition.json"
         },
         "center_position": {
             "description": "Center position for symmetric shapes",

@@ -2,12 +2,13 @@
     "$id": "core/reusable/coordinate-conditions/sphere",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Sphere Coordinate Condition Schema",
+    "description": "Coordinate condition for a sphere (or ellipsoid when using crystal coordinates).",
     "type": "object",
     "required": [
+        "center_coordinate",
         "radius",
         "shape"
     ],
-    "description": "Base interface for coordinate shape filters",
     "properties": {
         "shape": {
             "const": "sphere",
@@ -22,21 +23,18 @@
                 "plane"
             ]
         },
-        "center_position": {
+        "center_coordinate": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "default": [
-                0.5,
-                0.5
-            ],
+            "minItems": 3,
+            "maxItems": 3,
             "items": {
                 "type": "number"
             }
         },
         "radius": {
-            "type": "number",
-            "default": 0.25
+            "type": "number"
         }
     }
 }

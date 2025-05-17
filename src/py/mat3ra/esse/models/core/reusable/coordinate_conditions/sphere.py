@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Literal, Optional
+from typing import List, Literal
 
 from pydantic import BaseModel, Field
 
@@ -20,5 +20,5 @@ class CoordinateShapeEnum(Enum):
 
 class SphereCoordinateConditionSchema(BaseModel):
     shape: Literal["sphere"] = Field(..., title="Coordinate Shape Enum")
-    center_position: Optional[List[float]] = Field([0.5, 0.5], max_length=2, min_length=2)
-    radius: Optional[float] = 0.25
+    center_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    radius: float

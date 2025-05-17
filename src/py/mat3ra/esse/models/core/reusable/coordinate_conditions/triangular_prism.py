@@ -20,8 +20,8 @@ class CoordinateShapeEnum(Enum):
 
 class TriangularPrismCoordinateConditionSchema(BaseModel):
     shape: Literal["triangular_prism"] = Field(..., title="Coordinate Shape Enum")
-    position_on_surface_1: List[float] = Field(..., max_length=2, min_length=2)
-    position_on_surface_2: List[float] = Field(..., max_length=2, min_length=2)
-    position_on_surface_3: List[float] = Field(..., max_length=2, min_length=2)
+    position_on_surface_1: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
+    position_on_surface_2: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
+    position_on_surface_3: List[float] = Field(..., max_length=2, min_length=2, title="coordinate 2d schema")
     min_z: float
     max_z: float

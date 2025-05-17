@@ -4,12 +4,12 @@
     "title": "Coordinate Condition Schema",
     "description": "Base interface for coordinate shape filters",
     "type": "object",
-    "required": [
-        "shape"
-    ],
     "properties": {
         "shape": {
             "$ref": "enum.json"
         }
-    }
+    },
+    "required": [
+        "shape"
+    ]
 }

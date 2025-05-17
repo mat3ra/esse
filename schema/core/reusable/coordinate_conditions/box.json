@@ -13,24 +13,13 @@
             "const": "box"
         },
         "min_coordinate": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
+            "$ref": "../../abstract/coordinate_3d.json"
         },
         "max_coordinate": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
+            "$ref": "../../abstract/coordinate_3d.json"
         }
     },
     "required": [
-        "shape",
         "min_coordinate",
         "max_coordinate"
     ]
