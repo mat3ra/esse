@@ -11209,10 +11209,6 @@ export interface IslandSlabDefectConfigurationSchema {
         max_coordinate: [number, number, number];
     };
     /**
-     * Center position for symmetric shapes
-     */
-    center_position?: [number, number] | [number, number, number];
-    /**
      * Number of atomic layers in a structural component
      */
     number_of_added_layers?: number;

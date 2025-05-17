@@ -546,10 +546,6 @@ class MaterialSchema(BaseModel):
 
 class IslandSlabDefectConfigurationSchema(BaseModel):
     condition: Optional[BoxCoordinateConditionSchema] = None
-    center_position: Optional[List[float]] = None
-    """
-    Center position for symmetric shapes
-    """
     number_of_added_layers: Optional[conint(ge=1)] = Field(1, title="Number of Layers Schema")
     """
     Number of atomic layers in a structural component

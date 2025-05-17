@@ -13,17 +13,6 @@
         "condition": {
             "description": "Coordinate condition for the island defect",
             "$ref": "./condition.json"
-        },
-        "center_position": {
-            "description": "Center position for symmetric shapes",
-            "anyOf": [
-                {
-                    "$ref": "../../../../core/abstract/coordinate_2d.json"
-                },
-                {
-                    "$ref": "../../../../core/abstract/coordinate_3d.json"
-                }
-            ]
         }
     }
 }
