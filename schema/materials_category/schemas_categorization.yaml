@@ -26,7 +26,22 @@ primitive:
       - integer_matrix?
       - integer_vector? # for simplicity we should keep only matrix
     perturb:
-      # changes coordinates of atoms by applying function
+      # changes coordinates of atoms by applying the function
       - function of x, y, z
       - adjust_lattice
+
+  combinations:
+    stack:
+      - structures: [ structure_i, ... ]
+      - direction: x | y | z
+      - distances: [ distance_i, ... ]
+    merge:
+      - structures: [ structure_i, ... ]
+      - method:
+          - adding
+          - replacing
+          - yielding
+          - smart?
+
+
 
