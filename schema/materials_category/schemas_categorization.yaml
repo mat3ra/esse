@@ -1,0 +1,32 @@
+not-configurations:
+  - crystal
+
+primitive:
+  base:
+    crystal_site:
+      # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
+      - reference_crystal
+      - crystal_coordinate
+      - id? # to the reference crystal
+    atom:
+      - chemical_element
+    vacuum:
+      # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
+      - direction
+      - size (angstroms)
+    void:
+      # can be placed into a crystal centered around specified crystal_site
+      - center_coordinate
+      - shape
+  modifications:
+    strain:
+      # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
+      - matrix
+    repeat:
+      - integer_matrix?
+      - integer_vector? # for simplicity we should keep only matrix
+    perturb:
+      # changes coordinates of atoms by applying function
+      - function of x, y, z
+      - adjust_lattice
+
