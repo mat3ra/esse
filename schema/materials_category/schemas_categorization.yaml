@@ -178,12 +178,28 @@ complex_structures:
           - stack_components = [ slab, vacuum, slab, vacuum ]
           - direction = "z"
           - number_of_layers
-          - terminations = [ termination, termination ] 
+          - terminations = [ termination, termination ]
         merged:
           passivated_surface_2d:
             # we should configure the condition for exposed atoms and then the bond vector for passivation
             - merged_structures = [ slab, crystal_site(atom|particle) ]
             - bond_length = float # can be a map of bond lengths for different elements
+
+# Example:
+# First generate a layer from crystal
+layer_example:
+  - crystal = ref:/primitive/base/crystal  # Si crystal
+  - miller_indices = [ 1, 1, 1 ]  # (111) surface
+  - termination = f(crystal, miller_indices)  # generates Si-terminated layer
+
+# layers = generate(layer_example) => [layer_1, layer_2, layer_3]
+# terminations => [layer_1.termination, layer_2.termination, layer_3.termination]
+# Then create a slab from the layer
+slab_example:
+  - stack_components = [ layers, vacuum ]  # 3 consecutive (111) layers with vacuum
+  - direction = "z"
+  - number_of_layers = 3
+  - terminations = [termination_1, termination_3]
 
 
 
