@@ -1,8 +1,17 @@
-not-configurations:
-  - crystal
+#
+# `file:` - a final JSON file
+# ` - key` - file content key
+# ` - key?` - optional file content key
+# ` - key = ` - file content assignment to types of values
+# ` = [value]` - list of values "value"
+# ` = ( x | y | z ){2}` - a set of values "1 or 2 of any of the three"
+#
+
+material:
 
 primitive:
   base:
+    crystal: material
     crystal_site:
       # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
       - reference_crystal
@@ -13,85 +22,78 @@ primitive:
     vacuum:
       # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
       - direction
-      - size (angstroms)
+      - size
     void:
       # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
       - center_coordinate
       - shape
+
   modifications:
     strain:
       # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
       - matrix
     repeat:
-      - integer_matrix?
-      - integer_vector? # for simplicity we should keep only matrix
+      - integer_matrix
     perturb:
       # changes coordinates of atoms by applying the function, intended for local displacements
-      - function of x, y, z: ∂r = f(x, y, z)
-      - is_isometric # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
+      - function f(x,y,z) # ∂r = f(x, y, z)
+      - is_isometric = (true | false)  # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
     fold:
       # maps 2D flat plane to a curved surface in 3D space
-      - function to map 2D -> 3D surface: f(x, y) -> (x, y, z)
-      - is_isometric
+      - function f(x, y) -> (x, y, z)
+      - is_isometric = (true | false)
   combinations:
+    stack_component:
+      - material | vacuum
     stack:
-      - structures: [ structure_i, ... ]
-      - direction: x | y | z
-      - distances: [ distance_i, ... ]
+      - stack_components = [ stack_component, ... ]
+      - direction = (x | y | z){1}
     merge:
-      - structures: [ structure_i, ... ]
-      - method:
-          - adding
-          - replacing
-          - yielding
-          - smart?
-          
+      - structures = [ structure_i ]
+      - method = ("adding" | "replacing" | "yielding" | "smart")
+
 pristine_structures:
   three-dimensional:
-    ideal_crystal:
-      - crystal
+    ideal_crystal: ref:/primitive/base/crystal
     repeated:
       supercell:
-        - crystal
+        - crystal = ref:/primitive/base/crystal
         - matrix
     strained:
       strained_uniform:
-        - crystal
+        - crystal = ref:/primitive/base/crystal
         - strain_percentage
       strained_non-uniform:
-        - crystal
+        - crystal = ref:/primitive/base/crystal
         - strain_matrix
 
   two-dimensional:
+    layer:
+      - merge(void, crystal) # reduction of bulk to chemically equivalent monolayer
+      - miller_indices = [ h, k, l ]
+      # Property:
+      - termination  # stoichiometry + symmetry. In code can be allowed to be index, chemical formula, symmetry
     monolayer:
       - stack:
-          - structures: [ merge(void, crystal), vacuum ] # reduction of bulk to chemically equivalent monolayer
-          - distances: [ 0, 0 ]
-    multi-layer:
-      - crystal
-      - direction: (hkl)
-      - number_of_layers
-      # In the code properties below can be supplied externally or generated based on the above with a wizard
-      - stacking_order? # Natural by default, can be described as a ABC... configurations based on the symmetry
-      - terminations: [ top, bottom ] # stoichiometry + symmetry. In code can be allowed to be index, chemical formula, symmetry
+          - stack_components = [ layer, vacuum ]
+          - direction = "z"
     slab:
-      - stack:
-          - structures: [ supercell(multi-layer), vacuum ]
-          - distances: [ 0, 0 ]
-      - perturbed:
-          - slab_with_reconstruction:
-              - slab
-              - reconstruction:
-                  - has_reconstruction # a flag
-                  - reconstruction_type | reconstruction_function #?
+      - stack = [ layer ..., vacuum ] # consecutive layers
+      - number_of_layers
+      - terminations = [ top, bottom ] # stoichiometry + symmetry. In code can be allowed to be index, chemical formula, symmetry
+    slab_with_reconstruction:
+      - slab = ref:/pristine_structures/two-dimensional/slab
+      - reconstruction:
+          - has_reconstruction = (true | false)
+          - reconstruction_type? # Enum that applies an algorithm
+          - reconstruction_function? # Function that changes coordinates of atoms
 
   one-dimensional:
     nanotape:
       # we created a supercell from monolayer, cut the shape and added vacuum on one side
       - stack:
-          - structures: [ merge(void, supercell(monolayer)), vacuum ]
-          - distances: [ 0, 0 ]
-          - direction: (x | y){1} # 1 side
+          - structures = [ merge(void, supercell(monolayer)), vacuum ]
+          - direction = (x | y){1} # 1 side
     nanowire:
       # we created a supercell, cut the shape and added vacuum on any two sides
       - stack:
@@ -119,5 +121,11 @@ pristine_structures:
           - distances: [ 0, 0 ]
           - direction: (x | y | z){3} # 3 sides
 
+complex_structures:
+  two-dimensional:
+    multi-layer:
+      - crystal = ref:/primitive/base/crystal
+      # In the code properties below can be supplied externally or generated based on the above with a wizard
+      - stacking_order? # Natural by default, can be described as a ABC... configurations based on the symmetry
 
 
