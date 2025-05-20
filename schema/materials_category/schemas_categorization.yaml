@@ -152,15 +152,38 @@ complex_structures:
           - stack_components = [ cluster, slab ]
           - direction = "z"
         interface_commensurate_slabs:
-          - stack_components = [ slab, vacuum, slab ]
+          - stack_components = [ slab, vacuum, slab, vacuum ]
           - direction = "z"
         interface_x_commensurate_monolayers:
-          - stack_components = [ monolayer, vacuum, monolayer ]
+          - stack_components = [ monolayer, vacuum, monolayer, vacuum ]
           - direction = "x"
         interface_twisted_nanoribbons:
           - stack_components = [ nanoribbon, vacuum, nanoribbon, vacuum ]
           - direction = "z"
           - twist_angle = float
+      defects:
+        adatom:
+          - merged_structures = [ slab, crystal_site(atom) ]
+        island:
+          - merged_structures = [ slab, nanoparticle ]
+        terrace:
+          - merged_structures = [ slab, nanotape ]
+          - is_symmetric = bool
+          - is_periodic = bool
+        grain_boundary_planar:
+          - stack_components = [ slab, vacuum, slab, vacuum ]
+          - direction = (x | y | z){1}
+        grain_boundary_planar_with_vacuum:
+          # inherits grain_boundary_planar and slab
+          - stack_components = [ slab, vacuum, slab, vacuum ]
+          - direction = "z"
+          - number_of_layers
+          - terminations = [ termination, termination ] 
+        merged:
+          passivated_surface_2d:
+            # we should configure the condition for exposed atoms and then the bond vector for passivation
+            - merged_structures = [ slab, crystal_site(atom|particle) ]
+            - bond_length = float # can be a map of bond lengths for different elements
 
 
 
