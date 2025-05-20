@@ -3,8 +3,9 @@
 # ` - key` - file content key
 # ` - key?` - optional file content key
 # ` - key = ` - file content assignment to types of values
-# ` = [value]` - list of values "value"
-# ` = ( x | y | z ){2}` - a set of values "1 or 2 of any of the three"
+# `[value1, value2]` - list of values "value1 or value2"
+# `[value, ...]` - list of multiple values "value"
+# `( x | y | z ){1,2}` - a set of values "1 or 2 of any of the three"
 #
 
 material: # already defined
@@ -45,9 +46,8 @@ primitive:
   combinations:
     stack_component:
       - structure = (material | vacuum)
-      - distance_to_next = float
     stack:
-      - stack_components = [ stack_component, ... ]
+      - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
       - direction = (x | y | z){1}
     merge:
       - merge_structures = [ material ]
@@ -80,9 +80,9 @@ pristine_structures:
       - stack_components = [ layer, vacuum ]
       - direction = "z" # 2D monolayer
     slab:
-      - stack_components = [ layer ..., vacuum ] # consecutive layers that are generated from crystal
+      - stack_components = [ (layer | material) ..., vacuum ] # consecutive layers that are generated from crystal or any material
       - direction = "z" # 2D slab
-      - number_of_layers
+      - number_of_layers # number of consecutive layers or number of unit cells if it's from a material
       - terminations = [ termination, termination ] # top and bottom terminations
     slab_with_reconstruction:
       - slab = ref:/pristine_structures/two-dimensional/slab
@@ -116,10 +116,52 @@ pristine_structures:
       - direction = (x | y | z){3} # 3 sides
 
 complex_structures:
+  three-dimensional:
+    merged:
+      alloy:
+        - merged_structures = [ crystal, ... ]
+        - method = ("adding" | "replacing" | "yielding" | "smart"){1}
+    perturbed:
+      amorphous:
+        - crystal = ref:/primitive/base/crystal
+        - function = f(x, y, z) # annealing function
+        - is_isometric = false
   two-dimensional:
-    multi-layer:
-      - crystal = ref:/primitive/base/crystal
-      # In the code properties below can be supplied externally or generated based on the above with a wizard
-      - stacking_order? = ("natural" | "AB" | "ABC" | ...){1} # Natural by default, can be described as a ABC... configurations based on the symmetry
+    stacked:
+      multi-layer:
+        - crystal = ref:/primitive/base/crystal
+        # In the code properties below can be supplied externally or generated based on the above with a wizard
+        - stacking_order? = ("natural" | "AB" | "ABC" | ...){1} # Natural by default, can be described as a ABC... configurations based on the symmetry
+      heterostack:
+        - stack_components = [ slab, vacuum, ... ]
+        - direction = (x | y | z){1}
+      interfaces:
+        interface_with_no_vacuum:
+          - stack_components = [ slab, slab ]
+          - direction = z
+        interface_with_vacuum:
+          - stack_components = [ slab, vacuum, slab, vacuum ]
+          - direction = "z"
+        interface_slab_monolayer:
+          - stack_components = [ slab, vacuum, monolayer ]
+          - direction = "z"
+        interface_slab_monolayer_vacuum:
+          - stack_components = [ slab, vacuum, monolayer, vacuum ]
+          - direction = "z"
+        interface_cluster_slab:
+          - stack_components = [ cluster, slab ]
+          - direction = "z"
+        interface_commensurate_slabs:
+          - stack_components = [ slab, vacuum, slab ]
+          - direction = "z"
+        interface_x_commensurate_monolayers:
+          - stack_components = [ monolayer, vacuum, monolayer ]
+          - direction = "x"
+        interface_twisted_nanoribbons:
+          - stack_components = [ nanoribbon, vacuum, nanoribbon, vacuum ]
+          - direction = "z"
+          - twist_angle = float
+
+
 
 
