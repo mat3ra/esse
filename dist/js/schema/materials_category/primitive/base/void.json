@@ -1,0 +1,46 @@
+{
+    "$id": "materials-category/primitive/base/void",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Void",
+    "description": "A void that can be placed into a crystal, removing all atoms inside",
+    "type": "object",
+    "required": [
+        "center_coordinate",
+        "shape"
+    ],
+    "properties": {
+        "center_coordinate": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "number"
+            }
+        },
+        "shape": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Coordinate Condition Schema",
+            "description": "Base interface for coordinate shape filters",
+            "type": "object",
+            "required": [
+                "shape"
+            ],
+            "properties": {
+                "shape": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Coordinate Shape Enum",
+                    "type": "string",
+                    "enum": [
+                        "cylinder",
+                        "sphere",
+                        "box",
+                        "triangular_prism",
+                        "plane"
+                    ]
+                }
+            }
+        }
+    }
+}
