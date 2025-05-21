@@ -84,9 +84,13 @@ material_categories:
         - crystal = material
         - miller_indices = [ h, k, l ]
         - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
+      atomic_layer:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - termination = termination
       monolayer:
-        - stack_components = [ atomic_layer(termination), vacuum ]
-        - direction = "z" # 2D monolayer
+        - stack_components = [ atomic_layer, vacuum ]
+        - direction = "z"
       slab_unit_cell:
         - stack_components = [ atomic_layers, vacuum ]
         - direction = "z"
