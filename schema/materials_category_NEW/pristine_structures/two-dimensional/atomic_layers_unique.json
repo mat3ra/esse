@@ -1,0 +1,21 @@
+{
+    "$id": "materials-category/pristine-structures/two-dimensional/atomic-layers-unique",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic Layers Unique Schema",
+    "description": "A set of unique atomic layers defined by a plane in a crystal structure",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "./crystal_lattice_planes.json"
+        }
+    ],
+    "properties": {
+        "terminations": {
+            "type": "array",
+            "items": {
+                "$ref": "../../../material/reusable/slab/termination.json"
+            },
+            "description": "List of unique terminations for each atomic layer"
+        }
+    }
+}
