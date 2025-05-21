@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/primitive/base/crystal",
+    "$id": "material/primitive/base/crystal",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Crystal Schema",
     "description": "A crystal structure, referencing the base material schema",

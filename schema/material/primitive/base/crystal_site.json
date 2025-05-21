@@ -1,7 +1,7 @@
 {
-    "$id": "materials-category/primitive/base/crystal-site",
+    "$id": "material/primitive/base/crystal-site",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Crystal Site",
+    "title": "Crystal Site Schema",
     "description": "A site in a crystal that can be populated with an atom, vacancy, or void",
     "type": "object",
     "properties": {

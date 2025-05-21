@@ -1,7 +1,7 @@
 {
-    "$id": "materials-category/primitive/base/vacuum",
+    "$id": "material/primitive/base/vacuum",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Vacuum",
+    "title": "Vacuum Schema",
     "description": "A vacuum slab that breaks periodicity in a specified direction",
     "type": "object",
     "properties": {
