@@ -1,0 +1,31 @@
+{
+    "$id": "material/primitive/combinations/merge",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Merge Schema",
+    "description": "A component of a stack, which can be a crystal or a vacuum",
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../base/crystal.json"
+                    },
+                    {
+                        "$ref": "../base/vacuum.json"
+                    }
+                ]
+            }
+        },
+        "method": {
+            "type": "string",
+            "description": "Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)",
+            "enum": [
+                "add",
+                "subtract",
+                "replace",
+                "yield"
+            ]
+        }
+    }
+}

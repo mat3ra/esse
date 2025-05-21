@@ -1,0 +1,17 @@
+{
+    "$id": "material/primitive/combinations/stack",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stack Schema",
+    "description": "A component of a stack, which can be a crystal or a vacuum",
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "items": {
+                "$ref": "./stack_component.json"
+            }
+        },
+        "direction": {
+            "$ref": "../../../core/primitive/axis_3d_names_enum.json"
+        }
+    }
+}
