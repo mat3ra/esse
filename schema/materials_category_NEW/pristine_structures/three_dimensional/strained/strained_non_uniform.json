@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "crystal": {
-            "$ref": "../../../../materials_category/primitive/base/crystal.json"
+            "$ref": "../../../../material/primitive/base/crystal.json"
         },
         "strain_matrix": {
             "$ref": "../../../../core/abstract/matrix_3x3.json",

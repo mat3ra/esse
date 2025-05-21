@@ -3,5 +3,5 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Ideal Crystal Schema",
     "description": "An ideal crystal structure without any modifications",
-    "$ref": "../../../materials_category/primitive/base/crystal.json"
+    "$ref": "../../../material/primitive/base/crystal.json"
 } 
