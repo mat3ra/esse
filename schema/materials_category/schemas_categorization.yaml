@@ -44,8 +44,7 @@ primitive:
       - function = f(x, y) -> f(x, y, z)
       - is_isometric = bool
   combinations:
-    stack_component:
-      - structure = (material | vacuum)
+    stack_component: (material | vacuum)
     stack:
       - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
       - direction = (x | y | z){1}
@@ -72,14 +71,11 @@ pristine_structures:
     crystal_lattice_planes:
       - crystal = material
       - miller_indices = [ h, k, l ]
-    (termination): # not a configuration, but a data-model
-      - stoichiometry # e.g. SrO, TiO, etc.
-      - symmetry #P6/mmm, P3m1, etc.
-    unique_atomic_layers:
+    atomic_layers_unique:
       - crystal = material
       - miller_indices = [ h, k, l ]
       - terminations = [ termination, ... ] # all possible terminations for that orientation
-    repeated_unique_atomic_layers:
+    atomic_layers_unique_repeated:
       - crystal = material
       - miller_indices = [ h, k, l ]
       - termination_top = termination
@@ -95,7 +91,7 @@ pristine_structures:
       - stack_components = [ atomic_layers, vacuum ]
       - direction = "z"
     slab_unit_cell_alt:
-      - stack_components = [ repeated_unique_atomic_layers, vacuum ]
+      - stack_components = [ atomic_layers_unique_repeated, vacuum ]
       - direction = "z"
     slab:
       - stack_components = [ atomic_layers, vacuum ]
@@ -173,29 +169,27 @@ complex_structures:
         - stack_components = [ slab, vacuum, ... ]
         - direction = (x | y | z){1}
       interfaces:
-        interface_with_no_vacuum:
-          - stack_components = [ slab, slab ]
+        with_no_vacuum:
+          - stack_components = [ (slab | monolayer), (slab | monolayer)]
           - direction = z
-        interface_with_vacuum:
-          - stack_components = [ slab, vacuum, slab, vacuum ]
+        with_vacuum:
+          - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
           - direction = "z"
-        interface_slab_monolayer:
-          - stack_components = [ slab, vacuum, monolayer ]
+        with_gap_and_vacuum:
+          - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
           - direction = "z"
-        interface_slab_monolayer_vacuum:
-          - stack_components = [ slab, vacuum, monolayer, vacuum ]
-          - direction = "z"
-        interface_cluster_slab:
+          - gap = float # use precise distance between top and bottom layers of the slabs
+        cluster_slab:
           - stack_components = [ cluster, slab ]
           - direction = "z"
-        interface_commensurate_slabs:
-          - stack_components = [ slab, vacuum, slab, vacuum ]
+        commensurate_slabs:
+          - stack_components = [ slab, slab, vacuum ]
           - direction = "z"
-        interface_x_commensurate_monolayers:
-          - stack_components = [ monolayer, vacuum, monolayer, vacuum ]
+        commensurate_monolayers_along_x:
+          - stack_components = [ monolayer, monolayer, vacuum ]
           - direction = "x"
-        interface_twisted_nanoribbons:
-          - stack_components = [ nanoribbon, vacuum, nanoribbon, vacuum ]
+        twisted_nanoribbons:
+          - stack_components = [ nanoribbon, nanoribbon, vacuum ]
           - direction = "z"
           - twist_angle = float
       defects:
