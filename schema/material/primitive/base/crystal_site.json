@@ -5,15 +5,15 @@
     "description": "A site in a crystal that can be populated with an atom, vacancy, or void",
     "type": "object",
     "properties": {
-        "reference_crystal": {
-            "$ref": "../../../core/reference.json"
+        "host": {
+            "$ref": "../../../material.json"
         },
-        "crystal_coordinate": {
+        "coordinate": {
             "$ref": "../../../core/abstract/coordinate_3d.json"
         }
     },
     "required": [
-        "reference_crystal",
-        "crystal_coordinate"
+        "host",
+        "coordinate"
     ]
 }

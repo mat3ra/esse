@@ -9,7 +9,6 @@
             "$ref": "../../../core/abstract/coordinate_3d.json"
         },
         "shape": {
-            "$comment": "Should be an allOf of all the shapes configurations",
             "$ref": "../../../core/reusable/coordinate_conditions/index.json"
         }
     },
