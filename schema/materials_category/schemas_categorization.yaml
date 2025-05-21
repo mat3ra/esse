@@ -119,7 +119,7 @@ pristine_structures:
     wire_section:
       # we created a supercell, cut the shape
       - supercell = ref:/.../supercell
-      - direction = [h, k, l]
+      - orientation = [h, k, l]
       - shape = function(x, y, z)
     nanowire:
       # we created a supercell, cut the shape and added vacuum on two sides
@@ -133,8 +133,12 @@ pristine_structures:
   zero-dimensional:
     nanoparticle:
       # we created a supercell, cut the shape and added vacuum on all sides
-      - stack_components = [ merge(void, supercell(crystal)), vacuum ]
-      - direction = (x | y | z){3} # 3 sides
+      - supercell = ref:/.../supercell
+      - shape = function(x, y, z)
+      - orientation = [h, k, l] # to align specific plane perpendicular the z-axis
+    nanoparticle_with_vacuum:
+      - stack_components = [ nanoparticle, vacuum ]
+      - direction = (x | y | z){3} # all sides vacuum
     nanoribbon:
       # we created a monolayer supercell, cut the shape and added vacuum on all sides
       - stack_components =  [ ribbon_section, vacuum ]
