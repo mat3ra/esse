@@ -1,0 +1,48 @@
+# You provide material
+material: SrTiO3
+
+# You specify the layering configuration (Miller indices)
+crystal_lattice_planes_configuration:
+  - crystal = material
+  - miller_indices = [ 0, 1, 1 ]
+
+layer_configuration_1:
+  - crystal_lattice_planes_configuration
+  - termination = "SrO"
+
+unique_atomic_layers:
+  - crystal = material
+  - miller_indices = [ 0, 1, 1 ]
+  - terminations = [ "SrO", "Ti", "TiO" ] # all possible terminations for that orientation
+
+repeated_unique_atomic_layers:
+  - crystal = material
+  - miller_indices = [ 0, 1, 1 ]
+  - termination_top = "SrO"
+  - number_of_repetitions = 3 # number of repetitions of the unique atomic layers, they are shifted according to the termination
+
+atomic_layers:
+  - crystal = material
+  - miller_indices = [ 0, 1, 1 ]
+  - terminations = [ "SrO", "Ti", "TiO", "SrO", "Ti", "TiO", "SrO"]
+
+slab_unit_cell_configuration:
+  - stack_components = [ atomic_layers, vacuum_configuration ]
+  - direction = "z"
+
+slab_unit_cell_configuration_alt:
+  - stack_components = [ repeated_unique_atomic_layers, vacuum_configuration ]
+  - direction = "z"
+
+slab_configuration:
+  allOf: slab_unit_cell_configuration, supercell_xy
+
+# Example of a slab configuration
+# Function gets all possible layers and their terminations. It behaves more like an analyzer tool:
+# layers = get_layers(crystal_lattice_planes) => [ layer_1, layer_2, layer_3 ]
+#terminations = get_terminations(layers_configuration) => [ "SrO", "Ti", "TiO" ]
+# layers: generate_layers(layers_configuration) => [ {layer_material_1, termination_1}, {layer_2, termination_2}, {layer_3, termination_3} ]
+# You use those layers object and top and bottom terminations to specify a slab configuration
+# You can generate the slab, with terminations and vacuum added: 7 atomic layers, both top and bottom are SrO terminated
+# slab = generate_slab(slab_configuration)
+

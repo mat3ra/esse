@@ -69,12 +69,14 @@ pristine_structures:
         - strain_matrix
 
   two-dimensional:
-    layer:
+    layers:
       # generation = merge([crystal, void], "z") # reduction of bulk to chemically equivalent monolayer
       # all possible atomic layers with different terminations for that orientation are generated
       - crystal = ref:/primitive/base/crystal
       - miller_indices = [ h, k, l ]
-      # Property:
+    layer:
+      - crystal = ref:/primitive/base/crystal
+      - miller_indices = [ h, k, l ]
       - termination = f(crystal, miller_indices) # stoichiometry + symmetry. In code can be allowed to be index, chemical formula, symmetry
     monolayer:
       - stack_components = [ layer, vacuum ]
@@ -184,28 +186,3 @@ complex_structures:
             # we should configure the condition for exposed atoms and then the bond vector for passivation
             - merged_structures = [ slab, crystal_site(atom|particle) ]
             - bond_length = float # can be a map of bond lengths for different elements
-
-# Example
-# You provide material
-example_material: SrTiO3
-
-# You specify the layering configuration (Miller indices)
-example_layers_configuration:
-  - crystal = material
-  - miller_indices = [ 0, 1, 1 ]
-
-# Function gets all possible layers and their terminations. It behaves more like an analyzer tool:
-example_layers: get_layers(example_layers_configuration) => [ layer_1, layer_2, layer_3 ]
-terminations: get_terminations(layers) => [ "SrO", "Ti", "TiO" ]
-
-# or example_layers: generate_layers(example_layers_configuration) => [ {layer_1, termination_1}, {layer_2, termination_2}, {layer_3, termination_3} ]
-
-# You use those layers object and top and bottom terminations to specify a slab configuration
-example_slab_configuration:
-  - stack_components = [ example_layers, vacuum(10) ]
-  - direction = "z"
-  - number_of_layers = 7
-  - terminations = ["SrO", "SrO" ]
-# You can generate the slab, with terminations and vacuum added: 7 atomic layers, both top and bottom are SrO terminated
-example_slab: generate_slab(example_slab_configuration)
-
