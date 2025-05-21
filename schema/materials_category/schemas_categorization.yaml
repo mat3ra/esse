@@ -108,11 +108,14 @@ pristine_structures:
       - reconstruction_function? # Function that changes coordinates of atoms
 
   one-dimensional:
+    ribbon_section:
+      - monolayer = ref:/.../monolayer
+      - edge_direction = [ u, v ] # 2D MI, works for ANY 2‑D lattice (unlike zigzag and armchair)
+      - width = int # number of unit cells
     nanotape:
       # we created a supercell from monolayer, cut the shape and added vacuum on one side
-      # generation = merge(void, supercell(monolayer))
-      - stack_components = [ merge(void, supercell(monolayer)), vacuum ]
-      - direction = (x | y){1} # 1D monolayer
+      - stack_components = [ ribbon_section, vacuum ]
+      - direction = (x | y){1}
     nanowire:
       # we created a supercell, cut the shape and added vacuum on any two sides
       - stack_components = [ merge(void, supercell(crystal)), vacuum ]
@@ -129,8 +132,15 @@ pristine_structures:
       - direction = (x | y | z){3} # 3 sides
     nanoribbon:
       # we created a monolayer supercell, cut the shape and added vacuum on all sides
-      - stack_components =  [ merge(void, supercell(monolayer)), vacuum ]
-      - direction = (x | y | z){3} # 3 sides
+      - stack_components =  [ ribbon_section, vacuum ]
+      - direction = (x | y | z){2} # 2 sides
+    nanoribbon_hex:
+      - monolayer = ref:/.../monolayer
+      - edge_type = ("zigzag" | "armchair"){1}
+      - width = int | float # number of unit cells, can be in 0.5 increments
+      - length = int | float # number of unit cells
+      - stack_components = [ monolayer, vacuum ]
+      - direction = (x | y | z){2} # 2 sides
 
 complex_structures:
   three-dimensional:
