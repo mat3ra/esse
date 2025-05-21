@@ -69,23 +69,38 @@ pristine_structures:
         - strain_matrix
 
   two-dimensional:
-    layers:
-      # generation = merge([crystal, void], "z") # reduction of bulk to chemically equivalent monolayer
-      # all possible atomic layers with different terminations for that orientation are generated
-      - crystal = ref:/primitive/base/crystal
+    crystal_lattice_planes:
+      - crystal = material
       - miller_indices = [ h, k, l ]
-    layer:
-      - crystal = ref:/primitive/base/crystal
+    (termination):
+      - stoichiometry # e.g. SrO, TiO, etc.
+      - symmetry #P6/mmm, P3m1, etc.
+    unique_atomic_layers:
+      - crystal = material
       - miller_indices = [ h, k, l ]
-      - termination = f(crystal, miller_indices) # stoichiometry + symmetry. In code can be allowed to be index, chemical formula, symmetry
+      - terminations = [ termination, ... ] # all possible terminations for that orientation
+    repeated_unique_atomic_layers:
+      - crystal = material
+      - miller_indices = [ h, k, l ]
+      - termination_top = termination
+      - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
+    atomic_layers:
+      - crystal = material
+      - miller_indices = [ h, k, l ]
+      - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
     monolayer:
-      - stack_components = [ layer, vacuum ]
+      - stack_components = [ atomic_layer(termination), vacuum ]
       - direction = "z" # 2D monolayer
+    slab_unit_cell:
+      - stack_components = [ atomic_layers, vacuum ]
+      - direction = "z"
+    slab_unit_cell_alt:
+      - stack_components = [ repeated_unique_atomic_layers, vacuum ]
+      - direction = "z"
     slab:
-      - stack_components = [ (layer | material) ..., vacuum ] # consecutive layers that are generated from crystal or any material
-      - direction = "z" # 2D slab
-      - number_of_layers # number of consecutive layers or number of unit cells if it's from a material
-      - terminations = [ termination, termination ] # top and bottom terminations
+      - stack_components = [ atomic_layers, vacuum ]
+      - direction = "z"
+      - supercell_xy?
     slab_with_reconstruction:
       - slab = ref:/pristine_structures/two-dimensional/slab
       - has_reconstruction = bool
