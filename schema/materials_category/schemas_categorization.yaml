@@ -8,210 +8,209 @@
 # `( x | y | z ){1,2}` - a set of values "1 or 2 of any of the three"
 #
 
-material: # already defined
+material:
+  primitive:
+    base:
+      crystal: material
+      crystal_site:
+        # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
+        - host
+        - coordinate
+        - id? # site id in the host crystal
+      atom:
+        - chemical_element
+      vacuum:
+        # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
+        - direction
+        - size
+      void:
+        # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
+        - center_coordinate
+        - shape
 
-primitive:
-  base:
-    crystal: material
-    crystal_site:
-      # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
-      - host
-      - coordinate
-      - id? # site id in the host crystal
-    atom:
-      - chemical_element
-    vacuum:
-      # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
-      - direction
-      - size
-    void:
-      # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
-      - center_coordinate
-      - shape
-
-  modifications:
-    strain:
-      # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
-      - matrix
-    repeat:
-      - integer_matrix
-    perturb:
-      # changes coordinates of atoms by applying the function, intended for local displacements
-      - function = ∂r -> f(x,y,z)
-      - is_isometric = bool  # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
-    fold:
-      # maps 2D flat plane to a curved surface in 3D space
-      - function = f(x, y) -> f(x, y, z)
-      - is_isometric = bool
-  combinations:
-    stack_component: (material | vacuum)
-    stack:
-      - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
-      - direction = (x | y | z){1}
-    merge:
-      - merge_structures = [ material ]
-      - method = ("adding" | "replacing" | "yielding" | "smart"){1}
-
-pristine_structures:
-  three-dimensional:
-    ideal_crystal: ref:/primitive/base/crystal
-    repeated:
-      supercell:
-        - crystal = ref:/primitive/base/crystal
+    modifications:
+      strain:
+        # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
         - matrix
-    strained:
-      strained_uniform:
-        - crystal = ref:/primitive/base/crystal
-        - strain_percentage
-      strained_non-uniform:
-        - crystal = ref:/primitive/base/crystal
-        - strain_matrix
-
-  two-dimensional:
-    crystal_lattice_planes:
-      - crystal = material
-      - miller_indices = [ h, k, l ]
-    atomic_layers_unique:
-      - crystal = material
-      - miller_indices = [ h, k, l ]
-      - terminations = [ termination, ... ] # all possible terminations for that orientation
-    atomic_layers_unique_repeated:
-      - crystal = material
-      - miller_indices = [ h, k, l ]
-      - termination_top = termination
-      - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
-    atomic_layers:
-      - crystal = material
-      - miller_indices = [ h, k, l ]
-      - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
-    monolayer:
-      - stack_components = [ atomic_layer(termination), vacuum ]
-      - direction = "z" # 2D monolayer
-    slab_unit_cell:
-      - stack_components = [ atomic_layers, vacuum ]
-      - direction = "z"
-    slab_unit_cell_alt:
-      - stack_components = [ atomic_layers_unique_repeated, vacuum ]
-      - direction = "z"
-    slab:
-      - stack_components = [ atomic_layers, vacuum ]
-      - direction = "z"
-      - supercell_xy?
-    slab_with_reconstruction:
-      - slab = ref:/pristine_structures/two-dimensional/slab
-      - has_reconstruction = bool
-      - reconstruction_type? # Enum that applies an algorithm
-      - reconstruction_function? # Function that changes coordinates of atoms
-
-  one-dimensional:
-    ribbon_section:
-      - monolayer = ref:/.../monolayer
-      - edge_direction = [ u, v ] # 2D MI, works for ANY 2‑D lattice (unlike zigzag and armchair)
-      - width = int # number of unit cells
-    ribbon_section_hex:
-      - monolayer = ref:/.../monolayer
-      - edge_type = ("zigzag" | "armchair"){1}
-      - width = int | float # number of unit cells, can be in 0.5 increments
-      - length = int | float # number of unit cells
-    nanotape:
-      # we created a supercell from monolayer, cut the shape and added vacuum on one side
-      - stack_components = [ ribbon_section, vacuum ]
-      - direction = (x | y){1}
-    wire_section:
-      # we created a supercell, cut the shape
-      - supercell = ref:/.../supercell
-      - orientation = [h, k, l]
-      - shape = function(x, y, z)
-    nanowire:
-      # we created a supercell, cut the shape and added vacuum on two sides
-      - stack_components = [ wire_section, vacuum ]
-      - direction = (x | y | z){2} # 2 sides
-    nanotube:
-      # we applied an embedding function to a 3D surface and added vacuum on any sides
-      - stack_components = [ fold(supercell(monolayer)), vacuum ]
-      - direction = (x | y | z){2,3} # 2 or 3 sides
-
-  zero-dimensional:
-    nanoparticle:
-      # we created a supercell, cut the shape and added vacuum on all sides
-      - supercell = ref:/.../supercell
-      - shape = function(x, y, z)
-      - orientation = [h, k, l] # to align specific plane perpendicular the z-axis
-    nanoparticle_with_vacuum:
-      - stack_components = [ nanoparticle, vacuum ]
-      - direction = (x | y | z){3} # all sides vacuum
-    nanoribbon:
-      # we created a monolayer supercell, cut the shape and added vacuum on all sides
-      - stack_components =  [ ribbon_section, vacuum ]
-      - direction = (x | y | z){2} # 2 sides
-    nanoribbon_hex:
-      - stack_components = [ ribbon_section_hex, vacuum ]
-      - direction = (x | y | z){2} # 2 sides
-
-complex_structures:
-  three-dimensional:
-    merged:
-      alloy:
-        - merged_structures = [ crystal, ... ]
-        - method = ("adding" | "replacing" | "yielding" | "smart"){1}
-    perturbed:
-      amorphous:
-        - crystal = ref:/primitive/base/crystal
-        - function = f(x, y, z) # annealing function
-        - is_isometric = false
-  two-dimensional:
-    stacked:
-      multi-layer:
-        - crystal = ref:/primitive/base/crystal
-        # In the code properties below can be supplied externally or generated based on the above with a wizard
-        - stacking_order? = ("natural" | "AB" | "ABC" | ...){1} # Natural by default, can be described as a ABC... configurations based on the symmetry
-      heterostack:
-        - stack_components = [ slab, vacuum, ... ]
+      repeat:
+        - integer_matrix
+      perturb:
+        # changes coordinates of atoms by applying the function, intended for local displacements
+        - function = ∂r -> f(x,y,z)
+        - is_isometric = bool  # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
+      fold:
+        # maps 2D flat plane to a curved surface in 3D space
+        - function = f(x, y) -> f(x, y, z)
+        - is_isometric = bool
+    combinations:
+      stack_component: (material | vacuum)
+      stack:
+        - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
         - direction = (x | y | z){1}
-      interfaces:
-        with_no_vacuum:
-          - stack_components = [ (slab | monolayer), (slab | monolayer)]
-          - direction = z
-        with_vacuum:
-          - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
-          - direction = "z"
-        with_gap_and_vacuum:
-          - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
-          - direction = "z"
-          - gap = float # use precise distance between top and bottom layers of the slabs
-        cluster_slab:
-          - stack_components = [ cluster, slab ]
-          - direction = "z"
-        commensurate_slabs:
-          - stack_components = [ slab, slab, vacuum ]
-          - direction = "z"
-        commensurate_monolayers_along_x:
-          - stack_components = [ monolayer, monolayer, vacuum ]
-          - direction = "x"
-        twisted_nanoribbons:
-          - stack_components = [ nanoribbon, nanoribbon, vacuum ]
-          - direction = "z"
-          - twist_angle = float
-      defects:
-        adatom:
-          - merged_structures = [ slab, crystal_site(atom) ]
-        island:
-          - merged_structures = [ slab, nanoparticle ]
-        terrace:
-          - merged_structures = [ slab, nanotape ]
-          - is_symmetric = bool
-          - is_periodic = bool
-        grain_boundary_planar:
-          - stack_components = [ slab, vacuum, slab, vacuum ]
+      merge:
+        - merge_structures = [ material ]
+        - method = ("adding" | "replacing" | "yielding" | "smart"){1}
+
+material_categories:
+  pristine_structures:
+    three-dimensional:
+      ideal_crystal: ref:/primitive/base/crystal
+      repeated:
+        supercell:
+          - crystal = ref:/primitive/base/crystal
+          - matrix
+      strained:
+        strained_uniform:
+          - crystal = ref:/primitive/base/crystal
+          - strain_percentage
+        strained_non-uniform:
+          - crystal = ref:/primitive/base/crystal
+          - strain_matrix
+
+    two-dimensional:
+      crystal_lattice_planes:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+      atomic_layers_unique:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - terminations = [ termination, ... ] # all possible terminations for that orientation
+      atomic_layers_unique_repeated:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - termination_top = termination
+        - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
+      atomic_layers:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
+      monolayer:
+        - stack_components = [ atomic_layer(termination), vacuum ]
+        - direction = "z" # 2D monolayer
+      slab_unit_cell:
+        - stack_components = [ atomic_layers, vacuum ]
+        - direction = "z"
+      slab_unit_cell_alt:
+        - stack_components = [ atomic_layers_unique_repeated, vacuum ]
+        - direction = "z"
+      slab:
+        - stack_components = [ atomic_layers, vacuum ]
+        - direction = "z"
+        - supercell_xy?
+      slab_with_reconstruction:
+        - slab = ref:/pristine_structures/two-dimensional/slab
+        - has_reconstruction = bool
+        - reconstruction_type? # Enum that applies an algorithm
+        - reconstruction_function? # Function that changes coordinates of atoms
+
+    one-dimensional:
+      ribbon_section:
+        - monolayer = ref:/.../monolayer
+        - edge_direction = [ u, v ] # 2D MI, works for ANY 2‑D lattice (unlike zigzag and armchair)
+        - width = int # number of unit cells
+      ribbon_section_hex:
+        - monolayer = ref:/.../monolayer
+        - edge_type = ("zigzag" | "armchair"){1}
+        - width = int | float # number of unit cells, can be in 0.5 increments
+        - length = int | float # number of unit cells
+      nanotape:
+        # we created a supercell from monolayer, cut the shape and added vacuum on one side
+        - stack_components = [ ribbon_section, vacuum ]
+        - direction = (x | y){1}
+      wire_section:
+        # we created a supercell, cut the shape
+        - shape = function(x, y, z) # in angstroms, supercell inferred to fit
+        - orientation = [h, k, l]
+      nanowire:
+        # we created a supercell, cut the shape and added vacuum on two sides
+        - stack_components = [ wire_section, vacuum ]
+        - direction = (x | y | z){2} # 2 sides
+      nanotube:
+        # we applied an embedding function to a 3D surface and added vacuum on any sides
+        - stack_components = [ fold(supercell(monolayer)), vacuum ]
+        - direction = (x | y | z){2,3} # 2 or 3 sides
+
+    zero-dimensional:
+      nanoparticle:
+        # we created a supercell, cut the shape and added vacuum on all sides
+        - supercell = ref:/.../supercell
+        - shape = function(x, y, z)
+        - orientation = [h, k, l] # to align specific plane perpendicular the z-axis
+      nanoparticle_with_vacuum:
+        - stack_components = [ nanoparticle, vacuum ]
+        - direction = (x | y | z){3} # all sides vacuum
+      nanoribbon:
+        # we created a monolayer supercell, cut the shape and added vacuum on all sides
+        - stack_components =  [ ribbon_section, vacuum ]
+        - direction = (x | y | z){2} # 2 sides
+      nanoribbon_hex:
+        - stack_components = [ ribbon_section_hex, vacuum ]
+        - direction = (x | y | z){2} # 2 sides
+
+  complex_structures:
+    three-dimensional:
+      merged:
+        alloy:
+          - merged_structures = [ crystal, ... ]
+          - method = ("adding" | "replacing" | "yielding" | "smart"){1}
+      perturbed:
+        amorphous:
+          - crystal = ref:/primitive/base/crystal
+          - function = f(x, y, z) # annealing function
+          - is_isometric = false
+    two-dimensional:
+      stacked:
+        multi-layer:
+          - crystal = ref:/primitive/base/crystal
+          # In the code properties below can be supplied externally or generated based on the above with a wizard
+          - stacking_order? = ("natural" | "AB" | "ABC" | ...){1} # Natural by default, can be described as a ABC... configurations based on the symmetry
+        heterostack:
+          - stack_components = [ slab, vacuum, ... ]
           - direction = (x | y | z){1}
-        grain_boundary_planar_with_vacuum:
-          # inherits grain_boundary_planar and slab
-          - stack_components = [ slab, vacuum, slab, vacuum ]
-          - direction = "z"
-          - number_of_layers
-          - terminations = [ termination, termination ]
-        merged:
-          passivated_surface_2d:
-            # we should configure the condition for exposed atoms and then the bond vector for passivation
-            - merged_structures = [ slab, crystal_site(atom|particle) ]
-            - bond_length = float # can be a map of bond lengths for different elements
+        interfaces:
+          with_no_vacuum:
+            - stack_components = [ (slab | monolayer), (slab | monolayer)]
+            - direction = z
+          with_vacuum:
+            - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
+            - direction = "z"
+          with_gap_and_vacuum:
+            - stack_components = [ (slab | monolayer), (slab | monolayer), vacuum ]
+            - direction = "z"
+            - gap = float # use precise distance between top and bottom layers of the slabs
+          cluster_slab:
+            - stack_components = [ cluster, slab ]
+            - direction = "z"
+          commensurate_slabs:
+            - stack_components = [ slab, slab, vacuum ]
+            - direction = "z"
+          commensurate_monolayers_along_x:
+            - stack_components = [ monolayer, monolayer, vacuum ]
+            - direction = "x"
+          twisted_nanoribbons:
+            - stack_components = [ nanoribbon, nanoribbon, vacuum ]
+            - direction = "z"
+            - twist_angle = float
+        defects:
+          adatom:
+            - merged_structures = [ slab, crystal_site(atom) ]
+          island:
+            - merged_structures = [ slab, nanoparticle ]
+          terrace:
+            - merged_structures = [ slab, nanotape ]
+            - is_symmetric = bool
+            - is_periodic = bool
+          grain_boundary_planar:
+            - stack_components = [ slab, vacuum, slab, vacuum ]
+            - direction = (x | y | z){1}
+          grain_boundary_planar_with_vacuum:
+            # inherits grain_boundary_planar and slab
+            - stack_components = [ slab, vacuum, slab, vacuum ]
+            - direction = "z"
+            - number_of_layers
+            - terminations = [ termination, termination ]
+          merged:
+            passivated_surface_2d:
+              # we should configure the condition for exposed atoms and then the bond vector for passivation
+              - merged_structures = [ slab, crystal_site(atom|particle) ]
+              - bond_length = float # can be a map of bond lengths for different elements
