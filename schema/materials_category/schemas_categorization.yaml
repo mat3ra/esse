@@ -72,7 +72,7 @@ pristine_structures:
     crystal_lattice_planes:
       - crystal = material
       - miller_indices = [ h, k, l ]
-    (termination):
+    (termination): # not a configuration, but a data-model
       - stoichiometry # e.g. SrO, TiO, etc.
       - symmetry #P6/mmm, P3m1, etc.
     unique_atomic_layers:
@@ -112,6 +112,11 @@ pristine_structures:
       - monolayer = ref:/.../monolayer
       - edge_direction = [ u, v ] # 2D MI, works for ANY 2‑D lattice (unlike zigzag and armchair)
       - width = int # number of unit cells
+    ribbon_section_hex:
+      - monolayer = ref:/.../monolayer
+      - edge_type = ("zigzag" | "armchair"){1}
+      - width = int | float # number of unit cells, can be in 0.5 increments
+      - length = int | float # number of unit cells
     nanotape:
       # we created a supercell from monolayer, cut the shape and added vacuum on one side
       - stack_components = [ ribbon_section, vacuum ]
@@ -144,11 +149,7 @@ pristine_structures:
       - stack_components =  [ ribbon_section, vacuum ]
       - direction = (x | y | z){2} # 2 sides
     nanoribbon_hex:
-      - monolayer = ref:/.../monolayer
-      - edge_type = ("zigzag" | "armchair"){1}
-      - width = int | float # number of unit cells, can be in 0.5 increments
-      - length = int | float # number of unit cells
-      - stack_components = [ monolayer, vacuum ]
+      - stack_components = [ ribbon_section_hex, vacuum ]
       - direction = (x | y | z){2} # 2 sides
 
 complex_structures:
