@@ -116,9 +116,14 @@ pristine_structures:
       # we created a supercell from monolayer, cut the shape and added vacuum on one side
       - stack_components = [ ribbon_section, vacuum ]
       - direction = (x | y){1}
+    wire_section:
+      # we created a supercell, cut the shape
+      - supercell = ref:/.../supercell
+      - direction = [h, k, l]
+      - shape = function(x, y, z)
     nanowire:
-      # we created a supercell, cut the shape and added vacuum on any two sides
-      - stack_components = [ merge(void, supercell(crystal)), vacuum ]
+      # we created a supercell, cut the shape and added vacuum on two sides
+      - stack_components = [ wire_section, vacuum ]
       - direction = (x | y | z){2} # 2 sides
     nanotube:
       # we applied an embedding function to a 3D surface and added vacuum on any sides
