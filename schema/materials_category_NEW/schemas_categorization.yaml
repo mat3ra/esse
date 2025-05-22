@@ -89,7 +89,7 @@ material_categories:
         - miller_indices = [ h, k, l ]
         - termination = termination
       monolayer:
-        - stack_components = [ atomic_layer, vacuum ]
+        - stack_components = [ (atomic_layer | atomic_layers), vacuum ]
         - direction = "z"
       slab_unit_cell:
         - stack_components = [ atomic_layers, vacuum ]
