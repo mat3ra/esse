@@ -17,11 +17,11 @@ class AxisEnum(Enum):
 
 
 class VacuumSchema(BaseModel):
-    direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
+    direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
     """
     size: Optional[confloat(ge=0.0)] = 10
     """
-    Size of the vacuum slab in angstroms
+    Size of the vacuum gap in angstroms
     """
