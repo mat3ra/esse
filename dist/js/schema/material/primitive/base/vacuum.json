@@ -1,0 +1,31 @@
+{
+    "$id": "material/primitive/base/vacuum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Vacuum Schema",
+    "description": "A vacuum slab that breaks periodicity in a specified direction",
+    "type": "object",
+    "required": [
+        "direction",
+        "size"
+    ],
+    "properties": {
+        "direction": {
+            "default": "z",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Axis Enum",
+            "type": "string",
+            "description": "Enum for axis types",
+            "enum": [
+                "x",
+                "y",
+                "z"
+            ]
+        },
+        "size": {
+            "type": "number",
+            "description": "Size of the vacuum slab in angstroms",
+            "minimum": 0,
+            "default": 10
+        }
+    }
+}
