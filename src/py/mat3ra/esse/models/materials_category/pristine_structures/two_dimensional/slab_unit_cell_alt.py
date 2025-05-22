@@ -1016,7 +1016,7 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class CrystalSchema14(BaseModel):
+class CrystalSchema10(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1460,7 +1460,7 @@ class MaterialConsistencyCheckSchema20(BaseModel):
     """
 
 
-class CrystalSchema16(BaseModel):
+class CrystalSchema12(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1534,7 +1534,7 @@ class VacuumSchema(BaseModel):
     """
     Number of repetitions of the unique atomic layers
     """
-    crystal: Optional[CrystalSchema16] = Field(None, title="Crystal Schema")
+    crystal: Optional[CrystalSchema12] = Field(None, title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema
     """
@@ -1896,7 +1896,7 @@ class MaterialConsistencyCheckSchema21(BaseModel):
     """
 
 
-class CrystalSchema17(BaseModel):
+class CrystalSchema13(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1973,7 +1973,7 @@ class VacuumSchema6(BaseModel):
 
 
 class AlternativeSlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[CrystalSchema14, VacuumSchema, CrystalSchema17, VacuumSchema6]] = Field(
+    stack_components: List[Union[CrystalSchema10, VacuumSchema, CrystalSchema13, VacuumSchema6]] = Field(
         ..., min_length=2
     )
     """

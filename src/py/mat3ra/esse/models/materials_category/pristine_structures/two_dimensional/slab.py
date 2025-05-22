@@ -14,6 +14,140 @@ class SupercellMatrix2DSchemaItem(RootModel[List[int]]):
     root: List[int]
 
 
+class ChemicalElements(Enum):
+    H = "H"
+    He = "He"
+    Li = "Li"
+    Be = "Be"
+    B = "B"
+    C = "C"
+    N = "N"
+    O = "O"
+    F = "F"
+    Ne = "Ne"
+    Na = "Na"
+    Mg = "Mg"
+    Al = "Al"
+    Si = "Si"
+    P = "P"
+    S = "S"
+    Cl = "Cl"
+    Ar = "Ar"
+    K = "K"
+    Ca = "Ca"
+    Sc = "Sc"
+    Ti = "Ti"
+    V = "V"
+    Cr = "Cr"
+    Mn = "Mn"
+    Fe = "Fe"
+    Co = "Co"
+    Ni = "Ni"
+    Cu = "Cu"
+    Zn = "Zn"
+    Ga = "Ga"
+    Ge = "Ge"
+    As = "As"
+    Se = "Se"
+    Br = "Br"
+    Kr = "Kr"
+    Rb = "Rb"
+    Sr = "Sr"
+    Y = "Y"
+    Zr = "Zr"
+    Nb = "Nb"
+    Mo = "Mo"
+    Tc = "Tc"
+    Ru = "Ru"
+    Rh = "Rh"
+    Pd = "Pd"
+    Ag = "Ag"
+    Cd = "Cd"
+    In = "In"
+    Sn = "Sn"
+    Sb = "Sb"
+    Te = "Te"
+    I = "I"
+    Xe = "Xe"
+    Cs = "Cs"
+    Ba = "Ba"
+    La = "La"
+    Ce = "Ce"
+    Pr = "Pr"
+    Nd = "Nd"
+    Pm = "Pm"
+    Sm = "Sm"
+    Eu = "Eu"
+    Gd = "Gd"
+    Tb = "Tb"
+    Dy = "Dy"
+    Ho = "Ho"
+    Er = "Er"
+    Tm = "Tm"
+    Yb = "Yb"
+    Lu = "Lu"
+    Hf = "Hf"
+    Ta = "Ta"
+    W = "W"
+    Re = "Re"
+    Os = "Os"
+    Ir = "Ir"
+    Pt = "Pt"
+    Au = "Au"
+    Hg = "Hg"
+    Tl = "Tl"
+    Pb = "Pb"
+    Bi = "Bi"
+    Po = "Po"
+    At = "At"
+    Rn = "Rn"
+    Fr = "Fr"
+    Ra = "Ra"
+    Ac = "Ac"
+    Th = "Th"
+    Pa = "Pa"
+    U = "U"
+    Np = "Np"
+    Pu = "Pu"
+    Am = "Am"
+    Cm = "Cm"
+    Bk = "Bk"
+    Cf = "Cf"
+    Es = "Es"
+    Fm = "Fm"
+    Md = "Md"
+    No = "No"
+    Lr = "Lr"
+    Rf = "Rf"
+    Db = "Db"
+    Sg = "Sg"
+    Bh = "Bh"
+    Hs = "Hs"
+    Mt = "Mt"
+    Ds = "Ds"
+    Rg = "Rg"
+    Cn = "Cn"
+    Nh = "Nh"
+    Fl = "Fl"
+    Mc = "Mc"
+    Lv = "Lv"
+    Ts = "Ts"
+    Og = "Og"
+
+
+class TerminationSchema(BaseModel):
+    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
+        ..., title="Chemical Elements"
+    )
+    """
+    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
+    """
+    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
+    """
+    Space group symmetry designation for the termination
+    """
+
+
 class Value(Enum):
     H = "H"
     He = "He"
@@ -477,138 +611,61 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class ChemicalElements(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
-
-
-class TerminationSchema(BaseModel):
-    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
-        ..., title="Chemical Elements"
-    )
+class CrystalSchema(BaseModel):
+    formula: Optional[str] = None
     """
-    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
+    reduced chemical formula
     """
-    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
+    unitCellFormula: Optional[str] = None
     """
-    Space group symmetry designation for the termination
+    chemical formula based on the number of atoms of each element in the supercell
     """
+    basis: BasisSchema = Field(..., title="basis schema")
+    lattice: LatticeSchema = Field(..., title="lattice schema")
+    derivedProperties: Optional[List[DerivedPropertiesSchema]] = Field(None, title="derived properties schema")
+    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    """
+    information about a database source
+    """
+    src: Optional[FileSourceSchema] = Field(None, title="file source schema")
+    """
+    file source with the information inside
+    """
+    scaledHash: Optional[str] = None
+    """
+    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
+    """
+    icsdId: Optional[int] = None
+    """
+    Corresponding ICSD id of the material
+    """
+    isNonPeriodic: Optional[bool] = None
+    """
+    Whether to work in the finite molecular picture (usually with atomic orbital basis)
+    """
+    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: Optional[str] = None
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    metadata: Optional[Dict[str, Any]] = None
 
 
 class Value34(Enum):
@@ -963,7 +1020,19 @@ class MaterialConsistencyCheckSchema11(BaseModel):
     """
 
 
-class CrystalSchema(BaseModel):
+class AtomicLayersSchema(BaseModel):
+    terminations: List[TerminationSchema] = Field(..., min_length=1)
+    """
+    List of terminations for the atomic layers in order.
+    """
+    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
+    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    """
+    Miller indices for crystallographic plane designation
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1020,92 +1089,10 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class CrystalSchema6(BaseModel):
-    formula: Optional[str] = None
-    """
-    reduced chemical formula
-    """
-    unitCellFormula: Optional[str] = None
-    """
-    chemical formula based on the number of atoms of each element in the supercell
-    """
-    basis: BasisSchema = Field(..., title="basis schema")
-    lattice: LatticeSchema = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
-    """
-    information about a database source
-    """
-    src: Optional[FileSourceSchema] = Field(None, title="file source schema")
-    """
-    file source with the information inside
-    """
-    scaledHash: Optional[str] = None
-    """
-    Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
-    """
-    icsdId: Optional[int] = None
-    """
-    Corresponding ICSD id of the material
-    """
-    isNonPeriodic: Optional[bool] = None
-    """
-    Whether to work in the finite molecular picture (usually with atomic orbital basis)
-    """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    metadata: Optional[Dict[str, Any]] = None
-    terminations: List[TerminationSchema] = Field(..., min_length=1)
-    """
-    List of terminations for the atomic layers in order.
-    """
-    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
-    """
-    A crystal structure, referencing the base material schema
-    """
-    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
-    """
-    Miller indices for crystallographic plane designation
-    """
-
-
 class AxisEnum(Enum):
     x = "x"
     y = "y"
     z = "z"
-
-
-class TerminationSchema4(BaseModel):
-    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
-        ..., title="Chemical Elements"
-    )
-    """
-    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
-    """
-    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
-    """
-    Space group symmetry designation for the termination
-    """
 
 
 class Value36(Enum):
@@ -1460,7 +1447,15 @@ class MaterialConsistencyCheckSchema12(BaseModel):
     """
 
 
-class CrystalSchema8(BaseModel):
+class VacuumSchema(BaseModel):
+    direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
+    """
+    Enum for axis types
+    """
+    size: Optional[confloat(ge=0.0)] = 10
+    """
+    Size of the vacuum slab in angstroms
+    """
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1517,26 +1512,16 @@ class CrystalSchema8(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class VacuumSchema(BaseModel):
-    direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
+class TerminationSchema4(BaseModel):
+    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
+        ..., title="Chemical Elements"
+    )
     """
-    Enum for axis types
+    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
     """
-    size: Optional[confloat(ge=0.0)] = 10
+    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
     """
-    Size of the vacuum slab in angstroms
-    """
-    terminations: List[TerminationSchema4] = Field(..., min_length=1)
-    """
-    List of terminations for the atomic layers in order.
-    """
-    crystal: Optional[CrystalSchema8] = Field(None, title="Crystal Schema")
-    """
-    A crystal structure, referencing the base material schema
-    """
-    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
-    """
-    Miller indices for crystallographic plane designation
+    Space group symmetry designation for the termination
     """
 
 
@@ -1892,7 +1877,7 @@ class MaterialConsistencyCheckSchema13(BaseModel):
     """
 
 
-class CrystalSchema9(BaseModel):
+class CrystalSchema7(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1947,6 +1932,21 @@ class CrystalSchema9(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+
+
+class AtomicLayersSchema2(BaseModel):
+    terminations: List[TerminationSchema4] = Field(..., min_length=1)
+    """
+    List of terminations for the atomic layers in order.
+    """
+    crystal: Optional[CrystalSchema7] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
+    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    """
+    Miller indices for crystallographic plane designation
+    """
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -1978,12 +1978,7 @@ class SlabSchema(BaseModel):
     """
     Supercell matrix for xy plane transformations
     """
-    stack_components: List[Union[CrystalSchema6, VacuumSchema, CrystalSchema9, VacuumSchema2]] = Field(
-        ..., min_length=2
-    )
-    """
-    Components of the slab unit cell: atomic layers and vacuum
-    """
+    stack_components: List[Union[AtomicLayersSchema, VacuumSchema, AtomicLayersSchema2, VacuumSchema2]]
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
