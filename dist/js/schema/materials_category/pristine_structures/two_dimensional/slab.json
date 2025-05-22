@@ -42,14 +42,14 @@
                 "anyOf": [
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "material schema",
+                        "title": "Crystal Schema",
+                        "description": "A crystal structure, referencing the base material schema",
                         "type": "object",
                         "required": [
                             "basis",
                             "lattice",
                             "terminations"
                         ],
-                        "description": "A set of atomic layers defined by a plane in a crystal structure with specific terminations",
                         "properties": {
                             "formula": {
                                 "description": "reduced chemical formula",
@@ -952,7 +952,8 @@
                             },
                             "crystal": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "material schema",
+                                "title": "Crystal Schema",
+                                "description": "A crystal structure, referencing the base material schema",
                                 "type": "object",
                                 "required": [
                                     "basis",
@@ -1909,7 +1910,8 @@
                             },
                             "crystal": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "material schema",
+                                "title": "Crystal Schema",
+                                "description": "A crystal structure, referencing the base material schema",
                                 "type": "object",
                                 "required": [
                                     "basis",
@@ -2682,7 +2684,8 @@
                     },
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "material schema",
+                        "title": "Crystal Schema",
+                        "description": "A crystal structure, referencing the base material schema",
                         "type": "object",
                         "required": [
                             "basis",
@@ -2690,7 +2693,6 @@
                             "lattice",
                             "size"
                         ],
-                        "description": "A vacuum slab that breaks periodicity in a specified direction",
                         "properties": {
                             "formula": {
                                 "description": "reduced chemical formula",

@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -531,7 +531,10 @@ class MaterialSchema(BaseModel):
 
 
 class CrystalLatticePlanesSchema(BaseModel):
-    crystal: Optional[MaterialSchema] = Field(None, title="material schema")
+    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation

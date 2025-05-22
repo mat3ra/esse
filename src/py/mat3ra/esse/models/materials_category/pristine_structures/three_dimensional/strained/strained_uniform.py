@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -531,7 +531,10 @@ class MaterialSchema(BaseModel):
 
 
 class UniformlyStrainedCrystalSchema(BaseModel):
-    crystal: MaterialSchema = Field(..., title="material schema")
+    crystal: CrystalSchema = Field(..., title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     strain_percentage: float
     """
     Percentage of uniform strain to apply to the crystal structure

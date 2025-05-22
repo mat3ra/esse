@@ -959,7 +959,7 @@ class MaterialConsistencyCheckSchema15(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1016,7 +1016,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class MaterialSchema13(BaseModel):
+class CrystalSchema10(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1075,7 +1075,10 @@ class MaterialSchema13(BaseModel):
     """
     List of terminations for the atomic layers in order.
     """
-    crystal: Optional[MaterialSchema] = Field(None, title="material schema")
+    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
@@ -1453,7 +1456,7 @@ class MaterialConsistencyCheckSchema16(BaseModel):
     """
 
 
-class MaterialSchema15(BaseModel):
+class CrystalSchema12(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1523,7 +1526,10 @@ class VacuumSchema(BaseModel):
     """
     List of terminations for the atomic layers in order.
     """
-    crystal: Optional[MaterialSchema15] = Field(None, title="material schema")
+    crystal: Optional[CrystalSchema12] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
@@ -1882,7 +1888,7 @@ class MaterialConsistencyCheckSchema17(BaseModel):
     """
 
 
-class MaterialSchema16(BaseModel):
+class CrystalSchema13(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1959,7 +1965,7 @@ class VacuumSchema4(BaseModel):
 
 
 class SlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[MaterialSchema13, VacuumSchema, MaterialSchema16, VacuumSchema4]] = Field(
+    stack_components: List[Union[CrystalSchema10, VacuumSchema, CrystalSchema13, VacuumSchema4]] = Field(
         ..., min_length=2
     )
     """

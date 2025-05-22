@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -535,7 +535,10 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
 
 
 class NonUniformlyStrainedCrystalSchema(BaseModel):
-    crystal: MaterialSchema = Field(..., title="material schema")
+    crystal: CrystalSchema = Field(..., title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     strain_matrix: List[ArrayOf3NumberElementsSchema] = Field(
         ..., max_length=3, min_length=3, title="matrix 3x3 schema"
     )

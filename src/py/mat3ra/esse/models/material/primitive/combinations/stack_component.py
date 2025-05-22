@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -547,8 +547,8 @@ class VacuumSchema(BaseModel):
     """
 
 
-class ESSE(RootModel[Union[MaterialSchema, VacuumSchema]]):
-    root: Union[MaterialSchema, VacuumSchema] = Field(..., title="Stack Component Schema")
+class ESSE(RootModel[Union[CrystalSchema, VacuumSchema]]):
+    root: Union[CrystalSchema, VacuumSchema] = Field(..., title="Stack Component Schema")
     """
     A component of a stack, which can be a crystal or a vacuum
     """

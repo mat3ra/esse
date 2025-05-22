@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class IdealCrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula

@@ -959,7 +959,7 @@ class MaterialConsistencyCheckSchema19(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1016,7 +1016,7 @@ class MaterialSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class MaterialSchema17(BaseModel):
+class CrystalSchema14(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1079,7 +1079,10 @@ class MaterialSchema17(BaseModel):
     """
     Number of repetitions of the unique atomic layers
     """
-    crystal: Optional[MaterialSchema] = Field(None, title="material schema")
+    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
@@ -1457,7 +1460,7 @@ class MaterialConsistencyCheckSchema20(BaseModel):
     """
 
 
-class MaterialSchema19(BaseModel):
+class CrystalSchema16(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1531,7 +1534,10 @@ class VacuumSchema(BaseModel):
     """
     Number of repetitions of the unique atomic layers
     """
-    crystal: Optional[MaterialSchema19] = Field(None, title="material schema")
+    crystal: Optional[CrystalSchema16] = Field(None, title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
@@ -1890,7 +1896,7 @@ class MaterialConsistencyCheckSchema21(BaseModel):
     """
 
 
-class MaterialSchema20(BaseModel):
+class CrystalSchema17(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1967,7 +1973,7 @@ class VacuumSchema6(BaseModel):
 
 
 class AlternativeSlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[MaterialSchema17, VacuumSchema, MaterialSchema20, VacuumSchema6]] = Field(
+    stack_components: List[Union[CrystalSchema14, VacuumSchema, CrystalSchema17, VacuumSchema6]] = Field(
         ..., min_length=2
     )
     """

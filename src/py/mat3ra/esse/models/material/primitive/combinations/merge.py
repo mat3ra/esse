@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -555,7 +555,7 @@ class Method(Enum):
 
 
 class MergeSchema(BaseModel):
-    merge_components: Optional[List[Union[MaterialSchema, VacuumSchema]]] = None
+    merge_components: Optional[List[Union[CrystalSchema, VacuumSchema]]] = None
     method: Optional[Method] = None
     """
     Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)

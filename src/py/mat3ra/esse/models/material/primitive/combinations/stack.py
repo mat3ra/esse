@@ -473,7 +473,7 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
-class MaterialSchema(BaseModel):
+class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -548,7 +548,7 @@ class VacuumSchema(BaseModel):
 
 
 class StackSchema(BaseModel):
-    stack_components: List[Union[MaterialSchema, VacuumSchema]]
+    stack_components: List[Union[CrystalSchema, VacuumSchema]]
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types

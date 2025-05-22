@@ -6240,7 +6240,10 @@ export interface AtomSchema {
     chemical_element: "H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og";
 }
 /** Schema dist/js/schema/material/primitive/base/crystal.json */
-export interface MaterialSchema {
+/**
+ * A crystal structure, referencing the base material schema
+ */
+export interface CrystalSchema {
     /**
      * reduced chemical formula
      */
@@ -7945,7 +7948,10 @@ export interface MaterialSchema {
     metadata?: {};
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/three_dimensional/ideal_crystal.json */
-export interface MaterialSchema {
+/**
+ * An ideal crystal structure without any modifications
+ */
+export interface IdealCrystalSchema {
     /**
      * reduced chemical formula
      */
@@ -8206,6 +8212,9 @@ export interface MaterialSchema {
  * A repeated crystal structure defined by a transformation matrix
  */
 export interface SupercellSchema {
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal: {
         /**
          * reduced chemical formula
@@ -8473,6 +8482,9 @@ export interface SupercellSchema {
  * A crystal structure with non-uniform strain applied using a strain matrix
  */
 export interface NonUniformlyStrainedCrystalSchema {
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal: {
         /**
          * reduced chemical formula
@@ -8740,6 +8752,9 @@ export interface NonUniformlyStrainedCrystalSchema {
  * A crystal structure with uniform strain applied
  */
 export interface UniformlyStrainedCrystalSchema {
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal: {
         /**
          * reduced chemical formula
@@ -9033,6 +9048,9 @@ export interface AtomicLayersSchema {
             space_group_symmetry_label: string;
         }[]
     ];
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal?: {
         /**
          * reduced chemical formula
@@ -9329,6 +9347,9 @@ export interface AtomicLayersUniqueSchema {
             space_group_symmetry_label: string;
         }[]
     ];
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal?: {
         /**
          * reduced chemical formula
@@ -9615,6 +9636,9 @@ export interface AtomicLayersUniqueRepeatedSchema {
      * Number of repetitions of the unique atomic layers
      */
     number_of_repetitions: number;
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal?: {
         /**
          * reduced chemical formula
@@ -9884,6 +9908,9 @@ export interface AtomicLayersUniqueRepeatedSchema {
  * A set of all possible planes in a crystal defined by Miller indices
  */
 export interface CrystalLatticePlanesSchema {
+    /**
+     * A crystal structure, referencing the base material schema
+     */
     crystal?: {
         /**
          * reduced chemical formula
@@ -10448,6 +10475,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -10747,6 +10777,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -11565,6 +11598,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -11864,6 +11900,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -12682,6 +12721,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -12981,6 +13023,9 @@ export interface SlabSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -13816,6 +13861,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -14115,6 +14163,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -14933,6 +14984,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -15232,6 +15286,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -16050,6 +16107,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -16349,6 +16409,9 @@ export interface SlabUnitCellSchema {
                     space_group_symmetry_label: string;
                 }[]
             ];
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -17174,6 +17237,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -17463,6 +17529,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -18271,6 +18340,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -18560,6 +18632,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -19368,6 +19443,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
@@ -19657,6 +19735,9 @@ export interface AlternativeSlabUnitCellSchema {
              * Number of repetitions of the unique atomic layers
              */
             number_of_repetitions: number;
+            /**
+             * A crystal structure, referencing the base material schema
+             */
             crystal?: {
                 /**
                  * reduced chemical formula
