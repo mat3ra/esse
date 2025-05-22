@@ -6,22 +6,20 @@
     "allOf": [
         {
             "$ref": "../../../material/primitive/combinations/stack.json"
-        },
-        {
-            "properties": {
-                "stack_components": {
-                    "items": {
-                        "anyOf": [
-                            {
-                                "$ref": "./atomic_layers.json"
-                            },
-                            {
-                                "$ref": "../../../material/primitive/base/vacuum.json"
-                            }
-                        ]
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "./atomic_layers.json"
+                    },
+                    {
+                        "$ref": "../../../material/primitive/base/vacuum.json"
                     }
-                }
+                ]
             }
         }
-    ]
+    }
 }

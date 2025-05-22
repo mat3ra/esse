@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "termination": {
-            "$ref": "../../../../../material/reusable/slab/termination.json"
+            "$ref": "../../../../../material/primitive/base/termination.json"
         }
     }
 }

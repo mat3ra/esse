@@ -9,7 +9,7 @@
             "$ref": "../../materials_category/single_material/two_dimensional/slab/configuration.json"
         },
         "termination": {
-            "$ref": "slab/termination.json"
+            "$ref": "../primitive/base/termination.json"
         }
     },
     "required": [
