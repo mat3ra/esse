@@ -2,7 +2,7 @@
     "$id": "materials-category/pristine-structures/two-dimensional/slab-unit-cell",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Slab Unit Cell Schema",
-    "description": "A slab unit cell consisting of atomic layers",
+    "description": "A slab unit cell consisting of atomic layers and vacuum",
     "allOf": [
         {
             "$ref": "../../../material/primitive/combinations/stack.json"
@@ -11,11 +11,7 @@
     "properties": {
         "stack_components": {
             "items": {
-                "anyOf": [
-                    {
-                        "$ref": "./atomic_layers.json"
-                    }
-                ]
+                "$ref": "../../../material/primitive/combinations/stack_component.json"
             }
         }
     }
