@@ -11,6 +11,16 @@
         "miller_indices": {
             "$ref": "../../../material/reusable/slab/miller_indices.json",
             "description": "Miller indices defining the crystal plane"
+        },
+        "use_conventional_cell": {
+            "type": "boolean",
+            "description": "Use the conventional cell for the crystal structure",
+            "default": true
         }
-    }
+    },
+    "required": [
+        "crystal",
+        "miller_indices",
+        "use_conventional_cell"
+    ]
 }

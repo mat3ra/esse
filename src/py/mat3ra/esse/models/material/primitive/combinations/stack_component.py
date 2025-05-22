@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value45(Enum):
+class Value55(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value45]
+    value: Union[Value, Value55]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name182(Enum):
+class Name222(Enum):
     density = "density"
 
 
-class Units90(Enum):
+class Units105(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units90] = None
+    units: Optional[Units105] = None
     value: float
 
 
-class Units91(Enum):
+class Units106(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units91] = None
+    units: Optional[Units106] = None
     value: float
 
 
-class Name183(Enum):
+class Name223(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name184(Enum):
+class Name224(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name185(Enum):
+class Name225(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name186(Enum):
+class Name226(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name187(Enum):
+class Name227(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name188(Enum):
+class Name228(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name188
+    name: Name228
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -544,6 +544,10 @@ class VacuumSchema(BaseModel):
     size: Optional[confloat(ge=0.0)] = 10
     """
     Size of the vacuum gap in angstroms
+    """
+    is_orthogonal: Optional[bool] = True
+    """
+    Whether the vacuum slab is orthogonal to the specified direction
     """
 
 

@@ -21,9 +21,12 @@
                         "type": "object",
                         "required": [
                             "basis",
+                            "crystal",
                             "lattice",
+                            "miller_indices",
                             "number_of_repetitions",
-                            "termination_top"
+                            "termination_top",
+                            "use_conventional_cell"
                         ],
                         "properties": {
                             "formula": {
@@ -1696,6 +1699,11 @@
                                 "items": {
                                     "type": "integer"
                                 }
+                            },
+                            "use_conventional_cell": {
+                                "type": "boolean",
+                                "description": "Use the conventional cell for the crystal structure",
+                                "default": true
                             }
                         }
                     },
@@ -1705,10 +1713,14 @@
                         "description": "A structural property that defines a gap in the material along a specified direction",
                         "type": "object",
                         "required": [
+                            "crystal",
                             "direction",
+                            "is_orthogonal",
+                            "miller_indices",
                             "number_of_repetitions",
                             "size",
-                            "termination_top"
+                            "termination_top",
+                            "use_conventional_cell"
                         ],
                         "properties": {
                             "direction": {
@@ -1727,6 +1739,11 @@
                                 "description": "Size of the vacuum gap in angstroms",
                                 "minimum": 0,
                                 "default": 10
+                            },
+                            "is_orthogonal": {
+                                "type": "boolean",
+                                "description": "Whether the vacuum slab is orthogonal to the specified direction",
+                                "default": true
                             },
                             "termination_top": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2654,6 +2671,11 @@
                                 "items": {
                                     "type": "integer"
                                 }
+                            },
+                            "use_conventional_cell": {
+                                "type": "boolean",
+                                "description": "Use the conventional cell for the crystal structure",
+                                "default": true
                             }
                         }
                     }

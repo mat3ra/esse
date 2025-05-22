@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value27(Enum):
+class Value25(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value27]
+    value: Union[Value, Value25]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name109(Enum):
+class Name101(Enum):
     density = "density"
 
 
-class Units60(Enum):
+class Units57(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units60] = None
+    units: Optional[Units57] = None
     value: float
 
 
-class Units61(Enum):
+class Units58(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units61] = None
+    units: Optional[Units58] = None
     value: float
 
 
-class Name110(Enum):
+class Name102(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name111(Enum):
+class Name103(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name112(Enum):
+class Name104(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name113(Enum):
+class Name105(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name114(Enum):
+class Name106(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name115(Enum):
+class Name107(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name115
+    name: Name107
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -545,17 +545,42 @@ class VacuumSchema(BaseModel):
     """
     Size of the vacuum gap in angstroms
     """
+    is_orthogonal: Optional[bool] = True
+    """
+    Whether the vacuum slab is orthogonal to the specified direction
+    """
+
+
+class CoordinateShapeEnum(Enum):
+    cylinder = "cylinder"
+    sphere = "sphere"
+    box = "box"
+    triangular_prism = "triangular_prism"
+    plane = "plane"
+
+
+class BoxCoordinateConditionSchema(BaseModel):
+    shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
+    min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+
+
+class VoidSchema(BaseModel):
+    center_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    shape: BoxCoordinateConditionSchema = Field(..., title="Coordinate Conditions Schema")
+    """
+    Combined schema for all coordinate condition types
+    """
 
 
 class Method(Enum):
     add = "add"
-    subtract = "subtract"
     replace = "replace"
     yield_ = "yield"
 
 
 class MergeSchema(BaseModel):
-    merge_components: Optional[List[Union[CrystalSchema, VacuumSchema]]] = None
+    merge_components: Optional[List[Union[CrystalSchema, VacuumSchema, VoidSchema]]] = None
     method: Optional[Method] = None
     """
     Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)

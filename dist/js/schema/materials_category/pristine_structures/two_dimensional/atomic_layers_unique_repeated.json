@@ -5,8 +5,11 @@
     "description": "A set of unique atomic layers defined by a plane in a crystal structure, repeated integer number of times",
     "type": "object",
     "required": [
+        "crystal",
+        "miller_indices",
+        "number_of_repetitions",
         "termination_top",
-        "number_of_repetitions"
+        "use_conventional_cell"
     ],
     "properties": {
         "termination_top": {
@@ -935,6 +938,11 @@
             "items": {
                 "type": "integer"
             }
+        },
+        "use_conventional_cell": {
+            "type": "boolean",
+            "description": "Use the conventional cell for the crystal structure",
+            "default": true
         }
     }
 }

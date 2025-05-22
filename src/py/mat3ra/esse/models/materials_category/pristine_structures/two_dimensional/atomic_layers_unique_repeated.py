@@ -673,11 +673,15 @@ class AtomicLayersUniqueRepeatedSchema(BaseModel):
     """
     Number of repetitions of the unique atomic layers
     """
-    crystal: Optional[CrystalSchema] = Field(None, title="Crystal Schema")
+    crystal: CrystalSchema = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema
     """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices for crystallographic plane designation
+    """
+    use_conventional_cell: Optional[bool] = True
+    """
+    Use the conventional cell for the crystal structure
     """

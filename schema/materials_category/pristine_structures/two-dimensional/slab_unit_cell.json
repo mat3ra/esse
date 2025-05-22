@@ -11,7 +11,14 @@
     "properties": {
         "stack_components": {
             "items": {
-                "$ref": "../../../material/primitive/combinations/stack_component.json"
+                "anyOf": [
+                    {
+                        "$ref": "./atomic_layers.json"
+                    },
+                    {
+                        "$ref": "../../../material/primitive/base/vacuum.json"
+                    }
+                ]
             }
         }
     }
