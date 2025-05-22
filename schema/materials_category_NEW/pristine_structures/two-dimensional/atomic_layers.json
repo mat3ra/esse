@@ -2,16 +2,24 @@
     "$id": "materials-category/pristine-structures/two-dimensional/atomic-layers",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Atomic Layers Schema",
-    "description": "A set of atomic layers defined by a plane in a crystal structure, in order and amount specified by terminations",
+    "description": "A set of atomic layers defined by a plane in a crystal structure with specific terminations",
     "type": "object",
     "allOf": [
         {
-            "$ref": "./atomic_layers_unique.json"
+            "$ref": "crystal_lattice_planes.json"
         }
     ],
     "properties": {
         "terminations": {
-            "description": "List of terminations that defined the order and amount of atomic layers"
+            "type": "array",
+            "items": {
+                "$ref": "../../../material/reusable/slab/termination.json"
+            },
+            "minItems": 1,
+            "description": "List of terminations for the atomic layers in order."
         }
-    }
+    },
+    "required": [
+        "terminations"
+    ]
 }

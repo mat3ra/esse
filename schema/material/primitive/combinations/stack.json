@@ -11,7 +11,12 @@
             }
         },
         "direction": {
-            "$ref": "../../../core/primitive/axis_3d_names_enum.json"
+            "$ref": "../../../core/primitive/axis_3d_names_enum.json",
+            "default": "z"
         }
-    }
+    },
+    "required": [
+        "stack_components",
+        "direction"
+    ]
 }

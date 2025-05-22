@@ -23,15 +23,6 @@
             },
             "minItems": 2,
             "description": "Components of the slab unit cell: atomic layers and vacuum"
-        },
-        "direction": {
-            "type": "string",
-            "enum": ["z"],
-            "description": "Direction of stacking, must be z for slab unit cell"
         }
-    },
-    "required": [
-        "stack_components",
-        "direction"
-    ]
+    }
 } 

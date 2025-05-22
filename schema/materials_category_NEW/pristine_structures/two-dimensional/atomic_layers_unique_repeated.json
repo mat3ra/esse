@@ -6,18 +6,22 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "./crystal_lattice_planes.json"
+            "$ref": "crystal_lattice_planes.json"
         }
     ],
     "properties": {
         "termination_top": {
-            "description": "Termination of the top layer, facing the vacuum",
-            "$ref": "../../../material/reusable/slab/termination.json"
+            "$ref": "../../../material/reusable/slab/termination.json",
+            "description": "Termination of the top layer, facing the vacuum"
         },
         "number_of_repetitions": {
-            "description": "Number of repetitions of the unique atomic layers",
             "type": "integer",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Number of repetitions of the unique atomic layers"
         }
-    }
+    },
+    "required": [
+        "termination_top",
+        "number_of_repetitions"
+    ]
 }
