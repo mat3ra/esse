@@ -6,23 +6,22 @@
     "allOf": [
         {
             "$ref": "../../../material/primitive/combinations/stack.json"
-        }
-    ],
-    "properties": {
-        "stack_components": {
-            "type": "array",
-            "items": {
-                "anyOf": [
-                    {
-                        "$ref": "./atomic_layers.json"
-                    },
-                    {
-                        "$ref": "../../../material/primitive/base/vacuum.json"
+        },
+        {
+            "properties": {
+                "stack_components": {
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "./atomic_layers.json"
+                            },
+                            {
+                                "$ref": "../../../material/primitive/base/vacuum.json"
+                            }
+                        ]
                     }
-                ]
-            },
-            "minItems": 2,
-            "description": "Components of the slab unit cell: atomic layers and vacuum"
+                }
+            }
         }
-    }
-} 
+    ]
+}
