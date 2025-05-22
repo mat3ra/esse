@@ -27,6 +27,7 @@
     },
     "required": [
         "direction",
-        "size"
+        "size",
+        "is_orthogonal"
     ]
 }
