@@ -27,6 +27,34 @@ material:
         # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
         - center_coordinate
         - shape
+    layers:
+      termination:
+        - chemical_elements
+        - space_group
+      crystal_lattice_planes:
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+      atomic_layers_unique:
+        # Generated from the crystal_lattice_planes, together would form a full periodic structure
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - terminations = [ termination, ... ] # all possible terminations for that orientation
+      atomic_layers_unique_repeated:
+        # atomic_layers_unique with an integer number of repetitions, form a full periodic structure with top layer specified by the termination
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - termination_top = termination
+        - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
+      atomic_layers:
+        # Created from atomic_layers_unique in any order defined by terminations
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
+      atomic_layer:
+        # Created from atomic_layers_unique with a single termination
+        - crystal = material
+        - miller_indices = [ h, k, l ]
+        - termination = termination
 
     modifications:
       strain:
@@ -68,26 +96,6 @@ material_categories:
           - strain_matrix
 
     two-dimensional:
-      crystal_lattice_planes:
-        - crystal = material
-        - miller_indices = [ h, k, l ]
-      atomic_layers_unique:
-        - crystal = material
-        - miller_indices = [ h, k, l ]
-        - terminations = [ termination, ... ] # all possible terminations for that orientation
-      atomic_layers_unique_repeated:
-        - crystal = material
-        - miller_indices = [ h, k, l ]
-        - termination_top = termination
-        - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
-      atomic_layers:
-        - crystal = material
-        - miller_indices = [ h, k, l ]
-        - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
-      atomic_layer:
-        - crystal = material
-        - miller_indices = [ h, k, l ]
-        - termination = termination
       monolayer:
         - stack_components = [ (atomic_layer | atomic_layers), vacuum ]
         - direction = "z"
