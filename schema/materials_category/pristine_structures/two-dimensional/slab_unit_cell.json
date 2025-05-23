@@ -14,9 +14,6 @@
                 "anyOf": [
                     {
                         "$ref": "./atomic_layers.json"
-                    },
-                    {
-                        "$ref": "../../../material/primitive/base/vacuum.json"
                     }
                 ]
             }
