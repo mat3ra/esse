@@ -22,6 +22,7 @@ material:
         # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
         - direction
         - size
+        - is_direction_orthogonal = bool
       void:
         # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
         - center_coordinate
@@ -33,6 +34,7 @@ material:
       crystal_lattice_planes:
         - crystal = material
         - miller_indices = [ h, k, l ]
+        - use_conventional_cell = bool # if true, the conventional cell is used to generate the planes
       atomic_layers_unique:
         # Generated from the crystal_lattice_planes, together would form a full periodic structure
         - crystal = material
@@ -76,7 +78,7 @@ material:
         - direction = (x | y | z){1}
       merge:
         - merge_structures = [ material ]
-        - method = ("adding" | "replacing" | "yielding" | "smart"){1}
+        - method = ("add" | "replace" | "yield" | "smart"){1}
 
 material_categories:
   pristine_structures:
@@ -212,11 +214,11 @@ material_categories:
             - is_symmetric = bool
             - is_periodic = bool
           grain_boundary_planar:
-            - stack_components = [ slab, vacuum, slab, vacuum ]
+            - stack_components = [ slab, slab ]
             - direction = (x | y | z){1}
           grain_boundary_planar_with_vacuum:
             # inherits grain_boundary_planar and slab
-            - stack_components = [ slab, vacuum, slab, vacuum ]
+            - stack_components = [ slab, slab, vacuum ]
             - direction = "z"
             - number_of_layers
             - terminations = [ termination, termination ]
@@ -230,9 +232,9 @@ material_categories:
         defects:
           grain_boundary_line:
             # A GB between two slabs or monolayers, vacuum in z should be already present
-            - stack_components = [ nanoribbon, nanoribbon ]
+            - stack_components = [ (slab | monolayer), (slab | monolayer) ]
             - direction = (x | y | z){1}
-            - angle = float # angle between the two nanoribbons
+            - angle = float # angle between the two phases
       merged:
         passivated_edge_1D:
           # Passivation of a nanotape
