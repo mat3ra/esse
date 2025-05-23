@@ -14,7 +14,6 @@ material:
       crystal: material
       crystal_site:
         # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
-        - host
         - coordinate
         - id? # site id in the host crystal
       atom:
@@ -226,3 +225,28 @@ material_categories:
               # we should configure the condition for exposed atoms and then the bond vector for passivation
               - merged_structures = [ slab, crystal_site(atom|particle) ]
               - bond_length = float # can be a map of bond lengths for different elements
+    one-dimensional:
+      stacked:
+        defects:
+          grain_boundary_line:
+            # A GB between two slabs or monolayers, vacuum in z should be already present
+            - stack_components = [ nanoribbon, nanoribbon ]
+            - direction = (x | y | z){1}
+            - angle = float # angle between the two nanoribbons
+      merged:
+        passivated_edge_1D:
+          # Passivation of a nanotape
+          - merged_structures = [ nanoparticle, crystal_site(atom|particle) ]
+          - bond_length = float
+    zero-dimensional:
+      merged:
+        defects:
+          vacancy: Merge (Crystal + Vacancy)
+          substitution: Merge (Vacancy + Atom)
+          interstitial: Merge (Crystal + Atom)
+          defect_pair: Merge (Crystal + Point Defect + Point Defect)
+        passivated_edge_0D:
+          # Passivation of a particle or a nanoribbon
+          - merged_structures = [ nanoparticle, crystal_site(atom|particle) ]
+          - bond_length = float
+
