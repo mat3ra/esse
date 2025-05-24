@@ -10,53 +10,71 @@
 
 material:
   primitive:
-    base:
-      crystal: material
+    three-dimensional:
+      crystal:
+      void:
+        # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
+        - center_coordinate
+        - shape
+    two-dimensional:
+      vacuum:
+        # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
+        - direction
+        - size
+        - is_direction_orthogonal = bool
+      termination:
+        - stoichiometry
+        - symmetry
+      miller_indices: [ h, k, l ]
+    one-dimensional:
+    zero-dimensional:
       crystal_site:
         # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
         - coordinate
         - id? # site id in the host crystal
       atom:
         - chemical_element
-      vacuum:
-        # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
-        - direction
-        - size
-        - is_direction_orthogonal = bool
-      void:
-        # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
-        - center_coordinate
-        - shape
-    layers:
-      termination:
-        - stoichiometry
-        - symmetry
+
+
+  reusable:
+    three-dimensional:
+      supercell:
+        # created from a crystal, can be used to create a supercell of any size
+        - crystal = material
+        - matrix = integer_matrix # matrix of integers, defines the size of the supercell
+    two-dimensional:
       crystal_lattice_planes:
         - crystal = material
-        - miller_indices = [ h, k, l ]
+        - miller_indices = ref:/primitive/two-dimensional/miller_indices
         - use_conventional_cell = bool # if true, the conventional cell is used to generate the planes
       atomic_layers_unique:
         # Generated from the crystal_lattice_planes, together would form a full periodic structure
         - crystal = material
-        - miller_indices = [ h, k, l ]
+        - miller_indices = ref:/primitive/two-dimensional/miller_indices
         - terminations = [ termination, ... ] # all possible terminations for that orientation
       atomic_layers_unique_repeated:
         # atomic_layers_unique with an integer number of repetitions, form a full periodic structure with top layer specified by the termination
         - crystal = material
-        - miller_indices = [ h, k, l ]
+        - miller_indices = ref:/primitive/two-dimensional/miller_indices
         - termination_top = termination
         - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
       atomic_layers:
         # Created from atomic_layers_unique in any order defined by terminations
         - crystal = material
-        - miller_indices = [ h, k, l ]
+        - miller_indices = ref:/primitive/two-dimensional/miller_indices
         - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
       atomic_layer:
         # Created from atomic_layers_unique with a single termination
         - crystal = material
-        - miller_indices = [ h, k, l ]
+        - miller_indices = ref:/primitive/two-dimensional/miller_indices
         - termination = termination
-    ribbons:
+      slab_unit_cell:
+        - stack_components = [ atomic_layers, vacuum ]
+        - direction = "z"
+      slab_unit_cell_alt:
+        - stack_components = [ atomic_layers_unique_repeated, vacuum ]
+        - direction = "z"
+    one-dimensional:
       ribbon_section:
         - monolayer = ref:/.../monolayer
         - edge_direction = [ u, v ] # 2D MI, works for ANY 2‑D lattice (unlike zigzag and armchair)
@@ -66,12 +84,11 @@ material:
         - edge_type = ("zigzag" | "armchair"){1}
         - width = int | float # number of unit cells, can be in 0.5 increments
         - length = int | float # number of unit cells
-    wires:
       wire_section:
         # we created a supercell, cut the shape
         - shape = function(x, y, z) # in angstroms, supercell inferred to fit
         - orientation = [h, k, l]
-    nanoparticles:
+    zero-dimensional:
       nanoparticle:
         # we created a supercell, cut the shape and added vacuum on all sides
         - supercell = ref:/.../supercell
@@ -97,6 +114,7 @@ material:
       stack:
         - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
         - direction = (x | y | z){1}
+      merge_component: ( material | vacuum | crystal_site )
       merge:
         - merge_structures = [ material ]
         - method = ("add" | "replace" | "yield" | "smart"){1}
@@ -105,10 +123,6 @@ material_categories:
   pristine_structures:
     three-dimensional:
       ideal_crystal: ref:/primitive/base/crystal
-      repeated:
-        supercell:
-          - crystal = ref:/primitive/base/crystal
-          - matrix
       strained:
         strained_uniform:
           - crystal = ref:/primitive/base/crystal
@@ -120,12 +134,6 @@ material_categories:
     two-dimensional:
       monolayer:
         - stack_components = [ (atomic_layer | atomic_layers), vacuum ]
-        - direction = "z"
-      slab_unit_cell:
-        - stack_components = [ atomic_layers, vacuum ]
-        - direction = "z"
-      slab_unit_cell_alt:
-        - stack_components = [ atomic_layers_unique_repeated, vacuum ]
         - direction = "z"
       slab:
         - stack_components = [ atomic_layers, vacuum ]
