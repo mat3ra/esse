@@ -16,6 +16,6 @@
         "...": "include(../../../single_material/two_dimensional/slab/configuration.json)"
     },
     "termination": {
-        "...": "include(../../../../material/reusable/slab/termination.json)"
+        "...": "include(../../../../material/primitive/base/termination.json)"
     }
 }

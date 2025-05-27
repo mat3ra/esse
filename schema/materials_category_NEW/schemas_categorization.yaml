@@ -122,6 +122,7 @@ material_categories:
   pristine_structures:
     three-dimensional:
       ideal_crystal: ref:/primitive/base/crystal
+      supercell?:
       strained:
         strained_uniform:
           - crystal = ref:/primitive/base/crystal

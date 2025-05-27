@@ -13,7 +13,7 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "./atomic_layers.json"
+                        "$ref": "../../../material/reusable/two-dimensional/atomic_layers.json"
                     },
                     {
                         "$ref": "../../../material/primitive/base/vacuum.json"

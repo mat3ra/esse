@@ -5,7 +5,7 @@
     "description": "A slab structure that can optionally include a supercell transformation in the xy plane",
     "allOf": [
         {
-            "$ref": "slab_unit_cell.json"
+            "$ref": "../../../material/reusable/two-dimensional/slab_unit_cell.json"
         }
     ],
     "properties": {
