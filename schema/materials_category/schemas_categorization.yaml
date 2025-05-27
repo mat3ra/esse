@@ -21,7 +21,6 @@ material:
         # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
         - direction
         - size
-        - is_direction_orthogonal = bool
       termination:
         - stoichiometry
         - symmetry
