@@ -6238,51 +6238,6 @@ export interface MaterialConsistencyCheckSchema {
 export interface MaterialConventionalSchema {
     conventional?: {};
 }
-/** Schema dist/js/schema/material/primitive/base/atom.json */
-/**
- * A chemical element that can be placed at a crystal site
- */
-export interface AtomSchema {
-    chemical_element: "H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og";
-}
-/** Schema dist/js/schema/material/primitive/base/crystal_site.json */
-/**
- * A site in a crystal that can be populated with an atom, vacancy, or void. Should be place in a target basis.
- */
-export interface CrystalSiteSchema {
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    coordinate: [number, number, number];
-}
-/** Schema dist/js/schema/material/primitive/base/void.json */
-/**
- * A void that can be placed into a crystal, removing all atoms inside
- */
-export interface VoidSchema {
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    center_coordinate: [number, number, number];
-    /**
-     * Combined schema for all coordinate condition types
-     */
-    shape: {
-        shape: "box";
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        min_coordinate: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        max_coordinate: [number, number, number];
-    };
-}
 /** Schema dist/js/schema/material/primitive/combinations/merge.json */
 /**
  * A component of a stack, which can be a crystal or a vacuum
@@ -7402,6 +7357,33 @@ export interface CrystalSchema {
     isDefault?: boolean;
     metadata?: {};
 }
+/** Schema dist/js/schema/material/primitive/three_dimensional/void.json */
+/**
+ * A void that can be placed into a crystal, removing all atoms inside
+ */
+export interface VoidSchema {
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    center_coordinate: [number, number, number];
+    /**
+     * Combined schema for all coordinate condition types
+     */
+    shape: {
+        shape: "box";
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        min_coordinate: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        max_coordinate: [number, number, number];
+    };
+}
 /** Schema dist/js/schema/material/primitive/two_dimensional/miller_indices.json */
 /**
  * Miller indices [h, k, l] defining crystallographic planes
@@ -7437,6 +7419,24 @@ export interface VacuumSchema {
      * Size of the vacuum slab in angstroms
      */
     size: number;
+}
+/** Schema dist/js/schema/material/primitive/zero_dimensional/atom.json */
+/**
+ * A chemical element that can be placed at a crystal site
+ */
+export interface AtomSchema {
+    chemical_element: "H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og";
+}
+/** Schema dist/js/schema/material/primitive/zero_dimensional/crystal_site.json */
+/**
+ * A site in a crystal that can be populated with an atom, vacancy, or void. Should be place in a target basis.
+ */
+export interface CrystalSiteSchema {
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    coordinate: [number, number, number];
 }
 /** Schema dist/js/schema/material/reusable/repetitions.json */
 /**
