@@ -2,7 +2,7 @@
     "$id": "materials-category/pristine-structures/three-dimensional/ideal-crystal",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Ideal Crystal Schema",
-    "description": "An ideal crystal structure without any modifications",
+    "description": "An ideal, perfect crystal structure",
     "allOf": [
         {
             "$ref": "../../../material/primitive/three-dimensional/crystal.json"

@@ -6,10 +6,10 @@
     "type": "object",
     "properties": {
         "crystal": {
-            "$ref": "../../../material/primitive/base/crystal.json"
+            "$ref": "../../../material/primitive/three-dimensional/crystal.json"
         },
         "miller_indices": {
-            "$ref": "../../../material/reusable/slab/miller_indices.json",
+            "$ref": "../../../material/primitive/two-dimensional/miller_indices.json",
             "description": "Miller indices defining the crystal plane"
         },
         "use_conventional_cell": {

@@ -16,7 +16,7 @@
                         "$ref": "../../../material/reusable/two-dimensional/atomic_layers.json"
                     },
                     {
-                        "$ref": "../../../material/primitive/base/vacuum.json"
+                        "$ref": "../../../material/primitive/two-dimensional/vacuum.json"
                     }
                 ]
             }
