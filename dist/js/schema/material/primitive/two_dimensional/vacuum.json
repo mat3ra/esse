@@ -6,8 +6,7 @@
     "type": "object",
     "required": [
         "direction",
-        "size",
-        "is_orthogonal"
+        "size"
     ],
     "properties": {
         "direction": {
@@ -27,11 +26,6 @@
             "description": "Size of the vacuum slab in angstroms",
             "minimum": 0,
             "default": 10
-        },
-        "is_orthogonal": {
-            "type": "boolean",
-            "description": "Whether the vacuum slab is orthogonal to the specified direction",
-            "default": true
         }
     }
 }

@@ -25,7 +25,3 @@ class VacuumSchema(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
-    """
-    Whether the vacuum slab is orthogonal to the specified direction
-    """

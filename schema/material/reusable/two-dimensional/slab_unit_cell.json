@@ -11,7 +11,7 @@
     "properties": {
         "stack_components": {
             "items": {
-                "anyOf": [
+                "oneOf": [
                     {
                         "$ref": "../../../material/reusable/two-dimensional/atomic_layers.json"
                     },

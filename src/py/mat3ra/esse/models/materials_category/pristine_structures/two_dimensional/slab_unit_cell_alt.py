@@ -1016,7 +1016,7 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class CrystalSchema14(BaseModel):
+class CrystalSchema10(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1464,7 +1464,7 @@ class MaterialConsistencyCheckSchema19(BaseModel):
     """
 
 
-class CrystalSchema16(BaseModel):
+class CrystalSchema12(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1530,10 +1530,6 @@ class VacuumSchema(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
-    """
-    Whether the vacuum slab is orthogonal to the specified direction
-    """
     termination_top: TerminationSchema8 = Field(..., title="Termination Schema")
     """
     Defines a specific termination of a slab
@@ -1542,7 +1538,7 @@ class VacuumSchema(BaseModel):
     """
     Number of repetitions of the unique atomic layers
     """
-    crystal: CrystalSchema16 = Field(..., title="Crystal Schema")
+    crystal: CrystalSchema12 = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema
     """
@@ -1908,7 +1904,7 @@ class MaterialConsistencyCheckSchema20(BaseModel):
     """
 
 
-class CrystalSchema17(BaseModel):
+class CrystalSchema13(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1971,10 +1967,6 @@ class CrystalSchema17(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
-    """
-    Whether the vacuum slab is orthogonal to the specified direction
-    """
 
 
 class VacuumSchema6(BaseModel):
@@ -1986,14 +1978,10 @@ class VacuumSchema6(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
-    """
-    Whether the vacuum slab is orthogonal to the specified direction
-    """
 
 
 class AlternativeSlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[CrystalSchema14, VacuumSchema, CrystalSchema17, VacuumSchema6]] = Field(
+    stack_components: List[Union[CrystalSchema10, VacuumSchema, CrystalSchema13, VacuumSchema6]] = Field(
         ..., min_length=2
     )
     """

@@ -1016,7 +1016,7 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class CrystalSchema10(BaseModel):
+class AtomicLayersSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1086,25 +1086,6 @@ class CrystalSchema10(BaseModel):
     use_conventional_cell: Optional[bool] = True
     """
     Use the conventional cell for the crystal structure
-    """
-
-
-class AxisEnum(Enum):
-    x = "x"
-    y = "y"
-    z = "z"
-
-
-class TerminationSchema6(BaseModel):
-    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
-        ..., title="Chemical Elements"
-    )
-    """
-    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
-    """
-    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
-    """
-    Space group symmetry designation for the termination
     """
 
 
@@ -1460,7 +1441,13 @@ class MaterialConsistencyCheckSchema15(BaseModel):
     """
 
 
-class CrystalSchema12(BaseModel):
+class AxisEnum(Enum):
+    x = "x"
+    y = "y"
+    z = "z"
+
+
+class VacuumSchema(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1515,9 +1502,6 @@ class CrystalSchema12(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
-
-
-class VacuumSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -1526,25 +1510,18 @@ class VacuumSchema(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
+
+
+class TerminationSchema6(BaseModel):
+    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
+        ..., title="Chemical Elements"
+    )
     """
-    Whether the vacuum slab is orthogonal to the specified direction
+    Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
     """
-    terminations: List[TerminationSchema6] = Field(..., min_length=1)
+    space_group_symmetry_label: str = Field(..., title="Space Group Symmetry Label")
     """
-    List of terminations for the atomic layers in order.
-    """
-    crystal: CrystalSchema12 = Field(..., title="Crystal Schema")
-    """
-    A crystal structure, referencing the base material schema
-    """
-    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
-    """
-    Miller indices [h, k, l] defining crystallographic planes
-    """
-    use_conventional_cell: Optional[bool] = True
-    """
-    Use the conventional cell for the crystal structure
+    Space group symmetry designation for the termination
     """
 
 
@@ -1900,7 +1877,7 @@ class MaterialConsistencyCheckSchema16(BaseModel):
     """
 
 
-class CrystalSchema13(BaseModel):
+class CrystalSchema9(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -1955,6 +1932,9 @@ class CrystalSchema13(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+
+
+class AtomicLayersSchema4(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -1963,14 +1943,35 @@ class CrystalSchema13(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
+    terminations: List[TerminationSchema6] = Field(..., min_length=1)
     """
-    Whether the vacuum slab is orthogonal to the specified direction
+    List of terminations for the atomic layers in order.
     """
+    crystal: CrystalSchema9 = Field(..., title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
+    """
+    miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
+    """
+    Miller indices [h, k, l] defining crystallographic planes
+    """
+    use_conventional_cell: Optional[bool] = True
+    """
+    Use the conventional cell for the crystal structure
+    """
+
+
+class AxisEnum8(Enum):
+    x = "x"
+    y = "y"
+    z = "z"
+    x_1 = "x"
+    y_1 = "y"
+    z_1 = "z"
 
 
 class VacuumSchema4(BaseModel):
-    direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
+    direction: Optional[AxisEnum8] = Field("z", title="Axis Enum")
     """
     Enum for axis types
     """
@@ -1978,15 +1979,17 @@ class VacuumSchema4(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    is_orthogonal: Optional[bool] = True
-    """
-    Whether the vacuum slab is orthogonal to the specified direction
-    """
+
+
+class AxisEnum9(Enum):
+    x = "x"
+    y = "y"
+    z = "z"
 
 
 class SlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[CrystalSchema10, VacuumSchema, CrystalSchema13, VacuumSchema4]]
-    direction: AxisEnum = Field(..., title="Axis Enum")
+    stack_components: List[Union[Union[AtomicLayersSchema, VacuumSchema], Union[AtomicLayersSchema4, VacuumSchema4]]]
+    direction: AxisEnum9 = Field(..., title="Axis Enum")
     """
     Enum for axis types
     """
