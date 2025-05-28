@@ -6256,38 +6256,6 @@ export interface CrystalSiteSchema {
      */
     coordinate: [number, number, number];
 }
-/** Schema dist/js/schema/material/primitive/base/termination.json */
-/**
- * Defines a specific termination of a slab
- */
-export interface TerminationSchema {
-    /**
-     * Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
-     */
-    chemical_elements: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | string) & string;
-    /**
-     * Space group symmetry designation for the termination
-     */
-    space_group_symmetry_label: string;
-}
-/** Schema dist/js/schema/material/primitive/base/vacuum.json */
-/**
- * A vacuum slab that breaks periodicity in a specified direction
- */
-export interface VacuumSchema {
-    /**
-     * Enum for axis types
-     */
-    direction: "x" | "y" | "z";
-    /**
-     * Size of the vacuum slab in angstroms
-     */
-    size: number;
-    /**
-     * Whether the vacuum slab is orthogonal to the specified direction
-     */
-    is_orthogonal: boolean;
-}
 /** Schema dist/js/schema/material/primitive/base/void.json */
 /**
  * A void that can be placed into a crystal, removing all atoms inside
@@ -7454,6 +7422,38 @@ export interface CrystalSchema {
  * @maxItems 3
  */
 export type MillerIndicesSchema = [number, number, number];
+/** Schema dist/js/schema/material/primitive/two_dimensional/termination.json */
+/**
+ * Defines a specific termination of a slab
+ */
+export interface TerminationSchema {
+    /**
+     * Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')
+     */
+    chemical_elements: (("H" | "He" | "Li" | "Be" | "B" | "C" | "N" | "O" | "F" | "Ne" | "Na" | "Mg" | "Al" | "Si" | "P" | "S" | "Cl" | "Ar" | "K" | "Ca" | "Sc" | "Ti" | "V" | "Cr" | "Mn" | "Fe" | "Co" | "Ni" | "Cu" | "Zn" | "Ga" | "Ge" | "As" | "Se" | "Br" | "Kr" | "Rb" | "Sr" | "Y" | "Zr" | "Nb" | "Mo" | "Tc" | "Ru" | "Rh" | "Pd" | "Ag" | "Cd" | "In" | "Sn" | "Sb" | "Te" | "I" | "Xe" | "Cs" | "Ba" | "La" | "Ce" | "Pr" | "Nd" | "Pm" | "Sm" | "Eu" | "Gd" | "Tb" | "Dy" | "Ho" | "Er" | "Tm" | "Yb" | "Lu" | "Hf" | "Ta" | "W" | "Re" | "Os" | "Ir" | "Pt" | "Au" | "Hg" | "Tl" | "Pb" | "Bi" | "Po" | "At" | "Rn" | "Fr" | "Ra" | "Ac" | "Th" | "Pa" | "U" | "Np" | "Pu" | "Am" | "Cm" | "Bk" | "Cf" | "Es" | "Fm" | "Md" | "No" | "Lr" | "Rf" | "Db" | "Sg" | "Bh" | "Hs" | "Mt" | "Ds" | "Rg" | "Cn" | "Nh" | "Fl" | "Mc" | "Lv" | "Ts" | "Og") | string) & string;
+    /**
+     * Space group symmetry designation for the termination
+     */
+    space_group_symmetry_label: string;
+}
+/** Schema dist/js/schema/material/primitive/two_dimensional/vacuum.json */
+/**
+ * A vacuum slab that breaks periodicity in a specified direction
+ */
+export interface VacuumSchema {
+    /**
+     * Enum for axis types
+     */
+    direction: "x" | "y" | "z";
+    /**
+     * Size of the vacuum slab in angstroms
+     */
+    size: number;
+    /**
+     * Whether the vacuum slab is orthogonal to the specified direction
+     */
+    is_orthogonal: boolean;
+}
 /** Schema dist/js/schema/material/reusable/repetitions.json */
 /**
  * Number of unit cells to repeat in each direction for a crystal structure.
