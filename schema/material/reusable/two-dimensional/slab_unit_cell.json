@@ -2,42 +2,27 @@
     "$id": "material/reusable/two-dimensional/slab-unit-cell",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Slab Unit Cell Schema",
-    "description": "A slab unit cell consisting of atomic layers and vacuum",
+    "description": "A slab unit cell consisting of repeated unique atomic layers and vacuum",
     "allOf": [
         {
-            "type": "object",
-            "properties": {
-                "direction": {
-                    "$ref": "../../../core/primitive/axis_3d_names_enum.json",
-                    "default": "z"
-                }
-            },
-            "required": [
-                "direction"
-            ]
-        },
-        {
-            "type": "object",
-            "properties": {
-                "stack_components": {
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "$ref": "../../../material/reusable/two-dimensional/atomic_layers.json"
-                            },
-                            {
-                                "$ref": "../../../material/primitive/two-dimensional/vacuum.json"
-                            }
-                        ]
-                    },
-                    "minItems": 2,
-                    "description": "Components of the slab unit cell: atomic layers and vacuum"
-                }
-            },
-            "required": [
-                "stack_components"
-            ]
+            "$ref": "../../../material/primitive/combinations/stack.json"
         }
-    ]
-}
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "../../../material/reusable/two-dimensional/atomic_layers_unique_repeated.json"
+                    },
+                    {
+                        "$ref": "../../../material/primitive/two-dimensional/vacuum.json"
+                    }
+                ]
+            },
+            "minItems": 2,
+            "description": "Components of the slab unit cell: repeated unique atomic layers and vacuum"
+        }
+    }
+} 
