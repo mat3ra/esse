@@ -3,11 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Slab Unit Cell Schema",
     "description": "A slab unit cell consisting of repeated unique atomic layers and vacuum",
-    "allOf": [
-        {
-            "$ref": "../../../material/primitive/combinations/stack.json"
-        }
-    ],
+    "type": "object",
     "properties": {
         "stack_components": {
             "type": "array",
@@ -23,6 +19,15 @@
             },
             "minItems": 2,
             "description": "Components of the slab unit cell: repeated unique atomic layers and vacuum"
+        },
+        "direction": {
+            "$ref": "../../../core/primitive/axis_3d_names_enum.json",
+            "default": "z",
+            "description": "Direction along which the components are stacked"
         }
-    }
+    },
+    "required": [
+        "stack_components",
+        "direction"
+    ]
 } 
