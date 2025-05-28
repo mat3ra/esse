@@ -11,7 +11,7 @@
     ],
     "properties": {
         "termination_top": {
-            "$ref": "../../../material/primitive/base/termination.json",
+            "$ref": "../../../material/primitive/two-dimensional/termination.json",
             "description": "Termination of the top layer, facing the vacuum"
         },
         "number_of_repetitions": {

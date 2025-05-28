@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category/pristine-structures/three-dimensional/strained/strained-non-uniform",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Non-Uniformly Strained Crystal Schema",
+    "description": "A crystal structure with non-uniform strain applied using a strain matrix",
+    "type": "object",
+    "properties": {
+        "crystal": {
+            "$ref": "../../../../material/primitive/three-dimensional/crystal.json"
+        },
+        "strain_matrix": {
+            "$ref": "../../../../core/abstract/matrix_3x3.json",
+            "description": "3x3 strain matrix defining non-uniform strain components"
+        }
+    },
+    "required": [
+        "crystal",
+        "strain_matrix"
+    ]
+} 

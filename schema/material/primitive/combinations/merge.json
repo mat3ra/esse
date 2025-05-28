@@ -9,13 +9,13 @@
             "items": {
                 "anyOf": [
                     {
-                        "$ref": "../base/crystal.json"
+                        "$ref": "../three-dimensional/crystal.json"
                     },
                     {
-                        "$ref": "../base/vacuum.json"
+                        "$ref": "../two-dimensional/vacuum.json"
                     },
                     {
-                        "$ref": "../base/void.json"
+                        "$ref": "../three-dimensional/void.json"
                     }
                 ]
             }

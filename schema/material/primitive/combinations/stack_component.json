@@ -5,10 +5,10 @@
     "description": "A component of a stack, which can be a crystal or a vacuum",
     "anyOf": [
         {
-            "$ref": "../base/crystal.json"
+            "$ref": "../three-dimensional/crystal.json"
         },
         {
-            "$ref": "../base/vacuum.json"
+            "$ref": "../two-dimensional/vacuum.json"
         }
     ]
 }

@@ -1,5 +1,0 @@
-{
-    "host": {
-        "...": "include(../../material.json)"
-    }
-}

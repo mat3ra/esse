@@ -13,7 +13,7 @@
         "terminations": {
             "type": "array",
             "items": {
-                "$ref": "../../../material/primitive/base/termination.json"
+                "$ref": "../../../material/primitive/two-dimensional/termination.json"
             },
             "minItems": 1,
             "description": "List of terminations for the atomic layers in order."
