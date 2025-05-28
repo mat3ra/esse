@@ -93,7 +93,9 @@
                         "angle": "degree",
                         "length": "angstrom"
                     }
-                }
+                },
+                "name": "Silicon FCC",
+                "formula": "Si"
             },
             "miller_indices": [
                 0,
@@ -105,22 +107,12 @@
                 "chemical_elements": "Si",
                 "space_group_symmetry_label": "P4/mmm_2"
             },
-            "number_of_repetitions": 5
+            "number_of_repetitions": 3
         },
         {
             "direction": "z",
             "size": 10
         }
     ],
-    "direction": "z",
-    "supercell_xy": [
-        [
-            2,
-            0
-        ],
-        [
-            0,
-            2
-        ]
-    ]
+    "direction": "z"
 }
