@@ -1,40 +1,14 @@
 {
-    "$id": "materials-category/pristine-structures/two-dimensional/slab",
+    "$id": "material/reusable/two-dimensional/slab-unit-cell",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Slab Schema",
-    "description": "A slab structure that can optionally include a supercell transformation in the xy plane",
+    "title": "Slab Unit Cell Schema",
+    "description": "A slab unit cell consisting of atomic layers and vacuum",
     "type": "object",
     "required": [
         "direction",
         "stack_components"
     ],
     "properties": {
-        "supercell_xy": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Supercell Matrix 2D Schema",
-            "description": "Supercell matrix for xy plane transformations",
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "default": [
-                [
-                    1,
-                    0
-                ],
-                [
-                    0,
-                    1
-                ]
-            ],
-            "items": {
-                "type": "array",
-                "minItems": 2,
-                "maxItems": 2,
-                "items": {
-                    "type": "integer"
-                }
-            }
-        },
         "direction": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Axis Enum",

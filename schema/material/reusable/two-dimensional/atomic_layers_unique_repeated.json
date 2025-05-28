@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/pristine-structures/two-dimensional/atomic-layers-unique-repeated",
+    "$id": "material/reusable/two-dimensional/atomic-layers-unique-repeated",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Atomic Layers Unique Repeated Schema",
     "description": "A set of unique atomic layers defined by a plane in a crystal structure, repeated integer number of times",

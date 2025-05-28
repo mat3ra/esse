@@ -1,10 +1,173 @@
 {
-    "$id": "material/primitive/combinations/stack-component",
+    "$id": "material/reusable/two-dimensional/atomic-layers-unique-repeated",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Stack Component Schema",
-    "description": "A component of a stack, which can be a crystal or a vacuum",
-    "oneOf": [
-        {
+    "title": "Atomic Layers Unique Repeated Schema",
+    "description": "A set of unique atomic layers defined by a plane in a crystal structure, repeated integer number of times",
+    "type": "object",
+    "required": [
+        "crystal",
+        "miller_indices",
+        "number_of_repetitions",
+        "termination_top",
+        "use_conventional_cell"
+    ],
+    "properties": {
+        "termination_top": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Termination Schema",
+            "description": "Defines a specific termination of a slab",
+            "type": "object",
+            "required": [
+                "chemical_elements",
+                "space_group_symmetry_label"
+            ],
+            "properties": {
+                "chemical_elements": {
+                    "title": "Chemical Elements",
+                    "description": "Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')",
+                    "type": "string",
+                    "anyOf": [
+                        {
+                            "enum": [
+                                "H",
+                                "He",
+                                "Li",
+                                "Be",
+                                "B",
+                                "C",
+                                "N",
+                                "O",
+                                "F",
+                                "Ne",
+                                "Na",
+                                "Mg",
+                                "Al",
+                                "Si",
+                                "P",
+                                "S",
+                                "Cl",
+                                "Ar",
+                                "K",
+                                "Ca",
+                                "Sc",
+                                "Ti",
+                                "V",
+                                "Cr",
+                                "Mn",
+                                "Fe",
+                                "Co",
+                                "Ni",
+                                "Cu",
+                                "Zn",
+                                "Ga",
+                                "Ge",
+                                "As",
+                                "Se",
+                                "Br",
+                                "Kr",
+                                "Rb",
+                                "Sr",
+                                "Y",
+                                "Zr",
+                                "Nb",
+                                "Mo",
+                                "Tc",
+                                "Ru",
+                                "Rh",
+                                "Pd",
+                                "Ag",
+                                "Cd",
+                                "In",
+                                "Sn",
+                                "Sb",
+                                "Te",
+                                "I",
+                                "Xe",
+                                "Cs",
+                                "Ba",
+                                "La",
+                                "Ce",
+                                "Pr",
+                                "Nd",
+                                "Pm",
+                                "Sm",
+                                "Eu",
+                                "Gd",
+                                "Tb",
+                                "Dy",
+                                "Ho",
+                                "Er",
+                                "Tm",
+                                "Yb",
+                                "Lu",
+                                "Hf",
+                                "Ta",
+                                "W",
+                                "Re",
+                                "Os",
+                                "Ir",
+                                "Pt",
+                                "Au",
+                                "Hg",
+                                "Tl",
+                                "Pb",
+                                "Bi",
+                                "Po",
+                                "At",
+                                "Rn",
+                                "Fr",
+                                "Ra",
+                                "Ac",
+                                "Th",
+                                "Pa",
+                                "U",
+                                "Np",
+                                "Pu",
+                                "Am",
+                                "Cm",
+                                "Bk",
+                                "Cf",
+                                "Es",
+                                "Fm",
+                                "Md",
+                                "No",
+                                "Lr",
+                                "Rf",
+                                "Db",
+                                "Sg",
+                                "Bh",
+                                "Hs",
+                                "Mt",
+                                "Ds",
+                                "Rg",
+                                "Cn",
+                                "Nh",
+                                "Fl",
+                                "Mc",
+                                "Lv",
+                                "Ts",
+                                "Og"
+                            ]
+                        },
+                        {
+                            "type": "string",
+                            "pattern": "^[A-Z][a-z]?([A-Z][a-z]?)*$"
+                        }
+                    ]
+                },
+                "space_group_symmetry_label": {
+                    "title": "Space Group Symmetry Label",
+                    "description": "Space group symmetry designation for the termination",
+                    "type": "string"
+                }
+            }
+        },
+        "number_of_repetitions": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of repetitions of the unique atomic layers"
+        },
+        "crystal": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Crystal Schema",
             "description": "A crystal structure, referencing the base material schema",
@@ -760,35 +923,26 @@
                 }
             }
         },
-        {
+        "miller_indices": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Vacuum Schema",
-            "description": "A vacuum slab that breaks periodicity in a specified direction",
-            "type": "object",
-            "properties": {
-                "direction": {
-                    "default": "z",
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Axis Enum",
-                    "type": "string",
-                    "description": "Enum for axis types",
-                    "enum": [
-                        "x",
-                        "y",
-                        "z"
-                    ]
-                },
-                "size": {
-                    "type": "number",
-                    "description": "Size of the vacuum slab in angstroms",
-                    "minimum": 0,
-                    "default": 10
-                }
-            },
-            "required": [
-                "direction",
-                "size"
-            ]
+            "title": "Miller Indices Schema",
+            "description": "Miller indices [h, k, l] defining crystallographic planes",
+            "default": [
+                0,
+                0,
+                1
+            ],
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "integer"
+            }
+        },
+        "use_conventional_cell": {
+            "type": "boolean",
+            "description": "Use the conventional cell for the crystal structure",
+            "default": true
         }
-    ]
+    }
 }

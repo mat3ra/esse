@@ -3,7 +3,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Stack Component Schema",
     "description": "A component of a stack, which can be a crystal or a vacuum",
-    "anyOf": [
+    "oneOf": [
         {
             "$ref": "../three-dimensional/crystal.json"
         },

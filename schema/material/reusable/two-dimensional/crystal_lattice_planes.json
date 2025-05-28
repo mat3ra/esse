@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/pristine-structures/two-dimensional/crystal-lattice-planes",
+    "$id": "material/reusable/two-dimensional/crystal-lattice-planes",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Crystal Lattice Planes Schema",
     "description": "A set of all possible planes in a crystal defined by Miller indices",
