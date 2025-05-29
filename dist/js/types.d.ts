@@ -10885,7 +10885,7 @@ export interface SlabConfigurationSchema {
      * @minItems 2
      * @maxItems 2
      */
-    supercell_xy?: [[number, number], [number, number]];
+    xy_supercell_matrix?: [[number, number], [number, number]];
     /**
      * Components of the slab unit cell: repeated unique atomic layers and vacuum
      *
