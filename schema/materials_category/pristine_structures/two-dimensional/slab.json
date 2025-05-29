@@ -10,7 +10,7 @@
     ],
     "properties": {
         "supercell_xy": {
-            "$ref": "../../../material/reusable/supercell/supercell_matrix_2d.json",
+            "$ref": "../../../material/primitive/two-dimensional/supercell_matrix_2d.json",
             "description": "Optional 2x2 transformation matrix for creating a supercell in the xy plane"
         }
     }

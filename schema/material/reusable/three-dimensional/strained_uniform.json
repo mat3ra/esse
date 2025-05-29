@@ -1,12 +1,12 @@
 {
-    "$id": "materials-category/pristine-structures/three-dimensional/strained/strained-uniform",
+    "$id": "material/reusable/three-dimensional/strained-uniform",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Uniformly Strained Crystal Configuration Schema",
     "description": "A crystal structure with uniform strain applied",
     "type": "object",
     "properties": {
         "crystal": {
-            "$ref": "../../../../material/primitive/three-dimensional/crystal.json"
+            "$ref": "../../primitive/three-dimensional/crystal.json"
         },
         "strain_percentage": {
             "type": "number",

@@ -4,7 +4,7 @@
     "title": "Repeat Schema",
     "properties": {
         "matrix": {
-            "$ref": "../../../material/reusable/supercell/supercell_matrix_3d.json"
+            "$ref": "../three-dimensional/supercell_matrix_3d.json"
         }
     }
 }

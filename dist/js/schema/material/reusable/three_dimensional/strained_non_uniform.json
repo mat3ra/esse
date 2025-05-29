@@ -1,12 +1,12 @@
 {
-    "$id": "materials-category/pristine-structures/three-dimensional/strained/strained-uniform",
+    "$id": "material/reusable/three-dimensional/strained-non-uniform",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Uniformly Strained Crystal Configuration Schema",
-    "description": "A crystal structure with uniform strain applied",
+    "title": "Non-Uniformly Strained Crystal Configuration Schema",
+    "description": "A crystal structure with non-uniform strain applied using a strain matrix",
     "type": "object",
     "required": [
         "crystal",
-        "strain_percentage"
+        "strain_matrix"
     ],
     "properties": {
         "crystal": {
@@ -765,9 +765,22 @@
                 }
             }
         },
-        "strain_percentage": {
-            "type": "number",
-            "description": "Percentage of uniform strain to apply to the crystal structure"
+        "strain_matrix": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "matrix 3x3 schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "array of 3 number elements schema",
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                    "type": "number"
+                }
+            }
         }
     }
 }

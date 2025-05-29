@@ -41,6 +41,13 @@ material:
         # created from a crystal, can be used to create a supercell of any size
         - crystal = material
         - matrix = integer_matrix # matrix of integers, defines the size of the supercell
+      strained_uniform:
+        - crystal = ref:/primitive/base/crystal
+        - strain_percentage
+      strained_non-uniform:
+        - crystal = ref:/primitive/base/crystal
+        - strain_matrix
+
     two-dimensional:
       crystal_lattice_planes:
         - crystal = material
@@ -122,14 +129,6 @@ material_categories:
   pristine_structures:
     three-dimensional:
       ideal_crystal: ref:/primitive/base/crystal
-      supercell?:
-      strained:
-        strained_uniform:
-          - crystal = ref:/primitive/base/crystal
-          - strain_percentage
-        strained_non-uniform:
-          - crystal = ref:/primitive/base/crystal
-          - strain_matrix
 
     two-dimensional:
       monolayer:
