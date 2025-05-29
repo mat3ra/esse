@@ -16,7 +16,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types

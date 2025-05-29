@@ -1,7 +1,7 @@
 {
     "$id": "materials-category/pristine-structures/three-dimensional/repeated/supercell",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Supercell Schema",
+    "title": "Supercell Configuration Schema",
     "description": "A repeated crystal structure defined by a transformation matrix",
     "type": "object",
     "properties": {

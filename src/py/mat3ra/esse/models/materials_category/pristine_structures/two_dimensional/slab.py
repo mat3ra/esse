@@ -697,7 +697,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -708,7 +708,7 @@ class VacuumSchema(BaseModel):
     """
 
 
-class SlabSchema(BaseModel):
+class SlabConfigurationSchema(BaseModel):
     supercell_xy: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
         default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,
@@ -718,7 +718,9 @@ class SlabSchema(BaseModel):
     """
     Supercell matrix for xy plane transformations
     """
-    stack_components: List[Union[AtomicLayersUniqueRepeatedSchema, VacuumSchema]] = Field(..., min_length=2)
+    stack_components: List[Union[AtomicLayersUniqueRepeatedSchema, VacuumConfigurationSchema]] = Field(
+        ..., min_length=2
+    )
     """
     Components of the slab unit cell: repeated unique atomic layers and vacuum
     """

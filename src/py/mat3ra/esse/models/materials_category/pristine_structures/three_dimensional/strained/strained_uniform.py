@@ -530,7 +530,7 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class UniformlyStrainedCrystalSchema(BaseModel):
+class UniformlyStrainedCrystalConfigurationSchema(BaseModel):
     crystal: CrystalSchema = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema

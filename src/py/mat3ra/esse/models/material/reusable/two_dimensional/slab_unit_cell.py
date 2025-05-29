@@ -693,7 +693,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -705,7 +705,9 @@ class VacuumSchema(BaseModel):
 
 
 class SlabUnitCellSchema(BaseModel):
-    stack_components: List[Union[AtomicLayersUniqueRepeatedSchema, VacuumSchema]] = Field(..., min_length=2)
+    stack_components: List[Union[AtomicLayersUniqueRepeatedSchema, VacuumConfigurationSchema]] = Field(
+        ..., min_length=2
+    )
     """
     Components of the slab unit cell: repeated unique atomic layers and vacuum
     """

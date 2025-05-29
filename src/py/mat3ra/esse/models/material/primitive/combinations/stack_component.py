@@ -536,7 +536,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -547,8 +547,8 @@ class VacuumSchema(BaseModel):
     """
 
 
-class ESSE(RootModel[Union[CrystalSchema, VacuumSchema]]):
-    root: Union[CrystalSchema, VacuumSchema] = Field(..., title="Stack Component Schema")
+class ESSE(RootModel[Union[CrystalSchema, VacuumConfigurationSchema]]):
+    root: Union[CrystalSchema, VacuumConfigurationSchema] = Field(..., title="Stack Component Schema")
     """
     A component of a stack, which can be a crystal or a vacuum
     """

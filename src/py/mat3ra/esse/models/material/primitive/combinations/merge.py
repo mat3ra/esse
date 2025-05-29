@@ -536,7 +536,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -576,7 +576,7 @@ class Method(Enum):
 
 
 class MergeSchema(BaseModel):
-    merge_components: Optional[List[Union[CrystalSchema, VacuumSchema, VoidSchema]]] = None
+    merge_components: Optional[List[Union[CrystalSchema, VacuumConfigurationSchema, VoidSchema]]] = None
     method: Optional[Method] = None
     """
     Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)

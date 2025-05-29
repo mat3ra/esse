@@ -534,7 +534,7 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
-class NonUniformlyStrainedCrystalSchema(BaseModel):
+class NonUniformlyStrainedCrystalConfigurationSchema(BaseModel):
     crystal: CrystalSchema = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema

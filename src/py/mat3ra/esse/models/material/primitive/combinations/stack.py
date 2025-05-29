@@ -536,7 +536,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class VacuumSchema(BaseModel):
+class VacuumConfigurationSchema(BaseModel):
     direction: Optional[AxisEnum] = Field("z", title="Axis Enum")
     """
     Enum for axis types
@@ -548,7 +548,7 @@ class VacuumSchema(BaseModel):
 
 
 class StackSchema(BaseModel):
-    stack_components: List[Union[CrystalSchema, VacuumSchema]]
+    stack_components: List[Union[CrystalSchema, VacuumConfigurationSchema]]
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
