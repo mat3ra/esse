@@ -709,7 +709,7 @@ class VacuumConfigurationSchema(BaseModel):
 
 
 class SlabConfigurationSchema(BaseModel):
-    supercell_xy: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
+    xy_supercell_matrix: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
         default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,
         min_length=2,
