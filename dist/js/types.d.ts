@@ -7410,7 +7410,7 @@ export interface TerminationSchema {
 /**
  * A vacuum slab that breaks periodicity in a specified direction
  */
-export interface VacuumSchema {
+export interface VacuumConfigurationSchema {
     /**
      * Enum for axis types
      */
@@ -10069,7 +10069,7 @@ export interface IdealCrystalSchema {
 /**
  * A repeated crystal structure defined by a transformation matrix
  */
-export interface SupercellSchema {
+export interface SupercellConfigurationSchema {
     /**
      * A crystal structure, referencing the base material schema
      */
@@ -10339,7 +10339,7 @@ export interface SupercellSchema {
 /**
  * A crystal structure with non-uniform strain applied using a strain matrix
  */
-export interface NonUniformlyStrainedCrystalSchema {
+export interface NonUniformlyStrainedCrystalConfigurationSchema {
     /**
      * A crystal structure, referencing the base material schema
      */
@@ -10609,7 +10609,7 @@ export interface NonUniformlyStrainedCrystalSchema {
 /**
  * A crystal structure with uniform strain applied
  */
-export interface UniformlyStrainedCrystalSchema {
+export interface UniformlyStrainedCrystalConfigurationSchema {
     /**
      * A crystal structure, referencing the base material schema
      */
@@ -10876,9 +10876,9 @@ export interface UniformlyStrainedCrystalSchema {
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/slab.json */
 /**
- * A slab structure that can optionally include a supercell transformation in the xy plane
+ * A slab structure configuration that can optionally include a supercell transformation in the xy plane
  */
-export interface SlabSchema {
+export interface SlabConfigurationSchema {
     /**
      * Supercell matrix for xy plane transformations
      *
