@@ -12,7 +12,7 @@
                 "number"
             ],
             "minimum": 0,
-            "default": 1
+            "default": 0
         },
         "in_unit_planes": {
             "description": "Whether to cleave in unit planes",
