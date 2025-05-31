@@ -16,11 +16,11 @@ class PymatgenSlabGeneratorParametersSchema(BaseModel):
     """
     in_unit_planes: Optional[bool] = True
     """
-    Whether to cleave in unit planes
+    Whether to use unit planes for the vacuum and slab size
     """
     reorient_lattice: Optional[bool] = True
     """
-    Whether to reorient the lattice
+    Whether to reorient the lattice to have c vector along the z-axis
     """
     symmetrize: Optional[bool] = True
     """

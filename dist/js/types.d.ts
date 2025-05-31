@@ -1555,11 +1555,11 @@ export interface PymatgenSlabGeneratorParametersSchema {
      */
     min_vacuum_size?: number;
     /**
-     * Whether to cleave in unit planes
+     * Whether to use unit planes for the vacuum and slab size
      */
     in_unit_planes?: boolean;
     /**
-     * Whether to reorient the lattice
+     * Whether to reorient the lattice to have c vector along the z-axis
      */
     reorient_lattice?: boolean;
     /**
