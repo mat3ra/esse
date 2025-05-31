@@ -77,9 +77,6 @@ material:
       slab_unit_cell:
         - stack_components = [ atomic_layers, vacuum ]
         - direction = "z"
-      slab_unit_cell_alt:
-        - stack_components = [ atomic_layers_unique_repeated, vacuum ]
-        - direction = "z"
     one-dimensional:
       ribbon_section:
         - monolayer = ref:/.../monolayer
