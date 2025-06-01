@@ -1,10 +1,10 @@
 {
-    "$id": "material/primitive/modifications/repeat",
+    "$id": "material/operations/primitive/modifications/repeat",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Repeat Schema",
     "properties": {
         "matrix": {
-            "$ref": "../three-dimensional/supercell_matrix_3d.json"
+            "$ref": "../../primitive/three-dimensional/supercell_matrix_3d.json"
         }
     }
 }

@@ -4,5 +4,9 @@
     "title": "Atomic Layers Schema",
     "description": "A set of atomic layers defined by a plane in a crystal structure with specific terminations",
     "type": "object",
-    "$ref": "atomic_layers_unique.json"
+    "allOf": [
+        {
+            "$ref": "atomic_layers_unique.json"
+        }
+    ]
 }

@@ -1,20 +1,13 @@
 {
-    "$id": "material/primitive/combinations/stack",
+    "$id": "material/operations/combinations/merge",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Stack Schema",
-    "description": "A stack of components, which can be crystals or vacuums, arranged in a specified direction",
-    "required": [
-        "stack_components",
-        "direction"
-    ],
+    "title": "Merge Schema",
+    "description": "A component of a stack, which can be a crystal or a vacuum",
     "properties": {
-        "stack_components": {
+        "merge_components": {
             "type": "array",
             "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "Stack Component Schema",
-                "description": "A component of a stack, which can be a crystal or a vacuum",
-                "oneOf": [
+                "anyOf": [
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "Crystal Schema",
@@ -800,19 +793,92 @@
                             "direction",
                             "size"
                         ]
+                    },
+                    {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Void Schema",
+                        "description": "A void that can be placed into a crystal, removing all atoms inside",
+                        "type": "object",
+                        "properties": {
+                            "center_coordinate": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "coordinate 3d schema",
+                                "type": "array",
+                                "minItems": 3,
+                                "maxItems": 3,
+                                "items": {
+                                    "type": "number"
+                                }
+                            },
+                            "shape": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "Coordinate Conditions Schema",
+                                "description": "Combined schema for all coordinate condition types",
+                                "oneOf": [
+                                    {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "Box Coordinate Condition Schema",
+                                        "required": [
+                                            "max_coordinate",
+                                            "min_coordinate",
+                                            "shape"
+                                        ],
+                                        "description": "Base interface for coordinate shape filters",
+                                        "type": "object",
+                                        "properties": {
+                                            "shape": {
+                                                "const": "box",
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "Coordinate Shape Enum",
+                                                "type": "string",
+                                                "enum": [
+                                                    "cylinder",
+                                                    "sphere",
+                                                    "box",
+                                                    "triangular_prism",
+                                                    "plane"
+                                                ]
+                                            },
+                                            "min_coordinate": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "coordinate 3d schema",
+                                                "type": "array",
+                                                "minItems": 3,
+                                                "maxItems": 3,
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            },
+                                            "max_coordinate": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "coordinate 3d schema",
+                                                "type": "array",
+                                                "minItems": 3,
+                                                "maxItems": 3,
+                                                "items": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "center_coordinate",
+                            "shape"
+                        ]
                     }
                 ]
             }
         },
-        "direction": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Axis Enum",
+        "method": {
             "type": "string",
-            "description": "Enum for axis types",
+            "description": "Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)",
             "enum": [
-                "x",
-                "y",
-                "z"
+                "add",
+                "replace",
+                "yield"
             ]
         }
     }

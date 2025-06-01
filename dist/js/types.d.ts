@@ -6238,7 +6238,7 @@ export interface MaterialConsistencyCheckSchema {
 export interface MaterialConventionalSchema {
     conventional?: {};
 }
-/** Schema dist/js/schema/material/primitive/combinations/merge.json */
+/** Schema dist/js/schema/material/operations/combinations/merge.json */
 /**
  * A component of a stack, which can be a crystal or a vacuum
  */
@@ -6535,7 +6535,7 @@ export interface MergeSchema {
      */
     method?: "add" | "replace" | "yield";
 }
-/** Schema dist/js/schema/material/primitive/combinations/stack.json */
+/** Schema dist/js/schema/material/operations/combinations/stack.json */
 /**
  * A stack of components, which can be crystals or vacuums, arranged in a specified direction
  */
@@ -6810,7 +6810,7 @@ export interface StackSchema {
      */
     direction: "x" | "y" | "z";
 }
-/** Schema dist/js/schema/material/primitive/combinations/stack_component.json */
+/** Schema dist/js/schema/material/operations/combinations/stack_component.json */
 /**
  * A component of a stack, which can be a crystal or a vacuum
  */
@@ -7079,7 +7079,7 @@ export type StackComponentSchema = {
      */
     size: number;
 };
-/** Schema dist/js/schema/material/primitive/modifications/repeat.json */
+/** Schema dist/js/schema/material/operations/primitive/modifications/repeat.json */
 export interface RepeatSchema {
     /**
      * 3x3 matrix of integers for transforming a unit cell into a supercell
@@ -7089,7 +7089,7 @@ export interface RepeatSchema {
      */
     matrix?: [[number, number, number], [number, number, number], [number, number, number]];
 }
-/** Schema dist/js/schema/material/primitive/modifications/strain.json */
+/** Schema dist/js/schema/material/operations/primitive/modifications/strain.json */
 export interface StrainSchema {
     /**
      * @minItems 3
@@ -8273,9 +8273,9 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
 }
 /** Schema dist/js/schema/material/reusable/two_dimensional/atomic_layers.json */
 /**
- * A set of unique atomic layers defined by a plane in a crystal structure, including all possible terminations
+ * A set of atomic layers defined by a plane in a crystal structure with specific terminations
  */
-export interface AtomicLayersUniqueSchema {
+export interface AtomicLayersSchema {
     /**
      * All possible terminations for this orientation.
      *

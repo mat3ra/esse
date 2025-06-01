@@ -1,7 +1,8 @@
 {
+    "$id": "material/reusable/two-dimensional/atomic-layers",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Atomic Layers Unique Schema",
-    "description": "A set of unique atomic layers defined by a plane in a crystal structure, including all possible terminations",
+    "title": "Atomic Layers Schema",
+    "description": "A set of atomic layers defined by a plane in a crystal structure with specific terminations",
     "type": "object",
     "required": [
         "crystal",
@@ -9,7 +10,6 @@
         "terminations",
         "use_conventional_cell"
     ],
-    "$id": "material/reusable/two-dimensional/atomic-layers",
     "properties": {
         "terminations": {
             "type": "array",
