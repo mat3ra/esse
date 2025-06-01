@@ -664,7 +664,7 @@ class CrystalSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class AtomicLayersUniqueSchema(BaseModel):
+class AtomicLayersSchema(BaseModel):
     terminations: List[TerminationSchema] = Field(..., min_length=1)
     """
     All possible terminations for this orientation.
