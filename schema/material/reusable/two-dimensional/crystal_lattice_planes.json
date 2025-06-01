@@ -9,8 +9,7 @@
             "$ref": "../../../material/primitive/three-dimensional/crystal.json"
         },
         "miller_indices": {
-            "$ref": "../../../material/primitive/two-dimensional/miller_indices.json",
-            "description": "Miller indices defining the crystal plane"
+            "$ref": "../../../material/primitive/two-dimensional/miller_indices.json"
         },
         "use_conventional_cell": {
             "type": "boolean",

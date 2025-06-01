@@ -4,25 +4,5 @@
     "title": "Atomic Layers Schema",
     "description": "A set of atomic layers defined by a plane in a crystal structure with specific terminations",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "crystal_lattice_planes.json"
-        },
-        {
-            "type": "object",
-            "properties": {
-                "terminations": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "../../../material/primitive/two-dimensional/termination.json"
-                    },
-                    "minItems": 1,
-                    "description": "List of terminations for the atomic layers in order."
-                }
-            },
-            "required": [
-                "terminations"
-            ]
-        }
-    ]
+    "$ref": "atomic_layers_unique.json"
 }
