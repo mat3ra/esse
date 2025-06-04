@@ -5,12 +5,12 @@
     "description": "A slab structure configuration that can optionally include a supercell transformation in the xy plane",
     "allOf": [
         {
-            "$ref": "../../../material/reusable/two-dimensional/slab_unit_cell.json"
+            "$ref": "../../../materials_category_components/entities/reusable/two-dimensional/slab_unit_cell.json"
         }
     ],
     "properties": {
         "xy_supercell_matrix": {
-            "$ref": "../../../material/primitive/two-dimensional/supercell_matrix_2d.json",
+            "$ref": "../../../materials_category_components/entities/auxiliary/two-dimensional/supercell_matrix_2d.json",
             "description": "Optional 2x2 transformation matrix for creating a supercell in the xy plane"
         }
     }

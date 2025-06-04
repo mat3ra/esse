@@ -5,7 +5,7 @@
     "description": "An ideal, perfect crystal structure",
     "allOf": [
         {
-            "$ref": "../../../material/primitive/three-dimensional/crystal.json"
+            "$ref": "../../../materials_category_components/entities/core/three-dimensional/crystal.json"
         }
     ]
 }

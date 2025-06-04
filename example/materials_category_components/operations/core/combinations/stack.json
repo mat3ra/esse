@@ -1,0 +1,11 @@
+{
+    "stack_components": [
+        {
+            "...": "include(../../../entities/core/three-dimensional/crystal.json)"
+        },
+        {
+            "...": "include(../../../entities/core/two-dimensional/vacuum.json)"
+        }
+    ],
+    "direction": "z"
+} 
