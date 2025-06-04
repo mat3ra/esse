@@ -1,5 +1,5 @@
 {
-    "$id": "material/primitive/two-dimensional/termination",
+    "$id": "materials-category-components/entities/auxiliary/two-dimensional/termination",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Termination Schema",
     "description": "Defines a specific termination of a slab",

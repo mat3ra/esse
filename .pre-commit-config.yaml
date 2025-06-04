@@ -25,8 +25,7 @@ repos:
                 --use-title-as-name \
                 --class-name ESSE \
                 --disable-timestamp \
-                --use-default \
-                --reuse-model'
+                --use-default'
         language: system
         pass_filenames: false
         verbose: true

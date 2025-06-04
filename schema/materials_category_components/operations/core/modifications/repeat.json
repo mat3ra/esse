@@ -1,5 +1,5 @@
 {
-    "$id": "material/operations/primitive/modifications/repeat",
+    "$id": "materials-category-components/operations/core/modifications/repeat",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Repeat Schema",
     "properties": {

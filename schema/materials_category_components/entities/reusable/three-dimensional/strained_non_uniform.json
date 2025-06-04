@@ -1,5 +1,5 @@
 {
-    "$id": "material/reusable/three-dimensional/strained-non-uniform",
+    "$id": "materials-category-components/entities/reusable/three-dimensional/strained-non-uniform",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Non-Uniformly Strained Crystal Configuration Schema",
     "description": "A crystal structure with non-uniform strain applied using a strain matrix",

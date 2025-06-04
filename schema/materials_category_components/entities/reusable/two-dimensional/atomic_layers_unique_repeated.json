@@ -1,5 +1,5 @@
 {
-    "$id": "material/reusable/two-dimensional/atomic-layers-unique-repeated",
+    "$id": "materials-category-components/entities/reusable/two-dimensional/atomic-layers-unique-repeated",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Atomic Layers Unique Repeated Schema",
     "description": "Atomic layers unique with an integer number of repetitions, forming a full periodic structure with top layer specified by the termination",
