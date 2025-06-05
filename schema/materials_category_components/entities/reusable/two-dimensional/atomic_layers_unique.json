@@ -1,0 +1,25 @@
+{
+    "$id": "materials-category-components/entities/reusable/two-dimensional/atomic-layers-unique",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic Layers Unique Schema",
+    "description": "A set of unique atomic layers defined by a plane in a crystal structure, including all possible terminations",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "crystal_lattice_planes.json"
+        }
+    ],
+    "properties": {
+        "terminations": {
+            "type": "array",
+            "items": {
+                "$ref": "../../../entities/auxiliary/two-dimensional/termination.json"
+            },
+            "minItems": 1,
+            "description": "All possible terminations for this orientation."
+        }
+    },
+    "required": [
+        "terminations"
+    ]
+}

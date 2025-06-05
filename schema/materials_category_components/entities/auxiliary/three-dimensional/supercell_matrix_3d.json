@@ -1,0 +1,29 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/three-dimensional/supercell-matrix-3d",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Supercell Matrix 3D Schema",
+    "description": "3x3 matrix of integers for transforming a unit cell into a supercell",
+    "type": "array",
+    "items": {
+        "$ref": "../../../../core/primitive/array_of_3_integers.json"
+    },
+    "minItems": 3,
+    "maxItems": 3,
+    "default": [
+        [
+            1,
+            0,
+            0
+        ],
+        [
+            0,
+            1,
+            0
+        ],
+        [
+            0,
+            0,
+            1
+        ]
+    ]
+}

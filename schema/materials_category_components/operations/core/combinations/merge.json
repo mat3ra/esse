@@ -1,0 +1,33 @@
+{
+    "$id": "materials-category-components/operations/core/combinations/merge",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Merge Schema",
+    "description": "A component of a stack, which can be a crystal or a vacuum",
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../../../entities/core/three-dimensional/crystal.json"
+                    },
+                    {
+                        "$ref": "../../../entities/core/two-dimensional/vacuum.json"
+                    },
+                    {
+                        "$ref": "../../../entities/core/three-dimensional/void.json"
+                    }
+                ]
+            }
+        },
+        "method": {
+            "type": "string",
+            "description": "Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)",
+            "enum": [
+                "add",
+                "replace",
+                "yield"
+            ]
+        }
+    }
+}

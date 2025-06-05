@@ -1,0 +1,27 @@
+{
+    "$id": "materials-category-components/entities/reusable/two-dimensional/atomic-layers-unique-repeated",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atomic Layers Unique Repeated Schema",
+    "description": "Atomic layers unique with an integer number of repetitions, forming a full periodic structure with top layer specified by the termination",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "crystal_lattice_planes.json"
+        }
+    ],
+    "properties": {
+        "termination_top": {
+            "$ref": "../../../entities/auxiliary/two-dimensional/termination.json",
+            "description": "Termination of the top layer, facing the vacuum"
+        },
+        "number_of_repetitions": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Number of repetitions of the unique atomic layers"
+        }
+    },
+    "required": [
+        "termination_top",
+        "number_of_repetitions"
+    ]
+}

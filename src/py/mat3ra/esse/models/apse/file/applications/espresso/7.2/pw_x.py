@@ -1663,7 +1663,7 @@ class CardOption(Enum):
     crystal_sg = "crystal_sg"
 
 
-class Value47(BaseModel):
+class Value27(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1693,7 +1693,7 @@ class AtomicPositionsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption] = "alat"
-    values: Optional[List[Value47]] = None
+    values: Optional[List[Value27]] = None
 
 
 class CardOption5(Enum):
@@ -1707,7 +1707,7 @@ class CardOption5(Enum):
     crystal_c = "crystal_c"
 
 
-class Value48(BaseModel):
+class Value28(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1756,7 +1756,7 @@ class KPointsSchema(BaseModel):
         extra="forbid",
     )
     card_option: Optional[CardOption5] = None
-    values: Optional[Union[List[Value48], Values]] = None
+    values: Optional[Union[List[Value28], Values]] = None
 
 
 class CardOption6(Enum):
@@ -1853,7 +1853,7 @@ class ParamType(Enum):
     E3 = "E3"
 
 
-class Value49(BaseModel):
+class Value29(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -1967,7 +1967,7 @@ class HubbardSchema(BaseModel):
     )
     card_option: Optional[CardOption7] = None
     values: Optional[
-        Union[List[Union[Values9, Values10]], List[Value49], List[Union[Values11, Values12, Values13]]]
+        Union[List[Union[Values9, Values10]], List[Value29], List[Union[Values11, Values12, Values13]]]
     ] = None
 
 

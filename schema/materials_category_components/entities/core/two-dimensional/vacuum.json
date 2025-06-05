@@ -1,0 +1,22 @@
+{
+    "$id": "materials-category-components/entities/core/two-dimensional/vacuum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Vacuum Configuration Schema",
+    "description": "A vacuum slab that breaks periodicity in a specified direction",
+    "type": "object",
+    "properties": {
+        "direction": {
+            "$ref": "../../../../core/primitive/axis_3d_names_enum.json"
+        },
+        "size": {
+            "type": "number",
+            "description": "Size of the vacuum slab in angstroms",
+            "minimum": 0,
+            "default": 10
+        }
+    },
+    "required": [
+        "direction",
+        "size"
+    ]
+}

@@ -12,15 +12,15 @@
                 "number"
             ],
             "minimum": 0,
-            "default": 1
+            "default": 0
         },
         "in_unit_planes": {
-            "description": "Whether to cleave in unit planes",
+            "description": "Whether to use unit planes for the vacuum and slab size",
             "type": "boolean",
             "default": true
         },
         "reorient_lattice": {
-            "description": "Whether to reorient the lattice",
+            "description": "Whether to reorient the lattice to have c vector along the z-axis",
             "type": "boolean",
             "default": true
         },

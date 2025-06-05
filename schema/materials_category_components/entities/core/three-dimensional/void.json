@@ -1,0 +1,19 @@
+{
+    "$id": "materials-category-components/entities/core/three-dimensional/void",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Void Schema",
+    "description": "A void that can be placed into a crystal, removing all atoms inside",
+    "type": "object",
+    "properties": {
+        "center_coordinate": {
+            "$ref": "../../../../core/abstract/coordinate_3d.json"
+        },
+        "shape": {
+            "$ref": "../../../../core/reusable/coordinate_conditions/index.json"
+        }
+    },
+    "required": [
+        "center_coordinate",
+        "shape"
+    ]
+}

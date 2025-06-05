@@ -1,0 +1,11 @@
+{
+    "$id": "materials-category-components/entities/core/three-dimensional/crystal",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crystal Schema",
+    "description": "A crystal structure, referencing the base material schema",
+    "allOf": [
+        {
+            "$ref": "../../../../material.json"
+        }
+    ]
+} 

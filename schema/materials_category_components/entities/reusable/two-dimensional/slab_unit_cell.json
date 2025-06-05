@@ -1,0 +1,33 @@
+{
+    "$id": "materials-category-components/entities/reusable/two-dimensional/slab-unit-cell",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Unit Cell Schema",
+    "description": "A slab unit cell consisting of repeated unique atomic layers and vacuum",
+    "type": "object",
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "$ref": "atomic_layers_unique_repeated.json"
+                    },
+                    {
+                        "$ref": "../../../entities/core/two-dimensional/vacuum.json"
+                    }
+                ]
+            },
+            "minItems": 2,
+            "description": "Components of the slab unit cell: repeated unique atomic layers and vacuum"
+        },
+        "direction": {
+            "$ref": "../../../../core/primitive/axis_3d_names_enum.json",
+            "default": "z",
+            "description": "Direction along which the components are stacked"
+        }
+    },
+    "required": [
+        "stack_components",
+        "direction"
+    ]
+} 

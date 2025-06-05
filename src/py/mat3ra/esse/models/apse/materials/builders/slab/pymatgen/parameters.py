@@ -10,17 +10,17 @@ from pydantic import BaseModel, confloat, conint
 
 
 class PymatgenSlabGeneratorParametersSchema(BaseModel):
-    min_vacuum_size: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 1
+    min_vacuum_size: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 0
     """
     Minimum size of the vacuum in layers or angstroms
     """
     in_unit_planes: Optional[bool] = True
     """
-    Whether to cleave in unit planes
+    Whether to use unit planes for the vacuum and slab size
     """
     reorient_lattice: Optional[bool] = True
     """
-    Whether to reorient the lattice
+    Whether to reorient the lattice to have c vector along the z-axis
     """
     symmetrize: Optional[bool] = True
     """

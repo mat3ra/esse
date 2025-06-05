@@ -1,0 +1,10 @@
+{
+    "$id": "materials-category-components/operations/core/modifications/repeat",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Repeat Schema",
+    "properties": {
+        "matrix": {
+            "$ref": "../../../entities/auxiliary/three-dimensional/supercell_matrix_3d.json"
+        }
+    }
+}

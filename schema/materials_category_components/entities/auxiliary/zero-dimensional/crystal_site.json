@@ -1,0 +1,15 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/zero-dimensional/crystal-site",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crystal Site Schema",
+    "description": "A site in a crystal that can be populated with an atom, vacancy, or void. Should be place in a target basis.",
+    "type": "object",
+    "properties": {
+        "coordinate": {
+            "$ref": "../../../../core/abstract/coordinate_3d.json"
+        }
+    },
+    "required": [
+        "coordinate"
+    ]
+}

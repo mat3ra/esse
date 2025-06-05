@@ -1,0 +1,32 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/two-dimensional/termination",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Termination Schema",
+    "description": "Defines a specific termination of a slab",
+    "type": "object",
+    "required": [
+        "chemical_elements",
+        "space_group_symmetry_label"
+    ],
+    "properties": {
+        "chemical_elements": {
+            "title": "Chemical Elements",
+            "description": "Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')",
+            "type": "string",
+            "anyOf": [
+                {
+                    "$ref": "../../../../definitions/chemical_elements.json#/periodic_table"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[A-Z][a-z]?([A-Z][a-z]?)*$"
+                }
+            ]
+        },
+        "space_group_symmetry_label": {
+            "title": "Space Group Symmetry Label",
+            "description": "Space group symmetry designation for the termination",
+            "type": "string"
+        }
+    }
+}

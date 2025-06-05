@@ -1,0 +1,25 @@
+{
+    "$id": "materials-category-components/entities/reusable/two-dimensional/crystal-lattice-planes",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crystal Lattice Planes Schema",
+    "description": "A set of all possible planes in a crystal defined by Miller indices",
+    "type": "object",
+    "properties": {
+        "crystal": {
+            "$ref": "../../../entities/core/three-dimensional/crystal.json"
+        },
+        "miller_indices": {
+            "$ref": "../../../entities/auxiliary/two-dimensional/miller_indices.json"
+        },
+        "use_conventional_cell": {
+            "type": "boolean",
+            "description": "Use the conventional cell for the crystal structure",
+            "default": true
+        }
+    },
+    "required": [
+        "crystal",
+        "miller_indices",
+        "use_conventional_cell"
+    ]
+}

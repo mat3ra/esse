@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category-components/entities/reusable/three-dimensional/strained-uniform",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Uniformly Strained Crystal Configuration Schema",
+    "description": "A crystal structure with uniform strain applied",
+    "type": "object",
+    "properties": {
+        "crystal": {
+            "$ref": "../../core/three-dimensional/crystal.json"
+        },
+        "strain_percentage": {
+            "type": "number",
+            "description": "Percentage of uniform strain to apply to the crystal structure"
+        }
+    },
+    "required": [
+        "crystal",
+        "strain_percentage"
+    ]
+} 

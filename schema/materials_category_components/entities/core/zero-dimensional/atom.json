@@ -1,0 +1,15 @@
+{
+    "$id": "materials-category-components/entities/core/zero-dimensional/atom",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Atom Schema",
+    "description": "A chemical element that can be placed at a crystal site",
+    "type": "object",
+    "properties": {
+        "chemical_element": {
+            "$ref": "../../../../definitions/chemical_elements.json#periodic_table"
+        }
+    },
+    "required": [
+        "chemical_element"
+    ]
+}

@@ -1,0 +1,14 @@
+{
+    "$id": "materials-category-components/operations/core/combinations/stack-component",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Stack Component Schema",
+    "description": "A component of a stack, which can be a crystal or a vacuum",
+    "oneOf": [
+        {
+            "$ref": "../../../entities/core/three-dimensional/crystal.json"
+        },
+        {
+            "$ref": "../../../entities/core/two-dimensional/vacuum.json"
+        }
+    ]
+}
