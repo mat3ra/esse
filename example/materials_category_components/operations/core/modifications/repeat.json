@@ -1,5 +1,13 @@
 {
-    "matrix": {
-        "...": "include(../../../entities/auxiliary/three-dimensional/supercell_matrix_3d.json)"
-    }
-} 
+    "matrix": [
+        [ 2,
+            0,
+            0 ],
+        [ 0,
+            2,
+            0 ],
+        [ 0,
+            0,
+            2 ]
+    ]
+}
