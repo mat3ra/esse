@@ -695,7 +695,7 @@ class ChemicalElements(Enum):
 
 
 class TerminationSchema(BaseModel):
-    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
+    chemical_elements: Union[ChemicalElements, constr(pattern=r"^([A-Z][a-z]?[0-9]*)+$")] = Field(
         ..., title="Chemical Elements"
     )
     """
@@ -1150,7 +1150,7 @@ class SlabConfigurationSchema2(BaseModel):
 
 
 class TerminationSchema2(BaseModel):
-    chemical_elements: Union[ChemicalElements, constr(pattern=r"^[A-Z][a-z]?([A-Z][a-z]?)*$")] = Field(
+    chemical_elements: Union[ChemicalElements, constr(pattern=r"^([A-Z][a-z]?[0-9]*)+$")] = Field(
         ..., title="Chemical Elements"
     )
     """
