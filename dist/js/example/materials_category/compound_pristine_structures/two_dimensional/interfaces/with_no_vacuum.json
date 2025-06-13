@@ -1,0 +1,189 @@
+{
+    "stack_components": [
+        {
+            "stack_components": [
+                {
+                    "crystal": {
+                        "_id": "LCthJ6E2QabYCZqf3",
+                        "basis": {
+                            "coordinates": [
+                                {
+                                    "id": 1,
+                                    "value": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                },
+                                {
+                                    "id": 2,
+                                    "value": [
+                                        0.25,
+                                        0.25,
+                                        0.25
+                                    ]
+                                }
+                            ],
+                            "elements": [
+                                {
+                                    "id": 1,
+                                    "value": "Si"
+                                },
+                                {
+                                    "id": 2,
+                                    "value": "Si"
+                                }
+                            ],
+                            "name": "basis",
+                            "units": "crystal"
+                        },
+                        "lattice": {
+                            "a": 5.43,
+                            "b": 5.43,
+                            "c": 5.43,
+                            "alpha": 90,
+                            "beta": 90,
+                            "gamma": 90,
+                            "units": {
+                                "length": "angstrom",
+                                "angle": "degree"
+                            },
+                            "vectors": {
+                                "a": [
+                                    5.43,
+                                    0,
+                                    0
+                                ],
+                                "b": [
+                                    0,
+                                    5.43,
+                                    0
+                                ],
+                                "c": [
+                                    0,
+                                    0,
+                                    5.43
+                                ],
+                                "units": "angstrom"
+                            }
+                        },
+                        "name": "Silicon"
+                    },
+                    "miller_indices": [
+                        1,
+                        1,
+                        1
+                    ],
+                    "use_conventional_cell": true,
+                    "termination_top": {
+                        "chemical_elements": "Si",
+                        "space_group_symmetry_label": "P1"
+                    },
+                    "number_of_repetitions": 2
+                },
+                {
+                    "direction": "z",
+                    "size": 10
+                }
+            ],
+            "direction": "z",
+            "xy_supercell_matrix": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ]
+            ]
+        },
+        {
+            "stack_components": [
+                {
+                    "crystal": {
+                        "_id": "LCthJ6E2QabYCZqf4",
+                        "basis": {
+                            "coordinates": [
+                                {
+                                    "id": 1,
+                                    "value": [
+                                        0,
+                                        0,
+                                        0
+                                    ]
+                                }
+                            ],
+                            "elements": [
+                                {
+                                    "id": 1,
+                                    "value": "Ge"
+                                }
+                            ],
+                            "name": "basis",
+                            "units": "crystal"
+                        },
+                        "lattice": {
+                            "a": 5.66,
+                            "b": 5.66,
+                            "c": 5.66,
+                            "alpha": 90,
+                            "beta": 90,
+                            "gamma": 90,
+                            "units": {
+                                "length": "angstrom",
+                                "angle": "degree"
+                            },
+                            "vectors": {
+                                "a": [
+                                    5.66,
+                                    0,
+                                    0
+                                ],
+                                "b": [
+                                    0,
+                                    5.66,
+                                    0
+                                ],
+                                "c": [
+                                    0,
+                                    0,
+                                    5.66
+                                ],
+                                "units": "angstrom"
+                            }
+                        },
+                        "name": "Germanium"
+                    },
+                    "miller_indices": [
+                        1,
+                        0,
+                        0
+                    ],
+                    "use_conventional_cell": true,
+                    "termination_top": {
+                        "chemical_elements": "Ge",
+                        "space_group_symmetry_label": "P1"
+                    },
+                    "number_of_repetitions": 3
+                },
+                {
+                    "direction": "z",
+                    "size": 12
+                }
+            ],
+            "direction": "z",
+            "xy_supercell_matrix": [
+                [
+                    1,
+                    0
+                ],
+                [
+                    0,
+                    1
+                ]
+            ]
+        }
+    ],
+    "direction": "z"
+}

@@ -1,0 +1,32 @@
+{
+    "$id": "materials_category/compound_pristine_structures/two-dimensional/interfaces/with_no_vacuum",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interface with No Vacuum Schema",
+    "description": "A two-dimensional interface structure without vacuum",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/operations/core/combinations/stack.json"
+        },
+        {
+            "properties": {
+                "stack_components": {
+                    "type": "array",
+                    "minItems": 2,
+                    "maxItems": 2,
+                    "items": [
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        }
+                    ],
+                    "description": "Components of the interface: slab and slab"
+                },
+                "direction": {
+                    "default": "z"
+                }
+            }
+        }
+    ]
+}
