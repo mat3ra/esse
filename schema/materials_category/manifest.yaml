@@ -109,30 +109,48 @@ materials_category_components:
           - orientation = [h, k, l] # to align specific plane perpendicular the z-axis
 
   operations:
+    # Add conventions for details: aligning atoms during operations (ie scale_cell, where are basis?
     core:
-      modifications:
-        strain:
-          # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
-          - matrix
-        repeat:
-          - integer_matrix
-        perturb:
-          # changes coordinates of atoms by applying the function, intended for local displacements
-          - function = ∂r -> f(x,y,z)
-          - is_isometric = bool  # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
-        fold:
-          # maps 2D flat plane to a curved surface in 3D space
-          - function = f(x, y) -> f(x, y, z)
-          - is_isometric = bool
-      combinations:
-        stack_component: (material | vacuum)
-        stack:
-          - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
-          - direction = ("x" | "y" | "z")|("-x" | "-y" | "-z"){1} # sign indicates the order of the stacking
-        merge_component: ( material | vacuum | crystal_site )
-        merge:
-          - merge_structures = [ material ]
-          - method = ("add" | "replace" | "yield" | "smart"){1}
+      unary:
+        symmetry_preserving: #Change Lattice
+          - TRANSLATE: # Translate the crystal in space, changes Basis
+          - MIRROR: # Mirror the crystal, changes Basis
+          - ROTATE_CELL: # Rotate cell vectors in the working space
+          - SUPERCELL: # Create a supercell of the crystal, changes Basis, Lattice
+        symmetry_breaking: # Change Basis
+          - STRAIN: # Apply strain to the crystal, changes Basis, Lattice
+          - PERTURB: # Apply perturbation to the crystal, changes Basis
+              - function = ∂r -> f(x,y,z)
+              - is_isometric = bool  # distance preservation -- isometric transformation -- only makes sense in 2D and 1D thin structures
+          - SCALE_CELL: # Scale the lattice vectors, preserves Basis in cartesian
+        chemistry_changing: # Change Basis
+          - ADD_ATOM:
+          - REMOVE_ATOM:
+        selection:
+          - FILTER: # Select atoms with shape, surface, plane, unit cell, etc. Returns a new Material with selected atoms.
+      binary:
+        - MERGE: # Merge two materials with 3 equivalent Lattice vectors into one crystal. Point defects.
+            - merge_structures = [ material ]
+            - method = ("add" | "replace" | "yield" | "smart"){1}
+        - STACK: # Stack two materials with 2 equivalent Lattice vectors orthogonal to the stacking direction. Slab, interface, grain boundary etc.
+            - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
+            - direction = ("x" | "y" | "z")|("-x" | "-y" | "-z"){1} # sign indicates the order of the stacking
+
+    reusable:
+      unary:
+        symmetry_preserving:
+          - WRAP: # Wrap the crystal in the unit cell, changes Basis
+        symmetry_breaking:
+          - ROTATE = PERTURB # Rotate the atoms inside the unit cell, changes Basis
+        mechanical:
+          - CUT: # Remove crystal sites on one side of the plane # CUT MIGHT BE A SELECTION WITH 2 PLANES
+          - FOLD: # Map 2D flat XY plane of a crystal to a curved surface in 3D space
+              - function = f(x, y) -> f(x, y, z)
+              - is_isometric = bool
+        chemistry: # Change Basis
+          - REPLACE_ATOM = REMOVE_ATOM + ADD_ATOM # Remove atom and add a new atom at the same position
+      binary:
+        - INSERT = MERGE(material1, TRANSLATE(SCALE_CELL(material2))) # Insert a material/atom into another crystal: any smaller Lattice into larger Lattice. Passivation, molecule on surface, etc.
 
 material_categories:
   pristine_structures:
