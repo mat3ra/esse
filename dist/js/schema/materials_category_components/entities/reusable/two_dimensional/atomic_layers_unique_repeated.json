@@ -151,7 +151,7 @@
                         },
                         {
                             "type": "string",
-                            "pattern": "^[A-Z][a-z]?([A-Z][a-z]?)*$"
+                            "pattern": "^([A-Z][a-z]?[0-9]*)+$"
                         }
                     ]
                 },

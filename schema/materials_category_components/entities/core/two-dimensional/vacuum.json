@@ -13,10 +13,15 @@
             "description": "Size of the vacuum slab in angstroms",
             "minimum": 0,
             "default": 10
+        },
+        "crystal": {
+            "$ref": "../three-dimensional/crystal.json",
+            "description": "Crystal structure that the vacuum slab is associated with, to use as a reference for lattice vectors"
         }
     },
     "required": [
         "direction",
-        "size"
+        "size",
+        "crystal"
     ]
 }
