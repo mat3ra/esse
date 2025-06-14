@@ -208,6 +208,7 @@
                                                         },
                                                         {
                                                             "type": "string",
+                                                            "description": "A string representing a stoichiometric formula for surface atoms of a plane, e.g. 'SrTiO', 'SrO', 'O2' or 'Hf2O'",
                                                             "pattern": "^([A-Z][a-z]?[0-9]*)+$"
                                                         }
                                                     ]
@@ -1998,6 +1999,7 @@
                                                         },
                                                         {
                                                             "type": "string",
+                                                            "description": "A string representing a stoichiometric formula for surface atoms of a plane, e.g. 'SrTiO', 'SrO', 'O2' or 'Hf2O'",
                                                             "pattern": "^([A-Z][a-z]?[0-9]*)+$"
                                                         }
                                                     ]
