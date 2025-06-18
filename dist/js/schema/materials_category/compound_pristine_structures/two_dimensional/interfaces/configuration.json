@@ -1,8 +1,8 @@
 {
-    "$id": "materials_category/compound_pristine_structures/two-dimensional/interfaces/with_vacuum",
+    "$id": "materials_category/compound_pristine_structures/two-dimensional/interfaces/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Interface with Vacuum Schema",
-    "description": "A two-dimensional interface structure with vacuum",
+    "title": "Interface Configuration Schema",
+    "description": "A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.",
     "type": "object",
     "required": [
         "stack_components",
@@ -11,7 +11,7 @@
     "properties": {
         "stack_components": {
             "type": "array",
-            "minItems": 3,
+            "minItems": 2,
             "maxItems": 3,
             "description": "Components of the interface: slab, slab and vacuum",
             "items": [
@@ -1793,6 +1793,7 @@
                             ]
                         },
                         "direction": {
+                            "default": "z",
                             "$schema": "http://json-schema.org/draft-07/schema#",
                             "title": "Axis Enum",
                             "type": "string",
@@ -1801,8 +1802,7 @@
                                 "x",
                                 "y",
                                 "z"
-                            ],
-                            "default": "z"
+                            ]
                         }
                     }
                 },
@@ -3584,6 +3584,7 @@
                             ]
                         },
                         "direction": {
+                            "default": "z",
                             "$schema": "http://json-schema.org/draft-07/schema#",
                             "title": "Axis Enum",
                             "type": "string",
@@ -3592,8 +3593,7 @@
                                 "x",
                                 "y",
                                 "z"
-                            ],
-                            "default": "z"
+                            ]
                         }
                     }
                 },
@@ -4386,6 +4386,7 @@
             ]
         },
         "direction": {
+            "default": "z",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Axis Enum",
             "type": "string",
@@ -4394,8 +4395,22 @@
                 "x",
                 "y",
                 "z"
+            ]
+        },
+        "xy_shift": {
+            "default": [
+                0,
+                0
             ],
-            "default": "z"
+            "description": "xy shift for the film as cartesian 2D vector on the xy plane.",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "vector 2d schema",
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": {
+                "type": "number"
+            }
         }
     }
 }

@@ -1,0 +1,11 @@
+{
+    "$id": "core/primitive/array-of-2-numbers",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "array of 2 number elements schema",
+    "type": "array",
+    "items": {
+        "type": "number"
+    },
+    "minItems": 2,
+    "maxItems": 2
+} 

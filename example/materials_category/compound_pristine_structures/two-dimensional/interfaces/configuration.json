@@ -5,6 +5,13 @@
         },
         {
             "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+        },
+        {
+            "direction": "z",
+            "size": 20,
+            "crystal": {
+                "...": "include(../../../../material.json)"
+            }
         }
     ],
     "direction": "z"

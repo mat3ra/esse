@@ -1777,6 +1777,7 @@
             ]
         },
         "direction": {
+            "default": "z",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Axis Enum",
             "type": "string",
@@ -1785,8 +1786,7 @@
                 "x",
                 "y",
                 "z"
-            ],
-            "default": "z"
+            ]
         }
     }
 }

@@ -6,27 +6,24 @@
     "allOf": [
         {
             "$ref": "../../../operations/core/combinations/stack.json"
-        },
-        {
-            "type": "object",
-            "properties": {
-                "stack_components": {
-                    "type": "array",
-                    "minItems": 2,
-                    "maxItems": 2,
-                    "items": [
-                        {
-                            "$ref": "atomic_layers_unique_repeated.json"
-                        },
-                        {
-                            "$ref": "../../../entities/core/two-dimensional/vacuum.json"
-                        }
-                    ]
-                },
-                "direction": {
-                    "default": "z"
-                }
-            }
         }
-    ]
-} 
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+                {
+                    "$ref": "atomic_layers_unique_repeated.json"
+                },
+                {
+                    "$ref": "../../../entities/core/two-dimensional/vacuum.json"
+                }
+            ]
+        },
+        "direction": {
+            "default": "z"
+        }
+    }
+}

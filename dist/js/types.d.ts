@@ -1648,6 +1648,12 @@ export type KpointSchema = [number, number, number];
  * @maxItems 3
  */
 export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
+/** Schema dist/js/schema/core/abstract/vector_2d.json */
+/**
+ * @minItems 2
+ * @maxItems 2
+ */
+export type Vector2DSchema = [number, number];
 /** Schema dist/js/schema/core/abstract/vector_3d.json */
 /**
  * @minItems 3
@@ -1658,6 +1664,12 @@ export type Vector3DSchema = [number, number, number];
 export type VectorBoolean3DSchema = [boolean, boolean, boolean];
 /** Schema dist/js/schema/core/primitive/1d_data_series.json */
 export type DimensionDataSeriesSchema = [number | string, ...(number | string)[]][];
+/** Schema dist/js/schema/core/primitive/array_of_2_numbers.json */
+/**
+ * @minItems 2
+ * @maxItems 2
+ */
+export type ArrayOf2NumberElementsSchema = [number, number];
 /** Schema dist/js/schema/core/primitive/array_of_3_booleans.json */
 /**
  * @minItems 3
@@ -6495,16 +6507,16 @@ export interface MaterialSchema {
     isDefault?: boolean;
     metadata?: {};
 }
-/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interfaces/with_no_vacuum.json */
+/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interfaces/configuration.json */
 /**
- * A two-dimensional interface structure without vacuum
+ * A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.
  */
-export interface InterfaceWithNoVacuumSchema {
+export interface InterfaceConfigurationSchema {
     /**
-     * Components of the interface: slab and slab
+     * Components of the interface: slab, slab and vacuum
      *
      * @minItems 2
-     * @maxItems 2
+     * @maxItems 3
      */
     stack_components: [
         {
@@ -7661,24 +7673,7 @@ export interface InterfaceWithNoVacuumSchema {
              */
             direction: "x" | "y" | "z";
         }
-    ];
-    /**
-     * Enum for axis types
-     */
-    direction: "x" | "y" | "z";
-}
-/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interfaces/with_vacuum.json */
-/**
- * A two-dimensional interface structure with vacuum
- */
-export interface InterfaceWithVacuumSchema {
-    /**
-     * Components of the interface: slab, slab and vacuum
-     *
-     * @minItems 3
-     * @maxItems 3
-     */
-    stack_components: [
+    ] | [
         {
             /**
              * Supercell matrix for xy plane transformations
@@ -9107,6 +9102,13 @@ export interface InterfaceWithVacuumSchema {
      * Enum for axis types
      */
     direction: "x" | "y" | "z";
+    /**
+     * xy shift for the film as cartesian 2D vector on the xy plane.
+     *
+     * @minItems 2
+     * @maxItems 2
+     */
+    xy_shift?: [number, number];
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/three_dimensional/ideal_crystal.json */
 /**
