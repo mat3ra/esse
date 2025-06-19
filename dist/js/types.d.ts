@@ -14008,7 +14008,7 @@ export interface IdealCrystalSchema {
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/slab.json */
 /**
- * A slab structure configuration
+ * A slab unit cell consisting of repeated unique atomic layers and vacuum.
  */
 export interface SlabConfigurationSchema {
     /**
