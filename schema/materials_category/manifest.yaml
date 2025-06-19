@@ -184,7 +184,7 @@ material_categories:
       heterostack:
         - stack_components = [ slab, vacuum, ... ]
         - direction = (x | y | z){1}
-      interfaces:
+      interface:
         with_no_vacuum:
           - stack_components = [ (slab | monolayer), (slab | monolayer)]
           - direction = "z"

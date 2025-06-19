@@ -1,5 +1,5 @@
 {
-    "$id": "materials-category/compound-pristine-structures/two-dimensional/interfaces/configuration",
+    "$id": "materials-category/compound-pristine-structures/two-dimensional/interface/configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Interface Configuration Schema",
     "description": "A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.",

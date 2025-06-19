@@ -6507,7 +6507,7 @@ export interface MaterialSchema {
     isDefault?: boolean;
     metadata?: {};
 }
-/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interfaces/configuration.json */
+/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
  * A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.
  */
