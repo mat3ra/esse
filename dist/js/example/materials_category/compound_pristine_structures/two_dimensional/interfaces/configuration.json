@@ -276,17 +276,7 @@
                     }
                 }
             ],
-            "direction": "z",
-            "xy_supercell_matrix": [
-                [
-                    2,
-                    0
-                ],
-                [
-                    0,
-                    2
-                ]
-            ]
+            "direction": "z"
         },
         {
             "stack_components": [
@@ -564,17 +554,7 @@
                     }
                 }
             ],
-            "direction": "z",
-            "xy_supercell_matrix": [
-                [
-                    2,
-                    0
-                ],
-                [
-                    0,
-                    2
-                ]
-            ]
+            "direction": "z"
         },
         {
             "direction": "z",

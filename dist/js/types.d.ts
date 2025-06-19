@@ -6521,13 +6521,6 @@ export interface InterfaceConfigurationSchema {
     stack_components: [
         ({
             /**
-             * Supercell matrix for xy plane transformations
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            xy_supercell_matrix?: [[number, number], [number, number]];
-            /**
              * @minItems 2
              * @maxItems 2
              */
@@ -8263,13 +8256,6 @@ export interface InterfaceConfigurationSchema {
             direction: "x" | "y" | "z";
         }),
         ({
-            /**
-             * Supercell matrix for xy plane transformations
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            xy_supercell_matrix?: [[number, number], [number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -10008,13 +9994,6 @@ export interface InterfaceConfigurationSchema {
     ] | [
         ({
             /**
-             * Supercell matrix for xy plane transformations
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            xy_supercell_matrix?: [[number, number], [number, number]];
-            /**
              * @minItems 2
              * @maxItems 2
              */
@@ -11750,13 +11729,6 @@ export interface InterfaceConfigurationSchema {
             direction: "x" | "y" | "z";
         }),
         ({
-            /**
-             * Supercell matrix for xy plane transformations
-             *
-             * @minItems 2
-             * @maxItems 2
-             */
-            xy_supercell_matrix?: [[number, number], [number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -14039,13 +14011,6 @@ export interface IdealCrystalSchema {
  * A slab structure configuration that can optionally include a supercell transformation in the xy plane
  */
 export interface SlabConfigurationSchema {
-    /**
-     * Supercell matrix for xy plane transformations
-     *
-     * @minItems 2
-     * @maxItems 2
-     */
-    xy_supercell_matrix?: [[number, number], [number, number]];
     /**
      * @minItems 2
      * @maxItems 2
