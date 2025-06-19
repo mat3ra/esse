@@ -15,10 +15,30 @@
             "maxItems": 3,
             "items": [
                 {
-                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                    "anyOf": [
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell_with_gap.json"
+                        }
+                    ]
                 },
                 {
-                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                    "anyOf": [
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell_with_gap.json"
+                        }
+                    ]
                 },
                 {
                     "$ref": "../../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
