@@ -1,0 +1,25 @@
+{
+    "$id": "materials-category/pristine-structures/two-dimensional/slab-strained-supercell",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Strained Supercell Configuration Schema",
+    "description": "A slab structure configuration with supercell transformation and strain matrix in the xy plane",
+    "allOf": [
+        {
+            "$ref": "slab.json"
+        }
+    ],
+    "properties": {
+        "xy_supercell_matrix": {
+            "$ref": "../../../materials_category_components/entities/auxiliary/two-dimensional/supercell_matrix_2d.json",
+            "description": "2x2 transformation matrix for creating a supercell in the xy plane"
+        },
+        "strain_matrix": {
+            "$ref": "../../../core/abstract/matrix_3x3.json",
+            "description": "3x3 strain matrix for deforming the structure"
+        }
+    },
+    "required": [
+        "xy_supercell_matrix",
+        "strain_matrix"
+    ]
+} 

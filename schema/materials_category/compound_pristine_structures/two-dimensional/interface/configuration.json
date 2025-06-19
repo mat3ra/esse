@@ -1,0 +1,65 @@
+{
+    "$id": "materials-category/compound-pristine-structures/two-dimensional/interface/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interface Configuration Schema",
+    "description": "A two-dimensional interface between two slabs, optionally including vacuum, with a specified stacking direction.",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/operations/core/combinations/stack.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 3,
+            "items": [
+                {
+                    "anyOf": [
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell_with_gap.json"
+                        }
+                    ]
+                },
+                {
+                    "anyOf": [
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell.json"
+                        },
+                        {
+                            "$ref": "../../../pristine_structures/two-dimensional/slab_strained_supercell_with_gap.json"
+                        }
+                    ]
+                },
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
+                }
+            ],
+            "description": "Components of the interface: slab, slab and vacuum"
+        },
+        "direction": {
+            "default": "z"
+        },
+        "xy_shift": {
+            "allOf": [
+                {
+                    "$ref": "../../../../core/abstract/vector_2d.json"
+                }
+            ],
+            "default": [
+                0.0,
+                0.0
+            ],
+            "description": "xy shift for the film as cartesian 2D vector on the xy plane."
+        }
+    }
+}

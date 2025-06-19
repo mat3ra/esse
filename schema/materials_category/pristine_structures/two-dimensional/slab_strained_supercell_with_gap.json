@@ -1,0 +1,18 @@
+{
+    "$id": "materials-category/pristine-structures/two-dimensional/slab-strained-supercell-with-gap",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Strained Supercell with Gap Configuration Schema",
+    "description": "A slab structure configuration with supercell transformation, strain matrix, and optional gap for film positioning",
+    "allOf": [
+        {
+            "$ref": "slab_strained_supercell.json"
+        }
+    ],
+    "properties": {
+        "gap": {
+            "type": "number",
+            "description": "If provided, the film is shifted to have it as smallest distance to the substrate",
+            "minimum": 0
+        }
+    }
+} 
