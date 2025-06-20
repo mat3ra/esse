@@ -2,92 +2,85 @@
     "$id": "core/abstract/right-handed-mirror-matrix-3x3",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "right handed mirror matrix 3x3 schema",
-    "description": "A 3x3 matrix that represents a reflection across a plane while preserving the right-handed coordinate system",
-    "oneOf": [
-        {
-            "type": "array",
-            "items": {
-                "$ref": "../primitive/array_of_3_numbers.json"
-            },
-            "minItems": 3,
-            "maxItems": 3
-        },
-        {
-            "type": "object",
-            "properties": {
-                "x": {
-                    "allOf": [
-                        {
-                            "$ref": "matrix_3x3.json"
-                        }
-                    ],
-                    "default": [
-                        [
-                            -1,
-                            0,
-                            0
-                        ],
-                        [
-                            0,
-                            0,
-                            1
-                        ],
-                        [
-                            0,
-                            1,
-                            0
-                        ]
-                    ]
-                },
-                "y": {
-                    "allOf": [
-                        {
-                            "$ref": "matrix_3x3.json"
-                        }
-                    ],
-                    "default": [
-                        [
-                            0,
-                            0,
-                            1
-                        ],
-                        [
-                            0,
-                            -1,
-                            0
-                        ],
-                        [
-                            1,
-                            0,
-                            0
-                        ]
-                    ]
-                },
-                "z": {
-                    "allOf": [
-                        {
-                            "$ref": "matrix_3x3.json"
-                        }
-                    ],
-                    "default": [
-                        [
-                            0,
-                            1,
-                            0
-                        ],
-                        [
-                            1,
-                            0,
-                            0
-                        ],
-                        [
-                            0,
-                            0,
-                            -1
-                        ]
-                    ]
+    "description": "A collection of 3x3 matrices that represent reflections across planes while preserving the right-handed coordinate system. Can be accessed by axis (x, y, z) for enum-like usage.",
+    "type": "object",
+    "properties": {
+        "x": {
+            "allOf": [
+                {
+                    "$ref": "matrix_3x3.json"
                 }
-            }
+            ],
+            "description": "Mirror matrix for reflection across the x-axis plane",
+            "default": [
+                [
+                    -1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ]
+            ]
+        },
+        "y": {
+            "allOf": [
+                {
+                    "$ref": "matrix_3x3.json"
+                }
+            ],
+            "description": "Mirror matrix for reflection across the y-axis plane",
+            "default": [
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    -1,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ]
+            ]
+        },
+        "z": {
+            "allOf": [
+                {
+                    "$ref": "matrix_3x3.json"
+                }
+            ],
+            "description": "Mirror matrix for reflection across the z-axis plane",
+            "default": [
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    -1
+                ]
+            ]
         }
-    ]
+    },
+    "required": ["x", "y", "z"],
+    "additionalProperties": false
 }

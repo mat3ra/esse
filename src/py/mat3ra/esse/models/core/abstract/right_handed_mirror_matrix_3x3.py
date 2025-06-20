@@ -4,9 +4,9 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
@@ -14,6 +14,9 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
 
 
 class RightHandedMirrorMatrix3x3Schema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     x: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
         default_factory=lambda: [
             ArrayOf3NumberElementsSchema.model_validate(v) for v in [[-1, 0, 0], [0, 0, 1], [0, 1, 0]]
@@ -22,6 +25,9 @@ class RightHandedMirrorMatrix3x3Schema(BaseModel):
         min_length=3,
         title="matrix 3x3 schema",
     )
+    """
+    Mirror matrix for reflection across the x-axis plane
+    """
     y: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
         default_factory=lambda: [
             ArrayOf3NumberElementsSchema.model_validate(v) for v in [[0, 0, 1], [0, -1, 0], [1, 0, 0]]
@@ -30,6 +36,9 @@ class RightHandedMirrorMatrix3x3Schema(BaseModel):
         min_length=3,
         title="matrix 3x3 schema",
     )
+    """
+    Mirror matrix for reflection across the y-axis plane
+    """
     z: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
         default_factory=lambda: [
             ArrayOf3NumberElementsSchema.model_validate(v) for v in [[0, 1, 0], [1, 0, 0], [0, 0, -1]]
@@ -38,12 +47,6 @@ class RightHandedMirrorMatrix3x3Schema(BaseModel):
         min_length=3,
         title="matrix 3x3 schema",
     )
-
-
-class ESSE(RootModel[Union[List[ArrayOf3NumberElementsSchema], RightHandedMirrorMatrix3x3Schema]]):
-    root: Union[List[ArrayOf3NumberElementsSchema], RightHandedMirrorMatrix3x3Schema] = Field(
-        ..., title="right handed mirror matrix 3x3 schema"
-    )
     """
-    A 3x3 matrix that represents a reflection across a plane while preserving the right-handed coordinate system
+    Mirror matrix for reflection across the z-axis plane
     """

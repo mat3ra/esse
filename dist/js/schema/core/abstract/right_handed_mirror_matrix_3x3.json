@@ -2,10 +2,39 @@
     "$id": "core/abstract/right-handed-mirror-matrix-3x3",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "right handed mirror matrix 3x3 schema",
-    "description": "A 3x3 matrix that represents a reflection across a plane while preserving the right-handed coordinate system",
-    "oneOf": [
-        {
+    "description": "A collection of 3x3 matrices that represent reflections across planes while preserving the right-handed coordinate system. Can be accessed by axis (x, y, z) for enum-like usage.",
+    "type": "object",
+    "required": [
+        "x",
+        "y",
+        "z"
+    ],
+    "additionalProperties": false,
+    "properties": {
+        "x": {
+            "description": "Mirror matrix for reflection across the x-axis plane",
+            "default": [
+                [
+                    -1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    1,
+                    0
+                ]
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "matrix 3x3 schema",
             "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "array of 3 number elements schema",
@@ -15,116 +44,77 @@
                 "items": {
                     "type": "number"
                 }
-            },
-            "minItems": 3,
-            "maxItems": 3
+            }
         },
-        {
-            "type": "object",
-            "properties": {
-                "x": {
-                    "default": [
-                        [
-                            -1,
-                            0,
-                            0
-                        ],
-                        [
-                            0,
-                            0,
-                            1
-                        ],
-                        [
-                            0,
-                            1,
-                            0
-                        ]
-                    ],
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "matrix 3x3 schema",
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "items": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "array of 3 number elements schema",
-                        "type": "array",
-                        "minItems": 3,
-                        "maxItems": 3,
-                        "items": {
-                            "type": "number"
-                        }
-                    }
-                },
-                "y": {
-                    "default": [
-                        [
-                            0,
-                            0,
-                            1
-                        ],
-                        [
-                            0,
-                            -1,
-                            0
-                        ],
-                        [
-                            1,
-                            0,
-                            0
-                        ]
-                    ],
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "matrix 3x3 schema",
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "items": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "array of 3 number elements schema",
-                        "type": "array",
-                        "minItems": 3,
-                        "maxItems": 3,
-                        "items": {
-                            "type": "number"
-                        }
-                    }
-                },
-                "z": {
-                    "default": [
-                        [
-                            0,
-                            1,
-                            0
-                        ],
-                        [
-                            1,
-                            0,
-                            0
-                        ],
-                        [
-                            0,
-                            0,
-                            -1
-                        ]
-                    ],
-                    "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "matrix 3x3 schema",
-                    "type": "array",
-                    "minItems": 3,
-                    "maxItems": 3,
-                    "items": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "array of 3 number elements schema",
-                        "type": "array",
-                        "minItems": 3,
-                        "maxItems": 3,
-                        "items": {
-                            "type": "number"
-                        }
-                    }
+        "y": {
+            "description": "Mirror matrix for reflection across the y-axis plane",
+            "default": [
+                [
+                    0,
+                    0,
+                    1
+                ],
+                [
+                    0,
+                    -1,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ]
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "matrix 3x3 schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "array of 3 number elements schema",
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                    "type": "number"
+                }
+            }
+        },
+        "z": {
+            "description": "Mirror matrix for reflection across the z-axis plane",
+            "default": [
+                [
+                    0,
+                    1,
+                    0
+                ],
+                [
+                    1,
+                    0,
+                    0
+                ],
+                [
+                    0,
+                    0,
+                    -1
+                ]
+            ],
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "matrix 3x3 schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "array of 3 number elements schema",
+                "type": "array",
+                "minItems": 3,
+                "maxItems": 3,
+                "items": {
+                    "type": "number"
                 }
             }
         }
-    ]
+    }
 }

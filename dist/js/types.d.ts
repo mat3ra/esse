@@ -1650,25 +1650,31 @@ export type KpointSchema = [number, number, number];
 export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/right_handed_mirror_matrix_3x3.json */
 /**
- * A 3x3 matrix that represents a reflection across a plane while preserving the right-handed coordinate system
+ * A collection of 3x3 matrices that represent reflections across planes while preserving the right-handed coordinate system. Can be accessed by axis (x, y, z) for enum-like usage.
  */
-export type RightHandedMirrorMatrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]] | {
+export interface RightHandedMirrorMatrix3X3Schema {
     /**
+     * Mirror matrix for reflection across the x-axis plane
+     *
      * @minItems 3
      * @maxItems 3
      */
-    x?: [[number, number, number], [number, number, number], [number, number, number]];
+    x: [[number, number, number], [number, number, number], [number, number, number]];
     /**
+     * Mirror matrix for reflection across the y-axis plane
+     *
      * @minItems 3
      * @maxItems 3
      */
-    y?: [[number, number, number], [number, number, number], [number, number, number]];
+    y: [[number, number, number], [number, number, number], [number, number, number]];
     /**
+     * Mirror matrix for reflection across the z-axis plane
+     *
      * @minItems 3
      * @maxItems 3
      */
-    z?: [[number, number, number], [number, number, number], [number, number, number]];
-};
+    z: [[number, number, number], [number, number, number], [number, number, number]];
+}
 /** Schema dist/js/schema/core/abstract/vector_2d.json */
 /**
  * @minItems 2
