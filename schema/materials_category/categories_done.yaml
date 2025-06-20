@@ -1,0 +1,50 @@
+materials_category_components:
+  entities:
+    core:
+      three-dimensional:
+        - crystal
+        - void
+      two-dimensional:
+        - vacuum
+      zero-dimensional:
+        - atom
+    auxiliary:
+      three-dimensional:
+        - supercell_matrix_3d
+      two-dimensional:
+        - termination
+        - miller_indices
+        - supercell_matrix_2d
+      zero-dimensional:
+        - crystal_site
+    reusable:
+      three-dimensional:
+        - supercell
+        - strained_uniform
+        - strained_non-uniform
+      two-dimensional:
+        - crystal_lattice_planes
+        - atomic_layers_unique
+        - atomic_layers_unique_repeated
+        - atomic_layers
+      repetitions:
+
+  operations:
+    core:
+      modifications:
+        - strain
+        - repeat
+      combinations:
+        - stack
+        - merge
+
+material_categories:
+  pristine_structures:
+    three-dimensional:
+      - ideal_crystal
+    two-dimensional:
+      - slab
+
+  compound_pristine_structures:
+    two-dimensional:
+      - interface

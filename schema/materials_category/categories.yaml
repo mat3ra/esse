@@ -1,0 +1,107 @@
+materials_category_components:
+  entities:
+    core:
+      three-dimensional:
+        - crystal
+        - void
+      two-dimensional:
+        - vacuum
+        - termination
+        - miller_indices
+      one-dimensional:
+      zero-dimensional:
+        - crystal_site
+        - atom
+    auxiliary:
+      three-dimensional:
+        - supercell_matrix_3d
+      two-dimensional:
+        - miller_indices
+      one-dimensional:
+        - edge_direction
+      zero-dimensional:
+        - shape_function
+    reusable:
+      three-dimensional:
+        - supercell
+        - strained_uniform
+        - strained_non-uniform
+      two-dimensional:
+        - crystal_lattice_planes
+        - atomic_layers_unique
+        - atomic_layers_unique_repeated
+        - atomic_layers
+        - atomic_layer
+        - slab_unit_cell
+      one-dimensional:
+        - ribbon_section
+        - ribbon_section_hex
+        - wire_section
+      zero-dimensional:
+        - nanoparticle
+
+  operations:
+    core:
+      modifications:
+        - strain
+        - repeat
+        - perturb
+        - fold
+      combinations:
+        - stack_component
+        - stack
+        - merge_component
+        - merge
+
+material_categories:
+  pristine_structures:
+    three-dimensional:
+      - ideal_crystal
+    two-dimensional:
+      - monolayer
+      - slab
+      - slab_with_reconstruction
+    one-dimensional:
+      - nanotape
+      - nanowire
+    zero-dimensional:
+      - nanoparticle_with_vacuum
+      - nanoribbon
+      - nanoribbon_hex
+
+  compound_pristine_structures:
+    two-dimensional:
+      - multi-layer
+      - heterostack
+      - interface
+        - with_no_vacuum
+        - with_vacuum
+        - with_gap_and_vacuum
+        - commensurate_slabs
+        - commensurate_monolayers_along_x
+        - twisted_nanoribbons
+
+  defective_structures:
+    three-dimensional:
+      amorphous:
+    two-dimensional:
+      adatom:
+      island:
+      terrace:
+      grain_boundary_planar:
+      grain_boundary_planar_with_vacuum:
+    one-dimensional:
+      grain_boundary_line:
+    zero-dimensional:
+      vacancy:
+      substitution:
+      interstitial:
+      defect_pair:
+
+  processed_structures:
+    two-dimensional:
+      passivated_surface_2d:
+    one-dimensional:
+      passivated_edge_1d:
+    zero-dimensional:
+      passivated_edge_0d:

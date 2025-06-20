@@ -1648,6 +1648,27 @@ export type KpointSchema = [number, number, number];
  * @maxItems 3
  */
 export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
+/** Schema dist/js/schema/core/abstract/right_handed_mirror_matrix_3x3.json */
+/**
+ * A 3x3 matrix that represents a reflection across a plane while preserving the right-handed coordinate system
+ */
+export type RightHandedMirrorMatrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]] | {
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    x?: [[number, number, number], [number, number, number], [number, number, number]];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    y?: [[number, number, number], [number, number, number], [number, number, number]];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    z?: [[number, number, number], [number, number, number], [number, number, number]];
+};
 /** Schema dist/js/schema/core/abstract/vector_2d.json */
 /**
  * @minItems 2
