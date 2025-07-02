@@ -13746,7 +13746,7 @@ export interface InterfaceConfigurationSchema {
      */
     xy_shift?: [number, number];
 }
-/** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/grain_boundary_planar.json */
+/** Schema dist/js/schema/materials_category/defective_structures/two_dimensional/grain_boundary_planar/configuration.json */
 /**
  * Configuration for creating a grain boundary between two phases.
  */
