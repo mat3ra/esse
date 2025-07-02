@@ -6,7 +6,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "crystal_lattice_base.json"
+            "$ref": "../three-dimensional/crystal_lattice_base.json"
         }
     ],
     "properties": {
