@@ -1,59 +1,14 @@
 {
-    "$id": "materials-category/pristine-structures/two-dimensional/slab-strained-supercell",
+    "$id": "materials-category/pristine-structures/two-dimensional/nanotape",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Slab Strained Supercell Configuration Schema",
-    "description": "A slab structure configuration with supercell transformation and strain matrix in the xy plane",
-    "required": [
-        "direction",
-        "stack_components",
-        "strain_matrix",
-        "xy_supercell_matrix"
-    ],
+    "title": "NanoTape Configuration Schema",
+    "description": "A nanotape unit cell consisting of crystal lattice lines and vacuum stacked in Y direction.",
     "type": "object",
+    "required": [
+        "stack_components",
+        "direction"
+    ],
     "properties": {
-        "xy_supercell_matrix": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Supercell Matrix 2D Schema",
-            "description": "Supercell matrix for xy plane transformations",
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "default": [
-                [
-                    1,
-                    0
-                ],
-                [
-                    0,
-                    1
-                ]
-            ],
-            "items": {
-                "type": "array",
-                "minItems": 2,
-                "maxItems": 2,
-                "items": {
-                    "type": "integer"
-                }
-            }
-        },
-        "strain_matrix": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "matrix 3x3 schema",
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "array of 3 number elements schema",
-                "type": "array",
-                "minItems": 3,
-                "maxItems": 3,
-                "items": {
-                    "type": "number"
-                }
-            }
-        },
         "stack_components": {
             "type": "array",
             "minItems": 2,
@@ -61,13 +16,12 @@
             "items": [
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
-                    "title": "Atomic Layers Unique Repeated Schema",
-                    "description": "Atomic layers unique with an integer number of repetitions, forming a full periodic structure with top layer specified by the termination",
+                    "title": "Crystal Lattice Lines Unique Repeated Schema",
+                    "description": "Crystal lattice lines unique with integer number of repetitions, forming a full periodic structure with terminations",
                     "type": "object",
                     "required": [
                         "crystal",
-                        "miller_indices",
-                        "number_of_repetitions",
+                        "miller_indices_2d",
                         "termination_top"
                     ],
                     "properties": {
@@ -222,23 +176,176 @@
                                 }
                             }
                         },
-                        "number_of_repetitions": {
+                        "termination_bottom": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "Termination Schema",
+                            "description": "Defines a specific termination of a slab",
+                            "type": "object",
+                            "required": [
+                                "chemical_elements",
+                                "space_group_symmetry_label"
+                            ],
+                            "properties": {
+                                "chemical_elements": {
+                                    "title": "Chemical Elements",
+                                    "description": "Chemical elements at the termination. Can be a single element (e.g. 'Si') or a compound (e.g. 'SiO')",
+                                    "type": "string",
+                                    "anyOf": [
+                                        {
+                                            "enum": [
+                                                "H",
+                                                "He",
+                                                "Li",
+                                                "Be",
+                                                "B",
+                                                "C",
+                                                "N",
+                                                "O",
+                                                "F",
+                                                "Ne",
+                                                "Na",
+                                                "Mg",
+                                                "Al",
+                                                "Si",
+                                                "P",
+                                                "S",
+                                                "Cl",
+                                                "Ar",
+                                                "K",
+                                                "Ca",
+                                                "Sc",
+                                                "Ti",
+                                                "V",
+                                                "Cr",
+                                                "Mn",
+                                                "Fe",
+                                                "Co",
+                                                "Ni",
+                                                "Cu",
+                                                "Zn",
+                                                "Ga",
+                                                "Ge",
+                                                "As",
+                                                "Se",
+                                                "Br",
+                                                "Kr",
+                                                "Rb",
+                                                "Sr",
+                                                "Y",
+                                                "Zr",
+                                                "Nb",
+                                                "Mo",
+                                                "Tc",
+                                                "Ru",
+                                                "Rh",
+                                                "Pd",
+                                                "Ag",
+                                                "Cd",
+                                                "In",
+                                                "Sn",
+                                                "Sb",
+                                                "Te",
+                                                "I",
+                                                "Xe",
+                                                "Cs",
+                                                "Ba",
+                                                "La",
+                                                "Ce",
+                                                "Pr",
+                                                "Nd",
+                                                "Pm",
+                                                "Sm",
+                                                "Eu",
+                                                "Gd",
+                                                "Tb",
+                                                "Dy",
+                                                "Ho",
+                                                "Er",
+                                                "Tm",
+                                                "Yb",
+                                                "Lu",
+                                                "Hf",
+                                                "Ta",
+                                                "W",
+                                                "Re",
+                                                "Os",
+                                                "Ir",
+                                                "Pt",
+                                                "Au",
+                                                "Hg",
+                                                "Tl",
+                                                "Pb",
+                                                "Bi",
+                                                "Po",
+                                                "At",
+                                                "Rn",
+                                                "Fr",
+                                                "Ra",
+                                                "Ac",
+                                                "Th",
+                                                "Pa",
+                                                "U",
+                                                "Np",
+                                                "Pu",
+                                                "Am",
+                                                "Cm",
+                                                "Bk",
+                                                "Cf",
+                                                "Es",
+                                                "Fm",
+                                                "Md",
+                                                "No",
+                                                "Lr",
+                                                "Rf",
+                                                "Db",
+                                                "Sg",
+                                                "Bh",
+                                                "Hs",
+                                                "Mt",
+                                                "Ds",
+                                                "Rg",
+                                                "Cn",
+                                                "Nh",
+                                                "Fl",
+                                                "Mc",
+                                                "Lv",
+                                                "Ts",
+                                                "Og"
+                                            ]
+                                        },
+                                        {
+                                            "type": "string",
+                                            "description": "A string representing a stoichiometric formula for surface atoms of a plane, e.g. 'SrTiO', 'SrO', 'O2' or 'Hf2O'",
+                                            "pattern": "^([A-Z][a-z]?[0-9]*)+$"
+                                        }
+                                    ]
+                                },
+                                "space_group_symmetry_label": {
+                                    "title": "Space Group Symmetry Label",
+                                    "description": "Space group symmetry designation for the termination",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "number_of_repetitions_width": {
                             "type": "integer",
                             "minimum": 1,
-                            "description": "Number of repetitions of the unique atomic layers"
+                            "default": 1,
+                            "description": "Number of repetitions in width direction"
                         },
-                        "miller_indices": {
+                        "number_of_repetitions_length": {
+                            "type": "integer",
+                            "minimum": 1,
+                            "default": 1,
+                            "description": "Number of repetitions in length direction"
+                        },
+                        "miller_indices_2d": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "Miller Indices Schema",
-                            "description": "Miller indices [h, k, l] defining crystallographic planes",
-                            "default": [
-                                0,
-                                0,
-                                1
-                            ],
+                            "title": "2D Miller Indices Schema",
+                            "description": "The (u,v) Miller indices for the line direction",
                             "type": "array",
-                            "minItems": 3,
-                            "maxItems": 3,
+                            "minItems": 2,
+                            "maxItems": 2,
                             "items": {
                                 "type": "integer"
                             }
@@ -1795,7 +1902,7 @@
             ]
         },
         "direction": {
-            "default": "z",
+            "default": "y",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Axis Enum",
             "type": "string",

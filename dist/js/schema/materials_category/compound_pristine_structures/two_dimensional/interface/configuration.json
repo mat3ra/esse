@@ -41,8 +41,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -200,6 +199,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -955,22 +970,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
@@ -1851,8 +1850,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -2010,6 +2008,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2765,22 +2779,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
@@ -3666,8 +3664,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -3825,6 +3822,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4580,22 +4593,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
@@ -5435,8 +5432,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -5594,6 +5590,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -6349,22 +6361,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
@@ -7245,8 +7241,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -7404,6 +7399,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -8159,22 +8170,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
@@ -9060,8 +9055,7 @@
                                                 "crystal",
                                                 "miller_indices",
                                                 "number_of_repetitions",
-                                                "termination_top",
-                                                "use_conventional_cell"
+                                                "termination_top"
                                             ],
                                             "properties": {
                                                 "termination_top": {
@@ -9219,6 +9213,22 @@
                                                     "type": "integer",
                                                     "minimum": 1,
                                                     "description": "Number of repetitions of the unique atomic layers"
+                                                },
+                                                "miller_indices": {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Miller Indices Schema",
+                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
+                                                    "default": [
+                                                        0,
+                                                        0,
+                                                        1
+                                                    ],
+                                                    "type": "array",
+                                                    "minItems": 3,
+                                                    "maxItems": 3,
+                                                    "items": {
+                                                        "type": "integer"
+                                                    }
                                                 },
                                                 "crystal": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -9974,22 +9984,6 @@
                                                         "metadata": {
                                                             "type": "object"
                                                         }
-                                                    }
-                                                },
-                                                "miller_indices": {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "Miller Indices Schema",
-                                                    "description": "Miller indices [h, k, l] defining crystallographic planes",
-                                                    "default": [
-                                                        0,
-                                                        0,
-                                                        1
-                                                    ],
-                                                    "type": "array",
-                                                    "minItems": 3,
-                                                    "maxItems": 3,
-                                                    "items": {
-                                                        "type": "integer"
                                                     }
                                                 },
                                                 "use_conventional_cell": {
