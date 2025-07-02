@@ -137,13 +137,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value93(Enum):
+class Value119(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value93]
+    value: Union[Value, Value119]
     """
     All elements, including extra elements
     """
@@ -291,30 +291,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name393(Enum):
+class Name497(Enum):
     density = "density"
 
 
-class Units170(Enum):
+class Units209(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units170] = None
+    units: Optional[Units209] = None
     value: float
 
 
-class Units171(Enum):
+class Units210(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units171] = None
+    units: Optional[Units210] = None
     value: float
 
 
-class Name394(Enum):
+class Name498(Enum):
     symmetry = "symmetry"
 
 
@@ -334,7 +334,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name395(Enum):
+class Name499(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -347,7 +347,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name396(Enum):
+class Name500(Enum):
     p_norm = "p-norm"
 
 
@@ -360,7 +360,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name397(Enum):
+class Name501(Enum):
     inchi = "inchi"
 
 
@@ -369,7 +369,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name398(Enum):
+class Name502(Enum):
     inchi_key = "inchi_key"
 
 
@@ -448,7 +448,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name399(Enum):
+class Name503(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -461,7 +461,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name399
+    name: Name503
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
