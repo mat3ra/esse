@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value51(Enum):
+class Value57(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value51]
+    value: Union[Value, Value57]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name205(Enum):
+class Name229(Enum):
     density = "density"
 
 
-class Units96(Enum):
+class Units105(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units96] = None
+    units: Optional[Units105] = None
     value: float
 
 
-class Units97(Enum):
+class Units106(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units97] = None
+    units: Optional[Units106] = None
     value: float
 
 
-class Name206(Enum):
+class Name230(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name207(Enum):
+class Name231(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name208(Enum):
+class Name232(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name209(Enum):
+class Name233(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name210(Enum):
+class Name234(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name211(Enum):
+class Name235(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name211
+    name: Name235
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -536,7 +536,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class Value52(Enum):
+class Value58(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -657,13 +657,13 @@ class Value52(Enum):
     Og = "Og"
 
 
-class Value53(Enum):
+class Value59(Enum):
     X = "X"
     Vac = "Vac"
 
 
-class AtomicElementSchema24(BaseModel):
-    value: Union[Value52, Value53]
+class AtomicElementSchema27(BaseModel):
+    value: Union[Value58, Value59]
     """
     All elements, including extra elements
     """
@@ -673,8 +673,8 @@ class AtomicElementSchema24(BaseModel):
     """
 
 
-class BasisSchema22(BaseModel):
-    elements: List[AtomicElementSchema24] = Field(..., title="atomic elements schema")
+class BasisSchema25(BaseModel):
+    elements: List[AtomicElementSchema27] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
     """
@@ -689,7 +689,7 @@ class BasisSchema22(BaseModel):
     """
 
 
-class LatticeVectorsSchema22(BaseModel):
+class LatticeVectorsSchema25(BaseModel):
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -700,12 +700,12 @@ class LatticeVectorsSchema22(BaseModel):
     units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
 
 
-class LatticeUnitsSchema23(BaseModel):
+class LatticeUnitsSchema26(BaseModel):
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
-class LatticeSchema22(BaseModel):
+class LatticeSchema25(BaseModel):
     a: float
     """
     length of the first lattice vector
@@ -730,56 +730,56 @@ class LatticeSchema22(BaseModel):
     """
     angle between first and third lattice vector
     """
-    vectors: Optional[LatticeVectorsSchema22] = Field(None, title="lattice vectors schema")
+    vectors: Optional[LatticeVectorsSchema25] = Field(None, title="lattice vectors schema")
     type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema23] = Field(
-        default_factory=lambda: LatticeUnitsSchema23.model_validate({"length": "angstrom", "angle": "degree"}),
+    units: Optional[LatticeUnitsSchema26] = Field(
+        default_factory=lambda: LatticeUnitsSchema26.model_validate({"length": "angstrom", "angle": "degree"}),
         title="Lattice units schema",
     )
 
 
-class Name212(Enum):
+class Name236(Enum):
     volume = "volume"
 
 
-class Units98(Enum):
+class Units107(Enum):
     angstrom_3 = "angstrom^3"
 
 
-class VolumeSchema22(BaseModel):
+class VolumeSchema25(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units98] = None
+    units: Optional[Units107] = None
     value: float
 
 
-class Name213(Enum):
+class Name237(Enum):
     density = "density"
 
 
-class Units99(Enum):
+class Units108(Enum):
     g_cm_3 = "g/cm^3"
 
 
-class DensitySchema23(BaseModel):
+class DensitySchema26(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units99] = None
+    units: Optional[Units108] = None
     value: float
 
 
-class Units100(Enum):
+class Units109(Enum):
     angstrom = "angstrom"
 
 
-class ScalarSchema23(BaseModel):
-    units: Optional[Units100] = None
+class ScalarSchema26(BaseModel):
+    units: Optional[Units109] = None
     value: float
 
 
-class Name214(Enum):
+class Name238(Enum):
     symmetry = "symmetry"
 
 
-class SymmetrySchema22(BaseModel):
+class SymmetrySchema25(BaseModel):
     pointGroupSymbol: Optional[str] = None
     """
     point group symbol in Schoenflies notation
@@ -788,18 +788,18 @@ class SymmetrySchema22(BaseModel):
     """
     space group symbol in Hermann–Mauguin notation
     """
-    tolerance: Optional[ScalarSchema23] = Field(None, title="scalar schema")
+    tolerance: Optional[ScalarSchema26] = Field(None, title="scalar schema")
     """
     tolerance used for symmetry calculation
     """
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name215(Enum):
+class Name239(Enum):
     elemental_ratio = "elemental_ratio"
 
 
-class ElementalRatio23(BaseModel):
+class ElementalRatio26(BaseModel):
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -808,11 +808,11 @@ class ElementalRatio23(BaseModel):
     """
 
 
-class Name216(Enum):
+class Name240(Enum):
     p_norm = "p-norm"
 
 
-class PNorm22(BaseModel):
+class PNorm25(BaseModel):
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -821,56 +821,56 @@ class PNorm22(BaseModel):
     value: float
 
 
-class Name217(Enum):
+class Name241(Enum):
     inchi = "inchi"
 
 
-class InChIRepresentationSchema23(BaseModel):
+class InChIRepresentationSchema26(BaseModel):
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
 
-class Name218(Enum):
+class Name242(Enum):
     inchi_key = "inchi_key"
 
 
-class InChIKeyRepresentationSchema23(BaseModel):
+class InChIKeyRepresentationSchema26(BaseModel):
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
 
-class DerivedPropertiesSchema23(
+class DerivedPropertiesSchema26(
     RootModel[
         Union[
-            VolumeSchema22,
-            DensitySchema23,
-            SymmetrySchema22,
-            ElementalRatio23,
-            PNorm22,
-            InChIRepresentationSchema23,
-            InChIKeyRepresentationSchema23,
+            VolumeSchema25,
+            DensitySchema26,
+            SymmetrySchema25,
+            ElementalRatio26,
+            PNorm25,
+            InChIRepresentationSchema26,
+            InChIKeyRepresentationSchema26,
         ]
     ]
 ):
     root: Union[
-        VolumeSchema22,
-        DensitySchema23,
-        SymmetrySchema22,
-        ElementalRatio23,
-        PNorm22,
-        InChIRepresentationSchema23,
-        InChIKeyRepresentationSchema23,
+        VolumeSchema25,
+        DensitySchema26,
+        SymmetrySchema25,
+        ElementalRatio26,
+        PNorm25,
+        InChIRepresentationSchema26,
+        InChIKeyRepresentationSchema26,
     ] = Field(..., discriminator="name")
 
 
-class Name219(Enum):
+class Name243(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
-class MaterialConsistencyCheckSchema22(BaseModel):
-    name: Name219
+class MaterialConsistencyCheckSchema25(BaseModel):
+    name: Name243
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -888,7 +888,7 @@ class MaterialConsistencyCheckSchema22(BaseModel):
     """
 
 
-class CrystalSchema19(BaseModel):
+class CrystalSchema22(BaseModel):
     formula: Optional[str] = None
     """
     reduced chemical formula
@@ -897,9 +897,9 @@ class CrystalSchema19(BaseModel):
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
-    basis: BasisSchema22 = Field(..., title="basis schema")
-    lattice: LatticeSchema22 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema23]] = Field(None, title="derived properties schema")
+    basis: BasisSchema25 = Field(..., title="basis schema")
+    lattice: LatticeSchema25 = Field(..., title="lattice schema")
+    derivedProperties: Optional[List[DerivedPropertiesSchema26]] = Field(None, title="derived properties schema")
     external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
     """
     information about a database source
@@ -920,7 +920,7 @@ class CrystalSchema19(BaseModel):
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema22]] = None
+    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema25]] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -954,7 +954,7 @@ class VacuumConfigurationSchema(BaseModel):
     """
     Size of the vacuum slab in angstroms
     """
-    crystal: CrystalSchema19 = Field(..., title="Crystal Schema")
+    crystal: CrystalSchema22 = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema
     """
