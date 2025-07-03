@@ -5,11 +5,15 @@
     "description": "A site in a crystal that can be populated with an atom, vacancy, or void. Should be place in a target basis.",
     "type": "object",
     "properties": {
+        "crystal": {
+            "$ref": "../../../core/three-dimensional/crystal.json"
+        },
         "coordinate": {
             "$ref": "../../../../core/abstract/coordinate_3d.json"
         }
     },
     "required": [
+        "crystal",
         "coordinate"
     ]
 }

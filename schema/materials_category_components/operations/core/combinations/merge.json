@@ -20,14 +20,9 @@
                 ]
             }
         },
-        "method": {
-            "type": "string",
-            "description": "Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)",
-            "enum": [
-                "add",
-                "replace",
-                "yield"
-            ]
+        "merge_method": {
+            "$ref": "./enums.json",
+            "description": "Method to merge components: add, subtract (when merging with void), replace (overwrite upon collision), or yield (keep previous upon collision)"
         }
     }
 }
