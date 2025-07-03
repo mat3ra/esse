@@ -1,0 +1,13 @@
+{
+    "merge_components": [
+        {
+            "$ref": "../../../../material.json"
+        },
+        {
+            "coordinate": [ 0.25,
+                0.25,
+                0.25 ]
+        }
+    ],
+    "merge_method": "replace"
+}

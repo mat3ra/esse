@@ -1,0 +1,19 @@
+{
+    "merge_components": [
+        {
+            "$ref": "../../../../material.json"
+        },
+        {
+            "crystal": {
+                "$ref": "../../../../material.json"
+            },
+            "coordinate": [ 0.25,
+                0.25,
+                0.25 ],
+            "element": {
+                "chemical_element": "B"
+            }
+        }
+    ],
+    "merge_method": "replace"
+}
