@@ -5,23 +5,12 @@
     "description": "Configuration for creating a linear grain boundary.",
     "allOf": [
         {
-            "$ref": "../../../../materials_category_components/operations/core/combinations/stack.json"
+            "$ref": "../../../compound_pristine_structures/two-dimensional/interface/configuration.json"
         }
     ],
     "properties": {
         "stack_components": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
-            "description": "List of configuration objects for grain boundary components",
-            "items": [
-                {
-                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
-                },
-                {
-                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
-                }
-            ]
+            "maxItems": 2
         },
         "direction": {
             "allOf": [
@@ -36,15 +25,6 @@
             "description": "The actual angle between the two phases",
             "minimum": 0,
             "maximum": 360
-        },
-        "xy_shift": {
-            "allOf": [
-                {
-                    "$ref": "../../../../core/abstract/vector_2d.json"
-                }
-            ],
-            "description": "xy shift for the grain boundary as cartesian 2D vector",
-            "default": [0.0, 0.0]
         }
     },
     "required": [

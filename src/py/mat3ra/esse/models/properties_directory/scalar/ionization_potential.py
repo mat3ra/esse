@@ -24,11 +24,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units138(Enum):
+class Units150(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class IonizationPotentialSchema(BaseModel):
     name: Name
-    units: Union[Units, Units138]
+    units: Union[Units, Units150]
     value: float
