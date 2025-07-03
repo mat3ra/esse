@@ -1,0 +1,8 @@
+{
+    "crystal": {
+        "...": "include(../../../../material.json)"
+    },
+    "miller_indices_2d": [ 1,
+        1 ],
+    "use_conventional_cell": true
+}

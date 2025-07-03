@@ -1,0 +1,29 @@
+{
+    "$id": "materials-category/pristine-structures/two-dimensional/nanotape",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NanoTape Configuration Schema",
+    "description": "A nanotape unit cell consisting of crystal lattice lines and vacuum stacked in Y direction.",
+    "allOf": [
+        {
+            "$ref": "../../../materials_category_components/operations/core/combinations/stack.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+                {
+                    "$ref": "../../../materials_category_components/entities/reusable/one-dimensional/crystal_lattice_lines_unique_repeated.json"
+                },
+                {
+                    "$ref": "../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
+                }
+            ]
+        },
+        "direction": {
+            "default": "y"
+        }
+    }
+} 

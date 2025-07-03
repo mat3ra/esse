@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category-components/entities/reusable/three-dimensional/crystal-lattice-base",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crystal Lattice Base Schema",
+    "description": "Base schema for crystal lattice structures defined by crystal and miller indices",
+    "type": "object",
+    "properties": {
+        "crystal": {
+            "$ref": "../../core/three-dimensional/crystal.json"
+        },
+        "use_conventional_cell": {
+            "type": "boolean",
+            "description": "Use the conventional cell for the crystal structure",
+            "default": true
+        }
+    },
+    "required": [
+        "crystal"
+    ]
+} 
