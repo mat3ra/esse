@@ -18,14 +18,14 @@ class Units(Enum):
     eV = "eV"
 
 
-class Units135(Enum):
+class Units144(Enum):
     eV = "eV"
     Ry = "Ry"
     hartree = "hartree"
 
 
 class Electronic(BaseModel):
-    units: Optional[Units135] = None
+    units: Optional[Units144] = None
     """
     units for force tolerance
     """
