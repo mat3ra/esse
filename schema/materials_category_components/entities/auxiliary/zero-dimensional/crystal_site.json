@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "crystal": {
-            "$ref": "../../../core/three-dimensional/crystal.json"
+            "$ref": "../../../entities/core/three-dimensional/crystal.json"
         },
         "coordinate": {
             "$ref": "../../../../core/abstract/coordinate_3d.json"
