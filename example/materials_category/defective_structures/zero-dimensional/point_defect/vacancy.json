@@ -1,12 +1,10 @@
 {
     "merge_components": [
         {
-            "$ref": "../../../../material.json"
+            "...": "include(../../../../material.json)"
         },
         {
-            "coordinate": [ 0.25,
-                0.25,
-                0.25 ]
+            "chemical_element": "Vac"
         }
     ],
     "merge_method": "replace"

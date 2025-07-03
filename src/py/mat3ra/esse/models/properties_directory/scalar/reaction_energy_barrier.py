@@ -24,11 +24,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units183(Enum):
+class Units180(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ReactionEnergyBarrierSchema(BaseModel):
     name: Name
-    units: Union[Units, Units183]
+    units: Union[Units, Units180]
     value: float

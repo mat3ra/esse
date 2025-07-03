@@ -1,15 +1,17 @@
 {
     "merge_components": [
         {
-            "$ref": "../../../../material.json"
+            "...": "include(../../../../material.json)"
         },
         {
             "crystal": {
-                "$ref": "../../../../material.json"
+                "...": "include(../../../../material.json)"
             },
-            "coordinate": [ 0.25,
+            "coordinate": [
                 0.25,
-                0.25 ],
+                0.25,
+                0.25
+            ],
             "element": {
                 "chemical_element": "B"
             }

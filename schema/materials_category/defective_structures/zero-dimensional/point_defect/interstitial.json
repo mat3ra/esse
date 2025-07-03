@@ -10,9 +10,6 @@
     ],
     "properties": {
         "merge_components": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
             "items": [
                 {
                     "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"

@@ -16,9 +16,6 @@
             "items": [
                 {
                     "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
-                },
-                {
-                    "$ref": "../../../../materials_category_components/entities/auxiliary/zero-dimensional/point_defect_site.json"
                 }
             ]
         },

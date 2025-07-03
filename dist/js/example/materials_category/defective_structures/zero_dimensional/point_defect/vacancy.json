@@ -36,7 +36,9 @@
             },
             "createdAt": "2016-04-03T05:25:37.430Z",
             "creator": {
-                "...": "include(system/creator.json)"
+                "_id": "HtxACY2wX4b2hS8Rv",
+                "cls": "User",
+                "slug": "exadmin"
             },
             "derivedProperties": [
                 {
@@ -82,11 +84,43 @@
             "isDefault": false,
             "isNonPeriodic": false,
             "lattice": {
-                "...": "include(properties_directory/structural/lattice.json)"
+                "name": "lattice",
+                "a": 5.14,
+                "alpha": 90,
+                "b": 5.14,
+                "beta": 90,
+                "c": 5.14,
+                "gamma": 90,
+                "type": "CUB",
+                "units": {
+                    "angle": "degree",
+                    "length": "angstrom"
+                },
+                "vectors": {
+                    "a": [
+                        5,
+                        0.000121312,
+                        0.000131415
+                    ],
+                    "alat": 1,
+                    "b": [
+                        0.000121312,
+                        5,
+                        0.000121314
+                    ],
+                    "c": [
+                        0.000121313,
+                        0.000121312,
+                        5
+                    ],
+                    "units": "angstrom"
+                }
             },
             "name": "Silicon FCC",
             "owner": {
-                "...": "include(system/owner.json)"
+                "_id": "HtxACY2wX4b2hS8Rv",
+                "cls": "Account",
+                "slug": "exabyte"
             },
             "scaledHash": "5bd4eb168e3530628eb1295d88221cbb",
             "schemaVersion": "0.2.0",
@@ -95,11 +129,7 @@
             "updatedAt": "2016-04-04T17:58:42.867Z"
         },
         {
-            "coordinate": [
-                0.25,
-                0.25,
-                0.25
-            ]
+            "chemical_element": "Vac"
         }
     ],
     "merge_method": "replace"
