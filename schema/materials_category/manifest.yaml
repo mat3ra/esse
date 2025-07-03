@@ -234,9 +234,11 @@ material_categories:
     one-dimensional:
       grain_boundary_line:
         # A GB between two slabs or monolayers, vacuum in z should be already present
-        - stack_components = [ (slab | monolayer), (slab | monolayer) ]
+        - stack_components = [ (slab | nanotape), (slab | nanotape) ]
         - direction = (x | y | z){1}
-        - angle = float # angle between the two phases
+        - gap = float # gap between the two phases
+        - actual_angle = float # angle between the two phases
+        - xy_shift = [float, float] # xy shift for the grain boundary
     zero-dimensional:
       vacancy:
         - merged_structures = [ crystal, crystal_site(vacancy) ]
