@@ -144,7 +144,7 @@ class TerminationSchema(BaseModel):
     """
 
 
-class TerminationSchema10(BaseModel):
+class TerminationSchema16(BaseModel):
     chemical_elements: Union[ChemicalElements, constr(pattern=r"^([A-Z][a-z]?[0-9]*)+$")] = Field(
         ..., title="Chemical Elements"
     )
@@ -278,13 +278,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value47(Enum):
+class Value73(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value47]
+    value: Union[Value, Value73]
     """
     All elements, including extra elements
     """
@@ -432,30 +432,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name161(Enum):
+class Name265(Enum):
     density = "density"
 
 
-class Units67(Enum):
+class Units106(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units67] = None
+    units: Optional[Units106] = None
     value: float
 
 
-class Units68(Enum):
+class Units107(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units68] = None
+    units: Optional[Units107] = None
     value: float
 
 
-class Name162(Enum):
+class Name266(Enum):
     symmetry = "symmetry"
 
 
@@ -475,7 +475,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name163(Enum):
+class Name267(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -488,7 +488,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name164(Enum):
+class Name268(Enum):
     p_norm = "p-norm"
 
 
@@ -501,7 +501,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name165(Enum):
+class Name269(Enum):
     inchi = "inchi"
 
 
@@ -510,7 +510,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name166(Enum):
+class Name270(Enum):
     inchi_key = "inchi_key"
 
 
@@ -589,7 +589,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name167(Enum):
+class Name271(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -602,7 +602,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name167
+    name: Name271
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -682,7 +682,7 @@ class CrystalLatticeLinesUniqueRepeatedSchema(BaseModel):
     """
     Defines a specific termination of a slab
     """
-    termination_bottom: Optional[TerminationSchema10] = Field(None, title="Termination Schema")
+    termination_bottom: Optional[TerminationSchema16] = Field(None, title="Termination Schema")
     """
     Defines a specific termination of a slab
     """
