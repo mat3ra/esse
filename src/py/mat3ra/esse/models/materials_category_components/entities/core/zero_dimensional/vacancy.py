@@ -5,6 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
+from typing import Optional
 
 from pydantic import BaseModel
 
@@ -15,7 +16,7 @@ class ChemicalElement(Enum):
 
 
 class VacancySchema(BaseModel):
-    chemical_element: ChemicalElement
+    chemical_element: Optional[ChemicalElement] = "Vac"
     """
     Extra elements, used for convenience purposed
     """

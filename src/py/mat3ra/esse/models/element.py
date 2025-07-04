@@ -154,20 +154,20 @@ class AtomicRadius(BaseModel):
     value: float
 
 
-class Name311(Enum):
+class Name415(Enum):
     electronegativity = "electronegativity"
 
 
 class Electronegativity(BaseModel):
-    name: Optional[Name311] = None
+    name: Optional[Name415] = None
     value: float
 
 
-class Name312(Enum):
+class Name416(Enum):
     ionization_potential = "ionization_potential"
 
 
-class Units127(Enum):
+class Units166(Enum):
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -178,8 +178,8 @@ class Units127(Enum):
 
 
 class IonizationPotential(BaseModel):
-    name: Optional[Name312] = None
-    units: Optional[Units127] = None
+    name: Optional[Name416] = None
+    units: Optional[Units166] = None
     value: float
 
 
