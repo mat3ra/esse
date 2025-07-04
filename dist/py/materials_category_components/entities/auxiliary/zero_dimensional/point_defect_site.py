@@ -661,7 +661,7 @@ class ChemicalElement4(Enum):
 
 
 class VacancySchema(BaseModel):
-    chemical_element: ChemicalElement4
+    chemical_element: Optional[ChemicalElement4] = "Vac"
     """
     Extra elements, used for convenience purposed
     """

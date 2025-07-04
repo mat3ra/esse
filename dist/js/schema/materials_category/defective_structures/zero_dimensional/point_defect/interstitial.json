@@ -1688,6 +1688,7 @@
                                     "type": "object",
                                     "properties": {
                                         "chemical_element": {
+                                            "default": "Vac",
                                             "description": "Extra elements, used for convenience purposed",
                                             "enum": [
                                                 "X",

@@ -6,7 +6,12 @@
     "type": "object",
     "properties": {
         "chemical_element": {
-            "$ref": "../../../../definitions/chemical_elements.json#extra"
+            "allOf": [
+                {
+                    "$ref": "../../../../definitions/chemical_elements.json#extra"
+                }
+            ],
+            "default": "Vac"
         }
     },
     "required": [
