@@ -7,5 +7,5 @@
             "...": "include(../../../entities/core/two-dimensional/vacuum.json)"
         }
     ],
-    "merge_method": "add"
+    "merge_method": "ADD"
 }

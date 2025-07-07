@@ -15,5 +15,5 @@
             }
         }
     ],
-    "merge_method": "replace"
+    "merge_method": "REPLACE"
 }

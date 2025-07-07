@@ -791,15 +791,15 @@
             ]
         },
         "merge_method": {
-            "default": "replace",
+            "default": "REPLACE",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Merge Methods Enum",
             "description": "Available methods for merging components",
             "type": "string",
             "enum": [
-                "add",
-                "replace",
-                "yield"
+                "ADD",
+                "REPLACE",
+                "YIELD"
             ]
         }
     }

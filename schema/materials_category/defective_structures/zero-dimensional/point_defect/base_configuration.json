@@ -20,7 +20,7 @@
             ]
         },
         "merge_method": {
-            "default": "replace"
+            "default": "REPLACE"
         }
     },
     "required": [

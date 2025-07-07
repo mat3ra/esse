@@ -24757,7 +24757,7 @@ export interface PointDefectBaseConfigurationSchema {
     /**
      * Available methods for merging components
      */
-    merge_method: "add" | "replace" | "yield";
+    merge_method: "ADD" | "REPLACE" | "YIELD";
 }
 /** Schema dist/js/schema/materials_category/defective_structures/zero_dimensional/point_defect/interstitial.json */
 /**
@@ -25303,7 +25303,7 @@ export interface InterstitialPointDefectSchema {
     /**
      * Available methods for merging components
      */
-    merge_method: "add" | "replace" | "yield";
+    merge_method: "ADD" | "REPLACE" | "YIELD";
 }
 /** Schema dist/js/schema/materials_category/defective_structures/zero_dimensional/point_defect/substitutional.json */
 /**
@@ -25849,7 +25849,7 @@ export interface SubstitutionalPointDefectSchema {
     /**
      * Available methods for merging components
      */
-    merge_method: "add" | "replace" | "yield";
+    merge_method: "ADD" | "REPLACE" | "YIELD";
 }
 /** Schema dist/js/schema/materials_category/defective_structures/zero_dimensional/point_defect/vacancy.json */
 /**
@@ -26127,7 +26127,7 @@ export interface VacancyPointDefectSchema {
     /**
      * Available methods for merging components
      */
-    merge_method: "add" | "replace" | "yield";
+    merge_method: "ADD" | "REPLACE" | "YIELD";
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/three_dimensional/ideal_crystal.json */
 /**
@@ -33624,7 +33624,7 @@ export interface CrystalLatticePlanesSchema {
 /**
  * Available methods for merging components
  */
-export type MergeMethodsEnum = "add" | "replace" | "yield";
+export type MergeMethodsEnum = "ADD" | "REPLACE" | "YIELD";
 /** Schema dist/js/schema/materials_category_components/operations/core/combinations/merge.json */
 /**
  * A component of a stack, which can be a crystal or a vacuum
@@ -33634,7 +33634,7 @@ export interface MergeSchema {
     /**
      * Available methods for merging components
      */
-    merge_method: "add" | "replace" | "yield";
+    merge_method: "ADD" | "REPLACE" | "YIELD";
 }
 /** Schema dist/js/schema/materials_category_components/operations/core/combinations/stack.json */
 /**

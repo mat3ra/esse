@@ -5,8 +5,8 @@
     "description": "Available methods for merging components",
     "type": "string",
     "enum": [
-        "add",
-        "replace",
-        "yield"
+        "ADD",
+        "REPLACE",
+        "YIELD"
     ]
 }
