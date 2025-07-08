@@ -1,0 +1,23 @@
+{
+    "$id": "materials-category/defective-structures/zero-dimensional/point-defect/vacancy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Vacancy Point Defect Schema",
+    "description": "A vacancy point defect configuration where an atom is removed from a crystal site.",
+    "allOf": [
+        {
+            "$ref": "./base_configuration.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "items": [
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
+                },
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/zero-dimensional/vacancy.json"
+                }
+            ]
+        }
+    }
+} 

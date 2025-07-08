@@ -1,3 +1,8 @@
 {
-    "coordinate": [0.25, 0.25, 0.25]
-} 
+    "crystal": {
+        "...": "include(../../../../material.json)"
+    },
+    "coordinate": [ 0.25,
+        0.25,
+        0.25 ]
+}

@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category-components/entities/core/zero-dimensional/vacancy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Vacancy Schema",
+    "description": "A chemical element that can be placed at a crystal site",
+    "type": "object",
+    "properties": {
+        "chemical_element": {
+            "allOf": [
+                {
+                    "$ref": "../../../../definitions/chemical_elements.json#extra"
+                }
+            ],
+            "default": "Vac"
+        }
+    },
+    "required": [
+        "chemical_element"
+    ]
+}

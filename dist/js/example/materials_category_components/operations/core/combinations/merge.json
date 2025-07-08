@@ -261,5 +261,5 @@
             }
         }
     ],
-    "method": "add"
+    "merge_method": "ADD"
 }

@@ -1,0 +1,11 @@
+{
+    "merge_components": [
+        {
+            "...": "include(../../../../material.json)"
+        },
+        {
+            "chemical_element": "Vac"
+        }
+    ],
+    "merge_method": "REPLACE"
+}
