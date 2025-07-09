@@ -1,0 +1,19 @@
+{
+    "merge_components": [
+        {
+            "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+        },
+        {
+            "crystal": {
+                "...": "include(../../../material.json)"
+            },
+            "coordinate": [ 0.5,
+                0.5,
+                1.1 ],
+            "element": {
+                "chemical_element": "B"
+            }
+        }
+    ],
+    "merge_method": "REPLACE"
+}
