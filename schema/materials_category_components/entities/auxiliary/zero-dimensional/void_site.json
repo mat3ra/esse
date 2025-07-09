@@ -1,0 +1,38 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/zero-dimensional/void-site",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Void Site Schema",
+    "description": "A void site that merges a crystal site, slab, and coordinate condition to create a void region",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/operations/core/combinations/merge.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": [
+                {
+                    "$ref": "./crystal_site.json"
+                },
+                {
+                    "$ref": "../../../../materials_category/pristine_structures/two-dimensional/slab.json"
+                }
+                
+            ]
+        },
+        "merge_method": {
+            "const": "REPLACE",
+            "description": "Method to merge components: subtract atoms that don't meet the coordinate condition"
+        },
+        "coordinate_condition": {
+            "$ref": "../../../../core/reusable/coordinate_conditions/index.json"
+        }
+    },
+    "required": [
+        "merge_components",
+        "merge_method"
+    ]
+} 
