@@ -1,0 +1,30 @@
+{
+    "$id": "materials-category/defective-structures/two-dimensional/base-configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Two-Dimensional Defect Base Configuration Schema",
+    "description": "Base configuration for a defect in a host slab using merge operation.",
+    "allOf": [
+        {
+            "$ref": "../../../materials_category_components/operations/core/combinations/merge.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+                {
+                    "$ref": "../../pristine_structures/two-dimensional/slab.json"
+                }
+            ]
+        },
+        "merge_method": {
+            "default": "ADD"
+        }
+    },
+    "required": [
+        "merge_components",
+        "merge_method"
+    ]
+} 
