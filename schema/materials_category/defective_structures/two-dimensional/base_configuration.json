@@ -18,6 +18,9 @@
                     "$ref": "../../pristine_structures/two-dimensional/slab.json"
                 },
                 {
+                    "type": "object"
+                },
+                {
                     "$ref": "../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
                 }
             ]
