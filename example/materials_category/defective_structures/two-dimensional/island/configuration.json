@@ -32,5 +32,6 @@
         {
             "...": "include(../../../../materials_category_components/entities/core/two-dimensional/vacuum.json)"
         }
-    ]
+    ],
+    "direction": "z"
 }
