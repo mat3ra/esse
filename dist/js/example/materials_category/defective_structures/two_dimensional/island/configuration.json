@@ -706,9 +706,7 @@
                         0.7
                     ]
                 }
-            ],
-            "merge_method": "SUBTRACT"
+            ]
         }
-    ],
-    "merge_method": "REPLACE"
+    ]
 }

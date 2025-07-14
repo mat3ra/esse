@@ -1,0 +1,18 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/zero-dimensional/void-region",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Void Region Schema",
+    "description": "A void region that applies coordinate condition to a crystal or slab and creates a void region",
+    "properties": {
+        "crystal": {
+            "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
+        },
+        "coordinate_condition": {
+            "$ref": "../../../../core/reusable/coordinate_conditions/index.json"
+        }
+    },
+    "required": [
+        "crystal",
+        "coordinate_condition"
+    ]
+} 

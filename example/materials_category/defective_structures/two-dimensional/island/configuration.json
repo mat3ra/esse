@@ -9,25 +9,29 @@
                     "crystal": {
                         "...": "include(../../../material.json)"
                     },
-                    "coordinate": [ 0.5,
+                    "coordinate": [
                         0.5,
-                        0.5 ]
+                        0.5,
+                        0.5
+                    ]
                 },
                 {
                     "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
                 },
                 {
                     "shape": "box",
-                    "min_coordinate": [ 0.3,
+                    "min_coordinate": [
                         0.3,
-                        0.3 ],
-                    "max_coordinate": [ 0.7,
+                        0.3,
+                        0.3
+                    ],
+                    "max_coordinate": [
                         0.7,
-                        0.7 ]
+                        0.7,
+                        0.7
+                    ]
                 }
-            ],
-            "merge_method": "SUBTRACT"
+            ]
         }
-    ],
-    "merge_method": "REPLACE"
+    ]
 }
