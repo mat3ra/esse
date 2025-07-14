@@ -1,30 +1,32 @@
 {
     "$id": "materials-category/defective-structures/two-dimensional/base-configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Two-Dimensional Defect Base Configuration Schema",
-    "description": "Base configuration for a defect in a host slab using merge operation.",
+    "title": "Slab Stack Configuration Schema",
+    "description": "Base configuration for a slab stack in two-dimensional materials using stack operation.",
     "allOf": [
         {
-            "$ref": "../../../materials_category_components/operations/core/combinations/merge.json"
+            "$ref": "../../../materials_category_components/operations/core/combinations/stack.json"
         }
     ],
     "properties": {
-        "merge_components": {
+        "stack_components": {
             "type": "array",
-            "minItems": 2,
-            "maxItems": 2,
+            "minItems": 3,
+            "maxItems": 3,
             "items": [
                 {
                     "$ref": "../../pristine_structures/two-dimensional/slab.json"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "$ref": "../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
                 }
             ]
         },
-        "merge_method": {
-            "default": "ADD"
+        "direction": {
+            "default": "z"
         }
-    },
-    "required": [
-        "merge_components",
-        "merge_method"
-    ]
+    }
 } 

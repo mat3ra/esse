@@ -279,6 +279,8 @@
             "direction": "z"
         },
         {
+            "direction": "z",
+            "size": 10,
             "crystal": {
                 "_id": "LCthJ6E2QabYCZqf3",
                 "basis": {
@@ -406,14 +408,6 @@
                 "slug": "silicon-fcc",
                 "unitCellFormula": "Si2",
                 "updatedAt": "2016-04-04T17:58:42.867Z"
-            },
-            "coordinate": [
-                0.5,
-                0.5,
-                1.1
-            ],
-            "element": {
-                "chemical_element": "B"
             }
         },
         {
