@@ -649,6 +649,10 @@ class FlavorSchema(BaseModel):
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"
     )
+    supportedApplicationVersions: Optional[List[str]] = None
+    """
+    list of application versions this flavor supports
+    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1664,6 +1668,10 @@ class FlavorSchema18(BaseModel):
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"
     )
+    supportedApplicationVersions: Optional[List[str]] = None
+    """
+    list of application versions this flavor supports
+    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

@@ -4152,6 +4152,10 @@ export interface JobSchema {
                         name?: string;
                     }[];
                     /**
+                     * list of application versions this flavor supports
+                     */
+                    supportedApplicationVersions?: string[];
+                    /**
                      * entity identity
                      */
                     _id?: string;
@@ -5382,6 +5386,10 @@ export interface JobSchema {
                      */
                     name?: string;
                 }[];
+                /**
+                 * list of application versions this flavor supports
+                 */
+                supportedApplicationVersions?: string[];
                 /**
                  * entity identity
                  */
@@ -25728,6 +25736,10 @@ export interface FlavorSchema {
         name?: string;
     }[];
     /**
+     * list of application versions this flavor supports
+     */
+    supportedApplicationVersions?: string[];
+    /**
      * entity identity
      */
     _id?: string;
@@ -25975,6 +25987,10 @@ export interface CrossValidationUnitSchema {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -26275,6 +26291,10 @@ export interface InitializeUnitSchema {
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -26570,6 +26590,10 @@ export interface TrainScoreSchema {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -26874,6 +26898,10 @@ export interface TrainUnitSchema {
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -27172,6 +27200,10 @@ export type SoftwareDirectoryMlUnitExecution = {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -27474,6 +27506,10 @@ export type SoftwareDirectoryMlUnitExecution = {
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -27767,6 +27803,10 @@ export type SoftwareDirectoryMlUnitExecution = {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -28064,6 +28104,10 @@ export type SoftwareDirectoryMlUnitExecution = {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -29356,6 +29400,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -29889,6 +29937,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -31336,6 +31388,10 @@ export type WorkflowSubworkflowUnitSchema = {
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -32370,6 +32426,10 @@ export interface Subworkflow {
                  */
                 name?: string;
             }[];
+            /**
+             * list of application versions this flavor supports
+             */
+            supportedApplicationVersions?: string[];
             /**
              * entity identity
              */
@@ -33535,6 +33595,10 @@ export interface ExecutionUnitSchemaBase {
              */
             name?: string;
         }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
         /**
          * entity identity
          */
@@ -35165,6 +35229,10 @@ export type WorkflowUnitSchema = {
             name?: string;
         }[];
         /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -36418,6 +36486,10 @@ export interface WorkflowSchema {
                     name?: string;
                 }[];
                 /**
+                 * list of application versions this flavor supports
+                 */
+                supportedApplicationVersions?: string[];
+                /**
                  * entity identity
                  */
                 _id?: string;
@@ -37648,6 +37720,10 @@ export interface WorkflowSchema {
                  */
                 name?: string;
             }[];
+            /**
+             * list of application versions this flavor supports
+             */
+            supportedApplicationVersions?: string[];
             /**
              * entity identity
              */

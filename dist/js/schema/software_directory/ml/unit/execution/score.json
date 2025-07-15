@@ -283,6 +283,13 @@
                         }
                     }
                 },
+                "supportedApplicationVersions": {
+                    "description": "list of application versions this flavor supports",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
