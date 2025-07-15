@@ -295,6 +295,13 @@
                                 }
                             }
                         },
+                        "supportedApplicationVersions": {
+                            "description": "list of application versions this flavor supports",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
                         "_id": {
                             "description": "entity identity",
                             "type": "string"
@@ -957,6 +964,13 @@
                                 }
                             }
                         },
+                        "supportedApplicationVersions": {
+                            "description": "list of application versions this flavor supports",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
                         "_id": {
                             "description": "entity identity",
                             "type": "string"
@@ -1594,6 +1608,13 @@
                                         "type": "string"
                                     }
                                 }
+                            }
+                        },
+                        "supportedApplicationVersions": {
+                            "description": "list of application versions this flavor supports",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
                             }
                         },
                         "_id": {
@@ -2247,6 +2268,13 @@
                                         "type": "string"
                                     }
                                 }
+                            }
+                        },
+                        "supportedApplicationVersions": {
+                            "description": "list of application versions this flavor supports",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
                             }
                         },
                         "_id": {
