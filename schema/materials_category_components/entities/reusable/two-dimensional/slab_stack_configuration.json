@@ -1,0 +1,32 @@
+{
+    "$id": "materials-category-components/entities/reusable/two-dimensional/slab-stack-configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Slab Stack Configuration Schema",
+    "description": "Base configuration for a slab stack with another component and vacuum in the z-direction.",
+    "allOf": [
+        {
+            "$ref": "../../../operations/core/combinations/stack.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": [
+                {
+                    "$ref": "../../../../materials_category/pristine_structures/two-dimensional/slab.json"
+                },
+                {
+                    "type": "object"
+                },
+                {
+                    "$ref": "../../core/two-dimensional/vacuum.json"
+                }
+            ]
+        },
+        "direction": {
+            "default": "z"
+        }
+    }
+} 

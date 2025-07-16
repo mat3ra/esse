@@ -19,115 +19,115 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name626(Enum):
+class Name682(Enum):
     harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema75(BaseModel):
-    name: Optional[Name626] = None
+class ScalarSchema82(BaseModel):
+    name: Optional[Name682] = None
     value: float
 
 
-class Name627(Enum):
+class Name683(Enum):
     one_electron = "one_electron"
 
 
-class ScalarSchema76(BaseModel):
-    name: Optional[Name627] = None
+class ScalarSchema83(BaseModel):
+    name: Optional[Name683] = None
     value: float
 
 
-class Name628(Enum):
+class Name684(Enum):
     hartree = "hartree"
 
 
-class ScalarSchema77(BaseModel):
-    name: Optional[Name628] = None
+class ScalarSchema84(BaseModel):
+    name: Optional[Name684] = None
     value: float
 
 
-class Name629(Enum):
+class Name685(Enum):
     exchange = "exchange"
 
 
-class ScalarSchema78(BaseModel):
-    name: Optional[Name629] = None
+class ScalarSchema85(BaseModel):
+    name: Optional[Name685] = None
     value: float
 
 
-class Name630(Enum):
+class Name686(Enum):
     exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema79(BaseModel):
-    name: Optional[Name630] = None
+class ScalarSchema86(BaseModel):
+    name: Optional[Name686] = None
     value: float
 
 
-class Name631(Enum):
+class Name687(Enum):
     ewald = "ewald"
 
 
-class ScalarSchema80(BaseModel):
-    name: Optional[Name631] = None
+class ScalarSchema87(BaseModel):
+    name: Optional[Name687] = None
     value: float
 
 
-class Name632(Enum):
+class Name688(Enum):
     alphaZ = "alphaZ"
 
 
-class ScalarSchema81(BaseModel):
-    name: Optional[Name632] = None
+class ScalarSchema88(BaseModel):
+    name: Optional[Name688] = None
     value: float
 
 
-class Name633(Enum):
+class Name689(Enum):
     atomic_energy = "atomic_energy"
 
 
-class ScalarSchema82(BaseModel):
-    name: Optional[Name633] = None
+class ScalarSchema89(BaseModel):
+    name: Optional[Name689] = None
     value: float
 
 
-class Name634(Enum):
+class Name690(Enum):
     eigenvalues = "eigenvalues"
 
 
-class ScalarSchema83(BaseModel):
-    name: Optional[Name634] = None
+class ScalarSchema90(BaseModel):
+    name: Optional[Name690] = None
     value: float
 
 
-class Name635(Enum):
+class Name691(Enum):
     PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema84(BaseModel):
-    name: Optional[Name635] = None
+class ScalarSchema91(BaseModel):
+    name: Optional[Name691] = None
     value: float
 
 
-class Name636(Enum):
+class Name692(Enum):
     PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
 
 
-class ScalarSchema85(BaseModel):
-    name: Optional[Name636] = None
+class ScalarSchema92(BaseModel):
+    name: Optional[Name692] = None
     value: float
 
 
-class Name637(Enum):
+class Name693(Enum):
     hartree_fock = "hartree_fock"
 
 
-class ScalarSchema86(BaseModel):
-    name: Optional[Name637] = None
+class ScalarSchema93(BaseModel):
+    name: Optional[Name693] = None
     value: float
 
 
-class Name638(Enum):
+class Name694(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -146,53 +146,53 @@ class TotalEnergyContributionsSchema(BaseModel):
     """
     product of temperature and configurational entropy
     """
-    harrisFoulkes: Optional[ScalarSchema75] = Field(None, title="scalar schema")
+    harrisFoulkes: Optional[ScalarSchema82] = Field(None, title="scalar schema")
     """
     non self-consitent energy based on an input charge density
     """
-    oneElectron: Optional[ScalarSchema76] = Field(None, title="scalar schema")
+    oneElectron: Optional[ScalarSchema83] = Field(None, title="scalar schema")
     """
     kinetic + pseudopotential energy
     """
-    hartree: Optional[ScalarSchema77] = Field(None, title="scalar schema")
+    hartree: Optional[ScalarSchema84] = Field(None, title="scalar schema")
     """
     energy due to coulomb potential
     """
-    exchange: Optional[ScalarSchema78] = Field(None, title="scalar schema")
+    exchange: Optional[ScalarSchema85] = Field(None, title="scalar schema")
     """
     exchange energy
     """
-    exchangeCorrelation: Optional[ScalarSchema79] = Field(None, title="scalar schema")
+    exchangeCorrelation: Optional[ScalarSchema86] = Field(None, title="scalar schema")
     """
     exchange and correlation energy per particle
     """
-    ewald: Optional[ScalarSchema80] = Field(None, title="scalar schema")
+    ewald: Optional[ScalarSchema87] = Field(None, title="scalar schema")
     """
     summation of interaction energies at long length scales due to coloumbic interactions
     """
-    alphaZ: Optional[ScalarSchema81] = Field(None, title="scalar schema")
+    alphaZ: Optional[ScalarSchema88] = Field(None, title="scalar schema")
     """
     divergent electrostatic ion interaction in compensating electron gas
     """
-    atomicEnergy: Optional[ScalarSchema82] = Field(None, title="scalar schema")
+    atomicEnergy: Optional[ScalarSchema89] = Field(None, title="scalar schema")
     """
     kinetic energy of wavefunctions in the atomic limit
     """
-    eigenvalues: Optional[ScalarSchema83] = Field(None, title="scalar schema")
+    eigenvalues: Optional[ScalarSchema90] = Field(None, title="scalar schema")
     """
     sum of one electron energies of kinetic, electrostatic, and exchange correlation
     """
-    PAWDoubleCounting2: Optional[ScalarSchema84] = Field(None, title="scalar schema")
+    PAWDoubleCounting2: Optional[ScalarSchema91] = Field(None, title="scalar schema")
     """
     double counting correction 2
     """
-    PAWDoubleCounting3: Optional[ScalarSchema85] = Field(None, title="scalar schema")
+    PAWDoubleCounting3: Optional[ScalarSchema92] = Field(None, title="scalar schema")
     """
     double counting correction 3
     """
-    hartreeFock: Optional[ScalarSchema86] = Field(None, title="scalar schema")
+    hartreeFock: Optional[ScalarSchema93] = Field(None, title="scalar schema")
     """
     hartree-fock contribution
     """
-    name: Optional[Name638] = None
+    name: Optional[Name694] = None
     units: Optional[Units] = None
