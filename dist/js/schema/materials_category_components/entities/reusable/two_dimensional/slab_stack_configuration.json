@@ -1,8 +1,8 @@
 {
-    "$id": "materials-category/defective-structures/two-dimensional/base-configuration",
+    "$id": "materials-category-components/entities/reusable/two-dimensional/slab-stack-configuration",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Slab Stack Configuration Schema",
-    "description": "Base configuration for a slab stack in two-dimensional materials using stack operation.",
+    "description": "Base configuration for a slab stack with another component and vacuum in the z-direction.",
     "type": "object",
     "required": [
         "stack_components",
