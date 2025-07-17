@@ -5,7 +5,7 @@
     "description": "An island defect configuration where a void region is created in a slab, leaving an island of material.",
     "allOf": [
         {
-            "$ref": "../base_configuration.json"
+            "$ref": "../../../../materials_category_components/entities/reusable/two-dimensional/slab_stack_configuration.json"
         }
     ],
     "properties": {
