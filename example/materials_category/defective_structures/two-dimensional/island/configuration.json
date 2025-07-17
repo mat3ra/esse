@@ -1,0 +1,37 @@
+{
+    "stack_components": [
+        {
+            "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+        },
+        {
+            "merge_components": [
+                {
+                    "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+                },
+                {
+                    "crystal": {
+                        "...": "include(../../../material.json)"
+                    },
+                    "coordinate_condition": {
+                        "shape": "box",
+                        "min_coordinate": [
+                            0.3,
+                            0.3,
+                            0.3
+                        ],
+                        "max_coordinate": [
+                            0.7,
+                            0.7,
+                            0.7
+                        ]
+                    }
+                }
+            ],
+            "merge_method": "REPLACE"
+        },
+        {
+            "...": "include(../../../../materials_category_components/entities/core/two-dimensional/vacuum.json)"
+        }
+    ],
+    "direction": "z"
+}

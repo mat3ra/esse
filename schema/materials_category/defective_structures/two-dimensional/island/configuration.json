@@ -1,0 +1,48 @@
+{
+    "$id": "materials-category/defective-structures/two-dimensional/island/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Island Defect Configuration Schema",
+    "description": "An island defect configuration where a void region is created in a slab, leaving an island of material.",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/entities/reusable/two-dimensional/slab_stack_configuration.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "items": [
+                {
+                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "../../../../materials_category_components/operations/core/combinations/merge.json"
+                        }
+                    ],
+                    "properties": {
+                        "merge_components": {
+                            "type": "array",
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "items": [
+                                {
+                                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                                },
+                                {
+                                    "$ref": "../../../../materials_category_components/entities/auxiliary/zero-dimensional/void_region.json"
+                                }
+                            ]
+                        },
+                        "merge_method": {
+                            "default": "REPLACE"
+                        }
+                    }
+                },
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
+                }
+            ]
+        }
+    }
+} 
