@@ -5,7 +5,7 @@
     "description": "An terrace defect configuration where a void region is created in a slab that is stacked with another slab, creating a terrace.",
     "allOf": [
         {
-            "$ref": "../base_configuration.json"
+            "$ref": "../../../../materials_category_components/entities/reusable/two-dimensional/slab_stack_configuration.json"
         }
     ],
     "properties": {

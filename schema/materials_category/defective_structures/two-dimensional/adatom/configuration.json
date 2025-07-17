@@ -5,7 +5,7 @@
     "description": "An adatom point defect configuration where an atom is added to a surface site on a slab.",
     "allOf": [
         {
-            "$ref": "../base_configuration.json"
+            "$ref": "../../../../materials_category_components/entities/reusable/two-dimensional/slab_stack_configuration.json"
         }
     ],
     "properties": {
