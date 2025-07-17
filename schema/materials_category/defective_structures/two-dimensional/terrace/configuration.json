@@ -1,0 +1,55 @@
+{
+    "$id": "materials-category/defective-structures/two-dimensional/terrace/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Terrace Defect Configuration Schema",
+    "description": "An terrace defect configuration where a void region is created in a slab that is stacked with another slab, creating a terrace.",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/entities/reusable/two-dimensional/slab_stack_configuration.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "items": [
+                {
+                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                },
+                {
+                    "allOf": [
+                        {
+                            "$ref": "../../../../materials_category_components/operations/core/combinations/merge.json"
+                        }
+                    ],
+                    "properties": {
+                        "merge_components": {
+                            "type": "array",
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "items": [
+                                {
+                                    "$ref": "../../../pristine_structures/two-dimensional/slab.json"
+                                },
+                                {
+                                    "$ref": "../../../../materials_category_components/entities/auxiliary/zero-dimensional/void_region.json"
+                                }
+                            ]
+                        },
+                        "merge_method": {
+                            "default": "REPLACE"
+                        }
+                    }
+                },
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/two-dimensional/vacuum.json"
+                }
+            ]
+        },
+        "cut_direction": {
+            "$ref": "../../../../materials_category_components/entities/auxiliary/two-dimensional/miller_indices.json"
+        }
+    },
+    "required": [
+        "stack_components",
+        "cut_direction"
+    ]
+}
