@@ -137,13 +137,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value197(Enum):
+class Value201(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value197]
+    value: Union[Value, Value201]
     """
     All elements, including extra elements
     """
@@ -291,30 +291,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name809(Enum):
+class Name825(Enum):
     density = "density"
 
 
-class Units326(Enum):
+class Units332(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units326] = None
+    units: Optional[Units332] = None
     value: float
 
 
-class Units327(Enum):
+class Units333(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units327] = None
+    units: Optional[Units333] = None
     value: float
 
 
-class Name810(Enum):
+class Name826(Enum):
     symmetry = "symmetry"
 
 
@@ -334,7 +334,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name811(Enum):
+class Name827(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -347,7 +347,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name812(Enum):
+class Name828(Enum):
     p_norm = "p-norm"
 
 
@@ -360,7 +360,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name813(Enum):
+class Name829(Enum):
     inchi = "inchi"
 
 
@@ -369,7 +369,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name814(Enum):
+class Name830(Enum):
     inchi_key = "inchi_key"
 
 
@@ -448,7 +448,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name815(Enum):
+class Name831(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -461,7 +461,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name815
+    name: Name831
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

@@ -1,0 +1,45 @@
+{
+    "merge_components": [
+        {
+            "...": "include(../../../../material.json)"
+        },
+        {
+            "crystal": {
+                "...": "include(../../../../material.json)"
+            },
+            "coordinate": [ 0.5,
+                0.5,
+                1.1 ],
+            "element": {
+                "chemical_element": "H"
+            }
+        },
+        {
+            "crystal": {
+                "...": "include(../../../../material.json)"
+            },
+            "coordinate": [ 0.3,
+                0.7,
+                1.1 ],
+            "element": {
+                "chemical_element": "H"
+            }
+        },
+        {
+            "crystal": {
+                "...": "include(../../../../material.json)"
+            },
+            "coordinate": [ 0.7,
+                0.3,
+                1.1 ],
+            "element": {
+                "chemical_element": "H"
+            }
+        }
+    ],
+    "merge_method": "ADD",
+    "passivant": {
+        "chemical_element": "H"
+    },
+    "bond_length": 1.0
+}
