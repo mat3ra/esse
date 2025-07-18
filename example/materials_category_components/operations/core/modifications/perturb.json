@@ -1,0 +1,6 @@
+{
+    "material": {
+        "...": "include(../../../entities/core/three-dimensional/crystal.json)"
+    },
+    "perturbation_function": "0.1*sin(x) + 0.1*cos(y)"
+}
