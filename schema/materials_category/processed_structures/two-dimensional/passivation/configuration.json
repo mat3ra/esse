@@ -1,0 +1,45 @@
+{
+    "$id": "materials-category/processed-structures/two-dimensional/passivation/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Passivation Configuration Schema",
+    "description": "Configuration for a passivation that adds passivating atoms to a material surface.",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/operations/core/combinations/merge.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "minItems": 2,
+            "items": {
+                "anyOf": [
+                    {
+                        "$ref": "../../../../material.json"
+                    },
+                    {
+                        "$ref": "../../../../materials_category_components/entities/auxiliary/zero-dimensional/point_defect_site.json"
+                    }
+                ]
+            }
+        },
+        "merge_method": {
+            "default": "ADD"
+        },
+        "passivant": {
+            "$ref": "../../../../materials_category_components/entities/core/zero-dimensional/atom.json",
+            "description": "The passivating element to add to the surface"
+        },
+        "bond_length": {
+            "type": "number",
+            "default": 1.0,
+            "description": "The bond length for the passivating atoms"
+        }
+    },
+    "required": [
+        "merge_components",
+        "merge_method",
+        "passivant",
+        "bond_length"
+    ]
+} 

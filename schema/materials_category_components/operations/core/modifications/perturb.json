@@ -1,0 +1,16 @@
+{
+    "$id": "materials-category-components/operations/core/modifications/perturb",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Perturbation Schema",
+    "description": "A perturbation operation that modifies a configuration by applying a perturbation to atoms coordinates.",
+    "type": "object",
+    "properties": {
+        "material": {
+            "$ref": "../../../../material.json"
+        },
+        "perturbation_function": {
+            "type": "string",
+            "description": "A function that defines the perturbation (delta in coordinates) to be applied to the atomic coordinates."
+        }
+    }
+}

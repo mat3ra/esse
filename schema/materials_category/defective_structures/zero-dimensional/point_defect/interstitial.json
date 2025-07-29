@@ -1,0 +1,23 @@
+{
+    "$id": "materials-category/defective-structures/zero-dimensional/point-defect/interstitial",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Interstitial Point Defect Schema",
+    "description": "An interstitial point defect configuration where an atom is added to an interstitial site.",
+    "allOf": [
+        {
+            "$ref": "./base_configuration.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "items": [
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
+                },
+                {
+                    "$ref": "../../../../materials_category_components/entities/auxiliary/zero-dimensional/point_defect_site.json"
+                }
+            ]
+        }
+    }
+} 

@@ -1,0 +1,11 @@
+{
+    "crystal": {
+        "...": "include(../../../../material.json)"
+    },
+    "coordinate": [ 0.25,
+        0.25,
+        0.25 ],
+    "element": {
+        "chemical_element": "B"
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "stack_components": [
+        {
+            "stack_components": [
+                {
+                    "crystal": {
+                        "...": "include(../../../material.json)"
+                    },
+                    "miller_indices_2d": [ 1,
+                        1 ],
+                    "use_conventional_cell": true,
+                    "termination_top": {
+                        "chemical_elements": "Si",
+                        "space_group_symmetry_label": "p1"
+                    },
+                    "termination_bottom": {
+                        "chemical_elements": "Si",
+                        "space_group_symmetry_label": "p1"
+                    },
+                    "number_of_repetitions_width": 3,
+                    "number_of_repetitions_length": 5
+                },
+                {
+                    "direction": "y",
+                    "size": 15.0,
+                    "crystal": {
+                        "...": "include(../../../material.json)"
+                    }
+                }
+            ],
+            "direction": "y"
+        },
+        {
+            "direction": "x",
+            "size": 20.0,
+            "crystal": {
+                "...": "include(../../../material.json)"
+            }
+        }
+    ],
+    "direction": "x"
+}

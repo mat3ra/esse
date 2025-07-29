@@ -1,0 +1,30 @@
+{
+    "$id": "materials-category/defective-structures/zero-dimensional/point-defect/base-configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Point Defect Base Configuration Schema",
+    "description": "Base configuration for a point defect in a host crystal using merge operation.",
+    "allOf": [
+        {
+            "$ref": "../../../../materials_category_components/operations/core/combinations/merge.json"
+        }
+    ],
+    "properties": {
+        "merge_components": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": [
+                {
+                    "$ref": "../../../../materials_category_components/entities/core/three-dimensional/crystal.json"
+                }
+            ]
+        },
+        "merge_method": {
+            "default": "REPLACE"
+        }
+    },
+    "required": [
+        "merge_components",
+        "merge_method"
+    ]
+} 

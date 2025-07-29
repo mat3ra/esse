@@ -2,13 +2,11 @@
     "$id": "materials-category-components/operations/core/combinations/stack",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Stack Schema",
-    "description": "A stack of components, which can be crystals or vacuums, arranged in a specified direction",
+    "description": "A stack of components in a certain direction. The specific types of components should be defined by the inheriting schema.",
+    "type": "object",
     "properties": {
         "stack_components": {
-            "type": "array",
-            "items": {
-                "$ref": "./stack_component.json"
-            }
+            "type": "array"
         },
         "direction": {
             "$ref": "../../../../core/primitive/axis_3d_names_enum.json"

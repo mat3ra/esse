@@ -1,0 +1,34 @@
+{
+    "$id": "materials-category/defective-structures/one-dimensional/grain-boundary-linear/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Grain Boundary Linear Configuration Schema",
+    "description": "Configuration for creating a linear grain boundary.",
+    "allOf": [
+        {
+            "$ref": "../../../compound_pristine_structures/two-dimensional/interface/configuration.json"
+        }
+    ],
+    "properties": {
+        "stack_components": {
+            "maxItems": 2
+        },
+        "direction": {
+            "allOf": [
+                {
+                    "$ref": "../../../../core/primitive/axis_3d_names_enum.json"
+                }
+            ],
+            "default": "x"
+        },
+        "actual_angle": {
+            "type": "number",
+            "description": "The actual angle between the two phases",
+            "minimum": 0,
+            "maximum": 360
+        }
+    },
+    "required": [
+        "stack_components",
+        "direction"
+    ]
+} 

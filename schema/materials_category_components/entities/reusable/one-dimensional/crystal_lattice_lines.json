@@ -1,0 +1,20 @@
+{
+    "$id": "materials-category-components/entities/reusable/one-dimensional/crystal-lattice-lines",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Crystal Lattice Lines Schema",
+    "description": "A set of crystal lattice lines defined by 2D Miller indices",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../three-dimensional/crystal_lattice_base.json"
+        }
+    ],
+    "properties": {
+        "miller_indices_2d": {
+            "$ref": "../../../entities/auxiliary/one-dimensional/miller_indices_2d.json"
+        }
+    },
+    "required": [
+        "miller_indices_2d"
+    ]
+} 

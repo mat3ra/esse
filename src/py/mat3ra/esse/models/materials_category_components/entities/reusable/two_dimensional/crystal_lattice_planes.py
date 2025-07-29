@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value17(Enum):
+class Value139(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value17]
+    value: Union[Value, Value139]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name41(Enum):
+class Name529(Enum):
     density = "density"
 
 
-class Units22(Enum):
+class Units205(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units22] = None
+    units: Optional[Units205] = None
     value: float
 
 
-class Units23(Enum):
+class Units206(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units23] = None
+    units: Optional[Units206] = None
     value: float
 
 
-class Name42(Enum):
+class Name530(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name43(Enum):
+class Name531(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name44(Enum):
+class Name532(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name45(Enum):
+class Name533(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name46(Enum):
+class Name534(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name47(Enum):
+class Name535(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name47
+    name: Name535
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -531,13 +531,13 @@ class CrystalSchema(BaseModel):
 
 
 class CrystalLatticePlanesSchema(BaseModel):
-    crystal: CrystalSchema = Field(..., title="Crystal Schema")
-    """
-    A crystal structure, referencing the base material schema
-    """
     miller_indices: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices [h, k, l] defining crystallographic planes
+    """
+    crystal: CrystalSchema = Field(..., title="Crystal Schema")
+    """
+    A crystal structure, referencing the base material schema
     """
     use_conventional_cell: Optional[bool] = True
     """

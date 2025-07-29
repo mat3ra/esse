@@ -7,8 +7,7 @@
     "required": [
         "crystal",
         "miller_indices",
-        "terminations",
-        "use_conventional_cell"
+        "terminations"
     ],
     "properties": {
         "terminations": {
@@ -154,6 +153,7 @@
                             },
                             {
                                 "type": "string",
+                                "description": "A string representing a stoichiometric formula for surface atoms of a plane, e.g. 'SrTiO', 'SrO', 'O2' or 'Hf2O'",
                                 "pattern": "^([A-Z][a-z]?[0-9]*)+$"
                             }
                         ]
@@ -164,6 +164,22 @@
                         "type": "string"
                     }
                 }
+            }
+        },
+        "miller_indices": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Miller Indices Schema",
+            "description": "Miller indices [h, k, l] defining crystallographic planes",
+            "default": [
+                0,
+                0,
+                1
+            ],
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "integer"
             }
         },
         "crystal": {
@@ -920,22 +936,6 @@
                 "metadata": {
                     "type": "object"
                 }
-            }
-        },
-        "miller_indices": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Miller Indices Schema",
-            "description": "Miller indices [h, k, l] defining crystallographic planes",
-            "default": [
-                0,
-                0,
-                1
-            ],
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "type": "integer"
             }
         },
         "use_conventional_cell": {

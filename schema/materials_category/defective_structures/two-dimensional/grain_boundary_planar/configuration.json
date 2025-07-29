@@ -1,0 +1,16 @@
+{
+    "$id": "materials-category/defective-structures/two-dimensional/grain-boundary-planar/configuration",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Grain Boundary Planar Configuration Schema",
+    "description": "Configuration for creating a grain boundary between two phases.",
+    "allOf": [
+        {
+            "$ref": "../../../compound_pristine_structures/two-dimensional/interface/configuration.json"
+        }
+    ],
+    "properties": {
+        "direction": {
+            "default": "z"
+        }
+    }
+} 

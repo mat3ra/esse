@@ -1,0 +1,24 @@
+{
+    "stack_components": [
+        {
+            "...": "include(../../../../materials_category/pristine_structures/two-dimensional/slab.json)"
+        },
+        {
+            "crystal": {
+                "...": "include(../../../../material.json)"
+            },
+            "coordinate": [
+                0.5,
+                0.5,
+                1.1
+            ],
+            "element": {
+                "chemical_element": "B"
+            }
+        },
+        {
+            "...": "include(../../../../materials_category_components/entities/core/two-dimensional/vacuum.json)"
+        }
+    ],
+    "direction": "z"
+}

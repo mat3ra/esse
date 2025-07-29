@@ -1,0 +1,30 @@
+{
+    "$id": "materials-category-components/entities/auxiliary/zero-dimensional/point-defect-site",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Point Defect Site Schema",
+    "description": "A crystal site with defect information (atom or vacancy) for point defects",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "./crystal_site.json"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "element": {
+                    "anyOf": [
+                        {
+                            "$ref": "../../../entities/core/zero-dimensional/atom.json"
+                        },
+                        {
+                            "$ref": "../../../entities/core/zero-dimensional/vacancy.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "element"
+            ]
+        }
+    ]
+} 

@@ -1,0 +1,16 @@
+{
+    "stack_components": [
+        {
+            "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+        },
+        {
+            "...": "include(../../../pristine_structures/two-dimensional/slab.json)"
+        }
+    ],
+    "direction": "x",
+    "actual_angle": 45.0,
+    "xy_shift": [
+        0.0,
+        0.0
+    ]
+}
