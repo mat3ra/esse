@@ -116,9 +116,9 @@ When developing in python the following should be taken into account:
 1. The modules containing the schemas and examples are generated using the [build-schemas.py](./build_schemas.py) script. There is a setup for it to be run automatically on every commit, but it is recommended to run it manually before committing to make sure that the changes are reflected in the modules. This can be done with `pre-commit run --all-files`. The pre-commit package can be installed with `pip install pre-commit`. To rebuild schemas manually, run (note `-e` in install):
 
     ```bash
-    virtualenv .venv
+    python -m venv .venv  
     source .venv/bin/activate
-    pip install -e ."[tests]"
+    pip install -e ".[tests]"
     pip install pre-commit
     pre-commit --install
     git config --unset-all core.hooksPath
@@ -128,9 +128,9 @@ When developing in python the following should be taken into account:
 2. Tests can be run using the following commands:
 
     ```bash
-    virtualenv .venv
+    python -m venv .venv  
     source .venv/bin/activate
-    pip install ."[tests]"
+    pip install ".[tests]"
     python -m unittest discover --verbose --catch --start-directory tests/py/esse/
     ```
 
