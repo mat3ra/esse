@@ -6,10 +6,25 @@
     "type": "object",
     "required": [
         "crystal",
-        "miller_indices",
-        "use_conventional_cell"
+        "miller_indices"
     ],
     "properties": {
+        "miller_indices": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Miller Indices Schema",
+            "description": "Miller indices [h, k, l] defining crystallographic planes",
+            "default": [
+                0,
+                0,
+                1
+            ],
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "integer"
+            }
+        },
         "crystal": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Crystal Schema",
@@ -764,22 +779,6 @@
                 "metadata": {
                     "type": "object"
                 }
-            }
-        },
-        "miller_indices": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "Miller Indices Schema",
-            "description": "Miller indices [h, k, l] defining crystallographic planes",
-            "default": [
-                0,
-                0,
-                1
-            ],
-            "type": "array",
-            "minItems": 3,
-            "maxItems": 3,
-            "items": {
-                "type": "integer"
             }
         },
         "use_conventional_cell": {
