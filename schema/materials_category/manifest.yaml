@@ -63,7 +63,6 @@ materials_category:
       - nanotape
       - slab
       - slab_strained_supercell
-      - slab_strained_supercell_with_gap
 
   compound_pristine_structures:
     two-dimensional:
