@@ -7,8 +7,7 @@
     "head": true,
     "input": [
         {
-            "content": "print('Hello World!')",
-            "name": "script.py"
+            "...": "include(../../../software/template.json)"
         }
     ],
     "name": "scripting",

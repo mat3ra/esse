@@ -29,6 +29,10 @@ class TemplateSchema(BaseModel):
     """
     Content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
