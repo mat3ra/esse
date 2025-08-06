@@ -452,11 +452,16 @@
                             "content": {
                                 "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",
                                 "type": "string"
+                            },
+                            "rendered": {
+                                "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
+                                "type": "string"
                             }
                         },
                         "required": [
                             "name",
-                            "content"
+                            "content",
+                            "rendered"
                         ]
                     },
                     {
