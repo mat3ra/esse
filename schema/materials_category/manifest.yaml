@@ -1,165 +1,87 @@
-# This is a temporary manifest file to describe the folder structure of materials-related content.
-# The following notation is used:
-#
-# `<filename>:` - any key can be a schema file or a directory
-# ` - key` - array components represent the keys inside a schema file content
-# ` - key?` - optional file content key
-# ` - key = ` - file content assignment to types of values
-# `[value1, value2]` - list of values "value1 or value2"
-# `[value, ...]` - list of multiple values "value"
-# `( x | y | z ){1,2}` - a set of values "1 or 2 of any of the three"
-#
+# This manifest describes the structure of materials categories and their components.
 
 materials_category_components:
   entities:
     core:
       three-dimensional:
-        crystal:
-        void:
-          # can be placed into a crystal centered around specified crystal_site, all atoms inside are removed
-          - center_coordinate
-          - shape
+        - crystal
+        - void
       two-dimensional:
-        vacuum:
-          # is applied along the specified direction, adds vacuum "slab", breaks periodicity in that direction, lowers dimensionality
-          - direction
-          - size
+        - vacuum
       one-dimensional:
+      # empty directory
       zero-dimensional:
-        atom:
-          - chemical_element
-    auxiliary: # auxiliary entities, not used in the main material creation
+        - atom
+        - vacancy
+    auxiliary:
       three-dimensional:
-        supercell_matrix_3d:
+        - supercell_matrix_3d
       two-dimensional:
-        miller_indices: [ h, k ] # 2D Miller indices
-        supercell_matrix_2d:
-        termination:
-          - stoichiometry
-          - symmetry
+        - miller_indices
+        - supercell_matrix_2d
+        - termination
       one-dimensional:
-        miller_indices_2d: [ u, v ] # 2D Miller indices for 1D structures
+        - miller_indices_2d
       zero-dimensional:
-        crystal_site:
-          # created by reference to some crystal, can be populated with atom, vacancy, void, can be merged with a crystal of the same lattice
-          - crystal
-          - coordinate
+        - crystal_site
+        - point_defect_site
+        - void_region
     reusable:
       three-dimensional:
-        crystal_lattice_base:
-        supercell:
-          # created from a crystal, can be used to create a supercell of any size
-          - crystal = material
-          - matrix = integer_matrix # matrix of integers, defines the size of the supercell
-        strained_uniform:
-          - crystal = ref:/primitive/base/crystal
-          - strain_percentage
-        strained_non_uniform:
-          - crystal = ref:/primitive/base/crystal
-          - strain_matrix
-
+        - crystal_lattice_base
+        - repetitions
+        - strained_non_uniform
+        - strained_uniform
+        - supercell
       two-dimensional:
-        crystal_lattice_planes:
-          - crystal = material
-          - miller_indices = ref:/primitive/two-dimensional/miller_indices
-          - use_conventional_cell = bool # if true, the conventional cell is used to generate the planes
-        atomic_layers:
-          # Created from atomic_layers_unique in any order defined by terminations
-          - crystal = material
-          - miller_indices = ref:/primitive/two-dimensional/miller_indices
-          - terminations = [ termination, ... ] # any number of any terminations in the order for the layers to occur
-        atomic_layers_unique:
-          # Generated from the crystal_lattice_planes, together would form a full periodic structure
-          - crystal = material
-          - miller_indices = ref:/primitive/two-dimensional/miller_indices
-          - terminations = [ termination, ... ] # all possible terminations for that orientation
-        atomic_layers_unique_repeated:
-          # atomic_layers_unique with an integer number of repetitions, form a full periodic structure with top layer specified by the termination
-          - crystal = material
-          - miller_indices = ref:/primitive/two-dimensional/miller_indices
-          - termination_top = termination
-          - number_of_repetitions = int # number of repetitions of the unique atomic layers, they are shifted according to the termination
+        - atomic_layers
+        - atomic_layers_unique
+        - atomic_layers_unique_repeated
+        - crystal_lattice_planes
+        - slab_stack_configuration
       one-dimensional:
-        crystal_lattice_lines:
-          - crystal = material
-          - miller_indices = ref:/primitive/one-dimensional/miller_indices_2d
-          - use_conventional_cell = bool
-        crystal_lattice_lines_unique_repeated:
-          - crystal = material
-          - miller_indices = ref:/primitive/one-dimensional/miller_indices_2d
-          - termination_top = termination
-          - number_of_repetitions = int
-      zero-dimensional:
-      repetitions:
-      # Generic repetition component for any dimensional structure
+        - crystal_lattice_lines
+        - crystal_lattice_lines_unique_repeated
 
   operations:
     core:
       modifications:
-        strain:
-          # can be applied to a crystal, modifies the lattice parameters and preserves basis in crystal coordinates
-          - matrix
-        repeat:
-          - integer_matrix
+        - perturb
+        - repeat
+        - strain
       combinations:
-        stack_component: (material | vacuum)
-        stack:
-          - stack_components = [ stack_component, ... ] # vacuum is added between to add a gap/distance between components
-          - direction = ("x" | "y" | "z")|("-x" | "-y" | "-z"){1} # sign indicates the order of the stacking
-        merge_component: ( material | vacuum | crystal_site )
-        merge:
-          - merge_structures = [ material ]
-          - method = ("add" | "replace" | "yield" | "smart"){1}
+        - enums
+        - merge
+        - stack
 
-material_categories:
+materials_category:
   pristine_structures:
     three-dimensional:
-      ideal_crystal: ref:/primitive/base/crystal
-
+      - ideal_crystal
     two-dimensional:
-      slab:
-        - stack_components = [ atomic_layers, vacuum ]
-        - direction = "z"
-        - supercell_xy?
-      slab_strained_supercell:
-        - stack_components = [ atomic_layers, vacuum ]
-        - direction = "z"
-        - strain_matrix
-      slab_strained_supercell_with_gap:
-        - stack_components = [ atomic_layers, vacuum ]
-        - direction = (x | y | z){1}
-        - strain_matrix
-        - gap
-      nanotape:
-        # we created a supercell from monolayer, cut the shape and added vacuum on one side
-        - stack_components = [ crystal_lattice_lines, vacuum ]
-        - direction = (x | y){1}
-      nanoribbon:
-        # we created a monolayer supercell, cut the shape and added vacuum on all sides
-        - stack_components =  [ crystal_lattice_lines, vacuum ]
-        - direction = (x | y | z){2} # 2 sides
+      - nanoribbon
+      - nanotape
+      - slab
+      - slab_strained_supercell
 
   compound_pristine_structures:
     two-dimensional:
-      interface:
-        configuration:
-          # Base interface configuration that can be inherited by specific interface types
-          - stack_components = [ (slab | slab_strained_supercell_with_gap), (slab | slab_strained_supercell_with_gap), vacuum? ]
-          - direction = "z"
-          - xy_shift = [float, float] # xy shift for the interface
+      - interface
 
   defective_structures:
     two-dimensional:
-      grain_boundary_planar:
-        configuration:
-          # Configuration for creating a planar grain boundary
-          - stack_components = [ slab | slab_strained_supercell_with_gap, slab | slab_strained_supercell_with_gap ]
-          - direction = (x | y | z){1}
+      - adatom
+      - grain_boundary_planar
+      - island
+      - terrace
     one-dimensional:
-      grain_boundary_linear:
-        configuration:
-          # Configuration for creating a linear grain boundary
-          - stack_components = [ (slab | slab_strained_supercell_with_gap), (slab | slab_strained_supercell_with_gap) ]
-          - direction = (x | y){1}
-          - actual_angle = float # angle between the two phases
-          - xy_shift = [float, float] # xy shift for the grain boundary
+      - grain_boundary_linear
+    zero-dimensional:
+      point_defect:
+        - interstitial
+        - substitutional
+        - vacancy
+
+  processed_structures:
+    two-dimensional:
+      - passivation

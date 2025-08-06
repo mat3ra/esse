@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List
+from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, confloat
 
 
 class AxisEnum(Enum):
@@ -16,9 +16,21 @@ class AxisEnum(Enum):
     z = "z"
 
 
+class ObjectWithId(BaseModel):
+    value: Optional[confloat(ge=0.0)] = None
+    id: int
+    """
+    integer id of this entry
+    """
+
+
 class StackSchema(BaseModel):
     stack_components: List
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
+    """
+    gaps: Optional[List[ObjectWithId]] = None
+    """
+    Gap distances between stack components as an array of objects with id and value
     """
