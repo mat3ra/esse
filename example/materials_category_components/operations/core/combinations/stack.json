@@ -261,5 +261,15 @@
             }
         }
     ],
-    "direction": "z"
+    "direction": "z",
+    "gaps": [
+        {
+            "id": 0,
+            "value": 2.5
+        },
+        {
+            "id": 1,
+            "value": 3
+        }
+    ]
 }
