@@ -1703,6 +1703,20 @@ export type ArrayOfIds = {
  * array of strings, e.g. metadata tags
  */
 export type ArrayOfStrings = string[];
+/** Schema dist/js/schema/core/primitive/array_with_ids.json */
+/**
+ * Object with ids and values, where each id is an integer and each value is any
+ */
+export interface ArrayWithIds {
+    /**
+     * Array of integer ids
+     */
+    ids: number[];
+    /**
+     * Array of values corresponding to the ids
+     */
+    values: unknown[];
+}
 /** Schema dist/js/schema/core/primitive/axis.json */
 export interface AxisSchema {
     /**
@@ -7097,15 +7111,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -7688,15 +7705,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         ({
             /**
@@ -8268,15 +8288,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -8859,15 +8882,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         })
     ] | [
         ({
@@ -9440,15 +9466,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -10031,15 +10060,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         ({
             /**
@@ -10611,15 +10643,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -11202,15 +11237,18 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         {
             /**
@@ -11494,15 +11532,18 @@ export interface InterfaceConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/one_dimensional/grain_boundary_linear/configuration.json */
 /**
@@ -12086,15 +12127,18 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -12677,15 +12721,18 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         ({
             /**
@@ -13257,15 +13304,18 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -13848,15 +13898,18 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         })
     ];
     /**
@@ -13875,15 +13928,18 @@ export interface GrainBoundaryLinearConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/two_dimensional/adatom/configuration.json */
 /**
@@ -14465,15 +14521,18 @@ export interface AdatomDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         },
         {
             /**
@@ -15024,15 +15083,18 @@ export interface AdatomDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/two_dimensional/grain_boundary_planar/configuration.json */
 /**
@@ -15620,15 +15682,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -16211,15 +16276,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         ({
             /**
@@ -16791,15 +16859,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -17382,15 +17453,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         })
     ] | [
         ({
@@ -17963,15 +18037,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -18554,15 +18631,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         ({
             /**
@@ -19134,15 +19214,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         } | {
             /**
              * Supercell matrix for xy plane transformations
@@ -19725,15 +19808,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         }),
         {
             /**
@@ -20013,15 +20099,18 @@ export interface GrainBoundaryPlanarConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/two_dimensional/island/configuration.json */
 /**
@@ -20603,15 +20692,18 @@ export interface IslandDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         },
         {
             /**
@@ -21189,15 +21281,18 @@ export interface IslandDefectConfigurationSchema {
                      */
                     direction: "x" | "y" | "z";
                     /**
-                     * Gap distances between stack components as an array of objects with id and value
+                     * Gap distances between stack components with separate ids and values arrays
                      */
                     gaps?: {
-                        value?: number;
                         /**
-                         * integer id of this entry
+                         * Array of values corresponding to the ids
                          */
-                        id: number;
-                    }[];
+                        values: number[];
+                        /**
+                         * Array of integer ids
+                         */
+                        ids: number[];
+                    };
                 },
                 {
                     /**
@@ -21757,15 +21852,18 @@ export interface IslandDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/two_dimensional/terrace/configuration.json */
 /**
@@ -22347,15 +22445,18 @@ export interface TerraceDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         },
         {
             /**
@@ -22933,15 +23034,18 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     direction: "x" | "y" | "z";
                     /**
-                     * Gap distances between stack components as an array of objects with id and value
+                     * Gap distances between stack components with separate ids and values arrays
                      */
                     gaps?: {
-                        value?: number;
                         /**
-                         * integer id of this entry
+                         * Array of values corresponding to the ids
                          */
-                        id: number;
-                    }[];
+                        values: number[];
+                        /**
+                         * Array of integer ids
+                         */
+                        ids: number[];
+                    };
                 },
                 {
                     /**
@@ -23508,15 +23612,18 @@ export interface TerraceDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/defective_structures/zero_dimensional/point_defect/base_configuration.json */
 /**
@@ -26018,15 +26125,18 @@ export interface NanoribbonConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         },
         {
             /**
@@ -26303,15 +26413,18 @@ export interface NanoribbonConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/nanotape.json */
 /**
@@ -26904,15 +27017,18 @@ export interface NanoTapeConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/slab.json */
 /**
@@ -27488,15 +27604,18 @@ export interface SlabConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/slab_strained_supercell.json */
 /**
@@ -28084,15 +28203,18 @@ export interface SlabStrainedSupercellConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category/processed_structures/two_dimensional/passivation/configuration.json */
 /**
@@ -34585,15 +34707,18 @@ export interface SlabStackConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components with separate ids and values arrays
              */
             gaps?: {
-                value?: number;
                 /**
-                 * integer id of this entry
+                 * Array of values corresponding to the ids
                  */
-                id: number;
-            }[];
+                values: number[];
+                /**
+                 * Array of integer ids
+                 */
+                ids: number[];
+            };
         },
         {},
         {
@@ -34871,15 +34996,18 @@ export interface SlabStackConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category_components/operations/core/combinations/enums.json */
 /**
@@ -34908,15 +35036,18 @@ export interface StackSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components with separate ids and values arrays
      */
     gaps?: {
-        value?: number;
         /**
-         * integer id of this entry
+         * Array of values corresponding to the ids
          */
-        id: number;
-    }[];
+        values: number[];
+        /**
+         * Array of integer ids
+         */
+        ids: number[];
+    };
 }
 /** Schema dist/js/schema/materials_category_components/operations/core/modifications/perturb.json */
 /**

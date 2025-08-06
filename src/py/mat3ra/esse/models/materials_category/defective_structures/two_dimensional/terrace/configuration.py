@@ -1117,11 +1117,14 @@ class VacuumConfigurationSchema(BaseModel):
     """
 
 
-class ObjectWithId(BaseModel):
-    value: Optional[confloat(ge=0.0)] = None
-    id: int
+class ArrayWithIds(BaseModel):
+    values: List[confloat(ge=0.0)]
     """
-    integer id of this entry
+    Array of values corresponding to the ids
+    """
+    ids: List[int]
+    """
+    Array of integer ids
     """
 
 
@@ -1133,9 +1136,9 @@ class SlabConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[ArrayWithIds] = Field(None, title="array with ids")
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components with separate ids and values arrays
     """
 
 
@@ -2016,9 +2019,9 @@ class SlabConfigurationSchema3(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[ArrayWithIds] = Field(None, title="array with ids")
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components with separate ids and values arrays
     """
 
 
@@ -2906,7 +2909,7 @@ class TerraceDefectConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[ArrayWithIds] = Field(None, title="array with ids")
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components with separate ids and values arrays
     """
