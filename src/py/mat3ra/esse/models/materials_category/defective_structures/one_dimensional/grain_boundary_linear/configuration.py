@@ -1117,8 +1117,11 @@ class VacuumConfigurationSchema(BaseModel):
     """
 
 
-class ObjectWithId(BaseModel):
-    value: Optional[confloat(ge=0.0)] = None
+class ObjectWithIdAndValueSchema(BaseModel):
+    value: float
+    """
+    value of this entry
+    """
     id: int
     """
     integer id of this entry
@@ -1133,9 +1136,9 @@ class SlabConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components as array of objects with id and value
     """
 
 
@@ -2036,9 +2039,9 @@ class SlabStrainedSupercellConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components as array of objects with id and value
     """
 
 
@@ -2919,9 +2922,9 @@ class SlabConfigurationSchema8(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components as array of objects with id and value
     """
 
 
@@ -3814,9 +3817,9 @@ class SlabStrainedSupercellConfigurationSchema3(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components as array of objects with id and value
     """
 
 
@@ -4267,7 +4270,7 @@ class GrainBoundaryLinearConfigurationSchema(BaseModel):
     """
     xy shift for the film as cartesian 2D vector on the xy plane.
     """
-    gaps: Optional[List[ObjectWithId]] = None
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components as an array of objects with id and value
+    Gap distances between stack components as array of objects with id and value
     """

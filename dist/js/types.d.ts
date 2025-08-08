@@ -7097,10 +7097,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -7688,10 +7691,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -8268,10 +8274,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -8859,10 +8868,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -9440,10 +9452,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -10031,10 +10046,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -10611,10 +10629,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -11202,10 +11223,13 @@ export interface InterfaceConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -11494,10 +11518,13 @@ export interface InterfaceConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -12086,10 +12113,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -12677,10 +12707,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -13257,10 +13290,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -13848,10 +13884,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -13875,10 +13914,13 @@ export interface GrainBoundaryLinearConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -14465,10 +14507,13 @@ export interface AdatomDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -15024,10 +15069,13 @@ export interface AdatomDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -15620,10 +15668,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -16211,10 +16262,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -16791,10 +16845,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -17382,10 +17439,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -17963,10 +18023,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -18554,10 +18617,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -19134,10 +19200,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -19725,10 +19794,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -20013,10 +20085,13 @@ export interface GrainBoundaryPlanarConfigurationSchema {
      */
     xy_shift?: [number, number];
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -20603,10 +20678,13 @@ export interface IslandDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -21189,10 +21267,13 @@ export interface IslandDefectConfigurationSchema {
                      */
                     direction: "x" | "y" | "z";
                     /**
-                     * Gap distances between stack components as an array of objects with id and value
+                     * Gap distances between stack components as array of objects with id and value
                      */
                     gaps?: {
-                        value?: number;
+                        /**
+                         * value of this entry
+                         */
+                        value: number;
                         /**
                          * integer id of this entry
                          */
@@ -21757,10 +21838,13 @@ export interface IslandDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -22347,10 +22431,13 @@ export interface TerraceDefectConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -22933,10 +23020,13 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     direction: "x" | "y" | "z";
                     /**
-                     * Gap distances between stack components as an array of objects with id and value
+                     * Gap distances between stack components as array of objects with id and value
                      */
                     gaps?: {
-                        value?: number;
+                        /**
+                         * value of this entry
+                         */
+                        value: number;
                         /**
                          * integer id of this entry
                          */
@@ -23508,10 +23598,13 @@ export interface TerraceDefectConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -26018,10 +26111,13 @@ export interface NanoribbonConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -26303,10 +26399,13 @@ export interface NanoribbonConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -26904,10 +27003,13 @@ export interface NanoTapeConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -27488,10 +27590,13 @@ export interface SlabConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -28084,10 +28189,13 @@ export interface SlabStrainedSupercellConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -34585,10 +34693,13 @@ export interface SlabStackConfigurationSchema {
              */
             direction: "x" | "y" | "z";
             /**
-             * Gap distances between stack components as an array of objects with id and value
+             * Gap distances between stack components as array of objects with id and value
              */
             gaps?: {
-                value?: number;
+                /**
+                 * value of this entry
+                 */
+                value: number;
                 /**
                  * integer id of this entry
                  */
@@ -34871,10 +34982,13 @@ export interface SlabStackConfigurationSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */
@@ -34908,10 +35022,13 @@ export interface StackSchema {
      */
     direction: "x" | "y" | "z";
     /**
-     * Gap distances between stack components as an array of objects with id and value
+     * Gap distances between stack components as array of objects with id and value
      */
     gaps?: {
-        value?: number;
+        /**
+         * value of this entry
+         */
+        value: number;
         /**
          * integer id of this entry
          */

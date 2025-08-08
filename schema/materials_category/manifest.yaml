@@ -63,6 +63,8 @@ materials_category:
       - nanotape
       - slab
       - slab_strained_supercell
+    zero-dimensional:
+      - nanoparticle
 
   compound_pristine_structures:
     two-dimensional:
@@ -81,6 +83,7 @@ materials_category:
         - interstitial
         - substitutional
         - vacancy
+      
 
   processed_structures:
     two-dimensional:
