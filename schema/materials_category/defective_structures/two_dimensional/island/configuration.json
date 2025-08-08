@@ -1777,20 +1777,21 @@
                             ]
                         },
                         "gaps": {
-                            "description": "Gap distances between stack components as an array of objects with id and value",
+                            "description": "Gap distances between stack components as array of objects with id and value",
                             "type": "array",
                             "items": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "object with id",
-                                "description": "object containing integer id",
+                                "title": "object with id and value schema",
+                                "description": "object containing integer id and value each",
                                 "type": "object",
                                 "required": [
-                                    "id"
+                                    "id",
+                                    "value"
                                 ],
                                 "properties": {
                                     "value": {
                                         "type": "number",
-                                        "minimum": 0
+                                        "description": "value of this entry"
                                     },
                                     "id": {
                                         "description": "integer id of this entry",
@@ -3579,20 +3580,21 @@
                                             ]
                                         },
                                         "gaps": {
-                                            "description": "Gap distances between stack components as an array of objects with id and value",
+                                            "description": "Gap distances between stack components as array of objects with id and value",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "object with id",
-                                                "description": "object containing integer id",
+                                                "title": "object with id and value schema",
+                                                "description": "object containing integer id and value each",
                                                 "type": "object",
                                                 "required": [
-                                                    "id"
+                                                    "id",
+                                                    "value"
                                                 ],
                                                 "properties": {
                                                     "value": {
                                                         "type": "number",
-                                                        "minimum": 0
+                                                        "description": "value of this entry"
                                                     },
                                                     "id": {
                                                         "description": "integer id of this entry",
@@ -5240,20 +5242,21 @@
             ]
         },
         "gaps": {
-            "description": "Gap distances between stack components as an array of objects with id and value",
+            "description": "Gap distances between stack components as array of objects with id and value",
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "object with id",
-                "description": "object containing integer id",
+                "title": "object with id and value schema",
+                "description": "object containing integer id and value each",
                 "type": "object",
                 "required": [
-                    "id"
+                    "id",
+                    "value"
                 ],
                 "properties": {
                     "value": {
                         "type": "number",
-                        "minimum": 0
+                        "description": "value of this entry"
                     },
                     "id": {
                         "description": "integer id of this entry",
