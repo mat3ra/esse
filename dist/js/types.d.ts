@@ -46760,6 +46760,10 @@ export interface TemplateSchema {
      */
     content: string;
     /**
+     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+     */
+    rendered: string;
+    /**
      * entity identity
      */
     _id?: string;
@@ -50416,6 +50420,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -50954,6 +50962,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -54707,6 +54719,10 @@ export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
          * Content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -54726,6 +54742,10 @@ export interface ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines {
      * Content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
     content: string;
+    /**
+     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+     */
+    rendered: string;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
