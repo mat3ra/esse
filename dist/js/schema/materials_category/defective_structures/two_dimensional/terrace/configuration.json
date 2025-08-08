@@ -1778,27 +1778,24 @@
                             ]
                         },
                         "gaps": {
-                            "description": "Gap distances between stack components with separate ids and values arrays",
-                            "$schema": "http://json-schema.org/draft-07/schema#",
-                            "title": "array with ids",
-                            "type": "object",
-                            "required": [
-                                "ids",
-                                "values"
-                            ],
-                            "properties": {
-                                "values": {
-                                    "description": "Array of values corresponding to the ids",
-                                    "type": "array",
-                                    "items": {
+                            "description": "Gap distances between stack components as array of objects with id and value",
+                            "type": "array",
+                            "items": {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "object with id and value schema",
+                                "description": "object containing integer id and value each",
+                                "type": "object",
+                                "required": [
+                                    "id",
+                                    "value"
+                                ],
+                                "properties": {
+                                    "value": {
                                         "type": "number",
-                                        "minimum": 0
-                                    }
-                                },
-                                "ids": {
-                                    "description": "Array of integer ids",
-                                    "type": "array",
-                                    "items": {
+                                        "description": "value of this entry"
+                                    },
+                                    "id": {
+                                        "description": "integer id of this entry",
                                         "type": "integer"
                                     }
                                 }
@@ -3584,27 +3581,24 @@
                                             ]
                                         },
                                         "gaps": {
-                                            "description": "Gap distances between stack components with separate ids and values arrays",
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "array with ids",
-                                            "type": "object",
-                                            "required": [
-                                                "ids",
-                                                "values"
-                                            ],
-                                            "properties": {
-                                                "values": {
-                                                    "description": "Array of values corresponding to the ids",
-                                                    "type": "array",
-                                                    "items": {
+                                            "description": "Gap distances between stack components as array of objects with id and value",
+                                            "type": "array",
+                                            "items": {
+                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                "title": "object with id and value schema",
+                                                "description": "object containing integer id and value each",
+                                                "type": "object",
+                                                "required": [
+                                                    "id",
+                                                    "value"
+                                                ],
+                                                "properties": {
+                                                    "value": {
                                                         "type": "number",
-                                                        "minimum": 0
-                                                    }
-                                                },
-                                                "ids": {
-                                                    "description": "Array of integer ids",
-                                                    "type": "array",
-                                                    "items": {
+                                                        "description": "value of this entry"
+                                                    },
+                                                    "id": {
+                                                        "description": "integer id of this entry",
                                                         "type": "integer"
                                                     }
                                                 }
@@ -5265,27 +5259,24 @@
             ]
         },
         "gaps": {
-            "description": "Gap distances between stack components with separate ids and values arrays",
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "array with ids",
-            "type": "object",
-            "required": [
-                "ids",
-                "values"
-            ],
-            "properties": {
-                "values": {
-                    "description": "Array of values corresponding to the ids",
-                    "type": "array",
-                    "items": {
+            "description": "Gap distances between stack components as array of objects with id and value",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "object with id and value schema",
+                "description": "object containing integer id and value each",
+                "type": "object",
+                "required": [
+                    "id",
+                    "value"
+                ],
+                "properties": {
+                    "value": {
                         "type": "number",
-                        "minimum": 0
-                    }
-                },
-                "ids": {
-                    "description": "Array of integer ids",
-                    "type": "array",
-                    "items": {
+                        "description": "value of this entry"
+                    },
+                    "id": {
+                        "description": "integer id of this entry",
                         "type": "integer"
                     }
                 }

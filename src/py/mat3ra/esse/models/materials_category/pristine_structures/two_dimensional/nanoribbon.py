@@ -1138,14 +1138,14 @@ class VacuumConfigurationSchema(BaseModel):
     """
 
 
-class ArrayWithIds(BaseModel):
-    values: List[confloat(ge=0.0)]
+class ObjectWithIdAndValueSchema(BaseModel):
+    value: float
     """
-    Array of values corresponding to the ids
+    value of this entry
     """
-    ids: List[int]
+    id: int
     """
-    Array of integer ids
+    integer id of this entry
     """
 
 
@@ -1157,9 +1157,9 @@ class NanoTapeConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[ArrayWithIds] = Field(None, title="array with ids")
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components with separate ids and values arrays
+    Gap distances between stack components as array of objects with id and value
     """
 
 
@@ -1595,7 +1595,7 @@ class NanoribbonConfigurationSchema(BaseModel):
     """
     Enum for axis types
     """
-    gaps: Optional[ArrayWithIds] = Field(None, title="array with ids")
+    gaps: Optional[List[ObjectWithIdAndValueSchema]] = None
     """
-    Gap distances between stack components with separate ids and values arrays
+    Gap distances between stack components as array of objects with id and value
     """
