@@ -1703,20 +1703,6 @@ export type ArrayOfIds = {
  * array of strings, e.g. metadata tags
  */
 export type ArrayOfStrings = string[];
-/** Schema dist/js/schema/core/primitive/array_with_ids.json */
-/**
- * Object with ids and values, where each id is an integer and each value is any
- */
-export interface ArrayWithIds {
-    /**
-     * Array of integer ids
-     */
-    ids: number[];
-    /**
-     * Array of values corresponding to the ids
-     */
-    values: unknown[];
-}
 /** Schema dist/js/schema/core/primitive/axis.json */
 export interface AxisSchema {
     /**
