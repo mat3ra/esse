@@ -1,18 +1,18 @@
 {
-    "$id": "core/reusable/coordinate-conditions/box",
+    "$id": "core/reusable/coordinate-conditions/plane",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Box Coordinate Condition Schema",
+    "title": "Plane Coordinate Condition Schema",
     "required": [
-        "max_coordinate",
-        "min_coordinate",
+        "plane_normal",
+        "plane_point_coordinate",
         "shape"
     ],
     "description": "Base interface for coordinate shape filters",
     "type": "object",
     "properties": {
         "shape": {
-            "const": "box",
-            "default": "box",
+            "const": "plane",
+            "default": "plane",
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "Coordinate Shape Enum",
             "type": "string",
@@ -24,7 +24,7 @@
                 "plane"
             ]
         },
-        "min_coordinate": {
+        "plane_normal": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "coordinate 3d schema",
             "type": "array",
@@ -34,7 +34,7 @@
                 "type": "number"
             }
         },
-        "max_coordinate": {
+        "plane_point_coordinate": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "coordinate 3d schema",
             "type": "array",

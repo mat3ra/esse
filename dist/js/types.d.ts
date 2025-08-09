@@ -2795,8 +2795,67 @@ export interface BoxCoordinateConditionSchema {
      */
     max_coordinate: [number, number, number];
 }
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/cylinder.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface CylinderCoordinateConditionSchema {
+    shape: "cylinder";
+    radius: number;
+    min_z: number;
+    max_z: number;
+}
 /** Schema dist/js/schema/core/reusable/coordinate_conditions/enum.json */
 export type CoordinateShapeEnum = "cylinder" | "sphere" | "box" | "triangular_prism" | "plane";
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/plane.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface PlaneCoordinateConditionSchema {
+    shape: "plane";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_normal: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_point_coordinate: [number, number, number];
+}
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/sphere.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface SphereCoordinateConditionSchema {
+    shape: "sphere";
+    radius: number;
+}
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/triangular_prism.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface TriangularPrismCoordinateConditionSchema {
+    shape: "triangular_prism";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_1: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_2: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_3: [number, number];
+    min_z: number;
+    max_z: number;
+}
 /** Schema dist/js/schema/core/reusable/coordinate_conditions.json */
 /**
  * Combined schema for all coordinate condition types
@@ -2813,6 +2872,45 @@ export type CoordinateConditionsSchema = {
      * @maxItems 3
      */
     max_coordinate: [number, number, number];
+} | {
+    shape: "sphere";
+    radius: number;
+} | {
+    shape: "cylinder";
+    radius: number;
+    min_z: number;
+    max_z: number;
+} | {
+    shape: "triangular_prism";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_1: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_2: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_3: [number, number];
+    min_z: number;
+    max_z: number;
+} | {
+    shape: "plane";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_normal: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_point_coordinate: [number, number, number];
 };
 /** Schema dist/js/schema/core/reusable/dielectric_tensor_component.json */
 /**
@@ -21555,6 +21653,45 @@ export interface IslandDefectConfigurationSchema {
                          * @maxItems 3
                          */
                         max_coordinate: [number, number, number];
+                    } | {
+                        shape: "sphere";
+                        radius: number;
+                    } | {
+                        shape: "cylinder";
+                        radius: number;
+                        min_z: number;
+                        max_z: number;
+                    } | {
+                        shape: "triangular_prism";
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_1: [number, number];
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_2: [number, number];
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_3: [number, number];
+                        min_z: number;
+                        max_z: number;
+                    } | {
+                        shape: "plane";
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        plane_normal: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        plane_point_coordinate: [number, number, number];
                     };
                 }
             ];
@@ -23308,6 +23445,45 @@ export interface TerraceDefectConfigurationSchema {
                          * @maxItems 3
                          */
                         max_coordinate: [number, number, number];
+                    } | {
+                        shape: "sphere";
+                        radius: number;
+                    } | {
+                        shape: "cylinder";
+                        radius: number;
+                        min_z: number;
+                        max_z: number;
+                    } | {
+                        shape: "triangular_prism";
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_1: [number, number];
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_2: [number, number];
+                        /**
+                         * @minItems 2
+                         * @maxItems 2
+                         */
+                        position_on_surface_3: [number, number];
+                        min_z: number;
+                        max_z: number;
+                    } | {
+                        shape: "plane";
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        plane_normal: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        plane_point_coordinate: [number, number, number];
                     };
                 }
             ];
@@ -30687,6 +30863,45 @@ export interface VoidRegionSchema {
          * @maxItems 3
          */
         max_coordinate: [number, number, number];
+    } | {
+        shape: "sphere";
+        radius: number;
+    } | {
+        shape: "cylinder";
+        radius: number;
+        min_z: number;
+        max_z: number;
+    } | {
+        shape: "triangular_prism";
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_1: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_2: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_3: [number, number];
+        min_z: number;
+        max_z: number;
+    } | {
+        shape: "plane";
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_normal: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_point_coordinate: [number, number, number];
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/three_dimensional/crystal.json */
@@ -30974,6 +31189,45 @@ export interface VoidSchema {
          * @maxItems 3
          */
         max_coordinate: [number, number, number];
+    } | {
+        shape: "sphere";
+        radius: number;
+    } | {
+        shape: "cylinder";
+        radius: number;
+        min_z: number;
+        max_z: number;
+    } | {
+        shape: "triangular_prism";
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_1: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_2: [number, number];
+        /**
+         * @minItems 2
+         * @maxItems 2
+         */
+        position_on_surface_3: [number, number];
+        min_z: number;
+        max_z: number;
+    } | {
+        shape: "plane";
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_normal: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        plane_point_coordinate: [number, number, number];
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/two_dimensional/vacuum.json */

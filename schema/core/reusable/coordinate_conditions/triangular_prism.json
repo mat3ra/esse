@@ -1,0 +1,38 @@
+{
+    "$id": "core/reusable/coordinate-conditions/triangular-prism",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Triangular Prism Coordinate Condition Schema",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "shape": {
+            "const": "triangular_prism",
+            "default": "triangular_prism"
+        },
+        "position_on_surface_1": {
+            "$ref": "../../primitive/array_of_2_numbers.json"
+        },
+        "position_on_surface_2": {
+            "$ref": "../../primitive/array_of_2_numbers.json"
+        },
+        "position_on_surface_3": {
+            "$ref": "../../primitive/array_of_2_numbers.json"
+        },
+        "min_z": {
+            "type": "number"
+        },
+        "max_z": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "position_on_surface_1",
+        "position_on_surface_2",
+        "position_on_surface_3",
+        "min_z",
+        "max_z"
+    ]
+}

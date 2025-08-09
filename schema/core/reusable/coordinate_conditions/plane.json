@@ -1,7 +1,7 @@
 {
-    "$id": "core/reusable/coordinate-conditions/box",
+    "$id": "core/reusable/coordinate-conditions/plane",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Box Coordinate Condition Schema",
+    "title": "Plane Coordinate Condition Schema",
     "allOf": [
         {
             "$ref": "base.json"
@@ -9,18 +9,18 @@
     ],
     "properties": {
         "shape": {
-            "const": "box",
-            "default": "box"
+            "const": "plane",
+            "default": "plane"
         },
-        "min_coordinate": {
+        "plane_normal": {
             "$ref": "../../abstract/coordinate_3d.json"
         },
-        "max_coordinate": {
+        "plane_point_coordinate": {
             "$ref": "../../abstract/coordinate_3d.json"
         }
     },
     "required": [
-        "min_coordinate",
-        "max_coordinate"
+        "plane_normal",
+        "plane_point_coordinate"
     ]
 }
