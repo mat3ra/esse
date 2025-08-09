@@ -1,0 +1,6 @@
+{
+    "shape": "cylinder",
+    "radius": 0.25,
+    "min_z": 0,
+    "max_z": 1
+}

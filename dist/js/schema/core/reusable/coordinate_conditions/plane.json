@@ -1,0 +1,47 @@
+{
+    "$id": "core/reusable/coordinate-conditions/plane",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Plane Coordinate Condition Schema",
+    "required": [
+        "plane_normal",
+        "plane_point_coordinate",
+        "shape"
+    ],
+    "description": "Base interface for coordinate shape filters",
+    "type": "object",
+    "properties": {
+        "shape": {
+            "const": "plane",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Coordinate Shape Enum",
+            "type": "string",
+            "enum": [
+                "cylinder",
+                "sphere",
+                "box",
+                "triangular_prism",
+                "plane"
+            ]
+        },
+        "plane_normal": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "number"
+            }
+        },
+        "plane_point_coordinate": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "coordinate 3d schema",
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+                "type": "number"
+            }
+        }
+    }
+}

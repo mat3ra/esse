@@ -1,0 +1,9 @@
+{
+    "shape": "plane",
+    "plane_normal": [ 0.0,
+        0.0,
+        1.0 ],
+    "plane_point_coordinate": [ 0.0,
+        0.0,
+        0.5 ]
+}

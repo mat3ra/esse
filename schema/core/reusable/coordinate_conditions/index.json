@@ -6,6 +6,18 @@
     "oneOf": [
         {
             "$ref": "box.json"
+        },
+        {
+            "$ref": "sphere.json"
+        },
+        {
+            "$ref": "cylinder.json"
+        },
+        {
+            "$ref": "triangular_prism.json"
+        },
+        {
+            "$ref": "plane.json"
         }
     ]
 } 
