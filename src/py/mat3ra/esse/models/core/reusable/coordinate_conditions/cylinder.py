@@ -19,7 +19,7 @@ class CoordinateShapeEnum(Enum):
 
 
 class CylinderCoordinateConditionSchema(BaseModel):
-    shape: Literal["cylinder"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["cylinder"] = Field("cylinder", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
     min_z: float
     max_z: float

@@ -17,6 +17,7 @@
             "properties": {
                 "shape": {
                     "const": "box",
+                    "default": "box",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Coordinate Shape Enum",
                     "type": "string",
@@ -62,6 +63,7 @@
             "properties": {
                 "shape": {
                     "const": "sphere",
+                    "default": "sphere",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Coordinate Shape Enum",
                     "type": "string",
@@ -93,6 +95,7 @@
             "properties": {
                 "shape": {
                     "const": "cylinder",
+                    "default": "cylinder",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Coordinate Shape Enum",
                     "type": "string",
@@ -132,6 +135,7 @@
             "properties": {
                 "shape": {
                     "const": "triangular_prism",
+                    "default": "triangular_prism",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Coordinate Shape Enum",
                     "type": "string",
@@ -194,6 +198,7 @@
             "properties": {
                 "shape": {
                     "const": "plane",
+                    "default": "plane",
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Coordinate Shape Enum",
                     "type": "string",

@@ -9,7 +9,8 @@
     ],
     "properties": {
         "shape": {
-            "const": "plane"
+            "const": "plane",
+            "default": "plane"
         },
         "plane_normal": {
             "$ref": "../../abstract/coordinate_3d.json"

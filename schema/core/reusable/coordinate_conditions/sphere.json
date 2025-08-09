@@ -9,7 +9,8 @@
     ],
     "properties": {
         "shape": {
-            "const": "sphere"
+            "const": "sphere",
+            "default": "sphere"
         },
         "radius": {
             "type": "number",

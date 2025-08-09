@@ -9,7 +9,8 @@
     ],
     "properties": {
         "shape": {
-            "const": "triangular_prism"
+            "const": "triangular_prism",
+            "default": "triangular_prism"
         },
         "position_on_surface_1": {
             "$ref": "../../primitive/array_of_2_numbers.json"

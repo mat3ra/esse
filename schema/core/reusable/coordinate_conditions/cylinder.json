@@ -9,7 +9,8 @@
     ],
     "properties": {
         "shape": {
-            "const": "cylinder"
+            "const": "cylinder",
+            "default": "cylinder"
         },
         "radius": {
             "type": "number",

@@ -539,25 +539,25 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
-    shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class SphereCoordinateConditionSchema(BaseModel):
-    shape: Literal["sphere"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
 
 
 class CylinderCoordinateConditionSchema(BaseModel):
-    shape: Literal["cylinder"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["cylinder"] = Field("cylinder", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
     min_z: float
     max_z: float
 
 
 class TriangularPrismCoordinateConditionSchema(BaseModel):
-    shape: Literal["triangular_prism"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["triangular_prism"] = Field("triangular_prism", title="Coordinate Shape Enum")
     position_on_surface_1: List[float] = Field(
         ..., max_length=2, min_length=2, title="array of 2 number elements schema"
     )
@@ -572,7 +572,7 @@ class TriangularPrismCoordinateConditionSchema(BaseModel):
 
 
 class PlaneCoordinateConditionSchema(BaseModel):
-    shape: Literal["plane"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["plane"] = Field("plane", title="Coordinate Shape Enum")
     plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 

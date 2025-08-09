@@ -19,7 +19,7 @@ class CoordinateShapeEnum(Enum):
 
 
 class TriangularPrismCoordinateConditionSchema(BaseModel):
-    shape: Literal["triangular_prism"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["triangular_prism"] = Field("triangular_prism", title="Coordinate Shape Enum")
     position_on_surface_1: List[float] = Field(
         ..., max_length=2, min_length=2, title="array of 2 number elements schema"
     )

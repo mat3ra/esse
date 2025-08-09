@@ -19,5 +19,5 @@ class CoordinateShapeEnum(Enum):
 
 
 class SphereCoordinateConditionSchema(BaseModel):
-    shape: Literal["sphere"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
