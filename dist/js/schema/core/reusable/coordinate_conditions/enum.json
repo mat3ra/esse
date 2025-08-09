@@ -1,5 +1,5 @@
 {
-    "$id": "core/reusable/coordinate_conditions/enum",
+    "$id": "core/reusable/coordinate-conditions/enum",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Coordinate Shape Enum",
     "type": "string",
