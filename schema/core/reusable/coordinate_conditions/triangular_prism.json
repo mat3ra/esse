@@ -1,5 +1,5 @@
 {
-    "$id": "core/reusable/coordinate-conditions/triangular_prism",
+    "$id": "core/reusable/coordinate-conditions/triangular-prism",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Triangular Prism Coordinate Condition Schema",
     "allOf": [
