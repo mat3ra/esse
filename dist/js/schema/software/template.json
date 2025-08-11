@@ -35,6 +35,9 @@
                 }
             }
         },
+        "isManuallyChanged": {
+            "type": "boolean"
+        },
         "name": {
             "description": "Input file name. e.g. pw_scf.in",
             "type": "string"
