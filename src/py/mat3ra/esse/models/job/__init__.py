@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type35(Enum):
+class Type26(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type36(Enum):
+class Type27(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type37(Enum):
+class Type28(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type38(Enum):
+class Type29(Enum):
     execution = "execution"
 
 
@@ -773,7 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type39(Enum):
+class Type30(Enum):
     assignment = "assignment"
 
 
@@ -864,7 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type40(Enum):
+class Type31(Enum):
     processing = "processing"
 
 
@@ -1192,7 +1192,7 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type41(Enum):
+class Type32(Enum):
     io = "io"
 
 
@@ -1326,7 +1326,7 @@ class DataIOUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type42(Enum):
+class Type33(Enum):
     reduce = "reduce"
 
 
@@ -1412,7 +1412,7 @@ class ReduceUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type43(Enum):
+class Type34(Enum):
     condition = "condition"
 
 
@@ -1514,7 +1514,7 @@ class ConditionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type44(Enum):
+class Type35(Enum):
     assertion = "assertion"
 
 
@@ -1600,11 +1600,11 @@ class AssertionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type45(Enum):
+class Type36(Enum):
     execution = "execution"
 
 
-class ExecutableSchema11(BaseModel):
+class ExecutableSchema5(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -1652,7 +1652,7 @@ class ExecutableSchema11(BaseModel):
     """
 
 
-class FlavorSchema11(BaseModel):
+class FlavorSchema5(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -1720,8 +1720,8 @@ class ExecutionUnitSchemaBase2(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema11] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema11] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema5] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema5] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
@@ -1792,7 +1792,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type46(Enum):
+class Type37(Enum):
     assignment = "assignment"
 
 
@@ -1883,7 +1883,7 @@ class AssignmentUnitSchema2(BaseModel):
     scope: Optional[str] = None
 
 
-class Type47(Enum):
+class Type38(Enum):
     processing = "processing"
 
 
@@ -1973,7 +1973,7 @@ class ProcessingUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type48(Enum):
+class Type39(Enum):
     map = "map"
 
 
@@ -2079,7 +2079,7 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type49(Enum):
+class Type40(Enum):
     subworkflow = "subworkflow"
 
 
@@ -2230,7 +2230,7 @@ class WorkflowSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class Status34(Enum):
+class Status25(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -2348,7 +2348,7 @@ class JobSchema(BaseModel):
     """
     Identity used to track jobs originated from command-line
     """
-    status: Status34
+    status: Status25
     """
     job status
     """
