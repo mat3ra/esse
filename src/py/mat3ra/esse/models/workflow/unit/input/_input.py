@@ -18,7 +18,7 @@ class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
     Content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
