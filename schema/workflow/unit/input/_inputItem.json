@@ -19,7 +19,6 @@
     },
     "required": [
         "name",
-        "content",
-        "rendered"
+        "content"
     ]
 }

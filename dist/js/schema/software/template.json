@@ -5,8 +5,7 @@
     "type": "object",
     "required": [
         "content",
-        "name",
-        "rendered"
+        "name"
     ],
     "properties": {
         "applicationName": {
@@ -34,6 +33,9 @@
                     }
                 }
             }
+        },
+        "isManuallyChanged": {
+            "type": "boolean"
         },
         "name": {
             "description": "Input file name. e.g. pw_scf.in",
