@@ -27,6 +27,9 @@
                 "description": "render context provider names",
                 "$ref": "../workflow/unit/runtime/_runtime_item_name_object.json"
             }
+        },
+        "isManuallyChanged": {
+            "type": "boolean"
         }
     },
     "required": [

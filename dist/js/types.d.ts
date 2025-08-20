@@ -46991,6 +46991,7 @@ export interface TemplateSchema {
          */
         name: string;
     }[];
+    isManuallyChanged?: boolean;
     /**
      * Input file name. e.g. pw_scf.in
      */
@@ -47002,7 +47003,7 @@ export interface TemplateSchema {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered: string;
+    rendered?: string;
     /**
      * entity identity
      */
@@ -47365,7 +47366,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -47907,7 +47908,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -51664,7 +51665,7 @@ export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
     } | {
         templateId?: string;
         templateName?: string;
@@ -51687,7 +51688,7 @@ export interface ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered: string;
+    rendered?: string;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
