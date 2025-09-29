@@ -42,7 +42,7 @@ class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
     owner: EntityReferenceSchema = Field(..., title="entity reference schema")
 
 
-class Type75(Enum):
+class Type73(Enum):
     experiment = "experiment"
 
 
@@ -83,7 +83,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type76(Enum):
+class Type74(Enum):
     literature = "literature"
 
 
@@ -93,7 +93,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type76] = None
+    type: Optional[Type74] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -153,7 +153,7 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
-    type: Optional[Type75] = None
+    type: Optional[Type73] = None
     authors: List[ExperimentAuthorSchema]
     """
     experiment authors
@@ -182,8 +182,8 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
     """
 
 
-class LiteratureReferenceSchema13(BaseModel):
-    type: Optional[Type76] = None
+class LiteratureReferenceSchema12(BaseModel):
+    type: Optional[Type74] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -247,14 +247,14 @@ class ESSE(
         Union[
             InfoForCharacteristicObtainedByExabyteCalculation,
             InfoForCharacteristicObtainedByExperiment,
-            LiteratureReferenceSchema13,
+            LiteratureReferenceSchema12,
         ]
     ]
 ):
     root: Union[
         InfoForCharacteristicObtainedByExabyteCalculation,
         InfoForCharacteristicObtainedByExperiment,
-        LiteratureReferenceSchema13,
+        LiteratureReferenceSchema12,
     ] = Field(
         ..., title="reference schema (using `anyOf` instead of `oneOf` below b/c current reference schemas overlap)"
     )
