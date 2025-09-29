@@ -1,5 +1,5 @@
 {
-    "$id": "core/reusable/hubbard-parameters",
+    "$id": "properties-directory/reusable/hubbard-parameters",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Hubbard parameters reusable schema",
     "description": "Common properties for hubbard parameter schemas",
@@ -16,7 +16,7 @@
                 "type": "object",
                 "allOf": [
                     {
-                        "$ref": "atomic_data_per_orbital_pair_numeric.json"
+                        "$ref": "../../core/reusable/atomic_data_per_orbital_pair_numeric.json"
                     }
                 ],
                 "required": [

@@ -2962,41 +2962,6 @@ export interface CoreReusableFrequencyFunctionMatrix {
      */
     components?: [number, number, number][];
 }
-/** Schema dist/js/schema/core/reusable/hubbard_parameters.json */
-/**
- * Common properties for hubbard parameter schemas
- */
-export interface HubbardParametersReusableSchema {
-    units: "eV";
-    values: {
-        /**
-         * Site number or index in the lattice
-         */
-        id: number;
-        /**
-         * Site number or index in the lattice of second site
-         */
-        id2: number;
-        /**
-         * Example: Co1, Mn
-         */
-        atomicSpecies: string;
-        /**
-         * Example: Co2, O
-         */
-        atomicSpecies2: string;
-        orbitalName?: string;
-        orbitalName2?: string;
-        /**
-         * Distance between two sites in Bohr.
-         */
-        distance?: number;
-        /**
-         * Value related to a specific property, e.g., Hubbard U, V etc.
-         */
-        value: number;
-    }[];
-}
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -48417,6 +48382,41 @@ export interface WorkflowPropertySchema {
      */
     isDefault?: boolean;
     metadata?: {};
+}
+/** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
+/**
+ * Common properties for hubbard parameter schemas
+ */
+export interface HubbardParametersReusableSchema {
+    units: "eV";
+    values: {
+        /**
+         * Site number or index in the lattice
+         */
+        id: number;
+        /**
+         * Site number or index in the lattice of second site
+         */
+        id2: number;
+        /**
+         * Example: Co1, Mn
+         */
+        atomicSpecies: string;
+        /**
+         * Example: Co2, O
+         */
+        atomicSpecies2: string;
+        orbitalName?: string;
+        orbitalName2?: string;
+        /**
+         * Distance between two sites in Bohr.
+         */
+        distance?: number;
+        /**
+         * Value related to a specific property, e.g., Hubbard U, V etc.
+         */
+        value: number;
+    }[];
 }
 /** Schema dist/js/schema/properties_directory/scalar/electron_affinity.json */
 export interface ElectronAffinityPropertySchema {

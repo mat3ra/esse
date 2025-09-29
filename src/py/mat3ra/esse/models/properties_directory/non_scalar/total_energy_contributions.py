@@ -19,7 +19,6 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
 class Name775(Enum):
     harris_foulkes = "harris_foulkes"
 
@@ -138,117 +137,6 @@ class ScalarSchema113(BaseModel):
 
 
 class Name788(Enum):
-=======
-class Name689(Enum):
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema83(BaseModel):
-    name: Optional[Name689] = None
-    value: float
-
-
-class Name690(Enum):
-    one_electron = "one_electron"
-
-
-class ScalarSchema84(BaseModel):
-    name: Optional[Name690] = None
-    value: float
-
-
-class Name691(Enum):
-    hartree = "hartree"
-
-
-class ScalarSchema85(BaseModel):
-    name: Optional[Name691] = None
-    value: float
-
-
-class Name692(Enum):
-    exchange = "exchange"
-
-
-class ScalarSchema86(BaseModel):
-    name: Optional[Name692] = None
-    value: float
-
-
-class Name693(Enum):
-    exchange_correlation = "exchange_correlation"
-
-
-class ScalarSchema87(BaseModel):
-    name: Optional[Name693] = None
-    value: float
-
-
-class Name694(Enum):
-    ewald = "ewald"
-
-
-class ScalarSchema88(BaseModel):
-    name: Optional[Name694] = None
-    value: float
-
-
-class Name695(Enum):
-    alphaZ = "alphaZ"
-
-
-class ScalarSchema89(BaseModel):
-    name: Optional[Name695] = None
-    value: float
-
-
-class Name696(Enum):
-    atomic_energy = "atomic_energy"
-
-
-class ScalarSchema90(BaseModel):
-    name: Optional[Name696] = None
-    value: float
-
-
-class Name697(Enum):
-    eigenvalues = "eigenvalues"
-
-
-class ScalarSchema91(BaseModel):
-    name: Optional[Name697] = None
-    value: float
-
-
-class Name698(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
-
-
-class ScalarSchema92(BaseModel):
-    name: Optional[Name698] = None
-    value: float
-
-
-class Name699(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
-
-
-class ScalarSchema93(BaseModel):
-    name: Optional[Name699] = None
-    value: float
-
-
-class Name700(Enum):
-    hartree_fock = "hartree_fock"
-
-
-class ScalarSchema94(BaseModel):
-    name: Optional[Name700] = None
-    value: float
-
-
-class Name701(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -319,9 +207,5 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     """
     hartree-fock contribution
     """
-<<<<<<< HEAD
     name: Name788
-=======
-    name: Optional[Name701] = None
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     units: Optional[Units] = None

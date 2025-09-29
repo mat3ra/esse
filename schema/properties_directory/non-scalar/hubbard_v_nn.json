@@ -6,7 +6,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../core/reusable/hubbard_parameters.json"
+            "$ref": "../reusable/hubbard_parameters.json"
         }
     ],
     "properties": {

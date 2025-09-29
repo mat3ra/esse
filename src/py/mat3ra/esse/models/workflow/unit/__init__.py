@@ -222,11 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type90(Enum):
-=======
-class Type74(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     reduce = "reduce"
 
 
@@ -323,11 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type91(Enum):
-=======
-class Type75(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     condition = "condition"
 
 
@@ -440,11 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type92(Enum):
-=======
-class Type76(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assertion = "assertion"
 
 
@@ -530,11 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type93(Enum):
-=======
-class Type77(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     execution = "execution"
 
 
@@ -789,11 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type94(Enum):
-=======
-class Type78(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assignment = "assignment"
 
 
@@ -884,11 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-<<<<<<< HEAD
 class Type95(Enum):
-=======
-class Type79(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     processing = "processing"
 
 
@@ -978,11 +954,7 @@ class ProcessingUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type96(Enum):
-=======
-class Type80(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     map = "map"
 
 
@@ -1088,11 +1060,7 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-<<<<<<< HEAD
 class Type97(Enum):
-=======
-class Type81(Enum):
->>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     subworkflow = "subworkflow"
 
 
