@@ -222,7 +222,11 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type82(Enum):
+=======
+class Type66(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     reduce = "reduce"
 
 
@@ -319,7 +323,11 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type83(Enum):
+=======
+class Type67(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     condition = "condition"
 
 
@@ -432,7 +440,11 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type84(Enum):
+=======
+class Type68(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assertion = "assertion"
 
 
@@ -518,7 +530,11 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type85(Enum):
+=======
+class Type69(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     execution = "execution"
 
 
@@ -773,7 +789,11 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type86(Enum):
+=======
+class Type70(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assignment = "assignment"
 
 
@@ -864,7 +884,11 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
+<<<<<<< HEAD
 class Type87(Enum):
+=======
+class Type71(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     processing = "processing"
 
 

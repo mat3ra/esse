@@ -222,7 +222,11 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type42(Enum):
+=======
+class Type26(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     reduce = "reduce"
 
 
@@ -319,7 +323,11 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type43(Enum):
+=======
+class Type27(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     condition = "condition"
 
 
@@ -432,7 +440,11 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type44(Enum):
+=======
+class Type28(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assertion = "assertion"
 
 
@@ -518,7 +530,11 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type45(Enum):
+=======
+class Type29(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     execution = "execution"
 
 
@@ -773,7 +789,11 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type46(Enum):
+=======
+class Type30(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assignment = "assignment"
 
 
@@ -864,7 +884,11 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
+<<<<<<< HEAD
 class Type47(Enum):
+=======
+class Type31(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     processing = "processing"
 
 
@@ -1192,7 +1216,11 @@ class Subworkflow(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type48(Enum):
+=======
+class Type32(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     io = "io"
 
 
@@ -1326,7 +1354,11 @@ class DataIOUnitSchema4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type49(Enum):
+=======
+class Type33(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     reduce = "reduce"
 
 
@@ -1412,7 +1444,11 @@ class ReduceUnitSchema3(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type50(Enum):
+=======
+class Type34(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     condition = "condition"
 
 
@@ -1514,7 +1550,11 @@ class ConditionUnitSchema4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type51(Enum):
+=======
+class Type35(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assertion = "assertion"
 
 
@@ -1600,11 +1640,19 @@ class AssertionUnitSchema4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type52(Enum):
     execution = "execution"
 
 
 class ExecutableSchema7(BaseModel):
+=======
+class Type36(Enum):
+    execution = "execution"
+
+
+class ExecutableSchema5(BaseModel):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -1652,7 +1700,11 @@ class ExecutableSchema7(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class FlavorSchema7(BaseModel):
+=======
+class FlavorSchema5(BaseModel):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -1720,8 +1772,13 @@ class ExecutionUnitSchemaBase4(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+<<<<<<< HEAD
     executable: Optional[ExecutableSchema7] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema7] = Field(None, title="flavor schema")
+=======
+    executable: Optional[ExecutableSchema5] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema5] = Field(None, title="flavor schema")
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
@@ -1792,7 +1849,11 @@ class ExecutionUnitSchemaBase4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type53(Enum):
+=======
+class Type37(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     assignment = "assignment"
 
 
@@ -1883,7 +1944,11 @@ class AssignmentUnitSchema4(BaseModel):
     scope: Optional[str] = None
 
 
+<<<<<<< HEAD
 class Type54(Enum):
+=======
+class Type38(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     processing = "processing"
 
 
@@ -1973,7 +2038,11 @@ class ProcessingUnitSchema3(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type55(Enum):
+=======
+class Type39(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     map = "map"
 
 
@@ -2079,7 +2148,11 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
+<<<<<<< HEAD
 class Type56(Enum):
+=======
+class Type40(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     subworkflow = "subworkflow"
 
 
@@ -2230,7 +2303,11 @@ class WorkflowSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
+<<<<<<< HEAD
 class Status41(Enum):
+=======
+class Status25(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -2348,7 +2425,11 @@ class JobSchema(BaseModel):
     """
     Identity used to track jobs originated from command-line
     """
+<<<<<<< HEAD
     status: Status41
+=======
+    status: Status25
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     """
     job status
     """

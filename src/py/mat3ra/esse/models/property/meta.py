@@ -67,7 +67,11 @@ class LocationSchema(BaseModel):
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class Type57(Enum):
+=======
+class Type46(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
 =======
 class Type46(Enum):
 >>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
@@ -81,7 +85,11 @@ class PagesSchema(BaseModel):
 
 class LiteratureReferenceSchema(BaseModel):
 <<<<<<< HEAD
+<<<<<<< HEAD
     type: Optional[Type57] = None
+=======
+    type: Optional[Type46] = None
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
 =======
     type: Optional[Type46] = None
 >>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
