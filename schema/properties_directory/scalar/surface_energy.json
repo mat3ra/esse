@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/surface-energy",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "surface energy schema",
+    "title": "Surface energy property schema",
     "type": "object",
     "allOf": [
         {
@@ -14,5 +14,8 @@
                 "surface_energy"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

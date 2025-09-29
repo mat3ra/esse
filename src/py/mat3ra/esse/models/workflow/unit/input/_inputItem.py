@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
 from pydantic import BaseModel
 
 
@@ -15,4 +17,8 @@ class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     content: str
     """
     Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    rendered: Optional[str] = None
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """

@@ -4,6 +4,10 @@
     "title": "atomic constraints property schema",
     "description": "atomic constraints property schema (as stored in a database)",
     "type": "object",
+    "required": [
+        "name",
+        "values"
+    ],
     "properties": {
         "name": {
             "enum": [

@@ -34,12 +34,19 @@
                 }
             }
         },
+        "isManuallyChanged": {
+            "type": "boolean"
+        },
         "name": {
             "description": "Input file name. e.g. pw_scf.in",
             "type": "string"
         },
         "content": {
             "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",
+            "type": "string"
+        },
+        "rendered": {
+            "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
             "type": "string"
         },
         "_id": {

@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -19,7 +18,7 @@ class Units(Enum):
     pa = "pa"
 
 
-class Pressure(BaseModel):
-    name: Optional[Name] = None
-    units: Optional[Units] = None
+class PressurePropertySchema(BaseModel):
+    name: Name
+    units: Units
     value: float

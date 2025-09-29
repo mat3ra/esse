@@ -10,8 +10,8 @@
             "atomicSpecies2": "Co",
             "orbitalName2": "3d",
             "value": 7.7514
-          },
-          {
+        },
+        {
             "id": 1,
             "atomicSpecies": "Co",
             "orbitalName": "3d",
@@ -19,6 +19,6 @@
             "atomicSpecies2": "O",
             "orbitalName2": "2p",
             "value": 0.7573
-          }
+        }
     ]
 }

@@ -13,7 +13,7 @@
             "type": "string"
         },
         "units": {
-            "anyOf": [
+            "oneOf": [
                 {
                     "enum": [
                         "kJ/mol",

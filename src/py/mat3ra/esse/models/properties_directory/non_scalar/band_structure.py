@@ -64,20 +64,16 @@ class SpinEnum(Enum):
     number__0_5 = -0.5
 
 
-class BandStructureSchema(BaseModel):
+class BandStructurePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema6 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    spin: Optional[List[SpinEnum]] = None
+    name: Name
+    spin: List[SpinEnum]
     """
     spin of each band
     """
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

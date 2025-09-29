@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema9(BaseModel):
+class DataIODatabaseInputOutputSchema13(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -62,7 +62,7 @@ class DataIODatabaseInputOutputSchema9(BaseModel):
     """
     db collection name
     """
-    draft: Optional[bool] = True
+    draft: bool
     """
     whether the result should be saved as draft
     """
@@ -100,7 +100,7 @@ class ObjectStorageIoSchema(BaseModel):
         extra="allow",
     )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = False
+    overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
     """
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema9],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema13],
             ObjectStorageIoSchema,
         ]
     ]
@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type80(Enum):
+class Type82(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type81(Enum):
+class Type83(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type82(Enum):
+class Type84(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type83(Enum):
+class Type85(Enum):
     execution = "execution"
 
 
@@ -773,7 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type84(Enum):
+class Type86(Enum):
     assignment = "assignment"
 
 
@@ -864,7 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type85(Enum):
+class Type87(Enum):
     processing = "processing"
 
 
@@ -1182,11 +1182,11 @@ class Subworkflow(BaseModel):
     """
     Human-readable name of the subworkflow. e.g. Total-energy
     """
-    properties: Optional[List[Union[str, Dict[str, Any]]]] = None
+    properties: Optional[List[str]] = None
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema] = None
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    compute parameters
+    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """

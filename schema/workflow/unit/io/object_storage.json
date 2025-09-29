@@ -14,8 +14,7 @@
         },
         "overwrite": {
             "description": "if a file with the same filename already exists, whether to overwrite the old file",
-            "type": "boolean",
-            "default": false
+            "type": "boolean"
         }
     },
     "required": [

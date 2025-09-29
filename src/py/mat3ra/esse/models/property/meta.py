@@ -5,13 +5,24 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
 
-from .The_source_of_a_property import (
-    field_This_could_be_an_article__a_simulation_on_Exabyte__an_external_simulation__etc,
-)
+
+class Info(BaseModel):
+    materialId: Optional[str] = None
+    """
+    Material's identity. Used for protoProperties.
+    """
+    jobId: Optional[str] = None
+    """
+    Job's identity
+    """
+    unitId: Optional[str] = None
+    """
+    Id of the unit that extracted the result
+    """
 
 
 class Type(Enum):
@@ -55,7 +66,11 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type56(Enum):
+<<<<<<< HEAD
+class Type57(Enum):
+=======
+class Type46(Enum):
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     literature = "literature"
 
 
@@ -65,7 +80,11 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type56] = None
+<<<<<<< HEAD
+    type: Optional[Type57] = None
+=======
+    type: Optional[Type46] = None
+>>>>>>> 8664c20e94ca9d52fce78f266358a60c7d88fb37
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -154,12 +173,24 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
     """
 
 
+class PropertySourceSchema(BaseModel):
+    type: Optional[str] = None
+    """
+    Type of the material property's source.
+    """
+    url: Optional[str] = None
+    """
+    Internet address of the reference.
+    """
+    info: Union[Info, InfoForCharacteristicObtainedByExperiment]
+
+
 class SystemTag(Enum):
     isRefined = "isRefined"
     isBest = "isBest"
 
 
-class SchemaOfMaterialSMetaProperties(BaseModel):
+class PropertyMetaSchema(BaseModel):
     slug: Optional[str] = None
     """
     property slug, e.g. total_energy
@@ -172,10 +203,7 @@ class SchemaOfMaterialSMetaProperties(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: field_This_could_be_an_article__a_simulation_on_Exabyte__an_external_simulation__etc.Field = Field(
-        ...,
-        title="The source of a property. This could be an article, a simulation on Exabyte, an external simulation, etc.",
-    )
+    source: PropertySourceSchema = Field(..., title="Property source schema")
     exabyteId: Optional[List[str]] = None
     """
     Id of the corresponding item in the entity bank that this property is obtained for

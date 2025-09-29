@@ -67,7 +67,7 @@ class Eigenvalue(BaseModel):
     eigenvalues: Optional[List[Eigenvalue1]] = None
 
 
-class BandGapsSchema(BaseModel):
+class BandGapsPropertySchema(BaseModel):
     name: Name
-    values: Optional[List[BandGapSchema]] = None
+    values: List[BandGapSchema]
     eigenvalues: Optional[List[Eigenvalue]] = None

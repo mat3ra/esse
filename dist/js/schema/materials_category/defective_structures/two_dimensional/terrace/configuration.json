@@ -1778,20 +1778,21 @@
                             ]
                         },
                         "gaps": {
-                            "description": "Gap distances between stack components as an array of objects with id and value",
+                            "description": "Gap distances between stack components as array of objects with id and value",
                             "type": "array",
                             "items": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "object with id",
-                                "description": "object containing integer id",
+                                "title": "object with id and value schema",
+                                "description": "object containing integer id and value each",
                                 "type": "object",
                                 "required": [
-                                    "id"
+                                    "id",
+                                    "value"
                                 ],
                                 "properties": {
                                     "value": {
                                         "type": "number",
-                                        "minimum": 0
+                                        "description": "value of this entry"
                                     },
                                     "id": {
                                         "description": "integer id of this entry",
@@ -3580,20 +3581,21 @@
                                             ]
                                         },
                                         "gaps": {
-                                            "description": "Gap distances between stack components as an array of objects with id and value",
+                                            "description": "Gap distances between stack components as array of objects with id and value",
                                             "type": "array",
                                             "items": {
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "object with id",
-                                                "description": "object containing integer id",
+                                                "title": "object with id and value schema",
+                                                "description": "object containing integer id and value each",
                                                 "type": "object",
                                                 "required": [
-                                                    "id"
+                                                    "id",
+                                                    "value"
                                                 ],
                                                 "properties": {
                                                     "value": {
                                                         "type": "number",
-                                                        "minimum": 0
+                                                        "description": "value of this entry"
                                                     },
                                                     "id": {
                                                         "description": "integer id of this entry",
@@ -4387,6 +4389,7 @@
                                                     "properties": {
                                                         "shape": {
                                                             "const": "box",
+                                                            "default": "box",
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "Coordinate Shape Enum",
                                                             "type": "string",
@@ -4409,6 +4412,187 @@
                                                             }
                                                         },
                                                         "max_coordinate": {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "coordinate 3d schema",
+                                                            "type": "array",
+                                                            "minItems": 3,
+                                                            "maxItems": 3,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Sphere Coordinate Condition Schema",
+                                                    "required": [
+                                                        "radius",
+                                                        "shape"
+                                                    ],
+                                                    "description": "Base interface for coordinate shape filters",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "shape": {
+                                                            "const": "sphere",
+                                                            "default": "sphere",
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "Coordinate Shape Enum",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "cylinder",
+                                                                "sphere",
+                                                                "box",
+                                                                "triangular_prism",
+                                                                "plane"
+                                                            ]
+                                                        },
+                                                        "radius": {
+                                                            "type": "number",
+                                                            "minimum": 0
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Cylinder Coordinate Condition Schema",
+                                                    "required": [
+                                                        "max_z",
+                                                        "min_z",
+                                                        "radius",
+                                                        "shape"
+                                                    ],
+                                                    "description": "Base interface for coordinate shape filters",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "shape": {
+                                                            "const": "cylinder",
+                                                            "default": "cylinder",
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "Coordinate Shape Enum",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "cylinder",
+                                                                "sphere",
+                                                                "box",
+                                                                "triangular_prism",
+                                                                "plane"
+                                                            ]
+                                                        },
+                                                        "radius": {
+                                                            "type": "number",
+                                                            "minimum": 0
+                                                        },
+                                                        "min_z": {
+                                                            "type": "number"
+                                                        },
+                                                        "max_z": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Triangular Prism Coordinate Condition Schema",
+                                                    "required": [
+                                                        "max_z",
+                                                        "min_z",
+                                                        "position_on_surface_1",
+                                                        "position_on_surface_2",
+                                                        "position_on_surface_3",
+                                                        "shape"
+                                                    ],
+                                                    "description": "Base interface for coordinate shape filters",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "shape": {
+                                                            "const": "triangular_prism",
+                                                            "default": "triangular_prism",
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "Coordinate Shape Enum",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "cylinder",
+                                                                "sphere",
+                                                                "box",
+                                                                "triangular_prism",
+                                                                "plane"
+                                                            ]
+                                                        },
+                                                        "position_on_surface_1": {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "array of 2 number elements schema",
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "maxItems": 2,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "position_on_surface_2": {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "array of 2 number elements schema",
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "maxItems": 2,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "position_on_surface_3": {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "array of 2 number elements schema",
+                                                            "type": "array",
+                                                            "minItems": 2,
+                                                            "maxItems": 2,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "min_z": {
+                                                            "type": "number"
+                                                        },
+                                                        "max_z": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "Plane Coordinate Condition Schema",
+                                                    "required": [
+                                                        "plane_normal",
+                                                        "plane_point_coordinate",
+                                                        "shape"
+                                                    ],
+                                                    "description": "Base interface for coordinate shape filters",
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "shape": {
+                                                            "const": "plane",
+                                                            "default": "plane",
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "Coordinate Shape Enum",
+                                                            "type": "string",
+                                                            "enum": [
+                                                                "cylinder",
+                                                                "sphere",
+                                                                "box",
+                                                                "triangular_prism",
+                                                                "plane"
+                                                            ]
+                                                        },
+                                                        "plane_normal": {
+                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                            "title": "coordinate 3d schema",
+                                                            "type": "array",
+                                                            "minItems": 3,
+                                                            "maxItems": 3,
+                                                            "items": {
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "plane_point_coordinate": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "coordinate 3d schema",
                                                             "type": "array",
@@ -5257,20 +5441,21 @@
             ]
         },
         "gaps": {
-            "description": "Gap distances between stack components as an array of objects with id and value",
+            "description": "Gap distances between stack components as array of objects with id and value",
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "object with id",
-                "description": "object containing integer id",
+                "title": "object with id and value schema",
+                "description": "object containing integer id and value each",
                 "type": "object",
                 "required": [
-                    "id"
+                    "id",
+                    "value"
                 ],
                 "properties": {
                     "value": {
                         "type": "number",
-                        "minimum": 0
+                        "description": "value of this entry"
                     },
                     "id": {
                         "description": "integer id of this entry",

@@ -17,26 +17,12 @@
             "type": "array",
             "items": {
                 "description": "property names, eg. `band_gaps`, `band_structure`",
-                "oneOf": [
-                    {
-                        "type": "string"
-                    },
-                    {
-                        "type": "object"
-                    }
-                ]
+                "type": "string"
             }
         },
         "compute": {
             "description": "compute parameters",
-            "oneOf": [
-                {
-                    "$ref": "../job/compute.json"
-                },
-                {
-                    "type": "null"
-                }
-            ]
+            "$ref": "../job/compute.json"
         }
     },
     "required": [

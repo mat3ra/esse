@@ -46,14 +46,22 @@
                 }
             }
         },
-        "legend": {
-            "description": "Legend of y Axis data series",
-            "minItems": 1,
-            "type": "array"
-        },
         "xDataArray": {
             "description": "array containing values of x Axis",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
         },
         "yDataSeries": {
             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -63,10 +71,7 @@
                 "type": "array",
                 "minItems": 1,
                 "items": {
-                    "type": [
-                        "number",
-                        "string"
-                    ]
+                    "type": "number"
                 }
             }
         }

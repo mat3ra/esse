@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/non-scalar/is-relaxed",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Is relaxed property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../material.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "is_relaxed"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

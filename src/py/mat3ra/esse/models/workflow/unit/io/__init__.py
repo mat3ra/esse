@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema3(BaseModel):
+class DataIODatabaseInputOutputSchema7(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -62,7 +62,7 @@ class DataIODatabaseInputOutputSchema3(BaseModel):
     """
     db collection name
     """
-    draft: Optional[bool] = True
+    draft: bool
     """
     whether the result should be saved as draft
     """
@@ -100,7 +100,7 @@ class ObjectStorageIoSchema(BaseModel):
         extra="allow",
     )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = False
+    overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
     """
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema3],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema7],
             ObjectStorageIoSchema,
         ]
     ]

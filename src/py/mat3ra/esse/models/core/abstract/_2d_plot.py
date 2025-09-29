@@ -23,12 +23,8 @@ class AxisSchema(BaseModel):
 class Field2DimensionPlotSchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema = Field(..., title="axis schema")
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

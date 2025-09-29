@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/structural/magnetic-moments",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "magnetic moments",
+    "title": "Magnetic moments property schema",
     "description": "magnetization on each ion",
     "type": "object",
     "properties": {
@@ -16,5 +16,10 @@
         "units": {
             "$ref": "../../definitions/units.json#/magnetic"
         }
-    }
+    },
+    "required": [
+        "name",
+        "values",
+        "units"
+    ]
 }

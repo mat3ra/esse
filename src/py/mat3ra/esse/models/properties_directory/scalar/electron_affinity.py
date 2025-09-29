@@ -28,7 +28,7 @@ class Units181(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class ElectronAffinitySchema(BaseModel):
+class ElectronAffinityPropertySchema(BaseModel):
     name: Name
     units: Union[Units, Units181]
     value: float

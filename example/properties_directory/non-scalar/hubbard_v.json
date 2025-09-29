@@ -9,14 +9,14 @@
             "atomicSpecies2": "Co",
             "distance": 0.0,
             "value": 7.7514
-          },
-          {
+        },
+        {
             "id": 1,
             "atomicSpecies": "Co",
             "id2": 19,
             "atomicSpecies2": "O",
             "distance": 3.630748,
             "value": 0.7573
-          }
+        }
     ]
 }

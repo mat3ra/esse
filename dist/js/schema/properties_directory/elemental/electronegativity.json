@@ -5,6 +5,7 @@
     "description": "electronegativity for the element (Pauling scale)",
     "type": "object",
     "required": [
+        "name",
         "value"
     ],
     "properties": {

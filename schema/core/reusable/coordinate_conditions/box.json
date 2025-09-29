@@ -9,7 +9,8 @@
     ],
     "properties": {
         "shape": {
-            "const": "box"
+            "const": "box",
+            "default": "box"
         },
         "min_coordinate": {
             "$ref": "../../abstract/coordinate_3d.json"

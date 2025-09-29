@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema13(BaseModel):
+class DataIODatabaseInputOutputSchema17(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -62,7 +62,7 @@ class DataIODatabaseInputOutputSchema13(BaseModel):
     """
     db collection name
     """
-    draft: Optional[bool] = True
+    draft: bool
     """
     whether the result should be saved as draft
     """
@@ -100,7 +100,7 @@ class ObjectStorageIoSchema(BaseModel):
         extra="allow",
     )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = False
+    overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
     """
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema13],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema17],
             ObjectStorageIoSchema,
         ]
     ]
@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type98(Enum):
+class Type99(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type99(Enum):
+class Type100(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type100(Enum):
+class Type101(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type101(Enum):
+class Type102(Enum):
     execution = "execution"
 
 
@@ -773,7 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type102(Enum):
+class Type103(Enum):
     assignment = "assignment"
 
 
@@ -864,7 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type103(Enum):
+class Type104(Enum):
     processing = "processing"
 
 

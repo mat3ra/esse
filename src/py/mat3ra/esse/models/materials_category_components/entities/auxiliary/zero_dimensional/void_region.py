@@ -131,13 +131,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value175(Enum):
+class Value183(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value175]
+    value: Union[Value, Value183]
     """
     All elements, including extra elements
     """
@@ -285,30 +285,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name724(Enum):
+class Name810(Enum):
     density = "density"
 
 
-class Units297(Enum):
+class Units350(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units297] = None
+    units: Optional[Units350] = None
     value: float
 
 
-class Units298(Enum):
+class Units351(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units298] = None
+    units: Optional[Units351] = None
     value: float
 
 
-class Name725(Enum):
+class Name811(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name726(Enum):
+class Name812(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name727(Enum):
+class Name813(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name728(Enum):
+class Name814(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name729(Enum):
+class Name815(Enum):
     inchi_key = "inchi_key"
 
 
@@ -442,7 +442,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name730(Enum):
+class Name816(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -455,7 +455,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name730
+    name: Name816
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -539,9 +539,42 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
-    shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+
+
+class SphereCoordinateConditionSchema(BaseModel):
+    shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
+    radius: confloat(ge=0.0)
+
+
+class CylinderCoordinateConditionSchema(BaseModel):
+    shape: Literal["cylinder"] = Field("cylinder", title="Coordinate Shape Enum")
+    radius: confloat(ge=0.0)
+    min_z: float
+    max_z: float
+
+
+class TriangularPrismCoordinateConditionSchema(BaseModel):
+    shape: Literal["triangular_prism"] = Field("triangular_prism", title="Coordinate Shape Enum")
+    position_on_surface_1: List[float] = Field(
+        ..., max_length=2, min_length=2, title="array of 2 number elements schema"
+    )
+    position_on_surface_2: List[float] = Field(
+        ..., max_length=2, min_length=2, title="array of 2 number elements schema"
+    )
+    position_on_surface_3: List[float] = Field(
+        ..., max_length=2, min_length=2, title="array of 2 number elements schema"
+    )
+    min_z: float
+    max_z: float
+
+
+class PlaneCoordinateConditionSchema(BaseModel):
+    shape: Literal["plane"] = Field("plane", title="Coordinate Shape Enum")
+    plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
+    plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class VoidRegionSchema(BaseModel):
@@ -549,7 +582,13 @@ class VoidRegionSchema(BaseModel):
     """
     A crystal structure, referencing the base material schema
     """
-    coordinate_condition: BoxCoordinateConditionSchema = Field(..., title="Coordinate Conditions Schema")
+    coordinate_condition: Union[
+        BoxCoordinateConditionSchema,
+        SphereCoordinateConditionSchema,
+        CylinderCoordinateConditionSchema,
+        TriangularPrismCoordinateConditionSchema,
+        PlaneCoordinateConditionSchema,
+    ] = Field(..., title="Coordinate Conditions Schema")
     """
     Combined schema for all coordinate condition types
     """

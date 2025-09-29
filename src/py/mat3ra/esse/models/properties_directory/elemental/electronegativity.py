@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -15,5 +14,5 @@ class Name(Enum):
 
 
 class Electronegativity(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     value: float

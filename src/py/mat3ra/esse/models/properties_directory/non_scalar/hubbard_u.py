@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, constr
 
@@ -34,7 +34,7 @@ class AtomicDataPerOrbitalNumeric(BaseModel):
     """
 
 
-class HubbardUParameters(BaseModel):
+class HubbardUParametersPropertySchema(BaseModel):
     name: Name
-    units: Optional[Units] = None
-    values: Optional[List[AtomicDataPerOrbitalNumeric]] = None
+    units: Units
+    values: List[AtomicDataPerOrbitalNumeric]

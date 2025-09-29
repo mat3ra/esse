@@ -21,6 +21,7 @@ class TemplateSchema(BaseModel):
     applicationVersion: Optional[str] = None
     executableName: Optional[str] = None
     contextProviders: Optional[List[NameResultSchema]] = None
+    isManuallyChanged: Optional[bool] = None
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -28,6 +29,10 @@ class TemplateSchema(BaseModel):
     content: str
     """
     Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    rendered: Optional[str] = None
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
     field_id: Optional[str] = Field(None, alias="_id")
     """

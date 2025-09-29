@@ -1,8 +1,9 @@
 {
     "$id": "properties-directory/non-scalar/stress-tensor",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "stress tensor schema",
+    "title": "Stress tensor property schema",
     "type": "object",
+
     "properties": {
         "value": {
             "$ref": "../../core/abstract/matrix_3x3.json"
@@ -15,5 +16,10 @@
         "units": {
             "$ref": "../../definitions/units.json#/pressure"
         }
-    }
+    },
+    "required": [
+        "name",
+        "value",
+        "units"
+    ]
 }

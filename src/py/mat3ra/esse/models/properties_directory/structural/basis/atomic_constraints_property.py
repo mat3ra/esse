@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field
 
@@ -26,8 +26,8 @@ class AtomicConstraintSchema(BaseModel):
 
 
 class AtomicConstraintsPropertySchema(BaseModel):
-    name: Optional[Name] = None
-    values: Optional[List[AtomicConstraintSchema]] = Field(None, title="atomic constraints schema")
+    name: Name
+    values: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
     atomic constraints schema
     """

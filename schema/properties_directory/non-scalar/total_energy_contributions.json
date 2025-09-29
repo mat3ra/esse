@@ -1,8 +1,9 @@
 {
     "$id": "properties-directory/non-scalar/total-energy-contributions",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "total energy contributions schema",
+    "title": "Total energy contributions property schema",
     "type": "object",
+
     "properties": {
         "temperatureEntropy": {
             "description": "product of temperature and configurational entropy",
@@ -20,7 +21,7 @@
                 }
             }
         },
-        "harrisFoulkes": {
+        "harris_foulkes": {
             "description": "non self-consitent energy based on an input charge density",
             "type": "object",
             "allOf": [
@@ -36,7 +37,23 @@
                 }
             }
         },
-        "oneElectron": {
+        "smearing": {
+            "description": "smearing energy",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "smearing"
+                    ]
+                }
+            }
+        },
+        "one_electron": {
             "description": "kinetic + pseudopotential energy",
             "type": "object",
             "allOf": [
@@ -84,7 +101,7 @@
                 }
             }
         },
-        "exchangeCorrelation": {
+        "exchange_correlation": {
             "description": "exchange and correlation energy per particle",
             "type": "object",
             "allOf": [
@@ -220,5 +237,8 @@
         "units": {
             "$ref": "../../definitions/units.json#/energy"
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

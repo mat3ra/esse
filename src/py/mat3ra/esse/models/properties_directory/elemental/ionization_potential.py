@@ -5,7 +5,6 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
 
 from pydantic import BaseModel
 
@@ -24,7 +23,7 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class IonizationPotential(BaseModel):
-    name: Optional[Name] = None
-    units: Optional[Units] = None
+class IonizationPotentialElementalPropertySchema(BaseModel):
+    name: Name
+    units: Units
     value: float

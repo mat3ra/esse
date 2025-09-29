@@ -28,6 +28,6 @@ class Units(Enum):
 
 
 class AtomicRadius(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     units: Optional[Units] = None
     value: float

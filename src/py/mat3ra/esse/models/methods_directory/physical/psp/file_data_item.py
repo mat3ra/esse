@@ -71,7 +71,7 @@ class FileDataItem(BaseModel):
     """
     chemical element
     """
-    hash: Optional[str] = None
+    hash: str
     """
     MD5 hash of the pseudopotential file
     """
@@ -101,7 +101,7 @@ class FileDataItem(BaseModel):
     """
     filename of pseudopotential file on filesystem
     """
-    name: Optional[Name] = None
+    name: Name
     """
     name of the data category
     """

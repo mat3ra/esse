@@ -13,7 +13,7 @@
             "type": "string"
         },
         "units": {
-            "anyOf": [
+            "oneOf": [
                 {
                     "$ref": "../../definitions/units.json#/energy"
                 },

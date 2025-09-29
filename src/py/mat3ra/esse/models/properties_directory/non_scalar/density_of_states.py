@@ -82,16 +82,13 @@ class LegendItem(BaseModel):
     """
 
 
-class DensityOfStatesSchema(BaseModel):
+class DensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema10 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    legend: Optional[List[LegendItem]] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    name: Name
+    legend: List[LegendItem]
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/non-scalar/charge-density-profile",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "charge density profile schema",
+    "title": "Charge density profile property schema",
     "type": "object",
     "allOf": [
         {
@@ -37,5 +37,8 @@
                 "charge_density_profile"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

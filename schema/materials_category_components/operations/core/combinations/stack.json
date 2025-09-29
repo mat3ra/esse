@@ -12,18 +12,17 @@
             "$ref": "../../../../core/primitive/axis_3d_names_enum.json"
         },
         "gaps": {
-            "description": "Gap distances between stack components as an array of objects with id and value",
+            "description": "Gap distances between stack components as array of objects with id and value",
             "type": "array",
             "items": {
                 "allOf": [
                     {
-                        "$ref": "../../../../core/primitive/object_with_id.json"
+                        "$ref": "../../../../core/primitive/object_with_id_and_value.json"
                     }
                 ],
                 "properties": {
                     "value": {
-                        "type": "number",
-                        "minimum": 0
+                        "type": "number"
                     }
                 }
             }

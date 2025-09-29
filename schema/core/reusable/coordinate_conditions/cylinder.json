@@ -1,0 +1,31 @@
+{
+    "$id": "core/reusable/coordinate-conditions/cylinder",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Cylinder Coordinate Condition Schema",
+    "allOf": [
+        {
+            "$ref": "base.json"
+        }
+    ],
+    "properties": {
+        "shape": {
+            "const": "cylinder",
+            "default": "cylinder"
+        },
+        "radius": {
+            "type": "number",
+            "minimum": 0
+        },
+        "min_z": {
+            "type": "number"
+        },
+        "max_z": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "radius",
+        "min_z",
+        "max_z"
+    ]
+}

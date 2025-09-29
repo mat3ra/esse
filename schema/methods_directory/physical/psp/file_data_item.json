@@ -99,6 +99,8 @@
         "exchangeCorrelation",
         "source",
         "path",
-        "apps"
+        "apps",
+        "name",
+        "hash"
     ]
 }

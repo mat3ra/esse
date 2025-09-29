@@ -1,9 +1,10 @@
 {
     "$id": "properties-directory/non-scalar/band-gaps",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "band gaps schema",
+    "title": "Band gaps property schema",
     "description": "contains band gap values",
     "type": "object",
+
     "properties": {
         "name": {
             "enum": [
@@ -49,6 +50,7 @@
         }
     },
     "required": [
-        "name"
+        "name",
+        "values"
     ]
 }

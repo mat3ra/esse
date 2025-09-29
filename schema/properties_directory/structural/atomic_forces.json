@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/structural/atomic-forces",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "atomic forces",
+    "title": "Atomic forces property schema",
     "description": "coordinates of atoms by ids, vector, unitless",
     "type": "object",
     "properties": {
@@ -16,5 +16,10 @@
         "units": {
             "$ref": "../../definitions/units.json#/force"
         }
-    }
+    },
+    "required": [
+        "name",
+        "units",
+        "values"
+    ]
 }

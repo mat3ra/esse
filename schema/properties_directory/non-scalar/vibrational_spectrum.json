@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/non-scalar/vibrational-spectrum",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Vibrational spectrum schema",
+    "title": "Vibrational spectrum property schema",
     "type": "object",
     "allOf": [
         {
@@ -43,5 +43,8 @@
                 "vibrational_spectrum"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

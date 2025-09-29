@@ -137,6 +137,7 @@
                         "description": "atomic radius",
                         "type": "object",
                         "required": [
+                            "name",
                             "value"
                         ],
                         "properties": {
@@ -170,6 +171,7 @@
                         "description": "electronegativity for the element (Pauling scale)",
                         "type": "object",
                         "required": [
+                            "name",
                             "value"
                         ],
                         "properties": {
@@ -185,10 +187,11 @@
                     },
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "ionization potential",
-                        "description": "ionization potential for the element",
+                        "title": "Ionization potential elemental property schema",
                         "type": "object",
                         "required": [
+                            "name",
+                            "units",
                             "value"
                         ],
                         "properties": {

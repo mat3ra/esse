@@ -32,25 +32,25 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label17(Enum):
+class Label33(Enum):
     Intensity = "Intensity"
     Absorbance = "Absorbance"
     Absorption_coefficient = "Absorption coefficient"
 
 
-class Units295(Enum):
+class Units348(Enum):
     field_debye_angstrom__2 = "(debye/angstrom)^2"
     km_mol = "km/mol"
     m_mol = "m/mol"
     a_u_ = "a.u."
 
 
-class AxisSchema20(BaseModel):
-    label: Label17
+class AxisSchema36(BaseModel):
+    label: Label33
     """
     label of an axis object
     """
-    units: Optional[Units295] = None
+    units: Optional[Units348] = None
     """
     units for an axis
     """
@@ -60,16 +60,12 @@ class Name(Enum):
     vibrational_spectrum = "vibrational_spectrum"
 
 
-class VibrationalSpectrumSchema(BaseModel):
+class VibrationalSpectrumPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema20 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    yAxis: AxisSchema36 = Field(..., title="axis schema")
+    name: Name
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

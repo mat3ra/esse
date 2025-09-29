@@ -1,7 +1,7 @@
 {
     "$id": "property/raw",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Schema of material's preliminary property",
+    "title": "Property raw schema",
     "type": "object",
     "required": [
         "data",
@@ -22,8 +22,11 @@
         },
         "source": {
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "The source of a property. This could be an article, a simulation on Exabyte, an external simulation, etc.",
+            "title": "Property source schema",
             "type": "object",
+            "required": [
+                "info"
+            ],
             "properties": {
                 "type": {
                     "description": "Type of the material property's source.",
@@ -39,10 +42,6 @@
                             "$schema": "http://json-schema.org/draft-07/schema#",
                             "type": "object",
                             "properties": {
-                                "materialId": {
-                                    "description": "Material's identity. Used for protoProperties.",
-                                    "type": "string"
-                                },
                                 "jobId": {
                                     "description": "Job's identity",
                                     "type": "string"
@@ -51,7 +50,11 @@
                                     "description": "Id of the unit that extracted the result",
                                     "type": "string"
                                 }
-                            }
+                            },
+                            "required": [
+                                "jobId",
+                                "unitId"
+                            ]
                         },
                         {
                             "$schema": "http://json-schema.org/draft-07/schema#",

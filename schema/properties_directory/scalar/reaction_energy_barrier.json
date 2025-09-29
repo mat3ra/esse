@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/reaction-energy-barrier",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "reaction energy barrier schema",
+    "title": "Reaction energy barrier property schema",
     "type": "object",
     "allOf": [
         {
@@ -14,5 +14,8 @@
                 "reaction_energy_barrier"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

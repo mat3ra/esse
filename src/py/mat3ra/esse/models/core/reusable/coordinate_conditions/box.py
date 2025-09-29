@@ -19,6 +19,6 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
-    shape: Literal["box"] = Field(..., title="Coordinate Shape Enum")
+    shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")

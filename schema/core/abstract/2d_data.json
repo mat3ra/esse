@@ -6,7 +6,20 @@
     "properties": {
         "xDataArray": {
             "description": "array containing values of x Axis",
-            "type": "array"
+            "type": "array",
+            "items": {
+                "oneOf": [
+                    {
+                        "type": "number"
+                    },
+                    {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                ]
+            }
         },
         "yDataSeries": {
             "$ref": "../primitive/1d_data_series.json"

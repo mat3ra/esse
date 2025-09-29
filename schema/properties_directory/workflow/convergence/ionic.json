@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/workflow/convergence/ionic",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ionic convergence schema",
+    "title": "Convergence ionic property schema",
     "type": "object",
     "properties": {
         "name": {
@@ -52,11 +52,16 @@
                             }
                         }
                     }
-                }
+                },
+                "required": [
+                    "energy"
+                ]
             }
         }
     },
     "required": [
-        "data"
+        "data",
+        "name",
+        "units"
     ]
 }

@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/ionization-potential",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ionization potential schema",
+    "title": "Ionization potential scalar property schema",
     "type": "object",
     "allOf": [
         {
@@ -14,5 +14,8 @@
                 "ionization_potential"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

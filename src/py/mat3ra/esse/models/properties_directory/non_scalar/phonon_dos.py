@@ -31,22 +31,22 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label11(Enum):
+class Label27(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
-class Units233(Enum):
+class Units286(Enum):
     states_cm_1 = "states/cm-1"
     states_THz = "states/THz"
     states_meV = "states/meV"
 
 
-class AxisSchema14(BaseModel):
-    label: Label11
+class AxisSchema30(BaseModel):
+    label: Label27
     """
     label of an axis object
     """
-    units: Optional[Units233] = None
+    units: Optional[Units286] = None
     """
     units for an axis
     """
@@ -56,16 +56,12 @@ class Name(Enum):
     phonon_dos = "phonon_dos"
 
 
-class PhononDensityOfStatesSchema(BaseModel):
+class PhononDensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema14 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    yAxis: AxisSchema30 = Field(..., title="axis schema")
+    name: Name
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

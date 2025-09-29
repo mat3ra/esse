@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/pressure",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "pressure",
+    "title": "Pressure property schema",
     "description": "average pressure in unit cell",
     "type": "object",
     "allOf": [
@@ -18,5 +18,9 @@
         "units": {
             "$ref": "../../definitions/units.json#/pressure"
         }
-    }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
 }

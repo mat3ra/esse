@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema15(BaseModel):
+class DataIODatabaseInputOutputSchema19(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -62,7 +62,7 @@ class DataIODatabaseInputOutputSchema15(BaseModel):
     """
     db collection name
     """
-    draft: Optional[bool] = True
+    draft: bool
     """
     whether the result should be saved as draft
     """
@@ -100,7 +100,7 @@ class ObjectStorageIoSchema(BaseModel):
         extra="allow",
     )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = False
+    overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
     """
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema15],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
             ObjectStorageIoSchema,
         ]
     ]
@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type107(Enum):
+class Type108(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type108(Enum):
+class Type109(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type109(Enum):
+class Type110(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type110(Enum):
+class Type111(Enum):
     execution = "execution"
 
 
@@ -773,7 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type111(Enum):
+class Type112(Enum):
     assignment = "assignment"
 
 
@@ -864,7 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type112(Enum):
+class Type113(Enum):
     processing = "processing"
 
 
@@ -1182,21 +1182,21 @@ class Subworkflow(BaseModel):
     """
     Human-readable name of the subworkflow. e.g. Total-energy
     """
-    properties: Optional[List[Union[str, Dict[str, Any]]]] = None
+    properties: Optional[List[str]] = None
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema] = None
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    compute parameters
+    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
 
 
-class Type113(Enum):
+class Type114(Enum):
     io = "io"
 
 
-class DataIODatabaseInputOutputSchema16(BaseModel):
+class DataIODatabaseInputOutputSchema20(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1206,7 +1206,7 @@ class DataIODatabaseInputOutputSchema16(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema17(BaseModel):
+class DataIODatabaseInputOutputSchema21(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1214,18 +1214,18 @@ class DataIODatabaseInputOutputSchema17(BaseModel):
     """
     db collection name
     """
-    draft: Optional[bool] = True
+    draft: bool
     """
     whether the result should be saved as draft
     """
 
 
-class ObjectStorageIoSchema8(BaseModel):
+class ObjectStorageIoSchema10(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = False
+    overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
     """
@@ -1243,7 +1243,7 @@ class ObjectStorageIoSchema8(BaseModel):
     """
 
 
-class DataIOUnitSchema7(BaseModel):
+class DataIOUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1256,8 +1256,8 @@ class DataIOUnitSchema7(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema16, DataIODatabaseInputOutputSchema17],
-            ObjectStorageIoSchema8,
+            Union[DataIODatabaseInputOutputSchema20, DataIODatabaseInputOutputSchema21],
+            ObjectStorageIoSchema10,
         ]
     ]
     field_id: Optional[str] = Field(None, alias="_id")
@@ -1326,11 +1326,11 @@ class DataIOUnitSchema7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type114(Enum):
+class Type115(Enum):
     reduce = "reduce"
 
 
-class ReduceUnitSchema7(BaseModel):
+class ReduceUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1412,11 +1412,11 @@ class ReduceUnitSchema7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type115(Enum):
+class Type116(Enum):
     condition = "condition"
 
 
-class ConditionUnitSchema7(BaseModel):
+class ConditionUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1514,11 +1514,11 @@ class ConditionUnitSchema7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type116(Enum):
+class Type117(Enum):
     assertion = "assertion"
 
 
-class AssertionUnitSchema7(BaseModel):
+class AssertionUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1600,11 +1600,11 @@ class AssertionUnitSchema7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type117(Enum):
+class Type118(Enum):
     execution = "execution"
 
 
-class ExecutableSchema18(BaseModel):
+class ExecutableSchema12(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -1652,7 +1652,7 @@ class ExecutableSchema18(BaseModel):
     """
 
 
-class FlavorSchema18(BaseModel):
+class FlavorSchema12(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -1711,7 +1711,7 @@ class FlavorSchema18(BaseModel):
     """
 
 
-class ExecutionUnitSchemaBase7(BaseModel):
+class ExecutionUnitSchemaBase9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1720,8 +1720,8 @@ class ExecutionUnitSchemaBase7(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema18] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema18] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema12] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema12] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
@@ -1792,11 +1792,11 @@ class ExecutionUnitSchemaBase7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type118(Enum):
+class Type119(Enum):
     assignment = "assignment"
 
 
-class AssignmentUnitSchema7(BaseModel):
+class AssignmentUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1883,11 +1883,11 @@ class AssignmentUnitSchema7(BaseModel):
     scope: Optional[str] = None
 
 
-class Type119(Enum):
+class Type120(Enum):
     processing = "processing"
 
 
-class ProcessingUnitSchema7(BaseModel):
+class ProcessingUnitSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1973,7 +1973,7 @@ class ProcessingUnitSchema7(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type120(Enum):
+class Type121(Enum):
     map = "map"
 
 
@@ -2079,7 +2079,7 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type121(Enum):
+class Type122(Enum):
     subworkflow = "subworkflow"
 
 
@@ -2160,26 +2160,26 @@ class SubworkflowUnitSchema(BaseModel):
 class WorkflowUnitSchema(
     RootModel[
         Union[
-            DataIOUnitSchema7,
-            ReduceUnitSchema7,
-            ConditionUnitSchema7,
-            AssertionUnitSchema7,
-            ExecutionUnitSchemaBase7,
-            AssignmentUnitSchema7,
-            ProcessingUnitSchema7,
+            DataIOUnitSchema9,
+            ReduceUnitSchema9,
+            ConditionUnitSchema9,
+            AssertionUnitSchema9,
+            ExecutionUnitSchemaBase9,
+            AssignmentUnitSchema9,
+            ProcessingUnitSchema9,
             MapUnitSchema,
             SubworkflowUnitSchema,
         ]
     ]
 ):
     root: Union[
-        DataIOUnitSchema7,
-        ReduceUnitSchema7,
-        ConditionUnitSchema7,
-        AssertionUnitSchema7,
-        ExecutionUnitSchemaBase7,
-        AssignmentUnitSchema7,
-        ProcessingUnitSchema7,
+        DataIOUnitSchema9,
+        ReduceUnitSchema9,
+        ConditionUnitSchema9,
+        AssertionUnitSchema9,
+        ExecutionUnitSchemaBase9,
+        AssignmentUnitSchema9,
+        ProcessingUnitSchema9,
         MapUnitSchema,
         SubworkflowUnitSchema,
     ] = Field(..., discriminator="type", title="workflow unit schema")

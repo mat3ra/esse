@@ -1,0 +1,27 @@
+{
+    "_id": "K3McGkqXh28HJ775m",
+    "createdAt": "2018-11-19 06:41:46.877Z",
+    "creator": {
+        "...": "include(../system/creator.json)"
+    },
+    "data": {
+        "name": "pressure",
+        "units": "kbar",
+        "value": -149.03
+
+    },
+    "group": "qe:dft:gga:pbe",
+    "owner": {
+        "...": "include(../system/owner.json)"
+    },
+    "repetition": 0,
+    "schemaVersion": "0.2.0",
+    "slug": "pressure",
+    "source": {
+        "type": "exabyte",
+        "info": {
+            "jobId": "XnYKCmgaAAzSQH5ac",
+            "unitId": "873d0293d04af431d31f07a0-pw-scf"
+        }
+    }
+}

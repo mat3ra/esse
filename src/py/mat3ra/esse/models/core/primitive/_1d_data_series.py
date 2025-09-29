@@ -4,10 +4,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union
+from typing import List
 
 from pydantic import Field, RootModel
 
 
-class Field1DimensionDataSeriesSchema(RootModel[List[List[Union[float, str]]]]):
-    root: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+class Field1DimensionDataSeriesSchema(RootModel[List[List[float]]]):
+    root: List[List[float]] = Field(..., title="1 dimension data series schema")
