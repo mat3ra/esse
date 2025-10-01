@@ -4055,7 +4055,7 @@ class PropertyHolderSchema(BaseModel):
     container of the information, specific to each property
     """
     source: Source3
-    exabyteId: Optional[List[str]] = None
+    exabyteId: List[str]
     """
     Id of the corresponding item in the entity bank that this property is obtained for
     """

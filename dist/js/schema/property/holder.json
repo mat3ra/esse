@@ -6,7 +6,8 @@
     "required": [
         "data",
         "source",
-        "repetition"
+        "repetition",
+        "exabyteId"
     ],
     "properties": {
         "group": {

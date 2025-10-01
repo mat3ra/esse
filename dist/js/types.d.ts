@@ -52308,7 +52308,7 @@ export interface PropertyHolderSchema {
     /**
      * Id of the corresponding item in the entity bank that this property is obtained for
      */
-    exabyteId?: string[];
+    exabyteId: string[];
     precision?: {
         value?: number;
         metric?: string;
