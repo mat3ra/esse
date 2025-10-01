@@ -4383,6 +4383,10 @@ class JupyterNotebookEndpointPropertySchema(BaseModel):
 
 
 class Info(BaseModel):
+    materialId: Optional[str] = None
+    """
+    Material's identity. Used for protoProperties.
+    """
     jobId: str
     """
     Job's identity

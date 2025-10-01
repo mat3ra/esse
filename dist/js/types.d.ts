@@ -1970,6 +1970,10 @@ export interface PrimitiveString {
 /** Schema dist/js/schema/core/reference/exabyte.json */
 export interface CoreReferenceExabyte {
     /**
+     * Material's identity. Used for protoProperties.
+     */
+    materialId?: string;
+    /**
      * Job's identity
      */
     jobId: string;
@@ -52792,6 +52796,10 @@ export interface PropertyHolderSchema {
         type: string;
         info: {
             /**
+             * Material's identity. Used for protoProperties.
+             */
+            materialId?: string;
+            /**
              * Job's identity
              */
             jobId: string;
@@ -53011,6 +53019,10 @@ export interface PropertySourceSchema {
      */
     url?: string;
     info: {
+        /**
+         * Material's identity. Used for protoProperties.
+         */
+        materialId?: string;
         /**
          * Job's identity
          */
