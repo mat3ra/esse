@@ -7729,7 +7729,8 @@
                     "required": [
                         "basis",
                         "lattice",
-                        "name"
+                        "name",
+                        "value"
                     ],
                     "properties": {
                         "name": {
@@ -7738,6 +7739,9 @@
                             ],
                             "description": "entity name",
                             "type": "string"
+                        },
+                        "value": {
+                            "type": "boolean"
                         },
                         "formula": {
                             "description": "reduced chemical formula",

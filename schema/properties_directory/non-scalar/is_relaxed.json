@@ -13,9 +13,13 @@
             "enum": [
                 "is_relaxed"
             ]
+        },
+        "value": {
+            "type": "boolean"
         }
     },
     "required": [
-        "name"
+        "name",
+        "value"
     ]
 }

@@ -45351,6 +45351,7 @@ export interface IsRelaxedPropertySchema {
      * entity name
      */
     name: "is_relaxed";
+    value: boolean;
     /**
      * reduced chemical formula
      */
@@ -52277,6 +52278,7 @@ export interface PropertyHolderSchema {
          * entity name
          */
         name: "is_relaxed";
+        value: boolean;
         /**
          * reduced chemical formula
          */

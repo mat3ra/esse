@@ -482,6 +482,7 @@ class IsRelaxedPropertySchema(BaseModel):
     """
     entity name
     """
+    value: bool
     formula: Optional[str] = None
     """
     reduced chemical formula
