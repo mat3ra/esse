@@ -24,11 +24,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units193(Enum):
+class Units190(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class FormationEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units193]
+    units: Union[Units, Units190]
     value: float

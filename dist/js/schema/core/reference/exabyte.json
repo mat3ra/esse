@@ -7,10 +7,6 @@
         "unitId"
     ],
     "properties": {
-        "materialId": {
-            "description": "Material's identity. Used for protoProperties.",
-            "type": "string"
-        },
         "jobId": {
             "description": "Job's identity",
             "type": "string"

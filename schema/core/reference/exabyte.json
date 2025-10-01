@@ -3,10 +3,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "materialId": {
-            "description": "Material's identity. Used for protoProperties.",
-            "type": "string"
-        },
         "jobId": {
             "description": "Job's identity",
             "type": "string"

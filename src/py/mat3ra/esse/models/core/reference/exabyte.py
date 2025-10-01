@@ -4,16 +4,10 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel
 
 
 class ESSE(BaseModel):
-    materialId: Optional[str] = None
-    """
-    Material's identity. Used for protoProperties.
-    """
     jobId: str
     """
     Job's identity
