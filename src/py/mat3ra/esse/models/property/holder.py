@@ -3440,6 +3440,10 @@ class Name519(Enum):
 class IsRelaxedPropertySchema(BaseModel):
     name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
     value: bool
+    materialId: str
+    """
+    Material's identity
+    """
 
 
 class Name520(Enum):

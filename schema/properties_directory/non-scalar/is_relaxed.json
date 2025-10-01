@@ -11,10 +11,15 @@
         },
         "value": {
             "type": "boolean"
+        },
+        "materialId": {
+            "description": "Material's identity",
+            "type": "string"
         }
     },
     "required": [
         "name",
-        "value"
+        "value",
+        "materialId"
     ]
 }

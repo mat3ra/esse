@@ -45096,6 +45096,10 @@ export interface HubbardVNNParametersPropertySchema {
 export interface IsRelaxedPropertySchema {
     name: "is_relaxed";
     value: boolean;
+    /**
+     * Material's identity
+     */
+    materialId: string;
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/phonon_dispersions.json */
 export interface PhononBandStructurePropertySchema {
@@ -51770,6 +51774,10 @@ export interface PropertyHolderSchema {
     } | {
         name: "is_relaxed";
         value: boolean;
+        /**
+         * Material's identity
+         */
+        materialId: string;
     } | {
         name: "final_structure";
         isRelaxed: boolean;

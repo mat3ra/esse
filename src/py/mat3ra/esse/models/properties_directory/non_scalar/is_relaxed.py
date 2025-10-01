@@ -16,3 +16,7 @@ class Name(Enum):
 class IsRelaxedPropertySchema(BaseModel):
     name: Name
     value: bool
+    materialId: str
+    """
+    Material's identity
+    """

@@ -5,7 +5,8 @@
     "type": "object",
     "required": [
         "name",
-        "value"
+        "value",
+        "materialId"
     ],
     "properties": {
         "name": {
@@ -15,6 +16,10 @@
         },
         "value": {
             "type": "boolean"
+        },
+        "materialId": {
+            "description": "Material's identity",
+            "type": "string"
         }
     }
 }
