@@ -1,5 +1,5 @@
 {
-    "$id": "property/proto_holder",
+    "$id": "property/proto-holder",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Proto property holder schema",
     "type": "object",

@@ -1622,14 +1622,6 @@ export type Coordinate2DSchema = [number, number];
  * @maxItems 3
  */
 export type Coordinate3DSchema = [number, number, number];
-/** Schema dist/js/schema/core/abstract/kpoint.json */
-/**
- * A k-point is a point in reciprocal space of a crystal.
- *
- * @minItems 3
- * @maxItems 3
- */
-export type KpointSchema = [number, number, number];
 /** Schema dist/js/schema/core/abstract/matrix_3x3.json */
 /**
  * @minItems 3
@@ -1702,6 +1694,11 @@ export interface AxisSchema {
      */
     units?: string;
 }
+/** Schema dist/js/schema/core/primitive/axis_3d_names_enum.json */
+/**
+ * Enum for axis types
+ */
+export type AxisEnum = "x" | "y" | "z";
 /** Schema dist/js/schema/core/primitive/group_info.json */
 export interface GroupInfoSchemaForNodesInAGraph {
     /**
@@ -2645,11 +2642,6 @@ export type AtomicVectorsSchema = {
      */
     id: number;
 }[];
-/** Schema dist/js/schema/core/reusable/axis_enum.json */
-/**
- * Enum for axis types
- */
-export type AxisEnum = "x" | "y" | "z";
 /** Schema dist/js/schema/core/reusable/band_gap.json */
 export interface BandGapSchema {
     /**
@@ -2791,56 +2783,7 @@ export interface CylinderCoordinateConditionSchema {
 }
 /** Schema dist/js/schema/core/reusable/coordinate_conditions/enum.json */
 export type CoordinateShapeEnum = "cylinder" | "sphere" | "box" | "triangular_prism" | "plane";
-/** Schema dist/js/schema/core/reusable/coordinate_conditions/plane.json */
-/**
- * Base interface for coordinate shape filters
- */
-export interface PlaneCoordinateConditionSchema {
-    shape: "plane";
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    plane_normal: [number, number, number];
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    plane_point_coordinate: [number, number, number];
-}
-/** Schema dist/js/schema/core/reusable/coordinate_conditions/sphere.json */
-/**
- * Base interface for coordinate shape filters
- */
-export interface SphereCoordinateConditionSchema {
-    shape: "sphere";
-    radius: number;
-}
-/** Schema dist/js/schema/core/reusable/coordinate_conditions/triangular_prism.json */
-/**
- * Base interface for coordinate shape filters
- */
-export interface TriangularPrismCoordinateConditionSchema {
-    shape: "triangular_prism";
-    /**
-     * @minItems 2
-     * @maxItems 2
-     */
-    position_on_surface_1: [number, number];
-    /**
-     * @minItems 2
-     * @maxItems 2
-     */
-    position_on_surface_2: [number, number];
-    /**
-     * @minItems 2
-     * @maxItems 2
-     */
-    position_on_surface_3: [number, number];
-    min_z: number;
-    max_z: number;
-}
-/** Schema dist/js/schema/core/reusable/coordinate_conditions.json */
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/index.json */
 /**
  * Combined schema for all coordinate condition types
  */
@@ -2896,6 +2839,55 @@ export type CoordinateConditionsSchema = {
      */
     plane_point_coordinate: [number, number, number];
 };
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/plane.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface PlaneCoordinateConditionSchema {
+    shape: "plane";
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_normal: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    plane_point_coordinate: [number, number, number];
+}
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/sphere.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface SphereCoordinateConditionSchema {
+    shape: "sphere";
+    radius: number;
+}
+/** Schema dist/js/schema/core/reusable/coordinate_conditions/triangular_prism.json */
+/**
+ * Base interface for coordinate shape filters
+ */
+export interface TriangularPrismCoordinateConditionSchema {
+    shape: "triangular_prism";
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_1: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_2: [number, number];
+    /**
+     * @minItems 2
+     * @maxItems 2
+     */
+    position_on_surface_3: [number, number];
+    min_z: number;
+    max_z: number;
+}
 /** Schema dist/js/schema/core/reusable/dielectric_tensor_component.json */
 /**
  * Schema for a function of frequency yielding a nx3 matrix
@@ -2962,6 +2954,14 @@ export interface CoreReusableFrequencyFunctionMatrix {
      */
     components?: [number, number, number][];
 }
+/** Schema dist/js/schema/core/reusable/kpoint.json */
+/**
+ * A k-point is a point in reciprocal space of a crystal.
+ *
+ * @minItems 3
+ * @maxItems 3
+ */
+export type KpointSchema = [number, number, number];
 /** Schema dist/js/schema/core/reusable/object_storage_container_data.json */
 export interface ObjectStorageContainerData {
     /**
@@ -3035,7 +3035,7 @@ export interface FundamentalConstants {
      */
     mu0: number;
 }
-/** Schema dist/js/schema/definitions/materials.json */
+/** Schema dist/js/schema/definitions/material.json */
 export interface MaterialsDefinitions {
     [k: string]: unknown;
 }
@@ -48261,11 +48261,6 @@ export interface InChIKeyRepresentationSchema {
     name?: "inchi_key";
     value: string;
 }
-/** Schema dist/js/schema/properties_directory/structural/lattice/lattice_vectors.json */
-export interface LatticeUnitsSchema {
-    length?: "angstrom" | "bohr";
-    angle?: "degree" | "radian";
-}
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_enum.json */
 export type LatticeTypeEnum = "CUB" | "BCC" | "FCC" | "TET" | "MCL" | "ORC" | "ORCC" | "ORCF" | "ORCI" | "HEX" | "BCT" | "TRI" | "MCLC" | "RHL";
 /** Schema dist/js/schema/properties_directory/structural/lattice/type_extended_enum.json */
@@ -48274,6 +48269,11 @@ export type LatticeTypeExtendedEnum = "BCC" | "BCT-1" | "BCT-2" | "CUB" | "FCC" 
 export type LatticeUnitsAngleEnum = "degree" | "radian";
 /** Schema dist/js/schema/properties_directory/structural/lattice/units/length_enum.json */
 export type LatticeUnitsLengthEnum = "angstrom" | "bohr";
+/** Schema dist/js/schema/properties_directory/structural/lattice/units.json */
+export interface LatticeUnitsSchema {
+    length?: "angstrom" | "bohr";
+    angle?: "degree" | "radian";
+}
 /** Schema dist/js/schema/properties_directory/structural/lattice/vectors/units_enum.json */
 export type LatticeVectorsUnitsEnum = "angstrom" | "bohr";
 /** Schema dist/js/schema/properties_directory/structural/lattice/vectors.json */

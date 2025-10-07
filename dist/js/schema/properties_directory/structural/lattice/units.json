@@ -1,5 +1,5 @@
 {
-    "$id": "properties-directory/structural/lattice/lattice-vectors",
+    "$id": "properties-directory/structural/lattice/units",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Lattice units schema",
     "type": "object",

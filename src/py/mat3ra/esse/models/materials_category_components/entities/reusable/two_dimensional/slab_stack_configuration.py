@@ -857,7 +857,7 @@ class LatticeVectorsSchema70(BaseModel):
     units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
 
 
-class LatticeUnitsSchema71(BaseModel):
+class LatticeUnitsSchema70(BaseModel):
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
@@ -889,8 +889,8 @@ class LatticeSchema70(BaseModel):
     """
     vectors: Optional[LatticeVectorsSchema70] = Field(None, title="lattice vectors schema")
     type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema71] = Field(
-        default_factory=lambda: LatticeUnitsSchema71.model_validate({"length": "angstrom", "angle": "degree"}),
+    units: Optional[LatticeUnitsSchema70] = Field(
+        default_factory=lambda: LatticeUnitsSchema70.model_validate({"length": "angstrom", "angle": "degree"}),
         title="Lattice units schema",
     )
 
@@ -1306,7 +1306,7 @@ class LatticeVectorsSchema71(BaseModel):
     units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
 
 
-class LatticeUnitsSchema72(BaseModel):
+class LatticeUnitsSchema71(BaseModel):
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
@@ -1338,8 +1338,8 @@ class LatticeSchema71(BaseModel):
     """
     vectors: Optional[LatticeVectorsSchema71] = Field(None, title="lattice vectors schema")
     type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema72] = Field(
-        default_factory=lambda: LatticeUnitsSchema72.model_validate({"length": "angstrom", "angle": "degree"}),
+    units: Optional[LatticeUnitsSchema71] = Field(
+        default_factory=lambda: LatticeUnitsSchema71.model_validate({"length": "angstrom", "angle": "degree"}),
         title="Lattice units schema",
     )
 
