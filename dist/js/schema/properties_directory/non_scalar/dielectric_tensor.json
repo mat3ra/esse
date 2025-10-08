@@ -1,11 +1,12 @@
 {
     "$id": "properties-directory/non-scalar/dielectric-tensor",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "dielectric tensor property",
+    "title": "dielectric tensor property schema",
     "description": "The real and imaginary parts of the diagonal elements of the dieletric tensor",
     "type": "object",
     "required": [
-        "name"
+        "name",
+        "values"
     ],
     "properties": {
         "name": {

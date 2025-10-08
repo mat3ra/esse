@@ -13,5 +13,9 @@
         "values": {
             "$ref": "./atomic_constraints.json"
         }
-    }
+    },
+    "required": [
+        "name",
+        "values"
+    ]
 }

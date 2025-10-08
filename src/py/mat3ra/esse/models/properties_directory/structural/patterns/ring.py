@@ -26,7 +26,7 @@ class ObjectWithId(BaseModel):
 
 
 class RingPatternSchema(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each

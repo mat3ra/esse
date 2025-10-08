@@ -47,9 +47,9 @@ class ObjectStorageContainerData(BaseModel):
     """
 
 
-class FileContent(BaseModel):
+class FileContentPropertySchema(BaseModel):
     name: Name
-    filetype: Optional[Filetype] = None
+    filetype: Filetype
     """
     What kind of file this is, e.g. image / text
     """

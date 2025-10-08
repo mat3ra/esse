@@ -149,21 +149,21 @@ class Units(Enum):
 
 
 class AtomicRadius(BaseModel):
-    name: Optional[Name] = None
+    name: Name
     units: Optional[Units] = None
     value: float
 
 
-class Name463(Enum):
+class Name464(Enum):
     electronegativity = "electronegativity"
 
 
 class Electronegativity(BaseModel):
-    name: Optional[Name463] = None
+    name: Name464
     value: float
 
 
-class Name464(Enum):
+class Name465(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -177,15 +177,17 @@ class Units184(Enum):
     eV_atom = "eV/atom"
 
 
-class IonizationPotential(BaseModel):
-    name: Optional[Name464] = None
-    units: Optional[Units184] = None
+class IonizationPotentialElementalPropertySchema(BaseModel):
+    name: Name465
+    units: Units184
     value: float
 
 
 class ElementSchema(BaseModel):
     symbol: Optional[Symbol] = None
-    properties: Optional[List[Union[AtomicRadius, Electronegativity, IonizationPotential]]] = None
+    properties: Optional[List[Union[AtomicRadius, Electronegativity, IonizationPotentialElementalPropertySchema]]] = (
+        None
+    )
     """
     list of elemental properties
     """

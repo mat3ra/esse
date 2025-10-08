@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/non-scalar/workflow",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Workflow property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../workflow.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "workflow:pyml_predict"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

@@ -5,9 +5,20 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
+
+
+class Info(BaseModel):
+    jobId: str
+    """
+    Job's identity
+    """
+    unitId: str
+    """
+    Id of the unit that extracted the result
+    """
 
 
 class Type(Enum):
@@ -51,7 +62,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type64(Enum):
+class Type78(Enum):
     literature = "literature"
 
 
@@ -61,7 +72,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type64] = None
+    type: Optional[Type78] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -148,3 +159,15 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
     """
     references to literature articles
     """
+
+
+class PropertySourceSchema(BaseModel):
+    type: Optional[str] = None
+    """
+    Type of the material property's source.
+    """
+    url: Optional[str] = None
+    """
+    Internet address of the reference.
+    """
+    info: Union[Info, InfoForCharacteristicObtainedByExperiment]

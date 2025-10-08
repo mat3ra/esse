@@ -41,8 +41,7 @@
         },
         "overwrite": {
             "description": "if a file with the same filename already exists, whether to overwrite the old file",
-            "type": "boolean",
-            "default": false
+            "type": "boolean"
         },
         "pathname": {
             "description": "Relative path to the directory that contains the file.",

@@ -18,14 +18,14 @@ class Units(Enum):
     eV = "eV"
 
 
-class Units204(Enum):
+class Units245(Enum):
     eV = "eV"
     Ry = "Ry"
     hartree = "hartree"
 
 
 class Electronic(BaseModel):
-    units: Optional[Units204] = None
+    units: Optional[Units245] = None
     """
     units for force tolerance
     """
@@ -33,7 +33,7 @@ class Electronic(BaseModel):
 
 
 class Datum(BaseModel):
-    energy: Optional[float] = None
+    energy: float
     """
     converged electronic energy for this structure (last in `electronic`)
     """
@@ -47,13 +47,13 @@ class Datum(BaseModel):
     """
 
 
-class IonicConvergenceSchema(BaseModel):
-    name: Optional[Name] = None
+class ConvergenceIonicPropertySchema(BaseModel):
+    name: Name
     tolerance: Optional[Any] = None
     """
     for ionic convergence tolerance shows force tolerance
     """
-    units: Optional[Units] = None
+    units: Units
     """
     units for force tolerance
     """

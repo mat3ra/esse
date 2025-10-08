@@ -1,5 +1,5 @@
 {
-    "$id": "core/reusable/coordinate-conditions",
+    "$id": "core/reusable/coordinate-conditions/index",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Coordinate Conditions Schema",
     "description": "Combined schema for all coordinate condition types",
@@ -20,4 +20,4 @@
             "$ref": "plane.json"
         }
     ]
-} 
+}

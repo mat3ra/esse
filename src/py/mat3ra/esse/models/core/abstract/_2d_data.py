@@ -10,8 +10,8 @@ from pydantic import BaseModel, Field
 
 
 class Field2DimensionDataSchema(BaseModel):
-    xDataArray: List
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

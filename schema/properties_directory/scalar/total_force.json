@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/total-force",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "total forces schema",
+    "title": "Total forces property schema",
     "type": "object",
     "allOf": [
         {
@@ -17,5 +17,9 @@
         "units": {
             "$ref": "../../definitions/units.json#/force"
         }
-    }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
 }

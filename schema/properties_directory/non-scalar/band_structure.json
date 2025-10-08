@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/non-scalar/band-structure",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "band structure schema",
+    "title": "Band structure property schema",
     "type": "object",
     "allOf": [
         {
@@ -51,5 +51,11 @@
                 ]
             }
         }
-    }
+    },
+    "required": [
+        "name",
+        "spin",
+        "xAxis",
+        "yAxis"
+    ]
 }

@@ -1,5 +1,5 @@
 {
-    "$id": "definitions/materials",
+    "$id": "definitions/material",
     "title": "Materials Definitions",
     "form_factor": {
         "description": "Form factor of the material",

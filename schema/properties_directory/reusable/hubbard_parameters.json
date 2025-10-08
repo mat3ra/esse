@@ -1,0 +1,36 @@
+{
+    "$id": "properties-directory/reusable/hubbard-parameters",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hubbard parameters reusable schema",
+    "description": "Common properties for hubbard parameter schemas",
+    "type": "object",
+    "properties": {
+        "units": {
+            "enum": [
+                "eV"
+            ]
+        },
+        "values": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "allOf": [
+                    {
+                        "$ref": "../../core/reusable/atomic_data_per_orbital_pair_numeric.json"
+                    }
+                ],
+                "required": [
+                    "id",
+                    "id2",
+                    "atomicSpecies",
+                    "atomicSpecies2",
+                    "value"
+                ]
+            }
+        }
+    },
+    "required": [
+        "values",
+        "units"
+    ]
+}

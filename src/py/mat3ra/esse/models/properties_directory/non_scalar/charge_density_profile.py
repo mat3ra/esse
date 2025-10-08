@@ -48,16 +48,12 @@ class Name(Enum):
     charge_density_profile = "charge_density_profile"
 
 
-class ChargeDensityProfileSchema(BaseModel):
+class ChargeDensityProfilePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
     yAxis: AxisSchema8 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    name: Name
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

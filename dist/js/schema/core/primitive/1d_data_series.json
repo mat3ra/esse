@@ -7,10 +7,7 @@
         "type": "array",
         "minItems": 1,
         "items": {
-            "type": [
-                "number",
-                "string"
-            ]
+            "type": "number"
         }
     }
 }

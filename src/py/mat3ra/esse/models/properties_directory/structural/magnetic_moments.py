@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field
 
@@ -29,7 +29,7 @@ class Units(Enum):
     uB = "uB"
 
 
-class MagneticMoments(BaseModel):
-    name: Optional[Name] = None
-    values: Optional[List[AtomicVectorSchema]] = Field(None, title="atomic vectors schema")
-    units: Optional[Units] = None
+class MagneticMomentsPropertySchema(BaseModel):
+    name: Name
+    values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
+    units: Units

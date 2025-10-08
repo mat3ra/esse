@@ -5,13 +5,20 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Union
 
 from pydantic import BaseModel, Field
 
-from .The_source_of_a_property import (
-    field_This_could_be_an_article__a_simulation_on_Exabyte__an_external_simulation__etc,
-)
+
+class Info(BaseModel):
+    jobId: str
+    """
+    Job's identity
+    """
+    unitId: str
+    """
+    Id of the unit that extracted the result
+    """
 
 
 class Type(Enum):
@@ -55,7 +62,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type55(Enum):
+class Type71(Enum):
     literature = "literature"
 
 
@@ -65,7 +72,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type55] = None
+    type: Optional[Type71] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -154,12 +161,24 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
     """
 
 
+class PropertySourceSchema(BaseModel):
+    type: Optional[str] = None
+    """
+    Type of the material property's source.
+    """
+    url: Optional[str] = None
+    """
+    Internet address of the reference.
+    """
+    info: Union[Info, InfoForCharacteristicObtainedByExperiment]
+
+
 class SystemTag(Enum):
     isRefined = "isRefined"
     isBest = "isBest"
 
 
-class SchemaOfMaterialSPreliminaryProperty(BaseModel):
+class PropertyRawSchema(BaseModel):
     slug: Optional[str] = None
     """
     property slug, e.g. total_energy
@@ -172,10 +191,7 @@ class SchemaOfMaterialSPreliminaryProperty(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: field_This_could_be_an_article__a_simulation_on_Exabyte__an_external_simulation__etc.Field = Field(
-        ...,
-        title="The source of a property. This could be an article, a simulation on Exabyte, an external simulation, etc.",
-    )
+    source: PropertySourceSchema = Field(..., title="Property source schema")
     exabyteId: Optional[List[str]] = None
     """
     Id of the corresponding item in the entity bank that this property is obtained for

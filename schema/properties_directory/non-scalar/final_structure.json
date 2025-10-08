@@ -1,0 +1,25 @@
+{
+    "$id": "properties-directory/non-scalar/final-structure",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Final structure property schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "final_structure"
+            ]
+        },
+        "isRelaxed": {
+            "type": "boolean"
+        },
+        "materialId": {
+            "description": "Material's identity",
+            "type": "string"
+        }
+    },
+    "required": [
+        "name",
+        "isRelaxed",
+        "materialId"
+    ]
+}

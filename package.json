@@ -77,8 +77,8 @@
         "json-schema": "^0.4.0",
         "json-schema-deref-sync": "0.14.0",
         "json-schema-merge-allof": "^0.8.1",
-        "json-schema-to-typescript": "^13.1.2",
-        "lodash": "4.17.21"
+        "lodash": "4.17.21",
+        "json-schema-to-typescript": "^15.0.4"
     },
     "engines": {
         "node": ">=14.0.0"

@@ -16,11 +16,6 @@
         "yAxis": {
             "description": "y Axis object",
             "$ref": "../primitive/axis.json"
-        },
-        "legend": {
-            "description": "Legend of y Axis data series",
-            "minItems": 1,
-            "type": "array"
         }
     },
     "required": [

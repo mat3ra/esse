@@ -25,7 +25,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label13(Enum):
+class Label29(Enum):
     energy = "energy"
 
 
@@ -39,8 +39,8 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class AxisSchema16(BaseModel):
-    label: Label13
+class AxisSchema32(BaseModel):
+    label: Label29
     """
     label of an axis object
     """
@@ -54,16 +54,12 @@ class Name(Enum):
     potential_profile = "potential_profile"
 
 
-class PotentialProfileSchema(BaseModel):
+class PotentialProfilePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema16 = Field(..., title="axis schema")
-    name: Optional[Name] = None
-    legend: Optional[List] = Field(None, min_length=1)
-    """
-    Legend of y Axis data series
-    """
-    xDataArray: List
+    yAxis: AxisSchema32 = Field(..., title="axis schema")
+    name: Name
+    xDataArray: List[Union[float, List[float]]]
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[Union[float, str]]] = Field(..., title="1 dimension data series schema")
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")

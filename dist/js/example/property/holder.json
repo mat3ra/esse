@@ -17,15 +17,17 @@
         "cls": "Account",
         "slug": "exabyte"
     },
+    "repetition": 0,
     "schemaVersion": "0.2.0",
     "slug": "pressure",
     "source": {
-        "_id": "nDAavgjrT5ezwFgod",
-        "owner": {
-            "_id": "HtxACY2wX4b2hS8Rv",
-            "cls": "Account",
-            "slug": "exabyte"
-        },
-        "title": "My Calculation"
-    }
+        "type": "exabyte",
+        "info": {
+            "jobId": "XnYKCmgaAAzSQH5ac",
+            "unitId": "873d0293d04af431d31f07a0-pw-scf"
+        }
+    },
+    "exabyteId": [
+        "XnYKCmgaAAzSQH5ac"
+    ]
 }

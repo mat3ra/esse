@@ -1,0 +1,180 @@
+{
+    "$id": "property/holder",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Property holder schema",
+    "type": "object",
+    "allOf": [
+        {
+            "description": "entity schema",
+            "$ref": "../in_memory_entity/base.json"
+        }
+    ],
+    "properties": {
+        "group": {
+            "description": "property group, e.g. qe:dft:gga:pbe",
+            "type": "string"
+        },
+        "data": {
+            "description": "container of the information, specific to each property",
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "../properties_directory/scalar/valence_band_offset.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/zero_point_energy.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/pressure.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/reaction_energy_barrier.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/surface_energy.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/total_energy.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/total_force.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/fermi_energy.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/ionization_potential.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/stress_tensor.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/band_gaps.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/band_structure.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/phonon_dispersions.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/total_energy_contributions.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/phonon_dos.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/potential_profile.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/reaction_energy_profile.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/density_of_states.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/dielectric_tensor.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/file_content.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/hubbard_u.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/hubbard_v.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/hubbard_v_nn.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/average_potential_profile.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/charge_density_profile.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/workflow.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/magnetic_moments.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/atomic_forces.json"
+                },
+                {
+                    "$ref": "../properties_directory/workflow/convergence/electronic.json"
+                },
+                {
+                    "$ref": "../properties_directory/workflow/convergence/ionic.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/is_relaxed.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/final_structure.json"
+                },
+                {
+                    "$ref": "../properties_directory/jupyter_notebook_endpoint.json"
+                }
+            ],
+            "discriminator": {
+                "propertyName": "name"
+            }
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Type of the material property's source.",
+                    "type": "string"
+                },
+                "info": {
+                    "$ref": "../core/reference/exabyte.json"
+                }
+            },
+            "required": [
+                "type",
+                "info"
+            ]
+        },
+        "exabyteId": {
+            "description": "Id of the corresponding item in the entity bank that this property is obtained for",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "precision": {
+            "type": "object",
+            "properties": {
+                "value": {
+                    "type": "number"
+                },
+                "metric": {
+                    "type": "string"
+                }
+            }
+        },
+        "systemTags": {
+            "description": "property system tags, marks property system characteristics, values refined or best (could be both)",
+            "type": "array",
+            "items": {
+                "type": "string",
+                "enum": [
+                    "isRefined",
+                    "isBest"
+                ]
+            }
+        },
+        "repetition": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "data",
+        "source",
+        "repetition",
+        "exabyteId"
+    ]
+}

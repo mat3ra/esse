@@ -1,10 +1,12 @@
 {
     "$id": "properties-directory/workflow/convergence/ionic",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "ionic convergence schema",
+    "title": "Convergence ionic property schema",
     "type": "object",
     "required": [
-        "data"
+        "data",
+        "name",
+        "units"
     ],
     "properties": {
         "name": {
@@ -26,6 +28,9 @@
             "description": "energetic and structural information",
             "items": {
                 "type": "object",
+                "required": [
+                    "energy"
+                ],
                 "properties": {
                     "energy": {
                         "description": "converged electronic energy for this structure (last in `electronic`)",

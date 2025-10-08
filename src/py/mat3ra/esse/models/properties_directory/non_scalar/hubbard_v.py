@@ -12,7 +12,6 @@ from pydantic import BaseModel, constr
 
 class Name(Enum):
     hubbard_v = "hubbard_v"
-    hubbard_v_nn = "hubbard_v_nn"
 
 
 class Units(Enum):
@@ -48,7 +47,7 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
     """
 
 
-class HubbardVParameters(BaseModel):
+class HubbardVParametersPropertySchema(BaseModel):
     name: Name
-    units: Optional[Units] = None
-    values: Optional[List[AtomicDataPerOrbitalPairNumeric]] = None
+    units: Units
+    values: List[AtomicDataPerOrbitalPairNumeric]

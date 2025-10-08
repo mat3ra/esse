@@ -1,0 +1,25 @@
+{
+    "$id": "properties-directory/structural/basis/boundary-conditions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "boundary conditions property schema",
+    "description": "boundary conditions property schema (as stored in a database)",
+    "type": "object",
+    "properties": {
+        "name": {
+            "enum": [
+                "boundary_conditions"
+            ]
+        },
+        "type": {
+            "$ref": "../../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/esm_bc"
+        },
+        "offset": {
+            "type": "number"
+        }
+    },
+    "required": [
+        "name",
+        "type",
+        "offset"
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "$id": "property/proto-holder",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Proto property holder schema",
+    "type": "object",
+    "allOf": [
+        {
+            "description": "entity schema",
+            "$ref": "../in_memory_entity/base.json"
+        }
+    ],
+    "properties": {
+        "data": {
+            "description": "container of the information, specific to each property",
+            "type": "object",
+            "oneOf": [
+                {
+                    "$ref": "../properties_directory/structural/basis/atomic_constraints_property.json"
+                },
+                {
+                    "$ref": "../properties_directory/structural/basis/boundary_conditions.json"
+                }
+            ]
+        },
+        "source": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "description": "Type of the material property's source.",
+                    "type": "string"
+                },
+                "info": {
+                    "type": "object",
+                    "properties": {
+                        "materialId": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "required": [
+                "type",
+                "info"
+            ]
+        }
+    },
+    "required": [
+        "data",
+        "source"
+    ]
+}

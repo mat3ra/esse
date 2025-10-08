@@ -9,7 +9,9 @@
         "exchangeCorrelation",
         "source",
         "path",
-        "apps"
+        "apps",
+        "name",
+        "hash"
     ],
     "properties": {
         "element": {

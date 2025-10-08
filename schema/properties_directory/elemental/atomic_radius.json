@@ -18,5 +18,8 @@
         "units": {
             "$ref": "../../definitions/units.json#/length"
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

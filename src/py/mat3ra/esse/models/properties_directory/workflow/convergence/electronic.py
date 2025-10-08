@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel
 
@@ -20,7 +20,7 @@ class Units(Enum):
     hartree = "hartree"
 
 
-class ElectronicSelfConsistencyConvergenceSchema(BaseModel):
-    name: Optional[Name] = None
-    units: Optional[Units] = None
+class ConvergenceElectronicPropertySchema(BaseModel):
+    name: Name
+    units: Units
     data: List[List[float]]

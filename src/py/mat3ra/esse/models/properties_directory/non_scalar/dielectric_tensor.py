@@ -35,6 +35,6 @@ class DielectricTensor(BaseModel):
     """
 
 
-class DielectricTensorProperty(BaseModel):
+class DielectricTensorPropertySchema(BaseModel):
     name: Name
-    values: Optional[List[DielectricTensor]] = None
+    values: List[DielectricTensor]

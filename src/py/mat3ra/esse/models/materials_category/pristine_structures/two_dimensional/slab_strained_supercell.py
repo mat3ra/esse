@@ -427,30 +427,30 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name628(Enum):
+class Name682(Enum):
     density = "density"
 
 
-class Units258(Enum):
+class Units299(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units258] = None
+    units: Optional[Units299] = None
     value: float
 
 
-class Units259(Enum):
+class Units300(Enum):
     angstrom = "angstrom"
 
 
 class ScalarSchema(BaseModel):
-    units: Optional[Units259] = None
+    units: Optional[Units300] = None
     value: float
 
 
-class Name629(Enum):
+class Name683(Enum):
     symmetry = "symmetry"
 
 
@@ -470,7 +470,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name630(Enum):
+class Name684(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -483,7 +483,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name631(Enum):
+class Name685(Enum):
     p_norm = "p-norm"
 
 
@@ -496,7 +496,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name632(Enum):
+class Name686(Enum):
     inchi = "inchi"
 
 
@@ -505,7 +505,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name633(Enum):
+class Name687(Enum):
     inchi_key = "inchi_key"
 
 
@@ -584,7 +584,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name634(Enum):
+class Name688(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -597,7 +597,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name634
+    name: Name688
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -865,7 +865,7 @@ class LatticeVectorsSchema73(BaseModel):
     units: Optional[LatticeVectorsUnitsEnum] = Field("angstrom", title="lattice vectors units enum")
 
 
-class LatticeUnitsSchema74(BaseModel):
+class LatticeUnitsSchema73(BaseModel):
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
@@ -897,50 +897,50 @@ class LatticeSchema73(BaseModel):
     """
     vectors: Optional[LatticeVectorsSchema73] = Field(None, title="lattice vectors schema")
     type: Optional[LatticeTypeEnum] = Field("TRI", title="lattice type enum")
-    units: Optional[LatticeUnitsSchema74] = Field(
-        default_factory=lambda: LatticeUnitsSchema74.model_validate({"length": "angstrom", "angle": "degree"}),
+    units: Optional[LatticeUnitsSchema73] = Field(
+        default_factory=lambda: LatticeUnitsSchema73.model_validate({"length": "angstrom", "angle": "degree"}),
         title="Lattice units schema",
     )
 
 
-class Name635(Enum):
+class Name689(Enum):
     volume = "volume"
 
 
-class Units260(Enum):
+class Units301(Enum):
     angstrom_3 = "angstrom^3"
 
 
 class VolumeSchema73(BaseModel):
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units260] = None
+    units: Optional[Units301] = None
     value: float
 
 
-class Name636(Enum):
+class Name690(Enum):
     density = "density"
 
 
-class Units261(Enum):
+class Units302(Enum):
     g_cm_3 = "g/cm^3"
 
 
 class DensitySchema74(BaseModel):
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    units: Optional[Units261] = None
+    units: Optional[Units302] = None
     value: float
 
 
-class Units262(Enum):
+class Units303(Enum):
     angstrom = "angstrom"
 
 
-class ScalarSchema75(BaseModel):
-    units: Optional[Units262] = None
+class ScalarSchema89(BaseModel):
+    units: Optional[Units303] = None
     value: float
 
 
-class Name637(Enum):
+class Name691(Enum):
     symmetry = "symmetry"
 
 
@@ -953,14 +953,14 @@ class SymmetrySchema73(BaseModel):
     """
     space group symbol in Hermann–Mauguin notation
     """
-    tolerance: Optional[ScalarSchema75] = Field(None, title="scalar schema")
+    tolerance: Optional[ScalarSchema89] = Field(None, title="scalar schema")
     """
     tolerance used for symmetry calculation
     """
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name638(Enum):
+class Name692(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -973,7 +973,7 @@ class ElementalRatio74(BaseModel):
     """
 
 
-class Name639(Enum):
+class Name693(Enum):
     p_norm = "p-norm"
 
 
@@ -986,7 +986,7 @@ class PNorm74(BaseModel):
     value: float
 
 
-class Name640(Enum):
+class Name694(Enum):
     inchi = "inchi"
 
 
@@ -995,7 +995,7 @@ class InChIRepresentationSchema74(BaseModel):
     value: str
 
 
-class Name641(Enum):
+class Name695(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1028,14 +1028,14 @@ class DerivedPropertiesSchema74(
     ] = Field(..., discriminator="name")
 
 
-class Name642(Enum):
+class Name696(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema73(BaseModel):
-    name: Name642
+    name: Name696
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

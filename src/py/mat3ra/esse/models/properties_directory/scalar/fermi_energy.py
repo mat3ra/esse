@@ -28,7 +28,7 @@ class Units188(Enum):
     eV_A_2 = "eV/A^2"
 
 
-class FermiEnergySchema(BaseModel):
+class FermiEnergyPropertySchema(BaseModel):
     name: Name
     units: Union[Units, Units188]
     value: float

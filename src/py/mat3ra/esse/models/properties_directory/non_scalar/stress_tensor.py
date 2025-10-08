@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field, RootModel
 
@@ -23,9 +23,7 @@ class Units(Enum):
     pa = "pa"
 
 
-class StressTensorSchema(BaseModel):
-    value: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
-        None, max_length=3, min_length=3, title="matrix 3x3 schema"
-    )
-    name: Optional[Name] = None
-    units: Optional[Units] = None
+class StressTensorPropertySchema(BaseModel):
+    value: List[ArrayOf3NumberElementsSchema] = Field(..., max_length=3, min_length=3, title="matrix 3x3 schema")
+    name: Name
+    units: Units

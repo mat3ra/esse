@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/non-scalar/phonon-dos",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Phonon density of states schema",
+    "title": "Phonon density of states property schema",
     "type": "object",
     "allOf": [
         {
@@ -40,5 +40,8 @@
                 "phonon_dos"
             ]
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }

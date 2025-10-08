@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, conint
 
@@ -170,11 +170,11 @@ class BaseFlow(BaseModel):
     """
     Human-readable name of the subworkflow. e.g. Total-energy
     """
-    properties: Optional[List[Union[str, Dict[str, Any]]]] = None
+    properties: Optional[List[str]] = None
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema] = None
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    compute parameters
+    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """

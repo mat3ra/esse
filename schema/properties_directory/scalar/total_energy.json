@@ -1,7 +1,7 @@
 {
     "$id": "properties-directory/scalar/total-energy",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "total energy schema",
+    "title": "Total energy property schema",
     "type": "object",
     "allOf": [
         {
@@ -14,5 +14,9 @@
                 "total_energy"
             ]
         }
-    }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
 }

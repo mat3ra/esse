@@ -30,5 +30,8 @@
             "description": "SMARTS string for classification of FG; https://en.wikipedia.org/wiki/SMILES_arbitrary_target_specification",
             "type": "string"
         }
-    }
+    },
+    "required": [
+        "name"
+    ]
 }
