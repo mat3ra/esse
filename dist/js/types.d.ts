@@ -1561,6 +1561,1071 @@ export interface PymatgenSlabGeneratorParametersSchema {
      */
     symmetrize?: boolean;
 }
+/** Schema dist/js/schema/apse/materials/materials_project/summary.json */
+/**
+ * JSON schema for Materials Project API summary endpoint response
+ */
+export interface MaterialsProjectSchema {
+    builder_meta: {
+        /**
+         * Version of emmet library used
+         */
+        emmet_version: string;
+        /**
+         * Version of pymatgen library used
+         */
+        pymatgen_version: string;
+        /**
+         * Unique identifier for the calculation run
+         */
+        run_id: string;
+        /**
+         * Batch identifier for grouped calculations
+         */
+        batch_id?: string | null;
+        /**
+         * Version of the Materials Project database
+         */
+        database_version: string;
+        /**
+         * Date when the calculation was performed
+         */
+        build_date: string;
+        /**
+         * License information for the data
+         */
+        license: string;
+    };
+    /**
+     * Number of sites in the structure
+     */
+    nsites: number;
+    /**
+     * List of chemical elements in the material
+     */
+    elements: string[];
+    /**
+     * Number of unique elements
+     */
+    nelements: number;
+    /**
+     * Chemical composition as element: count mapping
+     */
+    composition: {
+        [k: string]: number;
+    };
+    /**
+     * Reduced chemical composition
+     */
+    composition_reduced: {
+        [k: string]: number;
+    };
+    /**
+     * Human-readable chemical formula
+     */
+    formula_pretty: string;
+    /**
+     * Anonymous chemical formula
+     */
+    formula_anonymous: string;
+    /**
+     * Chemical system identifier
+     */
+    chemsys: string;
+    /**
+     * Unit cell volume in cubic Angstroms
+     */
+    volume: number;
+    /**
+     * Material density in g/cm³
+     */
+    density: number;
+    /**
+     * Atomic density
+     */
+    density_atomic: number;
+    symmetry: {
+        /**
+         * Crystal system classification
+         */
+        crystal_system: string;
+        /**
+         * Space group symbol
+         */
+        symbol: string;
+        /**
+         * Hall symbol
+         */
+        hall?: string | null;
+        /**
+         * Space group number
+         */
+        number: number;
+        /**
+         * Point group symbol
+         */
+        point_group: string;
+        /**
+         * Symmetry precision tolerance
+         */
+        symprec: number;
+        /**
+         * Angle tolerance for symmetry analysis
+         */
+        angle_tolerance: number;
+        /**
+         * Version of symmetry analysis software
+         */
+        version: string;
+    };
+    /**
+     * Unique Materials Project identifier
+     */
+    material_id: string;
+    /**
+     * Whether this material entry is deprecated
+     */
+    deprecated: boolean;
+    /**
+     * Reasons for deprecation if applicable
+     */
+    deprecation_reasons?: string[] | null;
+    /**
+     * Last update timestamp
+     */
+    last_updated: string;
+    origins: {
+        /**
+         * Origin name (e.g., structure, energy, magnetism)
+         */
+        name: string;
+        /**
+         * Task identifier for this origin
+         */
+        task_id: string;
+        /**
+         * Last update for this origin
+         */
+        last_updated: string;
+    }[];
+    /**
+     * Warning messages
+     */
+    warnings: string[];
+    structure: {
+        /**
+         * Python module name
+         */
+        "@module": string;
+        /**
+         * Python class name
+         */
+        "@class": string;
+        /**
+         * Total charge of the structure
+         */
+        charge: number;
+        lattice: {
+            /**
+             * Lattice matrix
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            matrix: [[number, number, number], [number, number, number], [number, number, number]];
+            /**
+             * Periodic boundary conditions
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            pbc: [boolean, boolean, boolean];
+            /**
+             * Lattice parameter a
+             */
+            a: number;
+            /**
+             * Lattice parameter b
+             */
+            b: number;
+            /**
+             * Lattice parameter c
+             */
+            c: number;
+            /**
+             * Lattice angle alpha
+             */
+            alpha: number;
+            /**
+             * Lattice angle beta
+             */
+            beta: number;
+            /**
+             * Lattice angle gamma
+             */
+            gamma: number;
+            /**
+             * Unit cell volume
+             */
+            volume: number;
+        };
+        /**
+         * Additional structure properties
+         */
+        properties: {};
+        sites: {
+            species: {
+                /**
+                 * Chemical element
+                 */
+                element: string;
+                /**
+                 * Occupancy
+                 */
+                occu: number;
+            }[];
+            /**
+             * Fractional coordinates
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            abc: [number, number, number];
+            properties?: {
+                /**
+                 * Magnetic moment
+                 */
+                magmom?: number;
+            };
+            /**
+             * Site label
+             */
+            label: string;
+            /**
+             * Cartesian coordinates
+             *
+             * @minItems 3
+             * @maxItems 3
+             */
+            xyz: [number, number, number];
+        }[];
+    };
+    /**
+     * Name of the property endpoint
+     */
+    property_name: string;
+    /**
+     * List of task identifiers
+     */
+    task_ids: string[];
+    /**
+     * Uncorrected energy per atom in eV
+     */
+    uncorrected_energy_per_atom: number;
+    /**
+     * Energy per atom in eV
+     */
+    energy_per_atom: number;
+    /**
+     * Formation energy per atom in eV
+     */
+    formation_energy_per_atom: number;
+    /**
+     * Energy above convex hull in eV
+     */
+    energy_above_hull: number;
+    /**
+     * Whether the material is thermodynamically stable
+     */
+    is_stable: boolean;
+    /**
+     * Equilibrium reaction energy per atom in eV
+     */
+    equilibrium_reaction_energy_per_atom?: number | null;
+    decomposes_to: {
+        /**
+         * Material ID of decomposition product
+         */
+        material_id: string;
+        /**
+         * Formula of decomposition product
+         */
+        formula: string;
+        /**
+         * Amount of decomposition product
+         */
+        amount: number;
+    }[] | null;
+    xas: {
+        /**
+         * XAS edge type (K, L, M, etc.)
+         */
+        edge: string;
+        /**
+         * Element for XAS absorption
+         */
+        absorbing_element: string;
+        /**
+         * Type of XAS spectrum (XANES, EXAFS, XAFS)
+         */
+        spectrum_type: string;
+    }[] | null;
+    /**
+     * Grain boundary information
+     */
+    grain_boundaries?: {} | null;
+    /**
+     * Band gap in eV
+     */
+    band_gap: number;
+    /**
+     * Conduction band minimum in eV
+     */
+    cbm: number | null;
+    /**
+     * Valence band maximum in eV
+     */
+    vbm: number | null;
+    /**
+     * Fermi energy in eV
+     */
+    efermi: number | null;
+    /**
+     * Whether the band gap is direct
+     */
+    is_gap_direct: boolean;
+    /**
+     * Whether the material is metallic
+     */
+    is_metal: boolean;
+    /**
+     * Source calculation ID for electronic structure
+     */
+    es_source_calc_id?: string | null;
+    bandstructure: {
+        setyawan_curtarolo?: {
+            task_id: string;
+            band_gap: number;
+            cbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            vbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            efermi: number | null;
+            is_gap_direct: boolean;
+            is_metal: boolean;
+            magnetic_ordering: string;
+            equivalent_labels: {
+                [k: string]: {
+                    [k: string]: {
+                        [k: string]: string;
+                    };
+                };
+            };
+            nbands: number;
+            direct_gap: number;
+        } | null;
+        hinuma?: {
+            task_id: string;
+            band_gap: number;
+            cbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            vbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            efermi: number | null;
+            is_gap_direct: boolean;
+            is_metal: boolean;
+            magnetic_ordering: string;
+            equivalent_labels: {
+                [k: string]: {
+                    [k: string]: {
+                        [k: string]: string;
+                    };
+                };
+            };
+            nbands: number;
+            direct_gap: number;
+        } | null;
+        latimer_munro?: {
+            task_id: string;
+            band_gap: number;
+            cbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            vbm: {
+                band_index: {
+                    [k: string]: number[];
+                };
+                kpoint_index: number[];
+                kpoint: {
+                    lattice: {
+                        "@module": string;
+                        "@class": string;
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        pbc: [boolean, boolean, boolean];
+                    };
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    fcoords: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    ccoords: [number, number, number];
+                    label: string | null;
+                    "@module": string;
+                    "@class": string;
+                };
+                energy: number;
+                projections: {
+                    [k: string]: number[][];
+                };
+            } | null;
+            efermi: number | null;
+            is_gap_direct: boolean;
+            is_metal: boolean;
+            magnetic_ordering: string;
+            equivalent_labels: {
+                [k: string]: {
+                    [k: string]: {
+                        [k: string]: string;
+                    };
+                };
+            };
+            nbands: number;
+            direct_gap: number;
+        } | null;
+    } | null;
+    dos: {
+        total?: {
+            [k: string]: {
+                task_id: string;
+                band_gap: number;
+                cbm: number | null;
+                vbm: number | null;
+                efermi: number;
+                spin_polarization: number | null;
+            };
+        };
+        elemental?: {
+            [k: string]: {
+                total?: {
+                    [k: string]: {
+                        task_id: string;
+                        band_gap: number;
+                        cbm: number | null;
+                        vbm: number | null;
+                        efermi: number;
+                        spin_polarization: number | null;
+                    };
+                };
+                s?: {
+                    [k: string]: {
+                        task_id: string;
+                        band_gap: number;
+                        cbm: number | null;
+                        vbm: number | null;
+                        efermi: number;
+                        spin_polarization: number | null;
+                    };
+                };
+                p?: {
+                    [k: string]: {
+                        task_id: string;
+                        band_gap: number;
+                        cbm: number | null;
+                        vbm: number | null;
+                        efermi: number;
+                        spin_polarization: number | null;
+                    };
+                };
+                d?: {
+                    [k: string]: {
+                        task_id: string;
+                        band_gap: number;
+                        cbm: number | null;
+                        vbm: number | null;
+                        efermi: number;
+                        spin_polarization: number | null;
+                    };
+                };
+            };
+        };
+        orbital?: {
+            s?: {
+                [k: string]: {
+                    task_id: string;
+                    band_gap: number;
+                    cbm: number | null;
+                    vbm: number | null;
+                    efermi: number;
+                    spin_polarization: number | null;
+                };
+            };
+            p?: {
+                [k: string]: {
+                    task_id: string;
+                    band_gap: number;
+                    cbm: number | null;
+                    vbm: number | null;
+                    efermi: number;
+                    spin_polarization: number | null;
+                };
+            };
+            d?: {
+                [k: string]: {
+                    task_id: string;
+                    band_gap: number;
+                    cbm: number | null;
+                    vbm: number | null;
+                    efermi: number;
+                    spin_polarization: number | null;
+                };
+            };
+        };
+        /**
+         * Magnetic ordering type
+         */
+        magnetic_ordering?: string;
+    } | null;
+    /**
+     * Density of states for spin up
+     */
+    dos_energy_up?: {} | null;
+    /**
+     * Density of states for spin down
+     */
+    dos_energy_down?: {} | null;
+    /**
+     * Whether the material is magnetic
+     */
+    is_magnetic: boolean;
+    /**
+     * Magnetic ordering
+     */
+    ordering: string;
+    /**
+     * Total magnetization
+     */
+    total_magnetization: number;
+    /**
+     * Volume-normalized magnetization
+     */
+    total_magnetization_normalized_vol: number;
+    /**
+     * Formula unit normalized magnetization
+     */
+    total_magnetization_normalized_formula_units: number;
+    /**
+     * Number of magnetic sites
+     */
+    num_magnetic_sites: number;
+    /**
+     * Number of unique magnetic sites
+     */
+    num_unique_magnetic_sites: number;
+    /**
+     * Types of magnetic species
+     */
+    types_of_magnetic_species: string[];
+    bulk_modulus: {
+        /**
+         * Voigt bulk modulus in GPa
+         */
+        voigt: number;
+        /**
+         * Reuss bulk modulus in GPa
+         */
+        reuss: number;
+        /**
+         * Voigt-Reuss-Hill bulk modulus in GPa
+         */
+        vrh: number;
+    } | null;
+    shear_modulus: {
+        /**
+         * Voigt shear modulus in GPa
+         */
+        voigt: number;
+        /**
+         * Reuss shear modulus in GPa
+         */
+        reuss: number;
+        /**
+         * Voigt-Reuss-Hill shear modulus in GPa
+         */
+        vrh: number;
+    } | null;
+    /**
+     * Universal anisotropy index
+     */
+    universal_anisotropy: number | null;
+    /**
+     * Homogeneous Poisson ratio
+     */
+    homogeneous_poisson: number | null;
+    /**
+     * Total energy
+     */
+    e_total?: number | null;
+    /**
+     * Ionic energy
+     */
+    e_ionic?: number | null;
+    /**
+     * Electronic energy
+     */
+    e_electronic?: number | null;
+    /**
+     * Refractive index
+     */
+    n?: number | null;
+    /**
+     * Maximum elastic constant
+     */
+    e_ij_max?: number | null;
+    /**
+     * Weighted surface energy in eV/Å²
+     */
+    weighted_surface_energy_EV_PER_ANG2?: number | null;
+    /**
+     * Weighted surface energy
+     */
+    weighted_surface_energy?: number | null;
+    /**
+     * Weighted work function
+     */
+    weighted_work_function?: number | null;
+    /**
+     * Surface anisotropy
+     */
+    surface_anisotropy?: number | null;
+    /**
+     * Shape factor
+     */
+    shape_factor?: number | null;
+    /**
+     * Whether surface has reconstruction
+     */
+    has_reconstructed?: boolean | null;
+    /**
+     * Possible ionic species
+     */
+    possible_species: string[] | null;
+    has_props: {
+        materials: boolean;
+        thermo: boolean;
+        xas: boolean;
+        grain_boundaries: boolean;
+        chemenv: boolean;
+        electronic_structure: boolean;
+        absorption: boolean;
+        bandstructure: boolean;
+        dos: boolean;
+        magnetism: boolean;
+        elasticity: boolean;
+        dielectric: boolean;
+        piezoelectric: boolean;
+        surface_properties: boolean;
+        oxi_states: boolean;
+        provenance: boolean;
+        charge_density: boolean;
+        eos: boolean;
+        phonon: boolean;
+        insertion_electrodes: boolean;
+        substrates: boolean;
+    };
+    /**
+     * Whether this is a theoretical material
+     */
+    theoretical: boolean;
+    database_IDs: {
+        /**
+         * ICSD database identifiers
+         */
+        icsd?: string[];
+    };
+}
+/**
+ * This interface was referenced by `MaterialsProjectSchema`'s JSON-Schema
+ * via the `definition` "bandstructure_data".
+ */
+export interface BandstructureData {
+    task_id: string;
+    band_gap: number;
+    cbm: {
+        band_index: {
+            [k: string]: number[];
+        };
+        kpoint_index: number[];
+        kpoint: {
+            lattice: {
+                "@module": string;
+                "@class": string;
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                pbc: [boolean, boolean, boolean];
+            };
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            fcoords: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            ccoords: [number, number, number];
+            label: string | null;
+            "@module": string;
+            "@class": string;
+        };
+        energy: number;
+        projections: {
+            [k: string]: number[][];
+        };
+    } | null;
+    vbm: {
+        band_index: {
+            [k: string]: number[];
+        };
+        kpoint_index: number[];
+        kpoint: {
+            lattice: {
+                "@module": string;
+                "@class": string;
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                pbc: [boolean, boolean, boolean];
+            };
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            fcoords: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            ccoords: [number, number, number];
+            label: string | null;
+            "@module": string;
+            "@class": string;
+        };
+        energy: number;
+        projections: {
+            [k: string]: number[][];
+        };
+    } | null;
+    efermi: number | null;
+    is_gap_direct: boolean;
+    is_metal: boolean;
+    magnetic_ordering: string;
+    equivalent_labels: {
+        [k: string]: {
+            [k: string]: {
+                [k: string]: string;
+            };
+        };
+    };
+    nbands: number;
+    direct_gap: number;
+}
+/**
+ * This interface was referenced by `MaterialsProjectSchema`'s JSON-Schema
+ * via the `definition` "band_extrema".
+ */
+export interface BandExtrema {
+    band_index: {
+        [k: string]: number[];
+    };
+    kpoint_index: number[];
+    kpoint: {
+        lattice: {
+            "@module": string;
+            "@class": string;
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            matrix: [[number, number, number], [number, number, number], [number, number, number]];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            pbc: [boolean, boolean, boolean];
+        };
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        fcoords: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        ccoords: [number, number, number];
+        label: string | null;
+        "@module": string;
+        "@class": string;
+    };
+    energy: number;
+    projections: {
+        [k: string]: number[][];
+    };
+}
+/**
+ * This interface was referenced by `MaterialsProjectSchema`'s JSON-Schema
+ * via the `definition` "kpoint".
+ */
+export interface Kpoint {
+    lattice: {
+        "@module": string;
+        "@class": string;
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        matrix: [[number, number, number], [number, number, number], [number, number, number]];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        pbc: [boolean, boolean, boolean];
+    };
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    fcoords: [number, number, number];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    ccoords: [number, number, number];
+    label: string | null;
+    "@module": string;
+    "@class": string;
+}
+/**
+ * This interface was referenced by `MaterialsProjectSchema`'s JSON-Schema
+ * via the `definition` "dos_data".
+ */
+export interface DosData {
+    task_id: string;
+    band_gap: number;
+    cbm: number | null;
+    vbm: number | null;
+    efermi: number;
+    spin_polarization: number | null;
+}
 /** Schema dist/js/schema/core/abstract/2d_data.json */
 export interface DimensionDataSchema {
     /**
