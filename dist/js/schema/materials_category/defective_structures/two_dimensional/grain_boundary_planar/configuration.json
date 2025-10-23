@@ -837,14 +837,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -859,7 +851,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -1636,14 +1634,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -1658,7 +1648,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -2686,14 +2682,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -2708,7 +2696,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -3485,14 +3479,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -3507,7 +3493,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -4494,14 +4486,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -4516,7 +4500,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -5293,14 +5283,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -5315,7 +5297,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -6343,14 +6331,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -6365,7 +6345,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -7142,14 +7128,6 @@
                                                                 "source",
                                                                 "origin"
                                                             ],
-                                                            "source": {
-                                                                "enum": [
-                                                                    "MaterialsProject",
-                                                                    "MaterialsProjectLegacy",
-                                                                    "ICSD",
-                                                                    "2dmatpedia"
-                                                                ]
-                                                            },
                                                             "properties": {
                                                                 "id": {
                                                                     "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -7164,7 +7142,13 @@
                                                                 },
                                                                 "source": {
                                                                     "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                                                    "type": "string"
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "MaterialsProject",
+                                                                        "MaterialsProjectLegacy",
+                                                                        "ICSD",
+                                                                        "2dmatpedia"
+                                                                    ]
                                                                 },
                                                                 "origin": {
                                                                     "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -7978,14 +7962,6 @@
                                         "source",
                                         "origin"
                                     ],
-                                    "source": {
-                                        "enum": [
-                                            "MaterialsProject",
-                                            "MaterialsProjectLegacy",
-                                            "ICSD",
-                                            "2dmatpedia"
-                                        ]
-                                    },
                                     "properties": {
                                         "id": {
                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -8000,7 +7976,13 @@
                                         },
                                         "source": {
                                             "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                            "type": "string"
+                                            "type": "string",
+                                            "enum": [
+                                                "MaterialsProject",
+                                                "MaterialsProjectLegacy",
+                                                "ICSD",
+                                                "2dmatpedia"
+                                            ]
                                         },
                                         "origin": {
                                             "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
