@@ -823,6 +823,14 @@
                                                         "source",
                                                         "origin"
                                                     ],
+                                                    "source": {
+                                                        "enum": [
+                                                            "MaterialsProject",
+                                                            "MaterialsProjectLegacy",
+                                                            "ICSD",
+                                                            "2dmatpedia"
+                                                        ]
+                                                    },
                                                     "properties": {
                                                         "id": {
                                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -1614,6 +1622,14 @@
                                                         "source",
                                                         "origin"
                                                     ],
+                                                    "source": {
+                                                        "enum": [
+                                                            "MaterialsProject",
+                                                            "MaterialsProjectLegacy",
+                                                            "ICSD",
+                                                            "2dmatpedia"
+                                                        ]
+                                                    },
                                                     "properties": {
                                                         "id": {
                                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -2626,6 +2642,14 @@
                                                                         "source",
                                                                         "origin"
                                                                     ],
+                                                                    "source": {
+                                                                        "enum": [
+                                                                            "MaterialsProject",
+                                                                            "MaterialsProjectLegacy",
+                                                                            "ICSD",
+                                                                            "2dmatpedia"
+                                                                        ]
+                                                                    },
                                                                     "properties": {
                                                                         "id": {
                                                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -3417,6 +3441,14 @@
                                                                         "source",
                                                                         "origin"
                                                                     ],
+                                                                    "source": {
+                                                                        "enum": [
+                                                                            "MaterialsProject",
+                                                                            "MaterialsProjectLegacy",
+                                                                            "ICSD",
+                                                                            "2dmatpedia"
+                                                                        ]
+                                                                    },
                                                                     "properties": {
                                                                         "id": {
                                                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -4224,6 +4256,14 @@
                                                         "source",
                                                         "origin"
                                                     ],
+                                                    "source": {
+                                                        "enum": [
+                                                            "MaterialsProject",
+                                                            "MaterialsProjectLegacy",
+                                                            "ICSD",
+                                                            "2dmatpedia"
+                                                        ]
+                                                    },
                                                     "properties": {
                                                         "id": {
                                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",
@@ -5261,6 +5301,14 @@
                                         "source",
                                         "origin"
                                     ],
+                                    "source": {
+                                        "enum": [
+                                            "MaterialsProject",
+                                            "MaterialsProjectLegacy",
+                                            "ICSD",
+                                            "2dmatpedia"
+                                        ]
+                                    },
                                     "properties": {
                                         "id": {
                                             "description": "ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32",

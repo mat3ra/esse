@@ -31,8 +31,21 @@
             "$ref": "properties_directory/derived_properties.json"
         },
         "external": {
-            "description": "information about external sources of this material",
-            "$ref": "system/database_source.json"
+            "allOf": [
+                {
+                    "$ref": "system/database_source.json"
+                },
+                {
+                    "source": {
+                        "enum": [
+                            "MaterialsProject",
+                            "MaterialsProjectLegacy",
+                            "ICSD",
+                            "2dmatpedia"
+                        ]
+                    }
+                }
+            ]
         },
         "src": {
             "description": "File information if material was exported from POSCAR, XYZ or UPF file.",

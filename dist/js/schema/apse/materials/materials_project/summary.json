@@ -1,7 +1,7 @@
 {
     "$id": "apse/materials/materials-project/summary",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Materials Project  Schema",
+    "title": "Materials Project Schema",
     "description": "JSON schema for Materials Project API summary endpoint response",
     "type": "object",
     "required": [
