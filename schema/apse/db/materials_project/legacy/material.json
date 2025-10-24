@@ -1,0 +1,297 @@
+{
+    "$id": "apse/db/materials-project/legacy/material",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Materials Project Legacy Material schema",
+    "description": "JSON schema for Materials Project API legacy material endpoint response",
+    "type": "object",
+    "properties": {
+        "energy": {
+            "type": "number",
+            "description": "Total energy"
+        },
+        "energy_per_atom": {
+            "type": "number",
+            "description": "Energy per atom"
+        },
+        "volume": {
+            "type": "number",
+            "description": "Unit cell volume"
+        },
+        "formation_energy_per_atom": {
+            "type": "number",
+            "description": "Formation energy per atom"
+        },
+        "nsites": {
+            "type": "integer",
+            "description": "Number of sites in unit cell"
+        },
+        "unit_cell_formula": {
+            "type": "object",
+            "description": "Unit cell formula as element counts",
+            "additionalProperties": {
+                "type": "number"
+            }
+        },
+        "pretty_formula": {
+            "type": "string",
+            "description": "Pretty formatted chemical formula"
+        },
+        "is_hubbard": {
+            "type": "boolean",
+            "description": "Whether Hubbard U correction was applied"
+        },
+        "elements": {
+            "type": "array",
+            "description": "List of elements in the material",
+            "items": {
+                "type": "string"
+            }
+        },
+        "nelements": {
+            "type": "integer",
+            "description": "Number of distinct elements"
+        },
+        "e_above_hull": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Energy above convex hull"
+        },
+        "hubbards": {
+            "type": "object",
+            "description": "Hubbard U values",
+            "additionalProperties": true
+        },
+        "is_compatible": {
+            "type": "boolean",
+            "description": "Whether material is compatible"
+        },
+        "spacegroup": {
+            "type": "object",
+            "description": "Spacegroup information",
+            "properties": {
+                "symprec": {
+                    "type": "number"
+                },
+                "source": {
+                    "type": "string"
+                },
+                "symbol": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "integer"
+                },
+                "point_group": {
+                    "type": "string"
+                },
+                "crystal_system": {
+                    "type": "string"
+                },
+                "hall": {
+                    "type": "string"
+                }
+            }
+        },
+        "task_ids": {
+            "type": "array",
+            "description": "List of task IDs",
+            "items": {
+                "type": "string"
+            }
+        },
+        "band_gap": {
+            "type": "number",
+            "description": "Band gap value"
+        },
+        "density": {
+            "type": "number",
+            "description": "Material density"
+        },
+        "icsd_id": {
+            "type": [
+                "integer",
+                "null"
+            ],
+            "description": "ICSD ID (single)"
+        },
+        "icsd_ids": {
+            "type": "array",
+            "description": "List of ICSD IDs",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "cif": {
+            "type": "string",
+            "description": "CIF file content"
+        },
+        "total_magnetization": {
+            "type": "number",
+            "description": "Total magnetization"
+        },
+        "material_id": {
+            "type": "string",
+            "description": "Material ID from Materials Project"
+        },
+        "oxide_type": {
+            "type": "string",
+            "description": "Oxide type classification"
+        },
+        "tags": {
+            "type": "array",
+            "description": "Material tags/names",
+            "items": {
+                "type": "string"
+            }
+        },
+        "elasticity": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Elasticity data",
+            "properties": {
+                "G_Reuss": {
+                    "type": "number",
+                    "description": "Reuss shear modulus in GPa"
+                },
+                "G_VRH": {
+                    "type": "number",
+                    "description": "Voigt-Reuss-Hill shear modulus in GPa"
+                },
+                "G_Voigt": {
+                    "type": "number",
+                    "description": "Voigt shear modulus in GPa"
+                },
+                "G_Voigt_Reuss_Hill": {
+                    "type": "number",
+                    "description": "Voigt-Reuss-Hill shear modulus in GPa (alternative field)"
+                },
+                "K_Reuss": {
+                    "type": "number",
+                    "description": "Reuss bulk modulus in GPa"
+                },
+                "K_VRH": {
+                    "type": "number",
+                    "description": "Voigt-Reuss-Hill bulk modulus in GPa"
+                },
+                "K_Voigt": {
+                    "type": "number",
+                    "description": "Voigt bulk modulus in GPa"
+                },
+                "K_Voigt_Reuss_Hill": {
+                    "type": "number",
+                    "description": "Voigt-Reuss-Hill bulk modulus in GPa (alternative field)"
+                },
+                "elastic_anisotropy": {
+                    "type": "number",
+                    "description": "Elastic anisotropy"
+                },
+                "elastic_tensor": {
+                    "type": "array",
+                    "description": "6x6 elastic tensor in GPa",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "homogeneous_poisson": {
+                    "type": "number",
+                    "description": "Homogeneous Poisson ratio"
+                },
+                "poisson_ratio": {
+                    "type": "number",
+                    "description": "Poisson ratio"
+                },
+                "universal_anisotropy": {
+                    "type": "number",
+                    "description": "Universal elastic anisotropy"
+                },
+                "elastic_tensor_original": {
+                    "type": "array",
+                    "description": "Original 6x6 elastic tensor in GPa",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "compliance_tensor": {
+                    "type": "array",
+                    "description": "6x6 compliance tensor in GPa^-1",
+                    "items": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "warnings": {
+                    "type": "array",
+                    "description": "Warnings about elastic properties",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "nsites": {
+                    "type": "integer",
+                    "description": "Number of sites in the structure"
+                }
+            }
+        },
+        "piezo": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Piezoelectric data"
+        },
+        "diel": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Dielectric data"
+        },
+        "deprecated": {
+            "type": "boolean",
+            "description": "Whether material is deprecated"
+        },
+        "full_formula": {
+            "type": "string",
+            "description": "Full chemical formula"
+        }
+    },
+    "required": [
+        "material_id",
+        "energy",
+        "energy_per_atom",
+        "volume",
+        "formation_energy_per_atom",
+        "nsites",
+        "unit_cell_formula",
+        "pretty_formula",
+        "is_hubbard",
+        "elements",
+        "nelements",
+        "e_above_hull",
+        "hubbards",
+        "is_compatible",
+        "spacegroup",
+        "task_ids",
+        "band_gap",
+        "density",
+        "icsd_ids",
+        "cif",
+        "total_magnetization",
+        "oxide_type",
+        "tags",
+        "deprecated",
+        "full_formula"
+    ]
+}

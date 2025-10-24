@@ -1,5 +1,5 @@
 {
-    "$id": "apse/materials/materials-project/summary",
+    "$id": "apse/db/materials-project/2025.9.25/summary",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Materials Project Schema",
     "description": "JSON schema for Materials Project API summary endpoint response",

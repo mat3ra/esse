@@ -36,17 +36,7 @@
                     "$ref": "system/database_source.json"
                 },
                 {
-                    "properties": {
-                        "source": {
-                            "type": "string",
-                            "enum": [
-                                "MaterialsProject",
-                                "MaterialsProjectLegacy",
-                                "ICSD",
-                                "2dmatpedia"
-                            ]
-                        }
-                    }
+                    "$ref": "apse/db/third_party_sources.json"
                 }
             ]
         },

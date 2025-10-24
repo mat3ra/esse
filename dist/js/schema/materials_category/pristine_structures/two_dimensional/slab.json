@@ -804,8 +804,8 @@
                                     "type": "object",
                                     "required": [
                                         "id",
-                                        "source",
-                                        "origin"
+                                        "origin",
+                                        "source"
                                     ],
                                     "properties": {
                                         "id": {
@@ -1601,8 +1601,8 @@
                                     "type": "object",
                                     "required": [
                                         "id",
-                                        "source",
-                                        "origin"
+                                        "origin",
+                                        "source"
                                     ],
                                     "properties": {
                                         "id": {
