@@ -1,5 +1,5 @@
 "use strict";
-/** Schema dist/js/schema/apse/db/nist_jarvis/2024.3.13/atoms.json */
+/** Schema dist/js/schema/apse/db/materials_project/2025.9.25/summary.json */
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Action = exports.Type = void 0;
 /**

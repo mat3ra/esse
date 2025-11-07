@@ -1,0 +1,1265 @@
+{
+    "$id": "apse/db/materials-project/2025.9.25/summary",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Materials Project Schema",
+    "description": "JSON schema for Materials Project API summary endpoint response",
+    "type": "object",
+    "properties": {
+        "builder_meta": {
+            "type": "object",
+            "properties": {
+                "emmet_version": {
+                    "type": "string",
+                    "description": "Version of emmet library used"
+                },
+                "pymatgen_version": {
+                    "type": "string",
+                    "description": "Version of pymatgen library used"
+                },
+                "run_id": {
+                    "type": "string",
+                    "description": "Unique identifier for the calculation run"
+                },
+                "batch_id": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Batch identifier for grouped calculations"
+                },
+                "database_version": {
+                    "type": "string",
+                    "description": "Version of the Materials Project database"
+                },
+                "build_date": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "Date when the calculation was performed"
+                },
+                "license": {
+                    "type": "string",
+                    "description": "License information for the data"
+                }
+            },
+            "required": [
+                "emmet_version",
+                "pymatgen_version",
+                "run_id",
+                "database_version",
+                "build_date",
+                "license"
+            ]
+        },
+        "nsites": {
+            "type": "integer",
+            "description": "Number of sites in the structure"
+        },
+        "elements": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of chemical elements in the material"
+        },
+        "nelements": {
+            "type": "integer",
+            "description": "Number of unique elements"
+        },
+        "composition": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "number"
+            },
+            "description": "Chemical composition as element: count mapping"
+        },
+        "composition_reduced": {
+            "type": "object",
+            "additionalProperties": {
+                "type": "number"
+            },
+            "description": "Reduced chemical composition"
+        },
+        "formula_pretty": {
+            "type": "string",
+            "description": "Human-readable chemical formula"
+        },
+        "formula_anonymous": {
+            "type": "string",
+            "description": "Anonymous chemical formula"
+        },
+        "chemsys": {
+            "type": "string",
+            "description": "Chemical system identifier"
+        },
+        "volume": {
+            "type": "number",
+            "description": "Unit cell volume in cubic Angstroms"
+        },
+        "density": {
+            "type": "number",
+            "description": "Material density in g/cm³"
+        },
+        "density_atomic": {
+            "type": "number",
+            "description": "Atomic density"
+        },
+        "symmetry": {
+            "type": "object",
+            "properties": {
+                "crystal_system": {
+                    "type": "string",
+                    "description": "Crystal system classification"
+                },
+                "symbol": {
+                    "type": "string",
+                    "description": "Space group symbol"
+                },
+                "hall": {
+                    "type": [
+                        "string",
+                        "null"
+                    ],
+                    "description": "Hall symbol"
+                },
+                "number": {
+                    "type": "integer",
+                    "description": "Space group number"
+                },
+                "point_group": {
+                    "type": "string",
+                    "description": "Point group symbol"
+                },
+                "symprec": {
+                    "type": "number",
+                    "description": "Symmetry precision tolerance"
+                },
+                "angle_tolerance": {
+                    "type": "number",
+                    "description": "Angle tolerance for symmetry analysis"
+                },
+                "version": {
+                    "type": "string",
+                    "description": "Version of symmetry analysis software"
+                }
+            },
+            "required": [
+                "crystal_system",
+                "symbol",
+                "number",
+                "point_group",
+                "symprec",
+                "angle_tolerance",
+                "version"
+            ]
+        },
+        "material_id": {
+            "type": "string",
+            "description": "Unique Materials Project identifier"
+        },
+        "deprecated": {
+            "type": "boolean",
+            "description": "Whether this material entry is deprecated"
+        },
+        "deprecation_reasons": {
+            "type": [
+                "array",
+                "null"
+            ],
+            "items": {
+                "type": "string"
+            },
+            "description": "Reasons for deprecation if applicable"
+        },
+        "last_updated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last update timestamp"
+        },
+        "origins": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Origin name (e.g., structure, energy, magnetism)"
+                    },
+                    "task_id": {
+                        "type": "string",
+                        "description": "Task identifier for this origin"
+                    },
+                    "last_updated": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Last update for this origin"
+                    }
+                },
+                "required": [
+                    "name",
+                    "task_id",
+                    "last_updated"
+                ]
+            }
+        },
+        "warnings": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Warning messages"
+        },
+        "structure": {
+            "type": "object",
+            "properties": {
+                "@module": {
+                    "type": "string",
+                    "description": "Python module name"
+                },
+                "@class": {
+                    "type": "string",
+                    "description": "Python class name"
+                },
+                "charge": {
+                    "type": "number",
+                    "description": "Total charge of the structure"
+                },
+                "lattice": {
+                    "type": "object",
+                    "properties": {
+                        "matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "minItems": 3,
+                                "maxItems": 3
+                            },
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "description": "Lattice matrix"
+                        },
+                        "pbc": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "description": "Periodic boundary conditions"
+                        },
+                        "a": {
+                            "type": "number",
+                            "description": "Lattice parameter a"
+                        },
+                        "b": {
+                            "type": "number",
+                            "description": "Lattice parameter b"
+                        },
+                        "c": {
+                            "type": "number",
+                            "description": "Lattice parameter c"
+                        },
+                        "alpha": {
+                            "type": "number",
+                            "description": "Lattice angle alpha"
+                        },
+                        "beta": {
+                            "type": "number",
+                            "description": "Lattice angle beta"
+                        },
+                        "gamma": {
+                            "type": "number",
+                            "description": "Lattice angle gamma"
+                        },
+                        "volume": {
+                            "type": "number",
+                            "description": "Unit cell volume"
+                        }
+                    },
+                    "required": [
+                        "matrix",
+                        "pbc",
+                        "a",
+                        "b",
+                        "c",
+                        "alpha",
+                        "beta",
+                        "gamma",
+                        "volume"
+                    ]
+                },
+                "properties": {
+                    "type": "object",
+                    "description": "Additional structure properties"
+                },
+                "sites": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "species": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "element": {
+                                            "type": "string",
+                                            "description": "Chemical element"
+                                        },
+                                        "occu": {
+                                            "type": "number",
+                                            "description": "Occupancy"
+                                        }
+                                    },
+                                    "required": [
+                                        "element",
+                                        "occu"
+                                    ]
+                                }
+                            },
+                            "abc": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "minItems": 3,
+                                "maxItems": 3,
+                                "description": "Fractional coordinates"
+                            },
+                            "properties": {
+                                "type": "object",
+                                "properties": {
+                                    "magmom": {
+                                        "type": "number",
+                                        "description": "Magnetic moment"
+                                    }
+                                }
+                            },
+                            "label": {
+                                "type": "string",
+                                "description": "Site label"
+                            },
+                            "xyz": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "minItems": 3,
+                                "maxItems": 3,
+                                "description": "Cartesian coordinates"
+                            }
+                        },
+                        "required": [
+                            "species",
+                            "abc",
+                            "label",
+                            "xyz"
+                        ]
+                    }
+                }
+            },
+            "required": [
+                "@module",
+                "@class",
+                "charge",
+                "lattice",
+                "properties",
+                "sites"
+            ]
+        },
+        "property_name": {
+            "type": "string",
+            "description": "Name of the property endpoint"
+        },
+        "task_ids": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "List of task identifiers"
+        },
+        "uncorrected_energy_per_atom": {
+            "type": "number",
+            "description": "Uncorrected energy per atom in eV"
+        },
+        "energy_per_atom": {
+            "type": "number",
+            "description": "Energy per atom in eV"
+        },
+        "formation_energy_per_atom": {
+            "type": "number",
+            "description": "Formation energy per atom in eV"
+        },
+        "energy_above_hull": {
+            "type": "number",
+            "description": "Energy above convex hull in eV"
+        },
+        "is_stable": {
+            "type": "boolean",
+            "description": "Whether the material is thermodynamically stable"
+        },
+        "equilibrium_reaction_energy_per_atom": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Equilibrium reaction energy per atom in eV"
+        },
+        "decomposes_to": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "material_id": {
+                                "type": "string",
+                                "description": "Material ID of decomposition product"
+                            },
+                            "formula": {
+                                "type": "string",
+                                "description": "Formula of decomposition product"
+                            },
+                            "amount": {
+                                "type": "number",
+                                "description": "Amount of decomposition product"
+                            }
+                        },
+                        "required": [
+                            "material_id",
+                            "formula",
+                            "amount"
+                        ]
+                    }
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "xas": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "edge": {
+                                "type": "string",
+                                "description": "XAS edge type (K, L, M, etc.)"
+                            },
+                            "absorbing_element": {
+                                "type": "string",
+                                "description": "Element for XAS absorption"
+                            },
+                            "spectrum_type": {
+                                "type": "string",
+                                "description": "Type of XAS spectrum (XANES, EXAFS, XAFS)"
+                            }
+                        },
+                        "required": [
+                            "edge",
+                            "absorbing_element",
+                            "spectrum_type"
+                        ]
+                    }
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "grain_boundaries": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Grain boundary information"
+        },
+        "band_gap": {
+            "type": "number",
+            "description": "Band gap in eV"
+        },
+        "cbm": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Conduction band minimum in eV"
+        },
+        "vbm": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Valence band maximum in eV"
+        },
+        "efermi": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Fermi energy in eV"
+        },
+        "is_gap_direct": {
+            "type": "boolean",
+            "description": "Whether the band gap is direct"
+        },
+        "is_metal": {
+            "type": "boolean",
+            "description": "Whether the material is metallic"
+        },
+        "es_source_calc_id": {
+            "type": [
+                "string",
+                "null"
+            ],
+            "description": "Source calculation ID for electronic structure"
+        },
+        "bandstructure": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "setyawan_curtarolo": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/definitions/bandstructure_data"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ]
+                        },
+                        "hinuma": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/definitions/bandstructure_data"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ]
+                        },
+                        "latimer_munro": {
+                            "oneOf": [
+                                {
+                                    "$ref": "#/definitions/bandstructure_data"
+                                },
+                                {
+                                    "type": "null"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "dos": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "total": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "$ref": "#/definitions/dos_data"
+                            }
+                        },
+                        "elemental": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "object",
+                                "properties": {
+                                    "total": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/definitions/dos_data"
+                                        }
+                                    },
+                                    "s": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/definitions/dos_data"
+                                        }
+                                    },
+                                    "p": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/definitions/dos_data"
+                                        }
+                                    },
+                                    "d": {
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "$ref": "#/definitions/dos_data"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "orbital": {
+                            "type": "object",
+                            "properties": {
+                                "s": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/definitions/dos_data"
+                                    }
+                                },
+                                "p": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/definitions/dos_data"
+                                    }
+                                },
+                                "d": {
+                                    "type": "object",
+                                    "additionalProperties": {
+                                        "$ref": "#/definitions/dos_data"
+                                    }
+                                }
+                            }
+                        },
+                        "magnetic_ordering": {
+                            "type": "string",
+                            "description": "Magnetic ordering type"
+                        }
+                    }
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "dos_energy_up": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Density of states for spin up"
+        },
+        "dos_energy_down": {
+            "type": [
+                "object",
+                "null"
+            ],
+            "description": "Density of states for spin down"
+        },
+        "is_magnetic": {
+            "type": "boolean",
+            "description": "Whether the material is magnetic"
+        },
+        "ordering": {
+            "type": "string",
+            "description": "Magnetic ordering"
+        },
+        "total_magnetization": {
+            "type": "number",
+            "description": "Total magnetization"
+        },
+        "total_magnetization_normalized_vol": {
+            "type": "number",
+            "description": "Volume-normalized magnetization"
+        },
+        "total_magnetization_normalized_formula_units": {
+            "type": "number",
+            "description": "Formula unit normalized magnetization"
+        },
+        "num_magnetic_sites": {
+            "type": "number",
+            "description": "Number of magnetic sites"
+        },
+        "num_unique_magnetic_sites": {
+            "type": "number",
+            "description": "Number of unique magnetic sites"
+        },
+        "types_of_magnetic_species": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Types of magnetic species"
+        },
+        "bulk_modulus": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "voigt": {
+                            "type": "number",
+                            "description": "Voigt bulk modulus in GPa"
+                        },
+                        "reuss": {
+                            "type": "number",
+                            "description": "Reuss bulk modulus in GPa"
+                        },
+                        "vrh": {
+                            "type": "number",
+                            "description": "Voigt-Reuss-Hill bulk modulus in GPa"
+                        }
+                    },
+                    "required": [
+                        "voigt",
+                        "reuss",
+                        "vrh"
+                    ]
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "shear_modulus": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "voigt": {
+                            "type": "number",
+                            "description": "Voigt shear modulus in GPa"
+                        },
+                        "reuss": {
+                            "type": "number",
+                            "description": "Reuss shear modulus in GPa"
+                        },
+                        "vrh": {
+                            "type": "number",
+                            "description": "Voigt-Reuss-Hill shear modulus in GPa"
+                        }
+                    },
+                    "required": [
+                        "voigt",
+                        "reuss",
+                        "vrh"
+                    ]
+                },
+                {
+                    "type": "null"
+                }
+            ]
+        },
+        "universal_anisotropy": {
+            "oneOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Universal anisotropy index"
+        },
+        "homogeneous_poisson": {
+            "oneOf": [
+                {
+                    "type": "number"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Homogeneous Poisson ratio"
+        },
+        "e_total": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Total energy"
+        },
+        "e_ionic": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Ionic energy"
+        },
+        "e_electronic": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Electronic energy"
+        },
+        "n": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Refractive index"
+        },
+        "e_ij_max": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Maximum elastic constant"
+        },
+        "weighted_surface_energy_EV_PER_ANG2": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Weighted surface energy in eV/Å²"
+        },
+        "weighted_surface_energy": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Weighted surface energy"
+        },
+        "weighted_work_function": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Weighted work function"
+        },
+        "surface_anisotropy": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Surface anisotropy"
+        },
+        "shape_factor": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "description": "Shape factor"
+        },
+        "has_reconstructed": {
+            "type": [
+                "boolean",
+                "null"
+            ],
+            "description": "Whether surface has reconstruction"
+        },
+        "possible_species": {
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "Possible ionic species"
+        },
+        "has_props": {
+            "type": "object",
+            "properties": {
+                "materials": {
+                    "type": "boolean"
+                },
+                "thermo": {
+                    "type": "boolean"
+                },
+                "xas": {
+                    "type": "boolean"
+                },
+                "grain_boundaries": {
+                    "type": "boolean"
+                },
+                "chemenv": {
+                    "type": "boolean"
+                },
+                "electronic_structure": {
+                    "type": "boolean"
+                },
+                "absorption": {
+                    "type": "boolean"
+                },
+                "bandstructure": {
+                    "type": "boolean"
+                },
+                "dos": {
+                    "type": "boolean"
+                },
+                "magnetism": {
+                    "type": "boolean"
+                },
+                "elasticity": {
+                    "type": "boolean"
+                },
+                "dielectric": {
+                    "type": "boolean"
+                },
+                "piezoelectric": {
+                    "type": "boolean"
+                },
+                "surface_properties": {
+                    "type": "boolean"
+                },
+                "oxi_states": {
+                    "type": "boolean"
+                },
+                "provenance": {
+                    "type": "boolean"
+                },
+                "charge_density": {
+                    "type": "boolean"
+                },
+                "eos": {
+                    "type": "boolean"
+                },
+                "phonon": {
+                    "type": "boolean"
+                },
+                "insertion_electrodes": {
+                    "type": "boolean"
+                },
+                "substrates": {
+                    "type": "boolean"
+                }
+            },
+            "required": [
+                "materials",
+                "thermo",
+                "xas",
+                "grain_boundaries",
+                "chemenv",
+                "electronic_structure",
+                "absorption",
+                "bandstructure",
+                "dos",
+                "magnetism",
+                "elasticity",
+                "dielectric",
+                "piezoelectric",
+                "surface_properties",
+                "oxi_states",
+                "provenance",
+                "charge_density",
+                "eos",
+                "phonon",
+                "insertion_electrodes",
+                "substrates"
+            ]
+        },
+        "theoretical": {
+            "type": "boolean",
+            "description": "Whether this is a theoretical material"
+        },
+        "database_IDs": {
+            "type": "object",
+            "properties": {
+                "icsd": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "ICSD database identifiers"
+                }
+            }
+        }
+    },
+    "required": [
+        "builder_meta",
+        "nsites",
+        "elements",
+        "nelements",
+        "composition",
+        "composition_reduced",
+        "formula_pretty",
+        "formula_anonymous",
+        "chemsys",
+        "volume",
+        "density",
+        "density_atomic",
+        "symmetry",
+        "material_id",
+        "deprecated",
+        "last_updated",
+        "origins",
+        "warnings",
+        "structure",
+        "property_name",
+        "task_ids",
+        "uncorrected_energy_per_atom",
+        "energy_per_atom",
+        "formation_energy_per_atom",
+        "energy_above_hull",
+        "is_stable",
+        "decomposes_to",
+        "xas",
+        "band_gap",
+        "cbm",
+        "vbm",
+        "efermi",
+        "is_gap_direct",
+        "is_metal",
+        "bandstructure",
+        "dos",
+        "is_magnetic",
+        "ordering",
+        "total_magnetization",
+        "total_magnetization_normalized_vol",
+        "total_magnetization_normalized_formula_units",
+        "num_magnetic_sites",
+        "num_unique_magnetic_sites",
+        "types_of_magnetic_species",
+        "bulk_modulus",
+        "shear_modulus",
+        "universal_anisotropy",
+        "homogeneous_poisson",
+        "possible_species",
+        "has_props",
+        "theoretical",
+        "database_IDs"
+    ],
+    "definitions": {
+        "bandstructure_data": {
+            "type": "object",
+            "properties": {
+                "task_id": {
+                    "type": "string"
+                },
+                "band_gap": {
+                    "type": "number"
+                },
+                "cbm": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/band_extrema"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "vbm": {
+                    "oneOf": [
+                        {
+                            "$ref": "#/definitions/band_extrema"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "efermi": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "is_gap_direct": {
+                    "type": "boolean"
+                },
+                "is_metal": {
+                    "type": "boolean"
+                },
+                "magnetic_ordering": {
+                    "type": "string"
+                },
+                "equivalent_labels": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "object",
+                            "additionalProperties": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "nbands": {
+                    "type": "number"
+                },
+                "direct_gap": {
+                    "type": "number"
+                }
+            },
+            "required": [
+                "task_id",
+                "band_gap",
+                "cbm",
+                "vbm",
+                "efermi",
+                "is_gap_direct",
+                "is_metal",
+                "magnetic_ordering",
+                "equivalent_labels",
+                "nbands",
+                "direct_gap"
+            ]
+        },
+        "band_extrema": {
+            "type": "object",
+            "properties": {
+                "band_index": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "number"
+                        }
+                    }
+                },
+                "kpoint_index": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    }
+                },
+                "kpoint": {
+                    "$ref": "#/definitions/kpoint"
+                },
+                "energy": {
+                    "type": "number"
+                },
+                "projections": {
+                    "type": "object",
+                    "additionalProperties": {
+                        "type": "array",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                }
+            },
+            "required": [
+                "band_index",
+                "kpoint_index",
+                "kpoint",
+                "energy",
+                "projections"
+            ]
+        },
+        "kpoint": {
+            "type": "object",
+            "properties": {
+                "lattice": {
+                    "type": "object",
+                    "properties": {
+                        "@module": {
+                            "type": "string"
+                        },
+                        "@class": {
+                            "type": "string"
+                        },
+                        "matrix": {
+                            "type": "array",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "number"
+                                },
+                                "minItems": 3,
+                                "maxItems": 3
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        },
+                        "pbc": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            },
+                            "minItems": 3,
+                            "maxItems": 3
+                        }
+                    },
+                    "required": [
+                        "@module",
+                        "@class",
+                        "matrix",
+                        "pbc"
+                    ]
+                },
+                "fcoords": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                "ccoords": {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                "label": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "@module": {
+                    "type": "string"
+                },
+                "@class": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "lattice",
+                "fcoords",
+                "ccoords",
+                "label",
+                "@module",
+                "@class"
+            ]
+        },
+        "dos_data": {
+            "type": "object",
+            "properties": {
+                "task_id": {
+                    "type": "string"
+                },
+                "band_gap": {
+                    "type": "number"
+                },
+                "cbm": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "vbm": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "efermi": {
+                    "type": "number"
+                },
+                "spin_polarization": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "task_id",
+                "band_gap",
+                "cbm",
+                "vbm",
+                "efermi",
+                "spin_polarization"
+            ]
+        }
+    }
+}

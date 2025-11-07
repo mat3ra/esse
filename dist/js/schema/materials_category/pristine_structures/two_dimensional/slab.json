@@ -804,8 +804,8 @@
                                     "type": "object",
                                     "required": [
                                         "id",
-                                        "source",
-                                        "origin"
+                                        "origin",
+                                        "source"
                                     ],
                                     "properties": {
                                         "id": {
@@ -821,7 +821,13 @@
                                         },
                                         "source": {
                                             "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                            "type": "string"
+                                            "type": "string",
+                                            "enum": [
+                                                "MaterialsProject",
+                                                "MaterialsProjectLegacy",
+                                                "ICSD",
+                                                "2dmatpedia"
+                                            ]
                                         },
                                         "origin": {
                                             "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
@@ -1595,8 +1601,8 @@
                                     "type": "object",
                                     "required": [
                                         "id",
-                                        "source",
-                                        "origin"
+                                        "origin",
+                                        "source"
                                     ],
                                     "properties": {
                                         "id": {
@@ -1612,7 +1618,13 @@
                                         },
                                         "source": {
                                             "description": "Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.",
-                                            "type": "string"
+                                            "type": "string",
+                                            "enum": [
+                                                "MaterialsProject",
+                                                "MaterialsProjectLegacy",
+                                                "ICSD",
+                                                "2dmatpedia"
+                                            ]
                                         },
                                         "origin": {
                                             "description": "Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).",
