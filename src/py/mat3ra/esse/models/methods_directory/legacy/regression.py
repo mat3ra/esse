@@ -100,11 +100,11 @@ class RegressionData(BaseModel):
 
 
 class LegacyMethodRegression(BaseModel):
-    type: Type
+    type: Optional[Type] = "pseudopotential"
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Subtype
+    subtype: Optional[Subtype] = "us"
     """
     general subtype of this method, eg. `ultra-soft`
     """

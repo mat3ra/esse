@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type80(Enum):
+class Type78(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type81(Enum):
+class Type79(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type82(Enum):
+class Type80(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type83(Enum):
+class Type81(Enum):
     execution = "execution"
 
 
@@ -773,7 +773,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type84(Enum):
+class Type82(Enum):
     assignment = "assignment"
 
 
@@ -864,7 +864,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type85(Enum):
+class Type83(Enum):
     processing = "processing"
 
 
@@ -979,11 +979,11 @@ class WorkflowSubworkflowUnitSchema(
 
 
 class BaseMethod(BaseModel):
-    type: str
+    type: Optional[str] = "pseudopotential"
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: str
+    subtype: Optional[str] = "us"
     """
     general subtype of this method, eg. `ultra-soft`
     """
@@ -1001,11 +1001,11 @@ class BaseModel1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: str
+    type: Optional[str] = "dft"
     """
     general type of the model, eg. `dft`
     """
-    subtype: str
+    subtype: Optional[str] = "gga"
     """
     general subtype of the model, eg. `lda`
     """

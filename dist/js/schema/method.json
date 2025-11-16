@@ -10,11 +10,13 @@
     "properties": {
         "type": {
             "description": "general type of this method, eg. `pseudopotential`",
-            "type": "string"
+            "type": "string",
+            "default": "pseudopotential"
         },
         "subtype": {
             "description": "general subtype of this method, eg. `ultra-soft`",
-            "type": "string"
+            "type": "string",
+            "default": "us"
         },
         "precision": {
             "description": "Object showing the actual possible precision based on theory and implementation",

@@ -2069,11 +2069,11 @@ class WorkflowSubworkflowUnitSchema(
 
 
 class BaseMethod(BaseModel):
-    type: str
+    type: Optional[str] = "pseudopotential"
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: str
+    subtype: Optional[str] = "us"
     """
     general subtype of this method, eg. `ultra-soft`
     """
@@ -2091,11 +2091,11 @@ class BaseModelModel(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: str
+    type: Optional[str] = "dft"
     """
     general type of the model, eg. `dft`
     """
-    subtype: str
+    subtype: Optional[str] = "gga"
     """
     general subtype of the model, eg. `lda`
     """

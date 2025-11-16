@@ -10,14 +10,10 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "unknown"
-            ]
+            "const": "unknown"
         },
         "subtype": {
-            "enum": [
-                "unknown"
-            ]
+            "const": "unknown"
         }
     }
 }

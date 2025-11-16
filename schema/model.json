@@ -6,11 +6,13 @@
     "properties": {
         "type": {
             "description": "general type of the model, eg. `dft`",
-            "type": "string"
+            "type": "string",
+            "default": "dft"
         },
         "subtype": {
             "description": "general subtype of the model, eg. `lda`",
-            "type": "string"
+            "type": "string",
+            "default": "gga"
         },
         "method": {
             "$ref": "method.json"

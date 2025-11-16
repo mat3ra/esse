@@ -16,7 +16,8 @@
                 "kernel_ridge"
             ],
             "description": "general type of this method, eg. `pseudopotential`",
-            "type": "string"
+            "type": "string",
+            "default": "pseudopotential"
         },
         "subtype": {
             "enum": [
@@ -24,7 +25,8 @@
                 "ridge"
             ],
             "description": "general subtype of this method, eg. `ultra-soft`",
-            "type": "string"
+            "type": "string",
+            "default": "us"
         },
         "precision": {
             "$schema": "http://json-schema.org/draft-07/schema#",

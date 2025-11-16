@@ -4,26 +4,17 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Literal, Optional
 
 from pydantic import BaseModel
 
 
-class Type(Enum):
-    unknown = "unknown"
-
-
-class Subtype(Enum):
-    unknown = "unknown"
-
-
 class LegacyMethodUnknown(BaseModel):
-    type: Type
+    type: Literal["unknown"] = "pseudopotential"
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Subtype
+    subtype: Literal["unknown"] = "us"
     """
     general subtype of this method, eg. `ultra-soft`
     """
