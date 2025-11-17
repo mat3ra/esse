@@ -10,11 +10,11 @@ from pydantic import BaseModel
 
 
 class BaseMethod(BaseModel):
-    type: Optional[str] = "pseudopotential"
+    type: str
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Optional[str] = "us"
+    subtype: str
     """
     general subtype of this method, eg. `ultra-soft`
     """

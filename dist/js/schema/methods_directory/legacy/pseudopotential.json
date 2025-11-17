@@ -11,8 +11,7 @@
         "type": {
             "const": "pseudopotential",
             "description": "general type of this method, eg. `pseudopotential`",
-            "type": "string",
-            "default": "pseudopotential"
+            "type": "string"
         },
         "subtype": {
             "enum": [

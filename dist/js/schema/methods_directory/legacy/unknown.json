@@ -11,14 +11,12 @@
         "type": {
             "const": "unknown",
             "description": "general type of this method, eg. `pseudopotential`",
-            "type": "string",
-            "default": "pseudopotential"
+            "type": "string"
         },
         "subtype": {
             "const": "unknown",
             "description": "general subtype of this method, eg. `ultra-soft`",
-            "type": "string",
-            "default": "us"
+            "type": "string"
         },
         "precision": {
             "description": "Object showing the actual possible precision based on theory and implementation",

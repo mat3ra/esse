@@ -19,11 +19,11 @@ class Subtype(Enum):
 
 
 class BaseMethod(BaseModel):
-    type: Optional[str] = "pseudopotential"
+    type: str
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Optional[str] = "us"
+    subtype: str
     """
     general subtype of this method, eg. `ultra-soft`
     """
@@ -41,11 +41,11 @@ class LegacyModelUnknown(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Optional[Type] = "dft"
+    type: Type
     """
     general type of the model, eg. `dft`
     """
-    subtype: Optional[Subtype] = "gga"
+    subtype: Subtype
     """
     general subtype of the model, eg. `lda`
     """

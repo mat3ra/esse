@@ -10,11 +10,11 @@ from pydantic import BaseModel
 
 
 class LegacyMethodLocalorbital(BaseModel):
-    type: Literal["localorbital"] = "pseudopotential"
+    type: Literal["localorbital"]
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Literal["pople"] = "us"
+    subtype: Literal["pople"]
     """
     general subtype of this method, eg. `ultra-soft`
     """

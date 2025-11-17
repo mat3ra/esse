@@ -2351,13 +2351,11 @@
                         "properties": {
                             "type": {
                                 "description": "general type of the model, eg. `dft`",
-                                "type": "string",
-                                "default": "dft"
+                                "type": "string"
                             },
                             "subtype": {
                                 "description": "general subtype of the model, eg. `lda`",
-                                "type": "string",
-                                "default": "gga"
+                                "type": "string"
                             },
                             "method": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2370,13 +2368,11 @@
                                 "properties": {
                                     "type": {
                                         "description": "general type of this method, eg. `pseudopotential`",
-                                        "type": "string",
-                                        "default": "pseudopotential"
+                                        "type": "string"
                                     },
                                     "subtype": {
                                         "description": "general subtype of this method, eg. `ultra-soft`",
-                                        "type": "string",
-                                        "default": "us"
+                                        "type": "string"
                                     },
                                     "precision": {
                                         "description": "Object showing the actual possible precision based on theory and implementation",

@@ -10,11 +10,11 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseMethod(BaseModel):
-    type: Optional[str] = "pseudopotential"
+    type: str
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Optional[str] = "us"
+    subtype: str
     """
     general subtype of this method, eg. `ultra-soft`
     """
@@ -32,11 +32,11 @@ class BaseModel1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Optional[str] = "dft"
+    type: str
     """
     general type of the model, eg. `dft`
     """
-    subtype: Optional[str] = "gga"
+    subtype: str
     """
     general subtype of the model, eg. `lda`
     """

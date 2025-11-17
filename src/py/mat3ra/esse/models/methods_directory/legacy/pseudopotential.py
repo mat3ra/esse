@@ -18,7 +18,7 @@ class Subtype(Enum):
 
 
 class LegacyMethodPseudopotential(BaseModel):
-    type: Literal["pseudopotential"] = "pseudopotential"
+    type: Literal["pseudopotential"]
     """
     general type of this method, eg. `pseudopotential`
     """

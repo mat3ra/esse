@@ -10,11 +10,11 @@ from pydantic import BaseModel
 
 
 class LegacyMethodUnknown(BaseModel):
-    type: Literal["unknown"] = "pseudopotential"
+    type: Literal["unknown"]
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Literal["unknown"] = "us"
+    subtype: Literal["unknown"]
     """
     general subtype of this method, eg. `ultra-soft`
     """
