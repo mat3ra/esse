@@ -1,0 +1,234 @@
+{
+    "energy": -0.85663276,
+    "energy_per_atom": -0.85663276,
+    "volume": 114.05180544066401,
+    "formation_energy_per_atom": 0.038769612068965564,
+    "nsites": 1,
+    "unit_cell_formula": {
+        "Cs": 1.0
+    },
+    "pretty_formula": "Cs",
+    "is_hubbard": false,
+    "elements": [
+        "Cs"
+    ],
+    "nelements": 1,
+    "e_above_hull": 0.038769612068965564,
+    "hubbards": {},
+    "is_compatible": true,
+    "spacegroup": {
+        "symprec": 0.1,
+        "source": "spglib",
+        "symbol": "Im-3m",
+        "number": 229,
+        "point_group": "m-3m",
+        "crystal_system": "cubic",
+        "hall": "-I 4 2 3"
+    },
+    "task_ids": [
+        "mp-990461",
+        "mp-990456",
+        "mp-990457",
+        "mp-1",
+        "mp-1056804",
+        "mp-1056825",
+        "mp-1056837",
+        "mp-1056840",
+        "mp-1439955",
+        "mp-1588651",
+        "mp-1686392"
+    ],
+    "band_gap": 0.0,
+    "density": 1.9350390306525629,
+    "icsd_id": null,
+    "icsd_ids": [
+        626969,
+        44754,
+        76941,
+        626975,
+        426937
+    ],
+    "cif": "# generated using pymatgen\ndata_Cs\n_symmetry_space_group_name_H-M   'P 1'\n_cell_length_a   5.29144986\n_cell_length_b   5.29144986\n_cell_length_c   5.29144986\n_cell_angle_alpha   109.47122063\n_cell_angle_beta   109.47122063\n_cell_angle_gamma   109.47122063\n_symmetry_Int_Tables_number   1\n_chemical_formula_structural   Cs\n_chemical_formula_sum   Cs1\n_cell_volume   114.05180544\n_cell_formula_units_Z   1\nloop_\n _symmetry_equiv_pos_site_id\n _symmetry_equiv_pos_as_xyz\n  1  'x, y, z'\nloop_\n _atom_site_type_symbol\n _atom_site_label\n _atom_site_symmetry_multiplicity\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_occupancy\n  Cs  Cs0  1  0.00000000  0.00000000  0.00000000  1\n",
+    "total_magnetization": 0.0023078,
+    "material_id": "mp-1",
+    "oxide_type": "None",
+    "tags": [
+        "Cesium",
+        "Cesium - LT"
+    ],
+    "elasticity": {
+        "G_Reuss": 0.0,
+        "G_VRH": 0.0,
+        "G_Voigt": 1.0,
+        "G_Voigt_Reuss_Hill": 0.0,
+        "K_Reuss": 2.0,
+        "K_VRH": 2.0,
+        "K_Voigt": 2.0,
+        "K_Voigt_Reuss_Hill": 2.0,
+        "elastic_anisotropy": 104.62,
+        "elastic_tensor": [
+            [
+                2.0,
+                2.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                2.0,
+                2.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                2.0,
+                2.0,
+                2.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                0.0,
+                1.0
+            ]
+        ],
+        "homogeneous_poisson": 0.38,
+        "poisson_ratio": 0.38,
+        "universal_anisotropy": 104.62,
+        "elastic_tensor_original": [
+            [
+                1.73311735771011,
+                1.7018819040120994,
+                1.7018819040120994,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                1.701854348631678,
+                1.7330667734495018,
+                1.701854348631678,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                1.7018998983082827,
+                1.7018998983082827,
+                1.73308559241878,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                -1.2033337295666204e-06,
+                -1.3333337724174089e-06,
+                -5.220001719148464e-06,
+                1.3915437882900088,
+                0.0,
+                0.0
+            ],
+            [
+                -4.440001462244874e-06,
+                -5.4033351128359714e-06,
+                -2.403334124841945e-06,
+                0.0,
+                1.3915428649563715,
+                0.0
+            ],
+            [
+                -1.8466672748265455e-06,
+                -3.9333346287108985e-07,
+                8.63333617692249e-07,
+                0.0,
+                0.0,
+                1.3915430182897548
+            ]
+        ],
+        "compliance_tensor": [
+            [
+                21424.8,
+                -10615.0,
+                -10615.0,
+                0.0,
+                0.0,
+                0.0
+            ],
+            [
+                -10615.0,
+                21424.8,
+                -10615.0,
+                -0.0,
+                0.0,
+                -0.0
+            ],
+            [
+                -10615.0,
+                -10615.0,
+                21424.8,
+                -0.0,
+                -0.0,
+                0.0
+            ],
+            [
+                0.0,
+                -0.0,
+                -0.0,
+                718.6,
+                -0.0,
+                0.0
+            ],
+            [
+                0.0,
+                0.0,
+                -0.0,
+                -0.0,
+                718.6,
+                -0.0
+            ],
+            [
+                0.0,
+                -0.0,
+                0.0,
+                0.0,
+                -0.0,
+                718.6
+            ]
+        ],
+        "warnings": [
+            "c11 and c12 are within 5% or c12 is greater than c11",
+            "c11 and c13 are within 5% or c13 is greater than c11",
+            "c11 and c23 are within 5% or c23 is greater than c11",
+            "One or more K, G below 2 GPa"
+        ],
+        "nsites": 1
+    },
+    "piezo": null,
+    "diel": null,
+    "deprecated": false,
+    "full_formula": "Cs1"
+}

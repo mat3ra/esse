@@ -3481,7 +3481,7 @@ class Info(BaseModel):
     """
 
 
-class Source3(BaseModel):
+class Source58(BaseModel):
     type: str
     """
     Type of the material property's source.
@@ -3542,7 +3542,7 @@ class PropertyHolderSchema(BaseModel):
     """
     container of the information, specific to each property
     """
-    source: Source3
+    source: Source58
     exabyteId: List[str]
     """
     Id of the corresponding item in the entity bank that this property is obtained for

@@ -402,12 +402,19 @@ class DerivedPropertiesSchema(
     ] = Field(..., discriminator="name")
 
 
+class Source(Enum):
+    MaterialsProject = "MaterialsProject"
+    MaterialsProjectLegacy = "MaterialsProjectLegacy"
+    ICSD = "ICSD"
+    field_2dmatpedia = "2dmatpedia"
+
+
 class DatabaseSourceSchema(BaseModel):
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
     """
-    source: str
+    source: Source
     """
     Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
     """

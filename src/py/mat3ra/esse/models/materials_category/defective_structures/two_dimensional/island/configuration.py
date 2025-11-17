@@ -530,12 +530,19 @@ class DerivedPropertiesSchema(
     ] = Field(..., discriminator="name")
 
 
+class Source(Enum):
+    MaterialsProject = "MaterialsProject"
+    MaterialsProjectLegacy = "MaterialsProjectLegacy"
+    ICSD = "ICSD"
+    field_2dmatpedia = "2dmatpedia"
+
+
 class DatabaseSourceSchema(BaseModel):
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
     """
-    source: str
+    source: Source
     """
     Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
     """
@@ -1020,6 +1027,33 @@ class DerivedPropertiesSchema24(
     ] = Field(..., discriminator="name")
 
 
+class DatabaseSourceSchema24(BaseModel):
+    id: Union[str, float]
+    """
+    ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+    """
+    source: Source
+    """
+    Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+    """
+    origin: bool
+    """
+    Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    Original response from external source.
+    """
+    doi: Optional[str] = None
+    """
+    Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+    """
+    url: Optional[str] = None
+    """
+    The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+    """
+
+
 class Name207(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
@@ -1057,7 +1091,7 @@ class CrystalSchema24(BaseModel):
     basis: BasisSchema25 = Field(..., title="basis schema")
     lattice: LatticeSchema24 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema24]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema24] = Field(None, title="database source schema")
     """
     information about a database source
     """
@@ -1482,6 +1516,33 @@ class DerivedPropertiesSchema25(
     ] = Field(..., discriminator="name")
 
 
+class DatabaseSourceSchema25(BaseModel):
+    id: Union[str, float]
+    """
+    ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+    """
+    source: Source
+    """
+    Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+    """
+    origin: bool
+    """
+    Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    Original response from external source.
+    """
+    doi: Optional[str] = None
+    """
+    Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+    """
+    url: Optional[str] = None
+    """
+    The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+    """
+
+
 class Name215(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
@@ -1519,7 +1580,7 @@ class CrystalSchema25(BaseModel):
     basis: BasisSchema26 = Field(..., title="basis schema")
     lattice: LatticeSchema25 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema25]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema25] = Field(None, title="database source schema")
     """
     information about a database source
     """
@@ -1914,6 +1975,33 @@ class DerivedPropertiesSchema26(
     ] = Field(..., discriminator="name")
 
 
+class DatabaseSourceSchema26(BaseModel):
+    id: Union[str, float]
+    """
+    ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+    """
+    source: Source
+    """
+    Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+    """
+    origin: bool
+    """
+    Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    Original response from external source.
+    """
+    doi: Optional[str] = None
+    """
+    Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+    """
+    url: Optional[str] = None
+    """
+    The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+    """
+
+
 class Name223(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
@@ -1951,7 +2039,7 @@ class CrystalSchema26(BaseModel):
     basis: BasisSchema27 = Field(..., title="basis schema")
     lattice: LatticeSchema26 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema26]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema26] = Field(None, title="database source schema")
     """
     information about a database source
     """
@@ -2352,6 +2440,33 @@ class DerivedPropertiesSchema27(
     ] = Field(..., discriminator="name")
 
 
+class DatabaseSourceSchema27(BaseModel):
+    id: Union[str, float]
+    """
+    ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+    """
+    source: Source
+    """
+    Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+    """
+    origin: bool
+    """
+    Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    Original response from external source.
+    """
+    doi: Optional[str] = None
+    """
+    Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+    """
+    url: Optional[str] = None
+    """
+    The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+    """
+
+
 class Name231(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
@@ -2389,7 +2504,7 @@ class CrystalSchema27(BaseModel):
     basis: BasisSchema28 = Field(..., title="basis schema")
     lattice: LatticeSchema27 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema27]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema27] = Field(None, title="database source schema")
     """
     information about a database source
     """
@@ -2839,6 +2954,33 @@ class DerivedPropertiesSchema28(
     ] = Field(..., discriminator="name")
 
 
+class DatabaseSourceSchema28(BaseModel):
+    id: Union[str, float]
+    """
+    ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
+    """
+    source: Source
+    """
+    Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
+    """
+    origin: bool
+    """
+    Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    Original response from external source.
+    """
+    doi: Optional[str] = None
+    """
+    Digital Object Identifier, e.g. 10.1088/0953-8984/25/10/105506
+    """
+    url: Optional[str] = None
+    """
+    The URL of the original record, e.g. https://next-gen.materialsproject.org/materials/mp-48; ToDo: update to use URI type per https://json-schema.org/understanding-json-schema/reference/string#resource-identifiers
+    """
+
+
 class Name239(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
@@ -2876,7 +3018,7 @@ class CrystalSchema28(BaseModel):
     basis: BasisSchema29 = Field(..., title="basis schema")
     lattice: LatticeSchema28 = Field(..., title="lattice schema")
     derivedProperties: Optional[List[DerivedPropertiesSchema28]] = Field(None, title="derived properties schema")
-    external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
+    external: Optional[DatabaseSourceSchema28] = Field(None, title="database source schema")
     """
     information about a database source
     """
