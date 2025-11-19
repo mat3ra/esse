@@ -9,9 +9,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "pseudopotential"
-            ],
+            "const": "pseudopotential",
             "description": "general type of this method, eg. `pseudopotential`",
             "type": "string"
         },
@@ -22,6 +20,7 @@
                 "us",
                 "any"
             ],
+            "default": "us",
             "description": "general subtype of this method, eg. `ultra-soft`",
             "type": "string"
         },

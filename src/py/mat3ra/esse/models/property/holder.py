@@ -1127,7 +1127,7 @@ class Name514(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
-class Type22(Enum):
+class Type19(Enum):
     io = "io"
 
 
@@ -1312,7 +1312,7 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type23(Enum):
+class Type20(Enum):
     reduce = "reduce"
 
 
@@ -1409,7 +1409,7 @@ class ReduceUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type24(Enum):
+class Type21(Enum):
     condition = "condition"
 
 
@@ -1522,7 +1522,7 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type25(Enum):
+class Type22(Enum):
     assertion = "assertion"
 
 
@@ -1608,7 +1608,7 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type26(Enum):
+class Type23(Enum):
     execution = "execution"
 
 
@@ -1863,7 +1863,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type27(Enum):
+class Type24(Enum):
     assignment = "assignment"
 
 
@@ -1954,7 +1954,7 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type28(Enum):
+class Type25(Enum):
     processing = "processing"
 
 
@@ -2282,7 +2282,7 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type29(Enum):
+class Type26(Enum):
     io = "io"
 
 
@@ -2416,7 +2416,7 @@ class DataIOUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type30(Enum):
+class Type27(Enum):
     reduce = "reduce"
 
 
@@ -2502,7 +2502,7 @@ class ReduceUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type31(Enum):
+class Type28(Enum):
     condition = "condition"
 
 
@@ -2604,7 +2604,7 @@ class ConditionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type32(Enum):
+class Type29(Enum):
     assertion = "assertion"
 
 
@@ -2690,7 +2690,7 @@ class AssertionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type33(Enum):
+class Type30(Enum):
     execution = "execution"
 
 
@@ -2882,7 +2882,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type34(Enum):
+class Type31(Enum):
     assignment = "assignment"
 
 
@@ -2973,7 +2973,7 @@ class AssignmentUnitSchema2(BaseModel):
     scope: Optional[str] = None
 
 
-class Type35(Enum):
+class Type32(Enum):
     processing = "processing"
 
 
@@ -3063,7 +3063,7 @@ class ProcessingUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type36(Enum):
+class Type33(Enum):
     map = "map"
 
 
@@ -3169,7 +3169,7 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type37(Enum):
+class Type34(Enum):
     subworkflow = "subworkflow"
 
 

@@ -10,14 +10,10 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "localorbital"
-            ]
+            "const": "localorbital"
         },
         "subtype": {
-            "enum": [
-                "pople"
-            ]
+            "const": "pople"
         }
     }
 }

@@ -9,16 +9,12 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "unknown"
-            ],
+            "const": "unknown",
             "description": "general type of this method, eg. `pseudopotential`",
             "type": "string"
         },
         "subtype": {
-            "enum": [
-                "unknown"
-            ],
+            "const": "unknown",
             "description": "general subtype of this method, eg. `ultra-soft`",
             "type": "string"
         },

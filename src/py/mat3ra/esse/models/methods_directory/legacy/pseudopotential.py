@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Literal, Optional
 
 from pydantic import BaseModel
-
-
-class Type(Enum):
-    pseudopotential = "pseudopotential"
 
 
 class Subtype(Enum):
@@ -22,11 +18,11 @@ class Subtype(Enum):
 
 
 class LegacyMethodPseudopotential(BaseModel):
-    type: Type
+    type: Literal["pseudopotential"]
     """
     general type of this method, eg. `pseudopotential`
     """
-    subtype: Subtype
+    subtype: Optional[Subtype] = "us"
     """
     general subtype of this method, eg. `ultra-soft`
     """

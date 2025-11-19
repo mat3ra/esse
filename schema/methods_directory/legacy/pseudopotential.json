@@ -10,9 +10,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "pseudopotential"
-            ]
+            "const": "pseudopotential"
         },
         "subtype": {
             "enum": [
@@ -20,7 +18,8 @@
                 "nc",
                 "us",
                 "any"
-            ]
+            ],
+            "default": "us"
         }
     }
 }

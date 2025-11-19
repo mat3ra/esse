@@ -23,18 +23,14 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "dft"
-            ]
+            "const": "dft"
         }
     },
     "definitions": {
         "lda": {
             "properties": {
                 "subtype": {
-                    "enum": [
-                        "lda"
-                    ]
+                    "const": "lda"
                 },
                 "functional": {
                     "enum": [
@@ -49,9 +45,7 @@
         "gga": {
             "properties": {
                 "subtype": {
-                    "enum": [
-                        "gga"
-                    ]
+                    "const": "gga"
                 },
                 "functional": {
                     "enum": [
@@ -66,9 +60,7 @@
         "hybrid": {
             "properties": {
                 "subtype": {
-                    "enum": [
-                        "hybrid"
-                    ]
+                    "const": "hybrid"
                 },
                 "functional": {
                     "enum": [
