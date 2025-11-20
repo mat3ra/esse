@@ -58987,7 +58987,7 @@ export type RuntimeItemSchema = {
     name: string;
 };
 /** Schema dist/js/schema/workflow/unit/runtime/runtime_items.json */
-export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
+export interface RuntimeItemsSchema {
     /**
      * names of the pre-processors for this calculation
      */

@@ -16,7 +16,7 @@ class NameResultSchema(BaseModel):
     """
 
 
-class RuntimeItemsSchemaPrePostProcessorsMonitorsResults(BaseModel):
+class RuntimeItemsSchema(BaseModel):
     preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
