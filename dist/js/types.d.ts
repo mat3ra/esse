@@ -2833,6 +2833,39 @@ export interface PymatgenSlabGeneratorParametersSchema {
      */
     symmetrize?: boolean;
 }
+/** Schema dist/js/schema/context_provider.json */
+export interface ContextProviderSchema {
+    name: "PlanewaveCutoffDataManager" | "KGridFormDataManager" | "QGridFormDataManager" | "IGridFormDataManager" | "QPathFormDataManager" | "IPathFormDataManager" | "KPathFormDataManager" | "ExplicitKPathFormDataManager" | "ExplicitKPath2PIBAFormDataManager" | "HubbardJContextManager" | "HubbardUContextManager" | "HubbardVContextManager" | "HubbardContextManagerLegacy" | "NEBFormDataManager" | "BoundaryConditionsFormDataManager" | "MLSettingsDataManager" | "MLTrainTestSplitDataManager" | "IonDynamicsContextProvider" | "CollinearMagnetizationDataManager" | "NonCollinearMagnetizationDataManager" | "QEPWXInputDataManager" | "QENEBInputDataManager" | "VASPInputDataManager" | "VASPNEBInputDataManager" | "NWChemInputDataManager";
+    /**
+     * domain of the context provider
+     */
+    domain?: string;
+    /**
+     * entity name associated with the context provider
+     */
+    entityName?: string;
+    /**
+     * data object for the context provider
+     */
+    data?: {};
+    /**
+     * additional data object for the context provider
+     */
+    extraData?: {};
+    /**
+     * flag indicating if the context provider has been edited
+     */
+    isEdited?: boolean;
+    /**
+     * context object for the context provider
+     */
+    context?: {};
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/context_providers_directory/enum_options.json */
+export interface ContextProvidersDirectoryEnumOptions {
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/core/abstract/2d_data.json */
 export interface DimensionDataSchema {
     /**
