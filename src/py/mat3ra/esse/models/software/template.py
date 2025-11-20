@@ -9,7 +9,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class NameResultSchema(BaseModel):
+class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -20,7 +20,7 @@ class TemplateSchema(BaseModel):
     applicationName: Optional[str] = None
     applicationVersion: Optional[str] = None
     executableName: Optional[str] = None
-    contextProviders: Optional[List[NameResultSchema]] = None
+    contextProviders: Optional[List[RuntimeItemNameObjectSchema]] = None
     isManuallyChanged: Optional[bool] = None
     name: str
     """

@@ -1,7 +1,7 @@
 {
-    "$id": "workflow/unit/runtime/-runtime-item-name-object",
+    "$id": "system/runtime-item-name-object",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "name result schema",
+    "title": "runtime item name object schema",
     "type": "object",
     "required": [
         "name"

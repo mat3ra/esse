@@ -33,13 +33,6 @@ class Status(Enum):
     finished = "finished"
 
 
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
@@ -78,10 +71,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -108,6 +97,10 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -120,22 +113,6 @@ class ConditionUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """

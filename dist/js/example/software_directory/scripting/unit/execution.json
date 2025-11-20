@@ -29,5 +29,9 @@
     ],
     "name": "scripting",
     "status": "idle",
-    "type": "execution"
+    "type": "execution",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

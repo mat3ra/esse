@@ -21,13 +21,6 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class FlavorSchema(BaseModel):
     executableId: Optional[str] = None
     """
@@ -69,19 +62,19 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
     """

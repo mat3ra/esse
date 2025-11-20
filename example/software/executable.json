@@ -4,17 +4,9 @@
         "eaJepm4AWfqpaCw59"
     ],
     "isDefault": true,
-    "monitors": [
-        {
-            "name": "standard_output"
-        }
-    ],
+    "monitors": [ "standard_output" ],
     "name": "pw.x",
     "postProcessors": [],
     "preProcessors": [],
-    "results": [
-        {
-            "name": "atomic_forces"
-        }
-    ]
+    "results": [ "atomic_forces" ]
 }

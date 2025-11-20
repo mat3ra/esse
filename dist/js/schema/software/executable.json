@@ -4,7 +4,11 @@
     "title": "executable schema",
     "type": "object",
     "required": [
-        "name"
+        "monitors",
+        "name",
+        "postProcessors",
+        "preProcessors",
+        "results"
     ],
     "properties": {
         "name": {
@@ -47,96 +51,28 @@
             "description": "names of the pre-processors for this calculation",
             "type": "array",
             "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "name"
-                        ]
-                    }
-                ]
+                "type": "string"
             }
         },
         "postProcessors": {
             "description": "names of the post-processors for this calculation",
             "type": "array",
             "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "name"
-                        ]
-                    }
-                ]
+                "type": "string"
             }
         },
         "monitors": {
             "description": "names of the monitors for this calculation",
             "type": "array",
             "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "name"
-                        ]
-                    }
-                ]
+                "type": "string"
             }
         },
         "results": {
             "description": "names of the results for this calculation",
             "type": "array",
             "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "required": [
-                            "name"
-                        ]
-                    }
-                ]
+                "type": "string"
             }
         }
     }

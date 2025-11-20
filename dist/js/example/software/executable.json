@@ -5,16 +5,12 @@
     ],
     "isDefault": true,
     "monitors": [
-        {
-            "name": "standard_output"
-        }
+        "standard_output"
     ],
     "name": "pw.x",
     "postProcessors": [],
     "preProcessors": [],
     "results": [
-        {
-            "name": "atomic_forces"
-        }
+        "atomic_forces"
     ]
 }

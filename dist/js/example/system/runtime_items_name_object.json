@@ -1,11 +1,11 @@
 {
+    "preProcessors": [],
+    "postProcessors": [],
     "monitors": [
         {
             "name": "standard_output"
         }
     ],
-    "postProcessors": [],
-    "preProcessors": [],
     "results": [
         {
             "name": "atomic_forces"

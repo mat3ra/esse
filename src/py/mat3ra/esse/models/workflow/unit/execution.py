@@ -65,13 +65,6 @@ class ApplicationSchemaBase(BaseModel):
     """
 
 
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class ExecutableSchema(BaseModel):
     name: str
     """
@@ -102,19 +95,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
     """
@@ -173,19 +166,19 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
     """
@@ -205,6 +198,13 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
 class ExecutionUnitSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -219,10 +219,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
-    """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
     """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
@@ -250,6 +246,10 @@ class ExecutionUnitSchemaBase(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -263,24 +263,24 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
-    """
     tags: Optional[List[str]] = None
     """
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """

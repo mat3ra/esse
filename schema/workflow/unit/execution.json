@@ -8,7 +8,7 @@
             "$ref": "./base.json"
         },
         {
-            "$ref": "runtime/runtime_items.json"
+            "$ref": "../../system/runtime_items_name_object.json"
         }
     ],
     "properties": {

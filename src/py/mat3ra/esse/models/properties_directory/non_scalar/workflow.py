@@ -130,13 +130,6 @@ class Status(Enum):
     finished = "finished"
 
 
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
@@ -160,10 +153,6 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -190,6 +179,10 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -202,22 +195,6 @@ class DataIOUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -257,10 +234,6 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -287,6 +260,10 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -299,22 +276,6 @@ class ReduceUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -370,10 +331,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -400,6 +357,10 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -412,22 +373,6 @@ class ConditionUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -456,10 +401,6 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -486,6 +427,10 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -498,22 +443,6 @@ class AssertionUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -607,19 +536,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
     """
@@ -678,21 +607,28 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
+    """
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
     """
 
 
@@ -710,10 +646,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
-    """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
     """
     isDraft: Optional[bool] = None
     name: str
@@ -741,6 +673,10 @@ class ExecutionUnitSchemaBase(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -754,27 +690,27 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
-    """
     tags: Optional[List[str]] = None
     """
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
 
 
 class Type120(Enum):
@@ -801,10 +737,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -831,6 +763,10 @@ class AssignmentUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -843,22 +779,6 @@ class AssignmentUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -892,10 +812,6 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -922,6 +838,10 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -934,22 +854,6 @@ class ProcessingUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1264,10 +1168,6 @@ class DataIOUnitSchema11(BaseModel):
             ObjectStorageIoSchema12,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -1294,6 +1194,10 @@ class DataIOUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1306,22 +1210,6 @@ class DataIOUnitSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1350,10 +1238,6 @@ class ReduceUnitSchema11(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -1380,6 +1264,10 @@ class ReduceUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1392,22 +1280,6 @@ class ReduceUnitSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1452,10 +1324,6 @@ class ConditionUnitSchema11(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: Optional[str] = None
     """
@@ -1482,6 +1350,10 @@ class ConditionUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1494,22 +1366,6 @@ class ConditionUnitSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1538,10 +1394,6 @@ class AssertionUnitSchema11(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -1568,59 +1420,6 @@ class AssertionUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type126(Enum):
-    execution = "execution"
-
-
-class ExecutableSchema14(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
-    """
-    _ids of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1638,22 +1437,15 @@ class ExecutableSchema14(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    tags: Optional[List[str]] = None
     """
-    names of the pre-processors for this calculation
+    entity tags
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
-    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+
+
+class Type126(Enum):
+    execution = "execution"
 
 
 class FlavorSchema14(BaseModel):
@@ -1697,19 +1489,19 @@ class FlavorSchema14(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
+    preProcessors: List[str]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[NameResultSchema]] = None
+    postProcessors: List[str]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[NameResultSchema]] = None
+    monitors: List[str]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[NameResultSchema]] = None
+    results: List[str]
     """
     names of the results for this calculation
     """
@@ -1724,15 +1516,11 @@ class ExecutionUnitSchemaBase11(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema14] = Field(None, title="executable schema")
+    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema14] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
-    """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
     """
     isDraft: Optional[bool] = None
     name: str
@@ -1760,6 +1548,10 @@ class ExecutionUnitSchemaBase11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1773,27 +1565,27 @@ class ExecutionUnitSchemaBase11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
-    """
     tags: Optional[List[str]] = None
     """
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
 
 
 class Type127(Enum):
@@ -1820,10 +1612,6 @@ class AssignmentUnitSchema11(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -1850,6 +1638,10 @@ class AssignmentUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1862,22 +1654,6 @@ class AssignmentUnitSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1911,10 +1687,6 @@ class ProcessingUnitSchema11(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -1941,6 +1713,10 @@ class ProcessingUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1953,22 +1729,6 @@ class ProcessingUnitSchema11(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2017,10 +1777,6 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -2047,6 +1803,10 @@ class MapUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -2059,22 +1819,6 @@ class MapUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2095,10 +1839,6 @@ class SubworkflowUnitSchema(BaseModel):
     """
     type of the unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
     isDraft: Optional[bool] = None
     name: str
     """
@@ -2125,6 +1865,10 @@ class SubworkflowUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -2137,22 +1881,6 @@ class SubworkflowUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[NameResultSchema]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[NameResultSchema]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[NameResultSchema]] = None
-    """
-    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """

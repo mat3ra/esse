@@ -5,7 +5,7 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../in_memory_entity/named_defaultable_runtime_items.json"
+            "$ref": "../../in_memory_entity/named_defaultable.json"
         },
         {
             "$ref": "../../system/tags.json"
@@ -15,9 +15,6 @@
         }
     ],
     "properties": {
-        "_id": {
-            "type": "string"
-        },
         "isDraft": {
             "type": "boolean"
         },

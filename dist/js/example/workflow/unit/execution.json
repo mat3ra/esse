@@ -14,17 +14,13 @@
         ],
         "isDefault": true,
         "monitors": [
-            {
-                "name": "standard_output"
-            }
+            "standard_output"
         ],
         "name": "pw.x",
         "postProcessors": [],
         "preProcessors": [],
         "results": [
-            {
-                "name": "atomic_forces"
-            }
+            "atomic_forces"
         ]
     },
     "flavor": {
@@ -34,7 +30,11 @@
                 "templateId": "dJ7HYz5pQ4AuN5qc9"
             }
         ],
-        "name": "pw_scf"
+        "name": "pw_scf",
+        "postProcessors": [],
+        "preProcessors": [],
+        "monitors": [],
+        "results": []
     },
     "flowchartId": "execution",
     "head": true,

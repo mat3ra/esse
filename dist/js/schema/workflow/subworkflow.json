@@ -181,10 +181,6 @@
                                     ]
                                 }
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -222,6 +218,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -238,102 +238,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -412,10 +316,6 @@
                                     }
                                 }
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -453,6 +353,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -469,102 +373,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -661,10 +469,6 @@
                                 "description": "Throw exception on reaching to maximum occurence.",
                                 "type": "boolean"
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -702,6 +506,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -718,102 +526,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -872,10 +584,6 @@
                                 "type": "string",
                                 "description": "The error message to be displayed if the assertion fails"
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -913,6 +621,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -929,102 +641,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -1064,6 +680,10 @@
                             "application",
                             "flowchartId",
                             "input",
+                            "monitors",
+                            "postProcessors",
+                            "preProcessors",
+                            "results",
                             "type"
                         ],
                         "additionalProperties": true,
@@ -1137,7 +757,11 @@
                                 "title": "executable schema",
                                 "type": "object",
                                 "required": [
-                                    "name"
+                                    "monitors",
+                                    "name",
+                                    "postProcessors",
+                                    "preProcessors",
+                                    "results"
                                 ],
                                 "properties": {
                                     "name": {
@@ -1180,96 +804,28 @@
                                         "description": "names of the pre-processors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "postProcessors": {
                                         "description": "names of the post-processors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "monitors": {
                                         "description": "names of the monitors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "results": {
                                         "description": "names of the results for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -1278,6 +834,12 @@
                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                 "title": "flavor schema",
                                 "type": "object",
+                                "required": [
+                                    "preProcessors",
+                                    "postProcessors",
+                                    "monitors",
+                                    "results"
+                                ],
                                 "properties": {
                                     "executableId": {
                                         "description": "_id of the executable this flavor belongs to",
@@ -1349,106 +911,34 @@
                                         "description": "names of the pre-processors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "postProcessors": {
                                         "description": "names of the post-processors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "monitors": {
                                         "description": "names of the monitors for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     },
                                     "results": {
                                         "description": "names of the results for this calculation",
                                         "type": "array",
                                         "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item schema",
-                                            "oneOf": [
-                                                {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "name result schema",
-                                                    "type": "object",
-                                                    "properties": {
-                                                        "name": {
-                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                            "type": "string"
-                                                        }
-                                                    },
-                                                    "required": [
-                                                        "name"
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "string"
                                         }
                                     }
                                 }
                             },
                             "input": {
                                 "description": "unit input (type to be specified by the application's execution unit)"
-                            },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
                             },
                             "isDraft": {
                                 "type": "boolean"
@@ -1487,6 +977,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -1503,102 +997,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -1624,6 +1022,78 @@
                                         },
                                         "repetition": {
                                             "type": "number"
+                                        }
+                                    }
+                                }
+                            },
+                            "preProcessors": {
+                                "description": "names of the pre-processors for this calculation",
+                                "type": "array",
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "runtime item name object schema",
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of this item. e.g. scf_accuracy",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "postProcessors": {
+                                "description": "names of the post-processors for this calculation",
+                                "type": "array",
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "runtime item name object schema",
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of this item. e.g. scf_accuracy",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "monitors": {
+                                "description": "names of the monitors for this calculation",
+                                "type": "array",
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "runtime item name object schema",
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of this item. e.g. scf_accuracy",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "results": {
+                                "description": "names of the results for this calculation",
+                                "type": "array",
+                                "items": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "runtime item name object schema",
+                                    "type": "object",
+                                    "required": [
+                                        "name"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "description": "The name of this item. e.g. scf_accuracy",
+                                            "type": "string"
                                         }
                                     }
                                 }
@@ -1691,10 +1161,6 @@
                                     }
                                 ]
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -1732,6 +1198,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -1748,102 +1218,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
@@ -1909,10 +1283,6 @@
                             "inputData": {
                                 "description": "unit input (type to be specified by the child units)"
                             },
-                            "_id": {
-                                "type": "string",
-                                "description": "entity identity"
-                            },
                             "isDraft": {
                                 "type": "boolean"
                             },
@@ -1950,6 +1320,10 @@
                             "context": {
                                 "type": "object"
                             },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
                             "slug": {
                                 "description": "entity slug",
                                 "type": "string"
@@ -1966,102 +1340,6 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
-                            },
-                            "preProcessors": {
-                                "description": "names of the pre-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "postProcessors": {
-                                "description": "names of the post-processors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "monitors": {
-                                "description": "names of the monitors for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
-                            },
-                            "results": {
-                                "description": "names of the results for this calculation",
-                                "type": "array",
-                                "items": {
-                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "runtime item schema",
-                                    "oneOf": [
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "name result schema",
-                                            "type": "object",
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "required": [
-                                                "name"
-                                            ]
-                                        }
-                                    ]
-                                }
                             },
                             "tags": {
                                 "description": "entity tags",
