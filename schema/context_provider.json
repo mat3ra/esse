@@ -6,7 +6,7 @@
     "properties": {
         "name": {
             "description": "name of the context provider",
-            "$ref": "context_providers_directory/enum_options.json#/contextProviderName"
+            "$ref": "context_providers_directory/enum.json"
         },
         "domain": {
             "description": "domain of the context provider",

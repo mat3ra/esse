@@ -2862,10 +2862,8 @@ export interface ContextProviderSchema {
     context?: {};
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/context_providers_directory/enum_options.json */
-export interface ContextProvidersDirectoryEnumOptions {
-    [k: string]: unknown;
-}
+/** Schema dist/js/schema/context_providers_directory/enum.json */
+export type ContextProviderNameEnum = "PlanewaveCutoffDataManager" | "KGridFormDataManager" | "QGridFormDataManager" | "IGridFormDataManager" | "QPathFormDataManager" | "IPathFormDataManager" | "KPathFormDataManager" | "ExplicitKPathFormDataManager" | "ExplicitKPath2PIBAFormDataManager" | "HubbardJContextManager" | "HubbardUContextManager" | "HubbardVContextManager" | "HubbardContextManagerLegacy" | "NEBFormDataManager" | "BoundaryConditionsFormDataManager" | "MLSettingsDataManager" | "MLTrainTestSplitDataManager" | "IonDynamicsContextProvider" | "CollinearMagnetizationDataManager" | "NonCollinearMagnetizationDataManager" | "QEPWXInputDataManager" | "QENEBInputDataManager" | "VASPInputDataManager" | "VASPNEBInputDataManager" | "NWChemInputDataManager";
 /** Schema dist/js/schema/core/abstract/2d_data.json */
 export interface DimensionDataSchema {
     /**

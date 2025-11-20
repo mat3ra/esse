@@ -9,6 +9,9 @@
     "additionalProperties": true,
     "properties": {
         "name": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Context Provider Name Enum",
+            "type": "string",
             "enum": [
                 "PlanewaveCutoffDataManager",
                 "KGridFormDataManager",
