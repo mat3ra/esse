@@ -141,12 +141,6 @@
                         "required": [
                             "name"
                         ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
                     }
                 ]
             }
@@ -171,12 +165,6 @@
                         "required": [
                             "name"
                         ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
                     }
                 ]
             }
@@ -201,12 +189,6 @@
                         "required": [
                             "name"
                         ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
                     }
                 ]
             }
@@ -231,12 +213,6 @@
                         "required": [
                             "name"
                         ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
                     }
                 ]
             }

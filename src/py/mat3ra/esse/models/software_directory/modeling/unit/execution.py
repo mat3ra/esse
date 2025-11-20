@@ -102,19 +102,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -173,19 +173,19 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -283,19 +283,19 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """

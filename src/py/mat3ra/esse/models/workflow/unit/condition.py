@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -121,19 +121,19 @@ class ConditionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """

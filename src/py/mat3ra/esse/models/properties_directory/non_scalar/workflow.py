@@ -203,19 +203,19 @@ class DataIOUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -300,19 +300,19 @@ class ReduceUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -413,19 +413,19 @@ class ConditionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -499,19 +499,19 @@ class AssertionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -607,19 +607,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -678,19 +678,19 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -754,19 +754,19 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -844,19 +844,19 @@ class AssignmentUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -935,19 +935,19 @@ class ProcessingUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1307,19 +1307,19 @@ class DataIOUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1393,19 +1393,19 @@ class ReduceUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1495,19 +1495,19 @@ class ConditionUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1581,19 +1581,19 @@ class AssertionUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1638,19 +1638,19 @@ class ExecutableSchema14(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1697,19 +1697,19 @@ class FlavorSchema14(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1773,19 +1773,19 @@ class ExecutionUnitSchemaBase11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1863,19 +1863,19 @@ class AssignmentUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -1954,19 +1954,19 @@ class ProcessingUnitSchema11(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -2060,19 +2060,19 @@ class MapUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """
@@ -2138,19 +2138,19 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: Optional[List[NameResultSchema]] = None
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: Optional[List[NameResultSchema]] = None
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: Optional[List[NameResultSchema]] = None
     """
     names of the results for this calculation
     """

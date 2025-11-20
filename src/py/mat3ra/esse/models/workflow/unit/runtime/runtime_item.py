@@ -4,8 +4,6 @@
 
 from __future__ import annotations
 
-from typing import Union
-
 from pydantic import BaseModel, Field, RootModel
 
 
@@ -16,5 +14,5 @@ class NameResultSchema(BaseModel):
     """
 
 
-class ESSE(RootModel[Union[NameResultSchema, str]]):
-    root: Union[NameResultSchema, str] = Field(..., title="runtime item schema")
+class ESSE(RootModel[NameResultSchema]):
+    root: NameResultSchema = Field(..., title="runtime item schema")

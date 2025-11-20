@@ -4511,39 +4511,39 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
 }
 /** Schema dist/js/schema/job/base.json */
 export interface JobBaseSchema {
@@ -4993,39 +4993,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5104,39 +5104,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5231,39 +5231,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5333,39 +5333,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5462,39 +5462,39 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors?: ({
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors?: ({
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors?: ({
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results?: ({
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                 };
                 flavor?: {
                     /**
@@ -5545,39 +5545,39 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors?: ({
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors?: ({
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors?: ({
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results?: ({
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                 };
                 /**
                  * unit input (type to be specified by the application's execution unit)
@@ -5631,39 +5631,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5746,39 +5746,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -5855,39 +5855,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -6228,39 +6228,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -6339,39 +6339,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -6466,39 +6466,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -6568,39 +6568,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -6697,39 +6697,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             flavor?: {
                 /**
@@ -6780,39 +6780,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -6866,39 +6866,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -6981,39 +6981,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -7090,39 +7090,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -7210,39 +7210,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -7304,39 +7304,39 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -46772,39 +46772,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -46883,39 +46883,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -47010,39 +47010,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -47112,39 +47112,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -47241,39 +47241,39 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             flavor?: {
                 /**
@@ -47324,39 +47324,39 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -47410,39 +47410,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -47525,39 +47525,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -47634,39 +47634,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -48007,39 +48007,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48118,39 +48118,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48245,39 +48245,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48347,39 +48347,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48476,39 +48476,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         flavor?: {
             /**
@@ -48559,39 +48559,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)
@@ -48645,39 +48645,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48760,39 +48760,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48869,39 +48869,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -48989,39 +48989,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -49083,39 +49083,39 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -50587,39 +50587,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -50698,39 +50698,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -50825,39 +50825,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -50927,39 +50927,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -51056,39 +51056,39 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors?: ({
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors?: ({
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors?: ({
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results?: ({
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                 };
                 flavor?: {
                     /**
@@ -51139,39 +51139,39 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors?: ({
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors?: ({
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors?: ({
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results?: ({
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                    } | string)[];
+                    }[];
                 };
                 /**
                  * unit input (type to be specified by the application's execution unit)
@@ -51225,39 +51225,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -51340,39 +51340,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -51449,39 +51449,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * entity tags
                  */
@@ -51822,39 +51822,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -51933,39 +51933,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52060,39 +52060,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52162,39 +52162,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52291,39 +52291,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             flavor?: {
                 /**
@@ -52374,39 +52374,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -52460,39 +52460,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52575,39 +52575,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52684,39 +52684,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52804,39 +52804,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -52898,39 +52898,39 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -53502,39 +53502,39 @@ export interface ExecutableSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
 }
 /** Schema dist/js/schema/software/flavor.json */
 export interface FlavorSchema {
@@ -53586,39 +53586,39 @@ export interface FlavorSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
 }
 /** Schema dist/js/schema/software/template.json */
 export interface TemplateSchema {
@@ -53874,39 +53874,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     flavor?: {
         /**
@@ -53957,39 +53957,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -54061,39 +54061,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -54416,39 +54416,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     flavor?: {
         /**
@@ -54499,39 +54499,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -54603,39 +54603,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -55401,39 +55401,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -55512,39 +55512,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -55639,39 +55639,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -55741,39 +55741,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -55870,39 +55870,39 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     flavor?: {
         /**
@@ -55953,39 +55953,39 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -56039,39 +56039,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -56154,39 +56154,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -56263,39 +56263,39 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -56440,39 +56440,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -56551,39 +56551,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -56678,39 +56678,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -56780,39 +56780,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -56909,39 +56909,39 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         flavor?: {
             /**
@@ -56992,39 +56992,39 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)
@@ -57078,39 +57078,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -57193,39 +57193,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -57302,39 +57302,39 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -57604,39 +57604,39 @@ export interface AssertionUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -57721,39 +57721,39 @@ export interface AssignmentUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -57818,39 +57818,39 @@ export interface WorkflowBaseUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -57947,39 +57947,39 @@ export interface ConditionUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58078,39 +58078,39 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     flavor?: {
         /**
@@ -58161,39 +58161,39 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -58247,39 +58247,39 @@ export interface ExecutionUnitSchemaBase {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58571,39 +58571,39 @@ export interface DataIOUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58693,39 +58693,39 @@ export interface MapUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58803,39 +58803,39 @@ export interface ProcessingUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58916,39 +58916,39 @@ export interface ReduceUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -58985,45 +58985,45 @@ export type RuntimeItemSchema = {
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
-} | string;
+};
 /** Schema dist/js/schema/workflow/unit/runtime/runtime_items.json */
 export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
 }
 /** Schema dist/js/schema/workflow/unit/subworkflow.json */
 export interface SubworkflowUnitSchema {
@@ -59077,39 +59077,39 @@ export interface SubworkflowUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -59250,39 +59250,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -59361,39 +59361,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -59488,39 +59488,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -59590,39 +59590,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -59719,39 +59719,39 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     flavor?: {
         /**
@@ -59802,39 +59802,39 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -59888,39 +59888,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -60003,39 +60003,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -60112,39 +60112,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -60232,39 +60232,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -60326,39 +60326,39 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
@@ -60507,39 +60507,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -60618,39 +60618,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -60745,39 +60745,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -60847,39 +60847,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -60976,39 +60976,39 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             flavor?: {
                 /**
@@ -61059,39 +61059,39 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -61145,39 +61145,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -61260,39 +61260,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -61369,39 +61369,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
@@ -61742,39 +61742,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -61853,39 +61853,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -61980,39 +61980,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62082,39 +62082,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62211,39 +62211,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         flavor?: {
             /**
@@ -62294,39 +62294,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)
@@ -62380,39 +62380,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62495,39 +62495,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62604,39 +62604,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62724,39 +62724,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
@@ -62818,39 +62818,39 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
