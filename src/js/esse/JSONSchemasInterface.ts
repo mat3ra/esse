@@ -53,4 +53,41 @@ export default class JSONSchemasInterface {
             });
         });
     }
+
+    /**
+     * Get a patched copy of a schema without modifying the cached version
+     * @param schemaId - The ID of the schema to patch
+     * @param propertyPatches - Object with property names as keys and patch objects as values
+     * @returns A new schema with patched properties
+     *
+     * @example
+     * JSONSchemasInterface.getPatchedSchema("boundary-conditions-provider", {
+     *   type: { default: "pbc" },
+     *   offset: { default: 0 }
+     * });
+     */
+    static getPatchedSchemaById(
+        schemaId: string,
+        propertyPatches: Record<string, Partial<any>>,
+    ): JSONSchema | undefined {
+        const baseSchema = this.getSchemaById(schemaId);
+        if (!baseSchema) {
+            return undefined;
+        }
+
+        const patchedSchema = JSON.parse(JSON.stringify(baseSchema));
+
+        if (patchedSchema.properties && propertyPatches) {
+            Object.keys(propertyPatches).forEach((propertyName) => {
+                if (patchedSchema.properties[propertyName]) {
+                    patchedSchema.properties[propertyName] = {
+                        ...patchedSchema.properties[propertyName],
+                        ...propertyPatches[propertyName],
+                    };
+                }
+            });
+        }
+
+        return patchedSchema;
+    }
 }
