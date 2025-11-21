@@ -5,8 +5,7 @@
     "type": "object",
     "properties": {
         "name": {
-            "description": "name of the context provider",
-            "$ref": "context_providers_directory/enum.json"
+            "$ref": "context_providers_directory/enum.json#/definitions/ContextProviderNameEnum"
         },
         "domain": {
             "description": "domain of the context provider",

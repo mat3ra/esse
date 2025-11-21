@@ -7,10 +7,10 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict
 
 
-class ContextProviderNameEnum(Enum):
+class Name(Enum):
     PlanewaveCutoffDataManager = "PlanewaveCutoffDataManager"
     KGridFormDataManager = "KGridFormDataManager"
     QGridFormDataManager = "QGridFormDataManager"
@@ -42,7 +42,7 @@ class ContextProviderSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    name: ContextProviderNameEnum = Field(..., title="Context Provider Name Enum")
+    name: Name
     domain: Optional[str] = None
     """
     domain of the context provider

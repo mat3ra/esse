@@ -2835,7 +2835,7 @@ export interface PymatgenSlabGeneratorParametersSchema {
 }
 /** Schema dist/js/schema/context_provider.json */
 export interface ContextProviderSchema {
-    name: "PlanewaveCutoffDataManager" | "KGridFormDataManager" | "QGridFormDataManager" | "IGridFormDataManager" | "QPathFormDataManager" | "IPathFormDataManager" | "KPathFormDataManager" | "ExplicitKPathFormDataManager" | "ExplicitKPath2PIBAFormDataManager" | "HubbardJContextManager" | "HubbardUContextManager" | "HubbardVContextManager" | "HubbardContextManagerLegacy" | "NEBFormDataManager" | "BoundaryConditionsFormDataManager" | "MLSettingsDataManager" | "MLTrainTestSplitDataManager" | "IonDynamicsContextProvider" | "CollinearMagnetizationDataManager" | "NonCollinearMagnetizationDataManager" | "QEPWXInputDataManager" | "QENEBInputDataManager" | "VASPInputDataManager" | "VASPNEBInputDataManager" | "NWChemInputDataManager";
+    name: Name;
     /**
      * domain of the context provider
      */
@@ -2862,8 +2862,68 @@ export interface ContextProviderSchema {
     context?: {};
     [k: string]: unknown;
 }
+export declare enum Name {
+    PlanewaveCutoffDataManager = "PlanewaveCutoffDataManager",
+    KGridFormDataManager = "KGridFormDataManager",
+    QGridFormDataManager = "QGridFormDataManager",
+    IGridFormDataManager = "IGridFormDataManager",
+    QPathFormDataManager = "QPathFormDataManager",
+    IPathFormDataManager = "IPathFormDataManager",
+    KPathFormDataManager = "KPathFormDataManager",
+    ExplicitKPathFormDataManager = "ExplicitKPathFormDataManager",
+    ExplicitKPath2PIBAFormDataManager = "ExplicitKPath2PIBAFormDataManager",
+    HubbardJContextManager = "HubbardJContextManager",
+    HubbardUContextManager = "HubbardUContextManager",
+    HubbardVContextManager = "HubbardVContextManager",
+    HubbardContextManagerLegacy = "HubbardContextManagerLegacy",
+    NEBFormDataManager = "NEBFormDataManager",
+    BoundaryConditionsFormDataManager = "BoundaryConditionsFormDataManager",
+    MLSettingsDataManager = "MLSettingsDataManager",
+    MLTrainTestSplitDataManager = "MLTrainTestSplitDataManager",
+    IonDynamicsContextProvider = "IonDynamicsContextProvider",
+    CollinearMagnetizationDataManager = "CollinearMagnetizationDataManager",
+    NonCollinearMagnetizationDataManager = "NonCollinearMagnetizationDataManager",
+    QEPWXInputDataManager = "QEPWXInputDataManager",
+    QENEBInputDataManager = "QENEBInputDataManager",
+    VASPInputDataManager = "VASPInputDataManager",
+    VASPNEBInputDataManager = "VASPNEBInputDataManager",
+    NWChemInputDataManager = "NWChemInputDataManager"
+}
 /** Schema dist/js/schema/context_providers_directory/enum.json */
-export type ContextProviderNameEnum = "PlanewaveCutoffDataManager" | "KGridFormDataManager" | "QGridFormDataManager" | "IGridFormDataManager" | "QPathFormDataManager" | "IPathFormDataManager" | "KPathFormDataManager" | "ExplicitKPathFormDataManager" | "ExplicitKPath2PIBAFormDataManager" | "HubbardJContextManager" | "HubbardUContextManager" | "HubbardVContextManager" | "HubbardContextManagerLegacy" | "NEBFormDataManager" | "BoundaryConditionsFormDataManager" | "MLSettingsDataManager" | "MLTrainTestSplitDataManager" | "IonDynamicsContextProvider" | "CollinearMagnetizationDataManager" | "NonCollinearMagnetizationDataManager" | "QEPWXInputDataManager" | "QENEBInputDataManager" | "VASPInputDataManager" | "VASPNEBInputDataManager" | "NWChemInputDataManager";
+export interface ContextProvidersDirectoryEnum {
+    [k: string]: unknown;
+}
+/**
+ * This interface was referenced by `ContextProvidersDirectoryEnum`'s JSON-Schema
+ * via the `definition` "ContextProviderNameEnum".
+ */
+export declare enum ContextProviderNameEnum {
+    PlanewaveCutoffDataManager = "PlanewaveCutoffDataManager",
+    KGridFormDataManager = "KGridFormDataManager",
+    QGridFormDataManager = "QGridFormDataManager",
+    IGridFormDataManager = "IGridFormDataManager",
+    QPathFormDataManager = "QPathFormDataManager",
+    IPathFormDataManager = "IPathFormDataManager",
+    KPathFormDataManager = "KPathFormDataManager",
+    ExplicitKPathFormDataManager = "ExplicitKPathFormDataManager",
+    ExplicitKPath2PIBAFormDataManager = "ExplicitKPath2PIBAFormDataManager",
+    HubbardJContextManager = "HubbardJContextManager",
+    HubbardUContextManager = "HubbardUContextManager",
+    HubbardVContextManager = "HubbardVContextManager",
+    HubbardContextManagerLegacy = "HubbardContextManagerLegacy",
+    NEBFormDataManager = "NEBFormDataManager",
+    BoundaryConditionsFormDataManager = "BoundaryConditionsFormDataManager",
+    MLSettingsDataManager = "MLSettingsDataManager",
+    MLTrainTestSplitDataManager = "MLTrainTestSplitDataManager",
+    IonDynamicsContextProvider = "IonDynamicsContextProvider",
+    CollinearMagnetizationDataManager = "CollinearMagnetizationDataManager",
+    NonCollinearMagnetizationDataManager = "NonCollinearMagnetizationDataManager",
+    QEPWXInputDataManager = "QEPWXInputDataManager",
+    QENEBInputDataManager = "QENEBInputDataManager",
+    VASPInputDataManager = "VASPInputDataManager",
+    VASPNEBInputDataManager = "VASPNEBInputDataManager",
+    NWChemInputDataManager = "NWChemInputDataManager"
+}
 /** Schema dist/js/schema/core/abstract/2d_data.json */
 export interface DimensionDataSchema {
     /**
