@@ -2889,6 +2889,13 @@ export declare enum Name {
     VASPNEBInputDataManager = "VASPNEBInputDataManager",
     NWChemInputDataManager = "NWChemInputDataManager"
 }
+/** Schema dist/js/schema/context_providers_directory/boundary_conditions_provider.json */
+export interface BoundaryConditionsProviderSchema {
+    type?: string;
+    offset?: number;
+    electricField?: number;
+    targetFermiEnergy?: number;
+}
 /** Schema dist/js/schema/context_providers_directory/enum.json */
 export interface ContextProvidersDirectoryEnum {
     [k: string]: unknown;
