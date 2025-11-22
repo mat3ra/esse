@@ -40,5 +40,5 @@ export default class JSONSchemasInterface {
      *   offset: { default: 0 }
      * });
      */
-    static getPatchedSchemaById(schemaId: string, propertyPatches: Record<string, Partial<any>>): JSONSchema | undefined;
+    static getPatchedSchemaById(schemaId: string, patchConfig: Record<string, unknown>): JSONSchema | undefined;
 }

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = require("./utils");
 class JSONSchemasInterface {
     static setSchemas(schema) {
         schema.forEach((schema) => this.addSchema(schema));
@@ -55,37 +56,13 @@ class JSONSchemasInterface {
      *   offset: { default: 0 }
      * });
      */
-    static getPatchedSchemaById(schemaId, propertyPatches) {
+    static getPatchedSchemaById(schemaId, patchConfig) {
         const baseSchema = this.getSchemaById(schemaId);
         if (!baseSchema) {
             return undefined;
         }
         const patchedSchema = JSON.parse(JSON.stringify(baseSchema));
-        Object.keys(propertyPatches).forEach((keyPath) => {
-            const keys = keyPath.split(".");
-            let current = patchedSchema;
-            // Navigate to the parent of the target property
-            let pathExists = true;
-            for (let i = 0; i < keys.length - 1; i++) {
-                if (current[keys[i]]) {
-                    current = current[keys[i]];
-                }
-                else {
-                    pathExists = false;
-                    break; // Path doesn't exist, skip this patch
-                }
-            }
-            // Apply the patch to the final property if path exists
-            if (pathExists) {
-                const finalKey = keys[keys.length - 1];
-                if (current[finalKey]) {
-                    current[finalKey] = {
-                        ...current[finalKey],
-                        ...propertyPatches[keyPath],
-                    };
-                }
-            }
-        });
+        (0, utils_1.applyPatchTree)(patchedSchema, patchConfig, []);
         return patchedSchema;
     }
 }
