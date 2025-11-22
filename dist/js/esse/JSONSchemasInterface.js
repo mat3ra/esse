@@ -61,16 +61,31 @@ class JSONSchemasInterface {
             return undefined;
         }
         const patchedSchema = JSON.parse(JSON.stringify(baseSchema));
-        if (patchedSchema.properties && propertyPatches) {
-            Object.keys(propertyPatches).forEach((propertyName) => {
-                if (patchedSchema.properties[propertyName]) {
-                    patchedSchema.properties[propertyName] = {
-                        ...patchedSchema.properties[propertyName],
-                        ...propertyPatches[propertyName],
+        Object.keys(propertyPatches).forEach((keyPath) => {
+            const keys = keyPath.split(".");
+            let current = patchedSchema;
+            // Navigate to the parent of the target property
+            let pathExists = true;
+            for (let i = 0; i < keys.length - 1; i++) {
+                if (current[keys[i]]) {
+                    current = current[keys[i]];
+                }
+                else {
+                    pathExists = false;
+                    break; // Path doesn't exist, skip this patch
+                }
+            }
+            // Apply the patch to the final property if path exists
+            if (pathExists) {
+                const finalKey = keys[keys.length - 1];
+                if (current[finalKey]) {
+                    current[finalKey] = {
+                        ...current[finalKey],
+                        ...propertyPatches[keyPath],
                     };
                 }
-            });
-        }
+            }
+        });
         return patchedSchema;
     }
 }
