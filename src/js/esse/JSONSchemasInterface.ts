@@ -1,4 +1,4 @@
-import { JSONSchema } from "./utils";
+import { applyPatchTree, JSONSchema } from "./utils";
 
 export type JSONSchemasInterfaceQuery = { [key in keyof JSONSchema]: { $regex: string } };
 
@@ -68,7 +68,7 @@ export default class JSONSchemasInterface {
      */
     static getPatchedSchemaById(
         schemaId: string,
-        propertyPatches: Record<string, Partial<any>>,
+        patchConfig: Record<string, unknown>,
     ): JSONSchema | undefined {
         const baseSchema = this.getSchemaById(schemaId);
         if (!baseSchema) {
@@ -77,28 +77,11 @@ export default class JSONSchemasInterface {
 
         const patchedSchema = JSON.parse(JSON.stringify(baseSchema));
 
-        Object.keys(propertyPatches).forEach((keyPath) => {
-            const keys = keyPath.split('.');
-            let current = patchedSchema;
-            
-            // Navigate to the parent of the target property
-            for (let i = 0; i < keys.length - 1; i++) {
-                if (current[keys[i]]) {
-                    current = current[keys[i]];
-                } else {
-                    return; // Path doesn't exist, skip this patch
-                }
-            }
-            
-            // Apply the patch to the final property
-            const finalKey = keys[keys.length - 1];
-            if (current[finalKey]) {
-                current[finalKey] = {
-                    ...current[finalKey],
-                    ...propertyPatches[keyPath],
-                };
-            }
-        });
+        applyPatchTree(
+            patchedSchema as Record<string, unknown>,
+            patchConfig as Record<string, unknown>,
+            [],
+        );
 
         return patchedSchema;
     }

@@ -12,3 +12,5 @@ export interface JSONSchemaWithPath {
 }
 export declare function parseIncludeReferenceStatementsByDir(dirPath: string, wrapInDataAndPath: true): JSONSchemaWithPath[];
 export declare function parseIncludeReferenceStatementsByDir(dirPath: string, wrapInDataAndPath?: false): JSONSchema[];
+export declare function applyPatchWithDotNotation(target: Record<string, unknown>, path: string, patchValue: unknown): void;
+export declare function applyPatchTree(schema: Record<string, unknown>, patchNode: Record<string, unknown>, pathPrefix: string[]): void;
