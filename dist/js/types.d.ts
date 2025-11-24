@@ -2891,7 +2891,10 @@ export declare enum Name {
 }
 /** Schema dist/js/schema/context_providers_directory/boundary_conditions_data_provider.json */
 export interface BoundaryConditionsProviderSchema {
-    type?: string;
+    /**
+     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+     */
+    type?: "pbc" | "bc1" | "bc2" | "bc3";
     offset?: number;
     electricField?: number;
     targetFermiEnergy?: number;
