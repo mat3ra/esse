@@ -1,4 +1,4 @@
-import { JSONSchema } from "./utils";
+import { applyPatchTree, JSONSchema } from "./utils";
 
 export type JSONSchemasInterfaceQuery = { [key in keyof JSONSchema]: { $regex: string } };
 
@@ -52,5 +52,37 @@ export default class JSONSchemasInterface {
                 return new RegExp(queryField.$regex).test(schemaField);
             });
         });
+    }
+
+    /**
+     * Get a patched copy of a schema without modifying the cached version
+     * @param schemaId - The ID of the schema to patch
+     * @param propertyPatches - Object with property names as keys and patch objects as values
+     * @returns A new schema with patched properties
+     *
+     * @example
+     * JSONSchemasInterface.getPatchedSchema("boundary-conditions-provider", {
+     *   type: { default: "pbc" },
+     *   offset: { default: 0 }
+     * });
+     */
+    static getPatchedSchemaById(
+        schemaId: string,
+        patchConfig: Record<string, unknown>,
+    ): JSONSchema | undefined {
+        const baseSchema = this.getSchemaById(schemaId);
+        if (!baseSchema) {
+            return undefined;
+        }
+
+        const patchedSchema = JSON.parse(JSON.stringify(baseSchema));
+
+        applyPatchTree(
+            patchedSchema as Record<string, unknown>,
+            patchConfig as Record<string, unknown>,
+            [],
+        );
+
+        return patchedSchema;
     }
 }
