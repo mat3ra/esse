@@ -1239,15 +1239,37 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1265,28 +1287,6 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type20(Enum):
@@ -1320,15 +1320,37 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1346,28 +1368,6 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type21(Enum):
@@ -1417,15 +1417,37 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1443,28 +1465,6 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type22(Enum):
@@ -1487,15 +1487,37 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1513,28 +1535,6 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type23(Enum):
@@ -1733,15 +1733,37 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1759,28 +1781,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
     preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
@@ -1823,15 +1823,37 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1849,28 +1871,6 @@ class AssignmentUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
 
 
@@ -1898,15 +1898,37 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -1924,28 +1946,6 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class WorkflowSubworkflowUnitSchema(
@@ -2254,15 +2254,37 @@ class DataIOUnitSchema1(BaseModel):
             ObjectStorageIoSchema1,
         ]
     ]
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2280,28 +2302,6 @@ class DataIOUnitSchema1(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type27(Enum):
@@ -2324,15 +2324,37 @@ class ReduceUnitSchema1(BaseModel):
     """
     input information for reduce unit
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2350,28 +2372,6 @@ class ReduceUnitSchema1(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type28(Enum):
@@ -2410,15 +2410,37 @@ class ConditionUnitSchema2(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2436,28 +2458,6 @@ class ConditionUnitSchema2(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type29(Enum):
@@ -2480,15 +2480,37 @@ class AssertionUnitSchema2(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2506,28 +2528,6 @@ class AssertionUnitSchema2(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type30(Enum):
@@ -2608,15 +2608,37 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2634,28 +2656,6 @@ class ExecutionUnitSchemaBase2(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
     preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
@@ -2698,15 +2698,37 @@ class AssignmentUnitSchema2(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2724,28 +2746,6 @@ class AssignmentUnitSchema2(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
 
 
@@ -2773,15 +2773,37 @@ class ProcessingUnitSchema1(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2799,28 +2821,6 @@ class ProcessingUnitSchema1(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type33(Enum):
@@ -2863,15 +2863,37 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2889,28 +2911,6 @@ class MapUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class Type34(Enum):
@@ -2925,15 +2925,37 @@ class SubworkflowUnitSchema(BaseModel):
     """
     type of the unit
     """
-    isDraft: Optional[bool] = None
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
     """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2951,28 +2973,6 @@ class SubworkflowUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class WorkflowUnitSchema(

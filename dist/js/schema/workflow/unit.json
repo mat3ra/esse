@@ -167,43 +167,6 @@
                         ]
                     }
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -220,6 +183,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -231,6 +198,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -252,6 +230,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -302,43 +302,6 @@
                         }
                     }
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -355,6 +318,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -366,6 +333,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -387,6 +365,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -455,43 +455,6 @@
                     "description": "Throw exception on reaching to maximum occurence.",
                     "type": "boolean"
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -508,6 +471,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -519,6 +486,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -540,6 +518,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -570,43 +570,6 @@
                     "type": "string",
                     "description": "The error message to be displayed if the assertion fails"
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -623,6 +586,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -634,6 +601,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -655,6 +633,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -926,43 +926,6 @@
                 "input": {
                     "description": "unit input (type to be specified by the application's execution unit)"
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -979,6 +942,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -990,6 +957,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -1011,6 +989,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 },
                 "preProcessors": {
                     "description": "names of the pre-processors for this calculation",
@@ -1147,43 +1147,6 @@
                         }
                     ]
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -1200,6 +1163,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -1211,6 +1178,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -1232,6 +1210,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 },
                 "scope": {
                     "type": "string"
@@ -1269,43 +1269,6 @@
                 "inputData": {
                     "description": "unit input (type to be specified by the child units)"
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -1322,6 +1285,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -1333,6 +1300,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -1354,6 +1332,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -1421,43 +1421,6 @@
                         }
                     }
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -1474,6 +1437,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -1485,6 +1452,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -1506,6 +1484,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         },
@@ -1526,43 +1526,6 @@
                     "description": "type of the unit",
                     "type": "string"
                 },
-                "isDraft": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "description": "name of the unit. e.g. pw_scf",
-                    "type": "string"
-                },
-                "status": {
-                    "description": "Status of the unit.",
-                    "type": "string",
-                    "enum": [
-                        "idle",
-                        "active",
-                        "warning",
-                        "error",
-                        "finished"
-                    ]
-                },
-                "head": {
-                    "description": "Whether this unit is the first one to be executed.",
-                    "type": "boolean"
-                },
-                "flowchartId": {
-                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                    "type": "string"
-                },
-                "next": {
-                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                    "type": "string"
-                },
-                "enableRender": {
-                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                    "type": "boolean"
-                },
-                "context": {
-                    "type": "object"
-                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
@@ -1579,6 +1542,10 @@
                     "type": "string",
                     "default": "2022.8.16"
                 },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
@@ -1590,6 +1557,17 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "status": {
+                    "type": "string",
+                    "description": "Status of the unit.",
+                    "enum": [
+                        "idle",
+                        "active",
+                        "warning",
+                        "error",
+                        "finished"
+                    ]
                 },
                 "statusTrack": {
                     "type": "array",
@@ -1611,6 +1589,28 @@
                             }
                         }
                     }
+                },
+                "isDraft": {
+                    "type": "boolean"
+                },
+                "head": {
+                    "description": "Whether this unit is the first one to be executed.",
+                    "type": "boolean"
+                },
+                "flowchartId": {
+                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+                    "type": "string"
+                },
+                "next": {
+                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                    "type": "string"
+                },
+                "enableRender": {
+                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                    "type": "boolean"
+                },
+                "context": {
+                    "type": "object"
                 }
             }
         }

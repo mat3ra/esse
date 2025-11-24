@@ -4887,15 +4887,41 @@ export interface JobSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -4913,32 +4939,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -4962,15 +4962,41 @@ export interface JobSchema {
                      */
                     arguments: string[];
                 }[];
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -4988,32 +5014,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -5053,15 +5053,41 @@ export interface JobSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -5079,32 +5105,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -5119,15 +5119,41 @@ export interface JobSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -5145,32 +5171,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -5341,15 +5341,41 @@ export interface JobSchema {
                 input: {
                     [k: string]: unknown;
                 };
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -5367,32 +5393,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 /**
                  * names of the pre-processors for this calculation
                  */
@@ -5456,15 +5456,41 @@ export interface JobSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -5482,32 +5508,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 scope?: string;
                 [k: string]: unknown;
             } | {
@@ -5529,15 +5529,41 @@ export interface JobSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -5555,32 +5581,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             })[];
             model: {
@@ -5866,15 +5866,41 @@ export interface JobSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -5892,32 +5918,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -5941,15 +5941,41 @@ export interface JobSchema {
                  */
                 arguments: string[];
             }[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -5967,32 +5993,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -6032,15 +6032,41 @@ export interface JobSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6058,32 +6084,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -6098,15 +6098,41 @@ export interface JobSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6124,32 +6150,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -6320,15 +6320,41 @@ export interface JobSchema {
             input: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6346,32 +6372,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             /**
              * names of the pre-processors for this calculation
              */
@@ -6435,15 +6435,41 @@ export interface JobSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6461,32 +6487,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             scope?: string;
             [k: string]: unknown;
         } | {
@@ -6508,15 +6508,41 @@ export interface JobSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6534,32 +6560,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -6592,15 +6592,41 @@ export interface JobSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6618,47 +6644,47 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
              * type of the unit
              */
             type: "subworkflow";
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6676,32 +6702,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         })[];
         /**
@@ -46082,15 +46082,41 @@ export interface WorkflowPropertySchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46108,32 +46134,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -46157,15 +46157,41 @@ export interface WorkflowPropertySchema {
                  */
                 arguments: string[];
             }[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46183,32 +46209,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -46248,15 +46248,41 @@ export interface WorkflowPropertySchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46274,32 +46300,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -46314,15 +46314,41 @@ export interface WorkflowPropertySchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46340,32 +46366,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -46536,15 +46536,41 @@ export interface WorkflowPropertySchema {
             input: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46562,32 +46588,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             /**
              * names of the pre-processors for this calculation
              */
@@ -46651,15 +46651,41 @@ export interface WorkflowPropertySchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46677,32 +46703,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             scope?: string;
             [k: string]: unknown;
         } | {
@@ -46724,15 +46724,41 @@ export interface WorkflowPropertySchema {
             inputData: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46750,32 +46776,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         })[];
         model: {
@@ -47061,15 +47061,41 @@ export interface WorkflowPropertySchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47087,32 +47113,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -47136,15 +47136,41 @@ export interface WorkflowPropertySchema {
              */
             arguments: string[];
         }[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47162,32 +47188,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -47227,15 +47227,41 @@ export interface WorkflowPropertySchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47253,32 +47279,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -47293,15 +47293,41 @@ export interface WorkflowPropertySchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47319,32 +47345,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -47515,15 +47515,41 @@ export interface WorkflowPropertySchema {
         input: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47541,32 +47567,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         /**
          * names of the pre-processors for this calculation
          */
@@ -47630,15 +47630,41 @@ export interface WorkflowPropertySchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47656,32 +47682,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         scope?: string;
         [k: string]: unknown;
     } | {
@@ -47703,15 +47703,41 @@ export interface WorkflowPropertySchema {
         inputData: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47729,32 +47755,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -47787,15 +47787,41 @@ export interface WorkflowPropertySchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47813,47 +47839,47 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
          * type of the unit
          */
         type: "subworkflow";
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -47871,32 +47897,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     })[];
     /**
@@ -49313,15 +49313,41 @@ export interface PropertyHolderSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49339,32 +49365,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -49388,15 +49388,41 @@ export interface PropertyHolderSchema {
                      */
                     arguments: string[];
                 }[];
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49414,32 +49440,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -49479,15 +49479,41 @@ export interface PropertyHolderSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49505,32 +49531,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -49545,15 +49545,41 @@ export interface PropertyHolderSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49571,32 +49597,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -49767,15 +49767,41 @@ export interface PropertyHolderSchema {
                 input: {
                     [k: string]: unknown;
                 };
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49793,32 +49819,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 /**
                  * names of the pre-processors for this calculation
                  */
@@ -49882,15 +49882,41 @@ export interface PropertyHolderSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49908,32 +49934,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 scope?: string;
                 [k: string]: unknown;
             } | {
@@ -49955,15 +49955,41 @@ export interface PropertyHolderSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                isDraft?: boolean;
                 /**
-                 * name of the unit. e.g. pw_scf
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
                  */
                 name?: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
                 /**
                  * Status of the unit.
                  */
                 status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
                 /**
                  * Whether this unit is the first one to be executed.
                  */
@@ -49981,32 +50007,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
                 [k: string]: unknown;
             })[];
             model: {
@@ -50292,15 +50292,41 @@ export interface PropertyHolderSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50318,32 +50344,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -50367,15 +50367,41 @@ export interface PropertyHolderSchema {
                  */
                 arguments: string[];
             }[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50393,32 +50419,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -50458,15 +50458,41 @@ export interface PropertyHolderSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50484,32 +50510,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -50524,15 +50524,41 @@ export interface PropertyHolderSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50550,32 +50576,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -50746,15 +50746,41 @@ export interface PropertyHolderSchema {
             input: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50772,32 +50798,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             /**
              * names of the pre-processors for this calculation
              */
@@ -50861,15 +50861,41 @@ export interface PropertyHolderSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50887,32 +50913,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             scope?: string;
             [k: string]: unknown;
         } | {
@@ -50934,15 +50934,41 @@ export interface PropertyHolderSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -50960,32 +50986,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -51018,15 +51018,41 @@ export interface PropertyHolderSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -51044,47 +51070,47 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
              * type of the unit
              */
             type: "subworkflow";
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -51102,32 +51128,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         })[];
         /**
@@ -52123,15 +52123,41 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -52149,32 +52175,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     /**
      * names of the pre-processors for this calculation
      */
@@ -52625,15 +52625,41 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -52651,32 +52677,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     /**
      * names of the pre-processors for this calculation
      */
@@ -53488,15 +53488,41 @@ export type WorkflowSubworkflowUnitSchema = {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -53514,32 +53540,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -53563,15 +53563,41 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         arguments: string[];
     }[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -53589,32 +53615,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -53654,15 +53654,41 @@ export type WorkflowSubworkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -53680,32 +53706,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -53720,15 +53720,41 @@ export type WorkflowSubworkflowUnitSchema = {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -53746,32 +53772,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -53942,15 +53942,41 @@ export type WorkflowSubworkflowUnitSchema = {
     input: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -53968,32 +53994,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     /**
      * names of the pre-processors for this calculation
      */
@@ -54057,15 +54057,41 @@ export type WorkflowSubworkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -54083,32 +54109,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     scope?: string;
     [k: string]: unknown;
 } | {
@@ -54130,15 +54130,41 @@ export type WorkflowSubworkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -54156,32 +54182,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow/subworkflow.json */
@@ -54271,15 +54271,41 @@ export interface Subworkflow {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54297,32 +54323,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -54346,15 +54346,41 @@ export interface Subworkflow {
              */
             arguments: string[];
         }[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54372,32 +54398,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -54437,15 +54437,41 @@ export interface Subworkflow {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54463,32 +54489,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -54503,15 +54503,41 @@ export interface Subworkflow {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54529,32 +54555,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -54725,15 +54725,41 @@ export interface Subworkflow {
         input: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54751,32 +54777,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         /**
          * names of the pre-processors for this calculation
          */
@@ -54840,15 +54840,41 @@ export interface Subworkflow {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54866,32 +54892,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         scope?: string;
         [k: string]: unknown;
     } | {
@@ -54913,15 +54913,41 @@ export interface Subworkflow {
         inputData: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -54939,32 +54965,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     })[];
     model: {
@@ -55179,15 +55179,41 @@ export interface AssertionUnitSchema {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55205,32 +55231,6 @@ export interface AssertionUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/assignment.json */
@@ -55260,15 +55260,41 @@ export interface AssignmentUnitSchema {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55286,6 +55312,11 @@ export interface AssignmentUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    scope?: string;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/base.json */
+export interface WorkflowBaseUnitSchema {
     /**
      * entity identity
      */
@@ -55300,6 +55331,10 @@ export interface AssignmentUnitSchema {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name?: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
@@ -55307,30 +55342,21 @@ export interface AssignmentUnitSchema {
      * entity tags
      */
     tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
-    scope?: string;
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/base.json */
-export interface WorkflowBaseUnitSchema {
     isDraft?: boolean;
     /**
      * type of the unit
      */
     type: string;
     /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -55347,32 +55373,6 @@ export interface WorkflowBaseUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/condition.json */
@@ -55414,15 +55414,41 @@ export interface ConditionUnitSchema {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55440,32 +55466,6 @@ export interface ConditionUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/execution.json */
@@ -55638,15 +55638,41 @@ export interface ExecutionUnitSchemaBase {
     input: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55664,32 +55690,6 @@ export interface ExecutionUnitSchemaBase {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     /**
      * names of the pre-processors for this calculation
      */
@@ -55962,15 +55962,41 @@ export interface DataIOUnitSchema {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55988,32 +56014,6 @@ export interface DataIOUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/map.json */
@@ -56048,7 +56048,67 @@ export interface MapUnitSchema {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/base.json */
+export interface WorkflowBaseUnitMixinSchema {
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: string;
     /**
      * name of the unit. e.g. pw_scf
      */
@@ -56074,32 +56134,6 @@ export interface MapUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/processing.json */
@@ -56122,15 +56156,41 @@ export interface ProcessingUnitSchema {
     inputData: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56148,32 +56208,6 @@ export interface ProcessingUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/reduce.json */
@@ -56199,15 +56233,41 @@ export interface ReduceUnitSchema {
          */
         arguments: string[];
     }[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56225,32 +56285,6 @@ export interface ReduceUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/subworkflow.json */
@@ -56259,15 +56293,41 @@ export interface SubworkflowUnitSchema {
      * type of the unit
      */
     type: "subworkflow";
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56285,32 +56345,6 @@ export interface SubworkflowUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit.json */
@@ -56396,15 +56430,41 @@ export type WorkflowUnitSchema = {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56422,32 +56482,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -56471,15 +56505,41 @@ export type WorkflowUnitSchema = {
          */
         arguments: string[];
     }[];
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56497,32 +56557,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -56562,15 +56596,41 @@ export type WorkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56588,32 +56648,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -56628,15 +56662,41 @@ export type WorkflowUnitSchema = {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56654,32 +56714,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -56850,15 +56884,41 @@ export type WorkflowUnitSchema = {
     input: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56876,32 +56936,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     /**
      * names of the pre-processors for this calculation
      */
@@ -56965,15 +56999,41 @@ export type WorkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56991,32 +57051,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     scope?: string;
     [k: string]: unknown;
 } | {
@@ -57038,15 +57072,41 @@ export type WorkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -57064,32 +57124,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -57122,15 +57156,41 @@ export type WorkflowUnitSchema = {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -57148,47 +57208,47 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 } | {
     /**
      * type of the unit
      */
     type: "subworkflow";
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -57206,32 +57266,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
     [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow.json */
@@ -57325,15 +57359,41 @@ export interface WorkflowSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57351,32 +57411,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -57400,15 +57434,41 @@ export interface WorkflowSchema {
                  */
                 arguments: string[];
             }[];
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57426,32 +57486,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -57491,15 +57525,41 @@ export interface WorkflowSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57517,32 +57577,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -57557,15 +57591,41 @@ export interface WorkflowSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57583,32 +57643,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -57779,15 +57813,41 @@ export interface WorkflowSchema {
             input: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57805,32 +57865,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             /**
              * names of the pre-processors for this calculation
              */
@@ -57894,15 +57928,41 @@ export interface WorkflowSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57920,32 +57980,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             scope?: string;
             [k: string]: unknown;
         } | {
@@ -57967,15 +58001,41 @@ export interface WorkflowSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name?: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -57993,32 +58053,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
             [k: string]: unknown;
         })[];
         model: {
@@ -58304,15 +58338,41 @@ export interface WorkflowSchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58330,32 +58390,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -58379,15 +58413,41 @@ export interface WorkflowSchema {
              */
             arguments: string[];
         }[];
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58405,32 +58465,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -58470,15 +58504,41 @@ export interface WorkflowSchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58496,32 +58556,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -58536,15 +58570,41 @@ export interface WorkflowSchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58562,32 +58622,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -58758,15 +58792,41 @@ export interface WorkflowSchema {
         input: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58784,32 +58844,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         /**
          * names of the pre-processors for this calculation
          */
@@ -58873,15 +58907,41 @@ export interface WorkflowSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58899,32 +58959,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         scope?: string;
         [k: string]: unknown;
     } | {
@@ -58946,15 +58980,41 @@ export interface WorkflowSchema {
         inputData: {
             [k: string]: unknown;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -58972,32 +59032,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -59030,15 +59064,41 @@ export interface WorkflowSchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -59056,47 +59116,47 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     } | {
         /**
          * type of the unit
          */
         type: "subworkflow";
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -59114,32 +59174,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
         [k: string]: unknown;
     })[];
     /**

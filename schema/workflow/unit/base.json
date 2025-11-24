@@ -12,54 +12,9 @@
         },
         {
             "$ref": "../../system/status.json"
+        },
+        {
+            "$ref": "./mixins/base.json"
         }
-    ],
-    "properties": {
-        "isDraft": {
-            "type": "boolean"
-        },
-        "type": {
-            "description": "type of the unit",
-            "type": "string"
-        },
-        "name": {
-            "description": "name of the unit. e.g. pw_scf",
-            "type": "string"
-        },
-        "status": {
-            "description": "Status of the unit.",
-            "type": "string",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
-        },
-        "head": {
-            "description": "Whether this unit is the first one to be executed.",
-            "type": "boolean"
-        },
-        "flowchartId": {
-            "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-            "type": "string"
-        },
-        "next": {
-            "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-            "type": "string"
-        },
-        "enableRender": {
-            "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-            "type": "boolean"
-        },
-        "context": {
-            "type": "object"
-        }
-    },
-    "additionalProperties": true,
-    "required": [
-        "type",
-        "flowchartId"
     ]
 }
