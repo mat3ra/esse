@@ -40,7 +40,7 @@ class ShellScriptingLanguageSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    name: Optional[Name] = None
+    name: Name
     """
     entity name
     """

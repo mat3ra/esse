@@ -6,6 +6,7 @@
     "required": [
         "flowchartId",
         "inputData",
+        "name",
         "operation",
         "operationType",
         "type"

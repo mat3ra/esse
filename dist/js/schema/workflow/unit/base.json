@@ -4,8 +4,9 @@
     "title": "workflow base unit schema",
     "type": "object",
     "required": [
-        "type",
-        "flowchartId"
+        "flowchartId",
+        "name",
+        "type"
     ],
     "additionalProperties": true,
     "properties": {

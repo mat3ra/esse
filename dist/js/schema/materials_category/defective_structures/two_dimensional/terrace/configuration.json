@@ -221,7 +221,8 @@
                                             "type": "object",
                                             "required": [
                                                 "basis",
-                                                "lattice"
+                                                "lattice",
+                                                "name"
                                             ],
                                             "properties": {
                                                 "formula": {
@@ -1018,7 +1019,8 @@
                                             "type": "object",
                                             "required": [
                                                 "basis",
-                                                "lattice"
+                                                "lattice",
+                                                "name"
                                             ],
                                             "properties": {
                                                 "formula": {
@@ -2036,7 +2038,8 @@
                                                             "type": "object",
                                                             "required": [
                                                                 "basis",
-                                                                "lattice"
+                                                                "lattice",
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "formula": {
@@ -2833,7 +2836,8 @@
                                                             "type": "object",
                                                             "required": [
                                                                 "basis",
-                                                                "lattice"
+                                                                "lattice",
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "formula": {
@@ -3646,7 +3650,8 @@
                                             "type": "object",
                                             "required": [
                                                 "basis",
-                                                "lattice"
+                                                "lattice",
+                                                "name"
                                             ],
                                             "properties": {
                                                 "formula": {
@@ -4689,7 +4694,8 @@
                             "type": "object",
                             "required": [
                                 "basis",
-                                "lattice"
+                                "lattice",
+                                "name"
                             ],
                             "properties": {
                                 "formula": {

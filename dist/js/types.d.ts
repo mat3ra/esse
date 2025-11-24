@@ -3028,7 +3028,7 @@ export interface NamedNodeSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /**
  * This interface was referenced by `NamedNodeSchema`'s JSON-Schema
@@ -3057,7 +3057,7 @@ export interface NamedNodeInGroupSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Human-readable name of group of nodes
      */
@@ -3133,7 +3133,7 @@ export type LinkedListSchema = ({
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 } | {
     /**
      * Flowchart ID of next node
@@ -3150,7 +3150,7 @@ export type LinkedListSchema = ({
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Human-readable name of group of nodes
      */
@@ -4391,7 +4391,7 @@ export interface HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySch
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -4434,7 +4434,7 @@ export interface NamedInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/in_memory_entity/named_defaultable.json */
 export interface NamedDefaultableInMemoryEntitySchema {
@@ -4454,7 +4454,7 @@ export interface NamedDefaultableInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -4478,7 +4478,7 @@ export interface NamedDefaultableHasMetadataInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -4683,7 +4683,7 @@ export interface JobBaseSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -4903,7 +4903,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -4978,7 +4978,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -5069,7 +5069,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -5218,7 +5218,7 @@ export interface JobSchema {
                     /**
                      * entity name
                      */
-                    name?: string;
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -5313,7 +5313,7 @@ export interface JobSchema {
                     /**
                      * entity name
                      */
-                    name?: string;
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -5357,7 +5357,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -5545,7 +5545,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -5653,7 +5653,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -5882,7 +5882,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -5957,7 +5957,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6048,7 +6048,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6197,7 +6197,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -6292,7 +6292,7 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -6336,7 +6336,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6524,7 +6524,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6608,7 +6608,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6666,7 +6666,7 @@ export interface JobSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -6732,7 +6732,7 @@ export interface JobSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -6935,7 +6935,7 @@ export interface JobSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -7218,7 +7218,7 @@ export interface MaterialSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -7520,7 +7520,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -7793,7 +7793,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -8114,7 +8114,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -8387,7 +8387,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -8697,7 +8697,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -8970,7 +8970,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -9291,7 +9291,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -9564,7 +9564,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -9875,7 +9875,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -10148,7 +10148,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -10469,7 +10469,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -10742,7 +10742,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -11052,7 +11052,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -11325,7 +11325,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -11646,7 +11646,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -11919,7 +11919,7 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -12207,7 +12207,7 @@ export interface InterfaceConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -12536,7 +12536,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -12809,7 +12809,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -13130,7 +13130,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -13403,7 +13403,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -13713,7 +13713,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -13986,7 +13986,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -14307,7 +14307,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -14580,7 +14580,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -14930,7 +14930,7 @@ export interface AdatomDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -15203,7 +15203,7 @@ export interface AdatomDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -15483,7 +15483,7 @@ export interface AdatomDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -15765,7 +15765,7 @@ export interface AdatomDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -16091,7 +16091,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -16364,7 +16364,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -16685,7 +16685,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -16958,7 +16958,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -17268,7 +17268,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -17541,7 +17541,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -17862,7 +17862,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -18135,7 +18135,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -18446,7 +18446,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -18719,7 +18719,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -19040,7 +19040,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -19313,7 +19313,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -19623,7 +19623,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -19896,7 +19896,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -20217,7 +20217,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -20490,7 +20490,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -20778,7 +20778,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -21101,7 +21101,7 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -21374,7 +21374,7 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -21690,7 +21690,7 @@ export interface IslandDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
@@ -21963,7 +21963,7 @@ export interface IslandDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
@@ -22243,7 +22243,7 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -22573,7 +22573,7 @@ export interface IslandDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -22893,7 +22893,7 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -23166,7 +23166,7 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -23482,7 +23482,7 @@ export interface TerraceDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
@@ -23755,7 +23755,7 @@ export interface TerraceDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
@@ -24035,7 +24035,7 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -24365,7 +24365,7 @@ export interface TerraceDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -24658,7 +24658,7 @@ export interface PointDefectBaseConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -24931,7 +24931,7 @@ export interface InterstitialPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -25191,7 +25191,7 @@ export interface InterstitialPointDefectSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -25477,7 +25477,7 @@ export interface SubstitutionalPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -25737,7 +25737,7 @@ export interface SubstitutionalPointDefectSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -26023,7 +26023,7 @@ export interface VacancyPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -26295,7 +26295,7 @@ export interface IdealCrystalSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -26612,7 +26612,7 @@ export interface NanoribbonConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -26885,7 +26885,7 @@ export interface NanoribbonConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -27173,7 +27173,7 @@ export interface NanoribbonConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -27504,7 +27504,7 @@ export interface NanoTapeConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -27777,7 +27777,7 @@ export interface NanoTapeConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -28091,7 +28091,7 @@ export interface SlabConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -28364,7 +28364,7 @@ export interface SlabConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -28690,7 +28690,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -28963,7 +28963,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -29248,7 +29248,7 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -29507,7 +29507,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -29777,7 +29777,7 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -30036,7 +30036,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -30306,7 +30306,7 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -30565,7 +30565,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -30905,7 +30905,7 @@ export interface CrystalSiteSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -31175,7 +31175,7 @@ export interface PointDefectSiteSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -31453,7 +31453,7 @@ export interface VoidRegionSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -31769,7 +31769,7 @@ export interface CrystalSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -32107,7 +32107,7 @@ export interface VacuumConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -32396,7 +32396,7 @@ export interface CrystalLatticeLinesSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -32706,7 +32706,7 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -32975,7 +32975,7 @@ export interface CrystalLatticeBaseSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -33252,7 +33252,7 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -33522,7 +33522,7 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -33791,7 +33791,7 @@ export interface SupercellConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -34095,7 +34095,7 @@ export interface AtomicLayersSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -34398,7 +34398,7 @@ export interface AtomicLayersUniqueSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -34691,7 +34691,7 @@ export interface AtomicLayersUniqueRepeatedSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -34967,7 +34967,7 @@ export interface CrystalLatticePlanesSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -35272,7 +35272,7 @@ export interface SlabStackConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -35545,7 +35545,7 @@ export interface SlabStackConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
@@ -35834,7 +35834,7 @@ export interface SlabStackConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -36155,7 +36155,7 @@ export interface PerturbationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -36269,7 +36269,7 @@ export interface CategorizedMethod {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * TODO: Use regex once schema draft version has been updated
          */
@@ -36282,7 +36282,7 @@ export interface CategorizedMethod {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -36383,7 +36383,7 @@ export interface CategorizedUnitMethod {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -40789,7 +40789,7 @@ export interface UnitMethodConjugateGradient {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -40885,7 +40885,7 @@ export interface UnitMethodDavidsonSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -41241,7 +41241,7 @@ export interface UnitMethodRegression {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -41339,7 +41339,7 @@ export interface UnitMethodAoDunning {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -41448,7 +41448,7 @@ export interface UnitMethodAoOther {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -41553,7 +41553,7 @@ export interface UnitMethodAoPople {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -41963,7 +41963,7 @@ export interface UnitMethodPseudopotential {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42059,7 +42059,7 @@ export interface UnitMethodPlaneWave {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42155,7 +42155,7 @@ export interface UnitMethodSmearing {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42248,7 +42248,7 @@ export interface UnitMethodTetrahedron {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42343,7 +42343,7 @@ export interface CategorizedModel {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * TODO: Use regex once schema draft version has been updated
              */
@@ -42356,7 +42356,7 @@ export interface CategorizedModel {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * TODO: Use regex once schema draft version has been updated
          */
@@ -42511,7 +42511,7 @@ export interface CategorizedModel {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42738,7 +42738,7 @@ export interface ModelWithoutMethodSchemaBase {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44105,7 +44105,7 @@ export interface ModelDoubleHybridFunctional {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44272,7 +44272,7 @@ export interface ModelGeneralizedGradientApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44444,7 +44444,7 @@ export interface ModelGwApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44611,7 +44611,7 @@ export interface ModelHybridFunctional {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44778,7 +44778,7 @@ export interface ModelLocalDensityApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45068,7 +45068,7 @@ export interface ModelMetaGeneralizedGradientApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45228,7 +45228,7 @@ export interface ModelRegression {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45269,7 +45269,7 @@ export interface ProjectSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -46098,7 +46098,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -46173,7 +46173,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -46264,7 +46264,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -46413,7 +46413,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -46508,7 +46508,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -46552,7 +46552,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -46740,7 +46740,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -46848,7 +46848,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -47077,7 +47077,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47152,7 +47152,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47243,7 +47243,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47392,7 +47392,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -47487,7 +47487,7 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -47531,7 +47531,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47719,7 +47719,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47803,7 +47803,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -47861,7 +47861,7 @@ export interface WorkflowPropertySchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -49329,7 +49329,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -49404,7 +49404,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -49495,7 +49495,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -49644,7 +49644,7 @@ export interface PropertyHolderSchema {
                     /**
                      * entity name
                      */
-                    name?: string;
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -49739,7 +49739,7 @@ export interface PropertyHolderSchema {
                     /**
                      * entity name
                      */
-                    name?: string;
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -49783,7 +49783,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -49971,7 +49971,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -50079,7 +50079,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -50308,7 +50308,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -50383,7 +50383,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -50474,7 +50474,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -50623,7 +50623,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -50718,7 +50718,7 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -50762,7 +50762,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -50950,7 +50950,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -51034,7 +51034,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -51092,7 +51092,7 @@ export interface PropertyHolderSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -51649,7 +51649,7 @@ export interface ApplicationSchemaBase {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -51746,7 +51746,7 @@ export interface FlavorSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -51811,7 +51811,7 @@ export interface DeePMDAppSchema {
     /**
      * entity name
      */
-    name?: "deepmd";
+    name: "deepmd";
     /**
      * Application's short description.
      */
@@ -51890,7 +51890,7 @@ export interface NWChem {
     /**
      * entity name
      */
-    name?: "NWChem";
+    name: "NWChem";
     /**
      * Application's short description.
      */
@@ -51982,7 +51982,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -52077,7 +52077,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -52139,7 +52139,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -52218,7 +52218,7 @@ export interface ViennaAbInitoSimulationPackage {
     /**
      * entity name
      */
-    name?: "vasp";
+    name: "vasp";
     /**
      * Application's short description.
      */
@@ -52269,7 +52269,7 @@ export interface JupyterLabApplicationSchema {
     /**
      * entity name
      */
-    name?: "jupyterLab";
+    name: "jupyterLab";
     flavor?: "notebook";
     /**
      * Application's short description.
@@ -52320,7 +52320,7 @@ export interface PythonProgramingLanguageSchema {
     /**
      * entity name
      */
-    name?: "python";
+    name: "python";
     flavor?: "python2" | "python3";
     /**
      * Application's short description.
@@ -52383,7 +52383,7 @@ export interface ShellScriptingLanguageSchema {
     /**
      * entity name
      */
-    name?: "shell";
+    name: "shell";
     flavor?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Application's short description.
@@ -52484,7 +52484,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -52579,7 +52579,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -52641,7 +52641,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53075,7 +53075,7 @@ export interface NameEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/system/owner.json */
 export interface EntityOwnerReferenceSchema {
@@ -53104,7 +53104,7 @@ export interface PathEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -53270,7 +53270,7 @@ export interface BaseWorkflowSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53504,7 +53504,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53579,7 +53579,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53670,7 +53670,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53819,7 +53819,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -53914,7 +53914,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -53958,7 +53958,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -54146,7 +54146,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -54287,7 +54287,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -54362,7 +54362,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -54453,7 +54453,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -54602,7 +54602,7 @@ export interface Subworkflow {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -54697,7 +54697,7 @@ export interface Subworkflow {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -54741,7 +54741,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -54929,7 +54929,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -55037,7 +55037,7 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -55333,7 +55333,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -55430,7 +55430,7 @@ export interface ConditionUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -55515,7 +55515,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -55610,7 +55610,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -55654,7 +55654,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -55978,7 +55978,7 @@ export interface DataIOUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56064,7 +56064,7 @@ export interface MapUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56172,7 +56172,7 @@ export interface ProcessingUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56249,7 +56249,7 @@ export interface ReduceUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56309,7 +56309,7 @@ export interface SubworkflowUnitSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56446,7 +56446,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56521,7 +56521,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56612,7 +56612,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -56761,7 +56761,7 @@ export type WorkflowUnitSchema = {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -56856,7 +56856,7 @@ export type WorkflowUnitSchema = {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -56900,7 +56900,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -57088,7 +57088,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -57172,7 +57172,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -57230,7 +57230,7 @@ export type WorkflowUnitSchema = {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -57375,7 +57375,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -57450,7 +57450,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -57541,7 +57541,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -57690,7 +57690,7 @@ export interface WorkflowSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -57785,7 +57785,7 @@ export interface WorkflowSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -57829,7 +57829,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -58017,7 +58017,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -58125,7 +58125,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -58354,7 +58354,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58429,7 +58429,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58520,7 +58520,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58669,7 +58669,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -58764,7 +58764,7 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -58808,7 +58808,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58996,7 +58996,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -59080,7 +59080,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -59138,7 +59138,7 @@ export interface WorkflowSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -59204,7 +59204,7 @@ export interface WorkflowSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */

@@ -22,7 +22,7 @@ class NamedNodeSchema(BaseModel):
     """
     Unique flowchart ID of node
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

@@ -3,6 +3,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Jupyter Lab Application Schema",
     "type": "object",
+    "required": [
+        "name"
+    ],
     "additionalProperties": true,
     "properties": {
         "name": {

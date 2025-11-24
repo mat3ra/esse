@@ -6,6 +6,7 @@
     "required": [
         "flowchartId",
         "input",
+        "name",
         "source",
         "subtype",
         "type"

@@ -15,7 +15,8 @@
             "type": "object",
             "required": [
                 "basis",
-                "lattice"
+                "lattice",
+                "name"
             ],
             "properties": {
                 "formula": {

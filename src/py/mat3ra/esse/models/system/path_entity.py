@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 
 class PathEntitySchema(BaseModel):
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

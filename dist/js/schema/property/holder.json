@@ -2053,6 +2053,7 @@
                                                     "required": [
                                                         "flowchartId",
                                                         "input",
+                                                        "name",
                                                         "source",
                                                         "subtype",
                                                         "type"
@@ -2305,6 +2306,7 @@
                                                         "flowchartId",
                                                         "input",
                                                         "mapFlowchartId",
+                                                        "name",
                                                         "type"
                                                     ],
                                                     "additionalProperties": true,
@@ -2441,6 +2443,7 @@
                                                         "flowchartId",
                                                         "input",
                                                         "maxOccurrences",
+                                                        "name",
                                                         "statement",
                                                         "then",
                                                         "type"
@@ -2709,6 +2712,7 @@
                                                         "flowchartId",
                                                         "input",
                                                         "monitors",
+                                                        "name",
                                                         "postProcessors",
                                                         "preProcessors",
                                                         "results",
@@ -2727,6 +2731,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "application schema (base)",
                                                             "type": "object",
+                                                            "required": [
+                                                                "name"
+                                                            ],
                                                             "additionalProperties": true,
                                                             "properties": {
                                                                 "shortName": {
@@ -2863,9 +2870,10 @@
                                                             "title": "flavor schema",
                                                             "type": "object",
                                                             "required": [
-                                                                "preProcessors",
-                                                                "postProcessors",
                                                                 "monitors",
+                                                                "name",
+                                                                "postProcessors",
+                                                                "preProcessors",
                                                                 "results"
                                                             ],
                                                             "properties": {
@@ -3287,6 +3295,7 @@
                                                     "required": [
                                                         "flowchartId",
                                                         "inputData",
+                                                        "name",
                                                         "operation",
                                                         "operationType",
                                                         "type"
@@ -3460,6 +3469,9 @@
                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                         "title": "application schema (base)",
                                         "type": "object",
+                                        "required": [
+                                            "name"
+                                        ],
                                         "additionalProperties": true,
                                         "properties": {
                                             "shortName": {
@@ -3729,6 +3741,7 @@
                                         "required": [
                                             "flowchartId",
                                             "input",
+                                            "name",
                                             "source",
                                             "subtype",
                                             "type"
@@ -3981,6 +3994,7 @@
                                             "flowchartId",
                                             "input",
                                             "mapFlowchartId",
+                                            "name",
                                             "type"
                                         ],
                                         "additionalProperties": true,
@@ -4117,6 +4131,7 @@
                                             "flowchartId",
                                             "input",
                                             "maxOccurrences",
+                                            "name",
                                             "statement",
                                             "then",
                                             "type"
@@ -4385,6 +4400,7 @@
                                             "flowchartId",
                                             "input",
                                             "monitors",
+                                            "name",
                                             "postProcessors",
                                             "preProcessors",
                                             "results",
@@ -4403,6 +4419,9 @@
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                 "title": "application schema (base)",
                                                 "type": "object",
+                                                "required": [
+                                                    "name"
+                                                ],
                                                 "additionalProperties": true,
                                                 "properties": {
                                                     "shortName": {
@@ -4539,9 +4558,10 @@
                                                 "title": "flavor schema",
                                                 "type": "object",
                                                 "required": [
-                                                    "preProcessors",
-                                                    "postProcessors",
                                                     "monitors",
+                                                    "name",
+                                                    "postProcessors",
+                                                    "preProcessors",
                                                     "results"
                                                 ],
                                                 "properties": {
@@ -4963,6 +4983,7 @@
                                         "required": [
                                             "flowchartId",
                                             "inputData",
+                                            "name",
                                             "operation",
                                             "operationType",
                                             "type"
@@ -5082,6 +5103,7 @@
                                         "required": [
                                             "flowchartId",
                                             "input",
+                                            "name",
                                             "type",
                                             "workflowId"
                                         ],
@@ -5232,8 +5254,9 @@
                                         "title": "subworkflow unit schema",
                                         "type": "object",
                                         "required": [
-                                            "type",
-                                            "flowchartId"
+                                            "flowchartId",
+                                            "name",
+                                            "type"
                                         ],
                                         "additionalProperties": true,
                                         "properties": {

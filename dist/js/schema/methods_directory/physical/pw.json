@@ -5,7 +5,8 @@
     "description": "Approximating the electronic wave function with a plane wave basis",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "properties": {
         "categories": {

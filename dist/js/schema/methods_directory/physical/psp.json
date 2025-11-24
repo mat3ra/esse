@@ -5,7 +5,8 @@
     "description": "Core-valence separation by means of pseudopotentials (effective potential)",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "properties": {
         "categories": {

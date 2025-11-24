@@ -4,9 +4,10 @@
     "title": "flavor schema",
     "type": "object",
     "required": [
-        "preProcessors",
-        "postProcessors",
         "monitors",
+        "name",
+        "postProcessors",
+        "preProcessors",
         "results"
     ],
     "properties": {

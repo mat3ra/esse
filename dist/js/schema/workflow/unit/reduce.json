@@ -7,6 +7,7 @@
         "flowchartId",
         "input",
         "mapFlowchartId",
+        "name",
         "type"
     ],
     "additionalProperties": true,

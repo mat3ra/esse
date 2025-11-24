@@ -8,6 +8,7 @@
         "flowchartId",
         "input",
         "maxOccurrences",
+        "name",
         "statement",
         "then",
         "type"
