@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class Type(Enum):
-    assertion = "assertion"
-
-
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -28,22 +24,14 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
+class Type(Enum):
+    assertion = "assertion"
+
+
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    statement: str
-    """
-    The statement to be evaluated
-    """
-    errorMessage: Optional[str] = None
-    """
-    The error message to be displayed if the assertion fails
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -75,6 +63,10 @@ class AssertionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -92,3 +84,11 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    statement: str
+    """
+    The statement to be evaluated
+    """
+    errorMessage: Optional[str] = None
+    """
+    The error message to be displayed if the assertion fails
+    """

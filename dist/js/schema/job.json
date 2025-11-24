@@ -57,12 +57,98 @@
                                             ],
                                             "additionalProperties": true,
                                             "properties": {
+                                                "_id": {
+                                                    "description": "entity identity",
+                                                    "type": "string"
+                                                },
+                                                "slug": {
+                                                    "description": "entity slug",
+                                                    "type": "string"
+                                                },
+                                                "systemName": {
+                                                    "type": "string"
+                                                },
+                                                "schemaVersion": {
+                                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                                    "type": "string",
+                                                    "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
+                                                },
+                                                "isDefault": {
+                                                    "description": "Identifies that entity is defaultable",
+                                                    "type": "boolean",
+                                                    "default": false
+                                                },
+                                                "tags": {
+                                                    "description": "entity tags",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status of the unit.",
+                                                    "enum": [
+                                                        "idle",
+                                                        "active",
+                                                        "warning",
+                                                        "error",
+                                                        "finished"
+                                                    ]
+                                                },
+                                                "statusTrack": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                            "trackedAt",
+                                                            "status"
+                                                        ],
+                                                        "properties": {
+                                                            "trackedAt": {
+                                                                "type": "number"
+                                                            },
+                                                            "status": {
+                                                                "type": "string"
+                                                            },
+                                                            "repetition": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "isDraft": {
+                                                    "type": "boolean"
+                                                },
                                                 "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
                                                     "enum": [
                                                         "io"
-                                                    ],
-                                                    "description": "type of the unit",
+                                                    ]
+                                                },
+                                                "head": {
+                                                    "description": "Whether this unit is the first one to be executed.",
+                                                    "type": "boolean"
+                                                },
+                                                "flowchartId": {
+                                                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
                                                     "type": "string"
+                                                },
+                                                "next": {
+                                                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                                                    "type": "string"
+                                                },
+                                                "enableRender": {
+                                                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                                                    "type": "boolean"
+                                                },
+                                                "context": {
+                                                    "type": "object"
                                                 },
                                                 "subtype": {
                                                     "enum": [
@@ -206,7 +292,22 @@
                                                             }
                                                         ]
                                                     }
-                                                },
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "reduce unit schema",
+                                            "type": "object",
+                                            "required": [
+                                                "flowchartId",
+                                                "input",
+                                                "mapFlowchartId",
+                                                "name",
+                                                "type"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -274,6 +375,13 @@
                                                 "isDraft": {
                                                     "type": "boolean"
                                                 },
+                                                "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "reduce"
+                                                    ]
+                                                },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
                                                     "type": "boolean"
@@ -292,28 +400,6 @@
                                                 },
                                                 "context": {
                                                     "type": "object"
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "reduce unit schema",
-                                            "type": "object",
-                                            "required": [
-                                                "flowchartId",
-                                                "input",
-                                                "mapFlowchartId",
-                                                "name",
-                                                "type"
-                                            ],
-                                            "additionalProperties": true,
-                                            "properties": {
-                                                "type": {
-                                                    "enum": [
-                                                        "reduce"
-                                                    ],
-                                                    "description": "type of the unit",
-                                                    "type": "string"
                                                 },
                                                 "mapFlowchartId": {
                                                     "description": "corresponding map unit flowchart ID",
@@ -342,7 +428,25 @@
                                                             }
                                                         }
                                                     }
-                                                },
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "condition unit schema",
+                                            "type": "object",
+                                            "required": [
+                                                "else",
+                                                "flowchartId",
+                                                "input",
+                                                "maxOccurrences",
+                                                "name",
+                                                "statement",
+                                                "then",
+                                                "type"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -410,6 +514,13 @@
                                                 "isDraft": {
                                                     "type": "boolean"
                                                 },
+                                                "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "condition"
+                                                    ]
+                                                },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
                                                     "type": "boolean"
@@ -428,31 +539,6 @@
                                                 },
                                                 "context": {
                                                     "type": "object"
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "condition unit schema",
-                                            "type": "object",
-                                            "required": [
-                                                "else",
-                                                "flowchartId",
-                                                "input",
-                                                "maxOccurrences",
-                                                "name",
-                                                "statement",
-                                                "then",
-                                                "type"
-                                            ],
-                                            "additionalProperties": true,
-                                            "properties": {
-                                                "type": {
-                                                    "enum": [
-                                                        "condition"
-                                                    ],
-                                                    "description": "type of the unit",
-                                                    "type": "string"
                                                 },
                                                 "input": {
                                                     "description": "Input information for condition.",
@@ -496,92 +582,6 @@
                                                 "throwException": {
                                                     "description": "Throw exception on reaching to maximum occurence.",
                                                     "type": "boolean"
-                                                },
-                                                "_id": {
-                                                    "description": "entity identity",
-                                                    "type": "string"
-                                                },
-                                                "slug": {
-                                                    "description": "entity slug",
-                                                    "type": "string"
-                                                },
-                                                "systemName": {
-                                                    "type": "string"
-                                                },
-                                                "schemaVersion": {
-                                                    "description": "entity's schema version. Used to distinct between different schemas.",
-                                                    "type": "string",
-                                                    "default": "2022.8.16"
-                                                },
-                                                "name": {
-                                                    "description": "entity name",
-                                                    "type": "string"
-                                                },
-                                                "isDefault": {
-                                                    "description": "Identifies that entity is defaultable",
-                                                    "type": "boolean",
-                                                    "default": false
-                                                },
-                                                "tags": {
-                                                    "description": "entity tags",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "status": {
-                                                    "type": "string",
-                                                    "description": "Status of the unit.",
-                                                    "enum": [
-                                                        "idle",
-                                                        "active",
-                                                        "warning",
-                                                        "error",
-                                                        "finished"
-                                                    ]
-                                                },
-                                                "statusTrack": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                            "trackedAt",
-                                                            "status"
-                                                        ],
-                                                        "properties": {
-                                                            "trackedAt": {
-                                                                "type": "number"
-                                                            },
-                                                            "status": {
-                                                                "type": "string"
-                                                            },
-                                                            "repetition": {
-                                                                "type": "number"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "isDraft": {
-                                                    "type": "boolean"
-                                                },
-                                                "head": {
-                                                    "description": "Whether this unit is the first one to be executed.",
-                                                    "type": "boolean"
-                                                },
-                                                "flowchartId": {
-                                                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                    "type": "string"
-                                                },
-                                                "next": {
-                                                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                                                    "type": "string"
-                                                },
-                                                "enableRender": {
-                                                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                                                    "type": "boolean"
-                                                },
-                                                "context": {
-                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -597,21 +597,6 @@
                                             ],
                                             "additionalProperties": true,
                                             "properties": {
-                                                "type": {
-                                                    "enum": [
-                                                        "assertion"
-                                                    ],
-                                                    "description": "type of the unit",
-                                                    "type": "string"
-                                                },
-                                                "statement": {
-                                                    "type": "string",
-                                                    "description": "The statement to be evaluated"
-                                                },
-                                                "errorMessage": {
-                                                    "type": "string",
-                                                    "description": "The error message to be displayed if the assertion fails"
-                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -679,6 +664,13 @@
                                                 "isDraft": {
                                                     "type": "boolean"
                                                 },
+                                                "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "assertion"
+                                                    ]
+                                                },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
                                                     "type": "boolean"
@@ -697,6 +689,14 @@
                                                 },
                                                 "context": {
                                                     "type": "object"
+                                                },
+                                                "statement": {
+                                                    "type": "string",
+                                                    "description": "The statement to be evaluated"
+                                                },
+                                                "errorMessage": {
+                                                    "type": "string",
+                                                    "description": "The error message to be displayed if the assertion fails"
                                                 }
                                             }
                                         },
@@ -717,12 +717,170 @@
                                             ],
                                             "additionalProperties": true,
                                             "properties": {
+                                                "_id": {
+                                                    "description": "entity identity",
+                                                    "type": "string"
+                                                },
+                                                "slug": {
+                                                    "description": "entity slug",
+                                                    "type": "string"
+                                                },
+                                                "systemName": {
+                                                    "type": "string"
+                                                },
+                                                "schemaVersion": {
+                                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                                    "type": "string",
+                                                    "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
+                                                },
+                                                "isDefault": {
+                                                    "description": "Identifies that entity is defaultable",
+                                                    "type": "boolean",
+                                                    "default": false
+                                                },
+                                                "tags": {
+                                                    "description": "entity tags",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "status": {
+                                                    "type": "string",
+                                                    "description": "Status of the unit.",
+                                                    "enum": [
+                                                        "idle",
+                                                        "active",
+                                                        "warning",
+                                                        "error",
+                                                        "finished"
+                                                    ]
+                                                },
+                                                "statusTrack": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "required": [
+                                                            "trackedAt",
+                                                            "status"
+                                                        ],
+                                                        "properties": {
+                                                            "trackedAt": {
+                                                                "type": "number"
+                                                            },
+                                                            "status": {
+                                                                "type": "string"
+                                                            },
+                                                            "repetition": {
+                                                                "type": "number"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "isDraft": {
+                                                    "type": "boolean"
+                                                },
                                                 "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
                                                     "enum": [
                                                         "execution"
-                                                    ],
-                                                    "description": "type of the unit",
+                                                    ]
+                                                },
+                                                "head": {
+                                                    "description": "Whether this unit is the first one to be executed.",
+                                                    "type": "boolean"
+                                                },
+                                                "flowchartId": {
+                                                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
                                                     "type": "string"
+                                                },
+                                                "next": {
+                                                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                                                    "type": "string"
+                                                },
+                                                "enableRender": {
+                                                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                                                    "type": "boolean"
+                                                },
+                                                "context": {
+                                                    "type": "object"
+                                                },
+                                                "preProcessors": {
+                                                    "description": "names of the pre-processors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "runtime item name object schema",
+                                                        "type": "object",
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "The name of this item. e.g. scf_accuracy",
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "postProcessors": {
+                                                    "description": "names of the post-processors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "runtime item name object schema",
+                                                        "type": "object",
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "The name of this item. e.g. scf_accuracy",
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "monitors": {
+                                                    "description": "names of the monitors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "runtime item name object schema",
+                                                        "type": "object",
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "The name of this item. e.g. scf_accuracy",
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "results": {
+                                                    "description": "names of the results for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "runtime item name object schema",
+                                                        "type": "object",
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "The name of this item. e.g. scf_accuracy",
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
                                                 },
                                                 "application": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
@@ -972,7 +1130,22 @@
                                                 },
                                                 "input": {
                                                     "description": "unit input (type to be specified by the application's execution unit)"
-                                                },
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "assignment unit schema",
+                                            "type": "object",
+                                            "required": [
+                                                "flowchartId",
+                                                "name",
+                                                "operand",
+                                                "type",
+                                                "value"
+                                            ],
+                                            "additionalProperties": true,
+                                            "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -1040,6 +1213,13 @@
                                                 "isDraft": {
                                                     "type": "boolean"
                                                 },
+                                                "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "assignment"
+                                                    ]
+                                                },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
                                                     "type": "boolean"
@@ -1059,98 +1239,7 @@
                                                 "context": {
                                                     "type": "object"
                                                 },
-                                                "preProcessors": {
-                                                    "description": "names of the pre-processors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "runtime item name object schema",
-                                                        "type": "object",
-                                                        "required": [
-                                                            "name"
-                                                        ],
-                                                        "properties": {
-                                                            "name": {
-                                                                "description": "The name of this item. e.g. scf_accuracy",
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "postProcessors": {
-                                                    "description": "names of the post-processors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "runtime item name object schema",
-                                                        "type": "object",
-                                                        "required": [
-                                                            "name"
-                                                        ],
-                                                        "properties": {
-                                                            "name": {
-                                                                "description": "The name of this item. e.g. scf_accuracy",
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "monitors": {
-                                                    "description": "names of the monitors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "runtime item name object schema",
-                                                        "type": "object",
-                                                        "required": [
-                                                            "name"
-                                                        ],
-                                                        "properties": {
-                                                            "name": {
-                                                                "description": "The name of this item. e.g. scf_accuracy",
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "results": {
-                                                    "description": "names of the results for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "runtime item name object schema",
-                                                        "type": "object",
-                                                        "required": [
-                                                            "name"
-                                                        ],
-                                                        "properties": {
-                                                            "name": {
-                                                                "description": "The name of this item. e.g. scf_accuracy",
-                                                                "type": "string"
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        },
-                                        {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "assignment unit schema",
-                                            "type": "object",
-                                            "required": [
-                                                "flowchartId",
-                                                "name",
-                                                "operand",
-                                                "type",
-                                                "value"
-                                            ],
-                                            "additionalProperties": true,
-                                            "properties": {
-                                                "type": {
-                                                    "enum": [
-                                                        "assignment"
-                                                    ],
-                                                    "description": "type of the unit",
+                                                "scope": {
                                                     "type": "string"
                                                 },
                                                 "input": {
@@ -1193,95 +1282,6 @@
                                                             "type": "number"
                                                         }
                                                     ]
-                                                },
-                                                "_id": {
-                                                    "description": "entity identity",
-                                                    "type": "string"
-                                                },
-                                                "slug": {
-                                                    "description": "entity slug",
-                                                    "type": "string"
-                                                },
-                                                "systemName": {
-                                                    "type": "string"
-                                                },
-                                                "schemaVersion": {
-                                                    "description": "entity's schema version. Used to distinct between different schemas.",
-                                                    "type": "string",
-                                                    "default": "2022.8.16"
-                                                },
-                                                "name": {
-                                                    "description": "entity name",
-                                                    "type": "string"
-                                                },
-                                                "isDefault": {
-                                                    "description": "Identifies that entity is defaultable",
-                                                    "type": "boolean",
-                                                    "default": false
-                                                },
-                                                "tags": {
-                                                    "description": "entity tags",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "status": {
-                                                    "type": "string",
-                                                    "description": "Status of the unit.",
-                                                    "enum": [
-                                                        "idle",
-                                                        "active",
-                                                        "warning",
-                                                        "error",
-                                                        "finished"
-                                                    ]
-                                                },
-                                                "statusTrack": {
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "object",
-                                                        "required": [
-                                                            "trackedAt",
-                                                            "status"
-                                                        ],
-                                                        "properties": {
-                                                            "trackedAt": {
-                                                                "type": "number"
-                                                            },
-                                                            "status": {
-                                                                "type": "string"
-                                                            },
-                                                            "repetition": {
-                                                                "type": "number"
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                "isDraft": {
-                                                    "type": "boolean"
-                                                },
-                                                "head": {
-                                                    "description": "Whether this unit is the first one to be executed.",
-                                                    "type": "boolean"
-                                                },
-                                                "flowchartId": {
-                                                    "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                    "type": "string"
-                                                },
-                                                "next": {
-                                                    "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                                                    "type": "string"
-                                                },
-                                                "enableRender": {
-                                                    "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                                                    "type": "boolean"
-                                                },
-                                                "context": {
-                                                    "type": "object"
-                                                },
-                                                "scope": {
-                                                    "type": "string"
                                                 }
                                             }
                                         },
@@ -1299,24 +1299,6 @@
                                             ],
                                             "additionalProperties": true,
                                             "properties": {
-                                                "type": {
-                                                    "enum": [
-                                                        "processing"
-                                                    ],
-                                                    "description": "type of the unit",
-                                                    "type": "string"
-                                                },
-                                                "operation": {
-                                                    "description": "Contains information about the operation used.",
-                                                    "type": "string"
-                                                },
-                                                "operationType": {
-                                                    "description": "Contains information about the specific type of the operation used.",
-                                                    "type": "string"
-                                                },
-                                                "inputData": {
-                                                    "description": "unit input (type to be specified by the child units)"
-                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -1384,6 +1366,13 @@
                                                 "isDraft": {
                                                     "type": "boolean"
                                                 },
+                                                "type": {
+                                                    "description": "type of the unit",
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "processing"
+                                                    ]
+                                                },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
                                                     "type": "boolean"
@@ -1402,6 +1391,17 @@
                                                 },
                                                 "context": {
                                                     "type": "object"
+                                                },
+                                                "operation": {
+                                                    "description": "Contains information about the operation used.",
+                                                    "type": "string"
+                                                },
+                                                "operationType": {
+                                                    "description": "Contains information about the specific type of the operation used.",
+                                                    "type": "string"
+                                                },
+                                                "inputData": {
+                                                    "description": "unit input (type to be specified by the child units)"
                                                 }
                                             }
                                         }
@@ -1745,12 +1745,98 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
+                                    "_id": {
+                                        "description": "entity identity",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "entity slug",
+                                        "type": "string"
+                                    },
+                                    "systemName": {
+                                        "type": "string"
+                                    },
+                                    "schemaVersion": {
+                                        "description": "entity's schema version. Used to distinct between different schemas.",
+                                        "type": "string",
+                                        "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
+                                    },
+                                    "isDefault": {
+                                        "description": "Identifies that entity is defaultable",
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "tags": {
+                                        "description": "entity tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status of the unit.",
+                                        "enum": [
+                                            "idle",
+                                            "active",
+                                            "warning",
+                                            "error",
+                                            "finished"
+                                        ]
+                                    },
+                                    "statusTrack": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "required": [
+                                                "trackedAt",
+                                                "status"
+                                            ],
+                                            "properties": {
+                                                "trackedAt": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "repetition": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "isDraft": {
+                                        "type": "boolean"
+                                    },
                                     "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
                                         "enum": [
                                             "io"
-                                        ],
-                                        "description": "type of the unit",
+                                        ]
+                                    },
+                                    "head": {
+                                        "description": "Whether this unit is the first one to be executed.",
+                                        "type": "boolean"
+                                    },
+                                    "flowchartId": {
+                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
                                         "type": "string"
+                                    },
+                                    "next": {
+                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                                        "type": "string"
+                                    },
+                                    "enableRender": {
+                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                                        "type": "boolean"
+                                    },
+                                    "context": {
+                                        "type": "object"
                                     },
                                     "subtype": {
                                         "enum": [
@@ -1894,7 +1980,22 @@
                                                 }
                                             ]
                                         }
-                                    },
+                                    }
+                                }
+                            },
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "reduce unit schema",
+                                "type": "object",
+                                "required": [
+                                    "flowchartId",
+                                    "input",
+                                    "mapFlowchartId",
+                                    "name",
+                                    "type"
+                                ],
+                                "additionalProperties": true,
+                                "properties": {
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -1962,6 +2063,13 @@
                                     "isDraft": {
                                         "type": "boolean"
                                     },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "reduce"
+                                        ]
+                                    },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
                                         "type": "boolean"
@@ -1980,28 +2088,6 @@
                                     },
                                     "context": {
                                         "type": "object"
-                                    }
-                                }
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "reduce unit schema",
-                                "type": "object",
-                                "required": [
-                                    "flowchartId",
-                                    "input",
-                                    "mapFlowchartId",
-                                    "name",
-                                    "type"
-                                ],
-                                "additionalProperties": true,
-                                "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "reduce"
-                                        ],
-                                        "description": "type of the unit",
-                                        "type": "string"
                                     },
                                     "mapFlowchartId": {
                                         "description": "corresponding map unit flowchart ID",
@@ -2030,7 +2116,25 @@
                                                 }
                                             }
                                         }
-                                    },
+                                    }
+                                }
+                            },
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "condition unit schema",
+                                "type": "object",
+                                "required": [
+                                    "else",
+                                    "flowchartId",
+                                    "input",
+                                    "maxOccurrences",
+                                    "name",
+                                    "statement",
+                                    "then",
+                                    "type"
+                                ],
+                                "additionalProperties": true,
+                                "properties": {
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -2098,6 +2202,13 @@
                                     "isDraft": {
                                         "type": "boolean"
                                     },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "condition"
+                                        ]
+                                    },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
                                         "type": "boolean"
@@ -2116,31 +2227,6 @@
                                     },
                                     "context": {
                                         "type": "object"
-                                    }
-                                }
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "condition unit schema",
-                                "type": "object",
-                                "required": [
-                                    "else",
-                                    "flowchartId",
-                                    "input",
-                                    "maxOccurrences",
-                                    "name",
-                                    "statement",
-                                    "then",
-                                    "type"
-                                ],
-                                "additionalProperties": true,
-                                "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "condition"
-                                        ],
-                                        "description": "type of the unit",
-                                        "type": "string"
                                     },
                                     "input": {
                                         "description": "Input information for condition.",
@@ -2184,92 +2270,6 @@
                                     "throwException": {
                                         "description": "Throw exception on reaching to maximum occurence.",
                                         "type": "boolean"
-                                    },
-                                    "_id": {
-                                        "description": "entity identity",
-                                        "type": "string"
-                                    },
-                                    "slug": {
-                                        "description": "entity slug",
-                                        "type": "string"
-                                    },
-                                    "systemName": {
-                                        "type": "string"
-                                    },
-                                    "schemaVersion": {
-                                        "description": "entity's schema version. Used to distinct between different schemas.",
-                                        "type": "string",
-                                        "default": "2022.8.16"
-                                    },
-                                    "name": {
-                                        "description": "entity name",
-                                        "type": "string"
-                                    },
-                                    "isDefault": {
-                                        "description": "Identifies that entity is defaultable",
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "tags": {
-                                        "description": "entity tags",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "status": {
-                                        "type": "string",
-                                        "description": "Status of the unit.",
-                                        "enum": [
-                                            "idle",
-                                            "active",
-                                            "warning",
-                                            "error",
-                                            "finished"
-                                        ]
-                                    },
-                                    "statusTrack": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "required": [
-                                                "trackedAt",
-                                                "status"
-                                            ],
-                                            "properties": {
-                                                "trackedAt": {
-                                                    "type": "number"
-                                                },
-                                                "status": {
-                                                    "type": "string"
-                                                },
-                                                "repetition": {
-                                                    "type": "number"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "isDraft": {
-                                        "type": "boolean"
-                                    },
-                                    "head": {
-                                        "description": "Whether this unit is the first one to be executed.",
-                                        "type": "boolean"
-                                    },
-                                    "flowchartId": {
-                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                        "type": "string"
-                                    },
-                                    "next": {
-                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                                        "type": "string"
-                                    },
-                                    "enableRender": {
-                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                                        "type": "boolean"
-                                    },
-                                    "context": {
-                                        "type": "object"
                                     }
                                 }
                             },
@@ -2285,21 +2285,6 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "assertion"
-                                        ],
-                                        "description": "type of the unit",
-                                        "type": "string"
-                                    },
-                                    "statement": {
-                                        "type": "string",
-                                        "description": "The statement to be evaluated"
-                                    },
-                                    "errorMessage": {
-                                        "type": "string",
-                                        "description": "The error message to be displayed if the assertion fails"
-                                    },
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -2367,6 +2352,13 @@
                                     "isDraft": {
                                         "type": "boolean"
                                     },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "assertion"
+                                        ]
+                                    },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
                                         "type": "boolean"
@@ -2385,6 +2377,14 @@
                                     },
                                     "context": {
                                         "type": "object"
+                                    },
+                                    "statement": {
+                                        "type": "string",
+                                        "description": "The statement to be evaluated"
+                                    },
+                                    "errorMessage": {
+                                        "type": "string",
+                                        "description": "The error message to be displayed if the assertion fails"
                                     }
                                 }
                             },
@@ -2405,12 +2405,170 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
+                                    "_id": {
+                                        "description": "entity identity",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "entity slug",
+                                        "type": "string"
+                                    },
+                                    "systemName": {
+                                        "type": "string"
+                                    },
+                                    "schemaVersion": {
+                                        "description": "entity's schema version. Used to distinct between different schemas.",
+                                        "type": "string",
+                                        "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
+                                    },
+                                    "isDefault": {
+                                        "description": "Identifies that entity is defaultable",
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "tags": {
+                                        "description": "entity tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status of the unit.",
+                                        "enum": [
+                                            "idle",
+                                            "active",
+                                            "warning",
+                                            "error",
+                                            "finished"
+                                        ]
+                                    },
+                                    "statusTrack": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "required": [
+                                                "trackedAt",
+                                                "status"
+                                            ],
+                                            "properties": {
+                                                "trackedAt": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "repetition": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "isDraft": {
+                                        "type": "boolean"
+                                    },
                                     "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
                                         "enum": [
                                             "execution"
-                                        ],
-                                        "description": "type of the unit",
+                                        ]
+                                    },
+                                    "head": {
+                                        "description": "Whether this unit is the first one to be executed.",
+                                        "type": "boolean"
+                                    },
+                                    "flowchartId": {
+                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
                                         "type": "string"
+                                    },
+                                    "next": {
+                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                                        "type": "string"
+                                    },
+                                    "enableRender": {
+                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                                        "type": "boolean"
+                                    },
+                                    "context": {
+                                        "type": "object"
+                                    },
+                                    "preProcessors": {
+                                        "description": "names of the pre-processors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "runtime item name object schema",
+                                            "type": "object",
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of this item. e.g. scf_accuracy",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "postProcessors": {
+                                        "description": "names of the post-processors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "runtime item name object schema",
+                                            "type": "object",
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of this item. e.g. scf_accuracy",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "monitors": {
+                                        "description": "names of the monitors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "runtime item name object schema",
+                                            "type": "object",
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of this item. e.g. scf_accuracy",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "results": {
+                                        "description": "names of the results for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "runtime item name object schema",
+                                            "type": "object",
+                                            "required": [
+                                                "name"
+                                            ],
+                                            "properties": {
+                                                "name": {
+                                                    "description": "The name of this item. e.g. scf_accuracy",
+                                                    "type": "string"
+                                                }
+                                            }
+                                        }
                                     },
                                     "application": {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
@@ -2660,7 +2818,22 @@
                                     },
                                     "input": {
                                         "description": "unit input (type to be specified by the application's execution unit)"
-                                    },
+                                    }
+                                }
+                            },
+                            {
+                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                "title": "assignment unit schema",
+                                "type": "object",
+                                "required": [
+                                    "flowchartId",
+                                    "name",
+                                    "operand",
+                                    "type",
+                                    "value"
+                                ],
+                                "additionalProperties": true,
+                                "properties": {
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -2728,6 +2901,13 @@
                                     "isDraft": {
                                         "type": "boolean"
                                     },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "assignment"
+                                        ]
+                                    },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
                                         "type": "boolean"
@@ -2747,98 +2927,7 @@
                                     "context": {
                                         "type": "object"
                                     },
-                                    "preProcessors": {
-                                        "description": "names of the pre-processors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item name object schema",
-                                            "type": "object",
-                                            "required": [
-                                                "name"
-                                            ],
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "postProcessors": {
-                                        "description": "names of the post-processors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item name object schema",
-                                            "type": "object",
-                                            "required": [
-                                                "name"
-                                            ],
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "monitors": {
-                                        "description": "names of the monitors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item name object schema",
-                                            "type": "object",
-                                            "required": [
-                                                "name"
-                                            ],
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "results": {
-                                        "description": "names of the results for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "runtime item name object schema",
-                                            "type": "object",
-                                            "required": [
-                                                "name"
-                                            ],
-                                            "properties": {
-                                                "name": {
-                                                    "description": "The name of this item. e.g. scf_accuracy",
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "assignment unit schema",
-                                "type": "object",
-                                "required": [
-                                    "flowchartId",
-                                    "name",
-                                    "operand",
-                                    "type",
-                                    "value"
-                                ],
-                                "additionalProperties": true,
-                                "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "assignment"
-                                        ],
-                                        "description": "type of the unit",
+                                    "scope": {
                                         "type": "string"
                                     },
                                     "input": {
@@ -2881,95 +2970,6 @@
                                                 "type": "number"
                                             }
                                         ]
-                                    },
-                                    "_id": {
-                                        "description": "entity identity",
-                                        "type": "string"
-                                    },
-                                    "slug": {
-                                        "description": "entity slug",
-                                        "type": "string"
-                                    },
-                                    "systemName": {
-                                        "type": "string"
-                                    },
-                                    "schemaVersion": {
-                                        "description": "entity's schema version. Used to distinct between different schemas.",
-                                        "type": "string",
-                                        "default": "2022.8.16"
-                                    },
-                                    "name": {
-                                        "description": "entity name",
-                                        "type": "string"
-                                    },
-                                    "isDefault": {
-                                        "description": "Identifies that entity is defaultable",
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "tags": {
-                                        "description": "entity tags",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "status": {
-                                        "type": "string",
-                                        "description": "Status of the unit.",
-                                        "enum": [
-                                            "idle",
-                                            "active",
-                                            "warning",
-                                            "error",
-                                            "finished"
-                                        ]
-                                    },
-                                    "statusTrack": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "required": [
-                                                "trackedAt",
-                                                "status"
-                                            ],
-                                            "properties": {
-                                                "trackedAt": {
-                                                    "type": "number"
-                                                },
-                                                "status": {
-                                                    "type": "string"
-                                                },
-                                                "repetition": {
-                                                    "type": "number"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "isDraft": {
-                                        "type": "boolean"
-                                    },
-                                    "head": {
-                                        "description": "Whether this unit is the first one to be executed.",
-                                        "type": "boolean"
-                                    },
-                                    "flowchartId": {
-                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                        "type": "string"
-                                    },
-                                    "next": {
-                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                                        "type": "string"
-                                    },
-                                    "enableRender": {
-                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                                        "type": "boolean"
-                                    },
-                                    "context": {
-                                        "type": "object"
-                                    },
-                                    "scope": {
-                                        "type": "string"
                                     }
                                 }
                             },
@@ -2987,24 +2987,6 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "processing"
-                                        ],
-                                        "description": "type of the unit",
-                                        "type": "string"
-                                    },
-                                    "operation": {
-                                        "description": "Contains information about the operation used.",
-                                        "type": "string"
-                                    },
-                                    "operationType": {
-                                        "description": "Contains information about the specific type of the operation used.",
-                                        "type": "string"
-                                    },
-                                    "inputData": {
-                                        "description": "unit input (type to be specified by the child units)"
-                                    },
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -3072,6 +3054,13 @@
                                     "isDraft": {
                                         "type": "boolean"
                                     },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "processing"
+                                        ]
+                                    },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
                                         "type": "boolean"
@@ -3090,6 +3079,17 @@
                                     },
                                     "context": {
                                         "type": "object"
+                                    },
+                                    "operation": {
+                                        "description": "Contains information about the operation used.",
+                                        "type": "string"
+                                    },
+                                    "operationType": {
+                                        "description": "Contains information about the specific type of the operation used.",
+                                        "type": "string"
+                                    },
+                                    "inputData": {
+                                        "description": "unit input (type to be specified by the child units)"
                                     }
                                 }
                             },
@@ -3106,12 +3106,98 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
+                                    "_id": {
+                                        "description": "entity identity",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "entity slug",
+                                        "type": "string"
+                                    },
+                                    "systemName": {
+                                        "type": "string"
+                                    },
+                                    "schemaVersion": {
+                                        "description": "entity's schema version. Used to distinct between different schemas.",
+                                        "type": "string",
+                                        "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
+                                    },
+                                    "isDefault": {
+                                        "description": "Identifies that entity is defaultable",
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "tags": {
+                                        "description": "entity tags",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "description": "Status of the unit.",
+                                        "enum": [
+                                            "idle",
+                                            "active",
+                                            "warning",
+                                            "error",
+                                            "finished"
+                                        ]
+                                    },
+                                    "statusTrack": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "required": [
+                                                "trackedAt",
+                                                "status"
+                                            ],
+                                            "properties": {
+                                                "trackedAt": {
+                                                    "type": "number"
+                                                },
+                                                "status": {
+                                                    "type": "string"
+                                                },
+                                                "repetition": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "isDraft": {
+                                        "type": "boolean"
+                                    },
                                     "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
                                         "enum": [
                                             "map"
-                                        ],
-                                        "description": "type of the unit",
+                                        ]
+                                    },
+                                    "head": {
+                                        "description": "Whether this unit is the first one to be executed.",
+                                        "type": "boolean"
+                                    },
+                                    "flowchartId": {
+                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
                                         "type": "string"
+                                    },
+                                    "next": {
+                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+                                        "type": "string"
+                                    },
+                                    "enableRender": {
+                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+                                        "type": "boolean"
+                                    },
+                                    "context": {
+                                        "type": "object"
                                     },
                                     "workflowId": {
                                         "description": "Id of workflow to run inside map",
@@ -3157,92 +3243,6 @@
                                                 "type": "boolean"
                                             }
                                         }
-                                    },
-                                    "_id": {
-                                        "description": "entity identity",
-                                        "type": "string"
-                                    },
-                                    "slug": {
-                                        "description": "entity slug",
-                                        "type": "string"
-                                    },
-                                    "systemName": {
-                                        "type": "string"
-                                    },
-                                    "schemaVersion": {
-                                        "description": "entity's schema version. Used to distinct between different schemas.",
-                                        "type": "string",
-                                        "default": "2022.8.16"
-                                    },
-                                    "name": {
-                                        "description": "entity name",
-                                        "type": "string"
-                                    },
-                                    "isDefault": {
-                                        "description": "Identifies that entity is defaultable",
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "tags": {
-                                        "description": "entity tags",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "status": {
-                                        "type": "string",
-                                        "description": "Status of the unit.",
-                                        "enum": [
-                                            "idle",
-                                            "active",
-                                            "warning",
-                                            "error",
-                                            "finished"
-                                        ]
-                                    },
-                                    "statusTrack": {
-                                        "type": "array",
-                                        "items": {
-                                            "type": "object",
-                                            "required": [
-                                                "trackedAt",
-                                                "status"
-                                            ],
-                                            "properties": {
-                                                "trackedAt": {
-                                                    "type": "number"
-                                                },
-                                                "status": {
-                                                    "type": "string"
-                                                },
-                                                "repetition": {
-                                                    "type": "number"
-                                                }
-                                            }
-                                        }
-                                    },
-                                    "isDraft": {
-                                        "type": "boolean"
-                                    },
-                                    "head": {
-                                        "description": "Whether this unit is the first one to be executed.",
-                                        "type": "boolean"
-                                    },
-                                    "flowchartId": {
-                                        "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                        "type": "string"
-                                    },
-                                    "next": {
-                                        "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-                                        "type": "string"
-                                    },
-                                    "enableRender": {
-                                        "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-                                        "type": "boolean"
-                                    },
-                                    "context": {
-                                        "type": "object"
                                     }
                                 }
                             },
@@ -3257,13 +3257,6 @@
                                 ],
                                 "additionalProperties": true,
                                 "properties": {
-                                    "type": {
-                                        "enum": [
-                                            "subworkflow"
-                                        ],
-                                        "description": "type of the unit",
-                                        "type": "string"
-                                    },
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -3330,6 +3323,13 @@
                                     },
                                     "isDraft": {
                                         "type": "boolean"
+                                    },
+                                    "type": {
+                                        "description": "type of the unit",
+                                        "type": "string",
+                                        "enum": [
+                                            "subworkflow"
+                                        ]
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",

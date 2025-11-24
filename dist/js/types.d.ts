@@ -4807,9 +4807,61 @@ export interface JobSchema {
              */
             units: ({
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
                  * type of the unit
                  */
                 type: "io";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                context?: {};
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
@@ -4887,6 +4939,8 @@ export interface JobSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -4923,6 +4977,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "reduce";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -4939,12 +4997,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
                 /**
                  * corresponding map unit flowchart ID
                  */
@@ -4962,6 +5014,8 @@ export interface JobSchema {
                      */
                     arguments: string[];
                 }[];
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -4998,6 +5052,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "condition";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -5014,12 +5072,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -5053,6 +5105,8 @@ export interface JobSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -5089,6 +5143,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "assertion";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -5105,12 +5163,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -5119,6 +5171,8 @@ export interface JobSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -5155,6 +5209,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -5171,12 +5229,42 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
                 /**
-                 * type of the unit
+                 * names of the pre-processors for this calculation
                  */
-                type: "execution";
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 application: {
                     /**
                      * The short name of the application. e.g. qe
@@ -5341,6 +5429,8 @@ export interface JobSchema {
                 input: {
                     [k: string]: unknown;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -5377,6 +5467,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "assignment";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -5393,48 +5487,7 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
+                scope?: string;
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -5456,6 +5509,8 @@ export interface JobSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -5492,6 +5547,10 @@ export interface JobSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "processing";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -5508,13 +5567,6 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                scope?: string;
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
                 /**
                  * Contains information about the operation used.
                  */
@@ -5529,58 +5581,6 @@ export interface JobSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
                 [k: string]: unknown;
             })[];
             model: {
@@ -5786,9 +5786,61 @@ export interface JobSchema {
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -5866,6 +5918,8 @@ export interface JobSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -5902,6 +5956,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -5918,12 +5976,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -5941,6 +5993,8 @@ export interface JobSchema {
                  */
                 arguments: string[];
             }[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -5977,6 +6031,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -5993,12 +6051,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -6032,6 +6084,8 @@ export interface JobSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6068,6 +6122,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -6084,12 +6142,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -6098,6 +6150,8 @@ export interface JobSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6134,6 +6188,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -6150,12 +6208,42 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
             /**
-             * type of the unit
+             * names of the pre-processors for this calculation
              */
-            type: "execution";
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -6320,6 +6408,8 @@ export interface JobSchema {
             input: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6356,6 +6446,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -6372,48 +6466,7 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -6435,6 +6488,8 @@ export interface JobSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6471,6 +6526,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -6487,13 +6546,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -6508,6 +6560,8 @@ export interface JobSchema {
             inputData: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6544,6 +6598,10 @@ export interface JobSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "map";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -6560,12 +6618,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -6592,6 +6644,8 @@ export interface JobSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -6627,64 +6681,10 @@ export interface JobSchema {
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            [k: string]: unknown;
-        } | {
             /**
              * type of the unit
              */
             type: "subworkflow";
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -46002,9 +46002,61 @@ export interface WorkflowPropertySchema {
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -46082,6 +46134,8 @@ export interface WorkflowPropertySchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46118,6 +46172,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46134,12 +46192,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -46157,6 +46209,8 @@ export interface WorkflowPropertySchema {
                  */
                 arguments: string[];
             }[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46193,6 +46247,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46209,12 +46267,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -46248,6 +46300,8 @@ export interface WorkflowPropertySchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46284,6 +46338,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46300,12 +46358,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -46314,6 +46366,8 @@ export interface WorkflowPropertySchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46350,6 +46404,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46366,12 +46424,42 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
             /**
-             * type of the unit
+             * names of the pre-processors for this calculation
              */
-            type: "execution";
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -46536,6 +46624,8 @@ export interface WorkflowPropertySchema {
             input: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46572,6 +46662,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46588,48 +46682,7 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -46651,6 +46704,8 @@ export interface WorkflowPropertySchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -46687,6 +46742,10 @@ export interface WorkflowPropertySchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -46703,13 +46762,6 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -46724,58 +46776,6 @@ export interface WorkflowPropertySchema {
             inputData: {
                 [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
             [k: string]: unknown;
         })[];
         model: {
@@ -46981,9 +46981,61 @@ export interface WorkflowPropertySchema {
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -47061,6 +47113,8 @@ export interface WorkflowPropertySchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47097,6 +47151,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47113,12 +47171,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -47136,6 +47188,8 @@ export interface WorkflowPropertySchema {
              */
             arguments: string[];
         }[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47172,6 +47226,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "condition";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47188,12 +47246,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -47227,6 +47279,8 @@ export interface WorkflowPropertySchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47263,6 +47317,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assertion";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47279,12 +47337,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -47293,6 +47345,8 @@ export interface WorkflowPropertySchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47329,6 +47383,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47345,12 +47403,42 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
         /**
-         * type of the unit
+         * names of the pre-processors for this calculation
          */
-        type: "execution";
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -47515,6 +47603,8 @@ export interface WorkflowPropertySchema {
         input: {
             [k: string]: unknown;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47551,6 +47641,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assignment";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47567,48 +47661,7 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -47630,6 +47683,8 @@ export interface WorkflowPropertySchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47666,6 +47721,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "processing";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47682,13 +47741,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -47703,6 +47755,8 @@ export interface WorkflowPropertySchema {
         inputData: {
             [k: string]: unknown;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47739,6 +47793,10 @@ export interface WorkflowPropertySchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "map";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -47755,12 +47813,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -47787,6 +47839,8 @@ export interface WorkflowPropertySchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -47822,64 +47876,10 @@ export interface WorkflowPropertySchema {
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        [k: string]: unknown;
-    } | {
         /**
          * type of the unit
          */
         type: "subworkflow";
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -49233,9 +49233,61 @@ export interface PropertyHolderSchema {
              */
             units: ({
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
                  * type of the unit
                  */
                 type: "io";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                context?: {};
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
@@ -49313,6 +49365,8 @@ export interface PropertyHolderSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49349,6 +49403,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "reduce";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49365,12 +49423,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
                 /**
                  * corresponding map unit flowchart ID
                  */
@@ -49388,6 +49440,8 @@ export interface PropertyHolderSchema {
                      */
                     arguments: string[];
                 }[];
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49424,6 +49478,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "condition";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49440,12 +49498,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
                 /**
                  * Input information for condition.
                  */
@@ -49479,6 +49531,8 @@ export interface PropertyHolderSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49515,6 +49569,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "assertion";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49531,12 +49589,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
                 /**
                  * The statement to be evaluated
                  */
@@ -49545,6 +49597,8 @@ export interface PropertyHolderSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49581,6 +49635,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49597,12 +49655,42 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                [k: string]: unknown;
-            } | {
                 /**
-                 * type of the unit
+                 * names of the pre-processors for this calculation
                  */
-                type: "execution";
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 application: {
                     /**
                      * The short name of the application. e.g. qe
@@ -49767,6 +49855,8 @@ export interface PropertyHolderSchema {
                 input: {
                     [k: string]: unknown;
                 };
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49803,6 +49893,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "assignment";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49819,48 +49913,7 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
+                scope?: string;
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
                  */
@@ -49882,6 +49935,8 @@ export interface PropertyHolderSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
+                [k: string]: unknown;
+            } | {
                 /**
                  * entity identity
                  */
@@ -49918,6 +49973,10 @@ export interface PropertyHolderSchema {
                 }[];
                 isDraft?: boolean;
                 /**
+                 * type of the unit
+                 */
+                type: "processing";
+                /**
                  * Whether this unit is the first one to be executed.
                  */
                 head?: boolean;
@@ -49934,13 +49993,6 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
-                scope?: string;
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
                 /**
                  * Contains information about the operation used.
                  */
@@ -49955,58 +50007,6 @@ export interface PropertyHolderSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
                 [k: string]: unknown;
             })[];
             model: {
@@ -50212,9 +50212,61 @@ export interface PropertyHolderSchema {
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -50292,6 +50344,8 @@ export interface PropertyHolderSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50328,6 +50382,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50344,12 +50402,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -50367,6 +50419,8 @@ export interface PropertyHolderSchema {
                  */
                 arguments: string[];
             }[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50403,6 +50457,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50419,12 +50477,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -50458,6 +50510,8 @@ export interface PropertyHolderSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50494,6 +50548,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50510,12 +50568,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -50524,6 +50576,8 @@ export interface PropertyHolderSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50560,6 +50614,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50576,12 +50634,42 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
             /**
-             * type of the unit
+             * names of the pre-processors for this calculation
              */
-            type: "execution";
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -50746,6 +50834,8 @@ export interface PropertyHolderSchema {
             input: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50782,6 +50872,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50798,48 +50892,7 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -50861,6 +50914,8 @@ export interface PropertyHolderSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50897,6 +50952,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50913,13 +50972,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -50934,6 +50986,8 @@ export interface PropertyHolderSchema {
             inputData: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -50970,6 +51024,10 @@ export interface PropertyHolderSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "map";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -50986,12 +51044,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -51018,6 +51070,8 @@ export interface PropertyHolderSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -51053,64 +51107,10 @@ export interface PropertyHolderSchema {
                 repetition?: number;
             }[];
             isDraft?: boolean;
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            [k: string]: unknown;
-        } | {
             /**
              * type of the unit
              */
             type: "subworkflow";
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -51938,9 +51938,97 @@ export interface NWChem {
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -52123,94 +52211,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
@@ -52440,9 +52440,97 @@ export interface ShellScriptingLanguageSchema {
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -52625,94 +52713,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/system/_material.json */
@@ -53408,9 +53408,61 @@ export interface WorkflowScopeSchema {
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "io";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
@@ -53488,6 +53540,8 @@ export type WorkflowSubworkflowUnitSchema = {
         filetype?: string;
         [k: string]: unknown;
     })[];
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -53524,6 +53578,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "reduce";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -53540,12 +53598,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
     /**
      * corresponding map unit flowchart ID
      */
@@ -53563,6 +53615,8 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         arguments: string[];
     }[];
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -53599,6 +53653,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "condition";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -53615,12 +53673,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "condition";
     /**
      * Input information for condition.
      */
@@ -53654,6 +53706,8 @@ export type WorkflowSubworkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -53690,6 +53744,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "assertion";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -53706,12 +53764,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assertion";
     /**
      * The statement to be evaluated
      */
@@ -53720,6 +53772,8 @@ export type WorkflowSubworkflowUnitSchema = {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -53756,6 +53810,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -53772,12 +53830,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-} | {
     /**
-     * type of the unit
+     * names of the pre-processors for this calculation
      */
-    type: "execution";
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -53942,6 +54030,8 @@ export type WorkflowSubworkflowUnitSchema = {
     input: {
         [k: string]: unknown;
     };
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -53978,6 +54068,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "assignment";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -53994,48 +54088,7 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assignment";
+    scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -54057,6 +54110,8 @@ export type WorkflowSubworkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -54093,6 +54148,10 @@ export type WorkflowSubworkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "processing";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -54109,13 +54168,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    scope?: string;
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "processing";
     /**
      * Contains information about the operation used.
      */
@@ -54130,58 +54182,6 @@ export type WorkflowSubworkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
     [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow/subworkflow.json */
@@ -54191,9 +54191,61 @@ export interface Subworkflow {
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -54271,6 +54323,8 @@ export interface Subworkflow {
             filetype?: string;
             [k: string]: unknown;
         })[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54307,6 +54361,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54323,12 +54381,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -54346,6 +54398,8 @@ export interface Subworkflow {
              */
             arguments: string[];
         }[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54382,6 +54436,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "condition";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54398,12 +54456,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -54437,6 +54489,8 @@ export interface Subworkflow {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54473,6 +54527,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assertion";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54489,12 +54547,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -54503,6 +54555,8 @@ export interface Subworkflow {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54539,6 +54593,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54555,12 +54613,42 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
         /**
-         * type of the unit
+         * names of the pre-processors for this calculation
          */
-        type: "execution";
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -54725,6 +54813,8 @@ export interface Subworkflow {
         input: {
             [k: string]: unknown;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54761,6 +54851,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assignment";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54777,48 +54871,7 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -54840,6 +54893,8 @@ export interface Subworkflow {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -54876,6 +54931,10 @@ export interface Subworkflow {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "processing";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -54892,13 +54951,6 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -54913,58 +54965,6 @@ export interface Subworkflow {
         inputData: {
             [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
         [k: string]: unknown;
     })[];
     model: {
@@ -55168,9 +55168,61 @@ export interface Subworkflow {
 /** Schema dist/js/schema/workflow/unit/assertion.json */
 export interface AssertionUnitSchema {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "assertion";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     /**
      * The statement to be evaluated
      */
@@ -55179,6 +55231,10 @@ export interface AssertionUnitSchema {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/assignment.json */
+export interface AssignmentUnitSchema {
     /**
      * entity identity
      */
@@ -55215,6 +55271,10 @@ export interface AssertionUnitSchema {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "assignment";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -55231,14 +55291,7 @@ export interface AssertionUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/assignment.json */
-export interface AssignmentUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "assignment";
+    scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -55260,59 +55313,6 @@ export interface AssignmentUnitSchema {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    scope?: string;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/base.json */
@@ -55378,9 +55378,61 @@ export interface WorkflowBaseUnitSchema {
 /** Schema dist/js/schema/workflow/unit/condition.json */
 export interface ConditionUnitSchema {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "condition";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     /**
      * Input information for condition.
      */
@@ -55414,6 +55466,10 @@ export interface ConditionUnitSchema {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/execution.json */
+export interface ExecutionUnitSchemaBase {
     /**
      * entity identity
      */
@@ -55450,6 +55506,10 @@ export interface ConditionUnitSchema {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -55466,14 +55526,42 @@ export interface ConditionUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/execution.json */
-export interface ExecutionUnitSchemaBase {
     /**
-     * type of the unit
+     * names of the pre-processors for this calculation
      */
-    type: "execution";
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -55638,94 +55726,6 @@ export interface ExecutionUnitSchemaBase {
     input: {
         [k: string]: unknown;
     };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
@@ -55882,9 +55882,61 @@ export interface ObjectStorageIoSchema {
 /** Schema dist/js/schema/workflow/unit/io.json */
 export interface DataIOUnitSchema {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "io";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
@@ -55962,6 +56014,10 @@ export interface DataIOUnitSchema {
         filetype?: string;
         [k: string]: unknown;
     })[];
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/map.json */
+export interface MapUnitSchema {
     /**
      * entity identity
      */
@@ -55998,6 +56054,10 @@ export interface DataIOUnitSchema {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "map";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -56014,14 +56074,6 @@ export interface DataIOUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/map.json */
-export interface MapUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -56048,59 +56100,44 @@ export interface MapUnitSchema {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
     [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/assertion.json */
+export interface AssertionUnitMixinSchema {
+    type?: "assertion";
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/assignment.json */
+export interface AssignmentUnitMixinSchema {
+    type?: "assignment";
+    /**
+     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+     */
+    input?: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Name of the global variable. e.g. 'x'
+     */
+    operand: string;
+    /**
+     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+     */
+    value: string | boolean | number;
 }
 /** Schema dist/js/schema/workflow/unit/mixins/base.json */
 export interface WorkflowBaseUnitMixinSchema {
@@ -56136,433 +56173,9 @@ export interface WorkflowBaseUnitMixinSchema {
     context?: {};
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/workflow/unit/processing.json */
-export interface ProcessingUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/reduce.json */
-export interface ReduceUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/subworkflow.json */
-export interface SubworkflowUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "subworkflow";
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit.json */
-export type WorkflowUnitSchema = {
-    /**
-     * type of the unit
-     */
-    type: "io";
-    subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
-    input: ({
-        /**
-         * rest API endpoint
-         */
-        endpoint: string;
-        /**
-         * rest API endpoint options
-         */
-        endpoint_options: {};
-        /**
-         * the name of the variable in local scope to save the data under
-         */
-        name?: string;
-        [k: string]: unknown;
-    } | ({
-        /**
-         * IDs of item to retrieve from db
-         */
-        ids: string[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * db collection name
-         */
-        collection: string;
-        /**
-         * whether the result should be saved as draft
-         */
-        draft: boolean;
-        [k: string]: unknown;
-    }) | {
-        objectData: {
-            /**
-             * Object storage container for the file
-             */
-            CONTAINER?: string;
-            /**
-             * Name of the file inside the object storage bucket
-             */
-            NAME?: string;
-            /**
-             * Object storage provider
-             */
-            PROVIDER?: string;
-            /**
-             * Region for the object container specified in Container
-             */
-            REGION?: string;
-            /**
-             * Size of the file in bytes
-             */
-            SIZE?: number;
-            /**
-             * Unix timestamp showing when the file was last modified
-             */
-            TIMESTAMP?: string;
-        };
-        /**
-         * if a file with the same filename already exists, whether to overwrite the old file
-         */
-        overwrite?: boolean;
-        /**
-         * Relative path to the directory that contains the file.
-         */
-        pathname?: string;
-        /**
-         * Basename of the file
-         */
-        basename?: string;
-        /**
-         * What kind of file this is, e.g. image / text
-         */
-        filetype?: string;
-        [k: string]: unknown;
-    })[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "condition";
+/** Schema dist/js/schema/workflow/unit/mixins/condition.json */
+export interface ConditionUnitMixinSchema {
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -56596,130 +56209,10 @@ export type WorkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
-     * The statement to be evaluated
-     */
-    statement: string;
-    /**
-     * The error message to be displayed if the assertion fails
-     */
-    errorMessage?: string;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "execution";
+}
+/** Schema dist/js/schema/workflow/unit/mixins/execution.json */
+export interface ExecutionUnitMixinSchema {
+    type?: "execution";
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -56884,6 +56377,163 @@ export type WorkflowUnitSchema = {
     input: {
         [k: string]: unknown;
     };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/io.json */
+export interface DataIOUnitMixinSchema {
+    type?: "io";
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        /**
+         * rest API endpoint
+         */
+        endpoint: string;
+        /**
+         * rest API endpoint options
+         */
+        endpoint_options: {};
+        /**
+         * the name of the variable in local scope to save the data under
+         */
+        name?: string;
+        [k: string]: unknown;
+    } | ({
+        /**
+         * IDs of item to retrieve from db
+         */
+        ids: string[];
+        [k: string]: unknown;
+    } | {
+        /**
+         * db collection name
+         */
+        collection: string;
+        /**
+         * whether the result should be saved as draft
+         */
+        draft: boolean;
+        [k: string]: unknown;
+    }) | {
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
+        /**
+         * if a file with the same filename already exists, whether to overwrite the old file
+         */
+        overwrite?: boolean;
+        /**
+         * Relative path to the directory that contains the file.
+         */
+        pathname?: string;
+        /**
+         * Basename of the file
+         */
+        basename?: string;
+        /**
+         * What kind of file this is, e.g. image / text
+         */
+        filetype?: string;
+        [k: string]: unknown;
+    })[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/map.json */
+export interface MapUnitMixinSchema {
+    type?: "map";
+    /**
+     * Id of workflow to run inside map
+     */
+    workflowId: string;
+    /**
+     * Input information for map.
+     */
+    input: {
+        /**
+         * Name of the target variable to substitute using the values below. e.g. K_POINTS
+         */
+        target: string;
+        /**
+         * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
+         */
+        scope?: string;
+        /**
+         * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
+         */
+        name?: string;
+        /**
+         * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
+         */
+        values?: (string | number | {})[];
+        useValues?: boolean;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/processing.json */
+export interface ProcessingUnitMixinSchema {
+    type?: "processing";
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/reduce.json */
+export interface ReduceUnitMixinSchema {
+    type?: "reduce";
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/subworkflow.json */
+export interface SubworkflowUnitMixinSchema {
+    type?: "subworkflow";
+}
+/** Schema dist/js/schema/workflow/unit/processing.json */
+export interface ProcessingUnitSchema {
     /**
      * entity identity
      */
@@ -56919,6 +56569,588 @@ export type WorkflowUnitSchema = {
         repetition?: number;
     }[];
     isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "processing";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/reduce.json */
+export interface ReduceUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/subworkflow.json */
+export interface SubworkflowUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "subworkflow";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit.json */
+export type WorkflowUnitSchema = {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "io";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        /**
+         * rest API endpoint
+         */
+        endpoint: string;
+        /**
+         * rest API endpoint options
+         */
+        endpoint_options: {};
+        /**
+         * the name of the variable in local scope to save the data under
+         */
+        name?: string;
+        [k: string]: unknown;
+    } | ({
+        /**
+         * IDs of item to retrieve from db
+         */
+        ids: string[];
+        [k: string]: unknown;
+    } | {
+        /**
+         * db collection name
+         */
+        collection: string;
+        /**
+         * whether the result should be saved as draft
+         */
+        draft: boolean;
+        [k: string]: unknown;
+    }) | {
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
+        /**
+         * if a file with the same filename already exists, whether to overwrite the old file
+         */
+        overwrite?: boolean;
+        /**
+         * Relative path to the directory that contains the file.
+         */
+        pathname?: string;
+        /**
+         * Basename of the file
+         */
+        basename?: string;
+        /**
+         * What kind of file this is, e.g. image / text
+         */
+        filetype?: string;
+        [k: string]: unknown;
+    })[];
+    [k: string]: unknown;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+    [k: string]: unknown;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "condition";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * Input information for condition.
+     */
+    input: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+     */
+    statement: string;
+    /**
+     * Flowchart ID reference for `then` part of the condition.
+     */
+    then: string;
+    /**
+     * Flowchart ID reference for `else` part of the condition.
+     */
+    else: string;
+    /**
+     * Maximum occurrence of the condition, usable for loops.
+     */
+    maxOccurrences: number;
+    /**
+     * Throw exception on reaching to maximum occurence.
+     */
+    throwException?: boolean;
+    [k: string]: unknown;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assertion";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+    [k: string]: unknown;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -56972,12 +57204,229 @@ export type WorkflowUnitSchema = {
          */
         name: string;
     }[];
+    application: {
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName?: string;
+        /**
+         * Application's short description.
+         */
+        summary?: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version?: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build?: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        [k: string]: unknown;
+    };
+    executable?: {
+        /**
+         * The name of the executable. e.g. pw.x
+         */
+        name: string;
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId?: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
+    };
+    flavor?: {
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId?: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input?: {
+            templateId?: string;
+            templateName?: string;
+            /**
+             * name of the resulting input file, if different than template name
+             */
+            name?: string;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
+    };
+    /**
+     * unit input (type to be specified by the application's execution unit)
+     */
+    input: {
+        [k: string]: unknown;
+    };
     [k: string]: unknown;
 } | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * type of the unit
      */
     type: "assignment";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -56999,6 +57448,8 @@ export type WorkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -57035,6 +57486,10 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "processing";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -57051,13 +57506,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    scope?: string;
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "processing";
     /**
      * Contains information about the operation used.
      */
@@ -57072,6 +57520,8 @@ export type WorkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -57108,6 +57558,10 @@ export type WorkflowUnitSchema = {
     }[];
     isDraft?: boolean;
     /**
+     * type of the unit
+     */
+    type: "map";
+    /**
      * Whether this unit is the first one to be executed.
      */
     head?: boolean;
@@ -57124,12 +57578,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -57156,6 +57604,8 @@ export type WorkflowUnitSchema = {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
+    [k: string]: unknown;
+} | {
     /**
      * entity identity
      */
@@ -57191,64 +57641,10 @@ export type WorkflowUnitSchema = {
         repetition?: number;
     }[];
     isDraft?: boolean;
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    [k: string]: unknown;
-} | {
     /**
      * type of the unit
      */
     type: "subworkflow";
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -57279,9 +57675,61 @@ export interface WorkflowSchema {
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -57359,6 +57807,8 @@ export interface WorkflowSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57395,6 +57845,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57411,12 +57865,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -57434,6 +57882,8 @@ export interface WorkflowSchema {
                  */
                 arguments: string[];
             }[];
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57470,6 +57920,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57486,12 +57940,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -57525,6 +57973,8 @@ export interface WorkflowSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57561,6 +58011,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57577,12 +58031,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -57591,6 +58039,8 @@ export interface WorkflowSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57627,6 +58077,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57643,12 +58097,42 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
-        } | {
             /**
-             * type of the unit
+             * names of the pre-processors for this calculation
              */
-            type: "execution";
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -57813,6 +58297,8 @@ export interface WorkflowSchema {
             input: {
                 [k: string]: unknown;
             };
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57849,6 +58335,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57865,48 +58355,7 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -57928,6 +58377,8 @@ export interface WorkflowSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+            [k: string]: unknown;
+        } | {
             /**
              * entity identity
              */
@@ -57964,6 +58415,10 @@ export interface WorkflowSchema {
             }[];
             isDraft?: boolean;
             /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -57980,13 +58435,6 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -58001,58 +58449,6 @@ export interface WorkflowSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
             [k: string]: unknown;
         })[];
         model: {
@@ -58258,9 +58654,61 @@ export interface WorkflowSchema {
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -58338,6 +58786,8 @@ export interface WorkflowSchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58374,6 +58824,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58390,12 +58844,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -58413,6 +58861,8 @@ export interface WorkflowSchema {
              */
             arguments: string[];
         }[];
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58449,6 +58899,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "condition";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58465,12 +58919,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -58504,6 +58952,8 @@ export interface WorkflowSchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58540,6 +58990,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assertion";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58556,12 +59010,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -58570,6 +59018,8 @@ export interface WorkflowSchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58606,6 +59056,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58622,12 +59076,42 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
         /**
-         * type of the unit
+         * names of the pre-processors for this calculation
          */
-        type: "execution";
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -58792,6 +59276,8 @@ export interface WorkflowSchema {
         input: {
             [k: string]: unknown;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58828,6 +59314,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "assignment";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58844,48 +59334,7 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -58907,6 +59356,8 @@ export interface WorkflowSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -58943,6 +59394,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "processing";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -58959,13 +59414,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -58980,6 +59428,8 @@ export interface WorkflowSchema {
         inputData: {
             [k: string]: unknown;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -59016,6 +59466,10 @@ export interface WorkflowSchema {
         }[];
         isDraft?: boolean;
         /**
+         * type of the unit
+         */
+        type: "map";
+        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -59032,12 +59486,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -59064,6 +59512,8 @@ export interface WorkflowSchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+        [k: string]: unknown;
+    } | {
         /**
          * entity identity
          */
@@ -59099,64 +59549,10 @@ export interface WorkflowSchema {
             repetition?: number;
         }[];
         isDraft?: boolean;
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        [k: string]: unknown;
-    } | {
         /**
          * type of the unit
          */
         type: "subworkflow";
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
         /**
          * Whether this unit is the first one to be executed.
          */

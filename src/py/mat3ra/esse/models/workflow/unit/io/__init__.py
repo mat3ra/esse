@@ -10,6 +10,20 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Type(Enum):
     io = "io"
 
@@ -118,37 +132,10 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class DataIOUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    subtype: Subtype
-    source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema7],
-            ObjectStorageIoSchema,
-        ]
-    ]
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -180,6 +167,10 @@ class DataIOUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -197,3 +188,12 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    subtype: Subtype
+    source: Source
+    input: List[
+        Union[
+            DataIORestAPIInputSchema,
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema7],
+            ObjectStorageIoSchema,
+        ]
+    ]

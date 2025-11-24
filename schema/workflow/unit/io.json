@@ -6,48 +6,9 @@
     "allOf": [
         {
             "$ref": "./base.json"
+        },
+        {
+            "$ref": "./mixins/io.json"
         }
-    ],
-    "properties": {
-        "type": {
-            "enum": [
-                "io"
-            ]
-        },
-        "subtype": {
-            "enum": [
-                "input",
-                "output",
-                "dataFrame"
-            ]
-        },
-        "source": {
-            "enum": [
-                "api",
-                "db",
-                "object_storage"
-            ]
-        },
-        "input": {
-            "type": "array",
-            "items": {
-                "oneOf": [
-                    {
-                        "$ref": "io/api.json"
-                    },
-                    {
-                        "$ref": "io/db.json"
-                    },
-                    {
-                        "$ref": "io/object_storage.json"
-                    }
-                ]
-            }
-        }
-    },
-    "required": [
-        "subtype",
-        "source",
-        "input"
     ]
 }

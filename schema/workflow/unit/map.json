@@ -6,62 +6,9 @@
     "allOf": [
         {
             "$ref": "./base.json"
-        }
-    ],
-    "properties": {
-        "type": {
-            "enum": [
-                "map"
-            ]
         },
-        "workflowId": {
-            "description": "Id of workflow to run inside map",
-            "type": "string"
-        },
-        "input": {
-            "description": "Input information for map.",
-            "type": "object",
-            "properties": {
-                "target": {
-                    "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
-                    "type": "string"
-                },
-                "scope": {
-                    "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
-                    "type": "string"
-                },
-                "values": {
-                    "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "number"
-                            },
-                            {
-                                "type": "object"
-                            }
-                        ]
-                    }
-                },
-                "useValues": {
-                    "type": "boolean"
-                }
-            },
-            "required": [
-                "target"
-            ]
+        {
+            "$ref": "./mixins/map.json"
         }
-    },
-    "required": [
-        "input",
-        "workflowId"
     ]
 }

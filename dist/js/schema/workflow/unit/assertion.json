@@ -11,21 +11,6 @@
     ],
     "additionalProperties": true,
     "properties": {
-        "type": {
-            "enum": [
-                "assertion"
-            ],
-            "description": "type of the unit",
-            "type": "string"
-        },
-        "statement": {
-            "type": "string",
-            "description": "The statement to be evaluated"
-        },
-        "errorMessage": {
-            "type": "string",
-            "description": "The error message to be displayed if the assertion fails"
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -93,6 +78,13 @@
         "isDraft": {
             "type": "boolean"
         },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "enum": [
+                "assertion"
+            ]
+        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -111,6 +103,14 @@
         },
         "context": {
             "type": "object"
+        },
+        "statement": {
+            "type": "string",
+            "description": "The statement to be evaluated"
+        },
+        "errorMessage": {
+            "type": "string",
+            "description": "The error message to be displayed if the assertion fails"
         }
     }
 }

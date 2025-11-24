@@ -10,6 +10,20 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Type(Enum):
     map = "map"
 
@@ -34,36 +48,10 @@ class Input(BaseModel):
     useValues: Optional[bool] = None
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class MapUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    workflowId: str
-    """
-    Id of workflow to run inside map
-    """
-    input: Input
-    """
-    Input information for map.
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -95,6 +83,10 @@ class MapUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -112,3 +104,11 @@ class MapUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    workflowId: str
+    """
+    Id of workflow to run inside map
+    """
+    input: Input
+    """
+    Input information for map.
+    """

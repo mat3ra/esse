@@ -15,56 +15,6 @@
     ],
     "additionalProperties": true,
     "properties": {
-        "type": {
-            "enum": [
-                "condition"
-            ],
-            "description": "type of the unit",
-            "type": "string"
-        },
-        "input": {
-            "description": "Input information for condition.",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "workflow unit input schema",
-                "type": "object",
-                "required": [
-                    "scope",
-                    "name"
-                ],
-                "properties": {
-                    "scope": {
-                        "description": "Scope of the variable. e.g. 'global' or 'flowchart_id_2'",
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "Name of the input data. e.g. total_energy",
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "statement": {
-            "description": "Condition statement. e.g. 'abs(x-total_energy) < 1e-5'",
-            "type": "string"
-        },
-        "then": {
-            "description": "Flowchart ID reference for `then` part of the condition.",
-            "type": "string"
-        },
-        "else": {
-            "description": "Flowchart ID reference for `else` part of the condition.",
-            "type": "string"
-        },
-        "maxOccurrences": {
-            "description": "Maximum occurrence of the condition, usable for loops.",
-            "type": "integer"
-        },
-        "throwException": {
-            "description": "Throw exception on reaching to maximum occurence.",
-            "type": "boolean"
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -132,6 +82,13 @@
         "isDraft": {
             "type": "boolean"
         },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "enum": [
+                "condition"
+            ]
+        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -150,6 +107,49 @@
         },
         "context": {
             "type": "object"
+        },
+        "input": {
+            "description": "Input information for condition.",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "workflow unit input schema",
+                "type": "object",
+                "required": [
+                    "scope",
+                    "name"
+                ],
+                "properties": {
+                    "scope": {
+                        "description": "Scope of the variable. e.g. 'global' or 'flowchart_id_2'",
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "Name of the input data. e.g. total_energy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "statement": {
+            "description": "Condition statement. e.g. 'abs(x-total_energy) < 1e-5'",
+            "type": "string"
+        },
+        "then": {
+            "description": "Flowchart ID reference for `then` part of the condition.",
+            "type": "string"
+        },
+        "else": {
+            "description": "Flowchart ID reference for `else` part of the condition.",
+            "type": "string"
+        },
+        "maxOccurrences": {
+            "description": "Maximum occurrence of the condition, usable for loops.",
+            "type": "integer"
+        },
+        "throwException": {
+            "description": "Throw exception on reaching to maximum occurence.",
+            "type": "boolean"
         }
     }
 }

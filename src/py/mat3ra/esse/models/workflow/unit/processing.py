@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class Type(Enum):
-    processing = "processing"
-
-
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -28,26 +24,14 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
+class Type(Enum):
+    processing = "processing"
+
+
 class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -79,6 +63,10 @@ class ProcessingUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -96,3 +84,15 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    operation: str
+    """
+    Contains information about the operation used.
+    """
+    operationType: str
+    """
+    Contains information about the specific type of the operation used.
+    """
+    inputData: Any
+    """
+    unit input (type to be specified by the child units)
+    """

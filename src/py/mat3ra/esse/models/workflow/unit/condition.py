@@ -10,6 +10,20 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Type(Enum):
     condition = "condition"
 
@@ -25,52 +39,10 @@ class WorkflowUnitInputSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class ConditionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for condition.
-    """
-    statement: str
-    """
-    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-    """
-    then: str
-    """
-    Flowchart ID reference for `then` part of the condition.
-    """
-    else_: str = Field(..., alias="else")
-    """
-    Flowchart ID reference for `else` part of the condition.
-    """
-    maxOccurrences: int
-    """
-    Maximum occurrence of the condition, usable for loops.
-    """
-    throwException: Optional[bool] = None
-    """
-    Throw exception on reaching to maximum occurence.
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -102,6 +74,10 @@ class ConditionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -119,3 +95,27 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    input: List[WorkflowUnitInputSchema]
+    """
+    Input information for condition.
+    """
+    statement: str
+    """
+    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+    """
+    then: str
+    """
+    Flowchart ID reference for `then` part of the condition.
+    """
+    else_: str = Field(..., alias="else")
+    """
+    Flowchart ID reference for `else` part of the condition.
+    """
+    maxOccurrences: int
+    """
+    Maximum occurrence of the condition, usable for loops.
+    """
+    throwException: Optional[bool] = None
+    """
+    Throw exception on reaching to maximum occurence.
+    """

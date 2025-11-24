@@ -10,6 +10,20 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Type(Enum):
     io = "io"
 
@@ -54,7 +68,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema17(BaseModel):
+class DataIODatabaseInputOutputSchema19(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -118,37 +132,10 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class DataIOUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    subtype: Subtype
-    source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema17],
-            ObjectStorageIoSchema,
-        ]
-    ]
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -180,6 +167,10 @@ class DataIOUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -197,9 +188,18 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    subtype: Subtype
+    source: Source
+    input: List[
+        Union[
+            DataIORestAPIInputSchema,
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
+            ObjectStorageIoSchema,
+        ]
+    ]
 
 
-class Type92(Enum):
+class Type101(Enum):
     reduce = "reduce"
 
 
@@ -218,18 +218,6 @@ class ReduceUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -261,6 +249,10 @@ class ReduceUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -278,9 +270,17 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    mapFlowchartId: str
+    """
+    corresponding map unit flowchart ID
+    """
+    input: List[InputItem]
+    """
+    input information for reduce unit
+    """
 
 
-class Type93(Enum):
+class Type102(Enum):
     condition = "condition"
 
 
@@ -299,10 +299,58 @@ class ConditionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    context: Optional[Dict[str, Any]] = None
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -327,6 +375,16 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
+
+
+class Type103(Enum):
+    assertion = "assertion"
+
+
+class AssertionUnitSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -358,6 +416,10 @@ class ConditionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -375,20 +437,6 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-
-
-class Type94(Enum):
-    assertion = "assertion"
-
-
-class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
     statement: str
     """
     The statement to be evaluated
@@ -397,58 +445,17 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
+
+
+class Type104(Enum):
+    execution = "execution"
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
-    entity name
+    The name of this item. e.g. scf_accuracy
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-
-
-class Type95(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -621,28 +628,10 @@ class FlavorSchema(BaseModel):
     """
 
 
-class RuntimeItemNameObjectSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class ExecutionUnitSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -674,6 +663,10 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -707,9 +700,16 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     names of the results for this calculation
     """
+    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
+    input: Any
+    """
+    unit input (type to be specified by the application's execution unit)
+    """
 
 
-class Type96(Enum):
+class Type105(Enum):
     assignment = "assignment"
 
 
@@ -717,22 +717,6 @@ class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-    """
-    operand: str
-    """
-    Name of the global variable. e.g. 'x'
-    """
-    value: Union[str, bool, float]
-    """
-    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -764,6 +748,10 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -782,9 +770,21 @@ class AssignmentUnitSchema(BaseModel):
     """
     context: Optional[Dict[str, Any]] = None
     scope: Optional[str] = None
+    input: List[WorkflowUnitInputSchema]
+    """
+    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+    """
+    operand: str
+    """
+    Name of the global variable. e.g. 'x'
+    """
+    value: Union[str, bool, float]
+    """
+    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+    """
 
 
-class Type97(Enum):
+class Type106(Enum):
     processing = "processing"
 
 
@@ -792,22 +792,6 @@ class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -839,6 +823,10 @@ class ProcessingUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -856,6 +844,18 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+    operation: str
+    """
+    Contains information about the operation used.
+    """
+    operationType: str
+    """
+    Contains information about the specific type of the operation used.
+    """
+    inputData: Any
+    """
+    unit input (type to be specified by the child units)
+    """
 
 
 class ESSE(

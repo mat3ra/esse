@@ -12,58 +12,6 @@
     ],
     "additionalProperties": true,
     "properties": {
-        "type": {
-            "enum": [
-                "map"
-            ],
-            "description": "type of the unit",
-            "type": "string"
-        },
-        "workflowId": {
-            "description": "Id of workflow to run inside map",
-            "type": "string"
-        },
-        "input": {
-            "description": "Input information for map.",
-            "type": "object",
-            "required": [
-                "target"
-            ],
-            "properties": {
-                "target": {
-                    "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
-                    "type": "string"
-                },
-                "scope": {
-                    "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
-                    "type": "string"
-                },
-                "values": {
-                    "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
-                    "type": "array",
-                    "items": {
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "number"
-                            },
-                            {
-                                "type": "object"
-                            }
-                        ]
-                    }
-                },
-                "useValues": {
-                    "type": "boolean"
-                }
-            }
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -131,6 +79,13 @@
         "isDraft": {
             "type": "boolean"
         },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "enum": [
+                "map"
+            ]
+        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -149,6 +104,51 @@
         },
         "context": {
             "type": "object"
+        },
+        "workflowId": {
+            "description": "Id of workflow to run inside map",
+            "type": "string"
+        },
+        "input": {
+            "description": "Input information for map.",
+            "type": "object",
+            "required": [
+                "target"
+            ],
+            "properties": {
+                "target": {
+                    "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
+                    "type": "string"
+                },
+                "scope": {
+                    "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
+                    "type": "string"
+                },
+                "values": {
+                    "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "object"
+                            }
+                        ]
+                    }
+                },
+                "useValues": {
+                    "type": "boolean"
+                }
+            }
         }
     }
 }

@@ -12,41 +12,6 @@
     ],
     "additionalProperties": true,
     "properties": {
-        "type": {
-            "enum": [
-                "reduce"
-            ],
-            "description": "type of the unit",
-            "type": "string"
-        },
-        "mapFlowchartId": {
-            "description": "corresponding map unit flowchart ID",
-            "type": "string"
-        },
-        "input": {
-            "description": "input information for reduce unit",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "required": [
-                    "operation",
-                    "arguments"
-                ],
-                "properties": {
-                    "operation": {
-                        "description": "reduce operation, e.g. aggregate",
-                        "type": "string"
-                    },
-                    "arguments": {
-                        "description": "arguments which are passed to reduce operation function",
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    }
-                }
-            }
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -114,6 +79,13 @@
         "isDraft": {
             "type": "boolean"
         },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "enum": [
+                "reduce"
+            ]
+        },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
             "type": "boolean"
@@ -132,6 +104,34 @@
         },
         "context": {
             "type": "object"
+        },
+        "mapFlowchartId": {
+            "description": "corresponding map unit flowchart ID",
+            "type": "string"
+        },
+        "input": {
+            "description": "input information for reduce unit",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "operation",
+                    "arguments"
+                ],
+                "properties": {
+                    "operation": {
+                        "description": "reduce operation, e.g. aggregate",
+                        "type": "string"
+                    },
+                    "arguments": {
+                        "description": "arguments which are passed to reduce operation function",
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            }
         }
     }
 }

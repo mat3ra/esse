@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class Type(Enum):
-    subworkflow = "subworkflow"
-
-
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -28,14 +24,14 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
+class Type(Enum):
+    subworkflow = "subworkflow"
+
+
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -67,6 +63,10 @@ class SubworkflowUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.

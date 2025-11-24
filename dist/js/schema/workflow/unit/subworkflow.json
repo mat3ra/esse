@@ -10,13 +10,6 @@
     ],
     "additionalProperties": true,
     "properties": {
-        "type": {
-            "enum": [
-                "subworkflow"
-            ],
-            "description": "type of the unit",
-            "type": "string"
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -83,6 +76,13 @@
         },
         "isDraft": {
             "type": "boolean"
+        },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "enum": [
+                "subworkflow"
+            ]
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",

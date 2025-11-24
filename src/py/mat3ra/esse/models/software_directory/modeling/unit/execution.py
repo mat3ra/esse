@@ -10,8 +10,29 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
 class Type(Enum):
     execution = "execution"
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -199,47 +220,10 @@ class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
-class RuntimeItemNameObjectSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
-    """
-    type of the unit
-    """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: List[
-        Union[
-            ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
-        ]
-    ] = Field(..., title="execution unit input schema")
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -271,6 +255,10 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
+    type: Type
+    """
+    type of the unit
+    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -303,4 +291,16 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
+    """
+    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
+    input: List[
+        Union[
+            ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
+            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
+        ]
+    ] = Field(..., title="execution unit input schema")
+    """
+    unit input (type to be specified by the application's execution unit)
     """
