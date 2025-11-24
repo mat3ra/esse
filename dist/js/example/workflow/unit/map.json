@@ -12,5 +12,9 @@
     "name": "map",
     "status": "idle",
     "type": "map",
-    "workflowId": "zxjhEiaQvwWwvB3oM"
+    "workflowId": "zxjhEiaQvwWwvB3oM",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

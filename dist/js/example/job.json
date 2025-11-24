@@ -176,7 +176,11 @@
                 "_id": "LCthJ6E2QabYCZqf4",
                 "flowchartId": "05c362dc27ff1bb98d16fd60",
                 "type": "subworkflow",
-                "name": "subworkflow unit"
+                "name": "subworkflow unit",
+                "preProcessors": [],
+                "postProcessors": [],
+                "monitors": [],
+                "results": []
             }
         ]
     }

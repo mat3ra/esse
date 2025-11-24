@@ -10,6 +10,13 @@ from typing import Any, Dict, List, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -63,6 +70,22 @@ class ConditionUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """

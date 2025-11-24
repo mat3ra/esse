@@ -1127,6 +1127,13 @@ class Name515(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
 class Status(Enum):
     idle = "idle"
     active = "active"
@@ -1247,6 +1254,22 @@ class DataIOUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -1329,6 +1352,22 @@ class ReduceUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -1409,6 +1448,22 @@ class ConditionUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1496,6 +1551,22 @@ class AssertionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -1539,13 +1610,6 @@ class AssertionUnitSchema(BaseModel):
 
 class Type27(Enum):
     execution = "execution"
-
-
-class RuntimeItemNameObjectSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -1743,6 +1807,22 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -1774,22 +1854,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
@@ -1827,6 +1891,22 @@ class AssignmentUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -1902,6 +1982,22 @@ class ProcessingUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2262,6 +2358,22 @@ class DataIOUnitSchema1(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -2333,6 +2445,22 @@ class ReduceUnitSchema1(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -2402,6 +2530,22 @@ class ConditionUnitSchema2(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2488,6 +2632,22 @@ class AssertionUnitSchema2(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2618,6 +2778,22 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -2649,22 +2825,6 @@ class ExecutionUnitSchemaBase2(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema6] = Field(None, title="flavor schema")
@@ -2702,6 +2862,22 @@ class AssignmentUnitSchema2(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2777,6 +2953,22 @@ class ProcessingUnitSchema1(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """
@@ -2872,6 +3064,22 @@ class MapUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
     tags: Optional[List[str]] = None
     """
     entity tags
@@ -2941,6 +3149,22 @@ class SubworkflowUnitSchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
     """
     tags: Optional[List[str]] = None
     """

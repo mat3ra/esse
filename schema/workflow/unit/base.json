@@ -8,6 +8,9 @@
             "$ref": "../../in_memory_entity/named_defaultable.json"
         },
         {
+            "$ref": "../../system/runtime_items_name_object.json"
+        },
+        {
             "$ref": "../../system/tags.json"
         },
         {

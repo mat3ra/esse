@@ -37,5 +37,9 @@
     "source": "api",
     "status": "idle",
     "subtype": "input",
-    "type": "io"
+    "type": "io",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

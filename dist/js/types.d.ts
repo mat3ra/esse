@@ -5122,6 +5122,42 @@ export interface JobSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -5257,6 +5293,42 @@ export interface JobSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -5331,6 +5403,42 @@ export interface JobSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * entity tags
                  */
@@ -5423,6 +5531,42 @@ export interface JobSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -5489,41 +5633,6 @@ export interface JobSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
                  * names of the pre-processors for this calculation
                  */
                 preProcessors: {
@@ -5559,6 +5668,41 @@ export interface JobSchema {
                      */
                     name: string;
                 }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                context?: {};
                 application: {
                     /**
                      * The short name of the application. e.g. qe
@@ -5747,6 +5891,42 @@ export interface JobSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -5826,6 +6006,42 @@ export interface JobSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * entity tags
                  */
@@ -6101,6 +6317,42 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -6236,6 +6488,42 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -6310,6 +6598,42 @@ export interface JobSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -6402,6 +6726,42 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -6468,41 +6828,6 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -6538,6 +6863,41 @@ export interface JobSchema {
                  */
                 name: string;
             }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -6726,6 +7086,42 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -6806,6 +7202,42 @@ export interface JobSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -6877,6 +7309,42 @@ export interface JobSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -6961,6 +7429,42 @@ export interface JobSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -46317,6 +46821,42 @@ export interface WorkflowPropertySchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -46452,6 +46992,42 @@ export interface WorkflowPropertySchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -46526,6 +47102,42 @@ export interface WorkflowPropertySchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -46618,6 +47230,42 @@ export interface WorkflowPropertySchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -46684,41 +47332,6 @@ export interface WorkflowPropertySchema {
              */
             isDefault?: boolean;
             /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -46754,6 +47367,41 @@ export interface WorkflowPropertySchema {
                  */
                 name: string;
             }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -46942,6 +47590,42 @@ export interface WorkflowPropertySchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -47021,6 +47705,42 @@ export interface WorkflowPropertySchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -47296,6 +48016,42 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -47431,6 +48187,42 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -47505,6 +48297,42 @@ export interface WorkflowPropertySchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -47597,6 +48425,42 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -47663,41 +48527,6 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -47733,6 +48562,41 @@ export interface WorkflowPropertySchema {
              */
             name: string;
         }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -47921,6 +48785,42 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -48001,6 +48901,42 @@ export interface WorkflowPropertySchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -48072,6 +49008,42 @@ export interface WorkflowPropertySchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -48156,6 +49128,42 @@ export interface WorkflowPropertySchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -49548,6 +50556,42 @@ export interface PropertyHolderSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -49683,6 +50727,42 @@ export interface PropertyHolderSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -49757,6 +50837,42 @@ export interface PropertyHolderSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * entity tags
                  */
@@ -49849,6 +50965,42 @@ export interface PropertyHolderSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -49915,41 +51067,6 @@ export interface PropertyHolderSchema {
                  */
                 isDefault?: boolean;
                 /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
                  * names of the pre-processors for this calculation
                  */
                 preProcessors: {
@@ -49985,6 +51102,41 @@ export interface PropertyHolderSchema {
                      */
                     name: string;
                 }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                context?: {};
                 application: {
                     /**
                      * The short name of the application. e.g. qe
@@ -50173,6 +51325,42 @@ export interface PropertyHolderSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * entity tags
                  */
                 tags?: string[];
@@ -50252,6 +51440,42 @@ export interface PropertyHolderSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * entity tags
                  */
@@ -50527,6 +51751,42 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -50662,6 +51922,42 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -50736,6 +52032,42 @@ export interface PropertyHolderSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -50828,6 +52160,42 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -50894,41 +52262,6 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -50964,6 +52297,41 @@ export interface PropertyHolderSchema {
                  */
                 name: string;
             }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -51152,6 +52520,42 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -51232,6 +52636,42 @@ export interface PropertyHolderSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -51303,6 +52743,42 @@ export interface PropertyHolderSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -51387,6 +52863,42 @@ export interface PropertyHolderSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -52253,41 +53765,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      */
     isDefault?: boolean;
     /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
      * names of the pre-processors for this calculation
      */
     preProcessors: {
@@ -52323,6 +53800,41 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name: string;
     }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -52755,41 +54267,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      */
     isDefault?: boolean;
     /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
      * names of the pre-processors for this calculation
      */
     preProcessors: {
@@ -52825,6 +54302,41 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name: string;
     }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -53723,6 +55235,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -53858,6 +55406,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -53932,6 +55516,42 @@ export type WorkflowSubworkflowUnitSchema = {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -54024,6 +55644,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -54090,41 +55746,6 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
      * names of the pre-processors for this calculation
      */
     preProcessors: {
@@ -54160,6 +55781,41 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         name: string;
     }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -54348,6 +56004,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -54428,6 +56120,42 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -54505,6 +56233,42 @@ export interface Subworkflow {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -54641,6 +56405,42 @@ export interface Subworkflow {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -54715,6 +56515,42 @@ export interface Subworkflow {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -54807,6 +56643,42 @@ export interface Subworkflow {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -54873,41 +56745,6 @@ export interface Subworkflow {
          */
         isDefault?: boolean;
         /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -54943,6 +56780,41 @@ export interface Subworkflow {
              */
             name: string;
         }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -55131,6 +57003,42 @@ export interface Subworkflow {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -55210,6 +57118,42 @@ export interface Subworkflow {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -55483,6 +57427,42 @@ export interface AssertionUnitSchema {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -55550,6 +57530,42 @@ export interface AssignmentUnitSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -55633,6 +57649,42 @@ export interface WorkflowBaseUnitSchema {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -55692,6 +57744,42 @@ export interface ConditionUnitSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -55786,41 +57874,6 @@ export interface ExecutionUnitSchemaBase {
      */
     isDefault?: boolean;
     /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
      * names of the pre-processors for this calculation
      */
     preProcessors: {
@@ -55856,6 +57909,41 @@ export interface ExecutionUnitSchemaBase {
          */
         name: string;
     }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -56197,6 +58285,42 @@ export interface DataIOUnitSchema {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -56333,6 +58457,42 @@ export interface MapUnitSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -56850,6 +59010,42 @@ export interface ProcessingUnitSchema {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -56923,6 +59119,42 @@ export interface ReduceUnitSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -57001,6 +59233,42 @@ export interface SubworkflowUnitSchema {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57060,6 +59328,42 @@ export type WorkflowUnitSchema = {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -57196,6 +59500,42 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57270,6 +59610,42 @@ export type WorkflowUnitSchema = {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -57362,6 +59738,42 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57428,41 +59840,6 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
      * names of the pre-processors for this calculation
      */
     preProcessors: {
@@ -57498,6 +59875,41 @@ export type WorkflowUnitSchema = {
          */
         name: string;
     }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
     application: {
         /**
          * The short name of the application. e.g. qe
@@ -57686,6 +60098,42 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57766,6 +60214,42 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57837,6 +60321,42 @@ export type WorkflowUnitSchema = {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * entity tags
      */
@@ -57922,6 +60442,42 @@ export type WorkflowUnitSchema = {
      */
     isDefault?: boolean;
     /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * entity tags
      */
     tags?: string[];
@@ -57989,6 +60545,42 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -58125,6 +60717,42 @@ export interface WorkflowSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -58199,6 +60827,42 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -58291,6 +60955,42 @@ export interface WorkflowSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -58357,41 +61057,6 @@ export interface WorkflowSchema {
              */
             isDefault?: boolean;
             /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -58427,6 +61092,41 @@ export interface WorkflowSchema {
                  */
                 name: string;
             }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            context?: {};
             application: {
                 /**
                  * The short name of the application. e.g. qe
@@ -58615,6 +61315,42 @@ export interface WorkflowSchema {
              */
             isDefault?: boolean;
             /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * entity tags
              */
             tags?: string[];
@@ -58694,6 +61430,42 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * entity tags
              */
@@ -58969,6 +61741,42 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -59104,6 +61912,42 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -59178,6 +62022,42 @@ export interface WorkflowSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -59270,6 +62150,42 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -59336,41 +62252,6 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -59406,6 +62287,41 @@ export interface WorkflowSchema {
              */
             name: string;
         }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        context?: {};
         application: {
             /**
              * The short name of the application. e.g. qe
@@ -59594,6 +62510,42 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -59674,6 +62626,42 @@ export interface WorkflowSchema {
          */
         isDefault?: boolean;
         /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * entity tags
          */
         tags?: string[];
@@ -59745,6 +62733,42 @@ export interface WorkflowSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
@@ -59829,6 +62853,42 @@ export interface WorkflowSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * entity tags
          */
