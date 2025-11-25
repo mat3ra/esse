@@ -1,9 +1,22 @@
 {
-    "$id": "context-providers-directory/by-application/qepwx-context-provider",
+    "$id": "context-providers-directory/by-application/qeneb-context-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "QE pwx Context Provider Schema",
-    "description": "Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.",
+    "title": "QE NEB Context Provider Schema",
+    "description": "Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.",
     "type": "object",
+    "required": [
+        "IBRAV",
+        "RESTART_MODE",
+        "ATOMIC_SPECIES",
+        "ATOMIC_SPECIES_WITH_LABELS",
+        "NAT",
+        "NTYP",
+        "NTYP_WITH_LABELS",
+        "CELL_PARAMETERS",
+        "FIRST_IMAGE",
+        "LAST_IMAGE",
+        "INTERMEDIATE_IMAGES"
+    ],
     "properties": {
         "IBRAV": {
             "type": "integer",
@@ -40,27 +53,30 @@
         },
         "ATOMIC_POSITIONS": {
             "type": "string",
-            "description": "Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input."
+            "description": "Formatted text block for ATOMIC_POSITIONS card WITH constraints for a given image. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line."
         },
         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
             "type": "string",
-            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line"
+            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line"
         },
         "CELL_PARAMETERS": {
             "type": "string",
-            "description": "Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input."
+            "description": "Formatted text block for CELL_PARAMETERS card. Three lines, each containing three space-separated numbers representing lattice vectors."
+        },
+        "FIRST_IMAGE": {
+            "type": "string",
+            "description": "Atomic positions block (ATOMIC_POSITIONS) for the first NEB image."
+        },
+        "LAST_IMAGE": {
+            "type": "string",
+            "description": "Atomic positions block (ATOMIC_POSITIONS) for the last NEB image."
+        },
+        "INTERMEDIATE_IMAGES": {
+            "type": "array",
+            "description": "Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.",
+            "items": {
+                "type": "string"
+            }
         }
-    },
-    "required": [
-        "IBRAV",
-        "RESTART_MODE",
-        "ATOMIC_SPECIES",
-        "ATOMIC_SPECIES_WITH_LABELS",
-        "NAT",
-        "NTYP",
-        "NTYP_WITH_LABELS",
-        "ATOMIC_POSITIONS",
-        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-        "CELL_PARAMETERS"
-    ]
+    }
 }

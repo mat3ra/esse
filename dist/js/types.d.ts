@@ -2899,11 +2899,110 @@ export interface BoundaryConditionsProviderSchema {
     electricField?: number;
     targetFermiEnergy?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/by_application/qepwx_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/by_application/nwchem_total_energy_context_provider.json */
+/**
+ * Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.
+ */
+export interface NWChemTotalEnergyContextProviderSchema {
+    /**
+     * Total charge of the system.
+     */
+    CHARGE: number;
+    /**
+     * Spin multiplicity of the system.
+     */
+    MULT: number;
+    /**
+     * Basis set label used in the calculation (e.g., '6-31G').
+     */
+    BASIS: string;
+    /**
+     * Number of atoms in the system.
+     */
+    NAT: number;
+    /**
+     * Number of unique atomic species in the system.
+     */
+    NTYP: number;
+    /**
+     * Formatted text block with atomic positions including constraints.
+     */
+    ATOMIC_POSITIONS: string;
+    /**
+     * Formatted text block with atomic positions without constraints.
+     */
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+    /**
+     * Formatted text block for atomic species, including element symbols and masses.
+     */
+    ATOMIC_SPECIES: string;
+    /**
+     * Exchange-correlation functional identifier (e.g., 'B3LYP').
+     */
+    FUNCTIONAL: string;
+    /**
+     * Whether atomic positions are expressed in cartesian coordinates.
+     */
+    CARTESIAN: boolean;
+}
+/** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_context_provider.json */
 /**
  * Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.
  */
 export interface QEPwxContextProviderSchema {
+    IBRAV: number;
+    /**
+     * Restart mode for the calculation
+     */
+    RESTART_MODE: "restart" | "from_scratch";
+    ATOMIC_SPECIES: {
+        /**
+         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+         */
+        X?: string;
+        /**
+         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+         */
+        Mass_X?: number;
+        /**
+         * PseudoPot_X
+         */
+        PseudoPot_X?: string;
+    }[];
+    /**
+     * Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
+     */
+    ATOMIC_SPECIES_WITH_LABELS: string;
+    /**
+     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+     */
+    NAT: number;
+    /**
+     * number of types of atoms in the unit cell
+     */
+    NTYP: number;
+    /**
+     * Number of different atomic species including labels
+     */
+    NTYP_WITH_LABELS: number;
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input.
+     */
+    ATOMIC_POSITIONS: string;
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+     */
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+    /**
+     * Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
+     */
+    CELL_PARAMETERS: string;
+}
+/** Schema dist/js/schema/context_providers_directory/by_application/qeneb_context_provider.json */
+/**
+ * Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.
+ */
+export interface QENEBContextProviderSchema {
     /**
      * Bravais lattice index. Context provider version (uppercase) of ibrav from &SYSTEM.
      */
@@ -2933,17 +3032,61 @@ export interface QEPwxContextProviderSchema {
      */
     NTYP_WITH_LABELS: number;
     /**
-     * Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input.
+     * Formatted text block for ATOMIC_POSITIONS card WITH constraints for a given image. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line.
      */
-    ATOMIC_POSITIONS: string;
+    ATOMIC_POSITIONS?: string;
     /**
-     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line
      */
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
     /**
-     * Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
+     * Formatted text block for CELL_PARAMETERS card. Three lines, each containing three space-separated numbers representing lattice vectors.
      */
     CELL_PARAMETERS: string;
+    /**
+     * Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
+     */
+    FIRST_IMAGE: string;
+    /**
+     * Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
+     */
+    LAST_IMAGE: string;
+    /**
+     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+     */
+    INTERMEDIATE_IMAGES: string[];
+}
+/** Schema dist/js/schema/context_providers_directory/by_application/vasp_context_provider.json */
+/**
+ * Schema for VASPContextProvider that generates context data for VASP POSCAR input files.
+ */
+export interface VASPContextProviderSchema {
+    /**
+     * POSCAR content for VASP including lattice, atom types, positions and constraints.
+     */
+    POSCAR: string;
+    /**
+     * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+     */
+    POSCAR_WITH_CONSTRAINTS: string;
+}
+/** Schema dist/js/schema/context_providers_directory/by_application/vasp_neb_context_provider.json */
+/**
+ * Schema for VASPNEBContextProvider that generates context data for VASP NEB (nudged elastic band) runs.
+ */
+export interface VASPNEBContextProviderSchema {
+    /**
+     * POSCAR content with constraints for the first NEB image.
+     */
+    FIRST_IMAGE: string;
+    /**
+     * POSCAR content with constraints for the last NEB image.
+     */
+    LAST_IMAGE: string;
+    /**
+     * POSCAR contents with constraints for all intermediate NEB images.
+     */
+    INTERMEDIATE_IMAGES: string[];
 }
 /** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**
