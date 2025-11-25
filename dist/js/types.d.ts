@@ -2944,10 +2944,6 @@ export interface QEPwxContextProviderSchema {
      * Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
      */
     CELL_PARAMETERS: string;
-    /**
-     * Array of context data for each material (used when multiple materials are present)
-     */
-    perMaterial?: QEPwxContextProviderSchema[];
 }
 /** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**

@@ -49,13 +49,6 @@
         "CELL_PARAMETERS": {
             "type": "string",
             "description": "Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input."
-        },
-        "perMaterial": {
-            "type": "array",
-            "description": "Array of context data for each material (used when multiple materials are present)",
-            "items": {
-                "$ref": "#"
-            }
         }
     },
     "required": [
