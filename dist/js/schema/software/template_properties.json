@@ -1,7 +1,7 @@
 {
-    "$id": "software/template_mixin",
+    "$id": "software/template_properties",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "template mixin schema",
+    "title": "template properties schema",
     "type": "object",
     "required": [
         "name",

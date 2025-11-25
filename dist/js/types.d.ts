@@ -53453,8 +53453,8 @@ export interface ApplicationSchemaBase {
     isLicensed?: boolean;
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/software/application_mixin.json */
-export interface ApplicationMixinSchema {
+/** Schema dist/js/schema/software/application_properties.json */
+export interface ApplicationPropertiesSchema {
     /**
      * The short name of the application. e.g. qe
      */
@@ -53528,8 +53528,8 @@ export interface ExecutableSchema {
      */
     hasAdvancedComputeOptions?: boolean;
 }
-/** Schema dist/js/schema/software/executable_mixin.json */
-export interface ExecutableMixinSchema {
+/** Schema dist/js/schema/software/executable_properties.json */
+export interface ExecutablePropertiesSchema {
     /**
      * The name of the executable. e.g. pw.x
      */
@@ -53607,8 +53607,8 @@ export interface FlavorSchema {
      */
     supportedApplicationVersions?: string[];
 }
-/** Schema dist/js/schema/software/flavor_mixin.json */
-export interface FlavorMixinSchema {
+/** Schema dist/js/schema/software/flavor_properties.json */
+export interface FlavorPropertiesSchema {
     /**
      * _id of the executable this flavor belongs to
      */
@@ -53672,8 +53672,8 @@ export interface TemplateSchema {
      */
     rendered?: string;
 }
-/** Schema dist/js/schema/software/template_mixin.json */
-export interface TemplateMixinSchema {
+/** Schema dist/js/schema/software/template_properties.json */
+export interface TemplatePropertiesSchema {
     applicationName?: string;
     applicationVersion?: string;
     executableName?: string;
