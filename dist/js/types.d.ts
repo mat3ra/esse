@@ -2899,6 +2899,56 @@ export interface BoundaryConditionsProviderSchema {
     electricField?: number;
     targetFermiEnergy?: number;
 }
+/** Schema dist/js/schema/context_providers_directory/by_application/qepwx_context_provider.json */
+/**
+ * Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.
+ */
+export interface QEPwxContextProviderSchema {
+    /**
+     * Bravais lattice index. Context provider version (uppercase) of ibrav from &SYSTEM.
+     */
+    IBRAV: number;
+    /**
+     * Restart mode for the calculation
+     */
+    RESTART_MODE: "restart" | "from_scratch";
+    /**
+     * Formatted text block for ATOMIC_SPECIES card. Format: 'X Mass_X PseudoPot_X' per line. Corresponds to ATOMIC_SPECIES section in pw.x input.
+     */
+    ATOMIC_SPECIES: string;
+    /**
+     * Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
+     */
+    ATOMIC_SPECIES_WITH_LABELS: string;
+    /**
+     * Number of atoms in the unit cell. Context provider version (uppercase) of nat from &SYSTEM.
+     */
+    NAT: number;
+    /**
+     * Number of different atomic species (unique elements). Context provider version (uppercase) of ntyp from &SYSTEM.
+     */
+    NTYP: number;
+    /**
+     * Number of different atomic species including labels
+     */
+    NTYP_WITH_LABELS: number;
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input.
+     */
+    ATOMIC_POSITIONS: string;
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+     */
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+    /**
+     * Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
+     */
+    CELL_PARAMETERS: string;
+    /**
+     * Array of context data for each material (used when multiple materials are present)
+     */
+    perMaterial?: QEPwxContextProviderSchema[];
+}
 /** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**
  * Set starting magnetization, can have values in the range [-1, +1].
