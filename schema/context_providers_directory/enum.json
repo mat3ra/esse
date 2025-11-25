@@ -1,0 +1,62 @@
+{
+    "$id": "context-providers-directory/enum",
+    "definitions": {
+        "ContextProviderNameEnum": {
+            "type": "string",
+            "enum": [
+                "PlanewaveCutoffDataManager",
+                "KGridFormDataManager",
+                "QGridFormDataManager",
+                "IGridFormDataManager",
+                "QPathFormDataManager",
+                "IPathFormDataManager",
+                "KPathFormDataManager",
+                "ExplicitKPathFormDataManager",
+                "ExplicitKPath2PIBAFormDataManager",
+                "HubbardJContextManager",
+                "HubbardUContextManager",
+                "HubbardVContextManager",
+                "HubbardContextManagerLegacy",
+                "NEBFormDataManager",
+                "BoundaryConditionsFormDataManager",
+                "MLSettingsDataManager",
+                "MLTrainTestSplitDataManager",
+                "IonDynamicsContextProvider",
+                "CollinearMagnetizationDataManager",
+                "NonCollinearMagnetizationDataManager",
+                "QEPWXInputDataManager",
+                "QENEBInputDataManager",
+                "VASPInputDataManager",
+                "VASPNEBInputDataManager",
+                "NWChemInputDataManager"
+            ],
+            "tsEnumNames": [
+                "PlanewaveCutoffDataManager",
+                "KGridFormDataManager",
+                "QGridFormDataManager",
+                "IGridFormDataManager",
+                "QPathFormDataManager",
+                "IPathFormDataManager",
+                "KPathFormDataManager",
+                "ExplicitKPathFormDataManager",
+                "ExplicitKPath2PIBAFormDataManager",
+                "HubbardJContextManager",
+                "HubbardUContextManager",
+                "HubbardVContextManager",
+                "HubbardContextManagerLegacy",
+                "NEBFormDataManager",
+                "BoundaryConditionsFormDataManager",
+                "MLSettingsDataManager",
+                "MLTrainTestSplitDataManager",
+                "IonDynamicsContextProvider",
+                "CollinearMagnetizationDataManager",
+                "NonCollinearMagnetizationDataManager",
+                "QEPWXInputDataManager",
+                "QENEBInputDataManager",
+                "VASPInputDataManager",
+                "VASPNEBInputDataManager",
+                "NWChemInputDataManager"
+            ]
+        }
+    }
+}

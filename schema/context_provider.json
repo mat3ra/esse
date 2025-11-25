@@ -1,0 +1,39 @@
+{
+    "$id": "context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "context provider schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "$ref": "context_providers_directory/enum.json#/definitions/ContextProviderNameEnum"
+        },
+        "domain": {
+            "description": "domain of the context provider",
+            "type": "string"
+        },
+        "entityName": {
+            "description": "entity name associated with the context provider",
+            "type": "string"
+        },
+        "data": {
+            "description": "data object for the context provider",
+            "type": "object"
+        },
+        "extraData": {
+            "description": "additional data object for the context provider",
+            "type": "object"
+        },
+        "isEdited": {
+            "description": "flag indicating if the context provider has been edited",
+            "type": "boolean"
+        },
+        "context": {
+            "description": "context object for the context provider",
+            "type": "object"
+        }
+    },
+    "additionalProperties": true,
+    "required": [
+        "name"
+    ]
+}

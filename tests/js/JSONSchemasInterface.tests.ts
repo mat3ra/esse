@@ -1,9 +1,15 @@
+import { Utils } from "@mat3ra/utils/server";
 import { assert, expect } from "chai";
 import * as path from "path";
 
-import allSchemas from "../../dist/js/schemas.json";
 import JSONSchemasInterface from "../../src/js/esse/JSONSchemasInterfaceServer";
 import { JSONSchema } from "../../src/js/esse/utils";
+import {
+    expectedPatchedSchema,
+    originalSchema,
+    patchConfig,
+    patchConfigDotNotation,
+} from "./fixtures/test-data";
 
 function assertSystemInSetSchema(schema?: JSONSchema) {
     const inSet = schema?.properties?.inSet as JSONSchema | undefined;
@@ -33,10 +39,39 @@ describe("JSONSchemasInterfaceServer", () => {
 });
 
 describe("JSONSchemasInterface", () => {
-    it("can find registered schemas; the schema is merged and clean", async () => {
-        JSONSchemasInterface.setSchemas(allSchemas as JSONSchema[]);
+    beforeEach(() => {
+        // Use both real schemas and test fixtures
+        const allSchemasWithFixtures = [originalSchema];
+        JSONSchemasInterface.setSchemas(allSchemasWithFixtures);
+    });
 
+    it("can find registered schemas; the schema is merged and clean", async () => {
         const schema = JSONSchemasInterface.getSchemaById("system/in-set");
         assertSystemInSetSchema(schema);
+    });
+
+    it("getPatchedSchemaById should return a patched schema", () => {
+        const schemaId = "boundary-conditions-test";
+
+        const patchedSchema = JSONSchemasInterface.getPatchedSchemaById(schemaId, patchConfig);
+
+        // Should successfully patch the fixture schema
+        expect(patchedSchema).to.not.be.undefined;
+
+        Utils.assertion.assertDeepAlmostEqual(patchedSchema as JSON, expectedPatchedSchema);
+    });
+
+    it("getPatchedSchemaById should return a schema patched with dot notation", () => {
+        const schemaId = "boundary-conditions-test";
+
+        const patchedSchema = JSONSchemasInterface.getPatchedSchemaById(
+            schemaId,
+            patchConfigDotNotation,
+        );
+
+        // Should successfully patch the fixture schema
+        expect(patchedSchema).to.not.be.undefined;
+
+        Utils.assertion.assertDeepAlmostEqual(patchedSchema as JSON, expectedPatchedSchema);
     });
 });
