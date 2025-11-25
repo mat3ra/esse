@@ -1,0 +1,32 @@
+{
+    "$id": "software/template_mixin",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "template mixin schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../workflow/unit/input/_inputItem.json"
+        }
+    ],
+    "properties": {
+        "applicationName": {
+            "type": "string"
+        },
+        "applicationVersion": {
+            "type": "string"
+        },
+        "executableName": {
+            "type": "string"
+        },
+        "contextProviders": {
+            "type": "array",
+            "items": {
+                "description": "render context provider names",
+                "$ref": "../system/runtime_item_name_object.json"
+            }
+        },
+        "isManuallyChanged": {
+            "type": "boolean"
+        }
+    }
+}

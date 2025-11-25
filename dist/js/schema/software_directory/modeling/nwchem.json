@@ -35,22 +35,6 @@
                 "nwchem"
             ]
         },
-        "shortName": {
-            "description": "The short name of the application. e.g. qe",
-            "type": "string"
-        },
-        "build": {
-            "description": "Application build. e.g. VTST",
-            "type": "string"
-        },
-        "hasAdvancedComputeOptions": {
-            "description": "Whether advanced compute options are present",
-            "type": "boolean"
-        },
-        "isLicensed": {
-            "description": "Whether licensing is present",
-            "type": "boolean"
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -71,6 +55,22 @@
             "description": "Identifies that entity is defaultable",
             "type": "boolean",
             "default": false
+        },
+        "shortName": {
+            "description": "The short name of the application. e.g. qe",
+            "type": "string"
+        },
+        "build": {
+            "description": "Application build. e.g. VTST",
+            "type": "string"
+        },
+        "hasAdvancedComputeOptions": {
+            "description": "Whether advanced compute options are present",
+            "type": "boolean"
+        },
+        "isLicensed": {
+            "description": "Whether licensing is present",
+            "type": "boolean"
         }
     }
 }

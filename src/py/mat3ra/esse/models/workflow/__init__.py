@@ -523,9 +523,27 @@ class Type112(Enum):
 
 
 class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -550,6 +568,9 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
+
+
+class ExecutableSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -571,12 +592,21 @@ class ApplicationSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
-
-
-class ExecutableSchema(BaseModel):
-    name: str
+    preProcessors: List[str]
     """
-    The name of the executable. e.g. pw.x
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[str]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[str]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[str]
+    """
+    names of the results for this calculation
     """
     applicationId: Optional[List[str]] = None
     """
@@ -586,6 +616,21 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
+
+
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    templateId: Optional[str] = None
+    templateName: Optional[str] = None
+    name: Optional[str] = None
+    """
+    name of the resulting input file, if different than template name
+    """
+
+
+class FlavorSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -598,6 +643,10 @@ class ExecutableSchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
     """
     isDefault: Optional[bool] = False
     """
@@ -619,21 +668,6 @@ class ExecutableSchema(BaseModel):
     """
     names of the results for this calculation
     """
-
-
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
-    """
-    name of the resulting input file, if different than template name
-    """
-
-
-class FlavorSchema(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -652,43 +686,6 @@ class FlavorSchema(BaseModel):
     supportedApplicationVersions: Optional[List[str]] = None
     """
     list of application versions this flavor supports
-    """
-    field_id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[str]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[str]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[str]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[str]
-    """
-    names of the results for this calculation
     """
 
 
@@ -1605,25 +1602,6 @@ class Type119(Enum):
 
 
 class FlavorSchema13(BaseModel):
-    executableId: Optional[str] = None
-    """
-    _id of the executable this flavor belongs to
-    """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
-    )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1660,6 +1638,25 @@ class FlavorSchema13(BaseModel):
     results: List[str]
     """
     names of the results for this calculation
+    """
+    executableId: Optional[str] = None
+    """
+    _id of the executable this flavor belongs to
+    """
+    executableName: Optional[str] = None
+    """
+    name of the executable this flavor belongs to
+    """
+    applicationName: Optional[str] = None
+    """
+    name of the application this flavor belongs to
+    """
+    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
+        None, title="execution unit input schema"
+    )
+    supportedApplicationVersions: Optional[List[str]] = None
+    """
+    list of application versions this flavor supports
     """
 
 

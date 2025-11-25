@@ -5705,6 +5705,27 @@ export interface JobSchema {
                 context?: {};
                 application: {
                     /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
                      * The short name of the application. e.g. qe
                      */
                     shortName?: string;
@@ -5728,6 +5749,8 @@ export interface JobSchema {
                      * Whether licensing is present
                      */
                     isLicensed?: boolean;
+                };
+                executable?: {
                     /**
                      * entity identity
                      */
@@ -5749,13 +5772,22 @@ export interface JobSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    [k: string]: unknown;
-                };
-                executable?: {
                     /**
-                     * The name of the executable. e.g. pw.x
+                     * names of the pre-processors for this calculation
                      */
-                    name: string;
+                    preProcessors: string[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: string[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: string[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: string[];
                     /**
                      * _ids of the application this executable belongs to
                      */
@@ -5764,6 +5796,8 @@ export interface JobSchema {
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
+                };
+                flavor?: {
                     /**
                      * entity identity
                      */
@@ -5777,6 +5811,10 @@ export interface JobSchema {
                      * entity's schema version. Used to distinct between different schemas.
                      */
                     schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -5797,8 +5835,6 @@ export interface JobSchema {
                      * names of the results for this calculation
                      */
                     results: string[];
-                };
-                flavor?: {
                     /**
                      * _id of the executable this flavor belongs to
                      */
@@ -5823,43 +5859,6 @@ export interface JobSchema {
                      * list of application versions this flavor supports
                      */
                     supportedApplicationVersions?: string[];
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: string[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: string[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: string[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: string[];
                 };
                 /**
                  * unit input (type to be specified by the application's execution unit)
@@ -6124,6 +6123,27 @@ export interface JobSchema {
             };
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -6147,28 +6167,6 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -6900,6 +6898,27 @@ export interface JobSchema {
             context?: {};
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -6923,6 +6942,8 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -6944,13 +6965,22 @@ export interface JobSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * names of the pre-processors for this calculation
                  */
-                name: string;
+                preProcessors: string[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: string[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: string[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: string[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -6959,6 +6989,8 @@ export interface JobSchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
                 /**
                  * entity identity
                  */
@@ -6972,6 +7004,10 @@ export interface JobSchema {
                  * entity's schema version. Used to distinct between different schemas.
                  */
                 schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -6992,8 +7028,6 @@ export interface JobSchema {
                  * names of the results for this calculation
                  */
                 results: string[];
-            };
-            flavor?: {
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -7018,43 +7052,6 @@ export interface JobSchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: string[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: string[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: string[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: string[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -47404,6 +47401,27 @@ export interface WorkflowPropertySchema {
             context?: {};
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -47427,6 +47445,8 @@ export interface WorkflowPropertySchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -47448,13 +47468,22 @@ export interface WorkflowPropertySchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * names of the pre-processors for this calculation
                  */
-                name: string;
+                preProcessors: string[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: string[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: string[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: string[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -47463,6 +47492,8 @@ export interface WorkflowPropertySchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
                 /**
                  * entity identity
                  */
@@ -47476,6 +47507,10 @@ export interface WorkflowPropertySchema {
                  * entity's schema version. Used to distinct between different schemas.
                  */
                 schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -47496,8 +47531,6 @@ export interface WorkflowPropertySchema {
                  * names of the results for this calculation
                  */
                 results: string[];
-            };
-            flavor?: {
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -47522,43 +47555,6 @@ export interface WorkflowPropertySchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: string[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: string[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: string[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: string[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -47823,6 +47819,27 @@ export interface WorkflowPropertySchema {
         };
         application: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -47846,28 +47863,6 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            [k: string]: unknown;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -48599,6 +48594,27 @@ export interface WorkflowPropertySchema {
         context?: {};
         application: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -48622,6 +48638,8 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -48643,13 +48661,22 @@ export interface WorkflowPropertySchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * names of the pre-processors for this calculation
              */
-            name: string;
+            preProcessors: string[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: string[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: string[];
+            /**
+             * names of the results for this calculation
+             */
+            results: string[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -48658,6 +48685,8 @@ export interface WorkflowPropertySchema {
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+        };
+        flavor?: {
             /**
              * entity identity
              */
@@ -48671,6 +48700,10 @@ export interface WorkflowPropertySchema {
              * entity's schema version. Used to distinct between different schemas.
              */
             schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -48691,8 +48724,6 @@ export interface WorkflowPropertySchema {
              * names of the results for this calculation
              */
             results: string[];
-        };
-        flavor?: {
             /**
              * _id of the executable this flavor belongs to
              */
@@ -48717,43 +48748,6 @@ export interface WorkflowPropertySchema {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: string[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: string[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: string[];
-            /**
-             * names of the results for this calculation
-             */
-            results: string[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)
@@ -51139,6 +51133,27 @@ export interface PropertyHolderSchema {
                 context?: {};
                 application: {
                     /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
                      * The short name of the application. e.g. qe
                      */
                     shortName?: string;
@@ -51162,6 +51177,8 @@ export interface PropertyHolderSchema {
                      * Whether licensing is present
                      */
                     isLicensed?: boolean;
+                };
+                executable?: {
                     /**
                      * entity identity
                      */
@@ -51183,13 +51200,22 @@ export interface PropertyHolderSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    [k: string]: unknown;
-                };
-                executable?: {
                     /**
-                     * The name of the executable. e.g. pw.x
+                     * names of the pre-processors for this calculation
                      */
-                    name: string;
+                    preProcessors: string[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: string[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: string[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: string[];
                     /**
                      * _ids of the application this executable belongs to
                      */
@@ -51198,6 +51224,8 @@ export interface PropertyHolderSchema {
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
+                };
+                flavor?: {
                     /**
                      * entity identity
                      */
@@ -51211,6 +51239,10 @@ export interface PropertyHolderSchema {
                      * entity's schema version. Used to distinct between different schemas.
                      */
                     schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
                     /**
                      * Identifies that entity is defaultable
                      */
@@ -51231,8 +51263,6 @@ export interface PropertyHolderSchema {
                      * names of the results for this calculation
                      */
                     results: string[];
-                };
-                flavor?: {
                     /**
                      * _id of the executable this flavor belongs to
                      */
@@ -51257,43 +51287,6 @@ export interface PropertyHolderSchema {
                      * list of application versions this flavor supports
                      */
                     supportedApplicationVersions?: string[];
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: string[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: string[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: string[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: string[];
                 };
                 /**
                  * unit input (type to be specified by the application's execution unit)
@@ -51558,6 +51551,27 @@ export interface PropertyHolderSchema {
             };
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -51581,28 +51595,6 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -52334,6 +52326,27 @@ export interface PropertyHolderSchema {
             context?: {};
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -52357,6 +52370,8 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -52378,13 +52393,22 @@ export interface PropertyHolderSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * names of the pre-processors for this calculation
                  */
-                name: string;
+                preProcessors: string[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: string[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: string[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: string[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -52393,6 +52417,8 @@ export interface PropertyHolderSchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
                 /**
                  * entity identity
                  */
@@ -52406,6 +52432,10 @@ export interface PropertyHolderSchema {
                  * entity's schema version. Used to distinct between different schemas.
                  */
                 schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -52426,8 +52456,6 @@ export interface PropertyHolderSchema {
                  * names of the results for this calculation
                  */
                 results: string[];
-            };
-            flavor?: {
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -52452,43 +52480,6 @@ export interface PropertyHolderSchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: string[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: string[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: string[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: string[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -53416,6 +53407,27 @@ export interface PropertySourceSchema {
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
      * The short name of the application. e.g. qe
      */
     shortName?: string;
@@ -53439,6 +53451,37 @@ export interface ApplicationSchemaBase {
      * Whether licensing is present
      */
     isLicensed?: boolean;
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/software/application_mixin.json */
+export interface ApplicationMixinSchema {
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application's short description.
+     */
+    summary?: string;
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
+}
+/** Schema dist/js/schema/software/executable.json */
+export interface ExecutableSchema {
     /**
      * entity identity
      */
@@ -53460,10 +53503,33 @@ export interface ApplicationSchemaBase {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: string[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: string[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: string[];
+    /**
+     * names of the results for this calculation
+     */
+    results: string[];
+    /**
+     * _ids of the application this executable belongs to
+     */
+    applicationId?: string[];
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
 }
-/** Schema dist/js/schema/software/executable.json */
-export interface ExecutableSchema {
+/** Schema dist/js/schema/software/executable_mixin.json */
+export interface ExecutableMixinSchema {
     /**
      * The name of the executable. e.g. pw.x
      */
@@ -53476,6 +53542,9 @@ export interface ExecutableSchema {
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
+}
+/** Schema dist/js/schema/software/flavor.json */
+export interface FlavorSchema {
     /**
      * entity identity
      */
@@ -53489,6 +53558,10 @@ export interface ExecutableSchema {
      * entity's schema version. Used to distinct between different schemas.
      */
     schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -53509,9 +53582,6 @@ export interface ExecutableSchema {
      * names of the results for this calculation
      */
     results: string[];
-}
-/** Schema dist/js/schema/software/flavor.json */
-export interface FlavorSchema {
     /**
      * _id of the executable this flavor belongs to
      */
@@ -53536,6 +53606,36 @@ export interface FlavorSchema {
      * list of application versions this flavor supports
      */
     supportedApplicationVersions?: string[];
+}
+/** Schema dist/js/schema/software/flavor_mixin.json */
+export interface FlavorMixinSchema {
+    /**
+     * _id of the executable this flavor belongs to
+     */
+    executableId?: string;
+    /**
+     * name of the executable this flavor belongs to
+     */
+    executableName?: string;
+    /**
+     * name of the application this flavor belongs to
+     */
+    applicationName?: string;
+    input?: {
+        templateId?: string;
+        templateName?: string;
+        /**
+         * name of the resulting input file, if different than template name
+         */
+        name?: string;
+    }[];
+    /**
+     * list of application versions this flavor supports
+     */
+    supportedApplicationVersions?: string[];
+}
+/** Schema dist/js/schema/software/template.json */
+export interface TemplateSchema {
     /**
      * entity identity
      */
@@ -53553,29 +53653,27 @@ export interface FlavorSchema {
      * entity name
      */
     name: string;
+    applicationName?: string;
+    applicationVersion?: string;
+    executableName?: string;
+    contextProviders?: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    isManuallyChanged?: boolean;
     /**
-     * Identifies that entity is defaultable
+     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    isDefault?: boolean;
+    content: string;
     /**
-     * names of the pre-processors for this calculation
+     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    preProcessors: string[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: string[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: string[];
-    /**
-     * names of the results for this calculation
-     */
-    results: string[];
+    rendered?: string;
 }
-/** Schema dist/js/schema/software/template.json */
-export interface TemplateSchema {
+/** Schema dist/js/schema/software/template_mixin.json */
+export interface TemplateMixinSchema {
     applicationName?: string;
     applicationVersion?: string;
     executableName?: string;
@@ -53598,19 +53696,6 @@ export interface TemplateSchema {
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
     rendered?: string;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
 }
 /** Schema dist/js/schema/software_directory/modeling/deepmd.json */
 export interface DeePMDAppSchema {
@@ -53628,22 +53713,6 @@ export interface DeePMDAppSchema {
     version?: "2.0.2";
     exec?: "dp" | "lmp" | "python";
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -53660,6 +53729,22 @@ export interface DeePMDAppSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
@@ -53707,22 +53792,6 @@ export interface NWChem {
     version?: "6.6" | "7.0.2";
     exec?: "nwchem";
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -53739,6 +53808,22 @@ export interface NWChem {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
@@ -53837,6 +53922,27 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     context?: {};
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -53860,6 +53966,8 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -53881,13 +53989,22 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -53896,6 +54013,8 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -53909,6 +54028,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -53929,8 +54052,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -53955,43 +54076,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -54036,22 +54120,6 @@ export interface ViennaAbInitoSimulationPackage {
     version?: "5.3.5";
     exec?: "vasp";
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54068,6 +54136,22 @@ export interface ViennaAbInitoSimulationPackage {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
@@ -54087,22 +54171,6 @@ export interface JupyterLabApplicationSchema {
     version?: "0.33.12";
     exec?: "jupyter";
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54119,6 +54187,22 @@ export interface JupyterLabApplicationSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
@@ -54150,22 +54234,6 @@ export interface PythonProgramingLanguageSchema {
      */
     dependencies?: unknown[];
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54182,6 +54250,22 @@ export interface PythonProgramingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
@@ -54209,22 +54293,6 @@ export interface ShellScriptingLanguageSchema {
      */
     environment?: {};
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54241,6 +54309,22 @@ export interface ShellScriptingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
@@ -54339,6 +54423,27 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     context?: {};
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -54362,6 +54467,8 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -54383,13 +54490,22 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -54398,6 +54514,8 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -54411,6 +54529,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -54431,8 +54553,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -54457,43 +54577,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -55818,6 +55901,27 @@ export type WorkflowSubworkflowUnitSchema = {
     context?: {};
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -55841,6 +55945,8 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -55862,13 +55968,22 @@ export type WorkflowSubworkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -55877,6 +55992,8 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -55890,6 +56007,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -55910,8 +56031,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -55936,43 +56055,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -56817,6 +56899,27 @@ export interface Subworkflow {
         context?: {};
         application: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -56840,6 +56943,8 @@ export interface Subworkflow {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -56861,13 +56966,22 @@ export interface Subworkflow {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * names of the pre-processors for this calculation
              */
-            name: string;
+            preProcessors: string[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: string[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: string[];
+            /**
+             * names of the results for this calculation
+             */
+            results: string[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -56876,6 +56990,8 @@ export interface Subworkflow {
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+        };
+        flavor?: {
             /**
              * entity identity
              */
@@ -56889,6 +57005,10 @@ export interface Subworkflow {
              * entity's schema version. Used to distinct between different schemas.
              */
             schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -56909,8 +57029,6 @@ export interface Subworkflow {
              * names of the results for this calculation
              */
             results: string[];
-        };
-        flavor?: {
             /**
              * _id of the executable this flavor belongs to
              */
@@ -56935,43 +57053,6 @@ export interface Subworkflow {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: string[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: string[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: string[];
-            /**
-             * names of the results for this calculation
-             */
-            results: string[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)
@@ -57236,6 +57317,27 @@ export interface Subworkflow {
     };
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -57259,28 +57361,6 @@ export interface Subworkflow {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        [k: string]: unknown;
     };
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -57946,6 +58026,27 @@ export interface ExecutionUnitSchemaBase {
     context?: {};
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -57969,6 +58070,8 @@ export interface ExecutionUnitSchemaBase {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -57990,13 +58093,22 @@ export interface ExecutionUnitSchemaBase {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -58005,6 +58117,8 @@ export interface ExecutionUnitSchemaBase {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -58018,6 +58132,10 @@ export interface ExecutionUnitSchemaBase {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58038,8 +58156,6 @@ export interface ExecutionUnitSchemaBase {
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -58064,43 +58180,6 @@ export interface ExecutionUnitSchemaBase {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -58669,6 +58748,27 @@ export interface ExecutionUnitMixinSchema {
     type?: "execution";
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -58692,6 +58792,8 @@ export interface ExecutionUnitMixinSchema {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -58713,13 +58815,22 @@ export interface ExecutionUnitMixinSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -58728,6 +58839,8 @@ export interface ExecutionUnitMixinSchema {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -58741,6 +58854,10 @@ export interface ExecutionUnitMixinSchema {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -58761,8 +58878,6 @@ export interface ExecutionUnitMixinSchema {
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -58787,43 +58902,6 @@ export interface ExecutionUnitMixinSchema {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -59912,6 +59990,27 @@ export type WorkflowUnitSchema = {
     context?: {};
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -59935,6 +60034,8 @@ export type WorkflowUnitSchema = {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -59956,13 +60057,22 @@ export type WorkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * names of the pre-processors for this calculation
          */
-        name: string;
+        preProcessors: string[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: string[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: string[];
+        /**
+         * names of the results for this calculation
+         */
+        results: string[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -59971,6 +60081,8 @@ export type WorkflowUnitSchema = {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
         /**
          * entity identity
          */
@@ -59984,6 +60096,10 @@ export type WorkflowUnitSchema = {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -60004,8 +60120,6 @@ export type WorkflowUnitSchema = {
          * names of the results for this calculation
          */
         results: string[];
-    };
-    flavor?: {
         /**
          * _id of the executable this flavor belongs to
          */
@@ -60030,43 +60144,6 @@ export type WorkflowUnitSchema = {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: string[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: string[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: string[];
-        /**
-         * names of the results for this calculation
-         */
-        results: string[];
     };
     /**
      * unit input (type to be specified by the application's execution unit)
@@ -61129,6 +61206,27 @@ export interface WorkflowSchema {
             context?: {};
             application: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -61152,6 +61250,8 @@ export interface WorkflowSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -61173,13 +61273,22 @@ export interface WorkflowSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * names of the pre-processors for this calculation
                  */
-                name: string;
+                preProcessors: string[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: string[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: string[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: string[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -61188,6 +61297,8 @@ export interface WorkflowSchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
                 /**
                  * entity identity
                  */
@@ -61201,6 +61312,10 @@ export interface WorkflowSchema {
                  * entity's schema version. Used to distinct between different schemas.
                  */
                 schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
@@ -61221,8 +61336,6 @@ export interface WorkflowSchema {
                  * names of the results for this calculation
                  */
                 results: string[];
-            };
-            flavor?: {
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -61247,43 +61360,6 @@ export interface WorkflowSchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: string[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: string[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: string[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: string[];
             };
             /**
              * unit input (type to be specified by the application's execution unit)
@@ -61548,6 +61624,27 @@ export interface WorkflowSchema {
         };
         application: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -61571,28 +61668,6 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            [k: string]: unknown;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -62324,6 +62399,27 @@ export interface WorkflowSchema {
         context?: {};
         application: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -62347,6 +62443,8 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -62368,13 +62466,22 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * names of the pre-processors for this calculation
              */
-            name: string;
+            preProcessors: string[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: string[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: string[];
+            /**
+             * names of the results for this calculation
+             */
+            results: string[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -62383,6 +62490,8 @@ export interface WorkflowSchema {
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+        };
+        flavor?: {
             /**
              * entity identity
              */
@@ -62396,6 +62505,10 @@ export interface WorkflowSchema {
              * entity's schema version. Used to distinct between different schemas.
              */
             schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
@@ -62416,8 +62529,6 @@ export interface WorkflowSchema {
              * names of the results for this calculation
              */
             results: string[];
-        };
-        flavor?: {
             /**
              * _id of the executable this flavor belongs to
              */
@@ -62442,43 +62553,6 @@ export interface WorkflowSchema {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: string[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: string[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: string[];
-            /**
-             * names of the results for this calculation
-             */
-            results: string[];
         };
         /**
          * unit input (type to be specified by the application's execution unit)

@@ -9,26 +9,9 @@
         },
         {
             "$ref": "../system/runtime_items_string.json"
-        }
-    ],
-    "properties": {
-        "name": {
-            "description": "The name of the executable. e.g. pw.x",
-            "type": "string"
         },
-        "applicationId": {
-            "description": "_ids of the application this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "hasAdvancedComputeOptions": {
-            "description": "Whether advanced compute options are present",
-            "type": "boolean"
+        {
+            "$ref": "executable_mixin.json"
         }
-    },
-    "required": [
-        "name"
     ]
 }

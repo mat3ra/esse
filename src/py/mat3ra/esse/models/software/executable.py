@@ -10,18 +10,6 @@ from pydantic import BaseModel, Field
 
 
 class ExecutableSchema(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
-    """
-    _ids of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -34,6 +22,10 @@ class ExecutableSchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
     """
     isDefault: Optional[bool] = False
     """
@@ -54,4 +46,12 @@ class ExecutableSchema(BaseModel):
     results: List[str]
     """
     names of the results for this calculation
+    """
+    applicationId: Optional[List[str]] = None
+    """
+    _ids of the application this executable belongs to
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
     """

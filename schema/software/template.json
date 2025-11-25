@@ -5,34 +5,10 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../workflow/unit/input/_inputItem.json"
+            "$ref": "../in_memory_entity/named.json"
         },
         {
-            "$ref": "../in_memory_entity/named.json"
+            "$ref": "template_mixin.json"
         }
-    ],
-    "properties": {
-        "applicationName": {
-            "type": "string"
-        },
-        "applicationVersion": {
-            "type": "string"
-        },
-        "executableName": {
-            "type": "string"
-        },
-        "contextProviders": {
-            "type": "array",
-            "items": {
-                "description": "render context provider names",
-                "$ref": "../system/runtime_item_name_object.json"
-            }
-        },
-        "isManuallyChanged": {
-            "type": "boolean"
-        }
-    },
-    "required": [
-        "content"
     ]
 }

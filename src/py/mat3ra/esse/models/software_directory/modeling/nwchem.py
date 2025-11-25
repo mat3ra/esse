@@ -46,22 +46,6 @@ class NWChem(BaseModel):
     Application version. e.g. 5.3.5
     """
     exec: Optional[Exec] = None
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -78,4 +62,20 @@ class NWChem(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    shortName: Optional[str] = None
+    """
+    The short name of the application. e.g. qe
+    """
+    build: Optional[str] = None
+    """
+    Application build. e.g. VTST
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
     """

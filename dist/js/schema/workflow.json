@@ -1181,32 +1181,7 @@
                                             "required": [
                                                 "name"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
-                                                "shortName": {
-                                                    "description": "The short name of the application. e.g. qe",
-                                                    "type": "string"
-                                                },
-                                                "summary": {
-                                                    "description": "Application's short description.",
-                                                    "type": "string"
-                                                },
-                                                "version": {
-                                                    "description": "Application version. e.g. 5.3.5",
-                                                    "type": "string"
-                                                },
-                                                "build": {
-                                                    "description": "Application build. e.g. VTST",
-                                                    "type": "string"
-                                                },
-                                                "hasAdvancedComputeOptions": {
-                                                    "description": "Whether advanced compute options are present",
-                                                    "type": "boolean"
-                                                },
-                                                "isLicensed": {
-                                                    "description": "Whether licensing is present",
-                                                    "type": "boolean"
-                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -1231,6 +1206,30 @@
                                                     "description": "Identifies that entity is defaultable",
                                                     "type": "boolean",
                                                     "default": false
+                                                },
+                                                "shortName": {
+                                                    "description": "The short name of the application. e.g. qe",
+                                                    "type": "string"
+                                                },
+                                                "summary": {
+                                                    "description": "Application's short description.",
+                                                    "type": "string"
+                                                },
+                                                "version": {
+                                                    "description": "Application version. e.g. 5.3.5",
+                                                    "type": "string"
+                                                },
+                                                "build": {
+                                                    "description": "Application build. e.g. VTST",
+                                                    "type": "string"
+                                                },
+                                                "hasAdvancedComputeOptions": {
+                                                    "description": "Whether advanced compute options are present",
+                                                    "type": "boolean"
+                                                },
+                                                "isLicensed": {
+                                                    "description": "Whether licensing is present",
+                                                    "type": "boolean"
                                                 }
                                             }
                                         },
@@ -1246,21 +1245,6 @@
                                                 "results"
                                             ],
                                             "properties": {
-                                                "name": {
-                                                    "description": "The name of the executable. e.g. pw.x",
-                                                    "type": "string"
-                                                },
-                                                "applicationId": {
-                                                    "description": "_ids of the application this executable belongs to",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "hasAdvancedComputeOptions": {
-                                                    "description": "Whether advanced compute options are present",
-                                                    "type": "boolean"
-                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -1276,6 +1260,10 @@
                                                     "description": "entity's schema version. Used to distinct between different schemas.",
                                                     "type": "string",
                                                     "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
                                                 },
                                                 "isDefault": {
                                                     "description": "Identifies that entity is defaultable",
@@ -1309,6 +1297,17 @@
                                                     "items": {
                                                         "type": "string"
                                                     }
+                                                },
+                                                "applicationId": {
+                                                    "description": "_ids of the application this executable belongs to",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "hasAdvancedComputeOptions": {
+                                                    "description": "Whether advanced compute options are present",
+                                                    "type": "boolean"
                                                 }
                                             }
                                         },
@@ -1324,6 +1323,59 @@
                                                 "results"
                                             ],
                                             "properties": {
+                                                "_id": {
+                                                    "description": "entity identity",
+                                                    "type": "string"
+                                                },
+                                                "slug": {
+                                                    "description": "entity slug",
+                                                    "type": "string"
+                                                },
+                                                "systemName": {
+                                                    "type": "string"
+                                                },
+                                                "schemaVersion": {
+                                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                                    "type": "string",
+                                                    "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
+                                                },
+                                                "isDefault": {
+                                                    "description": "Identifies that entity is defaultable",
+                                                    "type": "boolean",
+                                                    "default": false
+                                                },
+                                                "preProcessors": {
+                                                    "description": "names of the pre-processors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "postProcessors": {
+                                                    "description": "names of the post-processors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "monitors": {
+                                                    "description": "names of the monitors for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
+                                                "results": {
+                                                    "description": "names of the results for this calculation",
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string"
+                                                    }
+                                                },
                                                 "executableId": {
                                                     "description": "_id of the executable this flavor belongs to",
                                                     "type": "string"
@@ -1360,59 +1412,6 @@
                                                 },
                                                 "supportedApplicationVersions": {
                                                     "description": "list of application versions this flavor supports",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "_id": {
-                                                    "description": "entity identity",
-                                                    "type": "string"
-                                                },
-                                                "slug": {
-                                                    "description": "entity slug",
-                                                    "type": "string"
-                                                },
-                                                "systemName": {
-                                                    "type": "string"
-                                                },
-                                                "schemaVersion": {
-                                                    "description": "entity's schema version. Used to distinct between different schemas.",
-                                                    "type": "string",
-                                                    "default": "2022.8.16"
-                                                },
-                                                "name": {
-                                                    "description": "entity name",
-                                                    "type": "string"
-                                                },
-                                                "isDefault": {
-                                                    "description": "Identifies that entity is defaultable",
-                                                    "type": "boolean",
-                                                    "default": false
-                                                },
-                                                "preProcessors": {
-                                                    "description": "names of the pre-processors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "postProcessors": {
-                                                    "description": "names of the post-processors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "monitors": {
-                                                    "description": "names of the monitors for this calculation",
-                                                    "type": "array",
-                                                    "items": {
-                                                        "type": "string"
-                                                    }
-                                                },
-                                                "results": {
-                                                    "description": "names of the results for this calculation",
                                                     "type": "array",
                                                     "items": {
                                                         "type": "string"
@@ -1913,32 +1912,7 @@
                         "required": [
                             "name"
                         ],
-                        "additionalProperties": true,
                         "properties": {
-                            "shortName": {
-                                "description": "The short name of the application. e.g. qe",
-                                "type": "string"
-                            },
-                            "summary": {
-                                "description": "Application's short description.",
-                                "type": "string"
-                            },
-                            "version": {
-                                "description": "Application version. e.g. 5.3.5",
-                                "type": "string"
-                            },
-                            "build": {
-                                "description": "Application build. e.g. VTST",
-                                "type": "string"
-                            },
-                            "hasAdvancedComputeOptions": {
-                                "description": "Whether advanced compute options are present",
-                                "type": "boolean"
-                            },
-                            "isLicensed": {
-                                "description": "Whether licensing is present",
-                                "type": "boolean"
-                            },
                             "_id": {
                                 "description": "entity identity",
                                 "type": "string"
@@ -1963,6 +1937,30 @@
                                 "description": "Identifies that entity is defaultable",
                                 "type": "boolean",
                                 "default": false
+                            },
+                            "shortName": {
+                                "description": "The short name of the application. e.g. qe",
+                                "type": "string"
+                            },
+                            "summary": {
+                                "description": "Application's short description.",
+                                "type": "string"
+                            },
+                            "version": {
+                                "description": "Application version. e.g. 5.3.5",
+                                "type": "string"
+                            },
+                            "build": {
+                                "description": "Application build. e.g. VTST",
+                                "type": "string"
+                            },
+                            "hasAdvancedComputeOptions": {
+                                "description": "Whether advanced compute options are present",
+                                "type": "boolean"
+                            },
+                            "isLicensed": {
+                                "description": "Whether licensing is present",
+                                "type": "boolean"
                             }
                         }
                     },
@@ -3325,32 +3323,7 @@
                                 "required": [
                                     "name"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
-                                    "shortName": {
-                                        "description": "The short name of the application. e.g. qe",
-                                        "type": "string"
-                                    },
-                                    "summary": {
-                                        "description": "Application's short description.",
-                                        "type": "string"
-                                    },
-                                    "version": {
-                                        "description": "Application version. e.g. 5.3.5",
-                                        "type": "string"
-                                    },
-                                    "build": {
-                                        "description": "Application build. e.g. VTST",
-                                        "type": "string"
-                                    },
-                                    "hasAdvancedComputeOptions": {
-                                        "description": "Whether advanced compute options are present",
-                                        "type": "boolean"
-                                    },
-                                    "isLicensed": {
-                                        "description": "Whether licensing is present",
-                                        "type": "boolean"
-                                    },
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -3375,6 +3348,30 @@
                                         "description": "Identifies that entity is defaultable",
                                         "type": "boolean",
                                         "default": false
+                                    },
+                                    "shortName": {
+                                        "description": "The short name of the application. e.g. qe",
+                                        "type": "string"
+                                    },
+                                    "summary": {
+                                        "description": "Application's short description.",
+                                        "type": "string"
+                                    },
+                                    "version": {
+                                        "description": "Application version. e.g. 5.3.5",
+                                        "type": "string"
+                                    },
+                                    "build": {
+                                        "description": "Application build. e.g. VTST",
+                                        "type": "string"
+                                    },
+                                    "hasAdvancedComputeOptions": {
+                                        "description": "Whether advanced compute options are present",
+                                        "type": "boolean"
+                                    },
+                                    "isLicensed": {
+                                        "description": "Whether licensing is present",
+                                        "type": "boolean"
                                     }
                                 }
                             },
@@ -3390,21 +3387,6 @@
                                     "results"
                                 ],
                                 "properties": {
-                                    "name": {
-                                        "description": "The name of the executable. e.g. pw.x",
-                                        "type": "string"
-                                    },
-                                    "applicationId": {
-                                        "description": "_ids of the application this executable belongs to",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "hasAdvancedComputeOptions": {
-                                        "description": "Whether advanced compute options are present",
-                                        "type": "boolean"
-                                    },
                                     "_id": {
                                         "description": "entity identity",
                                         "type": "string"
@@ -3420,6 +3402,10 @@
                                         "description": "entity's schema version. Used to distinct between different schemas.",
                                         "type": "string",
                                         "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
                                     },
                                     "isDefault": {
                                         "description": "Identifies that entity is defaultable",
@@ -3453,6 +3439,17 @@
                                         "items": {
                                             "type": "string"
                                         }
+                                    },
+                                    "applicationId": {
+                                        "description": "_ids of the application this executable belongs to",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "hasAdvancedComputeOptions": {
+                                        "description": "Whether advanced compute options are present",
+                                        "type": "boolean"
                                     }
                                 }
                             },
@@ -3468,6 +3465,59 @@
                                     "results"
                                 ],
                                 "properties": {
+                                    "_id": {
+                                        "description": "entity identity",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "entity slug",
+                                        "type": "string"
+                                    },
+                                    "systemName": {
+                                        "type": "string"
+                                    },
+                                    "schemaVersion": {
+                                        "description": "entity's schema version. Used to distinct between different schemas.",
+                                        "type": "string",
+                                        "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
+                                    },
+                                    "isDefault": {
+                                        "description": "Identifies that entity is defaultable",
+                                        "type": "boolean",
+                                        "default": false
+                                    },
+                                    "preProcessors": {
+                                        "description": "names of the pre-processors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "postProcessors": {
+                                        "description": "names of the post-processors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "monitors": {
+                                        "description": "names of the monitors for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "results": {
+                                        "description": "names of the results for this calculation",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    },
                                     "executableId": {
                                         "description": "_id of the executable this flavor belongs to",
                                         "type": "string"
@@ -3504,59 +3554,6 @@
                                     },
                                     "supportedApplicationVersions": {
                                         "description": "list of application versions this flavor supports",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "_id": {
-                                        "description": "entity identity",
-                                        "type": "string"
-                                    },
-                                    "slug": {
-                                        "description": "entity slug",
-                                        "type": "string"
-                                    },
-                                    "systemName": {
-                                        "type": "string"
-                                    },
-                                    "schemaVersion": {
-                                        "description": "entity's schema version. Used to distinct between different schemas.",
-                                        "type": "string",
-                                        "default": "2022.8.16"
-                                    },
-                                    "name": {
-                                        "description": "entity name",
-                                        "type": "string"
-                                    },
-                                    "isDefault": {
-                                        "description": "Identifies that entity is defaultable",
-                                        "type": "boolean",
-                                        "default": false
-                                    },
-                                    "preProcessors": {
-                                        "description": "names of the pre-processors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "postProcessors": {
-                                        "description": "names of the post-processors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "monitors": {
-                                        "description": "names of the monitors for this calculation",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "results": {
-                                        "description": "names of the results for this calculation",
                                         "type": "array",
                                         "items": {
                                             "type": "string"

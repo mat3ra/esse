@@ -1,33 +1,13 @@
 {
-    "$id": "software/template",
+    "$id": "software/template_mixin",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "template schema",
+    "title": "template mixin schema",
     "type": "object",
     "required": [
-        "content",
-        "name"
+        "name",
+        "content"
     ],
     "properties": {
-        "_id": {
-            "description": "entity identity",
-            "type": "string"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
-        "schemaVersion": {
-            "description": "entity's schema version. Used to distinct between different schemas.",
-            "type": "string",
-            "default": "2022.8.16"
-        },
-        "name": {
-            "description": "entity name",
-            "type": "string"
-        },
         "applicationName": {
             "type": "string"
         },
@@ -56,6 +36,10 @@
         },
         "isManuallyChanged": {
             "type": "boolean"
+        },
+        "name": {
+            "description": "Input file name. e.g. pw_scf.in",
+            "type": "string"
         },
         "content": {
             "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",

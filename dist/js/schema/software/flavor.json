@@ -11,47 +11,6 @@
         "results"
     ],
     "properties": {
-        "executableId": {
-            "description": "_id of the executable this flavor belongs to",
-            "type": "string"
-        },
-        "executableName": {
-            "description": "name of the executable this flavor belongs to",
-            "type": "string"
-        },
-        "applicationName": {
-            "description": "name of the application this flavor belongs to",
-            "type": "string"
-        },
-        "input": {
-            "title": "execution unit input schema",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "execution unit input id item schema for physics-based simulation engines",
-                "type": "object",
-                "additionalProperties": false,
-                "properties": {
-                    "templateId": {
-                        "type": "string"
-                    },
-                    "templateName": {
-                        "type": "string"
-                    },
-                    "name": {
-                        "description": "name of the resulting input file, if different than template name",
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "supportedApplicationVersions": {
-            "description": "list of application versions this flavor supports",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -100,6 +59,47 @@
         },
         "results": {
             "description": "names of the results for this calculation",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "executableId": {
+            "description": "_id of the executable this flavor belongs to",
+            "type": "string"
+        },
+        "executableName": {
+            "description": "name of the executable this flavor belongs to",
+            "type": "string"
+        },
+        "applicationName": {
+            "description": "name of the application this flavor belongs to",
+            "type": "string"
+        },
+        "input": {
+            "title": "execution unit input schema",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "execution unit input id item schema for physics-based simulation engines",
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "templateId": {
+                        "type": "string"
+                    },
+                    "templateName": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "description": "name of the resulting input file, if different than template name",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "supportedApplicationVersions": {
+            "description": "list of application versions this flavor supports",
             "type": "array",
             "items": {
                 "type": "string"

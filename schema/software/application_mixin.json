@@ -1,38 +1,9 @@
 {
-    "$id": "software/application",
+    "$id": "software/application_mixin",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "application schema (base)",
+    "title": "application mixin schema",
     "type": "object",
-    "required": [
-        "name"
-    ],
-    "additionalProperties": true,
     "properties": {
-        "_id": {
-            "description": "entity identity",
-            "type": "string"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
-        "schemaVersion": {
-            "description": "entity's schema version. Used to distinct between different schemas.",
-            "type": "string",
-            "default": "2022.8.16"
-        },
-        "name": {
-            "description": "entity name",
-            "type": "string"
-        },
-        "isDefault": {
-            "description": "Identifies that entity is defaultable",
-            "type": "boolean",
-            "default": false
-        },
         "shortName": {
             "description": "The short name of the application. e.g. qe",
             "type": "string"
@@ -59,3 +30,4 @@
         }
     }
 }
+
