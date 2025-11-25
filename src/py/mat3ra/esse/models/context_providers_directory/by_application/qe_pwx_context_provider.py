@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict, conint
+from pydantic import BaseModel, ConfigDict, Field, conint
 
 
 class RESTARTMODE(Enum):
@@ -33,6 +33,40 @@ class ATOMICSPECY(BaseModel):
     """
 
 
+class ATOMICPOSITION(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class CELLPARAMETERS(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    v1: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+    v2: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+    v3: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+
+
 class QEPwxContextProviderSchema(BaseModel):
     IBRAV: int
     RESTART_MODE: RESTARTMODE
@@ -56,15 +90,9 @@ class QEPwxContextProviderSchema(BaseModel):
     """
     Number of different atomic species including labels
     """
-    ATOMIC_POSITIONS: str
-    """
-    Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input.
-    """
+    ATOMIC_POSITIONS: List[ATOMICPOSITION]
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
     """
     Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
     """
-    CELL_PARAMETERS: str
-    """
-    Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
-    """
+    CELL_PARAMETERS: CELLPARAMETERS

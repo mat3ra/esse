@@ -1,0 +1,63 @@
+{
+    "$id": "context-providers-directory/by-application/nwchem-total-energy-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NWChem Total Energy Context Provider Schema",
+    "description": "Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.",
+    "type": "object",
+    "properties": {
+        "CHARGE": {
+            "type": "integer",
+            "description": "Total charge of the system."
+        },
+        "MULT": {
+            "type": "integer",
+            "description": "Spin multiplicity of the system."
+        },
+        "BASIS": {
+            "type": "string",
+            "description": "Basis set label used in the calculation (e.g., '6-31G')."
+        },
+        "NAT": {
+            "type": "integer",
+            "description": "Number of atoms in the system."
+        },
+        "NTYP": {
+            "type": "integer",
+            "description": "Number of unique atomic species in the system."
+        },
+        "ATOMIC_POSITIONS": {
+            "type": "string",
+            "description": "Formatted text block with atomic positions including constraints."
+        },
+        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
+            "type": "string",
+            "description": "Formatted text block with atomic positions without constraints."
+        },
+        "ATOMIC_SPECIES": {
+            "type": "string",
+            "description": "Formatted text block for atomic species, including element symbols and masses."
+        },
+        "FUNCTIONAL": {
+            "type": "string",
+            "description": "Exchange-correlation functional identifier (e.g., 'B3LYP')."
+        },
+        "CARTESIAN": {
+            "type": "boolean",
+            "description": "Whether atomic positions are expressed in cartesian coordinates."
+        }
+    },
+    "required": [
+        "CHARGE",
+        "MULT",
+        "BASIS",
+        "NAT",
+        "NTYP",
+        "ATOMIC_POSITIONS",
+        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
+        "ATOMIC_SPECIES",
+        "FUNCTIONAL",
+        "CARTESIAN"
+    ]
+}
+
+

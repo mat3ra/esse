@@ -1,26 +1,12 @@
 {
-    "$id": "context-providers-directory/by-application/qeneb-context-provider",
+    "$id": "context-providers-directory/by-application/qe-neb-context-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "QE NEB Context Provider Schema",
     "description": "Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.",
     "type": "object",
-    "required": [
-        "IBRAV",
-        "RESTART_MODE",
-        "ATOMIC_SPECIES",
-        "ATOMIC_SPECIES_WITH_LABELS",
-        "NAT",
-        "NTYP",
-        "NTYP_WITH_LABELS",
-        "CELL_PARAMETERS",
-        "FIRST_IMAGE",
-        "LAST_IMAGE",
-        "INTERMEDIATE_IMAGES"
-    ],
     "properties": {
         "IBRAV": {
-            "type": "integer",
-            "description": "Bravais lattice index. Context provider version (uppercase) of ibrav from &SYSTEM."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ibrav"
         },
         "RESTART_MODE": {
             "type": "string",
@@ -31,20 +17,17 @@
             "description": "Restart mode for the calculation"
         },
         "ATOMIC_SPECIES": {
-            "type": "string",
-            "description": "Formatted text block for ATOMIC_SPECIES card. Format: 'X Mass_X PseudoPot_X' per line. Corresponds to ATOMIC_SPECIES section in pw.x input."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
         },
         "ATOMIC_SPECIES_WITH_LABELS": {
             "type": "string",
             "description": "Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line"
         },
         "NAT": {
-            "type": "integer",
-            "description": "Number of atoms in the unit cell. Context provider version (uppercase) of nat from &SYSTEM."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/nat"
         },
         "NTYP": {
-            "type": "integer",
-            "description": "Number of different atomic species (unique elements). Context provider version (uppercase) of ntyp from &SYSTEM."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ntyp"
         },
         "NTYP_WITH_LABELS": {
             "type": "integer",
@@ -52,16 +35,14 @@
             "minimum": 1
         },
         "ATOMIC_POSITIONS": {
-            "type": "string",
-            "description": "Formatted text block for ATOMIC_POSITIONS card WITH constraints for a given image. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
         },
         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
             "type": "string",
             "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line"
         },
         "CELL_PARAMETERS": {
-            "type": "string",
-            "description": "Formatted text block for CELL_PARAMETERS card. Three lines, each containing three space-separated numbers representing lattice vectors."
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/cell_parameters.json#/properties/values"
         },
         "FIRST_IMAGE": {
             "type": "string",
@@ -78,5 +59,18 @@
                 "type": "string"
             }
         }
-    }
+    },
+    "required": [
+        "IBRAV",
+        "RESTART_MODE",
+        "ATOMIC_SPECIES",
+        "ATOMIC_SPECIES_WITH_LABELS",
+        "NAT",
+        "NTYP",
+        "NTYP_WITH_LABELS",
+        "CELL_PARAMETERS",
+        "FIRST_IMAGE",
+        "LAST_IMAGE",
+        "INTERMEDIATE_IMAGES"
+    ]
 }

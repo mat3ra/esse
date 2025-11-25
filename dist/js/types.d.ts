@@ -2945,6 +2945,101 @@ export interface NWChemTotalEnergyContextProviderSchema {
      */
     CARTESIAN: boolean;
 }
+/** Schema dist/js/schema/context_providers_directory/by_application/qe_neb_context_provider.json */
+/**
+ * Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.
+ */
+export interface QENEBContextProviderSchema {
+    IBRAV: number;
+    /**
+     * Restart mode for the calculation
+     */
+    RESTART_MODE: "restart" | "from_scratch";
+    ATOMIC_SPECIES: {
+        /**
+         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+         */
+        X?: string;
+        /**
+         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+         */
+        Mass_X?: number;
+        /**
+         * PseudoPot_X
+         */
+        PseudoPot_X?: string;
+    }[];
+    /**
+     * Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
+     */
+    ATOMIC_SPECIES_WITH_LABELS: string;
+    /**
+     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+     */
+    NAT: number;
+    /**
+     * number of types of atoms in the unit cell
+     */
+    NTYP: number;
+    /**
+     * Number of different atomic species including labels
+     */
+    NTYP_WITH_LABELS: number;
+    ATOMIC_POSITIONS?: {
+        /**
+         * label of the atom as specified in ATOMIC_SPECIES
+         */
+        X?: string;
+        /**
+         * atomic positions
+         */
+        x: number;
+        /**
+         * atomic positions
+         */
+        y: number;
+        /**
+         * atomic positions
+         */
+        z: number;
+        "if_pos(1)"?: number;
+        "if_pos(2)"?: number;
+        "if_pos(3)"?: number;
+    }[];
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line
+     */
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+    CELL_PARAMETERS: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v1?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v2?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v3?: [number, number, number];
+    };
+    /**
+     * Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
+     */
+    FIRST_IMAGE: string;
+    /**
+     * Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
+     */
+    LAST_IMAGE: string;
+    /**
+     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+     */
+    INTERMEDIATE_IMAGES: string[];
+}
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_context_provider.json */
 /**
  * Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.
@@ -2985,76 +3080,48 @@ export interface QEPwxContextProviderSchema {
      * Number of different atomic species including labels
      */
     NTYP_WITH_LABELS: number;
-    /**
-     * Formatted text block for ATOMIC_POSITIONS card WITH constraints. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line. Corresponds to ATOMIC_POSITIONS section in pw.x input.
-     */
-    ATOMIC_POSITIONS: string;
+    ATOMIC_POSITIONS: {
+        /**
+         * label of the atom as specified in ATOMIC_SPECIES
+         */
+        X?: string;
+        /**
+         * atomic positions
+         */
+        x: number;
+        /**
+         * atomic positions
+         */
+        y: number;
+        /**
+         * atomic positions
+         */
+        z: number;
+        "if_pos(1)"?: number;
+        "if_pos(2)"?: number;
+        "if_pos(3)"?: number;
+    }[];
     /**
      * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
      */
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
-    /**
-     * Formatted text block for CELL_PARAMETERS card. Format: three lines, each containing three space-separated numbers representing lattice vectors. Corresponds to CELL_PARAMETERS section in pw.x input.
-     */
-    CELL_PARAMETERS: string;
-}
-/** Schema dist/js/schema/context_providers_directory/by_application/qeneb_context_provider.json */
-/**
- * Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.
- */
-export interface QENEBContextProviderSchema {
-    /**
-     * Bravais lattice index. Context provider version (uppercase) of ibrav from &SYSTEM.
-     */
-    IBRAV: number;
-    /**
-     * Restart mode for the calculation
-     */
-    RESTART_MODE: "restart" | "from_scratch";
-    /**
-     * Formatted text block for ATOMIC_SPECIES card. Format: 'X Mass_X PseudoPot_X' per line. Corresponds to ATOMIC_SPECIES section in pw.x input.
-     */
-    ATOMIC_SPECIES: string;
-    /**
-     * Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
-     */
-    ATOMIC_SPECIES_WITH_LABELS: string;
-    /**
-     * Number of atoms in the unit cell. Context provider version (uppercase) of nat from &SYSTEM.
-     */
-    NAT: number;
-    /**
-     * Number of different atomic species (unique elements). Context provider version (uppercase) of ntyp from &SYSTEM.
-     */
-    NTYP: number;
-    /**
-     * Number of different atomic species including labels
-     */
-    NTYP_WITH_LABELS: number;
-    /**
-     * Formatted text block for ATOMIC_POSITIONS card WITH constraints for a given image. Format: 'X x y z [if_pos(1) if_pos(2) if_pos(3)]' per line.
-     */
-    ATOMIC_POSITIONS?: string;
-    /**
-     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line
-     */
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-    /**
-     * Formatted text block for CELL_PARAMETERS card. Three lines, each containing three space-separated numbers representing lattice vectors.
-     */
-    CELL_PARAMETERS: string;
-    /**
-     * Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
-     */
-    FIRST_IMAGE: string;
-    /**
-     * Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
-     */
-    LAST_IMAGE: string;
-    /**
-     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
-     */
-    INTERMEDIATE_IMAGES: string[];
+    CELL_PARAMETERS: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v1?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v2?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v3?: [number, number, number];
+    };
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/vasp_context_provider.json */
 /**
