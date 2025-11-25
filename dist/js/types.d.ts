@@ -3007,7 +3007,7 @@ export interface QENEBContextProviderSchema {
         "if_pos(3)"?: number;
     }[];
     /**
-     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints for a given image. Format: 'X x y z' per line
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
      */
     ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
     CELL_PARAMETERS: {
@@ -3039,6 +3039,89 @@ export interface QENEBContextProviderSchema {
      * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
      */
     INTERMEDIATE_IMAGES: string[];
+}
+/** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_base_context_provider.json */
+/**
+ * Base schema with shared Quantum ESPRESSO pw.x context provider properties.
+ */
+export interface QEPwxBaseContextProviderSchema {
+    IBRAV?: number;
+    /**
+     * Restart mode for the calculation
+     */
+    RESTART_MODE?: "restart" | "from_scratch";
+    ATOMIC_SPECIES?: {
+        /**
+         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+         */
+        X?: string;
+        /**
+         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+         */
+        Mass_X?: number;
+        /**
+         * PseudoPot_X
+         */
+        PseudoPot_X?: string;
+    }[];
+    /**
+     * Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
+     */
+    ATOMIC_SPECIES_WITH_LABELS?: string;
+    /**
+     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+     */
+    NAT?: number;
+    /**
+     * number of types of atoms in the unit cell
+     */
+    NTYP?: number;
+    /**
+     * Number of different atomic species including labels
+     */
+    NTYP_WITH_LABELS?: number;
+    ATOMIC_POSITIONS?: {
+        /**
+         * label of the atom as specified in ATOMIC_SPECIES
+         */
+        X?: string;
+        /**
+         * atomic positions
+         */
+        x: number;
+        /**
+         * atomic positions
+         */
+        y: number;
+        /**
+         * atomic positions
+         */
+        z: number;
+        "if_pos(1)"?: number;
+        "if_pos(2)"?: number;
+        "if_pos(3)"?: number;
+    }[];
+    /**
+     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+     */
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+    CELL_PARAMETERS?: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v1?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v2?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        v3?: [number, number, number];
+    };
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_context_provider.json */
 /**

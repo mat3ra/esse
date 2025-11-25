@@ -3,58 +3,24 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "QE pwx Context Provider Schema",
     "description": "Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.",
-    "type": "object",
-    "properties": {
-        "IBRAV": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ibrav"
+    "allOf": [
+        {
+            "$ref": "qe_pwx_base_context_provider.json"
         },
-        "RESTART_MODE": {
-            "type": "string",
-            "enum": [
-                "restart",
-                "from_scratch"
-            ],
-            "description": "Restart mode for the calculation"
-        },
-        "ATOMIC_SPECIES": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
-        },
-        "ATOMIC_SPECIES_WITH_LABELS": {
-            "type": "string",
-            "description": "Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line"
-        },
-        "NAT": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/nat"
-        },
-        "NTYP": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ntyp"
-        },
-        "NTYP_WITH_LABELS": {
-            "type": "integer",
-            "description": "Number of different atomic species including labels",
-            "minimum": 1
-        },
-        "ATOMIC_POSITIONS": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
-        },
-        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
-            "type": "string",
-            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line"
-        },
-        "CELL_PARAMETERS": {
-            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/cell_parameters.json#/properties/values"
+        {
+            "type": "object",
+            "required": [
+                "IBRAV",
+                "RESTART_MODE",
+                "ATOMIC_SPECIES",
+                "ATOMIC_SPECIES_WITH_LABELS",
+                "NAT",
+                "NTYP",
+                "NTYP_WITH_LABELS",
+                "ATOMIC_POSITIONS",
+                "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
+                "CELL_PARAMETERS"
+            ]
         }
-    },
-    "required": [
-        "IBRAV",
-        "RESTART_MODE",
-        "ATOMIC_SPECIES",
-        "ATOMIC_SPECIES_WITH_LABELS",
-        "NAT",
-        "NTYP",
-        "NTYP_WITH_LABELS",
-        "ATOMIC_POSITIONS",
-        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-        "CELL_PARAMETERS"
     ]
 }
