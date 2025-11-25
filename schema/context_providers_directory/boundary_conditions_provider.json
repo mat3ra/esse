@@ -1,16 +1,14 @@
 {
-    "$id": "context-providers-directory/boundary-conditions-provider",
+    "$id": "context-providers-directory/boundary-conditions-data-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Boundary Conditions Provider Schema",
     "type": "object",
     "properties": {
         "type": {
-            "type": "string",
-            "title": "Type"
+            "$ref": "../properties_directory/structural/basis/boundary_conditions.json#/properties/type"
         },
         "offset": {
-            "type": "number",
-            "title": "Offset (A)"
+            "$ref": "../properties_directory/structural/basis/boundary_conditions.json#/properties/offset"
         },
         "electricField": {
             "type": "number",
