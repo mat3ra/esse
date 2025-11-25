@@ -11,7 +11,7 @@
             "$ref": "../system/runtime_items_string.json"
         },
         {
-            "$ref": "executable_mixin.json"
+            "$ref": "executable_properties.json"
         }
     ]
 }

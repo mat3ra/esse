@@ -11,7 +11,7 @@
             "$ref": "../system/runtime_items_string.json"
         },
         {
-            "$ref": "flavor_mixin.json"
+            "$ref": "flavor_properties.json"
         }
     ]
 }
