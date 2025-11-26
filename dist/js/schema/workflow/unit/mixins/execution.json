@@ -155,6 +155,8 @@
             "title": "flavor schema",
             "type": "object",
             "required": [
+                "executableId",
+                "input",
                 "monitors",
                 "name",
                 "postProcessors",

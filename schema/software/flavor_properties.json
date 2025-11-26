@@ -30,6 +30,10 @@
                 "type": "string"
             }
         }
-    }
+    },
+    "required": [
+        "executableId",
+        "input"
+    ]
 }
 

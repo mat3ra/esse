@@ -5838,7 +5838,7 @@ export interface JobSchema {
                     /**
                      * _id of the executable this flavor belongs to
                      */
-                    executableId?: string;
+                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -5847,7 +5847,7 @@ export interface JobSchema {
                      * name of the application this flavor belongs to
                      */
                     applicationName?: string;
-                    input?: {
+                    input: {
                         templateId?: string;
                         templateName?: string;
                         /**
@@ -7031,7 +7031,7 @@ export interface JobSchema {
                 /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -7040,7 +7040,7 @@ export interface JobSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -47534,7 +47534,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -47543,7 +47543,7 @@ export interface WorkflowPropertySchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -48727,7 +48727,7 @@ export interface WorkflowPropertySchema {
             /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -48736,7 +48736,7 @@ export interface WorkflowPropertySchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**
@@ -51266,7 +51266,7 @@ export interface PropertyHolderSchema {
                     /**
                      * _id of the executable this flavor belongs to
                      */
-                    executableId?: string;
+                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -51275,7 +51275,7 @@ export interface PropertyHolderSchema {
                      * name of the application this flavor belongs to
                      */
                     applicationName?: string;
-                    input?: {
+                    input: {
                         templateId?: string;
                         templateName?: string;
                         /**
@@ -52459,7 +52459,7 @@ export interface PropertyHolderSchema {
                 /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -52468,7 +52468,7 @@ export interface PropertyHolderSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -53585,7 +53585,7 @@ export interface FlavorSchema {
     /**
      * _id of the executable this flavor belongs to
      */
-    executableId?: string;
+    executableId: string;
     /**
      * name of the executable this flavor belongs to
      */
@@ -53594,7 +53594,7 @@ export interface FlavorSchema {
      * name of the application this flavor belongs to
      */
     applicationName?: string;
-    input?: {
+    input: {
         templateId?: string;
         templateName?: string;
         /**
@@ -53612,7 +53612,7 @@ export interface FlavorPropertiesSchema {
     /**
      * _id of the executable this flavor belongs to
      */
-    executableId?: string;
+    executableId: string;
     /**
      * name of the executable this flavor belongs to
      */
@@ -53621,7 +53621,7 @@ export interface FlavorPropertiesSchema {
      * name of the application this flavor belongs to
      */
     applicationName?: string;
-    input?: {
+    input: {
         templateId?: string;
         templateName?: string;
         /**
@@ -54055,7 +54055,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -54064,7 +54064,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -54556,7 +54556,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -54565,7 +54565,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -56034,7 +56034,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -56043,7 +56043,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -57032,7 +57032,7 @@ export interface Subworkflow {
             /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -57041,7 +57041,7 @@ export interface Subworkflow {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**
@@ -58159,7 +58159,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -58168,7 +58168,7 @@ export interface ExecutionUnitSchemaBase {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -58881,7 +58881,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -58890,7 +58890,7 @@ export interface ExecutionUnitMixinSchema {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -60123,7 +60123,7 @@ export type WorkflowUnitSchema = {
         /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -60132,7 +60132,7 @@ export type WorkflowUnitSchema = {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -61339,7 +61339,7 @@ export interface WorkflowSchema {
                 /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -61348,7 +61348,7 @@ export interface WorkflowSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -62532,7 +62532,7 @@ export interface WorkflowSchema {
             /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -62541,7 +62541,7 @@ export interface WorkflowSchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**

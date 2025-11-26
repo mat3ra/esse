@@ -672,7 +672,7 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableId: Optional[str] = None
+    executableId: str
     """
     _id of the executable this flavor belongs to
     """
@@ -684,8 +684,8 @@ class FlavorSchema(BaseModel):
     """
     name of the application this flavor belongs to
     """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
+    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
+        ..., title="execution unit input schema"
     )
     supportedApplicationVersions: Optional[List[str]] = None
     """
@@ -1643,7 +1643,7 @@ class FlavorSchema15(BaseModel):
     """
     names of the results for this calculation
     """
-    executableId: Optional[str] = None
+    executableId: str
     """
     _id of the executable this flavor belongs to
     """
@@ -1655,8 +1655,8 @@ class FlavorSchema15(BaseModel):
     """
     name of the application this flavor belongs to
     """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
+    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
+        ..., title="execution unit input schema"
     )
     supportedApplicationVersions: Optional[List[str]] = None
     """
