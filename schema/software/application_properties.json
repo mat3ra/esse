@@ -28,6 +28,12 @@
             "description": "Whether licensing is present",
             "type": "boolean"
         }
-    }
+    },
+    "required": [
+        "shortName",
+        "summary",
+        "version",
+        "build"
+    ]
 }
 

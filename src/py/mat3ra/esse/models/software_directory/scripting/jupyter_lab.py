@@ -39,11 +39,11 @@ class JupyterLabApplicationSchema(BaseModel):
     entity name
     """
     flavor: Optional[Flavor] = None
-    summary: Optional[Summary] = None
+    summary: Summary
     """
     Application's short description.
     """
-    version: Optional[Version] = None
+    version: Version
     """
     Application version. e.g. 5.3.5
     """
@@ -65,11 +65,11 @@ class JupyterLabApplicationSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    shortName: Optional[str] = None
+    shortName: str
     """
     The short name of the application. e.g. qe
     """
-    build: Optional[str] = None
+    build: str
     """
     Application build. e.g. VTST
     """

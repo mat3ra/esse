@@ -4,7 +4,11 @@
     "title": "Python Programing Language Schema",
     "type": "object",
     "required": [
-        "name"
+        "build",
+        "name",
+        "shortName",
+        "summary",
+        "version"
     ],
     "additionalProperties": true,
     "properties": {

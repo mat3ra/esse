@@ -1152,7 +1152,11 @@
                     "title": "application schema (base)",
                     "type": "object",
                     "required": [
-                        "name"
+                        "build",
+                        "name",
+                        "shortName",
+                        "summary",
+                        "version"
                     ],
                     "properties": {
                         "_id": {

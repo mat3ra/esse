@@ -4,7 +4,11 @@
     "title": "Jupyter Lab Application Schema",
     "type": "object",
     "required": [
-        "name"
+        "build",
+        "name",
+        "shortName",
+        "summary",
+        "version"
     ],
     "additionalProperties": true,
     "properties": {

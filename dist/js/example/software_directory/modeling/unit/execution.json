@@ -3,7 +3,8 @@
         "name": "espresso",
         "shortName": "qe",
         "summary": "Quantum Espresso",
-        "version": "7.2"
+        "version": "7.2",
+        "build": "GNU"
     },
     "flowchartId": "modeling",
     "head": true,

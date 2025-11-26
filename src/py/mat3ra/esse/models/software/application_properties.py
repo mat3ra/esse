@@ -10,19 +10,19 @@ from pydantic import BaseModel
 
 
 class ApplicationPropertiesSchema(BaseModel):
-    shortName: Optional[str] = None
+    shortName: str
     """
     The short name of the application. e.g. qe
     """
-    summary: Optional[str] = None
+    summary: str
     """
     Application's short description.
     """
-    version: Optional[str] = None
+    version: str
     """
     Application version. e.g. 5.3.5
     """
-    build: Optional[str] = None
+    build: str
     """
     Application build. e.g. VTST
     """

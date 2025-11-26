@@ -4,7 +4,11 @@
     "title": "NWChem",
     "type": "object",
     "required": [
-        "name"
+        "build",
+        "name",
+        "shortName",
+        "summary",
+        "version"
     ],
     "additionalProperties": true,
     "properties": {

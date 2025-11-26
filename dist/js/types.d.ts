@@ -5728,19 +5728,19 @@ export interface JobSchema {
                     /**
                      * The short name of the application. e.g. qe
                      */
-                    shortName?: string;
+                    shortName: string;
                     /**
                      * Application's short description.
                      */
-                    summary?: string;
+                    summary: string;
                     /**
                      * Application version. e.g. 5.3.5
                      */
-                    version?: string;
+                    version: string;
                     /**
                      * Application build. e.g. VTST
                      */
-                    build?: string;
+                    build: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -6146,19 +6146,19 @@ export interface JobSchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -6921,19 +6921,19 @@ export interface JobSchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -47424,19 +47424,19 @@ export interface WorkflowPropertySchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -47842,19 +47842,19 @@ export interface WorkflowPropertySchema {
             /**
              * The short name of the application. e.g. qe
              */
-            shortName?: string;
+            shortName: string;
             /**
              * Application's short description.
              */
-            summary?: string;
+            summary: string;
             /**
              * Application version. e.g. 5.3.5
              */
-            version?: string;
+            version: string;
             /**
              * Application build. e.g. VTST
              */
-            build?: string;
+            build: string;
             /**
              * Whether advanced compute options are present
              */
@@ -48617,19 +48617,19 @@ export interface WorkflowPropertySchema {
             /**
              * The short name of the application. e.g. qe
              */
-            shortName?: string;
+            shortName: string;
             /**
              * Application's short description.
              */
-            summary?: string;
+            summary: string;
             /**
              * Application version. e.g. 5.3.5
              */
-            version?: string;
+            version: string;
             /**
              * Application build. e.g. VTST
              */
-            build?: string;
+            build: string;
             /**
              * Whether advanced compute options are present
              */
@@ -51156,19 +51156,19 @@ export interface PropertyHolderSchema {
                     /**
                      * The short name of the application. e.g. qe
                      */
-                    shortName?: string;
+                    shortName: string;
                     /**
                      * Application's short description.
                      */
-                    summary?: string;
+                    summary: string;
                     /**
                      * Application version. e.g. 5.3.5
                      */
-                    version?: string;
+                    version: string;
                     /**
                      * Application build. e.g. VTST
                      */
-                    build?: string;
+                    build: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -51574,19 +51574,19 @@ export interface PropertyHolderSchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -52349,19 +52349,19 @@ export interface PropertyHolderSchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -53430,19 +53430,19 @@ export interface ApplicationSchemaBase {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application's short description.
      */
-    summary?: string;
+    summary: string;
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: string;
+    version: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -53458,19 +53458,19 @@ export interface ApplicationPropertiesSchema {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application's short description.
      */
-    summary?: string;
+    summary: string;
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: string;
+    version: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -53706,11 +53706,11 @@ export interface DeePMDAppSchema {
     /**
      * Application's short description.
      */
-    summary?: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
+    summary: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "2.0.2";
+    version: "2.0.2";
     exec?: "dp" | "lmp" | "python";
     /**
      * entity identity
@@ -53732,11 +53732,11 @@ export interface DeePMDAppSchema {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -53785,11 +53785,11 @@ export interface NWChem {
     /**
      * Application's short description.
      */
-    summary?: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
+    summary: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "6.6" | "7.0.2";
+    version: "6.6" | "7.0.2";
     exec?: "nwchem";
     /**
      * entity identity
@@ -53811,11 +53811,11 @@ export interface NWChem {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -53945,19 +53945,19 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -54112,12 +54112,12 @@ export interface ViennaAbInitoSimulationPackage {
     /**
      * Application's short description.
      */
-    summary?: "vienna ab-initio simulation package";
+    summary: "vienna ab-initio simulation package";
     flavor?: "vasp" | "vasp_nscf" | "vasp_bands";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "5.3.5";
+    version: "5.3.5";
     exec?: "vasp";
     /**
      * entity identity
@@ -54139,11 +54139,11 @@ export interface ViennaAbInitoSimulationPackage {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54164,11 +54164,11 @@ export interface JupyterLabApplicationSchema {
     /**
      * Application's short description.
      */
-    summary?: "Jupyter Lab";
+    summary: "Jupyter Lab";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "0.33.12";
+    version: "0.33.12";
     exec?: "jupyter";
     /**
      * entity identity
@@ -54190,11 +54190,11 @@ export interface JupyterLabApplicationSchema {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54215,11 +54215,11 @@ export interface PythonProgramingLanguageSchema {
     /**
      * Application's short description.
      */
-    summary?: "Python Script";
+    summary: "Python Script";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "2.7.5" | "3.6.1";
+    version: "2.7.5" | "3.6.1";
     exec?: "python";
     /**
      * Optional arguments passed to the Python script
@@ -54253,11 +54253,11 @@ export interface PythonProgramingLanguageSchema {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54278,11 +54278,11 @@ export interface ShellScriptingLanguageSchema {
     /**
      * Application's short description.
      */
-    summary?: "Shell Script";
+    summary: "Shell Script";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "4.2.46";
+    version: "4.2.46";
     exec?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Optional arguments passed to the Shell script
@@ -54312,11 +54312,11 @@ export interface ShellScriptingLanguageSchema {
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54446,19 +54446,19 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55924,19 +55924,19 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -56922,19 +56922,19 @@ export interface Subworkflow {
             /**
              * The short name of the application. e.g. qe
              */
-            shortName?: string;
+            shortName: string;
             /**
              * Application's short description.
              */
-            summary?: string;
+            summary: string;
             /**
              * Application version. e.g. 5.3.5
              */
-            version?: string;
+            version: string;
             /**
              * Application build. e.g. VTST
              */
-            build?: string;
+            build: string;
             /**
              * Whether advanced compute options are present
              */
@@ -57340,19 +57340,19 @@ export interface Subworkflow {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -58049,19 +58049,19 @@ export interface ExecutionUnitSchemaBase {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -58771,19 +58771,19 @@ export interface ExecutionUnitMixinSchema {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -60013,19 +60013,19 @@ export type WorkflowUnitSchema = {
         /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -61229,19 +61229,19 @@ export interface WorkflowSchema {
                 /**
                  * The short name of the application. e.g. qe
                  */
-                shortName?: string;
+                shortName: string;
                 /**
                  * Application's short description.
                  */
-                summary?: string;
+                summary: string;
                 /**
                  * Application version. e.g. 5.3.5
                  */
-                version?: string;
+                version: string;
                 /**
                  * Application build. e.g. VTST
                  */
-                build?: string;
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -61647,19 +61647,19 @@ export interface WorkflowSchema {
             /**
              * The short name of the application. e.g. qe
              */
-            shortName?: string;
+            shortName: string;
             /**
              * Application's short description.
              */
-            summary?: string;
+            summary: string;
             /**
              * Application version. e.g. 5.3.5
              */
-            version?: string;
+            version: string;
             /**
              * Application build. e.g. VTST
              */
-            build?: string;
+            build: string;
             /**
              * Whether advanced compute options are present
              */
@@ -62422,19 +62422,19 @@ export interface WorkflowSchema {
             /**
              * The short name of the application. e.g. qe
              */
-            shortName?: string;
+            shortName: string;
             /**
              * Application's short description.
              */
-            summary?: string;
+            summary: string;
             /**
              * Application version. e.g. 5.3.5
              */
-            version?: string;
+            version: string;
             /**
              * Application build. e.g. VTST
              */
-            build?: string;
+            build: string;
             /**
              * Whether advanced compute options are present
              */

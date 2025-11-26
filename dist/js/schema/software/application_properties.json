@@ -3,6 +3,12 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "application properties schema",
     "type": "object",
+    "required": [
+        "shortName",
+        "summary",
+        "version",
+        "build"
+    ],
     "properties": {
         "shortName": {
             "description": "The short name of the application. e.g. qe",
