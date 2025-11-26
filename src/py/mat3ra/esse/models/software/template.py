@@ -34,10 +34,10 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: Optional[str] = None
+    applicationName: str
     applicationVersion: Optional[str] = None
-    executableName: Optional[str] = None
-    contextProviders: Optional[List[RuntimeItemNameObjectSchema]] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = None
     content: str
     """

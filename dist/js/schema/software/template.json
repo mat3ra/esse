@@ -4,7 +4,10 @@
     "title": "template schema",
     "type": "object",
     "required": [
+        "applicationName",
         "content",
+        "contextProviders",
+        "executableName",
         "name"
     ],
     "properties": {

@@ -4,8 +4,11 @@
     "title": "template properties schema",
     "type": "object",
     "required": [
-        "name",
-        "content"
+        "applicationName",
+        "content",
+        "contextProviders",
+        "executableName",
+        "name"
     ],
     "properties": {
         "applicationName": {

@@ -28,5 +28,10 @@
         "isManuallyChanged": {
             "type": "boolean"
         }
-    }
+    },
+    "required": [
+        "applicationName",
+        "executableName",
+        "contextProviders"
+    ]
 }

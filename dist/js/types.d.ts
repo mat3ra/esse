@@ -53653,10 +53653,10 @@ export interface TemplateSchema {
      * entity name
      */
     name: string;
-    applicationName?: string;
+    applicationName: string;
     applicationVersion?: string;
-    executableName?: string;
-    contextProviders?: {
+    executableName: string;
+    contextProviders: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -53674,10 +53674,10 @@ export interface TemplateSchema {
 }
 /** Schema dist/js/schema/software/template_properties.json */
 export interface TemplatePropertiesSchema {
-    applicationName?: string;
+    applicationName: string;
     applicationVersion?: string;
-    executableName?: string;
-    contextProviders?: {
+    executableName: string;
+    contextProviders: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
