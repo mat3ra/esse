@@ -1,0 +1,42 @@
+{
+    "$id": "context-providers-directory/by-application/qe-pwx-base-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "QE pwx Base Context Provider Schema",
+    "description": "Base schema with shared Quantum ESPRESSO pw.x context provider properties.",
+    "type": "object",
+    "properties": {
+        "IBRAV": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ibrav"
+        },
+        "RESTART_MODE": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/control.json#/properties/restart_mode"
+        },
+        "ATOMIC_SPECIES": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
+        },
+        "ATOMIC_SPECIES_WITH_LABELS": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
+        },
+        "NAT": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/nat"
+        },
+        "NTYP": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ntyp"
+        },
+        "NTYP_WITH_LABELS": {
+            "type": "integer",
+            "description": "Number of different atomic species including labels",
+            "minimum": 1
+        },
+        "ATOMIC_POSITIONS": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
+        },
+        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
+            "type": "string",
+            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line"
+        },
+        "CELL_PARAMETERS": {
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/cell_parameters.json#/properties/values"
+        }
+    }
+}

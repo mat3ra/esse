@@ -1,0 +1,31 @@
+{
+    "$id": "context-providers-directory/by-application/vasp-neb-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "VASP NEB Context Provider Schema",
+    "description": "Schema for VASPNEBContextProvider that generates context data for VASP NEB (nudged elastic band) runs.",
+    "type": "object",
+    "properties": {
+        "FIRST_IMAGE": {
+            "type": "string",
+            "description": "POSCAR content with constraints for the first NEB image."
+        },
+        "LAST_IMAGE": {
+            "type": "string",
+            "description": "POSCAR content with constraints for the last NEB image."
+        },
+        "INTERMEDIATE_IMAGES": {
+            "type": "array",
+            "description": "POSCAR contents with constraints for all intermediate NEB images.",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "FIRST_IMAGE",
+        "LAST_IMAGE",
+        "INTERMEDIATE_IMAGES"
+    ]
+}
+
+

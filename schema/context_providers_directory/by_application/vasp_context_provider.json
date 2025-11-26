@@ -1,0 +1,23 @@
+{
+    "$id": "context-providers-directory/by-application/vasp-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "VASP Context Provider Schema",
+    "description": "Schema for VASPContextProvider that generates context data for VASP POSCAR input files.",
+    "type": "object",
+    "properties": {
+        "POSCAR": {
+            "type": "string",
+            "description": "POSCAR content for VASP including lattice, atom types, positions and constraints."
+        },
+        "POSCAR_WITH_CONSTRAINTS": {
+            "type": "string",
+            "description": "POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented."
+        }
+    },
+    "required": [
+        "POSCAR",
+        "POSCAR_WITH_CONSTRAINTS"
+    ]
+}
+
+
