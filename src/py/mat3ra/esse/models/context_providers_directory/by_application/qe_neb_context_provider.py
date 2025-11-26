@@ -11,11 +11,29 @@ from pydantic import BaseModel, ConfigDict, Field, conint
 
 
 class RESTARTMODE(Enum):
-    restart = "restart"
     from_scratch = "from_scratch"
+    restart = "restart"
 
 
 class ATOMICSPECY(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+    """
+    Mass_X: Optional[float] = None
+    """
+    mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+    """
+    PseudoPot_X: Optional[str] = None
+    """
+    PseudoPot_X
+    """
+
+
+class ATOMICSPECIESWITHLABEL(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -69,15 +87,9 @@ class CELLPARAMETERS(BaseModel):
 
 class QENEBContextProviderSchema(BaseModel):
     IBRAV: int
-    RESTART_MODE: RESTARTMODE
-    """
-    Restart mode for the calculation
-    """
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
     ATOMIC_SPECIES: List[ATOMICSPECY]
-    ATOMIC_SPECIES_WITH_LABELS: str
-    """
-    Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line
-    """
+    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
     NAT: int
     """
     number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)

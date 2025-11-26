@@ -9,19 +9,13 @@
             "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/ibrav"
         },
         "RESTART_MODE": {
-            "type": "string",
-            "enum": [
-                "restart",
-                "from_scratch"
-            ],
-            "description": "Restart mode for the calculation"
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/control.json#/properties/restart_mode"
         },
         "ATOMIC_SPECIES": {
             "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
         },
         "ATOMIC_SPECIES_WITH_LABELS": {
-            "type": "string",
-            "description": "Formatted text block for ATOMIC_SPECIES card with element labels (e.g., Fe1, C1). Format: 'Xn Mass_X PseudoPot_X' per line"
+            "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_species.json#/properties/values"
         },
         "NAT": {
             "$ref": "../../apse/file/applications/espresso/7.2/pw.x/system.json#/properties/nat"
@@ -46,5 +40,3 @@
         }
     }
 }
-
-
