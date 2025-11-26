@@ -100,7 +100,7 @@ class ExecutableSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    applicationId: Optional[List[str]] = None
+    applicationId: List[str]
     """
     _ids of the application this executable belongs to
     """

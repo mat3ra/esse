@@ -5791,7 +5791,7 @@ export interface JobSchema {
                     /**
                      * _ids of the application this executable belongs to
                      */
-                    applicationId?: string[];
+                    applicationId: string[];
                     /**
                      * Whether advanced compute options are present
                      */
@@ -6984,7 +6984,7 @@ export interface JobSchema {
                 /**
                  * _ids of the application this executable belongs to
                  */
-                applicationId?: string[];
+                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
@@ -47487,7 +47487,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * _ids of the application this executable belongs to
                  */
-                applicationId?: string[];
+                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
@@ -48680,7 +48680,7 @@ export interface WorkflowPropertySchema {
             /**
              * _ids of the application this executable belongs to
              */
-            applicationId?: string[];
+            applicationId: string[];
             /**
              * Whether advanced compute options are present
              */
@@ -51219,7 +51219,7 @@ export interface PropertyHolderSchema {
                     /**
                      * _ids of the application this executable belongs to
                      */
-                    applicationId?: string[];
+                    applicationId: string[];
                     /**
                      * Whether advanced compute options are present
                      */
@@ -52412,7 +52412,7 @@ export interface PropertyHolderSchema {
                 /**
                  * _ids of the application this executable belongs to
                  */
-                applicationId?: string[];
+                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
@@ -53522,7 +53522,7 @@ export interface ExecutableSchema {
     /**
      * _ids of the application this executable belongs to
      */
-    applicationId?: string[];
+    applicationId: string[];
     /**
      * Whether advanced compute options are present
      */
@@ -53537,7 +53537,7 @@ export interface ExecutablePropertiesSchema {
     /**
      * _ids of the application this executable belongs to
      */
-    applicationId?: string[];
+    applicationId: string[];
     /**
      * Whether advanced compute options are present
      */
@@ -54008,7 +54008,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -54509,7 +54509,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -55987,7 +55987,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -56985,7 +56985,7 @@ export interface Subworkflow {
             /**
              * _ids of the application this executable belongs to
              */
-            applicationId?: string[];
+            applicationId: string[];
             /**
              * Whether advanced compute options are present
              */
@@ -58112,7 +58112,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -58834,7 +58834,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -60076,7 +60076,7 @@ export type WorkflowUnitSchema = {
         /**
          * _ids of the application this executable belongs to
          */
-        applicationId?: string[];
+        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
@@ -61292,7 +61292,7 @@ export interface WorkflowSchema {
                 /**
                  * _ids of the application this executable belongs to
                  */
-                applicationId?: string[];
+                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
@@ -62485,7 +62485,7 @@ export interface WorkflowSchema {
             /**
              * _ids of the application this executable belongs to
              */
-            applicationId?: string[];
+            applicationId: string[];
             /**
              * Whether advanced compute options are present
              */

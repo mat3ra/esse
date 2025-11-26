@@ -249,6 +249,7 @@
             "title": "executable schema",
             "type": "object",
             "required": [
+                "applicationId",
                 "monitors",
                 "name",
                 "postProcessors",

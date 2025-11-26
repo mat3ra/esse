@@ -21,7 +21,8 @@
         }
     },
     "required": [
-        "name"
+        "name",
+        "applicationId"
     ]
 }
 

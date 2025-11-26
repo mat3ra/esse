@@ -14,7 +14,7 @@ class ExecutablePropertiesSchema(BaseModel):
     """
     The name of the executable. e.g. pw.x
     """
-    applicationId: Optional[List[str]] = None
+    applicationId: List[str]
     """
     _ids of the application this executable belongs to
     """

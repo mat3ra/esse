@@ -4,7 +4,8 @@
     "title": "executable properties schema",
     "type": "object",
     "required": [
-        "name"
+        "name",
+        "applicationId"
     ],
     "properties": {
         "name": {
