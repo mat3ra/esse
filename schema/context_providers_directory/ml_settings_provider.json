@@ -1,5 +1,5 @@
 {
-    "$id": "context-providers-directory/ml-settings-context-provider",
+    "$id": "context-providers-directory/ml-settings-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "ML Settings Provider Schema",
     "description": "Settings important to machine learning runs.",
@@ -10,7 +10,11 @@
         },
         "problem_category": {
             "type": "string",
-            "enum": ["regression", "classification", "clustering"]
+            "enum": [
+                "regression",
+                "classification",
+                "clustering"
+            ]
         }
     }
 }

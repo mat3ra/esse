@@ -1,6 +1,0 @@
-{
-    "preProcessors": [],
-    "postProcessors": [],
-    "monitors": [ "standard_output" ],
-    "results": [ "atomic_forces" ]
-}

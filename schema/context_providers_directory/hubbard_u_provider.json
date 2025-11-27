@@ -1,5 +1,5 @@
 {
-    "$id": "context-providers-directory/hubbard-u-context-provider",
+    "$id": "context-providers-directory/hubbard-u-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Hubbard U Provider Schema",
     "description": "Hubbard U parameters for DFT+U or DFT+U+V calculation.",

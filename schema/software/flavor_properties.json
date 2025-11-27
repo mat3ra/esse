@@ -1,5 +1,5 @@
 {
-    "$id": "software/flavor_properties",
+    "$id": "software/flavor-properties",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "flavor properties schema",
     "type": "object",
@@ -36,4 +36,3 @@
         "input"
     ]
 }
-

@@ -1,5 +1,5 @@
 {
-    "$id": "context-providers-directory/hubbard-j-context-provider",
+    "$id": "context-providers-directory/hubbard-j-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Hubbard J Provider Schema",
     "description": "Hubbard parameters for DFT+U+J calculation.",
@@ -11,7 +11,13 @@
             "paramType": {
                 "type": "string",
                 "title": "Species",
-                "enum": ["U", "J", "B", "E2", "E3"]
+                "enum": [
+                    "U",
+                    "J",
+                    "B",
+                    "E2",
+                    "E3"
+                ]
             },
             "atomicSpecies": {
                 "type": "string",

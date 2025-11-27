@@ -1,5 +1,5 @@
 {
-    "$id": "context-providers-directory/non-collinear-magnetization-context-provider",
+    "$id": "context-providers-directory/non-collinear-magnetization-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Non Collinear Magnetization Provider Schema",
     "description": "Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.",

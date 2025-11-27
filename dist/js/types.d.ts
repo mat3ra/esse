@@ -2889,14 +2889,14 @@ export declare enum Name {
     VASPNEBInputDataManager = "VASPNEBInputDataManager",
     NWChemInputDataManager = "NWChemInputDataManager"
 }
-/** Schema dist/js/schema/context_providers_directory/boundary_conditions_data_provider.json */
+/** Schema dist/js/schema/context_providers_directory/boundary_conditions_provider.json */
 export interface BoundaryConditionsProviderSchema {
     type?: string;
     offset?: number;
     electricField?: number;
     targetFermiEnergy?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/collinear_magnetization_provider.json */
 /**
  * Set starting magnetization, can have values in the range [-1, +1].
  */
@@ -2943,7 +2943,7 @@ export declare enum ContextProviderNameEnum {
     VASPNEBInputDataManager = "VASPNEBInputDataManager",
     NWChemInputDataManager = "NWChemInputDataManager"
 }
-/** Schema dist/js/schema/context_providers_directory/hubbard_j_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_j_provider.json */
 /**
  * Hubbard parameters for DFT+U+J calculation.
  *
@@ -2963,7 +2963,7 @@ export type HubbardJProviderSchema = [
         value?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/hubbard_legacy_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_legacy_provider.json */
 /**
  * Hubbard parameters for DFT+U calculation.
  *
@@ -2981,7 +2981,7 @@ export type HubbardLegacyProviderSchema = [
         hubbardUValue?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/hubbard_u_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_u_provider.json */
 /**
  * Hubbard U parameters for DFT+U or DFT+U+V calculation.
  */
@@ -2990,7 +2990,7 @@ export type HubbardUProviderSchema = {
     atomicOrbital?: string;
     hubbardUValue?: number;
 }[];
-/** Schema dist/js/schema/context_providers_directory/hubbard_v_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_v_provider.json */
 /**
  * Hubbard V parameters for DFT+U+V calculation.
  *
@@ -3016,7 +3016,7 @@ export type HubbardVProviderSchema = [
         hubbardVValue?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/ion_dynamics_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ion_dynamics_provider.json */
 /**
  * Important parameters for molecular dynamics calculation
  */
@@ -3026,7 +3026,7 @@ export interface IonDynamicsProviderSchema {
     electronMass?: number;
     temperature?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/ml_settings_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ml_settings_provider.json */
 /**
  * Settings important to machine learning runs.
  */
@@ -3034,21 +3034,21 @@ export interface MLSettingsProviderSchema {
     target_column_name?: string;
     problem_category?: "regression" | "classification" | "clustering";
 }
-/** Schema dist/js/schema/context_providers_directory/ml_train_test_split_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ml_train_test_split_provider.json */
 /**
  * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
  */
 export interface MLTrainTestSplitProviderSchema {
     fraction_held_as_test_set?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/neb_data_provider.json */
+/** Schema dist/js/schema/context_providers_directory/neb_provider.json */
 /**
  * Number of intermediate NEB images.
  */
 export interface NEBProviderSchema {
     nImages?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/non_collinear_magnetization_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/non_collinear_magnetization_provider.json */
 /**
  * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
  */
@@ -3079,7 +3079,7 @@ export interface NonCollinearMagnetizationProviderSchema {
         z?: number;
     };
 }
-/** Schema dist/js/schema/context_providers_directory/planewave_cutoffs_context_provider.json */
+/** Schema dist/js/schema/context_providers_directory/planewave_cutoffs_provider.json */
 /**
  * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
  */
@@ -3087,7 +3087,7 @@ export interface PlanewaveCutoffsProviderSchema {
     wavefunction?: number;
     density?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/points_grid_data_provider.json */
+/** Schema dist/js/schema/context_providers_directory/points_grid_provider.json */
 /**
  * 3D grid with shifts for k-point or q-point sampling.
  */
@@ -3111,7 +3111,7 @@ export interface PointsGridProviderSchema {
     gridMetricValue?: number;
     preferGridMetric?: boolean;
 }
-/** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
+/** Schema dist/js/schema/context_providers_directory/points_path_provider.json */
 /**
  * Path in reciprocal space for band structure calculations.
  *
@@ -5775,19 +5775,39 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: string[];
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: string[];
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: string[];
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results: string[];
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * _ids of the application this executable belongs to
                      */
@@ -5822,19 +5842,39 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: string[];
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: string[];
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: string[];
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results: string[];
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * _id of the executable this flavor belongs to
                      */
@@ -6968,19 +7008,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -7015,19 +7075,39 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -47471,19 +47551,39 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -47518,19 +47618,39 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -48664,19 +48784,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -48711,19 +48851,39 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _id of the executable this flavor belongs to
              */
@@ -51203,19 +51363,39 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: string[];
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: string[];
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: string[];
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results: string[];
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * _ids of the application this executable belongs to
                      */
@@ -51250,19 +51430,39 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: string[];
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: string[];
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: string[];
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * names of the results for this calculation
                      */
-                    results: string[];
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     /**
                      * _id of the executable this flavor belongs to
                      */
@@ -52396,19 +52596,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -52443,19 +52663,39 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -53506,19 +53746,39 @@ export interface ExecutableSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: string[];
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: string[];
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors: string[];
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the results for this calculation
      */
-    results: string[];
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * _ids of the application this executable belongs to
      */
@@ -53569,19 +53829,39 @@ export interface FlavorSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: string[];
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: string[];
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors: string[];
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * names of the results for this calculation
      */
-    results: string[];
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
      * _id of the executable this flavor belongs to
      */
@@ -53992,19 +54272,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -54039,19 +54339,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -54493,19 +54813,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -54540,19 +54880,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -54999,14 +55359,14 @@ export interface PathEntitySchema {
      */
     path?: string;
 }
-/** Schema dist/js/schema/system/runtime_item_name_object.json */
+/** Schema dist/js/schema/system/runtime_item.json */
 export interface RuntimeItemNameObjectSchema {
     /**
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
 }
-/** Schema dist/js/schema/system/runtime_items_name_object.json */
+/** Schema dist/js/schema/system/runtime_items.json */
 export interface RuntimeItemsNameObjectSchema {
     /**
      * names of the pre-processors for this calculation
@@ -55044,25 +55404,6 @@ export interface RuntimeItemsNameObjectSchema {
          */
         name: string;
     }[];
-}
-/** Schema dist/js/schema/system/runtime_items_string.json */
-export interface RuntimeItemsStringSchema {
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: string[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: string[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: string[];
-    /**
-     * names of the results for this calculation
-     */
-    results: string[];
 }
 /** Schema dist/js/schema/system/schema_version.json */
 export interface SchemaVersion {
@@ -55971,19 +56312,39 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -56018,19 +56379,39 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -56969,19 +57350,39 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -57016,19 +57417,39 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _id of the executable this flavor belongs to
              */
@@ -58096,19 +58517,39 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -58143,19 +58584,39 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -58818,19 +59279,39 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -58865,19 +59346,39 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -60060,19 +60561,39 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _ids of the application this executable belongs to
          */
@@ -60107,19 +60628,39 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: string[];
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: string[];
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors: string[];
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * names of the results for this calculation
          */
-        results: string[];
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         /**
          * _id of the executable this flavor belongs to
          */
@@ -61276,19 +61817,39 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _ids of the application this executable belongs to
                  */
@@ -61323,19 +61884,39 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: string[];
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: string[];
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: string[];
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results: string[];
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 /**
                  * _id of the executable this flavor belongs to
                  */
@@ -62469,19 +63050,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _ids of the application this executable belongs to
              */
@@ -62516,19 +63117,39 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: string[];
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: string[];
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors: string[];
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * names of the results for this calculation
              */
-            results: string[];
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
              * _id of the executable this flavor belongs to
              */

@@ -8,7 +8,7 @@
             "$ref": "./base.json"
         },
         {
-            "$ref": "../../system/runtime_items_name_object.json"
+            "$ref": "../../system/runtime_items.json"
         },
         {
             "$ref": "./mixins/execution.json"

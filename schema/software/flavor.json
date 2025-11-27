@@ -8,7 +8,7 @@
             "$ref": "../in_memory_entity/named_defaultable.json"
         },
         {
-            "$ref": "../system/runtime_items_string.json"
+            "$ref": "../system/runtime_items.json"
         },
         {
             "$ref": "flavor_properties.json"

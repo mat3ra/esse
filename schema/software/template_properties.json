@@ -1,5 +1,5 @@
 {
-    "$id": "software/template_properties",
+    "$id": "software/template-properties",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "template properties schema",
     "type": "object",
@@ -22,7 +22,7 @@
             "type": "array",
             "items": {
                 "description": "render context provider names",
-                "$ref": "../system/runtime_item_name_object.json"
+                "$ref": "../system/runtime_item.json"
             }
         },
         "isManuallyChanged": {
