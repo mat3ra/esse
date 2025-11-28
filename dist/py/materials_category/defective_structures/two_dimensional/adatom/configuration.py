@@ -614,6 +614,25 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditions(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions] = None
+
+
 class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
@@ -647,6 +666,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
+    metadata: Optional[Metadata] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -668,7 +688,6 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class AtomicLayersUniqueRepeatedSchema(BaseModel):
@@ -1079,6 +1098,18 @@ class MaterialConsistencyCheckSchema20(BaseModel):
     """
 
 
+class BoundaryConditions20(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata20(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions20] = None
+
+
 class CrystalSchema20(BaseModel):
     formula: Optional[str] = None
     """
@@ -1112,6 +1143,7 @@ class CrystalSchema20(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema20]] = None
+    metadata: Optional[Metadata20] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1133,7 +1165,6 @@ class CrystalSchema20(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class VacuumConfigurationSchema(BaseModel):
@@ -1555,6 +1586,18 @@ class MaterialConsistencyCheckSchema21(BaseModel):
     """
 
 
+class BoundaryConditions21(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata21(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions21] = None
+
+
 class CrystalSchema21(BaseModel):
     formula: Optional[str] = None
     """
@@ -1588,6 +1631,7 @@ class CrystalSchema21(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema21]] = None
+    metadata: Optional[Metadata21] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1609,7 +1653,6 @@ class CrystalSchema21(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class ChemicalElement(Enum):
@@ -2137,6 +2180,18 @@ class MaterialConsistencyCheckSchema22(BaseModel):
     """
 
 
+class BoundaryConditions22(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata22(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions22] = None
+
+
 class CrystalSchema22(BaseModel):
     formula: Optional[str] = None
     """
@@ -2170,6 +2225,7 @@ class CrystalSchema22(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema22]] = None
+    metadata: Optional[Metadata22] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2191,7 +2247,6 @@ class CrystalSchema22(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class VacuumConfigurationSchema9(BaseModel):

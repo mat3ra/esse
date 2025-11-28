@@ -1148,7 +1148,7 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type24(Enum):
+class Type79(Enum):
     io = "io"
 
 
@@ -1312,7 +1312,7 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type25(Enum):
+class Type80(Enum):
     reduce = "reduce"
 
 
@@ -1409,7 +1409,7 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
-class Type26(Enum):
+class Type81(Enum):
     condition = "condition"
 
 
@@ -1522,7 +1522,7 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type27(Enum):
+class Type82(Enum):
     assertion = "assertion"
 
 
@@ -1608,7 +1608,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class Type28(Enum):
+class Type83(Enum):
     execution = "execution"
 
 
@@ -1860,7 +1860,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type29(Enum):
+class Type84(Enum):
     assignment = "assignment"
 
 
@@ -1951,7 +1951,7 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class Type30(Enum):
+class Type85(Enum):
     processing = "processing"
 
 
@@ -2279,7 +2279,7 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type31(Enum):
+class Type86(Enum):
     io = "io"
 
 
@@ -2413,7 +2413,7 @@ class DataIOUnitSchema1(BaseModel):
     ]
 
 
-class Type32(Enum):
+class Type87(Enum):
     reduce = "reduce"
 
 
@@ -2499,7 +2499,7 @@ class ReduceUnitSchema1(BaseModel):
     """
 
 
-class Type33(Enum):
+class Type88(Enum):
     condition = "condition"
 
 
@@ -2601,7 +2601,7 @@ class ConditionUnitSchema2(BaseModel):
     """
 
 
-class Type34(Enum):
+class Type89(Enum):
     assertion = "assertion"
 
 
@@ -2687,7 +2687,7 @@ class AssertionUnitSchema2(BaseModel):
     """
 
 
-class Type35(Enum):
+class Type90(Enum):
     execution = "execution"
 
 
@@ -2879,7 +2879,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
 
 
-class Type36(Enum):
+class Type91(Enum):
     assignment = "assignment"
 
 
@@ -2970,7 +2970,7 @@ class AssignmentUnitSchema2(BaseModel):
     """
 
 
-class Type37(Enum):
+class Type92(Enum):
     processing = "processing"
 
 
@@ -3060,7 +3060,7 @@ class ProcessingUnitSchema1(BaseModel):
     """
 
 
-class Type38(Enum):
+class Type93(Enum):
     map = "map"
 
 
@@ -3166,7 +3166,7 @@ class MapUnitSchema(BaseModel):
     """
 
 
-class Type39(Enum):
+class Type94(Enum):
     subworkflow = "subworkflow"
 
 

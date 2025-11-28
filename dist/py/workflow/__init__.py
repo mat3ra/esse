@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type110(Enum):
+class Type191(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
-class Type111(Enum):
+class Type192(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type112(Enum):
+class Type193(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class Type113(Enum):
+class Type194(Enum):
     execution = "execution"
 
 
@@ -770,7 +770,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type114(Enum):
+class Type195(Enum):
     assignment = "assignment"
 
 
@@ -861,7 +861,7 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class Type115(Enum):
+class Type196(Enum):
     processing = "processing"
 
 
@@ -1189,7 +1189,7 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type116(Enum):
+class Type197(Enum):
     io = "io"
 
 
@@ -1323,7 +1323,7 @@ class DataIOUnitSchema9(BaseModel):
     ]
 
 
-class Type117(Enum):
+class Type198(Enum):
     reduce = "reduce"
 
 
@@ -1409,7 +1409,7 @@ class ReduceUnitSchema9(BaseModel):
     """
 
 
-class Type118(Enum):
+class Type199(Enum):
     condition = "condition"
 
 
@@ -1511,7 +1511,7 @@ class ConditionUnitSchema9(BaseModel):
     """
 
 
-class Type119(Enum):
+class Type200(Enum):
     assertion = "assertion"
 
 
@@ -1597,7 +1597,7 @@ class AssertionUnitSchema9(BaseModel):
     """
 
 
-class Type120(Enum):
+class Type201(Enum):
     execution = "execution"
 
 
@@ -1789,7 +1789,7 @@ class ExecutionUnitSchemaBase9(BaseModel):
     """
 
 
-class Type121(Enum):
+class Type202(Enum):
     assignment = "assignment"
 
 
@@ -1880,7 +1880,7 @@ class AssignmentUnitSchema9(BaseModel):
     """
 
 
-class Type122(Enum):
+class Type203(Enum):
     processing = "processing"
 
 
@@ -1970,7 +1970,7 @@ class ProcessingUnitSchema9(BaseModel):
     """
 
 
-class Type123(Enum):
+class Type204(Enum):
     map = "map"
 
 
@@ -2076,7 +2076,7 @@ class MapUnitSchema(BaseModel):
     """
 
 
-class Type124(Enum):
+class Type205(Enum):
     subworkflow = "subworkflow"
 
 
