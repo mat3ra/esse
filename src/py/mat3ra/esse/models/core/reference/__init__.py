@@ -42,11 +42,7 @@ class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
     owner: EntityReferenceSchema = Field(..., title="entity reference schema")
 
 
-<<<<<<< HEAD
-class Type76(Enum):
-=======
-class Type69(Enum):
->>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
+class Type77(Enum):
     experiment = "experiment"
 
 
@@ -87,11 +83,7 @@ class LocationSchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Type77(Enum):
-=======
-class Type70(Enum):
->>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
+class Type78(Enum):
     literature = "literature"
 
 
@@ -101,11 +93,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-<<<<<<< HEAD
-    type: Optional[Type77] = None
-=======
-    type: Optional[Type70] = None
->>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
+    type: Optional[Type78] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -165,11 +153,7 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
-<<<<<<< HEAD
-    type: Optional[Type76] = None
-=======
-    type: Optional[Type69] = None
->>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
+    type: Optional[Type77] = None
     authors: List[ExperimentAuthorSchema]
     """
     experiment authors
@@ -199,11 +183,7 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
 
 
 class LiteratureReferenceSchema12(BaseModel):
-<<<<<<< HEAD
-    type: Optional[Type77] = None
-=======
-    type: Optional[Type70] = None
->>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
+    type: Optional[Type78] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.

@@ -134,6 +134,36 @@ When developing in python the following should be taken into account:
     python -m unittest discover --verbose --catch --start-directory tests/py/esse/
     ```
 
+3. **Resolving Merge Conflicts in Auto-generated Python Models**: The Python model files in `src/py/mat3ra/esse/models/` are auto-generated from JSON schemas using `datamodel-codegen`. If merge conflicts occur in these files, they should be resolved by regenerating the models rather than manually editing them. To resolve conflicts:
+
+    ```bash
+    # Ensure you have the latest schemas built
+    npm run transpile-and-build-assets
+    
+    # Regenerate Python models (requires datamodel-code-generator)
+    datamodel-codegen \
+        --input ./dist/js/schema/ \
+        --input-file-type jsonschema \
+        --output ./dist/py \
+        --output-model-type pydantic_v2.BaseModel \
+        --use-field-description \
+        --use-double-quotes \
+        --enable-version-header \
+        --use-title-as-name \
+        --class-name ESSE \
+        --disable-timestamp \
+        --use-default
+    
+    # Sync regenerated files to src directory
+    rsync -av --delete dist/py/ src/py/mat3ra/esse/models/
+    ```
+
+    Alternatively, you can use the pre-commit hook which will regenerate models automatically when schema files change:
+
+    ```bash
+    pre-commit run generate-python-modules --all-files
+    ```
+
 ### 5.2. Development in Javascript/Typescript
 
 See [package.json](package.json) for the list of available npm commands. The JS modules are generated using the [build_schema.js](./build_schema.js) script. There is a setup for it to be run automatically when the package is installed (see "transpile" directive). To rebuild schemas manually, run:
