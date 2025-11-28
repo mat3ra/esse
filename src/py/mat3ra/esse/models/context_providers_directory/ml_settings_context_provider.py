@@ -16,6 +16,6 @@ class ProblemCategory(Enum):
     clustering = "clustering"
 
 
-class MLSettingsProviderSchema(BaseModel):
+class MLSettingsContextProviderSchema(BaseModel):
     target_column_name: Optional[str] = None
     problem_category: Optional[ProblemCategory] = None

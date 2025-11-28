@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class IonDynamicsProviderSchema(BaseModel):
+class IonDynamicsContextProviderSchema(BaseModel):
     numberOfSteps: Optional[int] = Field(None, title="numberOfSteps")
     timeStep: Optional[float] = Field(None, title="timeStep (Hartree a.u.)")
     electronMass: Optional[float] = Field(None, title="Effective electron mass")

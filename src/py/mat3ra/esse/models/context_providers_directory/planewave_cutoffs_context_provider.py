@@ -9,6 +9,6 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class PlanewaveCutoffsProviderSchema(BaseModel):
+class PlanewaveCutoffsContextProviderSchema(BaseModel):
     wavefunction: Optional[float] = None
     density: Optional[float] = None

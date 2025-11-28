@@ -9,13 +9,13 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, RootModel
 
 
-class PointsPathProviderSchemaItem(BaseModel):
+class PointsPathDataProviderSchemaItem(BaseModel):
     point: Optional[str] = None
     steps: Optional[int] = None
 
 
-class PointsPathProviderSchema(RootModel[List[PointsPathProviderSchemaItem]]):
-    root: List[PointsPathProviderSchemaItem] = Field(..., min_length=1, title="Points Path Provider Schema")
+class PointsPathDataProviderSchema(RootModel[List[PointsPathDataProviderSchemaItem]]):
+    root: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
     """
