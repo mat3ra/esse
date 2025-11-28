@@ -8440,6 +8440,15 @@ export interface MaterialSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -8461,7 +8470,6 @@ export interface MaterialSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
@@ -8742,6 +8750,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -8763,7 +8780,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9015,6 +9031,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9036,7 +9061,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -9336,6 +9360,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9357,7 +9390,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9609,6 +9641,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9630,7 +9671,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -9919,6 +9959,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9940,7 +9989,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -10192,6 +10240,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10213,7 +10270,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -10513,6 +10569,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10534,7 +10599,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -10786,6 +10850,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10807,7 +10880,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -11097,6 +11169,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11118,7 +11199,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -11370,6 +11450,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11391,7 +11480,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -11691,6 +11779,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11712,7 +11809,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -11964,6 +12060,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11985,7 +12090,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -12274,6 +12378,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12295,7 +12408,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -12547,6 +12659,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12568,7 +12689,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -12868,6 +12988,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12889,7 +13018,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -13141,6 +13269,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -13162,7 +13299,6 @@ export interface InterfaceConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -13429,6 +13565,15 @@ export interface InterfaceConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -13450,7 +13595,6 @@ export interface InterfaceConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -13758,6 +13902,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -13779,7 +13932,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -14031,6 +14183,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14052,7 +14213,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -14352,6 +14512,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14373,7 +14542,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -14625,6 +14793,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14646,7 +14823,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -14935,6 +15111,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14956,7 +15141,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15208,6 +15392,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15229,7 +15422,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -15529,6 +15721,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15550,7 +15751,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15802,6 +16002,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15823,7 +16032,6 @@ export interface GrainBoundaryLinearConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -16152,6 +16360,15 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -16173,7 +16390,6 @@ export interface AdatomDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -16425,6 +16641,15 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -16446,7 +16671,6 @@ export interface AdatomDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -16705,6 +16929,15 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -16726,7 +16959,6 @@ export interface AdatomDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -16987,6 +17219,15 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -17008,7 +17249,6 @@ export interface AdatomDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -17313,6 +17553,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17334,7 +17583,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -17586,6 +17834,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17607,7 +17864,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -17907,6 +18163,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17928,7 +18193,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18180,6 +18444,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18201,7 +18474,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -18490,6 +18762,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18511,7 +18792,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18763,6 +19043,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18784,7 +19073,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -19084,6 +19372,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19105,7 +19402,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -19357,6 +19653,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19378,7 +19683,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -19668,6 +19972,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19689,7 +20002,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -19941,6 +20253,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19962,7 +20283,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -20262,6 +20582,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20283,7 +20612,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -20535,6 +20863,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20556,7 +20893,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -20845,6 +21181,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20866,7 +21211,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21118,6 +21462,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21139,7 +21492,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -21439,6 +21791,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21460,7 +21821,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21712,6 +22072,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21733,7 +22102,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -22000,6 +22368,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -22021,7 +22398,6 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -22323,6 +22699,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -22344,7 +22729,6 @@ export interface IslandDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -22596,6 +22980,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -22617,7 +23010,6 @@ export interface IslandDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -22912,6 +23304,15 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -22933,7 +23334,6 @@ export interface IslandDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -23185,6 +23585,15 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -23206,7 +23615,6 @@ export interface IslandDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                         }
                     ];
@@ -23465,6 +23873,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -23486,7 +23903,6 @@ export interface IslandDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -23795,6 +24211,15 @@ export interface IslandDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -23816,7 +24241,6 @@ export interface IslandDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -24115,6 +24539,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -24136,7 +24569,6 @@ export interface TerraceDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -24388,6 +24820,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -24409,7 +24850,6 @@ export interface TerraceDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -24704,6 +25144,15 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -24725,7 +25174,6 @@ export interface TerraceDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -24977,6 +25425,15 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -24998,7 +25455,6 @@ export interface TerraceDefectConfigurationSchema {
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                         }
                     ];
@@ -25257,6 +25713,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -25278,7 +25743,6 @@ export interface TerraceDefectConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -25587,6 +26051,15 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -25608,7 +26081,6 @@ export interface TerraceDefectConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -25880,6 +26352,15 @@ export interface PointDefectBaseConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -25901,7 +26382,6 @@ export interface PointDefectBaseConfigurationSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         unknown
     ];
@@ -26153,6 +26633,15 @@ export interface InterstitialPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -26174,7 +26663,6 @@ export interface InterstitialPointDefectSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -26413,6 +26901,15 @@ export interface InterstitialPointDefectSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -26434,7 +26931,6 @@ export interface InterstitialPointDefectSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -26699,6 +27195,15 @@ export interface SubstitutionalPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -26720,7 +27225,6 @@ export interface SubstitutionalPointDefectSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -26959,6 +27463,15 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -26980,7 +27493,6 @@ export interface SubstitutionalPointDefectSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -27245,6 +27757,15 @@ export interface VacancyPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -27266,7 +27787,6 @@ export interface VacancyPointDefectSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -27517,6 +28037,15 @@ export interface IdealCrystalSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -27538,7 +28067,6 @@ export interface IdealCrystalSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/nanoribbon.json */
 /**
@@ -27834,6 +28362,15 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -27855,7 +28392,6 @@ export interface NanoribbonConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -28107,6 +28643,15 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -28128,7 +28673,6 @@ export interface NanoribbonConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -28395,6 +28939,15 @@ export interface NanoribbonConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -28416,7 +28969,6 @@ export interface NanoribbonConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -28726,6 +29278,15 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -28747,7 +29308,6 @@ export interface NanoTapeConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -28999,6 +29559,15 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29020,7 +29589,6 @@ export interface NanoTapeConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -29313,6 +29881,15 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29334,7 +29911,6 @@ export interface SlabConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -29586,6 +30162,15 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29607,7 +30192,6 @@ export interface SlabConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -29912,6 +30496,15 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29933,7 +30526,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -30185,6 +30777,15 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -30206,7 +30807,6 @@ export interface SlabStrainedSupercellConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -30470,6 +31070,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -30491,7 +31100,6 @@ export interface PassivationConfigurationSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -30729,6 +31337,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -30750,7 +31367,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -30999,6 +31615,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -31020,7 +31645,6 @@ export interface PassivationConfigurationSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -31258,6 +31882,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -31279,7 +31912,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -31528,6 +32160,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -31549,7 +32190,6 @@ export interface PassivationConfigurationSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -31787,6 +32427,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -31808,7 +32457,6 @@ export interface PassivationConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -32127,6 +32775,15 @@ export interface CrystalSiteSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32148,7 +32805,6 @@ export interface CrystalSiteSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -32397,6 +33053,15 @@ export interface PointDefectSiteSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32418,7 +33083,6 @@ export interface PointDefectSiteSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -32675,6 +33339,15 @@ export interface VoidRegionSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32696,7 +33369,6 @@ export interface VoidRegionSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Combined schema for all coordinate condition types
@@ -32991,6 +33663,15 @@ export interface CrystalSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -33012,7 +33693,6 @@ export interface CrystalSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/three_dimensional/void.json */
 /**
@@ -33329,6 +34009,15 @@ export interface VacuumConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -33350,7 +34039,6 @@ export interface VacuumConfigurationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/zero_dimensional/atom.json */
@@ -33618,6 +34306,15 @@ export interface CrystalLatticeLinesSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -33639,7 +34336,6 @@ export interface CrystalLatticeLinesSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -33928,6 +34624,15 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -33949,7 +34654,6 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34197,6 +34901,15 @@ export interface CrystalLatticeBaseSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34218,7 +34931,6 @@ export interface CrystalLatticeBaseSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34474,6 +35186,15 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34495,7 +35216,6 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -34744,6 +35464,15 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34765,7 +35494,6 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Percentage of uniform strain to apply to the crystal structure
@@ -35013,6 +35741,15 @@ export interface SupercellConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35034,7 +35771,6 @@ export interface SupercellConfigurationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -35317,6 +36053,15 @@ export interface AtomicLayersSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35338,7 +36083,6 @@ export interface AtomicLayersSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -35620,6 +36364,15 @@ export interface AtomicLayersUniqueSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35641,7 +36394,6 @@ export interface AtomicLayersUniqueSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -35913,6 +36665,15 @@ export interface AtomicLayersUniqueRepeatedSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35934,7 +36695,6 @@ export interface AtomicLayersUniqueRepeatedSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36189,6 +36949,15 @@ export interface CrystalLatticePlanesSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -36210,7 +36979,6 @@ export interface CrystalLatticePlanesSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36494,6 +37262,15 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -36515,7 +37292,6 @@ export interface SlabStackConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -36767,6 +37543,15 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -36788,7 +37573,6 @@ export interface SlabStackConfigurationSchema {
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -37056,6 +37840,15 @@ export interface SlabStackConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -37077,7 +37870,6 @@ export interface SlabStackConfigurationSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -37377,6 +38169,15 @@ export interface PerturbationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -37398,7 +38199,6 @@ export interface PerturbationSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * A function that defines the perturbation (delta in coordinates) to be applied to the atomic coordinates.
