@@ -1,7 +1,7 @@
 {
     "$id": "context-providers-directory/hubbard-legacy-context-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Hubbard Legacy Provider Schema",
+    "title": "Hubbard Legacy Context Provider Schema",
     "description": "Hubbard parameters for DFT+U calculation.",
     "type": "array",
     "uniqueItems": true,
