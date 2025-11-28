@@ -4,13 +4,24 @@
 
 from __future__ import annotations
 
+from enum import Enum
 from typing import Optional
 
 from pydantic import BaseModel, Field
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
 class BoundaryConditionsProviderSchema(BaseModel):
-    type: Optional[str] = Field(None, title="Type")
-    offset: Optional[float] = Field(None, title="Offset (A)")
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: Optional[float] = None
     electricField: Optional[float] = Field(None, title="Electric Field (eV/A)")
     targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")

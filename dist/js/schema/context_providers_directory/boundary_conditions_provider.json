@@ -6,11 +6,17 @@
     "properties": {
         "type": {
             "type": "string",
-            "title": "Type"
+            "enum": [
+                "pbc",
+                "bc1",
+                "bc2",
+                "bc3"
+            ],
+            "default": "pbc",
+            "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
         },
         "offset": {
-            "type": "number",
-            "title": "Offset (A)"
+            "type": "number"
         },
         "electricField": {
             "type": "number",

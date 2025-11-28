@@ -222,7 +222,11 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
+<<<<<<< HEAD
 class Type109(Enum):
+=======
+class Type101(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     reduce = "reduce"
 
 
@@ -319,7 +323,11 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type110(Enum):
+=======
+class Type102(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     condition = "condition"
 
 
@@ -508,6 +516,57 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+<<<<<<< HEAD
+=======
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+
+
+class Type103(Enum):
+    assertion = "assertion"
+
+
+class AssertionUnitSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     statement: str
     """
     The statement to be evaluated
@@ -544,7 +603,42 @@ class ApplicationSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
+<<<<<<< HEAD
     shortName: str
+=======
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+
+
+class Type104(Enum):
+    execution = "execution"
+
+
+class ApplicationSchemaBase(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    shortName: Optional[str] = None
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     """
     The short name of the application. e.g. qe
     """
@@ -824,7 +918,20 @@ class AssignmentUnitSchema(BaseModel):
     Status of the unit.
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+<<<<<<< HEAD
     isDraft: Optional[bool] = None
+=======
+
+
+class Type105(Enum):
+    assignment = "assignment"
+
+
+class AssignmentUnitSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
@@ -937,6 +1044,58 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+<<<<<<< HEAD
+=======
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    scope: Optional[str] = None
+
+
+class Type106(Enum):
+    processing = "processing"
+
+
+class ProcessingUnitSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     operation: str
     """
     Contains information about the operation used.
@@ -1189,7 +1348,11 @@ class Subworkflow(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type115(Enum):
+=======
+class Type107(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     io = "io"
 
 
@@ -1377,7 +1540,20 @@ class ReduceUnitSchema9(BaseModel):
     Status of the unit.
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+<<<<<<< HEAD
     isDraft: Optional[bool] = None
+=======
+
+
+class Type108(Enum):
+    reduce = "reduce"
+
+
+class ReduceUnitSchema9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
@@ -1485,6 +1661,57 @@ class ConditionUnitSchema9(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+<<<<<<< HEAD
+=======
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+
+
+class Type109(Enum):
+    condition = "condition"
+
+
+class ConditionUnitSchema9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -1587,6 +1814,57 @@ class AssertionUnitSchema9(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+<<<<<<< HEAD
+=======
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+
+
+class Type110(Enum):
+    assertion = "assertion"
+
+
+class AssertionUnitSchema9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     statement: str
     """
     The statement to be evaluated
@@ -1597,7 +1875,11 @@ class AssertionUnitSchema9(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type119(Enum):
+=======
+class Type111(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     execution = "execution"
 
 
@@ -1795,7 +2077,20 @@ class AssignmentUnitSchema9(BaseModel):
     Status of the unit.
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
+<<<<<<< HEAD
     isDraft: Optional[bool] = None
+=======
+
+
+class Type112(Enum):
+    assignment = "assignment"
+
+
+class AssignmentUnitSchema9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
@@ -1908,6 +2203,58 @@ class ProcessingUnitSchema9(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
+<<<<<<< HEAD
+=======
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the monitors for this calculation
+    """
+    results: Optional[List[Union[NameResultSchema, str]]] = None
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    scope: Optional[str] = None
+
+
+class Type113(Enum):
+    processing = "processing"
+
+
+class ProcessingUnitSchema9(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     operation: str
     """
     Contains information about the operation used.
@@ -1922,7 +2269,11 @@ class ProcessingUnitSchema9(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type122(Enum):
+=======
+class Type114(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     map = "map"
 
 
@@ -2028,7 +2379,11 @@ class MapUnitSchema(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type123(Enum):
+=======
+class Type115(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     subworkflow = "subworkflow"
 
 

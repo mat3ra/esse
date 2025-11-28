@@ -1,0 +1,26 @@
+{
+    "$id": "context-providers-directory/by-application/qe-pwx-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "QE pwx Context Provider Schema",
+    "description": "Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.",
+    "allOf": [
+        {
+            "$ref": "qe_pwx_base_context_provider.json"
+        },
+        {
+            "type": "object",
+            "required": [
+                "IBRAV",
+                "RESTART_MODE",
+                "ATOMIC_SPECIES",
+                "ATOMIC_SPECIES_WITH_LABELS",
+                "NAT",
+                "NTYP",
+                "NTYP_WITH_LABELS",
+                "ATOMIC_POSITIONS",
+                "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
+                "CELL_PARAMETERS"
+            ]
+        }
+    ]
+}

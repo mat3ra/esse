@@ -51,7 +51,11 @@ class LocationSchema(BaseModel):
     """
 
 
+<<<<<<< HEAD
 class Type17(Enum):
+=======
+class Type14(Enum):
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     literature = "literature"
 
 
@@ -61,7 +65,11 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
+<<<<<<< HEAD
     type: Optional[Type17] = None
+=======
+    type: Optional[Type14] = None
+>>>>>>> 2bafbf8bfe1ae66128879467e0bd54778772b362
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.

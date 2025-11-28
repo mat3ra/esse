@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type101(Enum):
+class Type102(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
-class Type102(Enum):
+class Type103(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type103(Enum):
+class Type104(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class Type104(Enum):
+class Type105(Enum):
     execution = "execution"
 
 
@@ -770,7 +770,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type105(Enum):
+class Type106(Enum):
     assignment = "assignment"
 
 
@@ -861,7 +861,7 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class Type106(Enum):
+class Type107(Enum):
     processing = "processing"
 
 

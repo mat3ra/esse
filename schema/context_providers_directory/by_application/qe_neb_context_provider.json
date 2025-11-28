@@ -1,0 +1,44 @@
+{
+    "$id": "context-providers-directory/by-application/qe-neb-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "QE NEB Context Provider Schema",
+    "description": "Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.",
+    "allOf": [
+        {
+            "$ref": "qe_pwx_base_context_provider.json"
+        },
+        {
+            "type": "object",
+            "properties": {
+                "FIRST_IMAGE": {
+                    "type": "string",
+                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the first NEB image."
+                },
+                "LAST_IMAGE": {
+                    "type": "string",
+                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the last NEB image."
+                },
+                "INTERMEDIATE_IMAGES": {
+                    "type": "array",
+                    "description": "Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            },
+            "required": [
+                "IBRAV",
+                "RESTART_MODE",
+                "ATOMIC_SPECIES",
+                "ATOMIC_SPECIES_WITH_LABELS",
+                "NAT",
+                "NTYP",
+                "NTYP_WITH_LABELS",
+                "CELL_PARAMETERS",
+                "FIRST_IMAGE",
+                "LAST_IMAGE",
+                "INTERMEDIATE_IMAGES"
+            ]
+        }
+    ]
+}

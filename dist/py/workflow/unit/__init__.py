@@ -222,7 +222,7 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type92(Enum):
+class Type93(Enum):
     reduce = "reduce"
 
 
@@ -319,7 +319,7 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
-class Type93(Enum):
+class Type94(Enum):
     condition = "condition"
 
 
@@ -432,7 +432,7 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type94(Enum):
+class Type95(Enum):
     assertion = "assertion"
 
 
@@ -518,7 +518,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class Type95(Enum):
+class Type96(Enum):
     execution = "execution"
 
 
@@ -770,7 +770,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type96(Enum):
+class Type97(Enum):
     assignment = "assignment"
 
 
@@ -861,7 +861,7 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class Type97(Enum):
+class Type98(Enum):
     processing = "processing"
 
 
@@ -951,7 +951,7 @@ class ProcessingUnitSchema(BaseModel):
     """
 
 
-class Type98(Enum):
+class Type99(Enum):
     map = "map"
 
 
@@ -1057,7 +1057,7 @@ class MapUnitSchema(BaseModel):
     """
 
 
-class Type99(Enum):
+class Type100(Enum):
     subworkflow = "subworkflow"
 
 
