@@ -2890,7 +2890,7 @@ export declare enum Name {
     NWChemInputDataManager = "NWChemInputDataManager"
 }
 /** Schema dist/js/schema/context_providers_directory/boundary_conditions_data_provider.json */
-export interface BoundaryConditionsProviderSchema {
+export interface BoundaryConditionsDataProviderSchema {
     /**
      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
      */
@@ -3263,7 +3263,7 @@ export interface VASPNEBContextProviderSchema {
 /**
  * Set starting magnetization, can have values in the range [-1, +1].
  */
-export interface CollinearMagnetizationProviderSchema {
+export interface CollinearMagnetizationContextProviderSchema {
     startingMagnetization?: {
         atomicSpecies?: string;
         value?: number;
@@ -3312,7 +3312,7 @@ export declare enum ContextProviderNameEnum {
  *
  * @minItems 1
  */
-export type HubbardJProviderSchema = [
+export type HubbardJContextProviderSchema = [
     {
         paramType?: "U" | "J" | "B" | "E2" | "E3";
         atomicSpecies?: string;
@@ -3332,7 +3332,7 @@ export type HubbardJProviderSchema = [
  *
  * @minItems 1
  */
-export type HubbardLegacyProviderSchema = [
+export type HubbardLegacyContextProviderSchema = [
     {
         atomicSpecies?: string;
         atomicSpeciesIndex?: number;
@@ -3348,7 +3348,7 @@ export type HubbardLegacyProviderSchema = [
 /**
  * Hubbard U parameters for DFT+U or DFT+U+V calculation.
  */
-export type HubbardUProviderSchema = {
+export type HubbardUContextProviderSchema = {
     atomicSpecies?: string;
     atomicOrbital?: string;
     hubbardUValue?: number;
@@ -3359,7 +3359,7 @@ export type HubbardUProviderSchema = {
  *
  * @minItems 1
  */
-export type HubbardVProviderSchema = [
+export type HubbardVContextProviderSchema = [
     {
         atomicSpecies?: string;
         siteIndex?: number;
@@ -3383,7 +3383,7 @@ export type HubbardVProviderSchema = [
 /**
  * Important parameters for molecular dynamics calculation
  */
-export interface IonDynamicsProviderSchema {
+export interface IonDynamicsContextProviderSchema {
     numberOfSteps?: number;
     timeStep?: number;
     electronMass?: number;
@@ -3393,7 +3393,7 @@ export interface IonDynamicsProviderSchema {
 /**
  * Settings important to machine learning runs.
  */
-export interface MLSettingsProviderSchema {
+export interface MLSettingsContextProviderSchema {
     target_column_name?: string;
     problem_category?: "regression" | "classification" | "clustering";
 }
@@ -3401,21 +3401,21 @@ export interface MLSettingsProviderSchema {
 /**
  * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
  */
-export interface MLTrainTestSplitProviderSchema {
+export interface MLTrainTestSplitContextProviderSchema {
     fraction_held_as_test_set?: number;
 }
 /** Schema dist/js/schema/context_providers_directory/neb_data_provider.json */
 /**
  * Number of intermediate NEB images.
  */
-export interface NEBProviderSchema {
+export interface NEBDataProviderSchema {
     nImages?: number;
 }
 /** Schema dist/js/schema/context_providers_directory/non_collinear_magnetization_context_provider.json */
 /**
  * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
  */
-export interface NonCollinearMagnetizationProviderSchema {
+export interface NonCollinearMagnetizationContextProviderSchema {
     isExistingChargeDensity?: boolean;
     isStartingMagnetization?: boolean;
     startingMagnetization?: {
@@ -3446,7 +3446,7 @@ export interface NonCollinearMagnetizationProviderSchema {
 /**
  * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
  */
-export interface PlanewaveCutoffsProviderSchema {
+export interface PlanewaveCutoffsContextProviderSchema {
     wavefunction?: number;
     density?: number;
 }
@@ -3454,7 +3454,7 @@ export interface PlanewaveCutoffsProviderSchema {
 /**
  * 3D grid with shifts for k-point or q-point sampling.
  */
-export interface PointsGridProviderSchema {
+export interface PointsGridDataProviderSchema {
     /**
      * @minItems 3
      * @maxItems 3
@@ -3480,7 +3480,7 @@ export interface PointsGridProviderSchema {
  *
  * @minItems 1
  */
-export type PointsPathProviderSchema = [
+export type PointsPathDataProviderSchema = [
     {
         point?: string;
         steps?: number;
