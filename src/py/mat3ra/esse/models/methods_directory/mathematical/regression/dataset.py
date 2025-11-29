@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Any, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ESSE(BaseModel):
-    exabyteIds: List[str]
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    exabyte_ids: List[str] = Field(..., alias="exabyteIds")
     """
     array of exabyteIds for materials in dataset
     """

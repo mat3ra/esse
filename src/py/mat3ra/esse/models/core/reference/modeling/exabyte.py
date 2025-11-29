@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class Type(Enum):
@@ -15,6 +15,9 @@ class Type(Enum):
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -30,6 +33,9 @@ class EntityReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     title: constr(max_length=300)
     """

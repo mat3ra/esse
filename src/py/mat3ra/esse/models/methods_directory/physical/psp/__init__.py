@@ -15,6 +15,9 @@ from ..Reusable_schema_for_energy_value_with_unit_corresponding_to_a_specific_ac
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -46,6 +49,9 @@ class SlugifiedEntryOrSlug211(Enum):
 
 
 class PseudopotentialCategorySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -81,6 +87,9 @@ class Type(Enum):
 
 
 class ExchangeCorrelation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     approximation: Optional[str] = None
     """
     DFT approximation
@@ -96,10 +105,13 @@ class ExchangeCorrelation(BaseModel):
 
 
 class AtomicOrbitalSchema(BaseModel):
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
-    orbitalIndex: Optional[conint(ge=1)] = None
-    principalNumber: Optional[conint(ge=1, le=7)] = None
-    angularMomentum: Optional[conint(ge=0, le=3)] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")
+    orbital_index: Optional[conint(ge=1)] = Field(None, alias="orbitalIndex")
+    principal_number: Optional[conint(ge=1, le=7)] = Field(None, alias="principalNumber")
+    angular_momentum: Optional[conint(ge=0, le=3)] = Field(None, alias="angularMomentum")
     occupation: Optional[confloat(ge=0.0, le=14.0)] = None
     """
     Shell occupation
@@ -113,6 +125,7 @@ class Name(Enum):
 class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
@@ -125,6 +138,9 @@ class Cutoffs(BaseModel):
 
 
 class FileDataItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     element: str
     """
     chemical element
@@ -142,8 +158,8 @@ class FileDataItem(BaseModel):
     """
     explains the version of where this came from
     """
-    exchangeCorrelation: ExchangeCorrelation
-    valenceConfiguration: Optional[List[AtomicOrbitalSchema]] = None
+    exchange_correlation: ExchangeCorrelation = Field(..., alias="exchangeCorrelation")
+    valence_configuration: Optional[List[AtomicOrbitalSchema]] = Field(None, alias="valenceConfiguration")
     """
     contains pseudo orbital information, including orbital names and occupations
     """
@@ -170,11 +186,17 @@ class FileDataItem(BaseModel):
 
 
 class Source(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     info: Optional[Dict[str, Any]] = None
     type: Optional[str] = None
 
 
 class PseudopotentialFile(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     slug: Optional[Slug] = None
     data: Optional[FileDataItem] = Field(None, title="File data item")
     source: Optional[Source] = None
@@ -184,6 +206,9 @@ class PseudopotentialFile(BaseModel):
 
 
 class UnitMethodPseudopotential(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: PseudopotentialCategorySchema = Field(..., title="Pseudopotential category schema")
     """
     Used to categorize entities such as models and methods

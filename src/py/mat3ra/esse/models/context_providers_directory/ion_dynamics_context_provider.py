@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class IonDynamicsProviderSchema(BaseModel):
-    numberOfSteps: Optional[int] = Field(None, title="numberOfSteps")
-    timeStep: Optional[float] = Field(None, title="timeStep (Hartree a.u.)")
-    electronMass: Optional[float] = Field(None, title="Effective electron mass")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    number_of_steps: Optional[int] = Field(None, alias="numberOfSteps", title="numberOfSteps")
+    time_step: Optional[float] = Field(None, alias="timeStep", title="timeStep (Hartree a.u.)")
+    electron_mass: Optional[float] = Field(None, alias="electronMass", title="Effective electron mass")
     temperature: Optional[float] = Field(None, title="Ionic temperature (K)")

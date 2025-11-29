@@ -33,11 +33,12 @@ class Functional(Enum):
 class LDAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    hubbardType: Optional[HubbardType] = None
-    spinPolarization: Optional[SpinPolarization] = None
-    spinOrbitCoupling: Optional[bool] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
     functional: Optional[Functional] = None
 
 
@@ -49,11 +50,12 @@ class Functional37(Enum):
 class GGAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    hubbardType: Optional[HubbardType] = None
-    spinPolarization: Optional[SpinPolarization] = None
-    spinOrbitCoupling: Optional[bool] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
     functional: Optional[Functional37] = None
 
 
@@ -64,11 +66,12 @@ class Functional38(Enum):
 class MetaGGAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    hubbardType: Optional[HubbardType] = None
-    spinPolarization: Optional[SpinPolarization] = None
-    spinOrbitCoupling: Optional[bool] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
     functional: Optional[Functional38] = None
 
 
@@ -80,11 +83,12 @@ class Functional39(Enum):
 class HybridFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    hubbardType: Optional[HubbardType] = None
-    spinPolarization: Optional[SpinPolarization] = None
-    spinOrbitCoupling: Optional[bool] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
     functional: Optional[Functional39] = None
 
 
@@ -95,11 +99,12 @@ class Functional40(Enum):
 class DoubleHybridFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    hubbardType: Optional[HubbardType] = None
-    spinPolarization: Optional[SpinPolarization] = None
-    spinOrbitCoupling: Optional[bool] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
     functional: Optional[Functional40] = None
 
 
@@ -114,6 +119,9 @@ class ESSE(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         LDAFunctionalMixin,
         GGAFunctionalMixin,

@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,15 +20,18 @@ class NameResultSchema(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of the executable. e.g. pw.x
     """
-    applicationId: Optional[List[str]] = None
+    application_id: Optional[List[str]] = Field(None, alias="applicationId")
     """
     _ids of the application this executable belongs to
     """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    has_advanced_compute_options: Optional[bool] = Field(None, alias="hasAdvancedComputeOptions")
     """
     Whether advanced compute options are present
     """
@@ -37,20 +43,20 @@ class ExecutableSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """

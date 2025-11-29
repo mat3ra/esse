@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CoordinateShapeEnum(Enum):
@@ -19,6 +19,9 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")

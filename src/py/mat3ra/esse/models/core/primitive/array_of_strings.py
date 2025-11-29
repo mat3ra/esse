@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class ArrayOfStrings(RootModel[List[str]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[str] = Field(..., title="array of strings")
     """
     array of strings, e.g. metadata tags

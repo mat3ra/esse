@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ScalarItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Optional[str] = None
 
 
 class ConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[str] = None
     """
     condition unit

@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -15,5 +15,8 @@ class Name(Enum):
 
 
 class InChIRepresentationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name] = None
     value: str

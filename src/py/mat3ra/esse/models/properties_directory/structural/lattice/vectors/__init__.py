@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -16,6 +16,9 @@ class LatticeVectorsUnitsEnum(Enum):
 
 
 class LatticeVectorsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")

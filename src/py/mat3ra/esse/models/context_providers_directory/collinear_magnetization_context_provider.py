@@ -6,15 +6,23 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel, ConfigDict, Field, confloat
 
 
 class StartingMagnetizationItem(BaseModel):
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Atomic species")
     value: Optional[confloat(ge=-1.0, le=1.0)] = Field(None, title="Starting magnetization")
 
 
 class CollinearMagnetizationProviderSchema(BaseModel):
-    startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
-    isTotalMagnetization: Optional[bool] = Field(None, title="Set total magnetization instead")
-    totalMagnetization: Optional[float] = Field(None, title="Total magnetization")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    starting_magnetization: Optional[List[StartingMagnetizationItem]] = Field(None, alias="startingMagnetization")
+    is_total_magnetization: Optional[bool] = Field(
+        None, alias="isTotalMagnetization", title="Set total magnetization instead"
+    )
+    total_magnetization: Optional[float] = Field(None, alias="totalMagnetization", title="Total magnetization")

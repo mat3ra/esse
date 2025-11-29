@@ -15,7 +15,7 @@ class Name(Enum):
 
 
 class Summary(Enum):
-    DeePMD_is_a_deep_learning_package_that_is_based_on_neural_network_fitted_first_principles_data_for_many_body_potential_energy_representation_and_molecular_dynamics = "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics"
+    dee_pmd_is_a_deep_learning_package_that_is_based_on_neural_network_fitted_first_principles_data_for_many_body_potential_energy_representation_and_molecular_dynamics = "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics"
 
 
 class Version(Enum):
@@ -31,6 +31,7 @@ class Exec(Enum):
 class DeePMDAppSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     name: Optional[Name] = None
     """
@@ -45,7 +46,7 @@ class DeePMDAppSchema(BaseModel):
     Application version. e.g. 5.3.5
     """
     exec: Optional[Exec] = None
-    shortName: Optional[str] = None
+    short_name: Optional[str] = Field(None, alias="shortName")
     """
     The short name of the application. e.g. qe
     """
@@ -53,11 +54,11 @@ class DeePMDAppSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    has_advanced_compute_options: Optional[bool] = Field(None, alias="hasAdvancedComputeOptions")
     """
     Whether advanced compute options are present
     """
-    isLicensed: Optional[bool] = None
+    is_licensed: Optional[bool] = Field(None, alias="isLicensed")
     """
     Whether licensing is present
     """
@@ -69,12 +70,12 @@ class DeePMDAppSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """

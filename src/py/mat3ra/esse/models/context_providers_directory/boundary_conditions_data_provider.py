@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Type(Enum):
@@ -18,10 +18,13 @@ class Type(Enum):
 
 
 class BoundaryConditionsProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
     offset: Optional[float] = None
-    electricField: Optional[float] = Field(None, title="Electric Field (eV/A)")
-    targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
+    electric_field: Optional[float] = Field(None, alias="electricField", title="Electric Field (eV/A)")
+    target_fermi_energy: Optional[float] = Field(None, alias="targetFermiEnergy", title="Target Fermi Energy (eV)")

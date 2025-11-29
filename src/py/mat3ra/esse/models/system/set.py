@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntitySetSchema(BaseModel):
-    isEntitySet: Optional[bool] = None
-    entitySetType: Optional[str] = None
-    entityCls: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    is_entity_set: Optional[bool] = Field(None, alias="isEntitySet")
+    entity_set_type: Optional[str] = Field(None, alias="entitySetType")
+    entity_cls: Optional[str] = Field(None, alias="entityCls")

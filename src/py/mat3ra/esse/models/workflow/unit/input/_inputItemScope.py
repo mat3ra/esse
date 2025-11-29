@@ -4,10 +4,13 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class WorkflowUnitInputSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     scope: str
     """
     Scope of the variable. e.g. 'global' or 'flowchart_id_2'

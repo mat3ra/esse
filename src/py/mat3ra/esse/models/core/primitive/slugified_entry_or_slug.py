@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -21,6 +24,9 @@ class SlugifiedEntry(BaseModel):
 
 
 class ESSE(RootModel[Union[SlugifiedEntry, str]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[SlugifiedEntry, str] = Field(..., title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string

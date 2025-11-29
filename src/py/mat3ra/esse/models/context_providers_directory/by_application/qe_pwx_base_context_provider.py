@@ -10,56 +10,59 @@ from typing import List, Optional
 from pydantic import BaseModel, ConfigDict, Field, conint
 
 
-class RESTARTMODE(Enum):
+class RestartMode(Enum):
     from_scratch = "from_scratch"
     restart = "restart"
 
 
-class ATOMICSPECY(BaseModel):
+class AtomicSpecy(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    mass_x: Optional[float] = Field(None, alias="Mass_X")
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    pseudo_pot_x: Optional[str] = Field(None, alias="PseudoPot_X")
     """
     PseudoPot_X
     """
 
 
-class ATOMICSPECIESWITHLABEL(BaseModel):
+class AtomicSpeciesWithLabel(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    mass_x: Optional[float] = Field(None, alias="Mass_X")
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    pseudo_pot_x: Optional[str] = Field(None, alias="PseudoPot_X")
     """
     PseudoPot_X
     """
 
 
-class ATOMICPOSITION(BaseModel):
+class AtomicPosition(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom as specified in ATOMIC_SPECIES
     """
-    x: float
+    x_1: float = Field(..., alias="x")
     """
     atomic positions
     """
@@ -76,9 +79,10 @@ class ATOMICPOSITION(BaseModel):
     if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
 
 
-class CELLPARAMETERS(BaseModel):
+class CellParameters(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     v1: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
     v2: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
@@ -86,25 +90,28 @@ class CELLPARAMETERS(BaseModel):
 
 
 class QEPwxBaseContextProviderSchema(BaseModel):
-    IBRAV: Optional[int] = None
-    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
-    ATOMIC_SPECIES: Optional[List[ATOMICSPECY]] = None
-    ATOMIC_SPECIES_WITH_LABELS: Optional[List[ATOMICSPECIESWITHLABEL]] = None
-    NAT: Optional[int] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    ibrav: Optional[int] = Field(None, alias="IBRAV")
+    restart_mode: Optional[RestartMode] = Field("from_scratch", alias="RESTART_MODE")
+    atomic_species: Optional[List[AtomicSpecy]] = Field(None, alias="ATOMIC_SPECIES")
+    atomic_species_with_labels: Optional[List[AtomicSpeciesWithLabel]] = Field(None, alias="ATOMIC_SPECIES_WITH_LABELS")
+    nat: Optional[int] = Field(None, alias="NAT")
     """
     number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
     """
-    NTYP: Optional[int] = None
+    ntyp: Optional[int] = Field(None, alias="NTYP")
     """
     number of types of atoms in the unit cell
     """
-    NTYP_WITH_LABELS: Optional[conint(ge=1)] = None
+    ntyp_with_labels: Optional[conint(ge=1)] = Field(None, alias="NTYP_WITH_LABELS")
     """
     Number of different atomic species including labels
     """
-    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
+    atomic_positions: Optional[List[AtomicPosition]] = Field(None, alias="ATOMIC_POSITIONS")
+    atomic_positions_without_constraints: Optional[str] = Field(None, alias="ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS")
     """
     Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
     """
-    CELL_PARAMETERS: Optional[CELLPARAMETERS] = None
+    cell_parameters: Optional[CellParameters] = Field(None, alias="CELL_PARAMETERS")

@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -38,6 +41,9 @@ class SlugifiedEntryOrSlug203(Enum):
 
 
 class PopleBasisSetCategorySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -61,16 +67,22 @@ class PopleBasisSetCategorySchema(BaseModel):
 
 
 class BasisSlug(Enum):
-    field_3_21G = "3-21G"
-    field_6_31G = "6-31G"
-    field_6_311G = "6-311G"
+    field_3_21_g = "3-21G"
+    field_6_31_g = "6-31G"
+    field_6_311_g = "6-311G"
 
 
 class Parameters(BaseModel):
-    basisSlug: Optional[BasisSlug] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug] = Field(None, alias="basisSlug")
 
 
 class UnitMethodAoPople(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: PopleBasisSetCategorySchema = Field(..., title="Pople basis set category schema")
     """
     Used to categorize entities such as models and methods
@@ -98,4 +110,7 @@ class UnitMethodAoPople(BaseModel):
 
 
 class AoBasisPople(BaseModel):
-    basisSlug: Optional[BasisSlug] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug] = Field(None, alias="basisSlug")

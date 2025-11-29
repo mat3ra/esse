@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class FundamentalConstants(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     c: Optional[float] = 299792458
     """
     speed of light in vacuum, "units": "m/s"
@@ -22,7 +25,7 @@ class FundamentalConstants(BaseModel):
     """
     elementary charge, "units": "C"
     """
-    G: Optional[float] = 6.6743015e-11
+    g: Optional[float] = Field(6.6743015e-11, alias="G")
     """
     Newtonian constant of gravitation, "units": "m^3/kg/s^2"
     """

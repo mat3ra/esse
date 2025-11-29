@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional, Union
 
-from pydantic import BaseModel, confloat, conint
+from pydantic import BaseModel, ConfigDict, confloat, conint
 
 
 class PymatgenSlabGeneratorParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     min_vacuum_size: Optional[Union[conint(ge=0), confloat(ge=0.0)]] = 0
     """
     Minimum size of the vacuum in layers or angstroms

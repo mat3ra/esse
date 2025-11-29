@@ -17,7 +17,7 @@ class Type(Enum):
 class Subtype(Enum):
     input = "input"
     output = "output"
-    dataFrame = "dataFrame"
+    data_frame = "dataFrame"
 
 
 class Source(Enum):
@@ -29,6 +29,7 @@ class Source(Enum):
 class DataIORestAPIInputSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     endpoint: str
     """
@@ -47,6 +48,7 @@ class DataIORestAPIInputSchema(BaseModel):
 class DataIODatabaseInputOutputSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     ids: List[str]
     """
@@ -57,6 +59,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 class DataIODatabaseInputOutputSchema7(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     collection: str
     """
@@ -69,27 +72,30 @@ class DataIODatabaseInputOutputSchema7(BaseModel):
 
 
 class ObjectStorageContainerData(BaseModel):
-    CONTAINER: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    container: Optional[str] = Field(None, alias="CONTAINER")
     """
     Object storage container for the file
     """
-    NAME: Optional[str] = None
+    name: Optional[str] = Field(None, alias="NAME")
     """
     Name of the file inside the object storage bucket
     """
-    PROVIDER: Optional[str] = None
+    provider: Optional[str] = Field(None, alias="PROVIDER")
     """
     Object storage provider
     """
-    REGION: Optional[str] = None
+    region: Optional[str] = Field(None, alias="REGION")
     """
     Region for the object container specified in Container
     """
-    SIZE: Optional[int] = None
+    size: Optional[int] = Field(None, alias="SIZE")
     """
     Size of the file in bytes
     """
-    TIMESTAMP: Optional[str] = None
+    timestamp: Optional[str] = Field(None, alias="TIMESTAMP")
     """
     Unix timestamp showing when the file was last modified
     """
@@ -98,8 +104,9 @@ class ObjectStorageContainerData(BaseModel):
 class ObjectStorageIoSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
+    object_data: ObjectStorageContainerData = Field(..., alias="objectData", title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file
@@ -127,6 +134,9 @@ class Status(Enum):
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -134,7 +144,10 @@ class NameResultSchema(BaseModel):
 
 
 class StatusTrackItem(BaseModel):
-    trackedAt: float
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    tracked_at: float = Field(..., alias="trackedAt")
     status: str
     repetition: Optional[float] = None
 
@@ -142,6 +155,7 @@ class StatusTrackItem(BaseModel):
 class DataIOUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: Type
     """
@@ -160,7 +174,7 @@ class DataIOUnitSchema(BaseModel):
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
+    is_draft: Optional[bool] = Field(None, alias="isDraft")
     name: Optional[str] = None
     """
     name of the unit. e.g. pw_scf
@@ -173,7 +187,7 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -181,7 +195,7 @@ class DataIOUnitSchema(BaseModel):
     """
     Next unit's flowchartId. If empty, the current unit is the last.
     """
-    enableRender: Optional[bool] = None
+    enable_render: Optional[bool] = Field(None, alias="enableRender")
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
@@ -190,20 +204,20 @@ class DataIOUnitSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """
@@ -219,4 +233,4 @@ class DataIOUnitSchema(BaseModel):
     """
     entity tags
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    status_track: Optional[List[StatusTrackItem]] = Field(None, alias="statusTrack")

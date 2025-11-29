@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TypedNodeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[str] = None
     next: Optional[str] = None
     """
@@ -19,14 +22,17 @@ class TypedNodeSchema(BaseModel):
     """
     Whether node is head node or not
     """
-    flowchartId: str
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Unique flowchart ID of node
     """
 
 
 class FlowchartId(BaseModel):
-    flowchartId: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Unique flowchart ID of node
     """

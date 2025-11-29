@@ -6,9 +6,12 @@ from __future__ import annotations
 
 from typing import Any, Dict
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class WorkflowScopeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     global_: Dict[str, Any] = Field(..., alias="global")
     local: Dict[str, Any]

@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -15,6 +15,9 @@ class Name(Enum):
 
 
 class AtomicConstraintSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
@@ -26,6 +29,9 @@ class AtomicConstraintSchema(BaseModel):
 
 
 class AtomicConstraintsPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     values: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
@@ -45,6 +51,9 @@ class Type(Enum):
 
 
 class BoundaryConditionsPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name635
     type: Optional[Type] = "pbc"
     """
@@ -54,10 +63,16 @@ class BoundaryConditionsPropertySchema(BaseModel):
 
 
 class Info(BaseModel):
-    materialId: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    material_id: Optional[str] = Field(None, alias="materialId")
 
 
 class Source(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: str
     """
     Type of the material property's source.
@@ -66,6 +81,9 @@ class Source(BaseModel):
 
 
 class ProtoPropertyHolderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     data: Union[AtomicConstraintsPropertySchema, BoundaryConditionsPropertySchema]
     """
     container of the information, specific to each property
@@ -79,8 +97,8 @@ class ProtoPropertyHolderSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """

@@ -7,24 +7,27 @@ from __future__ import annotations
 from enum import Enum
 from typing import Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class Units186(Enum):
-    eV_A_2 = "eV/A^2"
+    e_v_a_2 = "eV/A^2"
 
 
 class EnergySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     units: Union[Units, Units186]
     value: float

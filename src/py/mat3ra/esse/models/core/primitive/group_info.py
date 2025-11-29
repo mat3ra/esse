@@ -6,15 +6,18 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class GroupInfoSchemaForNodesInAGraph(BaseModel):
-    groupName: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    group_name: Optional[str] = Field(None, alias="groupName")
     """
     Human-readable name of group of nodes
     """
-    groupId: Optional[str] = None
+    group_id: Optional[str] = Field(None, alias="groupId")
     """
     Unique identifier of the group a node belongs to
     """

@@ -36,8 +36,8 @@ class WfcExtrapolation(Enum):
 class IonTemperature(Enum):
     rescaling = "rescaling"
     rescale_v = "rescale-v"
-    rescale_T = "rescale-T"
-    reduce_T = "reduce-T"
+    rescale_t = "rescale-T"
+    reduce_t = "reduce-T"
     berendsen = "berendsen"
     andersen = "andersen"
     svr = "svr"
@@ -54,6 +54,7 @@ class IonDynamics(Enum):
 class IonsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -148,6 +149,7 @@ class IonDynamics1(Enum):
 class IonsSchema1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -241,6 +243,7 @@ class IonDynamics2(Enum):
 class IonsSchema2(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -333,6 +336,7 @@ class IonDynamics3(Enum):
 class IonsSchema3(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -419,4 +423,7 @@ class IonsSchema3(BaseModel):
 
 
 class ESSE(RootModel[Union[IonsSchema, IonsSchema1, IonsSchema2, IonsSchema3]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[IonsSchema, IonsSchema1, IonsSchema2, IonsSchema3] = Field(..., title="ions schema")

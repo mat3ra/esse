@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -38,6 +41,9 @@ class SlugifiedEntryOrSlug188(Enum):
 
 
 class OtherNeitherPopleNorDunningBasisSetCategorySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -71,10 +77,16 @@ class BasisSlug(Enum):
 
 
 class Parameters(BaseModel):
-    basisSlug: Optional[BasisSlug] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug] = Field(None, alias="basisSlug")
 
 
 class UnitMethodAoOther(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: OtherNeitherPopleNorDunningBasisSetCategorySchema = Field(
         ..., title="Other (neither Pople nor Dunning) basis set category schema"
     )
@@ -104,4 +116,7 @@ class UnitMethodAoOther(BaseModel):
 
 
 class AoBasisOther(BaseModel):
-    basisSlug: Optional[BasisSlug] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug] = Field(None, alias="basisSlug")

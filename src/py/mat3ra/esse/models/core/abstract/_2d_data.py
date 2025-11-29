@@ -6,12 +6,15 @@ from __future__ import annotations
 
 from typing import List, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Field2DimensionDataSchema(BaseModel):
-    xDataArray: List[Union[float, List[float]]]
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

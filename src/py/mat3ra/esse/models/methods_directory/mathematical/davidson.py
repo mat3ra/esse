@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -34,6 +37,9 @@ class SlugifiedEntryOrSlug31(Enum):
 
 
 class DavidsonDiagonalizationMethodSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -57,6 +63,9 @@ class DavidsonDiagonalizationMethodSchema(BaseModel):
 
 
 class UnitMethodDavidsonSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: DavidsonDiagonalizationMethodSchema = Field(..., title="Davidson diagonalization method schema")
     """
     Used to categorize entities such as models and methods

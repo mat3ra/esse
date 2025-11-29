@@ -11,6 +11,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -44,6 +47,9 @@ class SlugifiedEntryOrSlug99(Enum):
 
 
 class GWCategorySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -78,12 +84,13 @@ class Functional(Enum):
 class LDAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinPolarization: Optional[SpinPolarization] = None
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
     functional: Optional[Functional] = None
 
 
@@ -95,12 +102,13 @@ class Functional16(Enum):
 class GGAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinPolarization: Optional[SpinPolarization] = None
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
     functional: Optional[Functional16] = None
 
 
@@ -111,12 +119,13 @@ class Functional17(Enum):
 class MetaGGAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinPolarization: Optional[SpinPolarization] = None
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
     functional: Optional[Functional17] = None
 
 
@@ -127,12 +136,13 @@ class Functional18(Enum):
 class LDAFunctionalMixin1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinOrbitCoupling: Optional[bool] = None
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
     functional: Optional[Functional18] = None
 
 
@@ -144,12 +154,13 @@ class Functional19(Enum):
 class GGAFunctionalMixin2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinOrbitCoupling: Optional[bool] = None
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
     functional: Optional[Functional19] = None
 
 
@@ -160,12 +171,13 @@ class Functional20(Enum):
 class MetaGGAFunctionalMixin1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     require: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated
     """
-    spinOrbitCoupling: Optional[bool] = None
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
     functional: Optional[Functional20] = None
 
 
@@ -174,11 +186,17 @@ class Type(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -186,6 +204,9 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     doi: Optional[str] = None
     """
@@ -246,6 +267,9 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class ModelGwApproximation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: GWCategorySchema = Field(..., title="GW category schema")
     """
     Used to categorize entities such as models and methods

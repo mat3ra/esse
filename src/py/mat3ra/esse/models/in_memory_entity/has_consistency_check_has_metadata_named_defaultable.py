@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Severity(Enum):
@@ -17,6 +17,9 @@ class Severity(Enum):
 
 
 class ConsistencyCheck(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -36,6 +39,9 @@ class ConsistencyCheck(BaseModel):
 
 
 class HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -44,8 +50,8 @@ class HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySchema(BaseMod
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -53,9 +59,9 @@ class HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySchema(BaseMod
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
-    consistencyChecks: Optional[List[ConsistencyCheck]] = None
+    consistency_checks: Optional[List[ConsistencyCheck]] = Field(None, alias="consistencyChecks")

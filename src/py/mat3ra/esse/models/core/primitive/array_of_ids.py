@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ObjectWithId(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: int
     """
     integer id of this entry
@@ -17,6 +20,9 @@ class ObjectWithId(BaseModel):
 
 
 class ArrayOfIds(RootModel[List[ObjectWithId]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[ObjectWithId] = Field(..., title="array of ids")
     """
     array of objects containing integer id each

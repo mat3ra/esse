@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PathSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     path: Optional[str] = Field(None, title="category path schema")
     """
     TODO: Use regex once schema draft version has been updated

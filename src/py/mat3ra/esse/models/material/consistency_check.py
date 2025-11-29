@@ -6,13 +6,13 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class Severity(Enum):
@@ -22,6 +22,9 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     """
     Name of the consistency check that is performed, which is listed in an enum.

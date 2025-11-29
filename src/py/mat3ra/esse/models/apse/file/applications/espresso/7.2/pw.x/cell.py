@@ -26,8 +26,8 @@ class CellDofree(Enum):
     xyz = "xyz"
     shape = "shape"
     volume = "volume"
-    field_2Dxy = "2Dxy"
-    field_2Dshape = "2Dshape"
+    field_2_dxy = "2Dxy"
+    field_2_dshape = "2Dshape"
     epitaxial_ab = "epitaxial_ab"
     epitaxial_ac = "epitaxial_ac"
     epitaxial_bc = "epitaxial_bc"
@@ -44,6 +44,7 @@ class CellDynamics(Enum):
 class CellSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     press: Optional[float] = 0
     """
@@ -80,6 +81,7 @@ class CellDynamics1(Enum):
 class CellSchema1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     press: Optional[float] = 0
     """
@@ -108,4 +110,7 @@ class CellSchema1(BaseModel):
 
 
 class ESSE(RootModel[Union[CellSchema, CellSchema1]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[CellSchema, CellSchema1] = Field(..., title="cell schema")

@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import RootModel
+from pydantic import ConfigDict, RootModel
 
 
 class ESSE(RootModel[Any]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Any

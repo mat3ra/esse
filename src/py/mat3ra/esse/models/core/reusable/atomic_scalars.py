@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ScalarSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: float
 
 
 class ObjectWithId(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Optional[ScalarSchema] = Field(None, title="scalar schema")
     id: int
     """
@@ -22,6 +28,9 @@ class ObjectWithId(BaseModel):
 
 
 class AtomicScalarsVectorsSchema(RootModel[List[ObjectWithId]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[ObjectWithId] = Field(..., title="atomic scalars vectors schema")
     """
     array of objects containing integer id each

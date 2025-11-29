@@ -4,10 +4,13 @@
 
 from __future__ import annotations
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class RuntimeItemString(RootModel[str]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: str = Field(..., title="RuntimeItemString")
     """
     name of runtime item in shortened notation

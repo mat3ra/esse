@@ -24,6 +24,7 @@ class CardOption(Enum):
 class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nks: Optional[int] = None
     """
@@ -38,6 +39,7 @@ class Value(BaseModel):
 class Values(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nk1: Optional[int] = None
     """
@@ -68,6 +70,7 @@ class Values(BaseModel):
 class KPointsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption] = None
     values: Optional[Union[List[Value], Values]] = None

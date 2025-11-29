@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class LatticeVectorsUnitsEnum(Enum):
@@ -16,6 +16,9 @@ class LatticeVectorsUnitsEnum(Enum):
 
 
 class LatticeVectorsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -27,20 +30,20 @@ class LatticeVectorsSchema(BaseModel):
 
 
 class LatticeTypeEnum(Enum):
-    CUB = "CUB"
-    BCC = "BCC"
-    FCC = "FCC"
-    TET = "TET"
-    MCL = "MCL"
-    ORC = "ORC"
-    ORCC = "ORCC"
-    ORCF = "ORCF"
-    ORCI = "ORCI"
-    HEX = "HEX"
-    BCT = "BCT"
-    TRI = "TRI"
-    MCLC = "MCLC"
-    RHL = "RHL"
+    cub = "CUB"
+    bcc = "BCC"
+    fcc = "FCC"
+    tet = "TET"
+    mcl = "MCL"
+    orc = "ORC"
+    orcc = "ORCC"
+    orcf = "ORCF"
+    orci = "ORCI"
+    hex = "HEX"
+    bct = "BCT"
+    tri = "TRI"
+    mclc = "MCLC"
+    rhl = "RHL"
 
 
 class LatticeUnitsLengthEnum(Enum):
@@ -54,11 +57,17 @@ class LatticeUnitsAngleEnum(Enum):
 
 
 class LatticeUnitsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector

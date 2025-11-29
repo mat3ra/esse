@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Severity(Enum):
@@ -17,6 +17,9 @@ class Severity(Enum):
 
 
 class ConsistencyCheck(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'
@@ -36,4 +39,7 @@ class ConsistencyCheck(BaseModel):
 
 
 class HasConsistencyCheckSchema(BaseModel):
-    consistencyChecks: Optional[List[ConsistencyCheck]] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    consistency_checks: Optional[List[ConsistencyCheck]] = Field(None, alias="consistencyChecks")

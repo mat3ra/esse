@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Part(Enum):
@@ -16,6 +16,9 @@ class Part(Enum):
 
 
 class DielectricTensor(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     part: Part
     """
     Real or imaginary part of the dielectric tensor component

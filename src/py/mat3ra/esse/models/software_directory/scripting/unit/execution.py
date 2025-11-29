@@ -17,8 +17,9 @@ class Type(Enum):
 class ApplicationSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    shortName: Optional[str] = None
+    short_name: Optional[str] = Field(None, alias="shortName")
     """
     The short name of the application. e.g. qe
     """
@@ -34,11 +35,11 @@ class ApplicationSchemaBase(BaseModel):
     """
     Application build. e.g. VTST
     """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    has_advanced_compute_options: Optional[bool] = Field(None, alias="hasAdvancedComputeOptions")
     """
     Whether advanced compute options are present
     """
-    isLicensed: Optional[bool] = None
+    is_licensed: Optional[bool] = Field(None, alias="isLicensed")
     """
     Whether licensing is present
     """
@@ -50,8 +51,8 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -59,13 +60,16 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -73,15 +77,18 @@ class NameResultSchema(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of the executable. e.g. pw.x
     """
-    applicationId: Optional[List[str]] = None
+    application_id: Optional[List[str]] = Field(None, alias="applicationId")
     """
     _ids of the application this executable belongs to
     """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    has_advanced_compute_options: Optional[bool] = Field(None, alias="hasAdvancedComputeOptions")
     """
     Whether advanced compute options are present
     """
@@ -93,20 +100,20 @@ class ExecutableSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """
@@ -123,9 +130,10 @@ class ExecutableSchema(BaseModel):
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
+    template_id: Optional[str] = Field(None, alias="templateId")
+    template_name: Optional[str] = Field(None, alias="templateName")
     name: Optional[str] = None
     """
     name of the resulting input file, if different than template name
@@ -133,22 +141,25 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorSchema(BaseModel):
-    executableId: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    executable_id: Optional[str] = Field(None, alias="executableId")
     """
     _id of the executable this flavor belongs to
     """
-    executableName: Optional[str] = None
+    executable_name: Optional[str] = Field(None, alias="executableName")
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    application_name: Optional[str] = Field(None, alias="applicationName")
     """
     name of the application this flavor belongs to
     """
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
+    supported_application_versions: Optional[List[str]] = Field(None, alias="supportedApplicationVersions")
     """
     list of application versions this flavor supports
     """
@@ -160,8 +171,8 @@ class FlavorSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -169,15 +180,15 @@ class FlavorSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """
@@ -192,6 +203,9 @@ class FlavorSchema(BaseModel):
 
 
 class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -215,7 +229,10 @@ class Status(Enum):
 
 
 class StatusTrackItem(BaseModel):
-    trackedAt: float
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    tracked_at: float = Field(..., alias="trackedAt")
     status: str
     repetition: Optional[float] = None
 
@@ -223,6 +240,7 @@ class StatusTrackItem(BaseModel):
 class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: Type
     """
@@ -244,7 +262,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
+    is_draft: Optional[bool] = Field(None, alias="isDraft")
     name: Optional[str] = None
     """
     name of the unit. e.g. pw_scf
@@ -257,7 +275,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -265,7 +283,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     Next unit's flowchartId. If empty, the current unit is the last.
     """
-    enableRender: Optional[bool] = None
+    enable_render: Optional[bool] = Field(None, alias="enableRender")
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
@@ -274,20 +292,20 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """
@@ -303,4 +321,4 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     entity tags
     """
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    status_track: Optional[List[StatusTrackItem]] = Field(None, alias="statusTrack")

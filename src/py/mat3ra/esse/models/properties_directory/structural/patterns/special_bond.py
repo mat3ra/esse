@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -15,7 +15,10 @@ class Name(Enum):
 
 
 class ObjectWithId(BaseModel):
-    isConnector: Optional[bool] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    is_connector: Optional[bool] = Field(None, alias="isConnector")
     """
     whether atom connects to atoms outside of functional group.
     """
@@ -26,6 +29,9 @@ class ObjectWithId(BaseModel):
 
 
 class SpecialBondPatternSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """

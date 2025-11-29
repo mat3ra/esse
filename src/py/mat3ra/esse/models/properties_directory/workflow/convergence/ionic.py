@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -15,16 +15,19 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV = "eV"
+    e_v = "eV"
 
 
 class Units245(Enum):
-    eV = "eV"
-    Ry = "Ry"
+    e_v = "eV"
+    ry = "Ry"
     hartree = "hartree"
 
 
 class Electronic(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units245] = None
     """
     units for force tolerance
@@ -33,6 +36,9 @@ class Electronic(BaseModel):
 
 
 class Datum(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     energy: float
     """
     converged electronic energy for this structure (last in `electronic`)
@@ -48,6 +54,9 @@ class Datum(BaseModel):
 
 
 class ConvergenceIonicPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     tolerance: Optional[Any] = None
     """

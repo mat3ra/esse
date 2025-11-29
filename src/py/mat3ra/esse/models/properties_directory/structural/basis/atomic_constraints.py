@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class AtomicConstraintSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
@@ -21,6 +24,9 @@ class AtomicConstraintSchema(BaseModel):
 
 
 class AtomicConstraintsSchema(RootModel[List[AtomicConstraintSchema]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """
     atomic constraints schema

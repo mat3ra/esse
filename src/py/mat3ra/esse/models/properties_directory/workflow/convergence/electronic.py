@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -15,12 +15,15 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV = "eV"
-    Ry = "Ry"
+    e_v = "eV"
+    ry = "Ry"
     hartree = "hartree"
 
 
 class ConvergenceElectronicPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Units
     data: List[List[float]]

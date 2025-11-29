@@ -10,6 +10,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseMethod(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -31,6 +34,7 @@ class BaseMethod(BaseModel):
 class BaseModel1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: str
     """

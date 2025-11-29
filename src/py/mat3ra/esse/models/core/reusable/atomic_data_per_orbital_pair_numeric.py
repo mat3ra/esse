@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class AtomicDataPerOrbitalPairNumeric(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Optional[int] = None
     """
     Site number or index in the lattice
@@ -18,16 +21,16 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
     """
     Site number or index in the lattice of second site
     """
-    atomicSpecies: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = None
+    atomic_species: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = Field(None, alias="atomicSpecies")
     """
     Example: Co1, Mn
     """
-    atomicSpecies2: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = None
+    atomic_species2: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = Field(None, alias="atomicSpecies2")
     """
     Example: Co2, O
     """
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
-    orbitalName2: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")
+    orbital_name2: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName2")
     distance: Optional[float] = None
     """
     Distance between two sites in Bohr.

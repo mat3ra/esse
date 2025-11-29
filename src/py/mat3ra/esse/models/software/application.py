@@ -12,8 +12,9 @@ from pydantic import BaseModel, ConfigDict, Field
 class ApplicationSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    shortName: Optional[str] = None
+    short_name: Optional[str] = Field(None, alias="shortName")
     """
     The short name of the application. e.g. qe
     """
@@ -29,11 +30,11 @@ class ApplicationSchemaBase(BaseModel):
     """
     Application build. e.g. VTST
     """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    has_advanced_compute_options: Optional[bool] = Field(None, alias="hasAdvancedComputeOptions")
     """
     Whether advanced compute options are present
     """
-    isLicensed: Optional[bool] = None
+    is_licensed: Optional[bool] = Field(None, alias="isLicensed")
     """
     Whether licensing is present
     """
@@ -45,8 +46,8 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -54,7 +55,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """

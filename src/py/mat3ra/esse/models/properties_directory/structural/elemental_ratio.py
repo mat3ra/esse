@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, confloat
+from pydantic import BaseModel, ConfigDict, confloat
 
 
 class Name(Enum):
@@ -15,6 +15,9 @@ class Name(Enum):
 
 
 class ElementalRatio(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name] = None
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None

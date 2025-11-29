@@ -6,14 +6,17 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, confloat, conint, constr
 
 
 class AtomicOrbitalSchema(BaseModel):
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
-    orbitalIndex: Optional[conint(ge=1)] = None
-    principalNumber: Optional[conint(ge=1, le=7)] = None
-    angularMomentum: Optional[conint(ge=0, le=3)] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")
+    orbital_index: Optional[conint(ge=1)] = Field(None, alias="orbitalIndex")
+    principal_number: Optional[conint(ge=1, le=7)] = Field(None, alias="principalNumber")
+    angular_momentum: Optional[conint(ge=0, le=3)] = Field(None, alias="angularMomentum")
     occupation: Optional[confloat(ge=0.0, le=14.0)] = None
     """
     Shell occupation

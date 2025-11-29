@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Datum(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Any
     """
     value of the property at this step
@@ -25,6 +28,9 @@ class Datum(BaseModel):
 
 
 class ConvergenceSchemaForConvergingAPropertyWrtKpoints(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tolerance: Any
     """
     tolerance for the property under investigation

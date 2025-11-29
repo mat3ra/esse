@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class Name(Enum):
@@ -15,19 +15,22 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV = "eV"
+    e_v = "eV"
 
 
 class AtomicDataPerOrbitalNumeric(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: int
     """
     Site number or index in the lattice
     """
-    atomicSpecies: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")
+    atomic_species: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$") = Field(..., alias="atomicSpecies")
     """
     Example: Co1, Mn
     """
-    orbitalName: constr(pattern=r"^[1-7][sSpPdDfF]$")
+    orbital_name: constr(pattern=r"^[1-7][sSpPdDfF]$") = Field(..., alias="orbitalName")
     value: float
     """
     Value related to a specific property, e.g., Hubbard U, V etc.
@@ -35,6 +38,9 @@ class AtomicDataPerOrbitalNumeric(BaseModel):
 
 
 class HubbardUParametersPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Units
     values: List[AtomicDataPerOrbitalNumeric]

@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class KpointSchema(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float] = Field(..., max_length=3, min_length=3, title="kpoint schema")
     """
     A k-point is a point in reciprocal space of a crystal.

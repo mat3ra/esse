@@ -6,11 +6,11 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Unit(Enum):
-    Ry = "Ry"
+    ry = "Ry"
 
 
 class AccuracyLevel(Enum):
@@ -20,6 +20,9 @@ class AccuracyLevel(Enum):
 
 
 class FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     unit: Unit
     """
     Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.

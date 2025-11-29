@@ -11,6 +11,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -42,6 +45,9 @@ class SlugifiedEntryOrSlug62(Enum):
 
 
 class DFTDoubleHybridFunctionalCategorySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -71,9 +77,10 @@ class Functional(Enum):
 class SpinOrbitCouplingMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     functional: Optional[Functional] = None
-    spinOrbitCoupling: Optional[bool] = None
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
 
 
 class DispersionCorrection(Enum):
@@ -84,8 +91,11 @@ class DispersionCorrection(Enum):
 
 
 class DispersionCorrectionMixin(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     functional: Optional[Functional] = None
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")
 
 
 class SpinPolarization(Enum):
@@ -96,9 +106,10 @@ class SpinPolarization(Enum):
 class SpinPolarizationMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     functional: Optional[Functional] = None
-    spinPolarization: Optional[SpinPolarization] = None
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")
 
 
 class Type(Enum):
@@ -106,11 +117,17 @@ class Type(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -118,6 +135,9 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     doi: Optional[str] = None
     """
@@ -178,6 +198,9 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class ModelDoubleHybridFunctional(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: DFTDoubleHybridFunctionalCategorySchema = Field(
         ..., title="DFT double hybrid functional category schema"
     )

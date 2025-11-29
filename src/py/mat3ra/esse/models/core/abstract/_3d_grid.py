@@ -6,9 +6,12 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Field3DimensionalGridSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     dimensions: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")
     shifts: List[float] = Field(..., max_length=3, min_length=3, title="array of 3 number elements schema")

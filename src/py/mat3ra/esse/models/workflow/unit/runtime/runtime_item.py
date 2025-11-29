@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,4 +20,7 @@ class NameResultSchema(BaseModel):
 
 
 class ESSE(RootModel[Union[NameResultSchema, str]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[NameResultSchema, str] = Field(..., title="runtime item schema")

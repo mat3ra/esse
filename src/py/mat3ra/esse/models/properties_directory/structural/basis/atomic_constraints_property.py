@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -15,6 +15,9 @@ class Name(Enum):
 
 
 class AtomicConstraintSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[bool] = Field(..., title="vector boolean 3d schema")
     """
     value of this entry
@@ -26,6 +29,9 @@ class AtomicConstraintSchema(BaseModel):
 
 
 class AtomicConstraintsPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     values: List[AtomicConstraintSchema] = Field(..., title="atomic constraints schema")
     """

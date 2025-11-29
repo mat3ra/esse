@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class HubbardType(Enum):
@@ -15,4 +15,7 @@ class HubbardType(Enum):
 
 
 class HubbardModelMixin(BaseModel):
-    hubbardType: Optional[HubbardType] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    hubbard_type: Optional[HubbardType] = Field(None, alias="hubbardType")

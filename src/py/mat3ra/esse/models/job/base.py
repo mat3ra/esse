@@ -24,31 +24,31 @@ class Status(Enum):
 
 
 class Queue(Enum):
-    D = "D"
-    OR = "OR"
-    OF = "OF"
-    OFplus = "OFplus"
-    SR = "SR"
-    SF = "SF"
-    SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
-    OR4 = "OR4"
-    OR8 = "OR8"
-    OR16 = "OR16"
-    SR4 = "SR4"
-    SR8 = "SR8"
-    SR16 = "SR16"
-    GOF = "GOF"
-    G4OF = "G4OF"
-    G8OF = "G8OF"
-    GSF = "GSF"
-    G4SF = "G4SF"
-    G8SF = "G8SF"
+    d = "D"
+    or_ = "OR"
+    of = "OF"
+    o_fplus = "OFplus"
+    sr = "SR"
+    sf = "SF"
+    s_fplus = "SFplus"
+    gpof = "GPOF"
+    gp2_of = "GP2OF"
+    gp4_of = "GP4OF"
+    gpsf = "GPSF"
+    gp2_sf = "GP2SF"
+    gp4_sf = "GP4SF"
+    or4 = "OR4"
+    or8 = "OR8"
+    or16 = "OR16"
+    sr4 = "SR4"
+    sr8 = "SR8"
+    sr16 = "SR16"
+    gof = "GOF"
+    g4_of = "G4OF"
+    g8_of = "G8OF"
+    gsf = "GSF"
+    g4_sf = "G4SF"
+    g8_sf = "G8SF"
 
 
 class TimeLimitType(Enum):
@@ -59,6 +59,7 @@ class TimeLimitType(Enum):
 class QuantumEspressoArgumentsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nimage: Optional[conint(ge=1, le=100)] = 1
     """
@@ -83,6 +84,9 @@ class QuantumEspressoArgumentsSchema(BaseModel):
 
 
 class Cluster(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     fqdn: Optional[str] = None
     """
     FQDN of the cluster. e.g. master-1-staging.exabyte.io
@@ -101,6 +105,9 @@ class Domain(Enum):
 
 
 class Error(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -120,6 +127,9 @@ class Error(BaseModel):
 
 
 class ComputeArgumentsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     queue: Queue
     """
     Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
@@ -132,15 +142,15 @@ class ComputeArgumentsSchema(BaseModel):
     """
     number of CPUs used for the job inside the RMS.
     """
-    timeLimit: str
+    time_limit: str = Field(..., alias="timeLimit")
     """
     Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
     """
-    timeLimitType: Optional[TimeLimitType] = "per single attempt"
+    time_limit_type: Optional[TimeLimitType] = Field("per single attempt", alias="timeLimitType")
     """
     Convention to use when reasoning about time limits
     """
-    isRestartable: Optional[bool] = True
+    is_restartable: Optional[bool] = Field(True, alias="isRestartable")
     """
     Job is allowed to restart on termination.
     """
@@ -152,7 +162,7 @@ class ComputeArgumentsSchema(BaseModel):
     """
     Email address to notify about job execution.
     """
-    maxCPU: Optional[int] = None
+    max_cpu: Optional[int] = Field(None, alias="maxCPU")
     """
     Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
     """
@@ -168,13 +178,16 @@ class ComputeArgumentsSchema(BaseModel):
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
-    excludeFilesPattern: Optional[str] = None
+    exclude_files_pattern: Optional[str] = Field(None, alias="excludeFilesPattern")
     """
     A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
     """
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -190,17 +203,26 @@ class EntityReferenceSchema(BaseModel):
 
 
 class WorkflowScopeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     global_: Dict[str, Any] = Field(..., alias="global")
     local: Dict[str, Any]
 
 
 class ScopeTrackItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     repetition: Optional[float] = None
     scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
 
 
 class JobBaseSchema(BaseModel):
-    rmsId: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    rms_id: Optional[str] = Field(None, alias="rmsId")
     """
     Identity used to track jobs originated from command-line
     """
@@ -208,11 +230,11 @@ class JobBaseSchema(BaseModel):
     """
     job status
     """
-    startTime: Optional[str] = None
+    start_time: Optional[str] = Field(None, alias="startTime")
     """
     Approximate start time of the job. e.g. within 10 min
     """
-    workDir: Optional[str] = None
+    work_dir: Optional[str] = Field(None, alias="workDir")
     """
     The path to the working directory of this job, when the job originates from command-line
     """
@@ -223,11 +245,11 @@ class JobBaseSchema(BaseModel):
     field_project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
     field_material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
     parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
-    runtimeContext: Optional[Dict[str, Any]] = None
+    runtime_context: Optional[Dict[str, Any]] = Field(None, alias="runtimeContext")
     """
     Context variables that the job will have access to at runtime
     """
-    scopeTrack: Optional[List[ScopeTrackItem]] = None
+    scope_track: Optional[List[ScopeTrackItem]] = Field(None, alias="scopeTrack")
     """
     history of the workflow scope on each update
     """
@@ -239,8 +261,8 @@ class JobBaseSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -248,7 +270,7 @@ class JobBaseSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """

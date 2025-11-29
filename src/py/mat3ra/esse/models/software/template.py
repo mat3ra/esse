@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,11 +20,14 @@ class NameResultSchema(BaseModel):
 
 
 class TemplateSchema(BaseModel):
-    applicationName: Optional[str] = None
-    applicationVersion: Optional[str] = None
-    executableName: Optional[str] = None
-    contextProviders: Optional[List[NameResultSchema]] = None
-    isManuallyChanged: Optional[bool] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    application_name: Optional[str] = Field(None, alias="applicationName")
+    application_version: Optional[str] = Field(None, alias="applicationVersion")
+    executable_name: Optional[str] = Field(None, alias="executableName")
+    context_providers: Optional[List[NameResultSchema]] = Field(None, alias="contextProviders")
+    is_manually_changed: Optional[bool] = Field(None, alias="isManuallyChanged")
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -42,8 +48,8 @@ class TemplateSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """

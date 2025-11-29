@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: str
     """
     label of an axis object

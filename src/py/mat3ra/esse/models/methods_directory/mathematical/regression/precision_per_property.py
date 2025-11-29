@@ -6,15 +6,18 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class RegressionPrecisionPerPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[str] = None
     """
     property name in 'flattened' format
     """
-    trainingError: float
+    training_error: float = Field(..., alias="trainingError")
     """
     training error of the estimator
     """

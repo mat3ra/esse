@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 class DataIODatabaseInputOutputSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     ids: List[str]
     """
@@ -22,6 +23,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 class DataIODatabaseInputOutputSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     collection: str
     """
@@ -34,6 +36,9 @@ class DataIODatabaseInputOutputSchema1(BaseModel):
 
 
 class ESSE(RootModel[Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema1]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema1] = Field(
         ..., title="data IO database input/output schema"
     )

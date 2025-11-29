@@ -7,15 +7,18 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Info(BaseModel):
-    jobId: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    job_id: str = Field(..., alias="jobId")
     """
     Job's identity
     """
-    unitId: str
+    unit_id: str = Field(..., alias="unitId")
     """
     Id of the unit that extracted the result
     """
@@ -26,6 +29,9 @@ class Type(Enum):
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -33,10 +39,16 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class ScalarItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Optional[str] = None
 
 
 class ConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[str] = None
     """
     condition unit
@@ -52,6 +64,9 @@ class ConditionSchema(BaseModel):
 
 
 class LocationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     latitude: float
     """
     location latitude
@@ -67,11 +82,17 @@ class Type74(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type74] = None
     doi: Optional[str] = None
     """
@@ -132,6 +153,9 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     authors: List[ExperimentAuthorSchema]
     """
@@ -162,6 +186,9 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
 
 
 class PropertySourceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[str] = None
     """
     Type of the material property's source.

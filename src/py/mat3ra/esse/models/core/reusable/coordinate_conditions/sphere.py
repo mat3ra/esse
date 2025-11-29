@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Literal
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel, ConfigDict, Field, confloat
 
 
 class CoordinateShapeEnum(Enum):
@@ -19,5 +19,8 @@ class CoordinateShapeEnum(Enum):
 
 
 class SphereCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)

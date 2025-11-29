@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ObjectWithId(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: int
     """
     integer id of this entry
@@ -29,12 +32,20 @@ class BondType(Enum):
 
 
 class BondsSchemaItem(BaseModel):
-    atomPair: Optional[List[ObjectWithId]] = Field(None, max_length=2, min_length=2, title="array of ids")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    atom_pair: Optional[List[ObjectWithId]] = Field(
+        None, alias="atomPair", max_length=2, min_length=2, title="array of ids"
+    )
     """
     indices of the two connected atoms
     """
-    bondType: Optional[BondType] = None
+    bond_type: Optional[BondType] = Field(None, alias="bondType")
 
 
 class BondsSchema(RootModel[List[BondsSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[BondsSchemaItem] = Field(..., title="bonds schema")

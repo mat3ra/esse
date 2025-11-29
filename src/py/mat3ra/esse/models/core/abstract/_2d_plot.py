@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: str
     """
     label of an axis object
@@ -21,10 +24,13 @@ class AxisSchema(BaseModel):
 
 
 class Field2DimensionPlotSchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema = Field(..., title="axis schema")
-    xDataArray: List[Union[float, List[float]]]
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema = Field(..., alias="yAxis", title="axis schema")
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

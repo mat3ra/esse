@@ -11,6 +11,9 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class BaseMethod(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: str
     """
     general type of this method, eg. `pseudopotential`
@@ -39,6 +42,7 @@ class Functional(Enum):
 class LegacyModelDensityFunctionalTheory(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: Literal["dft"]
     """
@@ -62,6 +66,7 @@ class Functional1(Enum):
 class LegacyModelDensityFunctionalTheory1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: Literal["dft"]
     """
@@ -83,6 +88,7 @@ class Functional2(Enum):
 class LegacyModelDensityFunctionalTheory2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     type: Literal["dft"]
     """
@@ -103,6 +109,9 @@ class ESSE(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory1, LegacyModelDensityFunctionalTheory2
     ] = Field(..., title="legacy model density functional theory")
@@ -116,6 +125,9 @@ class Functional3(Enum):
 
 
 class Lda(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Literal["lda"] = "lda"
     functional: Optional[Functional3] = None
 
@@ -128,6 +140,9 @@ class Functional4(Enum):
 
 
 class Gga(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Literal["gga"] = "gga"
     functional: Optional[Functional4] = None
 
@@ -138,5 +153,8 @@ class Functional5(Enum):
 
 
 class Hybrid(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     subtype: Literal["hybrid"] = "hybrid"
     functional: Optional[Functional5] = None

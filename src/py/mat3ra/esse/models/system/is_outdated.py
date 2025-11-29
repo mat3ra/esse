@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class IsOutdatedSchema(BaseModel):
-    isOutdated: Optional[bool] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    is_outdated: Optional[bool] = Field(None, alias="isOutdated")

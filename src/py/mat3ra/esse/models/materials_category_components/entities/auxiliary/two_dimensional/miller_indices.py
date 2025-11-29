@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class MillerIndicesSchema(RootModel[Optional[List[int]]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Optional[List[int]] = Field([0, 0, 1], max_length=3, min_length=3, title="Miller Indices Schema")
     """
     Miller indices [h, k, l] defining crystallographic planes

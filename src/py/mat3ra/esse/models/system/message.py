@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -21,6 +21,9 @@ class Probe(Enum):
 
 
 class Entity(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     job identifier
@@ -29,7 +32,7 @@ class Entity(BaseModel):
     """
     entity name.
     """
-    flowchartId: Optional[str] = None
+    flowchart_id: Optional[str] = Field(None, alias="flowchartId")
     """
     unit identifier within the workflow
     """
@@ -40,6 +43,9 @@ class Entity(BaseModel):
 
 
 class Header(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     entity: Entity
     version: str
     """
@@ -52,6 +58,9 @@ class Header(BaseModel):
 
 
 class MessageSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     header: Header
     payload: Dict[str, Any]
     """

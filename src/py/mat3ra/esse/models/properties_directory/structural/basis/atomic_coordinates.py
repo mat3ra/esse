@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class AtomicCoordinateSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     """
     value of this entry
@@ -21,6 +24,9 @@ class AtomicCoordinateSchema(BaseModel):
 
 
 class AtomicCoordinatesSchema(RootModel[List[AtomicCoordinateSchema]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[AtomicCoordinateSchema] = Field(..., title="atomic coordinates schema")
     """
     atomic coordinates schema

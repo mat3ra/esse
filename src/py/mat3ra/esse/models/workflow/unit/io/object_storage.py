@@ -10,27 +10,30 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ObjectStorageContainerData(BaseModel):
-    CONTAINER: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    container: Optional[str] = Field(None, alias="CONTAINER")
     """
     Object storage container for the file
     """
-    NAME: Optional[str] = None
+    name: Optional[str] = Field(None, alias="NAME")
     """
     Name of the file inside the object storage bucket
     """
-    PROVIDER: Optional[str] = None
+    provider: Optional[str] = Field(None, alias="PROVIDER")
     """
     Object storage provider
     """
-    REGION: Optional[str] = None
+    region: Optional[str] = Field(None, alias="REGION")
     """
     Region for the object container specified in Container
     """
-    SIZE: Optional[int] = None
+    size: Optional[int] = Field(None, alias="SIZE")
     """
     Size of the file in bytes
     """
-    TIMESTAMP: Optional[str] = None
+    timestamp: Optional[str] = Field(None, alias="TIMESTAMP")
     """
     Unix timestamp showing when the file was last modified
     """
@@ -39,8 +42,9 @@ class ObjectStorageContainerData(BaseModel):
 class ObjectStorageIoSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
+    object_data: ObjectStorageContainerData = Field(..., alias="objectData", title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
     if a file with the same filename already exists, whether to overwrite the old file

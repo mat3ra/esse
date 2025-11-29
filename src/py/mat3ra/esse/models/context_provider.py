@@ -7,47 +7,48 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
-    PlanewaveCutoffDataManager = "PlanewaveCutoffDataManager"
-    KGridFormDataManager = "KGridFormDataManager"
-    QGridFormDataManager = "QGridFormDataManager"
-    IGridFormDataManager = "IGridFormDataManager"
-    QPathFormDataManager = "QPathFormDataManager"
-    IPathFormDataManager = "IPathFormDataManager"
-    KPathFormDataManager = "KPathFormDataManager"
-    ExplicitKPathFormDataManager = "ExplicitKPathFormDataManager"
-    ExplicitKPath2PIBAFormDataManager = "ExplicitKPath2PIBAFormDataManager"
-    HubbardJContextManager = "HubbardJContextManager"
-    HubbardUContextManager = "HubbardUContextManager"
-    HubbardVContextManager = "HubbardVContextManager"
-    HubbardContextManagerLegacy = "HubbardContextManagerLegacy"
-    NEBFormDataManager = "NEBFormDataManager"
-    BoundaryConditionsFormDataManager = "BoundaryConditionsFormDataManager"
-    MLSettingsDataManager = "MLSettingsDataManager"
-    MLTrainTestSplitDataManager = "MLTrainTestSplitDataManager"
-    IonDynamicsContextProvider = "IonDynamicsContextProvider"
-    CollinearMagnetizationDataManager = "CollinearMagnetizationDataManager"
-    NonCollinearMagnetizationDataManager = "NonCollinearMagnetizationDataManager"
-    QEPWXInputDataManager = "QEPWXInputDataManager"
-    QENEBInputDataManager = "QENEBInputDataManager"
-    VASPInputDataManager = "VASPInputDataManager"
-    VASPNEBInputDataManager = "VASPNEBInputDataManager"
-    NWChemInputDataManager = "NWChemInputDataManager"
+    planewave_cutoff_data_manager = "PlanewaveCutoffDataManager"
+    k_grid_form_data_manager = "KGridFormDataManager"
+    q_grid_form_data_manager = "QGridFormDataManager"
+    i_grid_form_data_manager = "IGridFormDataManager"
+    q_path_form_data_manager = "QPathFormDataManager"
+    i_path_form_data_manager = "IPathFormDataManager"
+    k_path_form_data_manager = "KPathFormDataManager"
+    explicit_k_path_form_data_manager = "ExplicitKPathFormDataManager"
+    explicit_k_path2_piba_form_data_manager = "ExplicitKPath2PIBAFormDataManager"
+    hubbard_j_context_manager = "HubbardJContextManager"
+    hubbard_u_context_manager = "HubbardUContextManager"
+    hubbard_v_context_manager = "HubbardVContextManager"
+    hubbard_context_manager_legacy = "HubbardContextManagerLegacy"
+    neb_form_data_manager = "NEBFormDataManager"
+    boundary_conditions_form_data_manager = "BoundaryConditionsFormDataManager"
+    ml_settings_data_manager = "MLSettingsDataManager"
+    ml_train_test_split_data_manager = "MLTrainTestSplitDataManager"
+    ion_dynamics_context_provider = "IonDynamicsContextProvider"
+    collinear_magnetization_data_manager = "CollinearMagnetizationDataManager"
+    non_collinear_magnetization_data_manager = "NonCollinearMagnetizationDataManager"
+    qepwx_input_data_manager = "QEPWXInputDataManager"
+    qeneb_input_data_manager = "QENEBInputDataManager"
+    vasp_input_data_manager = "VASPInputDataManager"
+    vaspneb_input_data_manager = "VASPNEBInputDataManager"
+    nw_chem_input_data_manager = "NWChemInputDataManager"
 
 
 class ContextProviderSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     name: Name
     domain: Optional[str] = None
     """
     domain of the context provider
     """
-    entityName: Optional[str] = None
+    entity_name: Optional[str] = Field(None, alias="entityName")
     """
     entity name associated with the context provider
     """
@@ -55,11 +56,11 @@ class ContextProviderSchema(BaseModel):
     """
     data object for the context provider
     """
-    extraData: Optional[Dict[str, Any]] = None
+    extra_data: Optional[Dict[str, Any]] = Field(None, alias="extraData")
     """
     additional data object for the context provider
     """
-    isEdited: Optional[bool] = None
+    is_edited: Optional[bool] = Field(None, alias="isEdited")
     """
     flag indicating if the context provider has been edited
     """

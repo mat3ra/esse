@@ -4,15 +4,18 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VASPContextProviderSchema(BaseModel):
-    POSCAR: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    poscar: str = Field(..., alias="POSCAR")
     """
     POSCAR content for VASP including lattice, atom types, positions and constraints.
     """
-    POSCAR_WITH_CONSTRAINTS: str
+    poscar_with_constraints: str = Field(..., alias="POSCAR_WITH_CONSTRAINTS")
     """
     POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
     """

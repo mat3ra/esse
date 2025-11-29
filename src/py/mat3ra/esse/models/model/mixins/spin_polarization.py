@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SpinPolarization(Enum):
@@ -18,5 +18,6 @@ class SpinPolarization(Enum):
 class SpinPolarizationMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    spinPolarization: Optional[SpinPolarization] = None
+    spin_polarization: Optional[SpinPolarization] = Field(None, alias="spinPolarization")

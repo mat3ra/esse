@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class FileMetadata(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     pathname: Optional[str] = None
     """
     Relative path to the directory that contains the file.

@@ -6,28 +6,43 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Union
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class BasicNodeSchemaLinkedList(RootModel[Dict[str, Any]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Dict[str, Any] = Field(..., title="basic node schema (linked list)")
 
 
 class NamedNodeSchema(RootModel[Dict[str, Any]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Dict[str, Any] = Field(..., title="Named node schema")
 
 
 class NamedNodeInGroupSchema(RootModel[Dict[str, Any]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Dict[str, Any] = Field(..., title="Named node in group schema")
 
 
 class TypedNodeSchema(RootModel[Dict[str, Any]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Dict[str, Any] = Field(..., title="Typed node schema")
 
 
 class LinkedListSchema(
     RootModel[List[Union[BasicNodeSchemaLinkedList, NamedNodeSchema, NamedNodeInGroupSchema, TypedNodeSchema]]]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[Union[BasicNodeSchemaLinkedList, NamedNodeSchema, NamedNodeInGroupSchema, TypedNodeSchema]] = Field(
         ..., title="linked list schema"
     )

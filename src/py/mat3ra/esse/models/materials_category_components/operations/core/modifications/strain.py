@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
 class StrainSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     matrix: Optional[List[ArrayOf3NumberElementsSchema]] = Field(
         None, max_length=3, min_length=3, title="matrix 3x3 schema"
     )

@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, confloat
+from pydantic import BaseModel, ConfigDict, confloat
 
 
 class MLTrainTestSplitProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     fraction_held_as_test_set: Optional[confloat(ge=0.0, le=1.0)] = None

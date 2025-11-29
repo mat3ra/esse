@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class AtomicVectorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     """
     value of this entry
@@ -21,4 +24,7 @@ class AtomicVectorSchema(BaseModel):
 
 
 class AtomicVectorsSchema(RootModel[List[AtomicVectorSchema]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")

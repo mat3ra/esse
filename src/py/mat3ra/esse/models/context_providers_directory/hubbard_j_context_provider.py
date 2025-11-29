@@ -7,25 +7,31 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class Species(Enum):
-    U = "U"
-    J = "J"
-    B = "B"
-    E2 = "E2"
-    E3 = "E3"
+    u = "U"
+    j = "J"
+    b = "B"
+    e2 = "E2"
+    e3 = "E3"
 
 
 class HubbardJProviderSchemaItem(BaseModel):
-    paramType: Optional[Species] = Field(None, title="Species")
-    atomicSpecies: Optional[str] = Field(None, title="Species")
-    atomicOrbital: Optional[str] = Field(None, title="Orbital")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    param_type: Optional[Species] = Field(None, alias="paramType", title="Species")
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Species")
+    atomic_orbital: Optional[str] = Field(None, alias="atomicOrbital", title="Orbital")
     value: Optional[float] = Field(None, title="Value (eV)")
 
 
 class HubbardJProviderSchema(RootModel[List[HubbardJProviderSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[HubbardJProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.

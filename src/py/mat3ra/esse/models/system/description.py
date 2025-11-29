@@ -6,12 +6,15 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DescriptionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     description: Optional[str] = None
     """
     entity description
     """
-    descriptionObject: Optional[Dict[str, Any]] = None
+    description_object: Optional[Dict[str, Any]] = Field(None, alias="descriptionObject")

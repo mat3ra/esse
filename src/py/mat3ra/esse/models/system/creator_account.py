@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -25,4 +28,9 @@ class EntityReferenceSchema(BaseModel):
 
 
 class CreatorAccountSchema(BaseModel):
-    creatorAccount: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    creator_account: Optional[EntityReferenceSchema] = Field(
+        None, alias="creatorAccount", title="entity reference schema"
+    )

@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class DatabaseSourceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32

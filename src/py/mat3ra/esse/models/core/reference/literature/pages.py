@@ -6,9 +6,12 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None

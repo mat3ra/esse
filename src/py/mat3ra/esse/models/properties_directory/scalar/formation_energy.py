@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -15,20 +15,23 @@ class Name(Enum):
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class Units190(Enum):
-    eV_A_2 = "eV/A^2"
+    e_v_a_2 = "eV/A^2"
 
 
 class FormationEnergyPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Union[Units, Units190]
     value: float

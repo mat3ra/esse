@@ -45,6 +45,7 @@ class DiskIo(Enum):
 class ControlSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     calculation: Optional[Calculation] = "scf"
     """
@@ -206,10 +207,16 @@ class ExxdivTreatment(Enum):
 
 
 class HubbardOccItem(RootModel[conint(ge=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1)
 
 
 class HubbardOccItem1(RootModel[conint(ge=1, le=3)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1, le=3)
 
 
@@ -230,7 +237,7 @@ class AssumeIsolated(Enum):
     m_t = "m-t"
     mt = "mt"
     esm = "esm"
-    field_2D = "2D"
+    field_2_d = "2D"
 
 
 class EsmBc(Enum):
@@ -243,29 +250,30 @@ class EsmBc(Enum):
 class VdwCorr(Enum):
     none = "none"
     grimme_d2 = "grimme-d2"
-    Grimme_D2 = "Grimme-D2"
-    DFT_D = "DFT-D"
-    dft_d = "dft-d"
+    grimme_d2_1 = "Grimme-D2"
+    dft_d = "DFT-D"
+    dft_d_1 = "dft-d"
     grimme_d3 = "grimme-d3"
-    Grimme_D3 = "Grimme-D3"
-    DFT_D3 = "DFT-D3"
-    dft_d3 = "dft-d3"
-    TS = "TS"
-    ts = "ts"
+    grimme_d3_1 = "Grimme-D3"
+    dft_d3 = "DFT-D3"
+    dft_d3_1 = "dft-d3"
+    ts = "TS"
+    ts_1 = "ts"
     ts_vdw = "ts-vdw"
-    ts_vdW = "ts-vdW"
+    ts_vd_w = "ts-vdW"
     tkatchenko_scheffler = "tkatchenko-scheffler"
-    MBD = "MBD"
-    mbd = "mbd"
+    mbd = "MBD"
+    mbd_1 = "mbd"
     many_body_dispersion = "many-body-dispersion"
     mbd_vdw = "mbd_vdw"
-    XDM = "XDM"
-    xdm = "xdm"
+    xdm = "XDM"
+    xdm_1 = "xdm"
 
 
 class SystemSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ibrav: int
     nat: int
@@ -430,9 +438,9 @@ class SystemSchema(BaseModel):
     """
     Overlap threshold over which the exchange integral over a pair of localized orbitals is included in the evaluation of EXX operator. Any value greater than 0.0 triggers the SCDM localization and the evaluation on EXX using the localized orbitals. Very small value of the threshold should yield the same result as the default EXX evaluation
     """
-    Hubbard_occ: Optional[List[List[Union[HubbardOccItem, HubbardOccItem1, float]]]] = None
-    Hubbard_alpha: Optional[List[float]] = None
-    Hubbard_beta: Optional[List[float]] = None
+    hubbard_occ: Optional[List[List[Union[HubbardOccItem, HubbardOccItem1, float]]]] = Field(None, alias="Hubbard_occ")
+    hubbard_alpha: Optional[List[float]] = Field(None, alias="Hubbard_alpha")
+    hubbard_beta: Optional[List[float]] = Field(None, alias="Hubbard_beta")
     starting_ns_eigenvalue: Optional[List[List[List[float]]]] = None
     dmft: Optional[bool] = False
     """
@@ -624,16 +632,23 @@ class SystemSchema(BaseModel):
 
 
 class HubbardOccItem2(RootModel[conint(ge=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1)
 
 
 class HubbardOccItem3(RootModel[conint(ge=1, le=3)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1, le=3)
 
 
 class SystemSchema1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ibrav: int
     nat: int
@@ -798,9 +813,9 @@ class SystemSchema1(BaseModel):
     """
     Overlap threshold over which the exchange integral over a pair of localized orbitals is included in the evaluation of EXX operator. Any value greater than 0.0 triggers the SCDM localization and the evaluation on EXX using the localized orbitals. Very small value of the threshold should yield the same result as the default EXX evaluation
     """
-    Hubbard_occ: Optional[List[List[Union[HubbardOccItem2, HubbardOccItem3, float]]]] = None
-    Hubbard_alpha: Optional[List[float]] = None
-    Hubbard_beta: Optional[List[float]] = None
+    hubbard_occ: Optional[List[List[Union[HubbardOccItem2, HubbardOccItem3, float]]]] = Field(None, alias="Hubbard_occ")
+    hubbard_alpha: Optional[List[float]] = Field(None, alias="Hubbard_alpha")
+    hubbard_beta: Optional[List[float]] = Field(None, alias="Hubbard_beta")
     starting_ns_eigenvalue: Optional[List[List[List[float]]]] = None
     dmft: Optional[bool] = False
     """
@@ -988,18 +1003,18 @@ class SystemSchema1(BaseModel):
     """
     Number of activated external ionic force fields.
     """
-    A: Optional[float] = None
-    B: Optional[float] = None
-    C: Optional[float] = None
-    cosAB: Optional[float] = None
-    cosAC: Optional[float] = None
-    cosBC: Optional[float] = None
+    a: Optional[float] = Field(None, alias="A")
+    b: Optional[float] = Field(None, alias="B")
+    c: Optional[float] = Field(None, alias="C")
+    cos_ab: Optional[float] = Field(None, alias="cosAB")
+    cos_ac: Optional[float] = Field(None, alias="cosAC")
+    cos_bc: Optional[float] = Field(None, alias="cosBC")
 
 
 class MixingMode(Enum):
     plain = "plain"
-    TF = "TF"
-    local_TF = "local-TF"
+    tf = "TF"
+    local_tf = "local-TF"
 
 
 class Diagonalization(Enum):
@@ -1007,7 +1022,7 @@ class Diagonalization(Enum):
     cg = "cg"
     ppcg = "ppcg"
     paro = "paro"
-    ParO = "ParO"
+    par_o = "ParO"
     rmm_davidson = "rmm-davidson"
     rmm_paro = "rmm-paro"
 
@@ -1033,6 +1048,7 @@ class Startingwfc(Enum):
 class ElectronsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     electron_maxstep: Optional[int] = 100
     """
@@ -1151,8 +1167,8 @@ class WfcExtrapolation(Enum):
 class IonTemperature(Enum):
     rescaling = "rescaling"
     rescale_v = "rescale-v"
-    rescale_T = "rescale-T"
-    reduce_T = "reduce-T"
+    rescale_t = "rescale-T"
+    reduce_t = "reduce-T"
     berendsen = "berendsen"
     andersen = "andersen"
     svr = "svr"
@@ -1169,6 +1185,7 @@ class IonDynamics(Enum):
 class IonsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -1263,6 +1280,7 @@ class IonDynamics5(Enum):
 class IonsSchema5(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -1356,6 +1374,7 @@ class IonDynamics6(Enum):
 class IonsSchema6(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -1448,6 +1467,7 @@ class IonDynamics7(Enum):
 class IonsSchema7(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ion_positions: Optional[IonPositions] = "default"
     ion_velocities: Optional[IonVelocities] = "default"
@@ -1549,8 +1569,8 @@ class CellDofree(Enum):
     xyz = "xyz"
     shape = "shape"
     volume = "volume"
-    field_2Dxy = "2Dxy"
-    field_2Dshape = "2Dshape"
+    field_2_dxy = "2Dxy"
+    field_2_dshape = "2Dshape"
     epitaxial_ab = "epitaxial_ab"
     epitaxial_ac = "epitaxial_ac"
     epitaxial_bc = "epitaxial_bc"
@@ -1567,6 +1587,7 @@ class CellDynamics(Enum):
 class CellSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     press: Optional[float] = 0
     """
@@ -1603,6 +1624,7 @@ class CellDynamics3(Enum):
 class CellSchema3(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     press: Optional[float] = 0
     """
@@ -1633,16 +1655,17 @@ class CellSchema3(BaseModel):
 class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    mass_x: Optional[float] = Field(None, alias="Mass_X")
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    pseudo_pot_x: Optional[str] = Field(None, alias="PseudoPot_X")
     """
     PseudoPot_X
     """
@@ -1651,6 +1674,7 @@ class Value(BaseModel):
 class AtomicSpeciesSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     values: Optional[List[Value]] = None
 
@@ -1666,12 +1690,13 @@ class CardOption(Enum):
 class Value143(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom as specified in ATOMIC_SPECIES
     """
-    x: float
+    x_1: float = Field(..., alias="x")
     """
     atomic positions
     """
@@ -1691,6 +1716,7 @@ class Value143(BaseModel):
 class AtomicPositionsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption] = "alat"
     values: Optional[List[Value143]] = None
@@ -1710,6 +1736,7 @@ class CardOption5(Enum):
 class Value144(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nks: Optional[int] = None
     """
@@ -1724,6 +1751,7 @@ class Value144(BaseModel):
 class Values(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nk1: Optional[int] = None
     """
@@ -1754,6 +1782,7 @@ class Values(BaseModel):
 class KPointsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption5] = None
     values: Optional[Union[List[Value144], Values]] = None
@@ -1768,6 +1797,7 @@ class CardOption6(Enum):
 class Values8(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     v1: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
     v2: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
@@ -1777,6 +1807,7 @@ class Values8(BaseModel):
 class CellParametersSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption6] = None
     """
@@ -1794,14 +1825,15 @@ class CardOption7(Enum):
 
 
 class U(Enum):
-    U = "U"
+    u = "U"
 
 
 class Values9(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    U_1: Optional[U] = Field(None, alias="U")
+    u: Optional[U] = Field(None, alias="U")
     """
     string constant "U"; indicates the specs for the U parameter will be given
     """
@@ -1820,14 +1852,15 @@ class Values9(BaseModel):
 
 
 class J0(Enum):
-    J0 = "J0"
+    j0 = "J0"
 
 
 class Values10(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    J0_1: Optional[J0] = Field(None, alias="J0")
+    j0: Optional[J0] = Field(None, alias="J0")
     """
     string constant "J0"; indicates the specs for the J0 parameter will be given
     """
@@ -1846,18 +1879,19 @@ class Values10(BaseModel):
 
 
 class ParamType(Enum):
-    U = "U"
-    J = "J"
-    B = "B"
-    E2 = "E2"
-    E3 = "E3"
+    u = "U"
+    j = "J"
+    b = "B"
+    e2 = "E2"
+    e3 = "E3"
 
 
 class Value145(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    paramType: Optional[ParamType] = None
+    param_type: Optional[ParamType] = Field(None, alias="paramType")
     """
     character describing the type of Hubbard parameter allowed values: U, J and either B (for d-orbitals) or E2 and E3 (for f-orbitals)
     """
@@ -1869,7 +1903,7 @@ class Value145(BaseModel):
     """
     specs of the manifold (e.g., 3d, 2p...)
     """
-    paramValue: Optional[float] = None
+    param_value: Optional[float] = Field(None, alias="paramValue")
     """
     value of the J0 parameter (in eV)
     """
@@ -1878,8 +1912,9 @@ class Value145(BaseModel):
 class Values11(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    U_1: Optional[U] = Field(None, alias="U")
+    u: Optional[U] = Field(None, alias="U")
     """
     string constant "U"; indicates the specs for the U parameter will be given
     """
@@ -1900,8 +1935,9 @@ class Values11(BaseModel):
 class Values12(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    J0_1: Optional[J0] = Field(None, alias="J0")
+    j0: Optional[J0] = Field(None, alias="J0")
     """
     string constant "J0"; indicates the specs for the J0 parameter will be given
     """
@@ -1920,42 +1956,43 @@ class Values12(BaseModel):
 
 
 class V(Enum):
-    V = "V"
+    v = "V"
 
 
 class Values13(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    V_1: Optional[V] = Field(None, alias="V")
+    v: Optional[V] = Field(None, alias="V")
     """
     string constant "V"; indicates the specs for the V parameter will be given
     """
-    label_I_: Optional[str] = Field(None, alias="label(I)")
+    label_i_: Optional[str] = Field(None, alias="label(I)")
     """
     label of the atom I (as defined in ATOMIC_SPECIES)
     """
-    manifold_I_: Optional[str] = Field(None, alias="manifold(I)")
+    manifold_i_: Optional[str] = Field(None, alias="manifold(I)")
     """
     specs of the manifold for atom I (e.g., 3d, 2p...)
     """
-    label_J_: Optional[str] = Field(None, alias="label(J)")
+    label_j_: Optional[str] = Field(None, alias="label(J)")
     """
     label of the atom J (as defined in ATOMIC_SPECIES)
     """
-    manifold_J_: Optional[str] = Field(None, alias="manifold(J)")
+    manifold_j_: Optional[str] = Field(None, alias="manifold(J)")
     """
     specs of the manifold for atom J (e.g., 3d, 2p...)
     """
-    I: Optional[int] = None
+    i: Optional[int] = Field(None, alias="I")
     """
     index of the atom I
     """
-    J: Optional[int] = None
+    j: Optional[int] = Field(None, alias="J")
     """
     index of the atom J
     """
-    v_val_I_J_: Optional[float] = Field(None, alias="v_val(I,J)")
+    v_val_i_j_: Optional[float] = Field(None, alias="v_val(I,J)")
     """
     value of the V parameter for the atom pair I,J (in eV)
     """
@@ -1964,6 +2001,7 @@ class Values13(BaseModel):
 class HubbardSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption7] = None
     values: Optional[
@@ -1974,17 +2012,22 @@ class HubbardSchema(BaseModel):
 class PwxMainSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    field_CONTROL: Optional[ControlSchema] = Field(None, alias="&CONTROL", title="control schema")
-    field_SYSTEM: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, alias="&SYSTEM", title="system schema")
-    field_ELECTRONS: Optional[ElectronsSchema] = Field(None, alias="&ELECTRONS", title="electrons schema")
-    field_IONS: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = Field(None, alias="&IONS")
-    field_CELL: Optional[Union[CellSchema, CellSchema3]] = Field(None, alias="&CELL")
-    ATOMIC_SPECIES: Optional[AtomicSpeciesSchema] = Field(None, title="atomic species schema")
-    ATOMIC_POSITIONS: Optional[AtomicPositionsSchema] = Field(None, title="atomic positions schema")
+    field_control: Optional[ControlSchema] = Field(None, alias="&CONTROL", title="control schema")
+    field_system: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, alias="&SYSTEM", title="system schema")
+    field_electrons: Optional[ElectronsSchema] = Field(None, alias="&ELECTRONS", title="electrons schema")
+    field_ions: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = Field(None, alias="&IONS")
+    field_cell: Optional[Union[CellSchema, CellSchema3]] = Field(None, alias="&CELL")
+    atomic_species: Optional[AtomicSpeciesSchema] = Field(None, alias="ATOMIC_SPECIES", title="atomic species schema")
+    atomic_positions: Optional[AtomicPositionsSchema] = Field(
+        None, alias="ATOMIC_POSITIONS", title="atomic positions schema"
+    )
     """
     https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
     """
-    K_POINTS: Optional[KPointsSchema] = Field(None, title="k points schema")
-    CELL_PARAMETERS: Optional[CellParametersSchema] = Field(None, title="cell parameters schema")
-    HUBBARD: Optional[HubbardSchema] = Field(None, title="hubbard schema")
+    k_points: Optional[KPointsSchema] = Field(None, alias="K_POINTS", title="k points schema")
+    cell_parameters: Optional[CellParametersSchema] = Field(
+        None, alias="CELL_PARAMETERS", title="cell parameters schema"
+    )
+    hubbard: Optional[HubbardSchema] = Field(None, alias="HUBBARD", title="hubbard schema")

@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -15,6 +15,9 @@ class Name(Enum):
 
 
 class AtomicVectorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     """
     value of this entry
@@ -26,15 +29,18 @@ class AtomicVectorSchema(BaseModel):
 
 
 class Units(Enum):
-    eV_bohr = "eV/bohr"
-    eV_angstrom = "eV/angstrom"
-    Ry_a_u_ = "Ry/a.u."
+    e_v_bohr = "eV/bohr"
+    e_v_angstrom = "eV/angstrom"
+    ry_a_u_ = "Ry/a.u."
     newton = "newton"
     kg_m_s_2 = "kg*m/s^2"
-    eV_a_u_ = "eV/a.u."
+    e_v_a_u_ = "eV/a.u."
 
 
 class AtomicForcesPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
     units: Units

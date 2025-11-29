@@ -6,15 +6,21 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class PointsPathProviderSchemaItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     point: Optional[str] = None
     steps: Optional[int] = None
 
 
 class PointsPathProviderSchema(RootModel[List[PointsPathProviderSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[PointsPathProviderSchemaItem] = Field(..., min_length=1, title="Points Path Provider Schema")
     """
     Path in reciprocal space for band structure calculations.

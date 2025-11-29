@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class ArrayOf3IntegerElementsSchema(RootModel[List[int]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[int] = Field(..., title="array of 3 integer elements schema")
 
 
 class SupercellMatrix3DSchema(RootModel[Optional[List[ArrayOf3IntegerElementsSchema]]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Optional[List[ArrayOf3IntegerElementsSchema]] = Field(
         default_factory=lambda: [
             ArrayOf3IntegerElementsSchema.model_validate(v) for v in [[1, 0, 0], [0, 1, 0], [0, 0, 1]]

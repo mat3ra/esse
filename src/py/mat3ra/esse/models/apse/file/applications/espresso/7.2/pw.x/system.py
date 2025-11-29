@@ -47,10 +47,16 @@ class ExxdivTreatment(Enum):
 
 
 class HubbardOccItem(RootModel[conint(ge=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1)
 
 
 class HubbardOccItem5(RootModel[conint(ge=1, le=3)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1, le=3)
 
 
@@ -71,7 +77,7 @@ class AssumeIsolated(Enum):
     m_t = "m-t"
     mt = "mt"
     esm = "esm"
-    field_2D = "2D"
+    field_2_d = "2D"
 
 
 class EsmBc(Enum):
@@ -84,29 +90,30 @@ class EsmBc(Enum):
 class VdwCorr(Enum):
     none = "none"
     grimme_d2 = "grimme-d2"
-    Grimme_D2 = "Grimme-D2"
-    DFT_D = "DFT-D"
-    dft_d = "dft-d"
+    grimme_d2_1 = "Grimme-D2"
+    dft_d = "DFT-D"
+    dft_d_1 = "dft-d"
     grimme_d3 = "grimme-d3"
-    Grimme_D3 = "Grimme-D3"
-    DFT_D3 = "DFT-D3"
-    dft_d3 = "dft-d3"
-    TS = "TS"
-    ts = "ts"
+    grimme_d3_1 = "Grimme-D3"
+    dft_d3 = "DFT-D3"
+    dft_d3_1 = "dft-d3"
+    ts = "TS"
+    ts_1 = "ts"
     ts_vdw = "ts-vdw"
-    ts_vdW = "ts-vdW"
+    ts_vd_w = "ts-vdW"
     tkatchenko_scheffler = "tkatchenko-scheffler"
-    MBD = "MBD"
-    mbd = "mbd"
+    mbd = "MBD"
+    mbd_1 = "mbd"
     many_body_dispersion = "many-body-dispersion"
     mbd_vdw = "mbd_vdw"
-    XDM = "XDM"
-    xdm = "xdm"
+    xdm = "XDM"
+    xdm_1 = "xdm"
 
 
 class SystemSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ibrav: int
     nat: int
@@ -271,9 +278,9 @@ class SystemSchema(BaseModel):
     """
     Overlap threshold over which the exchange integral over a pair of localized orbitals is included in the evaluation of EXX operator. Any value greater than 0.0 triggers the SCDM localization and the evaluation on EXX using the localized orbitals. Very small value of the threshold should yield the same result as the default EXX evaluation
     """
-    Hubbard_occ: Optional[List[List[Union[HubbardOccItem, HubbardOccItem5, float]]]] = None
-    Hubbard_alpha: Optional[List[float]] = None
-    Hubbard_beta: Optional[List[float]] = None
+    hubbard_occ: Optional[List[List[Union[HubbardOccItem, HubbardOccItem5, float]]]] = Field(None, alias="Hubbard_occ")
+    hubbard_alpha: Optional[List[float]] = Field(None, alias="Hubbard_alpha")
+    hubbard_beta: Optional[List[float]] = Field(None, alias="Hubbard_beta")
     starting_ns_eigenvalue: Optional[List[List[List[float]]]] = None
     dmft: Optional[bool] = False
     """
@@ -465,16 +472,23 @@ class SystemSchema(BaseModel):
 
 
 class HubbardOccItem6(RootModel[conint(ge=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1)
 
 
 class HubbardOccItem7(RootModel[conint(ge=1, le=3)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1, le=3)
 
 
 class SystemSchema3(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     ibrav: int
     nat: int
@@ -639,9 +653,9 @@ class SystemSchema3(BaseModel):
     """
     Overlap threshold over which the exchange integral over a pair of localized orbitals is included in the evaluation of EXX operator. Any value greater than 0.0 triggers the SCDM localization and the evaluation on EXX using the localized orbitals. Very small value of the threshold should yield the same result as the default EXX evaluation
     """
-    Hubbard_occ: Optional[List[List[Union[HubbardOccItem6, HubbardOccItem7, float]]]] = None
-    Hubbard_alpha: Optional[List[float]] = None
-    Hubbard_beta: Optional[List[float]] = None
+    hubbard_occ: Optional[List[List[Union[HubbardOccItem6, HubbardOccItem7, float]]]] = Field(None, alias="Hubbard_occ")
+    hubbard_alpha: Optional[List[float]] = Field(None, alias="Hubbard_alpha")
+    hubbard_beta: Optional[List[float]] = Field(None, alias="Hubbard_beta")
     starting_ns_eigenvalue: Optional[List[List[List[float]]]] = None
     dmft: Optional[bool] = False
     """
@@ -829,13 +843,16 @@ class SystemSchema3(BaseModel):
     """
     Number of activated external ionic force fields.
     """
-    A: Optional[float] = None
-    B: Optional[float] = None
-    C: Optional[float] = None
-    cosAB: Optional[float] = None
-    cosAC: Optional[float] = None
-    cosBC: Optional[float] = None
+    a: Optional[float] = Field(None, alias="A")
+    b: Optional[float] = Field(None, alias="B")
+    c: Optional[float] = Field(None, alias="C")
+    cos_ab: Optional[float] = Field(None, alias="cosAB")
+    cos_ac: Optional[float] = Field(None, alias="cosAC")
+    cos_bc: Optional[float] = Field(None, alias="cosBC")
 
 
 class ESSE(RootModel[Union[SystemSchema, SystemSchema3]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[SystemSchema, SystemSchema3] = Field(..., title="system schema")

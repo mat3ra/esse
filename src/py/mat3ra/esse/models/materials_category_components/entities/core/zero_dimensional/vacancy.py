@@ -7,15 +7,18 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ChemicalElement(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class VacancySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     chemical_element: Optional[ChemicalElement] = "Vac"
     """
     Extra elements, used for convenience purposed

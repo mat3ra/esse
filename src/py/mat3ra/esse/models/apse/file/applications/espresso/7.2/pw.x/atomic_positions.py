@@ -21,12 +21,13 @@ class CardOption(Enum):
 class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    X: Optional[str] = None
+    x: Optional[str] = Field(None, alias="X")
     """
     label of the atom as specified in ATOMIC_SPECIES
     """
-    x: float
+    x_1: float = Field(..., alias="x")
     """
     atomic positions
     """
@@ -46,6 +47,7 @@ class Value(BaseModel):
 class AtomicPositionsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption] = "alat"
     values: Optional[List[Value]] = None

@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class AtomicDataStringProperties(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Optional[str] = None
     """
     String value specific to atomic data

@@ -10,6 +10,9 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -27,9 +30,10 @@ class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
+    template_id: Optional[str] = Field(None, alias="templateId")
+    template_name: Optional[str] = Field(None, alias="templateName")
     name: Optional[str] = None
     """
     name of the resulting input file, if different than template name
@@ -37,6 +41,9 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     input: Optional[
         List[
             Union[

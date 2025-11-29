@@ -6,19 +6,22 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class VASPNEBContextProviderSchema(BaseModel):
-    FIRST_IMAGE: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    first_image: str = Field(..., alias="FIRST_IMAGE")
     """
     POSCAR content with constraints for the first NEB image.
     """
-    LAST_IMAGE: str
+    last_image: str = Field(..., alias="LAST_IMAGE")
     """
     POSCAR content with constraints for the last NEB image.
     """
-    INTERMEDIATE_IMAGES: List[str]
+    intermediate_images: List[str] = Field(..., alias="INTERMEDIATE_IMAGES")
     """
     POSCAR contents with constraints for all intermediate NEB images.
     """

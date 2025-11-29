@@ -6,15 +6,18 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BaseWorkflowSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     properties: Optional[List[Union[str, Dict[str, Any]]]] = None
     """
     Array of characteristic properties calculated by this workflow (TODO: add enums)
     """
-    isUsingDataset: Optional[bool] = None
+    is_using_dataset: Optional[bool] = Field(None, alias="isUsingDataset")
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
     """
@@ -30,8 +33,8 @@ class BaseWorkflowSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -39,7 +42,7 @@ class BaseWorkflowSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """

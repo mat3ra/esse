@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class Name(Enum):
@@ -15,10 +15,13 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV = "eV"
+    e_v = "eV"
 
 
 class AtomicDataPerOrbitalPairNumeric(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: int
     """
     Site number or index in the lattice
@@ -27,16 +30,16 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
     """
     Site number or index in the lattice of second site
     """
-    atomicSpecies: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")
+    atomic_species: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$") = Field(..., alias="atomicSpecies")
     """
     Example: Co1, Mn
     """
-    atomicSpecies2: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")
+    atomic_species2: constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$") = Field(..., alias="atomicSpecies2")
     """
     Example: Co2, O
     """
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
-    orbitalName2: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")
+    orbital_name2: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName2")
     distance: Optional[float] = None
     """
     Distance between two sites in Bohr.
@@ -48,6 +51,9 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
 
 
 class HubbardVParametersPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Units
     values: List[AtomicDataPerOrbitalPairNumeric]

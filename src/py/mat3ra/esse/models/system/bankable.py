@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class BankableSchema(BaseModel):
-    exabyteId: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    exabyte_id: Optional[str] = Field(None, alias="exabyteId")
     """
     Identity of the corresponding bank entity
     """

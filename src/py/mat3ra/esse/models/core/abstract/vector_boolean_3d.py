@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class ESSE(RootModel[List[bool]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[bool] = Field(..., title="vector boolean 3d schema")

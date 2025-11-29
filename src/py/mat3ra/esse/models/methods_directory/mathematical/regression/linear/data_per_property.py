@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     coefficient: Optional[float] = None
     """
     coefficient in linear regression
@@ -25,11 +28,16 @@ class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseMode
 
 
 class LinearRegressionParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     intercept: float
     """
     intercept (shift) from the linear or non-linear fit of data points
     """
-    perFeature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema]
+    per_feature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema] = Field(
+        ..., alias="perFeature"
+    )
     """
     per-feature (property used for training the ML method/model) parameters
     """

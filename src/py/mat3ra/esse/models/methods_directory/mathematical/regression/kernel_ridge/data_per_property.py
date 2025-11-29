@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     coefficient: Optional[float] = None
     """
     coefficient in linear regression
@@ -25,15 +28,20 @@ class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseMode
 
 
 class KernelRidgeRegressionParametersSchema(BaseModel):
-    xFit: List
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_fit: List = Field(..., alias="xFit")
     """
     training data
     """
-    dualCoefficients: List
+    dual_coefficients: List = Field(..., alias="dualCoefficients")
     """
     dual coefficients
     """
-    perFeature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema]
+    per_feature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema] = Field(
+        ..., alias="perFeature"
+    )
     """
     per-feature (property used for training the ML method/model) parameters
     """

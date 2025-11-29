@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Union
 
-from pydantic import BaseModel, Field, RootModel, conint
+from pydantic import BaseModel, ConfigDict, Field, RootModel, conint
 
 
 class AtomicLabelSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry
@@ -21,6 +24,9 @@ class AtomicLabelSchema(BaseModel):
 
 
 class AtomicLabelsSchema(RootModel[List[AtomicLabelSchema]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[AtomicLabelSchema] = Field(..., title="atomic labels schema")
     """
     atomic labels schema

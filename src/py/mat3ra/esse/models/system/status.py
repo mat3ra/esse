@@ -6,15 +6,21 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class StatusTrackItem(BaseModel):
-    trackedAt: float
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    tracked_at: float = Field(..., alias="trackedAt")
     status: str
     repetition: Optional[float] = None
 
 
 class StatusSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     status: Optional[str] = None
-    statusTrack: Optional[List[StatusTrackItem]] = None
+    status_track: Optional[List[StatusTrackItem]] = Field(None, alias="statusTrack")

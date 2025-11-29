@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class MaterialConventionalSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     conventional: Optional[Dict[str, Any]] = None

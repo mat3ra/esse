@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class Coordinate3dSchema(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")

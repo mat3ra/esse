@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import Any
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class MaterialsDefinitions(RootModel[Any]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Any = Field(..., title="Materials Definitions")

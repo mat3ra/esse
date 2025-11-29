@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -21,6 +24,9 @@ class SlugifiedEntry(BaseModel):
 
 
 class ReusableCategoriesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tier1: Optional[Union[SlugifiedEntry, str]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -44,6 +50,9 @@ class ReusableCategoriesSchema(BaseModel):
 
 
 class CategorizedUnitMethod(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: Optional[ReusableCategoriesSchema] = Field(None, title="Reusable categories schema")
     """
     Used to categorize entities such as models and methods
@@ -71,6 +80,9 @@ class CategorizedUnitMethod(BaseModel):
 
 
 class CategorizedMethod(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: List[CategorizedUnitMethod]
     name: Optional[str] = None
     """

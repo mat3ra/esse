@@ -10,12 +10,16 @@ from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
 class NISTJARVISAtomsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     lattice_mat: Optional[List[ArrayOf3NumberElementsSchema]] = Field(None, max_length=3, min_length=3)
     """
@@ -44,6 +48,7 @@ class NISTJARVISAtomsSchema(BaseModel):
 class NISTJARVISDbEntrySchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     atoms: Optional[NISTJARVISAtomsSchema] = Field(None, title="NIST JARVIS Atoms schema")
     """

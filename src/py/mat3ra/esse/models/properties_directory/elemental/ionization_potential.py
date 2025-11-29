@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -14,16 +14,19 @@ class Name(Enum):
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class IonizationPotentialElementalPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Units
     value: float

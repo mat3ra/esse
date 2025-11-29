@@ -4,8 +4,11 @@
 
 from __future__ import annotations
 
-from pydantic import Field, RootModel, conint
+from pydantic import ConfigDict, Field, RootModel, conint
 
 
 class IntegerPositiveSingleDigit(RootModel[conint(ge=1, le=9)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1, le=9) = Field(..., title="integer positive single digit")

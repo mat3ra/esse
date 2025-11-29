@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class SupercellMatrix2DSchemaItem(RootModel[List[int]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[int]
 
 
 class SupercellMatrix2DSchema(RootModel[Optional[List[SupercellMatrix2DSchemaItem]]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Optional[List[SupercellMatrix2DSchemaItem]] = Field(
         default_factory=lambda: [SupercellMatrix2DSchemaItem.model_validate(v) for v in [[1, 0], [0, 1]]],
         max_length=2,

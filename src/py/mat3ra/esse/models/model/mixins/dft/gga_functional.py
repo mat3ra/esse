@@ -18,5 +18,6 @@ class Functional(Enum):
 class GGAFunctionalMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
     functional: Optional[Functional] = None

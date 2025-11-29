@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -25,12 +28,15 @@ class EntityReferenceSchema(BaseModel):
 
 
 class ExtendedJobSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     mode: Optional[str] = None
-    isExternal: Optional[bool] = None
+    is_external: Optional[bool] = Field(None, alias="isExternal")
     field_materials: Optional[List[EntityReferenceSchema]] = Field(None, alias="_materials")
-    field_materialsSet: Optional[EntityReferenceSchema] = Field(
+    field_materials_set: Optional[EntityReferenceSchema] = Field(
         None, alias="_materialsSet", title="entity reference schema"
     )
     purged: Optional[bool] = None
-    purgedAt: Optional[float] = None
+    purged_at: Optional[float] = Field(None, alias="purgedAt")
     dataset: Optional[Dict[str, Any]] = None

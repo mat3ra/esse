@@ -7,36 +7,39 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any
 
-from pydantic import RootModel
+from pydantic import ConfigDict, RootModel
 
 
 class ESSE(RootModel[Any]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Any
 
 
 class ContextProviderNameEnum(Enum):
-    PlanewaveCutoffDataManager = "PlanewaveCutoffDataManager"
-    KGridFormDataManager = "KGridFormDataManager"
-    QGridFormDataManager = "QGridFormDataManager"
-    IGridFormDataManager = "IGridFormDataManager"
-    QPathFormDataManager = "QPathFormDataManager"
-    IPathFormDataManager = "IPathFormDataManager"
-    KPathFormDataManager = "KPathFormDataManager"
-    ExplicitKPathFormDataManager = "ExplicitKPathFormDataManager"
-    ExplicitKPath2PIBAFormDataManager = "ExplicitKPath2PIBAFormDataManager"
-    HubbardJContextManager = "HubbardJContextManager"
-    HubbardUContextManager = "HubbardUContextManager"
-    HubbardVContextManager = "HubbardVContextManager"
-    HubbardContextManagerLegacy = "HubbardContextManagerLegacy"
-    NEBFormDataManager = "NEBFormDataManager"
-    BoundaryConditionsFormDataManager = "BoundaryConditionsFormDataManager"
-    MLSettingsDataManager = "MLSettingsDataManager"
-    MLTrainTestSplitDataManager = "MLTrainTestSplitDataManager"
-    IonDynamicsContextProvider = "IonDynamicsContextProvider"
-    CollinearMagnetizationDataManager = "CollinearMagnetizationDataManager"
-    NonCollinearMagnetizationDataManager = "NonCollinearMagnetizationDataManager"
-    QEPWXInputDataManager = "QEPWXInputDataManager"
-    QENEBInputDataManager = "QENEBInputDataManager"
-    VASPInputDataManager = "VASPInputDataManager"
-    VASPNEBInputDataManager = "VASPNEBInputDataManager"
-    NWChemInputDataManager = "NWChemInputDataManager"
+    planewave_cutoff_data_manager = "PlanewaveCutoffDataManager"
+    k_grid_form_data_manager = "KGridFormDataManager"
+    q_grid_form_data_manager = "QGridFormDataManager"
+    i_grid_form_data_manager = "IGridFormDataManager"
+    q_path_form_data_manager = "QPathFormDataManager"
+    i_path_form_data_manager = "IPathFormDataManager"
+    k_path_form_data_manager = "KPathFormDataManager"
+    explicit_k_path_form_data_manager = "ExplicitKPathFormDataManager"
+    explicit_k_path2_piba_form_data_manager = "ExplicitKPath2PIBAFormDataManager"
+    hubbard_j_context_manager = "HubbardJContextManager"
+    hubbard_u_context_manager = "HubbardUContextManager"
+    hubbard_v_context_manager = "HubbardVContextManager"
+    hubbard_context_manager_legacy = "HubbardContextManagerLegacy"
+    neb_form_data_manager = "NEBFormDataManager"
+    boundary_conditions_form_data_manager = "BoundaryConditionsFormDataManager"
+    ml_settings_data_manager = "MLSettingsDataManager"
+    ml_train_test_split_data_manager = "MLTrainTestSplitDataManager"
+    ion_dynamics_context_provider = "IonDynamicsContextProvider"
+    collinear_magnetization_data_manager = "CollinearMagnetizationDataManager"
+    non_collinear_magnetization_data_manager = "NonCollinearMagnetizationDataManager"
+    qepwx_input_data_manager = "QEPWXInputDataManager"
+    qeneb_input_data_manager = "QENEBInputDataManager"
+    vasp_input_data_manager = "VASPInputDataManager"
+    vaspneb_input_data_manager = "VASPNEBInputDataManager"
+    nw_chem_input_data_manager = "NWChemInputDataManager"

@@ -6,16 +6,19 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class AtomicDataPerOrbital(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Optional[int] = None
     """
     Site number or index in the lattice
     """
-    atomicSpecies: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = None
+    atomic_species: Optional[constr(pattern=r"^[a-zA-Z]{1,2}[\d+]?$")] = Field(None, alias="atomicSpecies")
     """
     Example: Co1, Mn
     """
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")

@@ -6,14 +6,20 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import Field, RootModel, conint
+from pydantic import ConfigDict, Field, RootModel, conint
 
 
 class CrystalRepetitionsSchemaItem(RootModel[conint(ge=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=1)
 
 
 class CrystalRepetitionsSchema(RootModel[Optional[List[CrystalRepetitionsSchemaItem]]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Optional[List[CrystalRepetitionsSchemaItem]] = Field(
         default_factory=lambda: [CrystalRepetitionsSchemaItem.model_validate(v) for v in [1, 1, 1]],
         max_length=3,

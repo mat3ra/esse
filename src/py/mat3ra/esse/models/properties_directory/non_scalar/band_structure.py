@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Label(Enum):
@@ -20,6 +20,9 @@ class Units(Enum):
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label
     """
     label of an axis object
@@ -35,16 +38,19 @@ class Label3(Enum):
 
 
 class Units16(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class AxisSchema6(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label3
     """
     label of an axis object
@@ -65,15 +71,18 @@ class SpinEnum(Enum):
 
 
 class BandStructurePropertySchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema6 = Field(..., title="axis schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema6 = Field(..., alias="yAxis", title="axis schema")
     name: Name
     spin: List[SpinEnum]
     """
     spin of each band
     """
-    xDataArray: List[Union[float, List[float]]]
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

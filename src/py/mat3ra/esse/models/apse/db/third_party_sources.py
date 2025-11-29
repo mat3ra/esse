@@ -6,15 +6,18 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Source(Enum):
-    MaterialsProject = "MaterialsProject"
-    MaterialsProjectLegacy = "MaterialsProjectLegacy"
-    ICSD = "ICSD"
+    materials_project = "MaterialsProject"
+    materials_project_legacy = "MaterialsProjectLegacy"
+    icsd = "ICSD"
     field_2dmatpedia = "2dmatpedia"
 
 
 class ThirdPartySources(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     source: Source

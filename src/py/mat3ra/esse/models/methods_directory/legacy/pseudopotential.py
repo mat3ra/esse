@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Literal, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Subtype(Enum):
@@ -18,6 +18,9 @@ class Subtype(Enum):
 
 
 class LegacyMethodPseudopotential(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Literal["pseudopotential"]
     """
     general type of this method, eg. `pseudopotential`

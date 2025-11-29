@@ -4,15 +4,18 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class ESSE(BaseModel):
-    jobId: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    job_id: str = Field(..., alias="jobId")
     """
     Job's identity
     """
-    unitId: str
+    unit_id: str = Field(..., alias="unitId")
     """
     Id of the unit that extracted the result
     """

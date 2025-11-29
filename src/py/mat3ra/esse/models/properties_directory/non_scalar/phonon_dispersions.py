@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Label(Enum):
@@ -20,6 +20,9 @@ class Units(Enum):
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label
     """
     label of an axis object
@@ -36,11 +39,14 @@ class Label25(Enum):
 
 class Units272(Enum):
     cm_1 = "cm-1"
-    THz = "THz"
-    meV = "meV"
+    t_hz = "THz"
+    me_v = "meV"
 
 
 class AxisSchema28(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label25
     """
     label of an axis object
@@ -56,11 +62,14 @@ class Name(Enum):
 
 
 class PhononBandStructurePropertySchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema28 = Field(..., title="axis schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema28 = Field(..., alias="yAxis", title="axis schema")
     name: Name
-    xDataArray: List[Union[float, List[float]]]
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

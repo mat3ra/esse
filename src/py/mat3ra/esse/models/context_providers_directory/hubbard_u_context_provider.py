@@ -6,16 +6,22 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class HubbardUProviderSchemaItem(BaseModel):
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
-    atomicOrbital: Optional[str] = Field(None, title="Atomic orbital")
-    hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Atomic species")
+    atomic_orbital: Optional[str] = Field(None, alias="atomicOrbital", title="Atomic orbital")
+    hubbard_u_value: Optional[float] = Field(None, alias="hubbardUValue", title="Hubbard U (eV)")
 
 
 class HubbardUProviderSchema(RootModel[List[HubbardUProviderSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[HubbardUProviderSchemaItem] = Field(..., title="Hubbard U Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.

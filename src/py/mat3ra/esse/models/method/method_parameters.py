@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional, Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class BasisSlug(Enum):
@@ -17,17 +17,23 @@ class BasisSlug(Enum):
 
 
 class MethodParameters(BaseModel):
-    basisSlug: Optional[BasisSlug] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug] = Field(None, alias="basisSlug")
 
 
 class BasisSlug3(Enum):
-    field_3_21G = "3-21G"
-    field_6_31G = "6-31G"
-    field_6_311G = "6-311G"
+    field_3_21_g = "3-21G"
+    field_6_31_g = "6-31G"
+    field_6_311_g = "6-311G"
 
 
 class MethodParameters1(BaseModel):
-    basisSlug: Optional[BasisSlug3] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug3] = Field(None, alias="basisSlug")
 
 
 class BasisSlug4(Enum):
@@ -41,8 +47,14 @@ class BasisSlug4(Enum):
 
 
 class MethodParameters2(BaseModel):
-    basisSlug: Optional[BasisSlug4] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    basis_slug: Optional[BasisSlug4] = Field(None, alias="basisSlug")
 
 
 class ESSE(RootModel[Union[MethodParameters, MethodParameters1, MethodParameters2]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[MethodParameters, MethodParameters1, MethodParameters2] = Field(..., title="MethodParameters")

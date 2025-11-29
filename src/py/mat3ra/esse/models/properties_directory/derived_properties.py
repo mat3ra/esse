@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat
 
 
 class Name(Enum):
@@ -19,6 +19,9 @@ class Units(Enum):
 
 
 class VolumeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units] = None
     value: float
@@ -33,6 +36,9 @@ class Units178(Enum):
 
 
 class DensitySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units178] = None
     value: float
@@ -43,6 +49,9 @@ class Units179(Enum):
 
 
 class ScalarSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units179] = None
     value: float
 
@@ -52,11 +61,14 @@ class Name455(Enum):
 
 
 class SymmetrySchema(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -72,6 +84,9 @@ class Name456(Enum):
 
 
 class ElementalRatio(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -85,6 +100,9 @@ class Name457(Enum):
 
 
 class PNorm(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -98,6 +116,9 @@ class Name458(Enum):
 
 
 class InChIRepresentationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -107,6 +128,9 @@ class Name459(Enum):
 
 
 class InChIKeyRepresentationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -124,6 +148,9 @@ class DerivedPropertiesSchema(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema,
         DensitySchema,
@@ -136,4 +163,7 @@ class DerivedPropertiesSchema(
 
 
 class DerivedPropertiesSchema55(RootModel[List[DerivedPropertiesSchema]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[DerivedPropertiesSchema] = Field(..., title="derived properties schema")

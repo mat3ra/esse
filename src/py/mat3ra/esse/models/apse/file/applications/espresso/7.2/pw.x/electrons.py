@@ -12,8 +12,8 @@ from pydantic import BaseModel, ConfigDict, Field
 
 class MixingMode(Enum):
     plain = "plain"
-    TF = "TF"
-    local_TF = "local-TF"
+    tf = "TF"
+    local_tf = "local-TF"
 
 
 class Diagonalization(Enum):
@@ -21,7 +21,7 @@ class Diagonalization(Enum):
     cg = "cg"
     ppcg = "ppcg"
     paro = "paro"
-    ParO = "ParO"
+    par_o = "ParO"
     rmm_davidson = "rmm-davidson"
     rmm_paro = "rmm-paro"
 
@@ -47,6 +47,7 @@ class Startingwfc(Enum):
 class ElectronsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     electron_maxstep: Optional[int] = 100
     """

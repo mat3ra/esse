@@ -7,14 +7,17 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Cls(Enum):
-    User = "User"
+    user = "User"
 
 
 class CreatorEntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     cls: Optional[Cls] = None
     """
     Creator class

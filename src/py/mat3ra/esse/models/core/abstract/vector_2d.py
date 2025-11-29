@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class Vector2dSchema(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float] = Field(..., max_length=2, min_length=2, title="vector 2d schema")

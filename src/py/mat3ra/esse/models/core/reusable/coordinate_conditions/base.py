@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class CoordinateShapeEnum(Enum):
@@ -18,4 +18,7 @@ class CoordinateShapeEnum(Enum):
 
 
 class CoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: CoordinateShapeEnum = Field(..., title="Coordinate Shape Enum")

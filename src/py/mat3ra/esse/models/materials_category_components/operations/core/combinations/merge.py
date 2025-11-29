@@ -7,16 +7,19 @@ from __future__ import annotations
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class MergeMethodsEnum(Enum):
-    ADD = "ADD"
-    REPLACE = "REPLACE"
-    YIELD = "YIELD"
+    add = "ADD"
+    replace = "REPLACE"
+    yield_ = "YIELD"
 
 
 class MergeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     merge_components: List
     merge_method: MergeMethodsEnum = Field(..., title="Merge Methods Enum")
     """

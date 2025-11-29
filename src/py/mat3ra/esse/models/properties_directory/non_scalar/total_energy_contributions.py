@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -15,6 +15,9 @@ class Name(Enum):
 
 
 class ScalarSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name] = None
     value: float
 
@@ -24,6 +27,9 @@ class Name744(Enum):
 
 
 class ScalarSchema97(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name744] = None
     value: float
 
@@ -33,6 +39,9 @@ class Name745(Enum):
 
 
 class ScalarSchema98(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name745] = None
     value: float
 
@@ -42,6 +51,9 @@ class Name746(Enum):
 
 
 class ScalarSchema99(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name746] = None
     value: float
 
@@ -51,6 +63,9 @@ class Name747(Enum):
 
 
 class ScalarSchema100(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name747] = None
     value: float
 
@@ -60,6 +75,9 @@ class Name748(Enum):
 
 
 class ScalarSchema101(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name748] = None
     value: float
 
@@ -69,6 +87,9 @@ class Name749(Enum):
 
 
 class ScalarSchema102(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name749] = None
     value: float
 
@@ -78,15 +99,21 @@ class Name750(Enum):
 
 
 class ScalarSchema103(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name750] = None
     value: float
 
 
 class Name751(Enum):
-    alphaZ = "alphaZ"
+    alpha_z = "alphaZ"
 
 
 class ScalarSchema104(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name751] = None
     value: float
 
@@ -96,6 +123,9 @@ class Name752(Enum):
 
 
 class ScalarSchema105(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name752] = None
     value: float
 
@@ -105,24 +135,33 @@ class Name753(Enum):
 
 
 class ScalarSchema106(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name753] = None
     value: float
 
 
 class Name754(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    paw_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
 class ScalarSchema107(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name754] = None
     value: float
 
 
 class Name755(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    paw_double_counting_correction_3 = "PAW_double-counting_correction_3"
 
 
 class ScalarSchema108(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name755] = None
     value: float
 
@@ -132,6 +171,9 @@ class Name756(Enum):
 
 
 class ScalarSchema109(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[Name756] = None
     value: float
 
@@ -141,17 +183,20 @@ class Name757(Enum):
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class TotalEnergyContributionsPropertySchema(BaseModel):
-    temperatureEntropy: Optional[ScalarSchema] = Field(None, title="scalar schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    temperature_entropy: Optional[ScalarSchema] = Field(None, alias="temperatureEntropy", title="scalar schema")
     """
     product of temperature and configurational entropy
     """
@@ -183,11 +228,11 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     """
     summation of interaction energies at long length scales due to coloumbic interactions
     """
-    alphaZ: Optional[ScalarSchema104] = Field(None, title="scalar schema")
+    alpha_z: Optional[ScalarSchema104] = Field(None, alias="alphaZ", title="scalar schema")
     """
     divergent electrostatic ion interaction in compensating electron gas
     """
-    atomicEnergy: Optional[ScalarSchema105] = Field(None, title="scalar schema")
+    atomic_energy: Optional[ScalarSchema105] = Field(None, alias="atomicEnergy", title="scalar schema")
     """
     kinetic energy of wavefunctions in the atomic limit
     """
@@ -195,15 +240,15 @@ class TotalEnergyContributionsPropertySchema(BaseModel):
     """
     sum of one electron energies of kinetic, electrostatic, and exchange correlation
     """
-    PAWDoubleCounting2: Optional[ScalarSchema107] = Field(None, title="scalar schema")
+    paw_double_counting2: Optional[ScalarSchema107] = Field(None, alias="PAWDoubleCounting2", title="scalar schema")
     """
     double counting correction 2
     """
-    PAWDoubleCounting3: Optional[ScalarSchema108] = Field(None, title="scalar schema")
+    paw_double_counting3: Optional[ScalarSchema108] = Field(None, alias="PAWDoubleCounting3", title="scalar schema")
     """
     double counting correction 3
     """
-    hartreeFock: Optional[ScalarSchema109] = Field(None, title="scalar schema")
+    hartree_fock: Optional[ScalarSchema109] = Field(None, alias="hartreeFock", title="scalar schema")
     """
     hartree-fock contribution
     """

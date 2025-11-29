@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Union
 
-from pydantic import BaseModel, conint
+from pydantic import BaseModel, ConfigDict, conint
 
 
 class AtomicLabelSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry

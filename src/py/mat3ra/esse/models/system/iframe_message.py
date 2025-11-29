@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Type(Enum):
@@ -22,6 +22,9 @@ class Action(Enum):
 
 
 class IframeMessageSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Type
     """
     The type of the message to distinguish the direction of the message.

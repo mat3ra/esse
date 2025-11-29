@@ -23,6 +23,9 @@ class Type(Enum):
 
 
 class ExchangeCorrelation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     approximation: Optional[str] = None
     """
     DFT approximation
@@ -38,10 +41,13 @@ class ExchangeCorrelation(BaseModel):
 
 
 class AtomicOrbitalSchema(BaseModel):
-    orbitalName: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = None
-    orbitalIndex: Optional[conint(ge=1)] = None
-    principalNumber: Optional[conint(ge=1, le=7)] = None
-    angularMomentum: Optional[conint(ge=0, le=3)] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    orbital_name: Optional[constr(pattern=r"^[1-7][sSpPdDfF]$")] = Field(None, alias="orbitalName")
+    orbital_index: Optional[conint(ge=1)] = Field(None, alias="orbitalIndex")
+    principal_number: Optional[conint(ge=1, le=7)] = Field(None, alias="principalNumber")
+    angular_momentum: Optional[conint(ge=0, le=3)] = Field(None, alias="angularMomentum")
     occupation: Optional[confloat(ge=0.0, le=14.0)] = None
     """
     Shell occupation
@@ -55,6 +61,7 @@ class Name(Enum):
 class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
@@ -67,6 +74,9 @@ class Cutoffs(BaseModel):
 
 
 class FileDataItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     element: str
     """
     chemical element
@@ -84,8 +94,8 @@ class FileDataItem(BaseModel):
     """
     explains the version of where this came from
     """
-    exchangeCorrelation: ExchangeCorrelation
-    valenceConfiguration: Optional[List[AtomicOrbitalSchema]] = None
+    exchange_correlation: ExchangeCorrelation = Field(..., alias="exchangeCorrelation")
+    valence_configuration: Optional[List[AtomicOrbitalSchema]] = Field(None, alias="valenceConfiguration")
     """
     contains pseudo orbital information, including orbital names and occupations
     """
@@ -112,6 +122,9 @@ class FileDataItem(BaseModel):
 
 
 class Source(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: str
     """
     Type of the material property's source.
@@ -120,6 +133,9 @@ class Source(BaseModel):
 
 
 class MetaPropertyHolderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     data: FileDataItem
     """
     container of the information, specific to each property
@@ -133,8 +149,8 @@ class MetaPropertyHolderSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """

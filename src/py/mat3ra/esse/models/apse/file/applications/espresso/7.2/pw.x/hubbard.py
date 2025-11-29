@@ -19,14 +19,15 @@ class CardOption(Enum):
 
 
 class U(Enum):
-    U = "U"
+    u = "U"
 
 
 class Values(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    U_1: Optional[U] = Field(None, alias="U")
+    u: Optional[U] = Field(None, alias="U")
     """
     string constant "U"; indicates the specs for the U parameter will be given
     """
@@ -45,14 +46,15 @@ class Values(BaseModel):
 
 
 class J0(Enum):
-    J0 = "J0"
+    j0 = "J0"
 
 
 class Values2(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    J0_1: Optional[J0] = Field(None, alias="J0")
+    j0: Optional[J0] = Field(None, alias="J0")
     """
     string constant "J0"; indicates the specs for the J0 parameter will be given
     """
@@ -71,18 +73,19 @@ class Values2(BaseModel):
 
 
 class ParamType(Enum):
-    U = "U"
-    J = "J"
-    B = "B"
-    E2 = "E2"
-    E3 = "E3"
+    u = "U"
+    j = "J"
+    b = "B"
+    e2 = "E2"
+    e3 = "E3"
 
 
 class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    paramType: Optional[ParamType] = None
+    param_type: Optional[ParamType] = Field(None, alias="paramType")
     """
     character describing the type of Hubbard parameter allowed values: U, J and either B (for d-orbitals) or E2 and E3 (for f-orbitals)
     """
@@ -94,7 +97,7 @@ class Value(BaseModel):
     """
     specs of the manifold (e.g., 3d, 2p...)
     """
-    paramValue: Optional[float] = None
+    param_value: Optional[float] = Field(None, alias="paramValue")
     """
     value of the J0 parameter (in eV)
     """
@@ -103,8 +106,9 @@ class Value(BaseModel):
 class Values3(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    U_1: Optional[U] = Field(None, alias="U")
+    u: Optional[U] = Field(None, alias="U")
     """
     string constant "U"; indicates the specs for the U parameter will be given
     """
@@ -125,8 +129,9 @@ class Values3(BaseModel):
 class Values4(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    J0_1: Optional[J0] = Field(None, alias="J0")
+    j0: Optional[J0] = Field(None, alias="J0")
     """
     string constant "J0"; indicates the specs for the J0 parameter will be given
     """
@@ -145,42 +150,43 @@ class Values4(BaseModel):
 
 
 class V(Enum):
-    V = "V"
+    v = "V"
 
 
 class Values5(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    V_1: Optional[V] = Field(None, alias="V")
+    v: Optional[V] = Field(None, alias="V")
     """
     string constant "V"; indicates the specs for the V parameter will be given
     """
-    label_I_: Optional[str] = Field(None, alias="label(I)")
+    label_i_: Optional[str] = Field(None, alias="label(I)")
     """
     label of the atom I (as defined in ATOMIC_SPECIES)
     """
-    manifold_I_: Optional[str] = Field(None, alias="manifold(I)")
+    manifold_i_: Optional[str] = Field(None, alias="manifold(I)")
     """
     specs of the manifold for atom I (e.g., 3d, 2p...)
     """
-    label_J_: Optional[str] = Field(None, alias="label(J)")
+    label_j_: Optional[str] = Field(None, alias="label(J)")
     """
     label of the atom J (as defined in ATOMIC_SPECIES)
     """
-    manifold_J_: Optional[str] = Field(None, alias="manifold(J)")
+    manifold_j_: Optional[str] = Field(None, alias="manifold(J)")
     """
     specs of the manifold for atom J (e.g., 3d, 2p...)
     """
-    I: Optional[int] = None
+    i: Optional[int] = Field(None, alias="I")
     """
     index of the atom I
     """
-    J: Optional[int] = None
+    j: Optional[int] = Field(None, alias="J")
     """
     index of the atom J
     """
-    v_val_I_J_: Optional[float] = Field(None, alias="v_val(I,J)")
+    v_val_i_j_: Optional[float] = Field(None, alias="v_val(I,J)")
     """
     value of the V parameter for the atom pair I,J (in eV)
     """
@@ -189,6 +195,7 @@ class Values5(BaseModel):
 class HubbardSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption] = None
     values: Optional[Union[List[Union[Values, Values2]], List[Value], List[Union[Values3, Values4, Values5]]]] = None

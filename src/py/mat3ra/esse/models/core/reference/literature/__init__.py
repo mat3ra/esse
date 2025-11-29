@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Type(Enum):
@@ -15,11 +15,17 @@ class Type(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -27,6 +33,9 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     doi: Optional[str] = None
     """

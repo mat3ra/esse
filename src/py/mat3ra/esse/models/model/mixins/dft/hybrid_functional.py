@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Functional(Enum):
@@ -16,4 +16,7 @@ class Functional(Enum):
 
 
 class HybridFunctionalMixin(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     functional: Optional[Functional] = None

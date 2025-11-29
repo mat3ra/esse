@@ -12,9 +12,10 @@ from pydantic import BaseModel, ConfigDict, Field
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
+    template_id: Optional[str] = Field(None, alias="templateId")
+    template_name: Optional[str] = Field(None, alias="templateName")
     name: Optional[str] = None
     """
     name of the resulting input file, if different than template name
@@ -22,6 +23,9 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -29,22 +33,25 @@ class NameResultSchema(BaseModel):
 
 
 class FlavorSchema(BaseModel):
-    executableId: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    executable_id: Optional[str] = Field(None, alias="executableId")
     """
     _id of the executable this flavor belongs to
     """
-    executableName: Optional[str] = None
+    executable_name: Optional[str] = Field(None, alias="executableName")
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    application_name: Optional[str] = Field(None, alias="applicationName")
     """
     name of the application this flavor belongs to
     """
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
+    supported_application_versions: Optional[List[str]] = Field(None, alias="supportedApplicationVersions")
     """
     list of application versions this flavor supports
     """
@@ -56,8 +63,8 @@ class FlavorSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -65,15 +72,15 @@ class FlavorSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """

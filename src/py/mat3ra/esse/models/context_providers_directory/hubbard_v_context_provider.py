@@ -6,20 +6,26 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class HubbardVProviderSchemaItem(BaseModel):
-    atomicSpecies: Optional[str] = Field(None, title="Species 1")
-    siteIndex: Optional[int] = Field(None, title="Site no 1")
-    atomicOrbital: Optional[str] = Field(None, title="Orbital 1")
-    atomicSpecies2: Optional[str] = Field(None, title="Species 2")
-    siteIndex2: Optional[int] = Field(None, title="Site no 2")
-    atomicOrbital2: Optional[str] = Field(None, title="Orbital 2")
-    hubbardVValue: Optional[float] = Field(None, title="V (eV)")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Species 1")
+    site_index: Optional[int] = Field(None, alias="siteIndex", title="Site no 1")
+    atomic_orbital: Optional[str] = Field(None, alias="atomicOrbital", title="Orbital 1")
+    atomic_species2: Optional[str] = Field(None, alias="atomicSpecies2", title="Species 2")
+    site_index2: Optional[int] = Field(None, alias="siteIndex2", title="Site no 2")
+    atomic_orbital2: Optional[str] = Field(None, alias="atomicOrbital2", title="Orbital 2")
+    hubbard_v_value: Optional[float] = Field(None, alias="hubbardVValue", title="V (eV)")
 
 
 class HubbardVProviderSchema(RootModel[List[HubbardVProviderSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[HubbardVProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Provider Schema")
     """
     Hubbard V parameters for DFT+U+V calculation.

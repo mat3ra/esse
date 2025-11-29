@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SchemaVersion(BaseModel):
-    schemaVersion: Optional[str] = "2022.8.16"
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """

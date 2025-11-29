@@ -7,18 +7,23 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class GridMetricType(Enum):
-    KPPRA = "KPPRA"
+    kppra = "KPPRA"
     spacing = "spacing"
 
 
 class PointsGridProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     dimensions: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    gridMetricType: Optional[GridMetricType] = None
-    gridMetricValue: Optional[float] = None
-    preferGridMetric: Optional[bool] = None
+    reciprocal_vector_ratios: Optional[List[float]] = Field(
+        None, alias="reciprocalVectorRatios", max_length=3, min_length=3
+    )
+    grid_metric_type: Optional[GridMetricType] = Field(None, alias="gridMetricType")
+    grid_metric_value: Optional[float] = Field(None, alias="gridMetricValue")
+    prefer_grid_metric: Optional[bool] = Field(None, alias="preferGridMetric")

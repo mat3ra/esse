@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -27,4 +30,7 @@ class EntityReferenceSchema(BaseModel):
 
 
 class SystemInSetSchema(BaseModel):
-    inSet: Optional[List[EntityReferenceSchema]] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    in_set: Optional[List[EntityReferenceSchema]] = Field(None, alias="inSet")

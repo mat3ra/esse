@@ -4,8 +4,11 @@
 
 from __future__ import annotations
 
-from pydantic import Field, RootModel, conint
+from pydantic import ConfigDict, Field, RootModel, conint
 
 
 class IntegerOneOrZero(RootModel[conint(ge=0, le=1)]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: conint(ge=0, le=1) = Field(..., title="integer one or zero")

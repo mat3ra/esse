@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Severity(Enum):
@@ -16,6 +16,9 @@ class Severity(Enum):
 
 
 class ConsistencyCheck(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     key: str
     """
     Key of the property of the entity on which the consistency check is performed in Mongo dot notation, e.g. 'basis.coordinates.1'

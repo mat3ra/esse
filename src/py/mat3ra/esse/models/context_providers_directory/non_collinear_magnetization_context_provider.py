@@ -7,18 +7,24 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class StartingMagnetizationItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     index: Optional[int] = Field(None, title="Index")
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
 
 
 class SpinAngle(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     index: Optional[int] = Field(None, title="Index")
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Atomic species")
     angle1: Optional[float] = Field(None, title="Angle1 (deg)")
     angle2: Optional[float] = Field(None, title="Angle2 (deg)")
 
@@ -32,25 +38,44 @@ class ConstrainType(Enum):
 
 
 class ConstrainedMagnetization(BaseModel):
-    constrainType: Optional[ConstrainType] = Field(None, title="Constrain type")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    constrain_type: Optional[ConstrainType] = Field(None, alias="constrainType", title="Constrain type")
     lambda_: Optional[float] = Field(None, alias="lambda", title="lambda")
 
 
 class FixedMagnetization(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     x: Optional[float] = Field(None, title="X-component")
     y: Optional[float] = Field(None, title="Y-component")
     z: Optional[float] = Field(None, title="Z-component")
 
 
 class NonCollinearMagnetizationProviderSchema(BaseModel):
-    isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
-    isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
-    isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
-    spinAngles: Optional[List[SpinAngle]] = None
-    isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
-    constrainedMagnetization: Optional[ConstrainedMagnetization] = None
-    isFixedMagnetization: Optional[bool] = Field(
-        None, title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
+    model_config = ConfigDict(
+        populate_by_name=True,
     )
-    fixedMagnetization: Optional[FixedMagnetization] = None
+    is_existing_charge_density: Optional[bool] = Field(
+        None, alias="isExistingChargeDensity", title="Use existing charge density"
+    )
+    is_starting_magnetization: Optional[bool] = Field(
+        None, alias="isStartingMagnetization", title="Set starting magnetization"
+    )
+    starting_magnetization: Optional[List[StartingMagnetizationItem]] = Field(None, alias="startingMagnetization")
+    is_arbitrary_spin_angle: Optional[bool] = Field(
+        None, alias="isArbitrarySpinAngle", title="Set arbitrary spin angle"
+    )
+    spin_angles: Optional[List[SpinAngle]] = Field(None, alias="spinAngles")
+    is_constrained_magnetization: Optional[bool] = Field(
+        None, alias="isConstrainedMagnetization", title="Set constrained magnetization"
+    )
+    constrained_magnetization: Optional[ConstrainedMagnetization] = Field(None, alias="constrainedMagnetization")
+    is_fixed_magnetization: Optional[bool] = Field(
+        None,
+        alias="isFixedMagnetization",
+        title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)",
+    )
+    fixed_magnetization: Optional[FixedMagnetization] = Field(None, alias="fixedMagnetization")

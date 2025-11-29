@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class AxisEnum(Enum):
@@ -17,6 +17,9 @@ class AxisEnum(Enum):
 
 
 class ObjectWithIdAndValueSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: float
     """
     value of this entry
@@ -28,6 +31,9 @@ class ObjectWithIdAndValueSchema(BaseModel):
 
 
 class StackSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     stack_components: List
     direction: AxisEnum = Field(..., title="Axis Enum")
     """

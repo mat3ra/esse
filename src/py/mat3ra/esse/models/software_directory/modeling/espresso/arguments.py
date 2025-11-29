@@ -12,6 +12,7 @@ from pydantic import BaseModel, ConfigDict, conint
 class QuantumEspressoArgumentsSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     nimage: Optional[conint(ge=1, le=100)] = 1
     """

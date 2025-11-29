@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class Field2DMillerIndicesSchema(RootModel[List[int]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[int] = Field(..., max_length=2, min_length=2, title="2D Miller Indices Schema")
     """
     The (u,v) Miller indices for the line direction

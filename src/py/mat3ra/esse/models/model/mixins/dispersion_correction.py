@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DispersionCorrection(Enum):
@@ -18,4 +18,7 @@ class DispersionCorrection(Enum):
 
 
 class DispersionCorrectionMixin(BaseModel):
-    dispersionCorrection: Optional[DispersionCorrection] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    dispersion_correction: Optional[DispersionCorrection] = Field(None, alias="dispersionCorrection")

@@ -7,17 +7,20 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class TimestampableEntitySchema(BaseModel):
-    createdAt: Optional[datetime] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    created_at: Optional[datetime] = Field(None, alias="createdAt")
     """
     entity creation time
     """
-    updatedAt: Optional[datetime] = None
+    updated_at: Optional[datetime] = Field(None, alias="updatedAt")
     """
     entity last modification time
     """
-    createdBy: Optional[str] = None
-    updatedBy: Optional[str] = None
+    created_by: Optional[str] = Field(None, alias="createdBy")
+    updated_by: Optional[str] = Field(None, alias="updatedBy")

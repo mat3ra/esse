@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field, constr
+from pydantic import BaseModel, ConfigDict, Field, constr
 
 
 class Label(Enum):
@@ -15,16 +15,19 @@ class Label(Enum):
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label
     """
     label of an axis object
@@ -44,6 +47,9 @@ class Units176(Enum):
 
 
 class AxisSchema10(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label7
     """
     label of an axis object
@@ -64,6 +70,9 @@ class Spin(Enum):
 
 
 class LegendItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     element: Optional[str] = None
     """
     chemical element
@@ -72,7 +81,7 @@ class LegendItem(BaseModel):
     """
     index inside sub-array of atoms of the same element type
     """
-    electronicState: Optional[constr(pattern=r"^([1-5]{1})?(s|p|d|f|g).*$")] = None
+    electronic_state: Optional[constr(pattern=r"^([1-5]{1})?(s|p|d|f|g).*$")] = Field(None, alias="electronicState")
     """
     electronic character and shell of PDOS, such as `1s` or `s`, or `total`
     """
@@ -83,12 +92,15 @@ class LegendItem(BaseModel):
 
 
 class DensityOfStatesPropertySchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema10 = Field(..., title="axis schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema10 = Field(..., alias="yAxis", title="axis schema")
     name: Name
     legend: List[LegendItem]
-    xDataArray: List[Union[float, List[float]]]
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

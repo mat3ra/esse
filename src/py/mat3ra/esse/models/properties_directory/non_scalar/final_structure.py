@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Name(Enum):
@@ -14,9 +14,12 @@ class Name(Enum):
 
 
 class FinalStructurePropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
-    isRelaxed: bool
-    materialId: str
+    is_relaxed: bool = Field(..., alias="isRelaxed")
+    material_id: str = Field(..., alias="materialId")
     """
     Material's identity
     """

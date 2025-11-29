@@ -7,131 +7,134 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, confloat, conint, constr
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint, constr
 
 
 class ChemicalElements(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class TerminationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     chemical_elements: Union[ChemicalElements, constr(pattern=r"^([A-Z][a-z]?[0-9]*)+$")] = Field(
         ..., title="Chemical Elements"
     )
@@ -145,132 +148,135 @@ class TerminationSchema(BaseModel):
 
 
 class Value(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value35(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value, Value35]
     """
     All elements, including extra elements
@@ -282,6 +288,9 @@ class AtomicElementSchema(BaseModel):
 
 
 class AtomicCoordinateSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     """
     value of this entry
@@ -298,6 +307,9 @@ class BasisUnitsEnum(Enum):
 
 
 class AtomicLabelSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Union[int, str, float], conint(ge=1, le=9)]
     """
     value of this entry
@@ -309,6 +321,9 @@ class AtomicLabelSchema(BaseModel):
 
 
 class BasisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -330,6 +345,9 @@ class LatticeVectorsUnitsEnum(Enum):
 
 
 class LatticeVectorsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -341,20 +359,20 @@ class LatticeVectorsSchema(BaseModel):
 
 
 class LatticeTypeEnum(Enum):
-    CUB = "CUB"
-    BCC = "BCC"
-    FCC = "FCC"
-    TET = "TET"
-    MCL = "MCL"
-    ORC = "ORC"
-    ORCC = "ORCC"
-    ORCF = "ORCF"
-    ORCI = "ORCI"
-    HEX = "HEX"
-    BCT = "BCT"
-    TRI = "TRI"
-    MCLC = "MCLC"
-    RHL = "RHL"
+    cub = "CUB"
+    bcc = "BCC"
+    fcc = "FCC"
+    tet = "TET"
+    mcl = "MCL"
+    orc = "ORC"
+    orcc = "ORCC"
+    orcf = "ORCF"
+    orci = "ORCI"
+    hex = "HEX"
+    bct = "BCT"
+    tri = "TRI"
+    mclc = "MCLC"
+    rhl = "RHL"
 
 
 class LatticeUnitsLengthEnum(Enum):
@@ -368,11 +386,17 @@ class LatticeUnitsAngleEnum(Enum):
 
 
 class LatticeUnitsSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -414,6 +438,9 @@ class Units(Enum):
 
 
 class VolumeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units] = None
     value: float
@@ -428,6 +455,9 @@ class Units49(Enum):
 
 
 class DensitySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units49] = None
     value: float
@@ -438,6 +468,9 @@ class Units50(Enum):
 
 
 class ScalarSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units50] = None
     value: float
 
@@ -447,11 +480,14 @@ class Name114(Enum):
 
 
 class SymmetrySchema(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -467,6 +503,9 @@ class Name115(Enum):
 
 
 class ElementalRatio(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -480,6 +519,9 @@ class Name116(Enum):
 
 
 class PNorm(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -493,6 +535,9 @@ class Name117(Enum):
 
 
 class InChIRepresentationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -502,6 +547,9 @@ class Name118(Enum):
 
 
 class InChIKeyRepresentationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -519,6 +567,9 @@ class DerivedPropertiesSchema(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema,
         DensitySchema,
@@ -531,13 +582,16 @@ class DerivedPropertiesSchema(
 
 
 class Source(Enum):
-    MaterialsProject = "MaterialsProject"
-    MaterialsProjectLegacy = "MaterialsProjectLegacy"
-    ICSD = "ICSD"
+    materials_project = "MaterialsProject"
+    materials_project_legacy = "MaterialsProjectLegacy"
+    icsd = "ICSD"
     field_2dmatpedia = "2dmatpedia"
 
 
 class DatabaseSourceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -565,6 +619,9 @@ class DatabaseSourceSchema(BaseModel):
 
 
 class FileSourceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     extension: Optional[str] = None
     """
     file extension
@@ -585,8 +642,8 @@ class FileSourceSchema(BaseModel):
 
 class Name119(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class Severity(Enum):
@@ -596,6 +653,9 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name119
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -615,17 +675,22 @@ class MaterialConsistencyCheckSchema(BaseModel):
 
 
 class CrystalSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema = Field(..., title="basis schema")
     lattice: LatticeSchema = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema] = Field(None, title="database source schema")
     """
     information about a database source
@@ -634,19 +699,19 @@ class CrystalSchema(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -655,8 +720,8 @@ class CrystalSchema(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -664,7 +729,7 @@ class CrystalSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -672,6 +737,9 @@ class CrystalSchema(BaseModel):
 
 
 class AtomicLayersUniqueRepeatedSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     termination_top: TerminationSchema = Field(..., title="Termination Schema")
     """
     Defines a specific termination of a slab
@@ -701,132 +769,135 @@ class AxisEnum(Enum):
 
 
 class Value36(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value37(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value36, Value37]
     """
     All elements, including extra elements
@@ -838,6 +909,9 @@ class AtomicElementSchema17(BaseModel):
 
 
 class BasisSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema17] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -854,6 +928,9 @@ class BasisSchema15(BaseModel):
 
 
 class LatticeVectorsSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -865,11 +942,17 @@ class LatticeVectorsSchema14(BaseModel):
 
 
 class LatticeUnitsSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -911,6 +994,9 @@ class Units51(Enum):
 
 
 class VolumeSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units51] = None
     value: float
@@ -925,6 +1011,9 @@ class Units52(Enum):
 
 
 class DensitySchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units52] = None
     value: float
@@ -935,6 +1024,9 @@ class Units53(Enum):
 
 
 class ScalarSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units53] = None
     value: float
 
@@ -944,11 +1036,14 @@ class Name122(Enum):
 
 
 class SymmetrySchema14(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -964,6 +1059,9 @@ class Name123(Enum):
 
 
 class ElementalRatio14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -977,6 +1075,9 @@ class Name124(Enum):
 
 
 class PNorm14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -990,6 +1091,9 @@ class Name125(Enum):
 
 
 class InChIRepresentationSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -999,6 +1103,9 @@ class Name126(Enum):
 
 
 class InChIKeyRepresentationSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -1016,6 +1123,9 @@ class DerivedPropertiesSchema14(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema14,
         DensitySchema14,
@@ -1028,6 +1138,9 @@ class DerivedPropertiesSchema14(
 
 
 class DatabaseSourceSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -1056,11 +1169,14 @@ class DatabaseSourceSchema14(BaseModel):
 
 class Name127(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name127
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -1080,17 +1196,22 @@ class MaterialConsistencyCheckSchema14(BaseModel):
 
 
 class CrystalSchema14(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema15 = Field(..., title="basis schema")
     lattice: LatticeSchema14 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema14]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema14]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema14] = Field(None, title="database source schema")
     """
     information about a database source
@@ -1099,19 +1220,19 @@ class CrystalSchema14(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema14]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema14]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1120,8 +1241,8 @@ class CrystalSchema14(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -1129,7 +1250,7 @@ class CrystalSchema14(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -1137,6 +1258,9 @@ class CrystalSchema14(BaseModel):
 
 
 class VacuumConfigurationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
@@ -1152,6 +1276,9 @@ class VacuumConfigurationSchema(BaseModel):
 
 
 class ObjectWithIdAndValueSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: float
     """
     value of this entry
@@ -1163,6 +1290,9 @@ class ObjectWithIdAndValueSchema(BaseModel):
 
 
 class SlabConfigurationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     stack_components: List[Union[AtomicLayersUniqueRepeatedSchema, VacuumConfigurationSchema]] = Field(
         ..., max_length=2, min_length=2
     )
@@ -1177,6 +1307,9 @@ class SlabConfigurationSchema(BaseModel):
 
 
 class TerminationSchema8(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     chemical_elements: Union[ChemicalElements, constr(pattern=r"^([A-Z][a-z]?[0-9]*)+$")] = Field(
         ..., title="Chemical Elements"
     )
@@ -1190,132 +1323,135 @@ class TerminationSchema8(BaseModel):
 
 
 class Value38(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value39(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value38, Value39]
     """
     All elements, including extra elements
@@ -1327,6 +1463,9 @@ class AtomicElementSchema18(BaseModel):
 
 
 class BasisSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema18] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -1343,6 +1482,9 @@ class BasisSchema16(BaseModel):
 
 
 class LatticeVectorsSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -1354,11 +1496,17 @@ class LatticeVectorsSchema15(BaseModel):
 
 
 class LatticeUnitsSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -1400,6 +1548,9 @@ class Units54(Enum):
 
 
 class VolumeSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units54] = None
     value: float
@@ -1414,6 +1565,9 @@ class Units55(Enum):
 
 
 class DensitySchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units55] = None
     value: float
@@ -1424,6 +1578,9 @@ class Units56(Enum):
 
 
 class ScalarSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units56] = None
     value: float
 
@@ -1433,11 +1590,14 @@ class Name130(Enum):
 
 
 class SymmetrySchema15(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -1453,6 +1613,9 @@ class Name131(Enum):
 
 
 class ElementalRatio15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -1466,6 +1629,9 @@ class Name132(Enum):
 
 
 class PNorm15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -1479,6 +1645,9 @@ class Name133(Enum):
 
 
 class InChIRepresentationSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -1488,6 +1657,9 @@ class Name134(Enum):
 
 
 class InChIKeyRepresentationSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -1505,6 +1677,9 @@ class DerivedPropertiesSchema15(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema15,
         DensitySchema15,
@@ -1517,6 +1692,9 @@ class DerivedPropertiesSchema15(
 
 
 class DatabaseSourceSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -1545,11 +1723,14 @@ class DatabaseSourceSchema15(BaseModel):
 
 class Name135(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name135
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -1569,17 +1750,22 @@ class MaterialConsistencyCheckSchema15(BaseModel):
 
 
 class CrystalSchema15(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema16 = Field(..., title="basis schema")
     lattice: LatticeSchema15 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema15]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema15]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema15] = Field(None, title="database source schema")
     """
     information about a database source
@@ -1588,19 +1774,19 @@ class CrystalSchema15(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema15]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema15]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1609,8 +1795,8 @@ class CrystalSchema15(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -1618,7 +1804,7 @@ class CrystalSchema15(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -1626,6 +1812,9 @@ class CrystalSchema15(BaseModel):
 
 
 class AtomicLayersUniqueRepeatedSchema6(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     termination_top: TerminationSchema8 = Field(..., title="Termination Schema")
     """
     Defines a specific termination of a slab
@@ -1649,132 +1838,135 @@ class AtomicLayersUniqueRepeatedSchema6(BaseModel):
 
 
 class Value40(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value41(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema19(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value40, Value41]
     """
     All elements, including extra elements
@@ -1786,6 +1978,9 @@ class AtomicElementSchema19(BaseModel):
 
 
 class BasisSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema19] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -1802,6 +1997,9 @@ class BasisSchema17(BaseModel):
 
 
 class LatticeVectorsSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -1813,11 +2011,17 @@ class LatticeVectorsSchema16(BaseModel):
 
 
 class LatticeUnitsSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -1859,6 +2063,9 @@ class Units57(Enum):
 
 
 class VolumeSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units57] = None
     value: float
@@ -1873,6 +2080,9 @@ class Units58(Enum):
 
 
 class DensitySchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units58] = None
     value: float
@@ -1883,6 +2093,9 @@ class Units59(Enum):
 
 
 class ScalarSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units59] = None
     value: float
 
@@ -1892,11 +2105,14 @@ class Name138(Enum):
 
 
 class SymmetrySchema16(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -1912,6 +2128,9 @@ class Name139(Enum):
 
 
 class ElementalRatio16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -1925,6 +2144,9 @@ class Name140(Enum):
 
 
 class PNorm16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -1938,6 +2160,9 @@ class Name141(Enum):
 
 
 class InChIRepresentationSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -1947,6 +2172,9 @@ class Name142(Enum):
 
 
 class InChIKeyRepresentationSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -1964,6 +2192,9 @@ class DerivedPropertiesSchema16(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema16,
         DensitySchema16,
@@ -1976,6 +2207,9 @@ class DerivedPropertiesSchema16(
 
 
 class DatabaseSourceSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -2004,11 +2238,14 @@ class DatabaseSourceSchema16(BaseModel):
 
 class Name143(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name143
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -2028,17 +2265,22 @@ class MaterialConsistencyCheckSchema16(BaseModel):
 
 
 class CrystalSchema16(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema17 = Field(..., title="basis schema")
     lattice: LatticeSchema16 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema16]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema16]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema16] = Field(None, title="database source schema")
     """
     information about a database source
@@ -2047,19 +2289,19 @@ class CrystalSchema16(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema16]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema16]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2068,8 +2310,8 @@ class CrystalSchema16(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -2077,7 +2319,7 @@ class CrystalSchema16(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -2085,6 +2327,9 @@ class CrystalSchema16(BaseModel):
 
 
 class VacuumConfigurationSchema6(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
@@ -2100,6 +2345,9 @@ class VacuumConfigurationSchema6(BaseModel):
 
 
 class SlabConfigurationSchema3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     stack_components: List[Union[AtomicLayersUniqueRepeatedSchema6, VacuumConfigurationSchema6]] = Field(
         ..., max_length=2, min_length=2
     )
@@ -2114,132 +2362,135 @@ class SlabConfigurationSchema3(BaseModel):
 
 
 class Value42(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value43(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema20(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value42, Value43]
     """
     All elements, including extra elements
@@ -2251,6 +2502,9 @@ class AtomicElementSchema20(BaseModel):
 
 
 class BasisSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema20] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -2267,6 +2521,9 @@ class BasisSchema18(BaseModel):
 
 
 class LatticeVectorsSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -2278,11 +2535,17 @@ class LatticeVectorsSchema17(BaseModel):
 
 
 class LatticeUnitsSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -2324,6 +2587,9 @@ class Units60(Enum):
 
 
 class VolumeSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units60] = None
     value: float
@@ -2338,6 +2604,9 @@ class Units61(Enum):
 
 
 class DensitySchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units61] = None
     value: float
@@ -2348,6 +2617,9 @@ class Units62(Enum):
 
 
 class ScalarSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units62] = None
     value: float
 
@@ -2357,11 +2629,14 @@ class Name146(Enum):
 
 
 class SymmetrySchema17(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -2377,6 +2652,9 @@ class Name147(Enum):
 
 
 class ElementalRatio17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -2390,6 +2668,9 @@ class Name148(Enum):
 
 
 class PNorm17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -2403,6 +2684,9 @@ class Name149(Enum):
 
 
 class InChIRepresentationSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -2412,6 +2696,9 @@ class Name150(Enum):
 
 
 class InChIKeyRepresentationSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -2429,6 +2716,9 @@ class DerivedPropertiesSchema17(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema17,
         DensitySchema17,
@@ -2441,6 +2731,9 @@ class DerivedPropertiesSchema17(
 
 
 class DatabaseSourceSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -2469,11 +2762,14 @@ class DatabaseSourceSchema17(BaseModel):
 
 class Name151(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name151
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -2493,17 +2789,22 @@ class MaterialConsistencyCheckSchema17(BaseModel):
 
 
 class CrystalSchema17(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema18 = Field(..., title="basis schema")
     lattice: LatticeSchema17 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema17]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema17]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema17] = Field(None, title="database source schema")
     """
     information about a database source
@@ -2512,19 +2813,19 @@ class CrystalSchema17(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema17]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema17]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2533,8 +2834,8 @@ class CrystalSchema17(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -2542,7 +2843,7 @@ class CrystalSchema17(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -2558,17 +2859,26 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class SphereCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
 
 
 class CylinderCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["cylinder"] = Field("cylinder", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
     min_z: float
@@ -2576,6 +2886,9 @@ class CylinderCoordinateConditionSchema(BaseModel):
 
 
 class TriangularPrismCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["triangular_prism"] = Field("triangular_prism", title="Coordinate Shape Enum")
     position_on_surface_1: List[float] = Field(
         ..., max_length=2, min_length=2, title="array of 2 number elements schema"
@@ -2591,12 +2904,18 @@ class TriangularPrismCoordinateConditionSchema(BaseModel):
 
 
 class PlaneCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["plane"] = Field("plane", title="Coordinate Shape Enum")
     plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class VoidRegionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     crystal: CrystalSchema17 = Field(..., title="Crystal Schema")
     """
     A crystal structure, referencing the base material schema
@@ -2614,12 +2933,15 @@ class VoidRegionSchema(BaseModel):
 
 
 class MergeMethodsEnum(Enum):
-    ADD = "ADD"
-    REPLACE = "REPLACE"
-    YIELD = "YIELD"
+    add = "ADD"
+    replace = "REPLACE"
+    yield_ = "YIELD"
 
 
 class MergeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     merge_components: List[Union[SlabConfigurationSchema3, VoidRegionSchema]] = Field(..., max_length=2, min_length=2)
     merge_method: Optional[MergeMethodsEnum] = Field("REPLACE", title="Merge Methods Enum")
     """
@@ -2628,132 +2950,135 @@ class MergeSchema(BaseModel):
 
 
 class Value44(Enum):
-    H = "H"
-    He = "He"
-    Li = "Li"
-    Be = "Be"
-    B = "B"
-    C = "C"
-    N = "N"
-    O = "O"
-    F = "F"
-    Ne = "Ne"
-    Na = "Na"
-    Mg = "Mg"
-    Al = "Al"
-    Si = "Si"
-    P = "P"
-    S = "S"
-    Cl = "Cl"
-    Ar = "Ar"
-    K = "K"
-    Ca = "Ca"
-    Sc = "Sc"
-    Ti = "Ti"
-    V = "V"
-    Cr = "Cr"
-    Mn = "Mn"
-    Fe = "Fe"
-    Co = "Co"
-    Ni = "Ni"
-    Cu = "Cu"
-    Zn = "Zn"
-    Ga = "Ga"
-    Ge = "Ge"
-    As = "As"
-    Se = "Se"
-    Br = "Br"
-    Kr = "Kr"
-    Rb = "Rb"
-    Sr = "Sr"
-    Y = "Y"
-    Zr = "Zr"
-    Nb = "Nb"
-    Mo = "Mo"
-    Tc = "Tc"
-    Ru = "Ru"
-    Rh = "Rh"
-    Pd = "Pd"
-    Ag = "Ag"
-    Cd = "Cd"
-    In = "In"
-    Sn = "Sn"
-    Sb = "Sb"
-    Te = "Te"
-    I = "I"
-    Xe = "Xe"
-    Cs = "Cs"
-    Ba = "Ba"
-    La = "La"
-    Ce = "Ce"
-    Pr = "Pr"
-    Nd = "Nd"
-    Pm = "Pm"
-    Sm = "Sm"
-    Eu = "Eu"
-    Gd = "Gd"
-    Tb = "Tb"
-    Dy = "Dy"
-    Ho = "Ho"
-    Er = "Er"
-    Tm = "Tm"
-    Yb = "Yb"
-    Lu = "Lu"
-    Hf = "Hf"
-    Ta = "Ta"
-    W = "W"
-    Re = "Re"
-    Os = "Os"
-    Ir = "Ir"
-    Pt = "Pt"
-    Au = "Au"
-    Hg = "Hg"
-    Tl = "Tl"
-    Pb = "Pb"
-    Bi = "Bi"
-    Po = "Po"
-    At = "At"
-    Rn = "Rn"
-    Fr = "Fr"
-    Ra = "Ra"
-    Ac = "Ac"
-    Th = "Th"
-    Pa = "Pa"
-    U = "U"
-    Np = "Np"
-    Pu = "Pu"
-    Am = "Am"
-    Cm = "Cm"
-    Bk = "Bk"
-    Cf = "Cf"
-    Es = "Es"
-    Fm = "Fm"
-    Md = "Md"
-    No = "No"
-    Lr = "Lr"
-    Rf = "Rf"
-    Db = "Db"
-    Sg = "Sg"
-    Bh = "Bh"
-    Hs = "Hs"
-    Mt = "Mt"
-    Ds = "Ds"
-    Rg = "Rg"
-    Cn = "Cn"
-    Nh = "Nh"
-    Fl = "Fl"
-    Mc = "Mc"
-    Lv = "Lv"
-    Ts = "Ts"
-    Og = "Og"
+    h = "H"
+    he = "He"
+    li = "Li"
+    be = "Be"
+    b = "B"
+    c = "C"
+    n = "N"
+    o = "O"
+    f = "F"
+    ne = "Ne"
+    na = "Na"
+    mg = "Mg"
+    al = "Al"
+    si = "Si"
+    p = "P"
+    s = "S"
+    cl = "Cl"
+    ar = "Ar"
+    k = "K"
+    ca = "Ca"
+    sc = "Sc"
+    ti = "Ti"
+    v = "V"
+    cr = "Cr"
+    mn = "Mn"
+    fe = "Fe"
+    co = "Co"
+    ni = "Ni"
+    cu = "Cu"
+    zn = "Zn"
+    ga = "Ga"
+    ge = "Ge"
+    as_ = "As"
+    se = "Se"
+    br = "Br"
+    kr = "Kr"
+    rb = "Rb"
+    sr = "Sr"
+    y = "Y"
+    zr = "Zr"
+    nb = "Nb"
+    mo = "Mo"
+    tc = "Tc"
+    ru = "Ru"
+    rh = "Rh"
+    pd = "Pd"
+    ag = "Ag"
+    cd = "Cd"
+    in_ = "In"
+    sn = "Sn"
+    sb = "Sb"
+    te = "Te"
+    i = "I"
+    xe = "Xe"
+    cs = "Cs"
+    ba = "Ba"
+    la = "La"
+    ce = "Ce"
+    pr = "Pr"
+    nd = "Nd"
+    pm = "Pm"
+    sm = "Sm"
+    eu = "Eu"
+    gd = "Gd"
+    tb = "Tb"
+    dy = "Dy"
+    ho = "Ho"
+    er = "Er"
+    tm = "Tm"
+    yb = "Yb"
+    lu = "Lu"
+    hf = "Hf"
+    ta = "Ta"
+    w = "W"
+    re = "Re"
+    os = "Os"
+    ir = "Ir"
+    pt = "Pt"
+    au = "Au"
+    hg = "Hg"
+    tl = "Tl"
+    pb = "Pb"
+    bi = "Bi"
+    po = "Po"
+    at = "At"
+    rn = "Rn"
+    fr = "Fr"
+    ra = "Ra"
+    ac = "Ac"
+    th = "Th"
+    pa = "Pa"
+    u = "U"
+    np = "Np"
+    pu = "Pu"
+    am = "Am"
+    cm = "Cm"
+    bk = "Bk"
+    cf = "Cf"
+    es = "Es"
+    fm = "Fm"
+    md = "Md"
+    no = "No"
+    lr = "Lr"
+    rf = "Rf"
+    db = "Db"
+    sg = "Sg"
+    bh = "Bh"
+    hs = "Hs"
+    mt = "Mt"
+    ds = "Ds"
+    rg = "Rg"
+    cn = "Cn"
+    nh = "Nh"
+    fl = "Fl"
+    mc = "Mc"
+    lv = "Lv"
+    ts = "Ts"
+    og = "Og"
 
 
 class Value45(Enum):
-    X = "X"
-    Vac = "Vac"
+    x = "X"
+    vac = "Vac"
 
 
 class AtomicElementSchema21(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Union[Value44, Value45]
     """
     All elements, including extra elements
@@ -2765,6 +3090,9 @@ class AtomicElementSchema21(BaseModel):
 
 
 class BasisSchema19(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     elements: List[AtomicElementSchema21] = Field(..., title="atomic elements schema")
     """
     atomic elements schema
@@ -2781,6 +3109,9 @@ class BasisSchema19(BaseModel):
 
 
 class LatticeVectorsSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     b: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
     c: List[float] = Field(..., max_length=3, min_length=3, title="vector 3d schema")
@@ -2792,11 +3123,17 @@ class LatticeVectorsSchema18(BaseModel):
 
 
 class LatticeUnitsSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     length: Optional[LatticeUnitsLengthEnum] = Field("angstrom", title="lattice units length enum")
     angle: Optional[LatticeUnitsAngleEnum] = Field("degree", title="lattice units angle enum")
 
 
 class LatticeSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     a: float
     """
     length of the first lattice vector
@@ -2838,6 +3175,9 @@ class Units63(Enum):
 
 
 class VolumeSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units63] = None
     value: float
@@ -2852,6 +3192,9 @@ class Units64(Enum):
 
 
 class DensitySchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     units: Optional[Units64] = None
     value: float
@@ -2862,6 +3205,9 @@ class Units65(Enum):
 
 
 class ScalarSchema19(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[Units65] = None
     value: float
 
@@ -2871,11 +3217,14 @@ class Name154(Enum):
 
 
 class SymmetrySchema18(BaseModel):
-    pointGroupSymbol: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    point_group_symbol: Optional[str] = Field(None, alias="pointGroupSymbol")
     """
     point group symbol in Schoenflies notation
     """
-    spaceGroupSymbol: Optional[str] = None
+    space_group_symbol: Optional[str] = Field(None, alias="spaceGroupSymbol")
     """
     space group symbol in Hermann–Mauguin notation
     """
@@ -2891,6 +3240,9 @@ class Name155(Enum):
 
 
 class ElementalRatio18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     value: confloat(ge=0.0, le=1.0)
     element: Optional[str] = None
@@ -2904,6 +3256,9 @@ class Name156(Enum):
 
 
 class PNorm18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     degree: Optional[int] = None
     """
@@ -2917,6 +3272,9 @@ class Name157(Enum):
 
 
 class InChIRepresentationSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -2926,6 +3284,9 @@ class Name158(Enum):
 
 
 class InChIKeyRepresentationSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     value: str
 
@@ -2943,6 +3304,9 @@ class DerivedPropertiesSchema18(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         VolumeSchema18,
         DensitySchema18,
@@ -2955,6 +3319,9 @@ class DerivedPropertiesSchema18(
 
 
 class DatabaseSourceSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     id: Union[str, float]
     """
     ID string for the materials uploaded from a third party source inside the third party source. For materialsproject.org an example ID is mp-32
@@ -2983,11 +3350,14 @@ class DatabaseSourceSchema18(BaseModel):
 
 class Name159(Enum):
     default = "default"
-    atomsTooClose = "atomsTooClose"
-    atomsOverlap = "atomsOverlap"
+    atoms_too_close = "atomsTooClose"
+    atoms_overlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name159
     """
     Name of the consistency check that is performed, which is listed in an enum.
@@ -3007,17 +3377,22 @@ class MaterialConsistencyCheckSchema18(BaseModel):
 
 
 class CrystalSchema18(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     formula: Optional[str] = None
     """
     reduced chemical formula
     """
-    unitCellFormula: Optional[str] = None
+    unit_cell_formula: Optional[str] = Field(None, alias="unitCellFormula")
     """
     chemical formula based on the number of atoms of each element in the supercell
     """
     basis: BasisSchema19 = Field(..., title="basis schema")
     lattice: LatticeSchema18 = Field(..., title="lattice schema")
-    derivedProperties: Optional[List[DerivedPropertiesSchema18]] = Field(None, title="derived properties schema")
+    derived_properties: Optional[List[DerivedPropertiesSchema18]] = Field(
+        None, alias="derivedProperties", title="derived properties schema"
+    )
     external: Optional[DatabaseSourceSchema18] = Field(None, title="database source schema")
     """
     information about a database source
@@ -3026,19 +3401,19 @@ class CrystalSchema18(BaseModel):
     """
     file source with the information inside
     """
-    scaledHash: Optional[str] = None
+    scaled_hash: Optional[str] = Field(None, alias="scaledHash")
     """
     Hash string for a scaled structure with lattice vector a set to 1 (eg. for materials under pressure).
     """
-    icsdId: Optional[int] = None
+    icsd_id: Optional[int] = Field(None, alias="icsdId")
     """
     Corresponding ICSD id of the material
     """
-    isNonPeriodic: Optional[bool] = None
+    is_non_periodic: Optional[bool] = Field(None, alias="isNonPeriodic")
     """
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
-    consistencyChecks: Optional[List[MaterialConsistencyCheckSchema18]] = None
+    consistency_checks: Optional[List[MaterialConsistencyCheckSchema18]] = Field(None, alias="consistencyChecks")
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -3047,8 +3422,8 @@ class CrystalSchema18(BaseModel):
     """
     entity slug
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    system_name: Optional[str] = Field(None, alias="systemName")
+    schema_version: Optional[str] = Field("2022.8.16", alias="schemaVersion")
     """
     entity's schema version. Used to distinct between different schemas.
     """
@@ -3056,7 +3431,7 @@ class CrystalSchema18(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """
@@ -3064,6 +3439,9 @@ class CrystalSchema18(BaseModel):
 
 
 class VacuumConfigurationSchema7(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     direction: AxisEnum = Field(..., title="Axis Enum")
     """
     Enum for axis types
@@ -3079,6 +3457,9 @@ class VacuumConfigurationSchema7(BaseModel):
 
 
 class TerraceDefectConfigurationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     stack_components: List[Union[SlabConfigurationSchema, MergeSchema, VacuumConfigurationSchema7]] = Field(
         ..., max_length=3, min_length=3
     )

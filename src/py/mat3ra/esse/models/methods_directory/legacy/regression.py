@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Type(Enum):
@@ -21,11 +21,14 @@ class Subtype(Enum):
 
 
 class RegressionPrecisionPerPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Optional[str] = None
     """
     property name in 'flattened' format
     """
-    trainingError: float
+    training_error: float = Field(..., alias="trainingError")
     """
     training error of the estimator
     """
@@ -36,10 +39,16 @@ class RegressionPrecisionPerPropertySchema(BaseModel):
 
 
 class RegressionPrecision(BaseModel):
-    perProperty: Optional[List[RegressionPrecisionPerPropertySchema]] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    per_property: Optional[List[RegressionPrecisionPerPropertySchema]] = Field(None, alias="perProperty")
 
 
 class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     coefficient: Optional[float] = None
     """
     coefficient in linear regression
@@ -55,33 +64,46 @@ class PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema(BaseMode
 
 
 class LinearRegressionParametersSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     intercept: float
     """
     intercept (shift) from the linear or non-linear fit of data points
     """
-    perFeature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema]
+    per_feature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema] = Field(
+        ..., alias="perFeature"
+    )
     """
     per-feature (property used for training the ML method/model) parameters
     """
 
 
 class KernelRidgeRegressionParametersSchema(BaseModel):
-    xFit: List
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_fit: List = Field(..., alias="xFit")
     """
     training data
     """
-    dualCoefficients: List
+    dual_coefficients: List = Field(..., alias="dualCoefficients")
     """
     dual coefficients
     """
-    perFeature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema]
+    per_feature: List[PerFeaturePropertyUsedForTrainingTheMLMethodModelParametersSchema] = Field(
+        ..., alias="perFeature"
+    )
     """
     per-feature (property used for training the ML method/model) parameters
     """
 
 
 class DataSet(BaseModel):
-    exabyteIds: List[str]
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    exabyte_ids: List[str] = Field(..., alias="exabyteIds")
     """
     array of exabyteIds for materials in dataset
     """
@@ -92,14 +114,22 @@ class DataSet(BaseModel):
 
 
 class RegressionData(BaseModel):
-    perProperty: Optional[List[Union[LinearRegressionParametersSchema, KernelRidgeRegressionParametersSchema]]] = None
-    dataSet: Optional[DataSet] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    per_property: Optional[List[Union[LinearRegressionParametersSchema, KernelRidgeRegressionParametersSchema]]] = (
+        Field(None, alias="perProperty")
+    )
+    data_set: Optional[DataSet] = Field(None, alias="dataSet")
     """
     dataset for ml
     """
 
 
 class LegacyMethodRegression(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Type
     """
     general type of this method, eg. `pseudopotential`

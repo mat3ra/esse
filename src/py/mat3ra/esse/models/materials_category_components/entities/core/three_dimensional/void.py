@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Literal, Union
 
-from pydantic import BaseModel, Field, confloat
+from pydantic import BaseModel, ConfigDict, Field, confloat
 
 
 class CoordinateShapeEnum(Enum):
@@ -19,17 +19,26 @@ class CoordinateShapeEnum(Enum):
 
 
 class BoxCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["box"] = Field("box", title="Coordinate Shape Enum")
     min_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     max_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class SphereCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["sphere"] = Field("sphere", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
 
 
 class CylinderCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["cylinder"] = Field("cylinder", title="Coordinate Shape Enum")
     radius: confloat(ge=0.0)
     min_z: float
@@ -37,6 +46,9 @@ class CylinderCoordinateConditionSchema(BaseModel):
 
 
 class TriangularPrismCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["triangular_prism"] = Field("triangular_prism", title="Coordinate Shape Enum")
     position_on_surface_1: List[float] = Field(
         ..., max_length=2, min_length=2, title="array of 2 number elements schema"
@@ -52,12 +64,18 @@ class TriangularPrismCoordinateConditionSchema(BaseModel):
 
 
 class PlaneCoordinateConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     shape: Literal["plane"] = Field("plane", title="Coordinate Shape Enum")
     plane_normal: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     plane_point_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
 
 
 class VoidSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     center_coordinate: List[float] = Field(..., max_length=3, min_length=3, title="coordinate 3d schema")
     shape: Union[
         BoxCoordinateConditionSchema,

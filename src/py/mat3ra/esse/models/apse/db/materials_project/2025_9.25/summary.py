@@ -7,10 +7,13 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class BuilderMeta(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     emmet_version: str
     """
     Version of emmet library used
@@ -42,6 +45,9 @@ class BuilderMeta(BaseModel):
 
 
 class Symmetry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     crystal_system: str
     """
     Crystal system classification
@@ -77,6 +83,9 @@ class Symmetry(BaseModel):
 
 
 class Origin(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     Origin name (e.g., structure, energy, magnetism)
@@ -92,10 +101,16 @@ class Origin(BaseModel):
 
 
 class MatrixItem(RootModel[List[float]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[float]
 
 
 class Lattice(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     """
     Lattice matrix
@@ -135,6 +150,9 @@ class Lattice(BaseModel):
 
 
 class Species(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     element: str
     """
     Chemical element
@@ -146,6 +164,9 @@ class Species(BaseModel):
 
 
 class Properties(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     magmom: Optional[float] = None
     """
     Magnetic moment
@@ -153,6 +174,9 @@ class Properties(BaseModel):
 
 
 class Site(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     species: List[Species]
     abc: List[float] = Field(..., max_length=3, min_length=3)
     """
@@ -170,6 +194,9 @@ class Site(BaseModel):
 
 
 class Structure(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     """
     Python module name
@@ -191,6 +218,9 @@ class Structure(BaseModel):
 
 
 class DecomposesToItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     material_id: str
     """
     Material ID of decomposition product
@@ -206,6 +236,9 @@ class DecomposesToItem(BaseModel):
 
 
 class Xa(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     edge: str
     """
     XAS edge type (K, L, M, etc.)
@@ -221,6 +254,9 @@ class Xa(BaseModel):
 
 
 class Lattice1(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -228,6 +264,9 @@ class Lattice1(BaseModel):
 
 
 class Kpoint(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice1
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -237,6 +276,9 @@ class Kpoint(BaseModel):
 
 
 class Cbm(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint
@@ -245,6 +287,9 @@ class Cbm(BaseModel):
 
 
 class Lattice2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -252,6 +297,9 @@ class Lattice2(BaseModel):
 
 
 class Kpoint1(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice2
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -261,6 +309,9 @@ class Kpoint1(BaseModel):
 
 
 class Vbm(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint1
@@ -269,6 +320,9 @@ class Vbm(BaseModel):
 
 
 class SetyawanCurtarolo(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[Cbm] = None
@@ -283,6 +337,9 @@ class SetyawanCurtarolo(BaseModel):
 
 
 class Lattice3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -290,6 +347,9 @@ class Lattice3(BaseModel):
 
 
 class Kpoint2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice3
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -299,6 +359,9 @@ class Kpoint2(BaseModel):
 
 
 class Cbm1(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint2
@@ -307,6 +370,9 @@ class Cbm1(BaseModel):
 
 
 class Lattice4(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -314,6 +380,9 @@ class Lattice4(BaseModel):
 
 
 class Kpoint3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice4
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -323,6 +392,9 @@ class Kpoint3(BaseModel):
 
 
 class Vbm1(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint3
@@ -331,6 +403,9 @@ class Vbm1(BaseModel):
 
 
 class Hinuma(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[Cbm1] = None
@@ -345,6 +420,9 @@ class Hinuma(BaseModel):
 
 
 class Lattice5(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -352,6 +430,9 @@ class Lattice5(BaseModel):
 
 
 class Kpoint4(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice5
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -361,6 +442,9 @@ class Kpoint4(BaseModel):
 
 
 class Cbm2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint4
@@ -369,6 +453,9 @@ class Cbm2(BaseModel):
 
 
 class Lattice6(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -376,6 +463,9 @@ class Lattice6(BaseModel):
 
 
 class Kpoint5(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice6
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -385,6 +475,9 @@ class Kpoint5(BaseModel):
 
 
 class Vbm2(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint5
@@ -393,6 +486,9 @@ class Vbm2(BaseModel):
 
 
 class LatimerMunro(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[Cbm2] = None
@@ -407,12 +503,18 @@ class LatimerMunro(BaseModel):
 
 
 class Bandstructure(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     setyawan_curtarolo: Optional[SetyawanCurtarolo] = None
     hinuma: Optional[Hinuma] = None
     latimer_munro: Optional[LatimerMunro] = None
 
 
 class Total(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[float] = None
@@ -422,6 +524,9 @@ class Total(BaseModel):
 
 
 class S(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[float] = None
@@ -431,6 +536,9 @@ class S(BaseModel):
 
 
 class P(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[float] = None
@@ -440,6 +548,9 @@ class P(BaseModel):
 
 
 class D(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[float] = None
@@ -449,6 +560,9 @@ class D(BaseModel):
 
 
 class Elemental(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     total: Optional[Dict[str, Total]] = None
     s: Optional[Dict[str, S]] = None
     p: Optional[Dict[str, P]] = None
@@ -456,12 +570,18 @@ class Elemental(BaseModel):
 
 
 class Orbital(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     s: Optional[Dict[str, S]] = None
     p: Optional[Dict[str, P]] = None
     d: Optional[Dict[str, D]] = None
 
 
 class Dos(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     total: Optional[Dict[str, Total]] = None
     elemental: Optional[Dict[str, Elemental]] = None
     orbital: Optional[Orbital] = None
@@ -472,6 +592,9 @@ class Dos(BaseModel):
 
 
 class BulkModulus(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     voigt: float
     """
     Voigt bulk modulus in GPa
@@ -487,6 +610,9 @@ class BulkModulus(BaseModel):
 
 
 class ShearModulus(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     voigt: float
     """
     Voigt shear modulus in GPa
@@ -502,6 +628,9 @@ class ShearModulus(BaseModel):
 
 
 class HasProps(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     materials: bool
     thermo: bool
     xas: bool
@@ -526,6 +655,9 @@ class HasProps(BaseModel):
 
 
 class DatabaseIDs(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     icsd: Optional[List[str]] = None
     """
     ICSD database identifiers
@@ -533,6 +665,9 @@ class DatabaseIDs(BaseModel):
 
 
 class MaterialsProjectSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     builder_meta: BuilderMeta
     nsites: int
     """
@@ -739,7 +874,7 @@ class MaterialsProjectSchema(BaseModel):
     """
     Maximum elastic constant
     """
-    weighted_surface_energy_EV_PER_ANG2: Optional[float] = None
+    weighted_surface_energy_ev_per_ang2: Optional[float] = Field(None, alias="weighted_surface_energy_EV_PER_ANG2")
     """
     Weighted surface energy in eV/Å²
     """
@@ -772,10 +907,13 @@ class MaterialsProjectSchema(BaseModel):
     """
     Whether this is a theoretical material
     """
-    database_IDs: DatabaseIDs
+    database_i_ds: DatabaseIDs = Field(..., alias="database_IDs")
 
 
 class Lattice7(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -783,6 +921,9 @@ class Lattice7(BaseModel):
 
 
 class Kpoint6(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice7
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -792,6 +933,9 @@ class Kpoint6(BaseModel):
 
 
 class Cbm3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint6
@@ -800,6 +944,9 @@ class Cbm3(BaseModel):
 
 
 class Lattice8(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -807,6 +954,9 @@ class Lattice8(BaseModel):
 
 
 class Kpoint7(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice8
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -816,6 +966,9 @@ class Kpoint7(BaseModel):
 
 
 class Vbm3(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint7
@@ -824,6 +977,9 @@ class Vbm3(BaseModel):
 
 
 class BandstructureData(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[Cbm3] = None
@@ -838,6 +994,9 @@ class BandstructureData(BaseModel):
 
 
 class Lattice9(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -845,6 +1004,9 @@ class Lattice9(BaseModel):
 
 
 class Kpoint8(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice9
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -854,6 +1016,9 @@ class Kpoint8(BaseModel):
 
 
 class BandExtrema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     band_index: Dict[str, List[float]]
     kpoint_index: List[float]
     kpoint: Kpoint8
@@ -862,6 +1027,9 @@ class BandExtrema(BaseModel):
 
 
 class Lattice10(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_module: str = Field(..., alias="@module")
     field_class: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
@@ -869,6 +1037,9 @@ class Lattice10(BaseModel):
 
 
 class Kpoint9(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     lattice: Lattice10
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
@@ -878,6 +1049,9 @@ class Kpoint9(BaseModel):
 
 
 class DosData(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     task_id: str
     band_gap: float
     cbm: Optional[float] = None

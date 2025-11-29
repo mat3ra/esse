@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from enum import Enum
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class Name(Enum):
@@ -14,15 +14,18 @@ class Name(Enum):
 
 
 class Units(Enum):
-    eV_bohr = "eV/bohr"
-    eV_angstrom = "eV/angstrom"
-    Ry_a_u_ = "Ry/a.u."
+    e_v_bohr = "eV/bohr"
+    e_v_angstrom = "eV/angstrom"
+    ry_a_u_ = "Ry/a.u."
     newton = "newton"
     kg_m_s_2 = "kg*m/s^2"
-    eV_a_u_ = "eV/a.u."
+    e_v_a_u_ = "eV/a.u."
 
 
 class TotalForcesPropertySchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     units: Units
     value: float

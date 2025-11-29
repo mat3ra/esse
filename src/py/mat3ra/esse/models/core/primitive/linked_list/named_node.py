@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NamedNodeSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     next: Optional[str] = None
     """
     Flowchart ID of next node
@@ -18,7 +21,7 @@ class NamedNodeSchema(BaseModel):
     """
     Whether node is head node or not
     """
-    flowchartId: str
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Unique flowchart ID of node
     """
@@ -29,7 +32,10 @@ class NamedNodeSchema(BaseModel):
 
 
 class FlowchartId(BaseModel):
-    flowchartId: str
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    flowchart_id: str = Field(..., alias="flowchartId")
     """
     Unique flowchart ID of node
     """

@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Spacegroup(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     symprec: Optional[float] = None
     source: Optional[str] = None
     symbol: Optional[str] = None
@@ -20,35 +23,38 @@ class Spacegroup(BaseModel):
 
 
 class Elasticity(BaseModel):
-    G_Reuss: Optional[float] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    g_reuss: Optional[float] = Field(None, alias="G_Reuss")
     """
     Reuss shear modulus in GPa
     """
-    G_VRH: Optional[float] = None
+    g_vrh: Optional[float] = Field(None, alias="G_VRH")
     """
     Voigt-Reuss-Hill shear modulus in GPa
     """
-    G_Voigt: Optional[float] = None
+    g_voigt: Optional[float] = Field(None, alias="G_Voigt")
     """
     Voigt shear modulus in GPa
     """
-    G_Voigt_Reuss_Hill: Optional[float] = None
+    g_voigt_reuss_hill: Optional[float] = Field(None, alias="G_Voigt_Reuss_Hill")
     """
     Voigt-Reuss-Hill shear modulus in GPa (alternative field)
     """
-    K_Reuss: Optional[float] = None
+    k_reuss: Optional[float] = Field(None, alias="K_Reuss")
     """
     Reuss bulk modulus in GPa
     """
-    K_VRH: Optional[float] = None
+    k_vrh: Optional[float] = Field(None, alias="K_VRH")
     """
     Voigt-Reuss-Hill bulk modulus in GPa
     """
-    K_Voigt: Optional[float] = None
+    k_voigt: Optional[float] = Field(None, alias="K_Voigt")
     """
     Voigt bulk modulus in GPa
     """
-    K_Voigt_Reuss_Hill: Optional[float] = None
+    k_voigt_reuss_hill: Optional[float] = Field(None, alias="K_Voigt_Reuss_Hill")
     """
     Voigt-Reuss-Hill bulk modulus in GPa (alternative field)
     """
@@ -91,6 +97,9 @@ class Elasticity(BaseModel):
 
 
 class MaterialsProjectLegacyMaterialSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     energy: float
     """
     Total energy

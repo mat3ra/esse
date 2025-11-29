@@ -4,47 +4,50 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NWChemTotalEnergyContextProviderSchema(BaseModel):
-    CHARGE: int
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    charge: int = Field(..., alias="CHARGE")
     """
     Total charge of the system.
     """
-    MULT: int
+    mult: int = Field(..., alias="MULT")
     """
     Spin multiplicity of the system.
     """
-    BASIS: str
+    basis: str = Field(..., alias="BASIS")
     """
     Basis set label used in the calculation (e.g., '6-31G').
     """
-    NAT: int
+    nat: int = Field(..., alias="NAT")
     """
     Number of atoms in the system.
     """
-    NTYP: int
+    ntyp: int = Field(..., alias="NTYP")
     """
     Number of unique atomic species in the system.
     """
-    ATOMIC_POSITIONS: str
+    atomic_positions: str = Field(..., alias="ATOMIC_POSITIONS")
     """
     Formatted text block with atomic positions including constraints.
     """
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
+    atomic_positions_without_constraints: str = Field(..., alias="ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS")
     """
     Formatted text block with atomic positions without constraints.
     """
-    ATOMIC_SPECIES: str
+    atomic_species: str = Field(..., alias="ATOMIC_SPECIES")
     """
     Formatted text block for atomic species, including element symbols and masses.
     """
-    FUNCTIONAL: str
+    functional: str = Field(..., alias="FUNCTIONAL")
     """
     Exchange-correlation functional identifier (e.g., 'B3LYP').
     """
-    CARTESIAN: bool
+    cartesian: bool = Field(..., alias="CARTESIAN")
     """
     Whether atomic positions are expressed in cartesian coordinates.
     """

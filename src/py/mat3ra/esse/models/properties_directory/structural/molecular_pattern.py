@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class Name(Enum):
@@ -15,7 +15,10 @@ class Name(Enum):
 
 
 class ObjectWithId(BaseModel):
-    isConnector: Optional[bool] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    is_connector: Optional[bool] = Field(None, alias="isConnector")
     """
     whether atom connects to atoms outside of functional group.
     """
@@ -26,12 +29,15 @@ class ObjectWithId(BaseModel):
 
 
 class FunctionalGroupPatternSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
     """
-    SMARTS: Optional[str] = None
+    smarts: Optional[str] = Field(None, alias="SMARTS")
     """
     SMARTS string for classification of FG; https://en.wikipedia.org/wiki/SMILES_arbitrary_target_specification
     """
@@ -42,12 +48,15 @@ class Name570(Enum):
 
 
 class RingPatternSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name570
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
     """
-    isAromatic: Optional[bool] = None
+    is_aromatic: Optional[bool] = Field(None, alias="isAromatic")
 
 
 class Name571(Enum):
@@ -55,6 +64,9 @@ class Name571(Enum):
 
 
 class SpecialBondPatternSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: Name571
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
@@ -65,6 +77,9 @@ class SpecialBondPatternSchema(BaseModel):
 class MolecularPatternSchema(
     RootModel[List[Union[FunctionalGroupPatternSchema, RingPatternSchema, SpecialBondPatternSchema]]]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[Union[FunctionalGroupPatternSchema, RingPatternSchema, SpecialBondPatternSchema]] = Field(
         ..., title="molecular pattern schema"
     )

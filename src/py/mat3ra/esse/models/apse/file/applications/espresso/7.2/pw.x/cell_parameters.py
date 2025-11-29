@@ -19,6 +19,7 @@ class CardOption(Enum):
 class Values(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     v1: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
     v2: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
@@ -28,6 +29,7 @@ class Values(BaseModel):
 class CellParametersSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
+        populate_by_name=True,
     )
     card_option: Optional[CardOption] = None
     """

@@ -4,10 +4,13 @@
 
 from __future__ import annotations
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class AtomicStringSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: str
     """
     value of this entry

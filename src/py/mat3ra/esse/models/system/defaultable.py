@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class DefaultableEntitySchema(BaseModel):
-    isDefault: Optional[bool] = False
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    is_default: Optional[bool] = Field(False, alias="isDefault")
     """
     Identifies that entity is defaultable
     """

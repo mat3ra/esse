@@ -8,6 +8,6 @@ from enum import Enum
 
 
 class MergeMethodsEnum(Enum):
-    ADD = "ADD"
-    REPLACE = "REPLACE"
-    YIELD = "YIELD"
+    add = "ADD"
+    replace = "REPLACE"
+    yield_ = "YIELD"

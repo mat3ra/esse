@@ -6,11 +6,14 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SoftRemovableEntitySchema(BaseModel):
-    removedAt: Optional[str] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    removed_at: Optional[str] = Field(None, alias="removedAt")
     """
     Timestamp of the moment when entity was removed
     """

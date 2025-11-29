@@ -6,16 +6,22 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class HubbardLegacyProviderSchemaItem(BaseModel):
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
-    atomicSpeciesIndex: Optional[int] = Field(None, title="Species index")
-    hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    atomic_species: Optional[str] = Field(None, alias="atomicSpecies", title="Atomic species")
+    atomic_species_index: Optional[int] = Field(None, alias="atomicSpeciesIndex", title="Species index")
+    hubbard_u_value: Optional[float] = Field(None, alias="hubbardUValue", title="Hubbard U (eV)")
 
 
 class HubbardLegacyProviderSchema(RootModel[List[HubbardLegacyProviderSchemaItem]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[HubbardLegacyProviderSchemaItem] = Field(..., min_length=1, title="Hubbard Legacy Provider Schema")
     """
     Hubbard parameters for DFT+U calculation.

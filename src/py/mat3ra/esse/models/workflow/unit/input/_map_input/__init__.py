@@ -6,12 +6,15 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class UnitMapInputSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     target: Optional[str] = None
     values: Optional[List[Union[float, str, Dict[str, Any]]]] = None
-    useValues: Optional[bool] = None
+    use_values: Optional[bool] = Field(None, alias="useValues")
     scope: Optional[str] = None
     name: Optional[str] = None

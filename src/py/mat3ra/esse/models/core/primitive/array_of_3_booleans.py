@@ -6,8 +6,11 @@ from __future__ import annotations
 
 from typing import List
 
-from pydantic import Field, RootModel
+from pydantic import ConfigDict, Field, RootModel
 
 
 class ArrayOf3BooleanElementsSchema(RootModel[List[bool]]):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: List[bool] = Field(..., max_length=3, min_length=3, title="array of 3 boolean elements schema")

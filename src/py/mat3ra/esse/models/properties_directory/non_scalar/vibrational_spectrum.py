@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Label(Enum):
@@ -17,11 +17,14 @@ class Label(Enum):
 
 class Units(Enum):
     cm_1 = "cm-1"
-    THz = "THz"
-    meV = "meV"
+    t_hz = "THz"
+    me_v = "meV"
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label
     """
     label of an axis object
@@ -33,9 +36,9 @@ class AxisSchema(BaseModel):
 
 
 class Label33(Enum):
-    Intensity = "Intensity"
-    Absorbance = "Absorbance"
-    Absorption_coefficient = "Absorption coefficient"
+    intensity = "Intensity"
+    absorbance = "Absorbance"
+    absorption_coefficient = "Absorption coefficient"
 
 
 class Units336(Enum):
@@ -46,6 +49,9 @@ class Units336(Enum):
 
 
 class AxisSchema36(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label33
     """
     label of an axis object
@@ -61,11 +67,14 @@ class Name(Enum):
 
 
 class VibrationalSpectrumPropertySchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema36 = Field(..., title="axis schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema36 = Field(..., alias="yAxis", title="axis schema")
     name: Name
-    xDataArray: List[Union[float, List[float]]]
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

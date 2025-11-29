@@ -7,10 +7,13 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SlugifiedEntry(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     descriptive human-readable name of entry
@@ -22,6 +25,9 @@ class SlugifiedEntry(BaseModel):
 
 
 class ReusableCategoriesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     tier1: Optional[Union[SlugifiedEntry, str]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
@@ -49,11 +55,17 @@ class Type(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -61,6 +73,9 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     doi: Optional[str] = None
     """
@@ -121,6 +136,9 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class ModelWithoutMethodSchemaBase(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     categories: ReusableCategoriesSchema = Field(..., title="Reusable categories schema")
     """
     Used to categorize entities such as models and methods

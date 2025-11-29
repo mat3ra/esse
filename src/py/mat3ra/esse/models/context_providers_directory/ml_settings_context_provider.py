@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 
 
 class ProblemCategory(Enum):
@@ -17,5 +17,8 @@ class ProblemCategory(Enum):
 
 
 class MLSettingsProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     target_column_name: Optional[str] = None
     problem_category: Optional[ProblemCategory] = None

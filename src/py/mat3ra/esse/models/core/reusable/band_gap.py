@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Type(Enum):
@@ -16,29 +16,36 @@ class Type(Enum):
 
 
 class Units(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
+    k_j_mol = "kJ/mol"
+    e_v = "eV"
+    j_mol = "J/mol"
     hartree = "hartree"
     cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
+    ry = "Ry"
+    e_v_atom = "eV/atom"
 
 
 class BandGapSchema(BaseModel):
-    kpointConduction: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    kpoint_conduction: Optional[List[float]] = Field(
+        None, alias="kpointConduction", max_length=3, min_length=3, title="kpoint schema"
+    )
     """
     A k-point is a point in reciprocal space of a crystal.
     """
-    kpointValence: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="kpoint schema")
+    kpoint_valence: Optional[List[float]] = Field(
+        None, alias="kpointValence", max_length=3, min_length=3, title="kpoint schema"
+    )
     """
     A k-point is a point in reciprocal space of a crystal.
     """
-    eigenvalueConduction: Optional[float] = None
+    eigenvalue_conduction: Optional[float] = Field(None, alias="eigenvalueConduction")
     """
     eigenvalue at k-point in conduction band
     """
-    eigenvalueValence: Optional[float] = None
+    eigenvalue_valence: Optional[float] = Field(None, alias="eigenvalueValence")
     """
     eigenvalue at k-point in valence band
     """

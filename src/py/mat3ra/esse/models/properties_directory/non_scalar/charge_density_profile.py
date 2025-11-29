@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Label(Enum):
@@ -15,6 +15,9 @@ class Label(Enum):
 
 
 class AxisSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label
     """
     label of an axis object
@@ -30,10 +33,13 @@ class Label5(Enum):
 
 
 class Units(Enum):
-    e_A = "e/A"
+    e_a = "e/A"
 
 
 class AxisSchema8(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     label: Label5
     """
     label of an axis object
@@ -49,11 +55,14 @@ class Name(Enum):
 
 
 class ChargeDensityProfilePropertySchema(BaseModel):
-    xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema8 = Field(..., title="axis schema")
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    x_axis: AxisSchema = Field(..., alias="xAxis", title="axis schema")
+    y_axis: AxisSchema8 = Field(..., alias="yAxis", title="axis schema")
     name: Name
-    xDataArray: List[Union[float, List[float]]]
+    x_data_array: List[Union[float, List[float]]] = Field(..., alias="xDataArray")
     """
     array containing values of x Axis
     """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+    y_data_series: List[List[float]] = Field(..., alias="yDataSeries", title="1 dimension data series schema")

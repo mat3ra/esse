@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel, constr
+from pydantic import BaseModel, ConfigDict, Field, RootModel, constr
 
 
 class Type(Enum):
@@ -15,6 +15,9 @@ class Type(Enum):
 
 
 class EntityReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     field_id: str = Field(..., alias="_id")
     """
     entity identity
@@ -30,6 +33,9 @@ class EntityReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type] = None
     title: constr(max_length=300)
     """
@@ -47,6 +53,9 @@ class Type69(Enum):
 
 
 class ExperimentAuthorSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     first: str
     middle: Optional[str] = None
     last: str
@@ -54,10 +63,16 @@ class ExperimentAuthorSchema(BaseModel):
 
 
 class ScalarItem(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     value: Optional[str] = None
 
 
 class ConditionSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     units: Optional[str] = None
     """
     condition unit
@@ -73,6 +88,9 @@ class ConditionSchema(BaseModel):
 
 
 class LocationSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     latitude: float
     """
     location latitude
@@ -88,11 +106,17 @@ class Type70(Enum):
 
 
 class PagesSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     start: str
     end: Optional[str] = None
 
 
 class LiteratureReferenceSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type70] = None
     doi: Optional[str] = None
     """
@@ -153,6 +177,9 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type69] = None
     authors: List[ExperimentAuthorSchema]
     """
@@ -183,6 +210,9 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
 
 
 class LiteratureReferenceSchema12(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     type: Optional[Type70] = None
     doi: Optional[str] = None
     """
@@ -251,6 +281,9 @@ class ESSE(
         ]
     ]
 ):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     root: Union[
         InfoForCharacteristicObtainedByExabyteCalculation,
         InfoForCharacteristicObtainedByExperiment,

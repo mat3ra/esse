@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,11 +20,14 @@ class NameResultSchema(BaseModel):
 
 
 class RuntimeItemsSchemaPrePostProcessorsMonitorsResults(BaseModel):
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    model_config = ConfigDict(
+        populate_by_name=True,
+    )
+    pre_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="preProcessors")
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    post_processors: Optional[List[Union[NameResultSchema, str]]] = Field(None, alias="postProcessors")
     """
     names of the post-processors for this calculation
     """

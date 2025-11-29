@@ -6,11 +6,12 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class SpinOrbitCouplingMixin(BaseModel):
     model_config = ConfigDict(
         extra="allow",
+        populate_by_name=True,
     )
-    spinOrbitCoupling: Optional[bool] = None
+    spin_orbit_coupling: Optional[bool] = Field(None, alias="spinOrbitCoupling")
