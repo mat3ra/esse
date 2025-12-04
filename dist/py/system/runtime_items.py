@@ -16,7 +16,7 @@ class RuntimeItemNameObjectSchema(BaseModel):
     """
 
 
-class RuntimeItemsNameObjectSchema(BaseModel):
+class RuntimeItemsSchema(BaseModel):
     preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation

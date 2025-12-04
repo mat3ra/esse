@@ -56530,7 +56530,7 @@ export interface RuntimeItemNameObjectSchema {
     name: string;
 }
 /** Schema dist/js/schema/system/runtime_items.json */
-export interface RuntimeItemsNameObjectSchema {
+export interface RuntimeItemsSchema {
     /**
      * names of the pre-processors for this calculation
      */
