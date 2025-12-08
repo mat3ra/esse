@@ -158,9 +158,7 @@
         "type": {
             "description": "type of the unit",
             "type": "string",
-            "enum": [
-                "assignment"
-            ]
+            "const": "assignment"
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
@@ -209,7 +207,8 @@
         },
         "operand": {
             "description": "Name of the global variable. e.g. 'x'",
-            "type": "string"
+            "type": "string",
+            "default": "X"
         },
         "value": {
             "description": "Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)",
@@ -223,7 +222,8 @@
                 {
                     "type": "number"
                 }
-            ]
+            ],
+            "default": "1"
         }
     }
 }

@@ -60727,6 +60727,7 @@ export interface ReduceUnitMixinSchema {
 /** Schema dist/js/schema/workflow/unit/mixins/subworkflow.json */
 export interface SubworkflowUnitMixinSchema {
     type?: "subworkflow";
+    name?: string;
 }
 /** Schema dist/js/schema/workflow/unit/processing.json */
 export interface ProcessingUnitSchema {

@@ -158,9 +158,7 @@
         "type": {
             "description": "type of the unit",
             "type": "string",
-            "enum": [
-                "map"
-            ]
+            "const": "map"
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
@@ -183,7 +181,8 @@
         },
         "workflowId": {
             "description": "Id of workflow to run inside map",
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "input": {
             "description": "Input information for map.",
@@ -194,19 +193,23 @@
             "properties": {
                 "target": {
                     "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
-                    "type": "string"
+                    "type": "string",
+                    "default": "MAP_DATA"
                 },
                 "scope": {
                     "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
-                    "type": "string"
+                    "type": "string",
+                    "default": "global"
                 },
                 "name": {
                     "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "values": {
                     "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "oneOf": [
                             {
@@ -222,7 +225,8 @@
                     }
                 },
                 "useValues": {
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
                 }
             }
         }

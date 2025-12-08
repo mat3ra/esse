@@ -5,9 +5,7 @@
     "type": "object",
     "properties": {
         "type": {
-            "enum": [
-                "processing"
-            ]
+            "const": "processing"
         },
         "operation": {
             "description": "Contains information about the operation used.",

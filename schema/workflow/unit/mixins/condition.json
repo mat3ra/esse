@@ -5,9 +5,7 @@
     "type": "object",
     "properties": {
         "type": {
-            "enum": [
-                "condition"
-            ]
+            "const": "condition"
         },
         "input": {
             "description": "Input information for condition.",
@@ -18,7 +16,8 @@
         },
         "statement": {
             "description": "Condition statement. e.g. 'abs(x-total_energy) < 1e-5'",
-            "type": "string"
+            "type": "string",
+            "default": "true"
         },
         "then": {
             "description": "Flowchart ID reference for `then` part of the condition.",
@@ -30,7 +29,8 @@
         },
         "maxOccurrences": {
             "description": "Maximum occurrence of the condition, usable for loops.",
-            "type": "integer"
+            "type": "integer",
+            "default": 100
         },
         "throwException": {
             "description": "Throw exception on reaching to maximum occurence.",

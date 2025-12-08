@@ -164,9 +164,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "io"
-                    ]
+                    "const": "io"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -192,7 +190,8 @@
                         "input",
                         "output",
                         "dataFrame"
-                    ]
+                    ],
+                    "default": "input"
                 },
                 "source": {
                     "enum": [
@@ -491,9 +490,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "reduce"
-                    ]
+                    "const": "reduce"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -516,7 +513,8 @@
                 },
                 "mapFlowchartId": {
                     "description": "corresponding map unit flowchart ID",
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "input": {
                     "description": "input information for reduce unit",
@@ -706,9 +704,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "condition"
-                    ]
+                    "const": "condition"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -754,7 +750,8 @@
                 },
                 "statement": {
                     "description": "Condition statement. e.g. 'abs(x-total_energy) < 1e-5'",
-                    "type": "string"
+                    "type": "string",
+                    "default": "true"
                 },
                 "then": {
                     "description": "Flowchart ID reference for `then` part of the condition.",
@@ -766,7 +763,8 @@
                 },
                 "maxOccurrences": {
                     "description": "Maximum occurrence of the condition, usable for loops.",
-                    "type": "integer"
+                    "type": "integer",
+                    "default": 100
                 },
                 "throwException": {
                     "description": "Throw exception on reaching to maximum occurence.",
@@ -932,9 +930,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "assertion"
-                    ]
+                    "const": "assertion"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -957,11 +953,13 @@
                 },
                 "statement": {
                     "type": "string",
-                    "description": "The statement to be evaluated"
+                    "description": "The statement to be evaluated",
+                    "default": "true"
                 },
                 "errorMessage": {
                     "type": "string",
-                    "description": "The error message to be displayed if the assertion fails"
+                    "description": "The error message to be displayed if the assertion fails",
+                    "default": "assertion failed"
                 }
             }
         },
@@ -1124,9 +1122,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "execution"
-                    ]
+                    "const": "execution"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -1651,9 +1647,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "assignment"
-                    ]
+                    "const": "assignment"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -1702,7 +1696,8 @@
                 },
                 "operand": {
                     "description": "Name of the global variable. e.g. 'x'",
-                    "type": "string"
+                    "type": "string",
+                    "default": "X"
                 },
                 "value": {
                     "description": "Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)",
@@ -1716,7 +1711,8 @@
                         {
                             "type": "number"
                         }
-                    ]
+                    ],
+                    "default": "1"
                 }
             }
         },
@@ -1880,9 +1876,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "processing"
-                    ]
+                    "const": "processing"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -2075,9 +2069,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "map"
-                    ]
+                    "const": "map"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",
@@ -2100,7 +2092,8 @@
                 },
                 "workflowId": {
                     "description": "Id of workflow to run inside map",
-                    "type": "string"
+                    "type": "string",
+                    "default": ""
                 },
                 "input": {
                     "description": "Input information for map.",
@@ -2111,19 +2104,23 @@
                     "properties": {
                         "target": {
                             "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
-                            "type": "string"
+                            "type": "string",
+                            "default": "MAP_DATA"
                         },
                         "scope": {
                             "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
-                            "type": "string"
+                            "type": "string",
+                            "default": "global"
                         },
                         "name": {
                             "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
-                            "type": "string"
+                            "type": "string",
+                            "default": ""
                         },
                         "values": {
                             "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
                             "type": "array",
+                            "default": [],
                             "items": {
                                 "oneOf": [
                                     {
@@ -2139,7 +2136,8 @@
                             }
                         },
                         "useValues": {
-                            "type": "boolean"
+                            "type": "boolean",
+                            "default": false
                         }
                     }
                 }
@@ -2178,7 +2176,8 @@
                 },
                 "name": {
                     "description": "entity name",
-                    "type": "string"
+                    "type": "string",
+                    "default": "New Subworkflow"
                 },
                 "isDefault": {
                     "description": "Identifies that entity is defaultable",
@@ -2302,9 +2301,7 @@
                 "type": {
                     "description": "type of the unit",
                     "type": "string",
-                    "enum": [
-                        "subworkflow"
-                    ]
+                    "const": "subworkflow"
                 },
                 "head": {
                     "description": "Whether this unit is the first one to be executed.",

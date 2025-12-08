@@ -9,13 +9,12 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "reduce"
-            ]
+            "const": "reduce"
         },
         "mapFlowchartId": {
             "description": "corresponding map unit flowchart ID",
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "input": {
             "description": "input information for reduce unit",

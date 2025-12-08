@@ -5,9 +5,11 @@
     "type": "object",
     "properties": {
         "type": {
-            "enum": [
-                "subworkflow"
-            ]
+            "const": "subworkflow"
+        },
+        "name": {
+            "type": "string",
+            "default": "New Subworkflow"
         }
     }
 }

@@ -158,9 +158,7 @@
         "type": {
             "description": "type of the unit",
             "type": "string",
-            "enum": [
-                "reduce"
-            ]
+            "const": "reduce"
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
@@ -183,7 +181,8 @@
         },
         "mapFlowchartId": {
             "description": "corresponding map unit flowchart ID",
-            "type": "string"
+            "type": "string",
+            "default": ""
         },
         "input": {
             "description": "input information for reduce unit",

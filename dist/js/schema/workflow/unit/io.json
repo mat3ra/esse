@@ -159,9 +159,7 @@
         "type": {
             "description": "type of the unit",
             "type": "string",
-            "enum": [
-                "io"
-            ]
+            "const": "io"
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",
@@ -187,7 +185,8 @@
                 "input",
                 "output",
                 "dataFrame"
-            ]
+            ],
+            "default": "input"
         },
         "source": {
             "enum": [

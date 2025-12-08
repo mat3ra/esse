@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -29,10 +29,6 @@ class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
-
-
-class Type(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -97,7 +93,7 @@ class ReduceUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["reduce"]
     """
     type of the unit
     """
@@ -118,7 +114,7 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    mapFlowchartId: str
+    mapFlowchartId: Optional[str] = ""
     """
     corresponding map unit flowchart ID
     """

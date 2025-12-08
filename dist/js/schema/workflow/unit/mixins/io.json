@@ -10,16 +10,15 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "io"
-            ]
+            "const": "io"
         },
         "subtype": {
             "enum": [
                 "input",
                 "output",
                 "dataFrame"
-            ]
+            ],
+            "default": "input"
         },
         "source": {
             "enum": [
