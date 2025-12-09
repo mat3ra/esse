@@ -1,5 +1,5 @@
 {
-    "$id": "context-providers-directory/ion-dynamics-provider",
+    "$id": "context-providers-directory/ion-dynamics-context-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Ion Dynamics Context Provider Schema",
     "description": "Important parameters for molecular dynamics calculation",
