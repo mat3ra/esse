@@ -1,0 +1,20 @@
+{
+    "$id": "context-providers-directory/ml-settings-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ML Settings Context Provider Schema",
+    "description": "Settings important to machine learning runs.",
+    "type": "object",
+    "properties": {
+        "target_column_name": {
+            "type": "string"
+        },
+        "problem_category": {
+            "type": "string",
+            "enum": [
+                "regression",
+                "classification",
+                "clustering"
+            ]
+        }
+    }
+}

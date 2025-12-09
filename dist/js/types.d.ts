@@ -2889,8 +2889,8 @@ export declare enum Name {
     VASPNEBInputDataManager = "VASPNEBInputDataManager",
     NWChemInputDataManager = "NWChemInputDataManager"
 }
-/** Schema dist/js/schema/context_providers_directory/boundary_conditions_provider.json */
-export interface BoundaryConditionsProviderSchema {
+/** Schema dist/js/schema/context_providers_directory/boundary_conditions_data_provider.json */
+export interface BoundaryConditionsDataProviderSchema {
     /**
      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
      */
@@ -3259,11 +3259,11 @@ export interface VASPNEBContextProviderSchema {
      */
     INTERMEDIATE_IMAGES: string[];
 }
-/** Schema dist/js/schema/context_providers_directory/collinear_magnetization_provider.json */
+/** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**
  * Set starting magnetization, can have values in the range [-1, +1].
  */
-export interface CollinearMagnetizationProviderSchema {
+export interface CollinearMagnetizationContextProviderSchema {
     startingMagnetization?: {
         atomicSpecies?: string;
         value?: number;
@@ -3306,13 +3306,13 @@ export declare enum ContextProviderNameEnum {
     VASPNEBInputDataManager = "VASPNEBInputDataManager",
     NWChemInputDataManager = "NWChemInputDataManager"
 }
-/** Schema dist/js/schema/context_providers_directory/hubbard_j_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_j_context_provider.json */
 /**
  * Hubbard parameters for DFT+U+J calculation.
  *
  * @minItems 1
  */
-export type HubbardJProviderSchema = [
+export type HubbardJContextProviderSchema = [
     {
         paramType?: "U" | "J" | "B" | "E2" | "E3";
         atomicSpecies?: string;
@@ -3326,13 +3326,13 @@ export type HubbardJProviderSchema = [
         value?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/hubbard_legacy_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_legacy_context_provider.json */
 /**
  * Hubbard parameters for DFT+U calculation.
  *
  * @minItems 1
  */
-export type HubbardLegacyProviderSchema = [
+export type HubbardLegacyContextProviderSchema = [
     {
         atomicSpecies?: string;
         atomicSpeciesIndex?: number;
@@ -3344,22 +3344,22 @@ export type HubbardLegacyProviderSchema = [
         hubbardUValue?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/hubbard_u_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_u_context_provider.json */
 /**
  * Hubbard U parameters for DFT+U or DFT+U+V calculation.
  */
-export type HubbardUProviderSchema = {
+export type HubbardUContextProviderSchema = {
     atomicSpecies?: string;
     atomicOrbital?: string;
     hubbardUValue?: number;
 }[];
-/** Schema dist/js/schema/context_providers_directory/hubbard_v_provider.json */
+/** Schema dist/js/schema/context_providers_directory/hubbard_v_context_provider.json */
 /**
  * Hubbard V parameters for DFT+U+V calculation.
  *
  * @minItems 1
  */
-export type HubbardVProviderSchema = [
+export type HubbardVContextProviderSchema = [
     {
         atomicSpecies?: string;
         siteIndex?: number;
@@ -3379,43 +3379,43 @@ export type HubbardVProviderSchema = [
         hubbardVValue?: number;
     }[]
 ];
-/** Schema dist/js/schema/context_providers_directory/ion_dynamics_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ion_dynamics_context_provider.json */
 /**
  * Important parameters for molecular dynamics calculation
  */
-export interface IonDynamicsProviderSchema {
+export interface IonDynamicsContextProviderSchema {
     numberOfSteps?: number;
     timeStep?: number;
     electronMass?: number;
     temperature?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/ml_settings_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ml_settings_context_provider.json */
 /**
  * Settings important to machine learning runs.
  */
-export interface MLSettingsProviderSchema {
+export interface MLSettingsContextProviderSchema {
     target_column_name?: string;
     problem_category?: "regression" | "classification" | "clustering";
 }
-/** Schema dist/js/schema/context_providers_directory/ml_train_test_split_provider.json */
+/** Schema dist/js/schema/context_providers_directory/ml_train_test_split_context_provider.json */
 /**
  * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
  */
-export interface MLTrainTestSplitProviderSchema {
+export interface MLTrainTestSplitContextProviderSchema {
     fraction_held_as_test_set?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/neb_provider.json */
+/** Schema dist/js/schema/context_providers_directory/neb_data_provider.json */
 /**
  * Number of intermediate NEB images.
  */
-export interface NEBProviderSchema {
+export interface NEBDataProviderSchema {
     nImages?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/non_collinear_magnetization_provider.json */
+/** Schema dist/js/schema/context_providers_directory/non_collinear_magnetization_context_provider.json */
 /**
  * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
  */
-export interface NonCollinearMagnetizationProviderSchema {
+export interface NonCollinearMagnetizationContextProviderSchema {
     isExistingChargeDensity?: boolean;
     isStartingMagnetization?: boolean;
     startingMagnetization?: {
@@ -3442,19 +3442,19 @@ export interface NonCollinearMagnetizationProviderSchema {
         z?: number;
     };
 }
-/** Schema dist/js/schema/context_providers_directory/planewave_cutoffs_provider.json */
+/** Schema dist/js/schema/context_providers_directory/planewave_cutoffs_context_provider.json */
 /**
  * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
  */
-export interface PlanewaveCutoffsProviderSchema {
+export interface PlanewaveCutoffsContextProviderSchema {
     wavefunction?: number;
     density?: number;
 }
-/** Schema dist/js/schema/context_providers_directory/points_grid_provider.json */
+/** Schema dist/js/schema/context_providers_directory/points_grid_data_provider.json */
 /**
  * 3D grid with shifts for k-point or q-point sampling.
  */
-export interface PointsGridProviderSchema {
+export interface PointsGridDataProviderSchema {
     /**
      * @minItems 3
      * @maxItems 3
@@ -3474,13 +3474,13 @@ export interface PointsGridProviderSchema {
     gridMetricValue?: number;
     preferGridMetric?: boolean;
 }
-/** Schema dist/js/schema/context_providers_directory/points_path_provider.json */
+/** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
 /**
  * Path in reciprocal space for band structure calculations.
  *
  * @minItems 1
  */
-export type PointsPathProviderSchema = [
+export type PointsPathDataProviderSchema = [
     {
         point?: string;
         steps?: number;
