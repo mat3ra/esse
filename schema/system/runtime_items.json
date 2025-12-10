@@ -9,34 +9,32 @@
             "type": "array",
             "items": {
                 "$ref": "runtime_item.json"
-            }
+            },
+            "default": []
         },
         "postProcessors": {
             "description": "names of the post-processors for this calculation",
             "type": "array",
             "items": {
                 "$ref": "runtime_item.json"
-            }
+            },
+            "default": []
         },
         "monitors": {
             "description": "names of the monitors for this calculation",
             "type": "array",
             "items": {
                 "$ref": "runtime_item.json"
-            }
+            },
+            "default": []
         },
         "results": {
             "description": "names of the results for this calculation",
             "type": "array",
             "items": {
                 "$ref": "runtime_item.json"
-            }
+            },
+            "default": []
         }
-    },
-    "required": [
-        "preProcessors",
-        "postProcessors",
-        "monitors",
-        "results"
-    ]
+    }
 }

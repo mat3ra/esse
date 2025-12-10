@@ -56,19 +56,19 @@ class WorkflowBaseUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -90,7 +90,7 @@ class WorkflowBaseUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """

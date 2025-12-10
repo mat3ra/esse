@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel
-
-
-class Type(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -26,8 +21,8 @@ class InputItem(BaseModel):
 
 
 class ReduceUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
-    mapFlowchartId: str
+    type: Literal["reduce"] = "reduce"
+    mapFlowchartId: Optional[str] = ""
     """
     corresponding map unit flowchart ID
     """

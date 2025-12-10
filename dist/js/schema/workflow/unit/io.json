@@ -4,13 +4,8 @@
     "title": "data IO unit schema",
     "type": "object",
     "required": [
-        "flowchartId",
         "input",
-        "monitors",
         "name",
-        "postProcessors",
-        "preProcessors",
-        "results",
         "source",
         "subtype",
         "type"
@@ -45,6 +40,7 @@
         "preProcessors": {
             "description": "names of the pre-processors for this calculation",
             "type": "array",
+            "default": [],
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
@@ -63,6 +59,7 @@
         "postProcessors": {
             "description": "names of the post-processors for this calculation",
             "type": "array",
+            "default": [],
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
@@ -81,6 +78,7 @@
         "monitors": {
             "description": "names of the monitors for this calculation",
             "type": "array",
+            "default": [],
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
@@ -99,6 +97,7 @@
         "results": {
             "description": "names of the results for this calculation",
             "type": "array",
+            "default": [],
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
                 "title": "runtime item name object schema",
@@ -167,7 +166,8 @@
         },
         "flowchartId": {
             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-            "type": "string"
+            "type": "string",
+            "default": "unit"
         },
         "next": {
             "description": "Next unit's flowchartId. If empty, the current unit is the last.",

@@ -5487,7 +5487,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5496,7 +5496,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5505,7 +5505,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5514,7 +5514,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5545,7 +5545,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -5658,7 +5658,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5667,7 +5667,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5676,7 +5676,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5685,7 +5685,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5716,7 +5716,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -5769,7 +5769,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5778,7 +5778,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5787,7 +5787,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5796,7 +5796,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5827,7 +5827,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -5896,7 +5896,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5905,7 +5905,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5914,7 +5914,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5923,7 +5923,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -5954,7 +5954,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -5998,7 +5998,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6007,7 +6007,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6016,7 +6016,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6025,7 +6025,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6056,7 +6056,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -6138,7 +6138,7 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: {
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6147,7 +6147,7 @@ export interface JobSchema {
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: {
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6156,7 +6156,7 @@ export interface JobSchema {
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: {
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6165,7 +6165,7 @@ export interface JobSchema {
                     /**
                      * names of the results for this calculation
                      */
-                    results: {
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6205,7 +6205,7 @@ export interface JobSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: {
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6214,7 +6214,7 @@ export interface JobSchema {
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: {
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6223,7 +6223,7 @@ export interface JobSchema {
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: {
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6232,7 +6232,7 @@ export interface JobSchema {
                     /**
                      * names of the results for this calculation
                      */
-                    results: {
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -6295,7 +6295,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6304,7 +6304,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6313,7 +6313,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6322,7 +6322,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6353,7 +6353,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -6411,7 +6411,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6420,7 +6420,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6429,7 +6429,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6438,7 +6438,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -6469,7 +6469,7 @@ export interface JobSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -6720,7 +6720,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6729,7 +6729,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6738,7 +6738,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6747,7 +6747,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6778,7 +6778,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -6891,7 +6891,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6900,7 +6900,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6909,7 +6909,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6918,7 +6918,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -6949,7 +6949,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7002,7 +7002,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7011,7 +7011,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7020,7 +7020,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7029,7 +7029,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7060,7 +7060,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7129,7 +7129,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7138,7 +7138,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7147,7 +7147,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7156,7 +7156,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7187,7 +7187,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7231,7 +7231,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7240,7 +7240,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7249,7 +7249,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7258,7 +7258,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7289,7 +7289,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7371,7 +7371,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7380,7 +7380,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7389,7 +7389,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7398,7 +7398,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7438,7 +7438,7 @@ export interface JobSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7447,7 +7447,7 @@ export interface JobSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7456,7 +7456,7 @@ export interface JobSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7465,7 +7465,7 @@ export interface JobSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -7528,7 +7528,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7537,7 +7537,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7546,7 +7546,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7555,7 +7555,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7586,7 +7586,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7644,7 +7644,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7653,7 +7653,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7662,7 +7662,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7671,7 +7671,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7702,7 +7702,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7752,7 +7752,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7761,7 +7761,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7770,7 +7770,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7779,7 +7779,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7810,7 +7810,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -7872,7 +7872,7 @@ export interface JobSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7881,7 +7881,7 @@ export interface JobSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7890,7 +7890,7 @@ export interface JobSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7899,7 +7899,7 @@ export interface JobSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -7930,7 +7930,7 @@ export interface JobSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48063,7 +48063,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48072,7 +48072,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48081,7 +48081,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48090,7 +48090,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48121,7 +48121,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48234,7 +48234,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48243,7 +48243,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48252,7 +48252,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48261,7 +48261,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48292,7 +48292,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48345,7 +48345,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48354,7 +48354,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48363,7 +48363,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48372,7 +48372,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48403,7 +48403,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48472,7 +48472,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48481,7 +48481,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48490,7 +48490,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48499,7 +48499,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48530,7 +48530,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48574,7 +48574,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48583,7 +48583,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48592,7 +48592,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48601,7 +48601,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48632,7 +48632,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48714,7 +48714,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48723,7 +48723,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48732,7 +48732,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48741,7 +48741,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48781,7 +48781,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48790,7 +48790,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48799,7 +48799,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48808,7 +48808,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -48871,7 +48871,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48880,7 +48880,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48889,7 +48889,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48898,7 +48898,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48929,7 +48929,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -48987,7 +48987,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -48996,7 +48996,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49005,7 +49005,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49014,7 +49014,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49045,7 +49045,7 @@ export interface WorkflowPropertySchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -49296,7 +49296,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49305,7 +49305,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49314,7 +49314,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49323,7 +49323,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49354,7 +49354,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -49467,7 +49467,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49476,7 +49476,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49485,7 +49485,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49494,7 +49494,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49525,7 +49525,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -49578,7 +49578,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49587,7 +49587,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49596,7 +49596,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49605,7 +49605,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49636,7 +49636,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -49705,7 +49705,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49714,7 +49714,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49723,7 +49723,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49732,7 +49732,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49763,7 +49763,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -49807,7 +49807,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49816,7 +49816,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49825,7 +49825,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49834,7 +49834,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -49865,7 +49865,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -49947,7 +49947,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49956,7 +49956,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49965,7 +49965,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -49974,7 +49974,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -50014,7 +50014,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -50023,7 +50023,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -50032,7 +50032,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -50041,7 +50041,7 @@ export interface WorkflowPropertySchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -50104,7 +50104,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50113,7 +50113,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50122,7 +50122,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50131,7 +50131,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50162,7 +50162,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -50220,7 +50220,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50229,7 +50229,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50238,7 +50238,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50247,7 +50247,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50278,7 +50278,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -50328,7 +50328,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50337,7 +50337,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50346,7 +50346,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50355,7 +50355,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50386,7 +50386,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -50448,7 +50448,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50457,7 +50457,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50466,7 +50466,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50475,7 +50475,7 @@ export interface WorkflowPropertySchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -50506,7 +50506,7 @@ export interface WorkflowPropertySchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -51875,7 +51875,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -51884,7 +51884,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -51893,7 +51893,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -51902,7 +51902,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -51933,7 +51933,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52046,7 +52046,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52055,7 +52055,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52064,7 +52064,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52073,7 +52073,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52104,7 +52104,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52157,7 +52157,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52166,7 +52166,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52175,7 +52175,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52184,7 +52184,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52215,7 +52215,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52284,7 +52284,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52293,7 +52293,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52302,7 +52302,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52311,7 +52311,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52342,7 +52342,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52386,7 +52386,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52395,7 +52395,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52404,7 +52404,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52413,7 +52413,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52444,7 +52444,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52526,7 +52526,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: {
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52535,7 +52535,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: {
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52544,7 +52544,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: {
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52553,7 +52553,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the results for this calculation
                      */
-                    results: {
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52593,7 +52593,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the pre-processors for this calculation
                      */
-                    preProcessors: {
+                    preProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52602,7 +52602,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the post-processors for this calculation
                      */
-                    postProcessors: {
+                    postProcessors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52611,7 +52611,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the monitors for this calculation
                      */
-                    monitors: {
+                    monitors?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52620,7 +52620,7 @@ export interface PropertyHolderSchema {
                     /**
                      * names of the results for this calculation
                      */
-                    results: {
+                    results?: {
                         /**
                          * The name of this item. e.g. scf_accuracy
                          */
@@ -52683,7 +52683,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52692,7 +52692,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52701,7 +52701,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52710,7 +52710,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52741,7 +52741,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -52799,7 +52799,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52808,7 +52808,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52817,7 +52817,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52826,7 +52826,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -52857,7 +52857,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
                  */
-                flowchartId: string;
+                flowchartId?: string;
                 /**
                  * Next unit's flowchartId. If empty, the current unit is the last.
                  */
@@ -53108,7 +53108,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53117,7 +53117,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53126,7 +53126,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53135,7 +53135,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53166,7 +53166,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -53279,7 +53279,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53288,7 +53288,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53297,7 +53297,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53306,7 +53306,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53337,7 +53337,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -53390,7 +53390,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53399,7 +53399,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53408,7 +53408,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53417,7 +53417,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53448,7 +53448,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -53517,7 +53517,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53526,7 +53526,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53535,7 +53535,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53544,7 +53544,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53575,7 +53575,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -53619,7 +53619,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53628,7 +53628,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53637,7 +53637,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53646,7 +53646,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53677,7 +53677,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -53759,7 +53759,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53768,7 +53768,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53777,7 +53777,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53786,7 +53786,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53826,7 +53826,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53835,7 +53835,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53844,7 +53844,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53853,7 +53853,7 @@ export interface PropertyHolderSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -53916,7 +53916,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53925,7 +53925,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53934,7 +53934,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53943,7 +53943,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -53974,7 +53974,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -54032,7 +54032,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54041,7 +54041,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54050,7 +54050,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54059,7 +54059,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54090,7 +54090,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -54140,7 +54140,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54149,7 +54149,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54158,7 +54158,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54167,7 +54167,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54198,7 +54198,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -54260,7 +54260,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54269,7 +54269,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54278,7 +54278,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54287,7 +54287,7 @@ export interface PropertyHolderSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -54318,7 +54318,7 @@ export interface PropertyHolderSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -54909,7 +54909,7 @@ export interface ExecutableSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -54918,7 +54918,7 @@ export interface ExecutableSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -54927,7 +54927,7 @@ export interface ExecutableSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -54936,7 +54936,7 @@ export interface ExecutableSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -54992,7 +54992,7 @@ export interface FlavorSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55001,7 +55001,7 @@ export interface FlavorSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55010,7 +55010,7 @@ export interface FlavorSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55019,7 +55019,7 @@ export interface FlavorSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55295,7 +55295,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55304,7 +55304,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55313,7 +55313,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55322,7 +55322,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55353,7 +55353,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -55435,7 +55435,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55444,7 +55444,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55453,7 +55453,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55462,7 +55462,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55502,7 +55502,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55511,7 +55511,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55520,7 +55520,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55529,7 +55529,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55836,7 +55836,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55845,7 +55845,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55854,7 +55854,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55863,7 +55863,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -55894,7 +55894,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -55976,7 +55976,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55985,7 +55985,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -55994,7 +55994,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56003,7 +56003,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56043,7 +56043,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56052,7 +56052,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56061,7 +56061,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56070,7 +56070,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -56534,7 +56534,7 @@ export interface RuntimeItemsSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56543,7 +56543,7 @@ export interface RuntimeItemsSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56552,7 +56552,7 @@ export interface RuntimeItemsSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56561,7 +56561,7 @@ export interface RuntimeItemsSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56824,7 +56824,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56833,7 +56833,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56842,7 +56842,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56851,7 +56851,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -56882,7 +56882,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -56995,7 +56995,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57004,7 +57004,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57013,7 +57013,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57022,7 +57022,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57053,7 +57053,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57106,7 +57106,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57115,7 +57115,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57124,7 +57124,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57133,7 +57133,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57164,7 +57164,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57233,7 +57233,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57242,7 +57242,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57251,7 +57251,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57260,7 +57260,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57291,7 +57291,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57335,7 +57335,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57344,7 +57344,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57353,7 +57353,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57362,7 +57362,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57393,7 +57393,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57475,7 +57475,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57484,7 +57484,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57493,7 +57493,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57502,7 +57502,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57542,7 +57542,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57551,7 +57551,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57560,7 +57560,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57569,7 +57569,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57632,7 +57632,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57641,7 +57641,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57650,7 +57650,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57659,7 +57659,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57690,7 +57690,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57748,7 +57748,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57757,7 +57757,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57766,7 +57766,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57775,7 +57775,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -57806,7 +57806,7 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -57862,7 +57862,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57871,7 +57871,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57880,7 +57880,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57889,7 +57889,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -57920,7 +57920,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58033,7 +58033,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58042,7 +58042,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58051,7 +58051,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58060,7 +58060,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58091,7 +58091,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58144,7 +58144,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58153,7 +58153,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58162,7 +58162,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58171,7 +58171,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58202,7 +58202,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58271,7 +58271,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58280,7 +58280,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58289,7 +58289,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58298,7 +58298,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58329,7 +58329,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58373,7 +58373,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58382,7 +58382,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58391,7 +58391,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58400,7 +58400,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58431,7 +58431,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58513,7 +58513,7 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58522,7 +58522,7 @@ export interface Subworkflow {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58531,7 +58531,7 @@ export interface Subworkflow {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58540,7 +58540,7 @@ export interface Subworkflow {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58580,7 +58580,7 @@ export interface Subworkflow {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58589,7 +58589,7 @@ export interface Subworkflow {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58598,7 +58598,7 @@ export interface Subworkflow {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58607,7 +58607,7 @@ export interface Subworkflow {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -58670,7 +58670,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58679,7 +58679,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58688,7 +58688,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58697,7 +58697,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58728,7 +58728,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -58786,7 +58786,7 @@ export interface Subworkflow {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58795,7 +58795,7 @@ export interface Subworkflow {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58804,7 +58804,7 @@ export interface Subworkflow {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58813,7 +58813,7 @@ export interface Subworkflow {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -58844,7 +58844,7 @@ export interface Subworkflow {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -59093,7 +59093,7 @@ export interface AssertionUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59102,7 +59102,7 @@ export interface AssertionUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59111,7 +59111,7 @@ export interface AssertionUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59120,7 +59120,7 @@ export interface AssertionUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59151,7 +59151,7 @@ export interface AssertionUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -59197,7 +59197,7 @@ export interface AssignmentUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59206,7 +59206,7 @@ export interface AssignmentUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59215,7 +59215,7 @@ export interface AssignmentUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59224,7 +59224,7 @@ export interface AssignmentUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59255,7 +59255,7 @@ export interface AssignmentUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -59315,7 +59315,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59324,7 +59324,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59333,7 +59333,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59342,7 +59342,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59373,7 +59373,7 @@ export interface WorkflowBaseUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -59411,7 +59411,7 @@ export interface ConditionUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59420,7 +59420,7 @@ export interface ConditionUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59429,7 +59429,7 @@ export interface ConditionUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59438,7 +59438,7 @@ export interface ConditionUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59469,7 +59469,7 @@ export interface ConditionUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -59540,7 +59540,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59549,7 +59549,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59558,7 +59558,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59567,7 +59567,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59598,7 +59598,7 @@ export interface ExecutionUnitSchemaBase {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -59680,7 +59680,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59689,7 +59689,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59698,7 +59698,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59707,7 +59707,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59747,7 +59747,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59756,7 +59756,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59765,7 +59765,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59774,7 +59774,7 @@ export interface ExecutionUnitSchemaBase {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -59990,7 +59990,7 @@ export interface DataIOUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -59999,7 +59999,7 @@ export interface DataIOUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60008,7 +60008,7 @@ export interface DataIOUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60017,7 +60017,7 @@ export interface DataIOUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60048,7 +60048,7 @@ export interface DataIOUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -60163,7 +60163,7 @@ export interface MapUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60172,7 +60172,7 @@ export interface MapUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60181,7 +60181,7 @@ export interface MapUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60190,7 +60190,7 @@ export interface MapUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60221,7 +60221,7 @@ export interface MapUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -60318,7 +60318,7 @@ export interface WorkflowBaseUnitMixinSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -60442,7 +60442,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60451,7 +60451,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60460,7 +60460,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60469,7 +60469,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60509,7 +60509,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60518,7 +60518,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60527,7 +60527,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60536,7 +60536,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -60755,7 +60755,7 @@ export interface ProcessingUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60764,7 +60764,7 @@ export interface ProcessingUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60773,7 +60773,7 @@ export interface ProcessingUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60782,7 +60782,7 @@ export interface ProcessingUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60813,7 +60813,7 @@ export interface ProcessingUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -60865,7 +60865,7 @@ export interface ReduceUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60874,7 +60874,7 @@ export interface ReduceUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60883,7 +60883,7 @@ export interface ReduceUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60892,7 +60892,7 @@ export interface ReduceUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60923,7 +60923,7 @@ export interface ReduceUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -60978,7 +60978,7 @@ export interface SubworkflowUnitSchema {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60987,7 +60987,7 @@ export interface SubworkflowUnitSchema {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -60996,7 +60996,7 @@ export interface SubworkflowUnitSchema {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61005,7 +61005,7 @@ export interface SubworkflowUnitSchema {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61036,7 +61036,7 @@ export interface SubworkflowUnitSchema {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61074,7 +61074,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61083,7 +61083,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61092,7 +61092,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61101,7 +61101,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61132,7 +61132,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61245,7 +61245,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61254,7 +61254,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61263,7 +61263,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61272,7 +61272,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61303,7 +61303,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61356,7 +61356,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61365,7 +61365,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61374,7 +61374,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61383,7 +61383,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61414,7 +61414,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61483,7 +61483,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61492,7 +61492,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61501,7 +61501,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61510,7 +61510,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61541,7 +61541,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61585,7 +61585,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61594,7 +61594,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61603,7 +61603,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61612,7 +61612,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61643,7 +61643,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61725,7 +61725,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61734,7 +61734,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61743,7 +61743,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61752,7 +61752,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61792,7 +61792,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61801,7 +61801,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61810,7 +61810,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61819,7 +61819,7 @@ export type WorkflowUnitSchema = {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -61882,7 +61882,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61891,7 +61891,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61900,7 +61900,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61909,7 +61909,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -61940,7 +61940,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -61998,7 +61998,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62007,7 +62007,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62016,7 +62016,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62025,7 +62025,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62056,7 +62056,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -62106,7 +62106,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62115,7 +62115,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62124,7 +62124,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62133,7 +62133,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62164,7 +62164,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -62226,7 +62226,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors: {
+    preProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62235,7 +62235,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors: {
+    postProcessors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62244,7 +62244,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the monitors for this calculation
      */
-    monitors: {
+    monitors?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62253,7 +62253,7 @@ export type WorkflowUnitSchema = {
     /**
      * names of the results for this calculation
      */
-    results: {
+    results?: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
@@ -62284,7 +62284,7 @@ export type WorkflowUnitSchema = {
     /**
      * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
      */
-    flowchartId: string;
+    flowchartId?: string;
     /**
      * Next unit's flowchartId. If empty, the current unit is the last.
      */
@@ -62330,7 +62330,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62339,7 +62339,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62348,7 +62348,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62357,7 +62357,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62388,7 +62388,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -62501,7 +62501,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62510,7 +62510,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62519,7 +62519,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62528,7 +62528,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62559,7 +62559,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -62612,7 +62612,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62621,7 +62621,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62630,7 +62630,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62639,7 +62639,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62670,7 +62670,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -62739,7 +62739,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62748,7 +62748,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62757,7 +62757,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62766,7 +62766,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62797,7 +62797,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -62841,7 +62841,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62850,7 +62850,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62859,7 +62859,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62868,7 +62868,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -62899,7 +62899,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -62981,7 +62981,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -62990,7 +62990,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -62999,7 +62999,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63008,7 +63008,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63048,7 +63048,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors: {
+                preProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63057,7 +63057,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors: {
+                postProcessors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63066,7 +63066,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors: {
+                monitors?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63075,7 +63075,7 @@ export interface WorkflowSchema {
                 /**
                  * names of the results for this calculation
                  */
-                results: {
+                results?: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
@@ -63138,7 +63138,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63147,7 +63147,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63156,7 +63156,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63165,7 +63165,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63196,7 +63196,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -63254,7 +63254,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63263,7 +63263,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63272,7 +63272,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63281,7 +63281,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -63312,7 +63312,7 @@ export interface WorkflowSchema {
             /**
              * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
              */
-            flowchartId: string;
+            flowchartId?: string;
             /**
              * Next unit's flowchartId. If empty, the current unit is the last.
              */
@@ -63563,7 +63563,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63572,7 +63572,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63581,7 +63581,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63590,7 +63590,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63621,7 +63621,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -63734,7 +63734,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63743,7 +63743,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63752,7 +63752,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63761,7 +63761,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63792,7 +63792,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -63845,7 +63845,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63854,7 +63854,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63863,7 +63863,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63872,7 +63872,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63903,7 +63903,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -63972,7 +63972,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63981,7 +63981,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63990,7 +63990,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -63999,7 +63999,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64030,7 +64030,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -64074,7 +64074,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64083,7 +64083,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64092,7 +64092,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64101,7 +64101,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64132,7 +64132,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -64214,7 +64214,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64223,7 +64223,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64232,7 +64232,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64241,7 +64241,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64281,7 +64281,7 @@ export interface WorkflowSchema {
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors: {
+            preProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64290,7 +64290,7 @@ export interface WorkflowSchema {
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors: {
+            postProcessors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64299,7 +64299,7 @@ export interface WorkflowSchema {
             /**
              * names of the monitors for this calculation
              */
-            monitors: {
+            monitors?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64308,7 +64308,7 @@ export interface WorkflowSchema {
             /**
              * names of the results for this calculation
              */
-            results: {
+            results?: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
@@ -64371,7 +64371,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64380,7 +64380,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64389,7 +64389,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64398,7 +64398,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64429,7 +64429,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -64487,7 +64487,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64496,7 +64496,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64505,7 +64505,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64514,7 +64514,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64545,7 +64545,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -64595,7 +64595,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64604,7 +64604,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64613,7 +64613,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64622,7 +64622,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64653,7 +64653,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */
@@ -64715,7 +64715,7 @@ export interface WorkflowSchema {
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors: {
+        preProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64724,7 +64724,7 @@ export interface WorkflowSchema {
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors: {
+        postProcessors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64733,7 +64733,7 @@ export interface WorkflowSchema {
         /**
          * names of the monitors for this calculation
          */
-        monitors: {
+        monitors?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64742,7 +64742,7 @@ export interface WorkflowSchema {
         /**
          * names of the results for this calculation
          */
-        results: {
+        results?: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
@@ -64773,7 +64773,7 @@ export interface WorkflowSchema {
         /**
          * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
          */
-        flowchartId: string;
+        flowchartId?: string;
         /**
          * Next unit's flowchartId. If empty, the current unit is the last.
          */

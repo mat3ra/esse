@@ -80,11 +80,7 @@
             "type": "object",
             "required": [
                 "applicationId",
-                "monitors",
-                "name",
-                "postProcessors",
-                "preProcessors",
-                "results"
+                "name"
             ],
             "properties": {
                 "_id": {
@@ -115,6 +111,7 @@
                 "preProcessors": {
                     "description": "names of the pre-processors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -133,6 +130,7 @@
                 "postProcessors": {
                     "description": "names of the post-processors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -151,6 +149,7 @@
                 "monitors": {
                     "description": "names of the monitors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -169,6 +168,7 @@
                 "results": {
                     "description": "names of the results for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -204,11 +204,7 @@
             "required": [
                 "executableId",
                 "input",
-                "monitors",
-                "name",
-                "postProcessors",
-                "preProcessors",
-                "results"
+                "name"
             ],
             "properties": {
                 "_id": {
@@ -239,6 +235,7 @@
                 "preProcessors": {
                     "description": "names of the pre-processors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -257,6 +254,7 @@
                 "postProcessors": {
                     "description": "names of the post-processors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -275,6 +273,7 @@
                 "monitors": {
                     "description": "names of the monitors for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",
@@ -293,6 +292,7 @@
                 "results": {
                     "description": "names of the results for this calculation",
                     "type": "array",
+                    "default": [],
                     "items": {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "runtime item name object schema",

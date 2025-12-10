@@ -32,7 +32,8 @@
         },
         "flowchartId": {
             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-            "type": "string"
+            "type": "string",
+            "default": "unit"
         },
         "next": {
             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -48,7 +49,6 @@
     },
     "additionalProperties": true,
     "required": [
-        "type",
-        "flowchartId"
+        "type"
     ]
 }

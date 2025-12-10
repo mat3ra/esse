@@ -39,7 +39,7 @@ class WorkflowBaseUnitMixinSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """

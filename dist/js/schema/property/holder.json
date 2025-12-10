@@ -2051,13 +2051,8 @@
                                                     "title": "data IO unit schema",
                                                     "type": "object",
                                                     "required": [
-                                                        "flowchartId",
                                                         "input",
-                                                        "monitors",
                                                         "name",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "source",
                                                         "subtype",
                                                         "type"
@@ -2092,6 +2087,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2110,6 +2106,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2128,6 +2125,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2146,6 +2144,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2214,7 +2213,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -2378,14 +2378,9 @@
                                                     "title": "reduce unit schema",
                                                     "type": "object",
                                                     "required": [
-                                                        "flowchartId",
                                                         "input",
                                                         "mapFlowchartId",
-                                                        "monitors",
                                                         "name",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "type"
                                                     ],
                                                     "additionalProperties": true,
@@ -2418,6 +2413,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2436,6 +2432,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2454,6 +2451,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2472,6 +2470,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2540,7 +2539,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -2590,14 +2590,9 @@
                                                     "type": "object",
                                                     "required": [
                                                         "else",
-                                                        "flowchartId",
                                                         "input",
                                                         "maxOccurrences",
-                                                        "monitors",
                                                         "name",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "statement",
                                                         "then",
                                                         "type"
@@ -2632,6 +2627,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2650,6 +2646,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2668,6 +2665,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2686,6 +2684,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2754,7 +2753,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -2819,12 +2819,7 @@
                                                     "title": "assertion unit schema",
                                                     "type": "object",
                                                     "required": [
-                                                        "flowchartId",
-                                                        "monitors",
                                                         "name",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "statement",
                                                         "type"
                                                     ],
@@ -2858,6 +2853,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2876,6 +2872,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2894,6 +2891,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2912,6 +2910,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -2980,7 +2979,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -3011,13 +3011,8 @@
                                                     "type": "object",
                                                     "required": [
                                                         "application",
-                                                        "flowchartId",
                                                         "input",
-                                                        "monitors",
                                                         "name",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "type"
                                                     ],
                                                     "additionalProperties": true,
@@ -3050,6 +3045,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3068,6 +3064,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3086,6 +3083,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3104,6 +3102,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3172,7 +3171,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -3254,11 +3254,7 @@
                                                             "type": "object",
                                                             "required": [
                                                                 "applicationId",
-                                                                "monitors",
-                                                                "name",
-                                                                "postProcessors",
-                                                                "preProcessors",
-                                                                "results"
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "_id": {
@@ -3289,6 +3285,7 @@
                                                                 "preProcessors": {
                                                                     "description": "names of the pre-processors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3307,6 +3304,7 @@
                                                                 "postProcessors": {
                                                                     "description": "names of the post-processors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3325,6 +3323,7 @@
                                                                 "monitors": {
                                                                     "description": "names of the monitors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3343,6 +3342,7 @@
                                                                 "results": {
                                                                     "description": "names of the results for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3378,11 +3378,7 @@
                                                             "required": [
                                                                 "executableId",
                                                                 "input",
-                                                                "monitors",
-                                                                "name",
-                                                                "postProcessors",
-                                                                "preProcessors",
-                                                                "results"
+                                                                "name"
                                                             ],
                                                             "properties": {
                                                                 "_id": {
@@ -3413,6 +3409,7 @@
                                                                 "preProcessors": {
                                                                     "description": "names of the pre-processors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3431,6 +3428,7 @@
                                                                 "postProcessors": {
                                                                     "description": "names of the post-processors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3449,6 +3447,7 @@
                                                                 "monitors": {
                                                                     "description": "names of the monitors for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3467,6 +3466,7 @@
                                                                 "results": {
                                                                     "description": "names of the results for this calculation",
                                                                     "type": "array",
+                                                                    "default": [],
                                                                     "items": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "runtime item name object schema",
@@ -3535,13 +3535,8 @@
                                                     "title": "assignment unit schema",
                                                     "type": "object",
                                                     "required": [
-                                                        "flowchartId",
-                                                        "monitors",
                                                         "name",
                                                         "operand",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "type",
                                                         "value"
                                                     ],
@@ -3575,6 +3570,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3593,6 +3589,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3611,6 +3608,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3629,6 +3627,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3697,7 +3696,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -3763,15 +3763,10 @@
                                                     "title": "processing unit schema",
                                                     "type": "object",
                                                     "required": [
-                                                        "flowchartId",
                                                         "inputData",
-                                                        "monitors",
                                                         "name",
                                                         "operation",
                                                         "operationType",
-                                                        "postProcessors",
-                                                        "preProcessors",
-                                                        "results",
                                                         "type"
                                                     ],
                                                     "additionalProperties": true,
@@ -3804,6 +3799,7 @@
                                                         "preProcessors": {
                                                             "description": "names of the pre-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3822,6 +3818,7 @@
                                                         "postProcessors": {
                                                             "description": "names of the post-processors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3840,6 +3837,7 @@
                                                         "monitors": {
                                                             "description": "names of the monitors for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3858,6 +3856,7 @@
                                                         "results": {
                                                             "description": "names of the results for this calculation",
                                                             "type": "array",
+                                                            "default": [],
                                                             "items": {
                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                 "title": "runtime item name object schema",
@@ -3926,7 +3925,8 @@
                                                         },
                                                         "flowchartId": {
                                                             "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                            "type": "string"
+                                                            "type": "string",
+                                                            "default": "unit"
                                                         },
                                                         "next": {
                                                             "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -4286,13 +4286,8 @@
                                         "title": "data IO unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
                                             "input",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "source",
                                             "subtype",
                                             "type"
@@ -4327,6 +4322,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4345,6 +4341,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4363,6 +4360,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4381,6 +4379,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4449,7 +4448,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -4613,14 +4613,9 @@
                                         "title": "reduce unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
                                             "input",
                                             "mapFlowchartId",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type"
                                         ],
                                         "additionalProperties": true,
@@ -4653,6 +4648,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4671,6 +4667,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4689,6 +4686,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4707,6 +4705,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4775,7 +4774,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -4825,14 +4825,9 @@
                                         "type": "object",
                                         "required": [
                                             "else",
-                                            "flowchartId",
                                             "input",
                                             "maxOccurrences",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "statement",
                                             "then",
                                             "type"
@@ -4867,6 +4862,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4885,6 +4881,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4903,6 +4900,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4921,6 +4919,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -4989,7 +4988,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -5054,12 +5054,7 @@
                                         "title": "assertion unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "statement",
                                             "type"
                                         ],
@@ -5093,6 +5088,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5111,6 +5107,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5129,6 +5126,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5147,6 +5145,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5215,7 +5214,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -5246,13 +5246,8 @@
                                         "type": "object",
                                         "required": [
                                             "application",
-                                            "flowchartId",
                                             "input",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type"
                                         ],
                                         "additionalProperties": true,
@@ -5285,6 +5280,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5303,6 +5299,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5321,6 +5318,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5339,6 +5337,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5407,7 +5406,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -5489,11 +5489,7 @@
                                                 "type": "object",
                                                 "required": [
                                                     "applicationId",
-                                                    "monitors",
-                                                    "name",
-                                                    "postProcessors",
-                                                    "preProcessors",
-                                                    "results"
+                                                    "name"
                                                 ],
                                                 "properties": {
                                                     "_id": {
@@ -5524,6 +5520,7 @@
                                                     "preProcessors": {
                                                         "description": "names of the pre-processors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5542,6 +5539,7 @@
                                                     "postProcessors": {
                                                         "description": "names of the post-processors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5560,6 +5558,7 @@
                                                     "monitors": {
                                                         "description": "names of the monitors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5578,6 +5577,7 @@
                                                     "results": {
                                                         "description": "names of the results for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5613,11 +5613,7 @@
                                                 "required": [
                                                     "executableId",
                                                     "input",
-                                                    "monitors",
-                                                    "name",
-                                                    "postProcessors",
-                                                    "preProcessors",
-                                                    "results"
+                                                    "name"
                                                 ],
                                                 "properties": {
                                                     "_id": {
@@ -5648,6 +5644,7 @@
                                                     "preProcessors": {
                                                         "description": "names of the pre-processors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5666,6 +5663,7 @@
                                                     "postProcessors": {
                                                         "description": "names of the post-processors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5684,6 +5682,7 @@
                                                     "monitors": {
                                                         "description": "names of the monitors for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5702,6 +5701,7 @@
                                                     "results": {
                                                         "description": "names of the results for this calculation",
                                                         "type": "array",
+                                                        "default": [],
                                                         "items": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "runtime item name object schema",
@@ -5770,13 +5770,8 @@
                                         "title": "assignment unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
-                                            "monitors",
                                             "name",
                                             "operand",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type",
                                             "value"
                                         ],
@@ -5810,6 +5805,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5828,6 +5824,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5846,6 +5843,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5864,6 +5862,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -5932,7 +5931,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -5998,15 +5998,10 @@
                                         "title": "processing unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
                                             "inputData",
-                                            "monitors",
                                             "name",
                                             "operation",
                                             "operationType",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type"
                                         ],
                                         "additionalProperties": true,
@@ -6039,6 +6034,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6057,6 +6053,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6075,6 +6072,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6093,6 +6091,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6161,7 +6160,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -6192,13 +6192,8 @@
                                         "title": "map unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
                                             "input",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type",
                                             "workflowId"
                                         ],
@@ -6232,6 +6227,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6250,6 +6246,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6268,6 +6265,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6286,6 +6284,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6354,7 +6353,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",
@@ -6425,12 +6425,7 @@
                                         "title": "subworkflow unit schema",
                                         "type": "object",
                                         "required": [
-                                            "flowchartId",
-                                            "monitors",
                                             "name",
-                                            "postProcessors",
-                                            "preProcessors",
-                                            "results",
                                             "type"
                                         ],
                                         "additionalProperties": true,
@@ -6464,6 +6459,7 @@
                                             "preProcessors": {
                                                 "description": "names of the pre-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6482,6 +6478,7 @@
                                             "postProcessors": {
                                                 "description": "names of the post-processors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6500,6 +6497,7 @@
                                             "monitors": {
                                                 "description": "names of the monitors for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6518,6 +6516,7 @@
                                             "results": {
                                                 "description": "names of the results for this calculation",
                                                 "type": "array",
+                                                "default": [],
                                                 "items": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
                                                     "title": "runtime item name object schema",
@@ -6586,7 +6585,8 @@
                                             },
                                             "flowchartId": {
                                                 "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-                                                "type": "string"
+                                                "type": "string",
+                                                "default": "unit"
                                             },
                                             "next": {
                                                 "description": "Next unit's flowchartId. If empty, the current unit is the last.",

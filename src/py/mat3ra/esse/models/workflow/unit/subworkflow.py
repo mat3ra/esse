@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -31,10 +31,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -52,7 +48,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: str
+    name: Optional[str] = "New Subworkflow"
     """
     entity name
     """
@@ -60,19 +56,19 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -86,7 +82,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["subworkflow"]
     """
     type of the unit
     """
@@ -94,7 +90,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """

@@ -31,10 +31,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -164,19 +160,19 @@ class DataIOUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -198,7 +194,7 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -211,7 +207,7 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    subtype: Subtype
+    subtype: Optional[Subtype] = "input"
     source: Source
     input: List[
         Union[
@@ -220,10 +216,6 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-
-
-class Type102(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -262,19 +254,19 @@ class ReduceUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -296,7 +288,7 @@ class ReduceUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -309,7 +301,7 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    mapFlowchartId: str
+    mapFlowchartId: Optional[str] = ""
     """
     corresponding map unit flowchart ID
     """
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-
-
-class Type103(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -359,19 +347,19 @@ class ConditionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -393,7 +381,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -410,7 +398,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Input information for condition.
     """
-    statement: str
+    statement: Optional[str] = "true"
     """
     Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
     """
@@ -422,7 +410,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Flowchart ID reference for `else` part of the condition.
     """
-    maxOccurrences: int
+    maxOccurrences: Optional[int] = 100
     """
     Maximum occurrence of the condition, usable for loops.
     """
@@ -430,10 +418,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-
-
-class Type104(Enum):
-    assertion = "assertion"
 
 
 class AssertionUnitSchema(BaseModel):
@@ -461,19 +445,19 @@ class AssertionUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -495,7 +479,7 @@ class AssertionUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -508,18 +492,14 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    statement: str
+    statement: Optional[str] = "true"
     """
     The statement to be evaluated
     """
-    errorMessage: Optional[str] = None
+    errorMessage: Optional[str] = "assertion failed"
     """
     The error message to be displayed if the assertion fails
     """
-
-
-class Type105(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -592,19 +572,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -652,19 +632,19 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -714,19 +694,19 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -748,7 +728,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -768,10 +748,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-
-
-class Type106(Enum):
-    assignment = "assignment"
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -799,19 +775,19 @@ class AssignmentUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -833,7 +809,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """
@@ -851,18 +827,14 @@ class AssignmentUnitSchema(BaseModel):
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
     """
-    operand: str
+    operand: Optional[str] = "X"
     """
     Name of the global variable. e.g. 'x'
     """
-    value: Union[str, bool, float]
+    value: Optional[Union[str, bool, float]] = "1"
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-
-
-class Type107(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):
@@ -890,19 +862,19 @@ class ProcessingUnitSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+    preProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[RuntimeItemNameObjectSchema]
+    postProcessors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the post-processors for this calculation
     """
-    monitors: List[RuntimeItemNameObjectSchema]
+    monitors: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the monitors for this calculation
     """
-    results: List[RuntimeItemNameObjectSchema]
+    results: Optional[List[RuntimeItemNameObjectSchema]] = []
     """
     names of the results for this calculation
     """
@@ -924,7 +896,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     Whether this unit is the first one to be executed.
     """
-    flowchartId: str
+    flowchartId: Optional[str] = "unit"
     """
     Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
     """

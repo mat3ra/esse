@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Literal, Optional, Union
 
 from pydantic import BaseModel
-
-
-class Type(Enum):
-    assignment = "assignment"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -26,16 +21,16 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class AssignmentUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["assignment"] = "assignment"
     input: Optional[List[WorkflowUnitInputSchema]] = None
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
     """
-    operand: str
+    operand: Optional[str] = "X"
     """
     Name of the global variable. e.g. 'x'
     """
-    value: Union[str, bool, float]
+    value: Optional[Union[str, bool, float]] = "1"
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """

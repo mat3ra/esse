@@ -4,18 +4,13 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Any, Optional
+from typing import Any, Literal
 
 from pydantic import BaseModel
 
 
-class Type(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["processing"] = "processing"
     operation: str
     """
     Contains information about the operation used.
