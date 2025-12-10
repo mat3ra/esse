@@ -42,7 +42,7 @@ class FixedMagnetization(BaseModel):
     z: Optional[float] = Field(None, title="Z-component")
 
 
-class NonCollinearMagnetizationProviderSchema(BaseModel):
+class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
     startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
