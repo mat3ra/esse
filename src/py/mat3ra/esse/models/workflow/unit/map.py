@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -31,28 +31,24 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    map = "map"
-
-
 class Input(BaseModel):
-    target: str
+    target: Optional[str] = "MAP_DATA"
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
     """
-    scope: Optional[str] = None
+    scope: Optional[str] = "global"
     """
     Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
     """
-    name: Optional[str] = None
+    name: Optional[str] = ""
     """
     Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
     """
-    values: Optional[List[Union[str, float, Dict[str, Any]]]] = None
+    values: Optional[List[Union[str, float, Dict[str, Any]]]] = []
     """
     Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
     """
-    useValues: Optional[bool] = None
+    useValues: Optional[bool] = False
 
 
 class MapUnitSchema(BaseModel):
@@ -106,7 +102,7 @@ class MapUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["map"]
     """
     type of the unit
     """
@@ -127,7 +123,7 @@ class MapUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    workflowId: str
+    workflowId: Optional[str] = ""
     """
     Id of workflow to run inside map
     """

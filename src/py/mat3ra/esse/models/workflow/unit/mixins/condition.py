@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field
-
-
-class Type(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -26,12 +21,12 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class ConditionUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["condition"] = "condition"
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
     """
-    statement: str
+    statement: Optional[str] = "true"
     """
     Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
     """
@@ -43,7 +38,7 @@ class ConditionUnitMixinSchema(BaseModel):
     """
     Flowchart ID reference for `else` part of the condition.
     """
-    maxOccurrences: int
+    maxOccurrences: Optional[int] = 100
     """
     Maximum occurrence of the condition, usable for loops.
     """

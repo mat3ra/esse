@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -31,10 +31,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -52,7 +48,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: str
+    name: Optional[str] = "New Subworkflow"
     """
     entity name
     """
@@ -86,7 +82,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["subworkflow"]
     """
     type of the unit
     """

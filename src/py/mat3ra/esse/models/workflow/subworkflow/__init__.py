@@ -31,10 +31,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -211,7 +207,7 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    subtype: Subtype
+    subtype: Optional[Subtype] = "input"
     source: Source
     input: List[
         Union[
@@ -220,10 +216,6 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-
-
-class Type84(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -309,7 +301,7 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    mapFlowchartId: str
+    mapFlowchartId: Optional[str] = ""
     """
     corresponding map unit flowchart ID
     """
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-
-
-class Type85(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -410,7 +398,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Input information for condition.
     """
-    statement: str
+    statement: Optional[str] = "true"
     """
     Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
     """
@@ -422,7 +410,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Flowchart ID reference for `else` part of the condition.
     """
-    maxOccurrences: int
+    maxOccurrences: Optional[int] = 100
     """
     Maximum occurrence of the condition, usable for loops.
     """
@@ -430,10 +418,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-
-
-class Type86(Enum):
-    assertion = "assertion"
 
 
 class AssertionUnitSchema(BaseModel):
@@ -508,18 +492,14 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    statement: str
+    statement: Optional[str] = "true"
     """
     The statement to be evaluated
     """
-    errorMessage: Optional[str] = None
+    errorMessage: Optional[str] = "assertion failed"
     """
     The error message to be displayed if the assertion fails
     """
-
-
-class Type87(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -770,10 +750,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type88(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -851,18 +827,14 @@ class AssignmentUnitSchema(BaseModel):
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
     """
-    operand: str
+    operand: Optional[str] = "X"
     """
     Name of the global variable. e.g. 'x'
     """
-    value: Union[str, bool, float]
+    value: Optional[Union[str, bool, float]] = "1"
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-
-
-class Type89(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):

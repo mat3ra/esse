@@ -480,6 +480,25 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditions(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions] = None
+
+
 class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
@@ -513,6 +532,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
+    metadata: Optional[Metadata] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -534,7 +554,6 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class Value166(Enum):
@@ -916,6 +935,18 @@ class MaterialConsistencyCheckSchema77(BaseModel):
     """
 
 
+class BoundaryConditions76(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata76(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions76] = None
+
+
 class CrystalSchema72(BaseModel):
     formula: Optional[str] = None
     """
@@ -949,6 +980,7 @@ class CrystalSchema72(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema77]] = None
+    metadata: Optional[Metadata76] = None
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -970,7 +1002,6 @@ class CrystalSchema72(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class ChemicalElement(Enum):

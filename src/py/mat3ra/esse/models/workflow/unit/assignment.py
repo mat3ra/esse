@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -29,10 +29,6 @@ class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
-
-
-class Type(Enum):
-    assignment = "assignment"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -97,7 +93,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["assignment"]
     """
     type of the unit
     """
@@ -123,11 +119,11 @@ class AssignmentUnitSchema(BaseModel):
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
     """
-    operand: str
+    operand: Optional[str] = "X"
     """
     Name of the global variable. e.g. 'x'
     """
-    value: Union[str, bool, float]
+    value: Optional[Union[str, bool, float]] = "1"
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """

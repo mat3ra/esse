@@ -4,23 +4,18 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Optional
+from typing import Literal, Optional
 
 from pydantic import BaseModel
 
 
-class Type(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
-    statement: str
+    type: Literal["assertion"] = "assertion"
+    statement: Optional[str] = "true"
     """
     The statement to be evaluated
     """
-    errorMessage: Optional[str] = None
+    errorMessage: Optional[str] = "assertion failed"
     """
     The error message to be displayed if the assertion fails
     """

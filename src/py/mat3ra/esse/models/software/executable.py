@@ -9,6 +9,13 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
 class ExecutableSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
@@ -31,19 +38,19 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: List[str]
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: List[str]
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: List[str]
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: List[str]
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
