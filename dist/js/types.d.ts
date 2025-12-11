@@ -59394,6 +59394,477 @@ export interface MapUnitSchema {
     }[];
     [k: string]: unknown;
 }
+/** Schema dist/js/schema/workflow/unit/mixins/assertion.json */
+export interface AssertionUnitMixinSchema {
+    type?: "assertion";
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/assignment.json */
+export interface AssignmentUnitMixinSchema {
+    type?: "assignment";
+    /**
+     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+     */
+    input?: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Name of the global variable. e.g. 'x'
+     */
+    operand: string;
+    /**
+     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+     */
+    value: string | boolean | number;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/base.json */
+export interface WorkflowBaseUnitMixinSchema {
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: string;
+    /**
+     * name of the unit. e.g. pw_scf
+     */
+    name?: string;
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    context?: {};
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/condition.json */
+export interface ConditionUnitMixinSchema {
+    type?: "condition";
+    /**
+     * Input information for condition.
+     */
+    input: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+     */
+    statement: string;
+    /**
+     * Flowchart ID reference for `then` part of the condition.
+     */
+    then: string;
+    /**
+     * Flowchart ID reference for `else` part of the condition.
+     */
+    else: string;
+    /**
+     * Maximum occurrence of the condition, usable for loops.
+     */
+    maxOccurrences: number;
+    /**
+     * Throw exception on reaching to maximum occurence.
+     */
+    throwException?: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/execution.json */
+export interface ExecutionUnitMixinSchema {
+    type?: "execution";
+    application: {
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName?: string;
+        /**
+         * Application's short description.
+         */
+        summary?: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version?: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build?: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        [k: string]: unknown;
+    };
+    executable?: {
+        /**
+         * The name of the executable. e.g. pw.x
+         */
+        name: string;
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId?: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the results for this calculation
+         */
+        results?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+    };
+    flavor?: {
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId?: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input?: {
+            templateId?: string;
+            templateName?: string;
+            /**
+             * name of the resulting input file, if different than template name
+             */
+            name?: string;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+        /**
+         * names of the results for this calculation
+         */
+        results?: ({
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        } | string)[];
+    };
+    /**
+     * unit input (type to be specified by the application's execution unit)
+     */
+    input: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/io.json */
+export interface DataIOUnitMixinSchema {
+    type?: "io";
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        /**
+         * rest API endpoint
+         */
+        endpoint: string;
+        /**
+         * rest API endpoint options
+         */
+        endpoint_options: {};
+        /**
+         * the name of the variable in local scope to save the data under
+         */
+        name?: string;
+        [k: string]: unknown;
+    } | ({
+        /**
+         * IDs of item to retrieve from db
+         */
+        ids: string[];
+        [k: string]: unknown;
+    } | {
+        /**
+         * db collection name
+         */
+        collection: string;
+        /**
+         * whether the result should be saved as draft
+         */
+        draft: boolean;
+        [k: string]: unknown;
+    }) | {
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
+        /**
+         * if a file with the same filename already exists, whether to overwrite the old file
+         */
+        overwrite?: boolean;
+        /**
+         * Relative path to the directory that contains the file.
+         */
+        pathname?: string;
+        /**
+         * Basename of the file
+         */
+        basename?: string;
+        /**
+         * What kind of file this is, e.g. image / text
+         */
+        filetype?: string;
+        [k: string]: unknown;
+    })[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/map.json */
+export interface MapUnitMixinSchema {
+    type?: "map";
+    /**
+     * Id of workflow to run inside map
+     */
+    workflowId: string;
+    /**
+     * Input information for map.
+     */
+    input: {
+        /**
+         * Name of the target variable to substitute using the values below. e.g. K_POINTS
+         */
+        target: string;
+        /**
+         * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
+         */
+        scope?: string;
+        /**
+         * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
+         */
+        name?: string;
+        /**
+         * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
+         */
+        values?: (string | number | {})[];
+        useValues?: boolean;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/processing.json */
+export interface ProcessingUnitMixinSchema {
+    type?: "processing";
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/reduce.json */
+export interface ReduceUnitMixinSchema {
+    type?: "reduce";
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/subworkflow.json */
+export interface SubworkflowUnitMixinSchema {
+    type?: "subworkflow";
+    name?: string;
+}
 /** Schema dist/js/schema/workflow/unit/processing.json */
 export interface ProcessingUnitSchema {
     /**

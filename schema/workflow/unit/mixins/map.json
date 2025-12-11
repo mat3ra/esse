@@ -1,0 +1,67 @@
+{
+    "$id": "workflow/unit/mixins/map",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "map unit mixin schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "map"
+        },
+        "workflowId": {
+            "description": "Id of workflow to run inside map",
+            "type": "string",
+            "default": ""
+        },
+        "input": {
+            "description": "Input information for map.",
+            "type": "object",
+            "properties": {
+                "target": {
+                    "description": "Name of the target variable to substitute using the values below. e.g. K_POINTS",
+                    "type": "string",
+                    "default": "MAP_DATA"
+                },
+                "scope": {
+                    "description": "Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.",
+                    "type": "string",
+                    "default": "global"
+                },
+                "name": {
+                    "description": "Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.",
+                    "type": "string",
+                    "default": ""
+                },
+                "values": {
+                    "description": "Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution",
+                    "type": "array",
+                    "items": {
+                        "oneOf": [
+                            {
+                                "type": "string"
+                            },
+                            {
+                                "type": "number"
+                            },
+                            {
+                                "type": "object"
+                            }
+                        ]
+                    },
+                    "default": []
+                },
+                "useValues": {
+                    "type": "boolean",
+                    "default": false
+                }
+            },
+            "required": [
+                "target"
+            ]
+        }
+    },
+    "required": [
+        "input",
+        "workflowId"
+    ]
+}
+

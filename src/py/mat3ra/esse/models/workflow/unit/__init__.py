@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema15(BaseModel):
+class DataIODatabaseInputOutputSchema17(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema15],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema17],
             ObjectStorageIoSchema,
         ]
     ]

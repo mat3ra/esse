@@ -2694,7 +2694,7 @@ class Type31(Enum):
     execution = "execution"
 
 
-class ExecutableSchema5(BaseModel):
+class ExecutableSchema6(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -2742,7 +2742,7 @@ class ExecutableSchema5(BaseModel):
     """
 
 
-class FlavorSchema5(BaseModel):
+class FlavorSchema6(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -2810,8 +2810,8 @@ class ExecutionUnitSchemaBase2(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema5] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema5] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema6] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema6] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)

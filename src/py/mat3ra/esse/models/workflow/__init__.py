@@ -54,7 +54,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema19(BaseModel):
+class DataIODatabaseInputOutputSchema21(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema21],
             ObjectStorageIoSchema,
         ]
     ]
@@ -1196,7 +1196,7 @@ class Type107(Enum):
     io = "io"
 
 
-class DataIODatabaseInputOutputSchema20(BaseModel):
+class DataIODatabaseInputOutputSchema22(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1206,7 +1206,7 @@ class DataIODatabaseInputOutputSchema20(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema21(BaseModel):
+class DataIODatabaseInputOutputSchema23(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1220,7 +1220,7 @@ class DataIODatabaseInputOutputSchema21(BaseModel):
     """
 
 
-class ObjectStorageIoSchema10(BaseModel):
+class ObjectStorageIoSchema11(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1256,8 +1256,8 @@ class DataIOUnitSchema9(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema20, DataIODatabaseInputOutputSchema21],
-            ObjectStorageIoSchema10,
+            Union[DataIODatabaseInputOutputSchema22, DataIODatabaseInputOutputSchema23],
+            ObjectStorageIoSchema11,
         ]
     ]
     field_id: Optional[str] = Field(None, alias="_id")
@@ -1604,7 +1604,7 @@ class Type111(Enum):
     execution = "execution"
 
 
-class ExecutableSchema12(BaseModel):
+class ExecutableSchema13(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -1652,7 +1652,7 @@ class ExecutableSchema12(BaseModel):
     """
 
 
-class FlavorSchema12(BaseModel):
+class FlavorSchema13(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -1720,8 +1720,8 @@ class ExecutionUnitSchemaBase9(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema12] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema12] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema13] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema13] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)

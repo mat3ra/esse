@@ -1,0 +1,31 @@
+{
+    "$id": "workflow/unit/mixins/execution",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "execution unit mixin schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "execution"
+        },
+        "application": {
+            "description": "Contains information about the simulation engine/application.",
+            "$ref": "../../../software/application.json"
+        },
+        "executable": {
+            "description": "Contains information about the simulation engine/application executable.",
+            "$ref": "../../../software/executable.json"
+        },
+        "flavor": {
+            "description": "Contains information about the simulation engine/application flavor.",
+            "$ref": "../../../software/flavor.json"
+        },
+        "input": {
+            "description": "unit input (type to be specified by the application's execution unit)"
+        }
+    },
+    "required": [
+        "input",
+        "application"
+    ]
+}
+

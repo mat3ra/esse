@@ -1,0 +1,48 @@
+{
+    "$id": "workflow/unit/mixins/condition",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "condition unit mixin schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "condition"
+        },
+        "input": {
+            "description": "Input information for condition.",
+            "type": "array",
+            "items": {
+                "$ref": "../input/_inputItemScope.json"
+            }
+        },
+        "statement": {
+            "description": "Condition statement. e.g. 'abs(x-total_energy) < 1e-5'",
+            "type": "string",
+            "default": "true"
+        },
+        "then": {
+            "description": "Flowchart ID reference for `then` part of the condition.",
+            "type": "string"
+        },
+        "else": {
+            "description": "Flowchart ID reference for `else` part of the condition.",
+            "type": "string"
+        },
+        "maxOccurrences": {
+            "description": "Maximum occurrence of the condition, usable for loops.",
+            "type": "integer",
+            "default": 100
+        },
+        "throwException": {
+            "description": "Throw exception on reaching to maximum occurence.",
+            "type": "boolean"
+        }
+    },
+    "required": [
+        "input",
+        "statement",
+        "then",
+        "else",
+        "maxOccurrences"
+    ]
+}
+
