@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -54,7 +50,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema19(BaseModel):
+class DataIODatabaseInputOutputSchema17(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -152,7 +148,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema17],
             ObjectStorageIoSchema,
         ]
     ]
@@ -220,10 +216,6 @@ class DataIOUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type93(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type94(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -432,10 +420,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type95(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -516,10 +500,6 @@ class AssertionUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type96(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -773,10 +753,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type97(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -862,10 +838,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
-
-
-class Type98(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):

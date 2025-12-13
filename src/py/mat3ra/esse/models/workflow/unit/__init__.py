@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -54,7 +50,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema17(BaseModel):
+class DataIODatabaseInputOutputSchema15(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -152,7 +148,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema17],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema15],
             ObjectStorageIoSchema,
         ]
     ]
@@ -220,10 +216,6 @@ class DataIOUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type84(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type85(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -432,10 +420,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type86(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -516,10 +500,6 @@ class AssertionUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type87(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -773,10 +753,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type88(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -864,10 +840,6 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type89(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -952,10 +924,6 @@ class ProcessingUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type90(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -1058,10 +1026,6 @@ class MapUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type91(Enum):
-    subworkflow = "subworkflow"
 
 
 class SubworkflowUnitSchema(BaseModel):

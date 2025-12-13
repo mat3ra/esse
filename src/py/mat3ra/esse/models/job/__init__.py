@@ -10,10 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel, conint
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -54,7 +50,7 @@ class DataIODatabaseInputOutputSchema(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema11(BaseModel):
+class DataIODatabaseInputOutputSchema9(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -152,7 +148,7 @@ class DataIOUnitSchema(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema11],
+            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema9],
             ObjectStorageIoSchema,
         ]
     ]
@@ -220,10 +216,6 @@ class DataIOUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type40(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type41(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -432,10 +420,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type42(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -516,10 +500,6 @@ class AssertionUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type43(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -773,10 +753,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type44(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -862,10 +838,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
-
-
-class Type45(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):
@@ -1192,11 +1164,7 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type46(Enum):
-    io = "io"
-
-
-class DataIODatabaseInputOutputSchema12(BaseModel):
+class DataIODatabaseInputOutputSchema10(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1206,7 +1174,7 @@ class DataIODatabaseInputOutputSchema12(BaseModel):
     """
 
 
-class DataIODatabaseInputOutputSchema13(BaseModel):
+class DataIODatabaseInputOutputSchema11(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1220,7 +1188,7 @@ class DataIODatabaseInputOutputSchema13(BaseModel):
     """
 
 
-class ObjectStorageIoSchema5(BaseModel):
+class ObjectStorageIoSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -1256,8 +1224,8 @@ class DataIOUnitSchema4(BaseModel):
     input: List[
         Union[
             DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema12, DataIODatabaseInputOutputSchema13],
-            ObjectStorageIoSchema5,
+            Union[DataIODatabaseInputOutputSchema10, DataIODatabaseInputOutputSchema11],
+            ObjectStorageIoSchema4,
         ]
     ]
     field_id: Optional[str] = Field(None, alias="_id")
@@ -1324,10 +1292,6 @@ class DataIOUnitSchema4(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type47(Enum):
-    reduce = "reduce"
 
 
 class ReduceUnitSchema3(BaseModel):
@@ -1410,10 +1374,6 @@ class ReduceUnitSchema3(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type48(Enum):
-    condition = "condition"
 
 
 class ConditionUnitSchema4(BaseModel):
@@ -1514,10 +1474,6 @@ class ConditionUnitSchema4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type49(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1600,11 +1556,7 @@ class AssertionUnitSchema4(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type50(Enum):
-    execution = "execution"
-
-
-class ExecutableSchema8(BaseModel):
+class ExecutableSchema7(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -1652,7 +1604,7 @@ class ExecutableSchema8(BaseModel):
     """
 
 
-class FlavorSchema8(BaseModel):
+class FlavorSchema7(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -1720,8 +1672,8 @@ class ExecutionUnitSchemaBase4(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema8] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema8] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema7] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema7] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
@@ -1790,10 +1742,6 @@ class ExecutionUnitSchemaBase4(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type51(Enum):
-    assignment = "assignment"
 
 
 class AssignmentUnitSchema4(BaseModel):
@@ -1883,10 +1831,6 @@ class AssignmentUnitSchema4(BaseModel):
     scope: Optional[str] = None
 
 
-class Type52(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema3(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1971,10 +1915,6 @@ class ProcessingUnitSchema3(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type53(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -2077,10 +2017,6 @@ class MapUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type54(Enum):
-    subworkflow = "subworkflow"
 
 
 class SubworkflowUnitSchema(BaseModel):
@@ -2230,7 +2166,7 @@ class WorkflowSchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class Status42(Enum):
+class Status41(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -2348,7 +2284,7 @@ class JobSchema(BaseModel):
     """
     Identity used to track jobs originated from command-line
     """
-    status: Status42
+    status: Status41
     """
     job status
     """

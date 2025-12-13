@@ -1127,10 +1127,6 @@ class Name515(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
-class Type20(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -1312,10 +1308,6 @@ class DataIOUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type21(Enum):
-    reduce = "reduce"
-
-
 class InputItem(BaseModel):
     operation: str
     """
@@ -1407,10 +1399,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type22(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -1522,10 +1510,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type23(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1606,10 +1590,6 @@ class AssertionUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type24(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -1863,10 +1843,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type25(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1952,10 +1928,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
-
-
-class Type26(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):
@@ -2282,10 +2254,6 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type27(Enum):
-    io = "io"
-
-
 class DataIODatabaseInputOutputSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2416,10 +2384,6 @@ class DataIOUnitSchema1(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type28(Enum):
-    reduce = "reduce"
-
-
 class ReduceUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2500,10 +2464,6 @@ class ReduceUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type29(Enum):
-    condition = "condition"
 
 
 class ConditionUnitSchema2(BaseModel):
@@ -2604,10 +2564,6 @@ class ConditionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type30(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2690,11 +2646,7 @@ class AssertionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type31(Enum):
-    execution = "execution"
-
-
-class ExecutableSchema6(BaseModel):
+class ExecutableSchema5(BaseModel):
     name: str
     """
     The name of the executable. e.g. pw.x
@@ -2742,7 +2694,7 @@ class ExecutableSchema6(BaseModel):
     """
 
 
-class FlavorSchema6(BaseModel):
+class FlavorSchema5(BaseModel):
     executableId: Optional[str] = None
     """
     _id of the executable this flavor belongs to
@@ -2810,8 +2762,8 @@ class ExecutionUnitSchemaBase2(BaseModel):
     type of the unit
     """
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema6] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema6] = Field(None, title="flavor schema")
+    executable: Optional[ExecutableSchema5] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema5] = Field(None, title="flavor schema")
     input: Any
     """
     unit input (type to be specified by the application's execution unit)
@@ -2880,10 +2832,6 @@ class ExecutionUnitSchemaBase2(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type32(Enum):
-    assignment = "assignment"
 
 
 class AssignmentUnitSchema2(BaseModel):
@@ -2973,10 +2921,6 @@ class AssignmentUnitSchema2(BaseModel):
     scope: Optional[str] = None
 
 
-class Type33(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -3061,10 +3005,6 @@ class ProcessingUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type34(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -3167,10 +3107,6 @@ class MapUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type35(Enum):
-    subworkflow = "subworkflow"
 
 
 class SubworkflowUnitSchema(BaseModel):

@@ -12,9 +12,7 @@
     "additionalProperties": true,
     "properties": {
         "type": {
-            "enum": [
-                "execution"
-            ],
+            "const": "execution",
             "description": "type of the unit",
             "type": "string"
         },

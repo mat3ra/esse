@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    assignment = "assignment"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -50,7 +46,7 @@ class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["assignment"]
     """
     type of the unit
     """

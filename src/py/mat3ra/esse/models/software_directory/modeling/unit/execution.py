@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -224,7 +220,7 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["execution"]
     """
     type of the unit
     """
