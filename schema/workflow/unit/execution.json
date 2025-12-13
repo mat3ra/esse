@@ -13,9 +13,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "execution"
-            ]
+            "const": "execution"
         },
         "application": {
             "description": "Contains information about the simulation engine/application.",
