@@ -24,6 +24,13 @@
                 "2025.07.22.2"
             ]
         },
+        "build": {
+            "enum": [
+                "GNU",
+                "Intel",
+                "CUDA"
+            ]
+        },
         "exec": {
             "enum": [
                 "lmp"

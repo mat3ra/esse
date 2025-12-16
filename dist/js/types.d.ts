@@ -54408,15 +54408,15 @@ export interface LAMMPS {
      * Application version. e.g. 5.3.5
      */
     version?: "2025.07.22.2";
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: "GNU" | "Intel" | "CUDA";
     exec?: "lmp";
     /**
      * The short name of the application. e.g. qe
      */
     shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
     /**
      * Whether advanced compute options are present
      */

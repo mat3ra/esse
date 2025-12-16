@@ -22,6 +22,12 @@ class Version(Enum):
     field_2025_07_22_2 = "2025.07.22.2"
 
 
+class Build(Enum):
+    GNU = "GNU"
+    Intel = "Intel"
+    CUDA = "CUDA"
+
+
 class Exec(Enum):
     lmp = "lmp"
 
@@ -42,14 +48,14 @@ class LAMMPS(BaseModel):
     """
     Application version. e.g. 5.3.5
     """
+    build: Optional[Build] = None
+    """
+    Application build. e.g. VTST
+    """
     exec: Optional[Exec] = None
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """

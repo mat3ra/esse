@@ -26,6 +26,15 @@
             "description": "Application version. e.g. 5.3.5",
             "type": "string"
         },
+        "build": {
+            "enum": [
+                "GNU",
+                "Intel",
+                "CUDA"
+            ],
+            "description": "Application build. e.g. VTST",
+            "type": "string"
+        },
         "exec": {
             "enum": [
                 "lmp"
@@ -33,10 +42,6 @@
         },
         "shortName": {
             "description": "The short name of the application. e.g. qe",
-            "type": "string"
-        },
-        "build": {
-            "description": "Application build. e.g. VTST",
             "type": "string"
         },
         "hasAdvancedComputeOptions": {
