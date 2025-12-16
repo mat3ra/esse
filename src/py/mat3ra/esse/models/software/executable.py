@@ -29,7 +29,7 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

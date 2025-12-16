@@ -62,7 +62,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

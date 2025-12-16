@@ -39,7 +39,7 @@ class Label33(Enum):
 
 
 class Units336(Enum):
-    field_debye_angstrom__2 = "(debye/angstrom)^2"
+    debye_angstrom__2 = "(debye/angstrom)^2"
     km_mol = "km/mol"
     m_mol = "m/mol"
     a_u_ = "a.u."

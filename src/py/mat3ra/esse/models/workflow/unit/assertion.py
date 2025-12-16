@@ -47,7 +47,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

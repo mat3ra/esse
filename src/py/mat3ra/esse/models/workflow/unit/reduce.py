@@ -58,7 +58,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

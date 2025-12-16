@@ -15,7 +15,7 @@ class Type(Enum):
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -35,7 +35,7 @@ class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
     """
     Human-readable title of the job
     """
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     job identifier
     """

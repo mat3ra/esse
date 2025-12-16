@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -245,7 +245,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -354,7 +354,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -436,7 +436,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -530,7 +530,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -566,7 +566,7 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -633,7 +633,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -687,7 +687,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -773,7 +773,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -860,7 +860,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

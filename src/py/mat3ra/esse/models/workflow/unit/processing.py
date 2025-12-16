@@ -51,7 +51,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

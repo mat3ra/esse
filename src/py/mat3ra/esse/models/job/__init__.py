@@ -152,7 +152,7 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -245,7 +245,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -354,7 +354,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -436,7 +436,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -530,7 +530,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -566,7 +566,7 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -633,7 +633,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -687,7 +687,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -773,7 +773,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -860,7 +860,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1146,7 +1146,7 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """
@@ -1228,7 +1228,7 @@ class DataIOUnitSchema4(BaseModel):
             ObjectStorageIoSchema4,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1310,7 +1310,7 @@ class ReduceUnitSchema3(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1408,7 +1408,7 @@ class ConditionUnitSchema4(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1490,7 +1490,7 @@ class AssertionUnitSchema4(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1569,7 +1569,7 @@ class ExecutableSchema7(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1624,7 +1624,7 @@ class FlavorSchema7(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1678,7 +1678,7 @@ class ExecutionUnitSchemaBase4(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1764,7 +1764,7 @@ class AssignmentUnitSchema4(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1851,7 +1851,7 @@ class ProcessingUnitSchema3(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1953,7 +1953,7 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2027,7 +2027,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     type of the unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2142,7 +2142,7 @@ class WorkflowSchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2254,7 +2254,7 @@ class ComputeArgumentsSchema5(BaseModel):
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -2300,8 +2300,8 @@ class JobSchema(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-    field_project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
-    field_material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
+    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
+    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
     parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
     runtimeContext: Optional[Dict[str, Any]] = None
     """
@@ -2311,7 +2311,7 @@ class JobSchema(BaseModel):
     """
     history of the workflow scope on each update
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

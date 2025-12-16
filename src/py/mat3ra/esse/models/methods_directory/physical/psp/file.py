@@ -60,11 +60,11 @@ class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    wavefunction: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for wavefunction plane wave expansion.
     """
-    density: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    density: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for charge density plane wave expansion.
     """
