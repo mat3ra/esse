@@ -32,9 +32,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "io"
-                                ],
+                                "const": "io",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -402,9 +400,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "reduce"
-                                ],
+                                "const": "reduce",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -660,9 +656,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "condition"
-                                ],
+                                "const": "condition",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -930,9 +924,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "assertion"
-                                ],
+                                "const": "assertion",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -1165,9 +1157,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "execution"
-                                ],
+                                "const": "execution",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -1812,9 +1802,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "assignment"
-                                ],
+                                "const": "assignment",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
@@ -2084,9 +2072,7 @@
                         "additionalProperties": true,
                         "properties": {
                             "type": {
-                                "enum": [
-                                    "processing"
-                                ],
+                                "const": "processing",
                                 "description": "type of the unit",
                                 "type": "string"
                             },
