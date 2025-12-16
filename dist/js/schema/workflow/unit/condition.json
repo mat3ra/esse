@@ -15,9 +15,7 @@
     "additionalProperties": true,
     "properties": {
         "type": {
-            "enum": [
-                "condition"
-            ],
+            "const": "condition",
             "description": "type of the unit",
             "type": "string"
         },

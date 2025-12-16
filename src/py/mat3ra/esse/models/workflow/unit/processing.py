@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    processing = "processing"
 
 
 class Status(Enum):
@@ -39,7 +35,7 @@ class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["processing"]
     """
     type of the unit
     """
@@ -55,7 +51,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

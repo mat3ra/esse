@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -50,7 +46,7 @@ class ReduceUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["reduce"]
     """
     type of the unit
     """
@@ -62,7 +58,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

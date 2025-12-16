@@ -15,7 +15,7 @@ class Type(Enum):
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -35,14 +35,14 @@ class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
     """
     Human-readable title of the job
     """
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     job identifier
     """
     owner: EntityReferenceSchema = Field(..., title="entity reference schema")
 
 
-class Type69(Enum):
+class Type27(Enum):
     experiment = "experiment"
 
 
@@ -83,7 +83,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type70(Enum):
+class Type28(Enum):
     literature = "literature"
 
 
@@ -93,7 +93,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type70] = None
+    type: Optional[Type28] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -153,7 +153,7 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
-    type: Optional[Type69] = None
+    type: Optional[Type27] = None
     authors: List[ExperimentAuthorSchema]
     """
     experiment authors
@@ -183,7 +183,7 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
 
 
 class LiteratureReferenceSchema12(BaseModel):
-    type: Optional[Type70] = None
+    type: Optional[Type28] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.

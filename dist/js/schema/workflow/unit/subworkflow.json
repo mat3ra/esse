@@ -10,9 +10,7 @@
     "additionalProperties": true,
     "properties": {
         "type": {
-            "enum": [
-                "subworkflow"
-            ],
+            "const": "subworkflow",
             "description": "type of the unit",
             "type": "string"
         },

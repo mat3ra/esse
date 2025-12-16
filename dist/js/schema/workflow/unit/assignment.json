@@ -13,9 +13,7 @@
     "additionalProperties": true,
     "properties": {
         "type": {
-            "enum": [
-                "assignment"
-            ],
+            "const": "assignment",
             "description": "type of the unit",
             "type": "string"
         },

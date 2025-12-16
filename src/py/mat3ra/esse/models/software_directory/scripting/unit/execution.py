@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -42,7 +38,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -85,7 +81,7 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -152,7 +148,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -224,7 +220,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["execution"]
     """
     type of the unit
     """
@@ -240,7 +236,7 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

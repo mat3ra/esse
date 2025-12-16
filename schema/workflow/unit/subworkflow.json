@@ -10,9 +10,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "subworkflow"
-            ]
+            "const": "subworkflow"
         }
     }
 }

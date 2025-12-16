@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    assertion = "assertion"
 
 
 class Status(Enum):
@@ -39,7 +35,7 @@ class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: Type
+    type: Literal["assertion"]
     """
     type of the unit
     """
@@ -51,7 +47,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

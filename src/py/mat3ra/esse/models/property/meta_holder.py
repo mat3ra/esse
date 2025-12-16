@@ -56,11 +56,11 @@ class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    wavefunction: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for wavefunction plane wave expansion.
     """
-    density: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    density: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for charge density plane wave expansion.
     """
@@ -125,7 +125,7 @@ class MetaPropertyHolderSchema(BaseModel):
     container of the information, specific to each property
     """
     source: Source
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

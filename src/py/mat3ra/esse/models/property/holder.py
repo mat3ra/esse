@@ -1127,10 +1127,6 @@ class Name515(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
-class Type20(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -1246,7 +1242,7 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1310,10 +1306,6 @@ class DataIOUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type21(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -1343,7 +1335,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1407,10 +1399,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type22(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -1456,7 +1444,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1522,10 +1510,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type23(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1542,7 +1526,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1608,10 +1592,6 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type24(Enum):
-    execution = "execution"
-
-
 class ApplicationSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1640,7 +1620,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1676,7 +1656,7 @@ class ExecutableSchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1743,7 +1723,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1797,7 +1777,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1863,10 +1843,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type25(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1887,7 +1863,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1954,10 +1930,6 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type26(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1978,7 +1950,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2264,7 +2236,7 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """
@@ -2280,10 +2252,6 @@ class Subworkflow(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-
-
-class Type27(Enum):
-    io = "io"
 
 
 class DataIODatabaseInputOutputSchema4(BaseModel):
@@ -2350,7 +2318,7 @@ class DataIOUnitSchema1(BaseModel):
             ObjectStorageIoSchema1,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2414,10 +2382,6 @@ class DataIOUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type28(Enum):
-    reduce = "reduce"
 
 
 class ReduceUnitSchema1(BaseModel):
@@ -2436,7 +2400,7 @@ class ReduceUnitSchema1(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2500,10 +2464,6 @@ class ReduceUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type29(Enum):
-    condition = "condition"
 
 
 class ConditionUnitSchema2(BaseModel):
@@ -2538,7 +2498,7 @@ class ConditionUnitSchema2(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2604,10 +2564,6 @@ class ConditionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type30(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2624,7 +2580,7 @@ class AssertionUnitSchema2(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2690,10 +2646,6 @@ class AssertionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type31(Enum):
-    execution = "execution"
-
-
 class ExecutableSchema5(BaseModel):
     name: str
     """
@@ -2707,7 +2659,7 @@ class ExecutableSchema5(BaseModel):
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2762,7 +2714,7 @@ class FlavorSchema5(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2816,7 +2768,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2882,10 +2834,6 @@ class ExecutionUnitSchemaBase2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type32(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2906,7 +2854,7 @@ class AssignmentUnitSchema2(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2973,10 +2921,6 @@ class AssignmentUnitSchema2(BaseModel):
     scope: Optional[str] = None
 
 
-class Type33(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2997,7 +2941,7 @@ class ProcessingUnitSchema1(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3061,10 +3005,6 @@ class ProcessingUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type34(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -3103,7 +3043,7 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3169,10 +3109,6 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type35(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -3181,7 +3117,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     type of the unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3300,7 +3236,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3553,7 +3489,7 @@ class PropertyHolderSchema(BaseModel):
     property system tags, marks property system characteristics, values refined or best (could be both)
     """
     repetition: float
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
