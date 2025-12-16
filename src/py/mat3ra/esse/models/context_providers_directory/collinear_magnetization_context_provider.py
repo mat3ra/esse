@@ -14,7 +14,7 @@ class StartingMagnetizationItem(BaseModel):
     value: Optional[confloat(ge=-1.0, le=1.0)] = Field(None, title="Starting magnetization")
 
 
-class CollinearMagnetizationProviderSchema(BaseModel):
+class CollinearMagnetizationContextProviderSchema(BaseModel):
     startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
     isTotalMagnetization: Optional[bool] = Field(None, title="Set total magnetization instead")
     totalMagnetization: Optional[float] = Field(None, title="Total magnetization")

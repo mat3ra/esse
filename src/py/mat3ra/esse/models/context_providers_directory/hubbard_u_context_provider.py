@@ -9,14 +9,14 @@ from typing import List, Optional
 from pydantic import BaseModel, Field, RootModel
 
 
-class HubbardUProviderSchemaItem(BaseModel):
+class HubbardUContextProviderSchemaItem(BaseModel):
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     atomicOrbital: Optional[str] = Field(None, title="Atomic orbital")
     hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
 
 
-class HubbardUProviderSchema(RootModel[List[HubbardUProviderSchemaItem]]):
-    root: List[HubbardUProviderSchemaItem] = Field(..., title="Hubbard U Provider Schema")
+class HubbardUContextProviderSchema(RootModel[List[HubbardUContextProviderSchemaItem]]):
+    root: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.
     """

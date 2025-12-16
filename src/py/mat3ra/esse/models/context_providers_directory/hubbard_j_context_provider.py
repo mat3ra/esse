@@ -18,15 +18,15 @@ class Species(Enum):
     E3 = "E3"
 
 
-class HubbardJProviderSchemaItem(BaseModel):
+class HubbardJContextProviderSchemaItem(BaseModel):
     paramType: Optional[Species] = Field(None, title="Species")
     atomicSpecies: Optional[str] = Field(None, title="Species")
     atomicOrbital: Optional[str] = Field(None, title="Orbital")
     value: Optional[float] = Field(None, title="Value (eV)")
 
 
-class HubbardJProviderSchema(RootModel[List[HubbardJProviderSchemaItem]]):
-    root: List[HubbardJProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Provider Schema")
+class HubbardJContextProviderSchema(RootModel[List[HubbardJContextProviderSchemaItem]]):
+    root: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.
     """

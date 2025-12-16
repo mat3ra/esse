@@ -9,5 +9,5 @@ from typing import Optional
 from pydantic import BaseModel, confloat
 
 
-class MLTrainTestSplitProviderSchema(BaseModel):
+class MLTrainTestSplitContextProviderSchema(BaseModel):
     fraction_held_as_test_set: Optional[confloat(ge=0.0, le=1.0)] = None

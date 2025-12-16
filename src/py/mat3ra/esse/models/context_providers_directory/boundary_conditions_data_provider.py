@@ -17,7 +17,7 @@ class Type(Enum):
     bc3 = "bc3"
 
 
-class BoundaryConditionsProviderSchema(BaseModel):
+class BoundaryConditionsDataProviderSchema(BaseModel):
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.

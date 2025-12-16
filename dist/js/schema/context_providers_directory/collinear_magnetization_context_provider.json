@@ -1,7 +1,7 @@
 {
     "$id": "context-providers-directory/collinear-magnetization-context-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Collinear Magnetization Provider Schema",
+    "title": "Collinear Magnetization Context Provider Schema",
     "description": "Set starting magnetization, can have values in the range [-1, +1].",
     "type": "object",
     "properties": {

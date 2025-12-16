@@ -1,7 +1,7 @@
 {
     "$id": "context-providers-directory/points-grid-data-provider",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Points Grid Provider Schema",
+    "title": "Points Grid Data Provider Schema",
     "description": "3D grid with shifts for k-point or q-point sampling.",
     "type": "object",
     "properties": {
@@ -31,7 +31,10 @@
         },
         "gridMetricType": {
             "type": "string",
-            "enum": ["KPPRA", "spacing"]
+            "enum": [
+                "KPPRA",
+                "spacing"
+            ]
         },
         "gridMetricValue": {
             "type": "number"

@@ -15,7 +15,7 @@ class GridMetricType(Enum):
     spacing = "spacing"
 
 
-class PointsGridProviderSchema(BaseModel):
+class PointsGridDataProviderSchema(BaseModel):
     dimensions: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
