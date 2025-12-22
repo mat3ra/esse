@@ -1,0 +1,15 @@
+{
+    "$id": "context-providers-directory/planewave-cutoffs-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Planewave Cutoffs Context Provider Schema",
+    "description": "Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.",
+    "type": "object",
+    "properties": {
+        "wavefunction": {
+            "type": "number"
+        },
+        "density": {
+            "type": "number"
+        }
+    }
+}

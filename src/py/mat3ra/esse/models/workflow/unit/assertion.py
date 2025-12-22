@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -29,10 +29,6 @@ class StatusTrackItem(BaseModel):
     trackedAt: float
     status: str
     repetition: Optional[float] = None
-
-
-class Type(Enum):
-    assertion = "assertion"
 
 
 class AssertionUnitSchema(BaseModel):
@@ -86,7 +82,7 @@ class AssertionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Type
+    type: Literal["assertion"]
     """
     type of the unit
     """

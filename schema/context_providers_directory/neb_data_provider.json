@@ -1,0 +1,12 @@
+{
+    "$id": "context-providers-directory/neb-data-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "NEB Data Provider Schema",
+    "description": "Number of intermediate NEB images.",
+    "type": "object",
+    "properties": {
+        "nImages": {
+            "type": "number"
+        }
+    }
+}

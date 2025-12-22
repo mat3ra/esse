@@ -667,7 +667,7 @@ class CrystalSchema(BaseModel):
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
     metadata: Optional[Metadata] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1144,7 +1144,7 @@ class CrystalSchema65(BaseModel):
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema70]] = None
     metadata: Optional[Metadata69] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1632,7 +1632,7 @@ class CrystalSchema66(BaseModel):
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema71]] = None
     metadata: Optional[Metadata70] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

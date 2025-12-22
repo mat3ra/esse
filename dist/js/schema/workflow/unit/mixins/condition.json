@@ -12,9 +12,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "condition"
-            ]
+            "const": "condition"
         },
         "input": {
             "description": "Input information for condition.",

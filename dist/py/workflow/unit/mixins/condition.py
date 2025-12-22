@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, Field
-
-
-class Type(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -26,7 +21,7 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class ConditionUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["condition"] = "condition"
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.

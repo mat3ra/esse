@@ -5,9 +5,7 @@
     "type": "object",
     "properties": {
         "type": {
-            "enum": [
-                "io"
-            ]
+            "const": "io"
         },
         "subtype": {
             "enum": [

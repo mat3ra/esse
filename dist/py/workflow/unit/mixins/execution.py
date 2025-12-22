@@ -4,18 +4,13 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Any, List, Optional
+from typing import Any, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class Type(Enum):
-    execution = "execution"
-
-
 class ApplicationSchemaBase(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -70,7 +65,7 @@ class RuntimeItemNameObjectSchema(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -130,7 +125,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -189,7 +184,7 @@ class FlavorSchema(BaseModel):
 
 
 class ExecutionUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["execution"] = "execution"
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")

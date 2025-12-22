@@ -1,0 +1,24 @@
+{
+    "$id": "context-providers-directory/hubbard-u-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Hubbard U Context Provider Schema",
+    "description": "Hubbard U parameters for DFT+U or DFT+U+V calculation.",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "atomicSpecies": {
+                "type": "string",
+                "title": "Atomic species"
+            },
+            "atomicOrbital": {
+                "type": "string",
+                "title": "Atomic orbital"
+            },
+            "hubbardUValue": {
+                "type": "number",
+                "title": "Hubbard U (eV)"
+            }
+        }
+    }
+}

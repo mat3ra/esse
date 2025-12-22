@@ -31,10 +31,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -222,10 +218,6 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type45(Enum):
-    reduce = "reduce"
-
-
 class InputItem(BaseModel):
     operation: str
     """
@@ -317,10 +309,6 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-
-
-class Type46(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -432,10 +420,6 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type47(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -516,10 +500,6 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-
-
-class Type48(Enum):
-    execution = "execution"
 
 
 class ApplicationSchemaBase(BaseModel):
@@ -770,10 +750,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type49(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -859,10 +835,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-
-
-class Type50(Enum):
-    processing = "processing"
 
 
 class ProcessingUnitSchema(BaseModel):
@@ -1189,10 +1161,6 @@ class Subworkflow(BaseModel):
     """
 
 
-class Type51(Enum):
-    io = "io"
-
-
 class DataIODatabaseInputOutputSchema12(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1323,10 +1291,6 @@ class DataIOUnitSchema4(BaseModel):
     ]
 
 
-class Type52(Enum):
-    reduce = "reduce"
-
-
 class ReduceUnitSchema3(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1407,10 +1371,6 @@ class ReduceUnitSchema3(BaseModel):
     """
     input information for reduce unit
     """
-
-
-class Type53(Enum):
-    condition = "condition"
 
 
 class ConditionUnitSchema4(BaseModel):
@@ -1511,10 +1471,6 @@ class ConditionUnitSchema4(BaseModel):
     """
 
 
-class Type54(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1595,10 +1551,6 @@ class AssertionUnitSchema4(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-
-
-class Type55(Enum):
-    execution = "execution"
 
 
 class ExecutableSchema8(BaseModel):
@@ -1789,10 +1741,6 @@ class ExecutionUnitSchemaBase4(BaseModel):
     """
 
 
-class Type56(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1880,10 +1828,6 @@ class AssignmentUnitSchema4(BaseModel):
     """
 
 
-class Type57(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema3(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1968,10 +1912,6 @@ class ProcessingUnitSchema3(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-
-
-class Type58(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -2074,10 +2014,6 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-
-
-class Type59(Enum):
-    subworkflow = "subworkflow"
 
 
 class SubworkflowUnitSchema(BaseModel):

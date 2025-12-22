@@ -170,11 +170,11 @@ class Site(BaseModel):
 
 
 class Structure(BaseModel):
-    field_module: str = Field(..., alias="@module")
+    module: str = Field(..., alias="@module")
     """
     Python module name
     """
-    field_class: str = Field(..., alias="@class")
+    class_: str = Field(..., alias="@class")
     """
     Python class name
     """
@@ -221,8 +221,8 @@ class Xa(BaseModel):
 
 
 class Lattice1(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -232,8 +232,8 @@ class Kpoint(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Cbm(BaseModel):
@@ -245,8 +245,8 @@ class Cbm(BaseModel):
 
 
 class Lattice2(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -256,8 +256,8 @@ class Kpoint1(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Vbm(BaseModel):
@@ -283,8 +283,8 @@ class SetyawanCurtarolo(BaseModel):
 
 
 class Lattice3(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -294,8 +294,8 @@ class Kpoint2(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Cbm1(BaseModel):
@@ -307,8 +307,8 @@ class Cbm1(BaseModel):
 
 
 class Lattice4(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -318,8 +318,8 @@ class Kpoint3(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Vbm1(BaseModel):
@@ -345,8 +345,8 @@ class Hinuma(BaseModel):
 
 
 class Lattice5(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -356,8 +356,8 @@ class Kpoint4(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Cbm2(BaseModel):
@@ -369,8 +369,8 @@ class Cbm2(BaseModel):
 
 
 class Lattice6(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -380,8 +380,8 @@ class Kpoint5(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Vbm2(BaseModel):
@@ -776,8 +776,8 @@ class MaterialsProjectSchema(BaseModel):
 
 
 class Lattice7(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -787,8 +787,8 @@ class Kpoint6(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Cbm3(BaseModel):
@@ -800,8 +800,8 @@ class Cbm3(BaseModel):
 
 
 class Lattice8(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -811,8 +811,8 @@ class Kpoint7(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class Vbm3(BaseModel):
@@ -838,8 +838,8 @@ class BandstructureData(BaseModel):
 
 
 class Lattice9(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -849,8 +849,8 @@ class Kpoint8(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class BandExtrema(BaseModel):
@@ -862,8 +862,8 @@ class BandExtrema(BaseModel):
 
 
 class Lattice10(BaseModel):
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
     matrix: List[MatrixItem] = Field(..., max_length=3, min_length=3)
     pbc: List[bool] = Field(..., max_length=3, min_length=3)
 
@@ -873,8 +873,8 @@ class Kpoint9(BaseModel):
     fcoords: List[float] = Field(..., max_length=3, min_length=3)
     ccoords: List[float] = Field(..., max_length=3, min_length=3)
     label: Optional[str] = None
-    field_module: str = Field(..., alias="@module")
-    field_class: str = Field(..., alias="@class")
+    module: str = Field(..., alias="@module")
+    class_: str = Field(..., alias="@class")
 
 
 class DosData(BaseModel):

@@ -1,0 +1,46 @@
+{
+    "$id": "context-providers-directory/points-grid-data-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Points Grid Data Provider Schema",
+    "description": "3D grid with shifts for k-point or q-point sampling.",
+    "type": "object",
+    "properties": {
+        "dimensions": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "shifts": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "reciprocalVectorRatios": {
+            "type": "array",
+            "items": {
+                "type": "number"
+            },
+            "minItems": 3,
+            "maxItems": 3
+        },
+        "gridMetricType": {
+            "type": "string",
+            "enum": [
+                "KPPRA",
+                "spacing"
+            ]
+        },
+        "gridMetricValue": {
+            "type": "number"
+        },
+        "preferGridMetric": {
+            "type": "boolean"
+        }
+    }
+}

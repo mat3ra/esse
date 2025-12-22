@@ -19,7 +19,7 @@ class AccuracyLevel(Enum):
     high = "high"
 
 
-class FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs(BaseModel):
+class UsedForSuggestedWavefunctionAndChargeDensityCutoffs(BaseModel):
     unit: Unit
     """
     Unit of the energy value corresponding to a accuracy_level. The values are expressed in Ry.

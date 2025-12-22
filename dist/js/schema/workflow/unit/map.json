@@ -158,9 +158,7 @@
         "type": {
             "description": "type of the unit",
             "type": "string",
-            "enum": [
-                "map"
-            ]
+            "const": "map"
         },
         "head": {
             "description": "Whether this unit is the first one to be executed.",

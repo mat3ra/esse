@@ -1148,10 +1148,6 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class Type79(Enum):
-    io = "io"
-
-
 class Subtype(Enum):
     input = "input"
     output = "output"
@@ -1233,7 +1229,7 @@ class DataIOUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1312,10 +1308,6 @@ class DataIOUnitSchema(BaseModel):
     ]
 
 
-class Type80(Enum):
-    reduce = "reduce"
-
-
 class InputItem(BaseModel):
     operation: str
     """
@@ -1331,7 +1323,7 @@ class ReduceUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1409,10 +1401,6 @@ class ReduceUnitSchema(BaseModel):
     """
 
 
-class Type81(Enum):
-    condition = "condition"
-
-
 class WorkflowUnitInputSchema(BaseModel):
     scope: str
     """
@@ -1428,7 +1416,7 @@ class ConditionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1522,15 +1510,11 @@ class ConditionUnitSchema(BaseModel):
     """
 
 
-class Type82(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1608,12 +1592,8 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class Type83(Enum):
-    execution = "execution"
-
-
 class ApplicationSchemaBase(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1661,7 +1641,7 @@ class ApplicationSchemaBase(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1721,7 +1701,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1783,7 +1763,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1860,15 +1840,11 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
 
 
-class Type84(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1951,15 +1927,11 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class Type85(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2261,7 +2233,7 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """
@@ -2277,10 +2249,6 @@ class Subworkflow(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-
-
-class Type86(Enum):
-    io = "io"
 
 
 class DataIODatabaseInputOutputSchema4(BaseModel):
@@ -2334,7 +2302,7 @@ class DataIOUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2413,15 +2381,11 @@ class DataIOUnitSchema1(BaseModel):
     ]
 
 
-class Type87(Enum):
-    reduce = "reduce"
-
-
 class ReduceUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2499,15 +2463,11 @@ class ReduceUnitSchema1(BaseModel):
     """
 
 
-class Type88(Enum):
-    condition = "condition"
-
-
 class ConditionUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2601,15 +2561,11 @@ class ConditionUnitSchema2(BaseModel):
     """
 
 
-class Type89(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2687,12 +2643,8 @@ class AssertionUnitSchema2(BaseModel):
     """
 
 
-class Type90(Enum):
-    execution = "execution"
-
-
 class ExecutableSchema6(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2740,7 +2692,7 @@ class ExecutableSchema6(BaseModel):
 
 
 class FlavorSchema6(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2802,7 +2754,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2879,15 +2831,11 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
 
 
-class Type91(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2970,15 +2918,11 @@ class AssignmentUnitSchema2(BaseModel):
     """
 
 
-class Type92(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3060,10 +3004,6 @@ class ProcessingUnitSchema1(BaseModel):
     """
 
 
-class Type93(Enum):
-    map = "map"
-
-
 class Input(BaseModel):
     target: str
     """
@@ -3088,7 +3028,7 @@ class MapUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3166,15 +3106,11 @@ class MapUnitSchema(BaseModel):
     """
 
 
-class Type94(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3297,7 +3233,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3550,7 +3486,7 @@ class PropertyHolderSchema(BaseModel):
     property system tags, marks property system characteristics, values refined or best (could be both)
     """
     repetition: float
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

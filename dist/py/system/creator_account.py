@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """

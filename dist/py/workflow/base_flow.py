@@ -162,7 +162,7 @@ class ComputeArgumentsSchema(BaseModel):
 
 
 class BaseFlow(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """

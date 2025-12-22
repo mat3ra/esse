@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel
-
-
-class Type(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -35,7 +30,7 @@ class Input(BaseModel):
 
 
 class MapUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["map"] = "map"
     workflowId: str
     """
     Id of workflow to run inside map

@@ -203,9 +203,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "io"
-                                                    ]
+                                                    "const": "io"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -530,9 +528,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "reduce"
-                                                    ]
+                                                    "const": "reduce"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -745,9 +741,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "condition"
-                                                    ]
+                                                    "const": "condition"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -971,9 +965,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "assertion"
-                                                    ]
+                                                    "const": "assertion"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -1163,9 +1155,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "execution"
-                                                    ]
+                                                    "const": "execution"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -1690,9 +1680,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "assignment"
-                                                    ]
+                                                    "const": "assignment"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -1919,9 +1907,7 @@
                                                 "type": {
                                                     "description": "type of the unit",
                                                     "type": "string",
-                                                    "enum": [
-                                                        "processing"
-                                                    ]
+                                                    "const": "processing"
                                                 },
                                                 "head": {
                                                     "description": "Whether this unit is the first one to be executed.",
@@ -2444,9 +2430,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "io"
-                                        ]
+                                        "const": "io"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -2771,9 +2755,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "reduce"
-                                        ]
+                                        "const": "reduce"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -2986,9 +2968,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "condition"
-                                        ]
+                                        "const": "condition"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -3212,9 +3192,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "assertion"
-                                        ]
+                                        "const": "assertion"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -3404,9 +3382,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "execution"
-                                        ]
+                                        "const": "execution"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -3931,9 +3907,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "assignment"
-                                        ]
+                                        "const": "assignment"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -4160,9 +4134,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "processing"
-                                        ]
+                                        "const": "processing"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -4355,9 +4327,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "map"
-                                        ]
+                                        "const": "map"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",
@@ -4582,9 +4552,7 @@
                                     "type": {
                                         "description": "type of the unit",
                                         "type": "string",
-                                        "enum": [
-                                            "subworkflow"
-                                        ]
+                                        "const": "subworkflow"
                                     },
                                     "head": {
                                         "description": "Whether this unit is the first one to be executed.",

@@ -1,0 +1,14 @@
+{
+    "$id": "context-providers-directory/ml-train-test-split-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "ML Train Test Split Context Provider Schema",
+    "description": "Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.",
+    "type": "object",
+    "properties": {
+        "fraction_held_as_test_set": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+        }
+    }
+}

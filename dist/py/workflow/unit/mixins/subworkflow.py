@@ -4,15 +4,10 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import Optional
+from typing import Literal
 
 from pydantic import BaseModel
 
 
-class Type(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["subworkflow"] = "subworkflow"

@@ -1,0 +1,22 @@
+{
+    "$id": "context-providers-directory/boundary-conditions-data-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Boundary Conditions Data Provider Schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "$ref": "../properties_directory/structural/basis/boundary_conditions.json#/properties/type"
+        },
+        "offset": {
+            "$ref": "../properties_directory/structural/basis/boundary_conditions.json#/properties/offset"
+        },
+        "electricField": {
+            "type": "number",
+            "title": "Electric Field (eV/A)"
+        },
+        "targetFermiEnergy": {
+            "type": "number",
+            "title": "Target Fermi Energy (eV)"
+        }
+    }
+}

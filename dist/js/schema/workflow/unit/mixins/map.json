@@ -9,9 +9,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "map"
-            ]
+            "const": "map"
         },
         "workflowId": {
             "description": "Id of workflow to run inside map",

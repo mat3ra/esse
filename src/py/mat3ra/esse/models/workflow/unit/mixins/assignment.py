@@ -4,14 +4,9 @@
 
 from __future__ import annotations
 
-from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Literal, Optional, Union
 
 from pydantic import BaseModel
-
-
-class Type(Enum):
-    assignment = "assignment"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -26,7 +21,7 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class AssignmentUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["assignment"] = "assignment"
     input: Optional[List[WorkflowUnitInputSchema]] = None
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.

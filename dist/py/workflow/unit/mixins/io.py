@@ -5,13 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class Type(Enum):
-    io = "io"
 
 
 class Subtype(Enum):
@@ -119,7 +115,7 @@ class ObjectStorageIoSchema(BaseModel):
 
 
 class DataIOUnitMixinSchema(BaseModel):
-    type: Optional[Type] = None
+    type: Literal["io"] = "io"
     subtype: Subtype
     source: Source
     input: List[

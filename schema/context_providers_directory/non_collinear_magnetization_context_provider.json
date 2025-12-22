@@ -1,0 +1,110 @@
+{
+    "$id": "context-providers-directory/non-collinear-magnetization-context-provider",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Non Collinear Magnetization Context Provider Schema",
+    "description": "Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.",
+    "type": "object",
+    "properties": {
+        "isExistingChargeDensity": {
+            "type": "boolean",
+            "title": "Use existing charge density"
+        },
+        "isStartingMagnetization": {
+            "type": "boolean",
+            "title": "Set starting magnetization"
+        },
+        "startingMagnetization": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "index": {
+                        "type": "integer",
+                        "title": "Index"
+                    },
+                    "atomicSpecies": {
+                        "type": "string",
+                        "title": "Atomic species"
+                    },
+                    "value": {
+                        "type": "number",
+                        "title": "Starting magnetization"
+                    }
+                }
+            }
+        },
+        "isArbitrarySpinAngle": {
+            "type": "boolean",
+            "title": "Set arbitrary spin angle"
+        },
+        "spinAngles": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "index": {
+                        "type": "integer",
+                        "title": "Index"
+                    },
+                    "atomicSpecies": {
+                        "type": "string",
+                        "title": "Atomic species"
+                    },
+                    "angle1": {
+                        "type": "number",
+                        "title": "Angle1 (deg)"
+                    },
+                    "angle2": {
+                        "type": "number",
+                        "title": "Angle2 (deg)"
+                    }
+                }
+            }
+        },
+        "isConstrainedMagnetization": {
+            "type": "boolean",
+            "title": "Set constrained magnetization"
+        },
+        "constrainedMagnetization": {
+            "type": "object",
+            "properties": {
+                "constrainType": {
+                    "type": "string",
+                    "title": "Constrain type",
+                    "enum": [
+                        "none",
+                        "total",
+                        "atomic",
+                        "total direction",
+                        "atomic direction"
+                    ]
+                },
+                "lambda": {
+                    "type": "number",
+                    "title": "lambda"
+                }
+            }
+        },
+        "isFixedMagnetization": {
+            "type": "boolean",
+            "title": "Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
+        },
+        "fixedMagnetization": {
+            "type": "object",
+            "properties": {
+                "x": {
+                    "type": "number",
+                    "title": "X-component"
+                },
+                "y": {
+                    "type": "number",
+                    "title": "Y-component"
+                },
+                "z": {
+                    "type": "number",
+                    "title": "Z-component"
+                }
+            }
+        }
+    }
+}

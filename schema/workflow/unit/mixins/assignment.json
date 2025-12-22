@@ -5,9 +5,7 @@
     "type": "object",
     "properties": {
         "type": {
-            "enum": [
-                "assignment"
-            ]
+            "const": "assignment"
         },
         "input": {
             "description": "Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.",
