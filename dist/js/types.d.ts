@@ -6263,12 +6263,21 @@ export interface JobSchema {
                      */
                     supportedApplicationVersions?: string[];
                 };
-                /**
-                 * unit input (type to be specified by the application's execution unit)
-                 */
                 input: {
-                    [k: string]: unknown;
-                };
+                    /**
+                     * Input file name. e.g. pw_scf.in
+                     */
+                    name: string;
+                    /**
+                     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                    /**
+                     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    rendered: string;
+                    isManuallyChanged?: boolean;
+                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -7496,12 +7505,21 @@ export interface JobSchema {
                  */
                 supportedApplicationVersions?: string[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                /**
+                 * Input file name. e.g. pw_scf.in
+                 */
+                name: string;
+                /**
+                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged?: boolean;
+            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -48839,12 +48857,21 @@ export interface WorkflowPropertySchema {
                  */
                 supportedApplicationVersions?: string[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                /**
+                 * Input file name. e.g. pw_scf.in
+                 */
+                name: string;
+                /**
+                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged?: boolean;
+            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -50072,12 +50099,21 @@ export interface WorkflowPropertySchema {
              */
             supportedApplicationVersions?: string[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            /**
+             * Input file name. e.g. pw_scf.in
+             */
+            name: string;
+            /**
+             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged?: boolean;
+        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -52651,12 +52687,21 @@ export interface PropertyHolderSchema {
                      */
                     supportedApplicationVersions?: string[];
                 };
-                /**
-                 * unit input (type to be specified by the application's execution unit)
-                 */
                 input: {
-                    [k: string]: unknown;
-                };
+                    /**
+                     * Input file name. e.g. pw_scf.in
+                     */
+                    name: string;
+                    /**
+                     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                    /**
+                     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    rendered: string;
+                    isManuallyChanged?: boolean;
+                }[];
                 [k: string]: unknown;
             } | {
                 /**
@@ -53884,12 +53929,21 @@ export interface PropertyHolderSchema {
                  */
                 supportedApplicationVersions?: string[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                /**
+                 * Input file name. e.g. pw_scf.in
+                 */
+                name: string;
+                /**
+                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged?: boolean;
+            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -55105,15 +55159,10 @@ export interface TemplateSchema {
          */
         name: string;
     }[];
-    isManuallyChanged?: boolean;
     /**
-     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+     * Content of the template. e.g. &CONTROL    calculation='scf' ...
      */
     content: string;
-    /**
-     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-     */
-    rendered?: string;
 }
 /** Schema dist/js/schema/software/template_properties.json */
 export interface TemplatePropertiesSchema {
@@ -55126,19 +55175,10 @@ export interface TemplatePropertiesSchema {
          */
         name: string;
     }[];
-    isManuallyChanged?: boolean;
     /**
-     * Input file name. e.g. pw_scf.in
-     */
-    name: string;
-    /**
-     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+     * Content of the template. e.g. &CONTROL    calculation='scf' ...
      */
     content: string;
-    /**
-     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-     */
-    rendered?: string;
 }
 /** Schema dist/js/schema/software_directory/modeling/deepmd.json */
 export interface DeePMDAppSchema {
@@ -55560,9 +55600,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: ({
         /**
          * Input file name. e.g. pw_scf.in
@@ -55575,7 +55612,8 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered?: string;
+        rendered: string;
+        isManuallyChanged?: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -56101,9 +56139,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: ({
         /**
          * Input file name. e.g. pw_scf.in
@@ -56116,7 +56151,8 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered?: string;
+        rendered: string;
+        isManuallyChanged?: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -57600,12 +57636,21 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: {
-        [k: string]: unknown;
-    };
+        /**
+         * Input file name. e.g. pw_scf.in
+         */
+        name: string;
+        /**
+         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged?: boolean;
+    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -58638,12 +58683,21 @@ export interface Subworkflow {
              */
             supportedApplicationVersions?: string[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            /**
+             * Input file name. e.g. pw_scf.in
+             */
+            name: string;
+            /**
+             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged?: boolean;
+        }[];
         [k: string]: unknown;
     } | {
         /**
@@ -59805,12 +59859,21 @@ export interface ExecutionUnitSchemaBase {
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: {
-        [k: string]: unknown;
-    };
+        /**
+         * Input file name. e.g. pw_scf.in
+         */
+        name: string;
+        /**
+         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged?: boolean;
+    }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
@@ -59827,7 +59890,8 @@ export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered?: string;
+        rendered: string;
+        isManuallyChanged?: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -59850,7 +59914,8 @@ export interface ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered?: string;
+    rendered: string;
+    isManuallyChanged?: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
@@ -60567,12 +60632,21 @@ export interface ExecutionUnitMixinSchema {
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: {
-        [k: string]: unknown;
-    };
+        /**
+         * Input file name. e.g. pw_scf.in
+         */
+        name: string;
+        /**
+         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged?: boolean;
+    }[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/io.json */
 export interface DataIOUnitMixinSchema {
@@ -61849,12 +61923,21 @@ export type WorkflowUnitSchema = {
          */
         supportedApplicationVersions?: string[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: {
-        [k: string]: unknown;
-    };
+        /**
+         * Input file name. e.g. pw_scf.in
+         */
+        name: string;
+        /**
+         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        content: string;
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged?: boolean;
+    }[];
     [k: string]: unknown;
 } | {
     /**
@@ -63105,12 +63188,21 @@ export interface WorkflowSchema {
                  */
                 supportedApplicationVersions?: string[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                /**
+                 * Input file name. e.g. pw_scf.in
+                 */
+                name: string;
+                /**
+                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged?: boolean;
+            }[];
             [k: string]: unknown;
         } | {
             /**
@@ -64338,12 +64430,21 @@ export interface WorkflowSchema {
              */
             supportedApplicationVersions?: string[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            /**
+             * Input file name. e.g. pw_scf.in
+             */
+            name: string;
+            /**
+             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged?: boolean;
+        }[];
         [k: string]: unknown;
     } | {
         /**
