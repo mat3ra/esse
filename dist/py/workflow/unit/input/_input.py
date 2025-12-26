@@ -9,7 +9,7 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ExecutionUnitInputItemSchema(BaseModel):
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -37,12 +37,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ExecutionUnitInputSchema(BaseModel):
     input: Optional[
-        List[
-            Union[
-                ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-                ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
-            ]
-        ]
+        List[Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]]
     ] = Field(None, title="execution unit input schema")

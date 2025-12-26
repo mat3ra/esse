@@ -1495,7 +1495,7 @@
                                 "type": "array",
                                 "items": {
                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                    "title": "execution unit input item schema for physics-based simulation engines",
+                                    "title": "execution unit input item schema",
                                     "type": "object",
                                     "required": [
                                         "name",

@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ExecutionUnitInputItemSchema(BaseModel):
     name: str
     """
     Input file name. e.g. pw_scf.in

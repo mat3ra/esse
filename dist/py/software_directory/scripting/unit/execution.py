@@ -198,7 +198,7 @@ class FlavorSchema(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class ExecutionUnitInputItemSchema(BaseModel):
     name: str
     """
     Input file name. e.g. pw_scf.in
@@ -311,8 +311,5 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[
-        Union[
-            ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines5,
-        ]
+        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines5]
     ] = Field(..., title="execution unit input schema")

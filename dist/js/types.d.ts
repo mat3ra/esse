@@ -59877,7 +59877,7 @@ export interface ExecutionUnitSchemaBase {
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
-export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
+export interface ExecutionUnitInputSchema {
     input?: ({
         /**
          * Input file name. e.g. pw_scf.in
@@ -59902,7 +59902,7 @@ export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
-export interface ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines {
+export interface ExecutionUnitInputItemSchema {
     /**
      * Input file name. e.g. pw_scf.in
      */
