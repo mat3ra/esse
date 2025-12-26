@@ -207,10 +207,32 @@ class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
     Content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
-    rendered: Optional[str] = None
+    rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    isManuallyChanged: Optional[bool] = False
+
+
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    name: str
+    """
+    name of the resulting input file, if different than template name
+    """
+    content: str
+    """
+    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+    templateId: Optional[str] = None
+    templateName: Optional[str] = None
 
 
 class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample(BaseModel):
@@ -291,9 +313,6 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     input: List[
         Union[
             ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
+            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7,
         ]
     ] = Field(..., title="execution unit input schema")
-    """
-    unit input (type to be specified by the application's execution unit)
-    """

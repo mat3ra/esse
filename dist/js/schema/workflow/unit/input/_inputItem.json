@@ -5,7 +5,8 @@
     "type": "object",
     "required": [
         "name",
-        "content"
+        "content",
+        "rendered"
     ],
     "properties": {
         "name": {
@@ -19,6 +20,10 @@
         "rendered": {
             "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
             "type": "string"
+        },
+        "isManuallyChanged": {
+            "type": "boolean",
+            "default": false
         }
     }
 }

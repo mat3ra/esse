@@ -25,11 +25,16 @@
                             "rendered": {
                                 "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
                                 "type": "string"
+                            },
+                            "isManuallyChanged": {
+                                "type": "boolean",
+                                "default": false
                             }
                         },
                         "required": [
                             "name",
-                            "content"
+                            "content",
+                            "rendered"
                         ]
                     },
                     {

@@ -20,7 +20,10 @@
             "$ref": "../../../software/flavor.json"
         },
         "input": {
-            "description": "unit input (type to be specified by the application's execution unit)"
+            "type": "array",
+            "items": {
+                "$ref": "../input/_inputItem.json"
+            }
         }
     },
     "required": [

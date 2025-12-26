@@ -57,15 +57,8 @@
                 }
             }
         },
-        "isManuallyChanged": {
-            "type": "boolean"
-        },
         "content": {
-            "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",
-            "type": "string"
-        },
-        "rendered": {
-            "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
+            "description": "Content of the template. e.g. &CONTROL    calculation='scf' ...",
             "type": "string"
         }
     }

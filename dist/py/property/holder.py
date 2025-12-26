@@ -1759,6 +1759,22 @@ class FlavorSchema(BaseModel):
     """
 
 
+class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    name: str
+    """
+    Input file name. e.g. pw_scf.in
+    """
+    content: str
+    """
+    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+
+
 class ExecutionUnitSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1834,10 +1850,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
+    input: List[ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines]
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -2825,10 +2838,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema6] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema6] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
+    input: List[ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines]
 
 
 class AssignmentUnitSchema2(BaseModel):

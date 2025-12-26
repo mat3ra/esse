@@ -95,6 +95,7 @@
                     "input": [
                         {
                             "content": "K_POINTS automatic\n2 2 2 0 0 0",
+                            "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
                             "name": "pw_scf.in"
                         }
                     ],
