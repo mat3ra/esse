@@ -4,9 +4,16 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
 
 
 class ExecutionUnitInputItemSchema(BaseModel):
@@ -22,4 +29,5 @@ class ExecutionUnitInputItemSchema(BaseModel):
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False

@@ -16,6 +16,13 @@
             "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
             "type": "string"
         },
+        "contextProviders": {
+            "type": "array",
+            "items": {
+                "description": "render context provider names",
+                "$ref": "../../../system/runtime_item.json"
+            }
+        },
         "isManuallyChanged": {
             "type": "boolean",
             "default": false
@@ -24,6 +31,7 @@
     "required": [
         "name",
         "content",
-        "rendered"
+        "rendered",
+        "contextProviders"
     ]
 }

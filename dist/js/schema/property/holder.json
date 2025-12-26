@@ -3528,7 +3528,8 @@
                                                                 "required": [
                                                                     "name",
                                                                     "content",
-                                                                    "rendered"
+                                                                    "rendered",
+                                                                    "contextProviders"
                                                                 ],
                                                                 "properties": {
                                                                     "name": {
@@ -3542,6 +3543,23 @@
                                                                     "rendered": {
                                                                         "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
                                                                         "type": "string"
+                                                                    },
+                                                                    "contextProviders": {
+                                                                        "type": "array",
+                                                                        "items": {
+                                                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                            "title": "runtime item name object schema",
+                                                                            "type": "object",
+                                                                            "required": [
+                                                                                "name"
+                                                                            ],
+                                                                            "properties": {
+                                                                                "name": {
+                                                                                    "description": "The name of this item. e.g. scf_accuracy",
+                                                                                    "type": "string"
+                                                                                }
+                                                                            }
+                                                                        }
                                                                     },
                                                                     "isManuallyChanged": {
                                                                         "type": "boolean",
@@ -5783,7 +5801,8 @@
                                                     "required": [
                                                         "name",
                                                         "content",
-                                                        "rendered"
+                                                        "rendered",
+                                                        "contextProviders"
                                                     ],
                                                     "properties": {
                                                         "name": {
@@ -5797,6 +5816,23 @@
                                                         "rendered": {
                                                             "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
                                                             "type": "string"
+                                                        },
+                                                        "contextProviders": {
+                                                            "type": "array",
+                                                            "items": {
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "runtime item name object schema",
+                                                                "type": "object",
+                                                                "required": [
+                                                                    "name"
+                                                                ],
+                                                                "properties": {
+                                                                    "name": {
+                                                                        "description": "The name of this item. e.g. scf_accuracy",
+                                                                        "type": "string"
+                                                                    }
+                                                                }
+                                                            }
                                                         },
                                                         "isManuallyChanged": {
                                                             "type": "boolean",

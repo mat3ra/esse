@@ -682,6 +682,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 
@@ -1673,6 +1674,23 @@ class FlavorSchema8(BaseModel):
     """
 
 
+class ExecutionUnitInputItemSchema9(BaseModel):
+    name: str
+    """
+    Input file name. e.g. pw_scf.in
+    """
+    content: str
+    """
+    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    isManuallyChanged: Optional[bool] = False
+
+
 class ExecutionUnitSchemaBase4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1748,7 +1766,7 @@ class ExecutionUnitSchemaBase4(BaseModel):
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema8] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema8] = Field(None, title="flavor schema")
-    input: List[ExecutionUnitInputItemSchema]
+    input: List[ExecutionUnitInputItemSchema9]
 
 
 class AssignmentUnitSchema4(BaseModel):

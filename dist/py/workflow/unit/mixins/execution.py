@@ -196,6 +196,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 

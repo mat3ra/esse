@@ -9,6 +9,13 @@ from typing import List, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
 class ExecutionUnitInputItemSchema(BaseModel):
     name: str
     """
@@ -22,6 +29,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 

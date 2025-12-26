@@ -211,6 +211,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 
@@ -230,6 +231,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines5(BaseModel)
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
     templateId: Optional[str] = None
     templateName: Optional[str] = None

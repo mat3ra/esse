@@ -6276,6 +6276,12 @@ export interface JobSchema {
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
                     rendered: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     isManuallyChanged?: boolean;
                 }[];
                 [k: string]: unknown;
@@ -7518,6 +7524,12 @@ export interface JobSchema {
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 isManuallyChanged?: boolean;
             }[];
             [k: string]: unknown;
@@ -48870,6 +48882,12 @@ export interface WorkflowPropertySchema {
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 isManuallyChanged?: boolean;
             }[];
             [k: string]: unknown;
@@ -50112,6 +50130,12 @@ export interface WorkflowPropertySchema {
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             isManuallyChanged?: boolean;
         }[];
         [k: string]: unknown;
@@ -52700,6 +52724,12 @@ export interface PropertyHolderSchema {
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
                     rendered: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                     isManuallyChanged?: boolean;
                 }[];
                 [k: string]: unknown;
@@ -53942,6 +53972,12 @@ export interface PropertyHolderSchema {
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 isManuallyChanged?: boolean;
             }[];
             [k: string]: unknown;
@@ -55613,6 +55649,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     } | {
         templateId?: string;
@@ -56152,6 +56194,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     } | {
         templateId?: string;
@@ -57649,6 +57697,12 @@ export type WorkflowSubworkflowUnitSchema = {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     }[];
     [k: string]: unknown;
@@ -58696,6 +58750,12 @@ export interface Subworkflow {
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             isManuallyChanged?: boolean;
         }[];
         [k: string]: unknown;
@@ -59872,6 +59932,12 @@ export interface ExecutionUnitSchemaBase {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     }[];
     [k: string]: unknown;
@@ -59891,6 +59957,12 @@ export interface ExecutionUnitInputSchema {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     } | {
         templateId?: string;
@@ -59915,6 +59987,12 @@ export interface ExecutionUnitInputItemSchema {
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
     rendered: string;
+    contextProviders: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     isManuallyChanged?: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
@@ -60645,6 +60723,12 @@ export interface ExecutionUnitMixinSchema {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     }[];
 }
@@ -61936,6 +62020,12 @@ export type WorkflowUnitSchema = {
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
         isManuallyChanged?: boolean;
     }[];
     [k: string]: unknown;
@@ -63201,6 +63291,12 @@ export interface WorkflowSchema {
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
                 isManuallyChanged?: boolean;
             }[];
             [k: string]: unknown;
@@ -64443,6 +64539,12 @@ export interface WorkflowSchema {
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             isManuallyChanged?: boolean;
         }[];
         [k: string]: unknown;
