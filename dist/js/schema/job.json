@@ -59,7 +59,6 @@
                                                 "subtype",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -384,7 +383,6 @@
                                                 "results",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -597,7 +595,6 @@
                                                 "then",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -821,7 +818,6 @@
                                                 "statement",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -1011,7 +1007,6 @@
                                                 "results",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -1620,7 +1615,6 @@
                                                 "type",
                                                 "value"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -1847,7 +1841,6 @@
                                                 "results",
                                                 "type"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "_id": {
                                                     "description": "entity identity",
@@ -2370,7 +2363,6 @@
                                     "subtype",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -2695,7 +2687,6 @@
                                     "results",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -2908,7 +2899,6 @@
                                     "then",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -3132,7 +3122,6 @@
                                     "statement",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -3322,7 +3311,6 @@
                                     "results",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -3931,7 +3919,6 @@
                                     "type",
                                     "value"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -4158,7 +4145,6 @@
                                     "results",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -4351,7 +4337,6 @@
                                     "type",
                                     "workflowId"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",
@@ -4576,7 +4561,6 @@
                                     "results",
                                     "type"
                                 ],
-                                "additionalProperties": true,
                                 "properties": {
                                     "_id": {
                                         "description": "entity identity",

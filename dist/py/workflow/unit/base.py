@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
@@ -32,9 +32,6 @@ class StatusTrackItem(BaseModel):
 
 
 class WorkflowBaseUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

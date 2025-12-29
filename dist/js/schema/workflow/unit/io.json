@@ -15,7 +15,6 @@
         "subtype",
         "type"
     ],
-    "additionalProperties": true,
     "properties": {
         "_id": {
             "description": "entity identity",

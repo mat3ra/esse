@@ -282,9 +282,6 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7(BaseModel)
 
 
 class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

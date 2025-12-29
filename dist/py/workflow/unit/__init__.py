@@ -136,9 +136,6 @@ class ObjectStorageIoSchema(BaseModel):
 
 
 class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -230,9 +227,6 @@ class InputItem(BaseModel):
 
 
 class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -323,9 +317,6 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class ConditionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -421,9 +412,6 @@ class ConditionUnitSchema(BaseModel):
 
 
 class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -707,9 +695,6 @@ class ExecutionUnitInputItemSchema(BaseModel):
 
 
 class ExecutionUnitSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -785,9 +770,6 @@ class ExecutionUnitSchemaBase(BaseModel):
 
 
 class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -872,9 +854,6 @@ class AssignmentUnitSchema(BaseModel):
 
 
 class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -978,9 +957,6 @@ class Input(BaseModel):
 
 
 class MapUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1060,9 +1036,6 @@ class MapUnitSchema(BaseModel):
 
 
 class SubworkflowUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

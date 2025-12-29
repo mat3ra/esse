@@ -136,9 +136,6 @@ class ObjectStorageIoSchema(BaseModel):
 
 
 class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -230,9 +227,6 @@ class InputItem(BaseModel):
 
 
 class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -323,9 +317,6 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class ConditionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -421,9 +412,6 @@ class ConditionUnitSchema(BaseModel):
 
 
 class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -707,9 +695,6 @@ class ExecutionUnitInputItemSchema(BaseModel):
 
 
 class ExecutionUnitSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -785,9 +770,6 @@ class ExecutionUnitSchemaBase(BaseModel):
 
 
 class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -872,9 +854,6 @@ class AssignmentUnitSchema(BaseModel):
 
 
 class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1243,9 +1222,6 @@ class ObjectStorageIoSchema11(BaseModel):
 
 
 class DataIOUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1326,9 +1302,6 @@ class DataIOUnitSchema9(BaseModel):
 
 
 class ReduceUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1408,9 +1381,6 @@ class ReduceUnitSchema9(BaseModel):
 
 
 class ConditionUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1506,9 +1476,6 @@ class ConditionUnitSchema9(BaseModel):
 
 
 class AssertionUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1732,9 +1699,6 @@ class ExecutionUnitInputItemSchema14(BaseModel):
 
 
 class ExecutionUnitSchemaBase9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1810,9 +1774,6 @@ class ExecutionUnitSchemaBase9(BaseModel):
 
 
 class AssignmentUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1897,9 +1858,6 @@ class AssignmentUnitSchema9(BaseModel):
 
 
 class ProcessingUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2003,9 +1961,6 @@ class Input(BaseModel):
 
 
 class MapUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2085,9 +2040,6 @@ class MapUnitSchema(BaseModel):
 
 
 class SubworkflowUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

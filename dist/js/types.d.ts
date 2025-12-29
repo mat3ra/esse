@@ -5632,7 +5632,6 @@ export interface JobSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -5743,7 +5742,6 @@ export interface JobSchema {
                      */
                     arguments: string[];
                 }[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -5870,7 +5868,6 @@ export interface JobSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -5972,7 +5969,6 @@ export interface JobSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -6302,7 +6298,6 @@ export interface JobSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -6418,7 +6413,6 @@ export interface JobSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -6526,7 +6520,6 @@ export interface JobSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                [k: string]: unknown;
             })[];
             model: {
                 /**
@@ -6898,7 +6891,6 @@ export interface JobSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7009,7 +7001,6 @@ export interface JobSchema {
                  */
                 arguments: string[];
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7136,7 +7127,6 @@ export interface JobSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7238,7 +7228,6 @@ export interface JobSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7568,7 +7557,6 @@ export interface JobSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7684,7 +7672,6 @@ export interface JobSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7792,7 +7779,6 @@ export interface JobSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -7912,7 +7898,6 @@ export interface JobSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -8006,7 +7991,6 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -48274,7 +48258,6 @@ export interface WorkflowPropertySchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -48385,7 +48368,6 @@ export interface WorkflowPropertySchema {
                  */
                 arguments: string[];
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -48512,7 +48494,6 @@ export interface WorkflowPropertySchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -48614,7 +48595,6 @@ export interface WorkflowPropertySchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -48944,7 +48924,6 @@ export interface WorkflowPropertySchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -49060,7 +49039,6 @@ export interface WorkflowPropertySchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -49168,7 +49146,6 @@ export interface WorkflowPropertySchema {
             inputData: {
                 [k: string]: unknown;
             };
-            [k: string]: unknown;
         })[];
         model: {
             /**
@@ -49540,7 +49517,6 @@ export interface WorkflowPropertySchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -49651,7 +49627,6 @@ export interface WorkflowPropertySchema {
              */
             arguments: string[];
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -49778,7 +49753,6 @@ export interface WorkflowPropertySchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -49880,7 +49854,6 @@ export interface WorkflowPropertySchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -50210,7 +50183,6 @@ export interface WorkflowPropertySchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -50326,7 +50298,6 @@ export interface WorkflowPropertySchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -50434,7 +50405,6 @@ export interface WorkflowPropertySchema {
         inputData: {
             [k: string]: unknown;
         };
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -50554,7 +50524,6 @@ export interface WorkflowPropertySchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -50648,7 +50617,6 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -52152,7 +52120,6 @@ export interface PropertyHolderSchema {
                     filetype?: string;
                     [k: string]: unknown;
                 })[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -52263,7 +52230,6 @@ export interface PropertyHolderSchema {
                      */
                     arguments: string[];
                 }[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -52390,7 +52356,6 @@ export interface PropertyHolderSchema {
                  * Throw exception on reaching to maximum occurence.
                  */
                 throwException?: boolean;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -52492,7 +52457,6 @@ export interface PropertyHolderSchema {
                  * The error message to be displayed if the assertion fails
                  */
                 errorMessage?: string;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -52822,7 +52786,6 @@ export interface PropertyHolderSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -52938,7 +52901,6 @@ export interface PropertyHolderSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-                [k: string]: unknown;
             } | {
                 /**
                  * entity identity
@@ -53046,7 +53008,6 @@ export interface PropertyHolderSchema {
                 inputData: {
                     [k: string]: unknown;
                 };
-                [k: string]: unknown;
             })[];
             model: {
                 /**
@@ -53418,7 +53379,6 @@ export interface PropertyHolderSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -53529,7 +53489,6 @@ export interface PropertyHolderSchema {
                  */
                 arguments: string[];
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -53656,7 +53615,6 @@ export interface PropertyHolderSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -53758,7 +53716,6 @@ export interface PropertyHolderSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -54088,7 +54045,6 @@ export interface PropertyHolderSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -54204,7 +54160,6 @@ export interface PropertyHolderSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -54312,7 +54267,6 @@ export interface PropertyHolderSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -54432,7 +54386,6 @@ export interface PropertyHolderSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -54526,7 +54479,6 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
-            [k: string]: unknown;
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -55790,7 +55742,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
@@ -56353,7 +56304,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/system/_material.json */
 export interface MaterialEntityReferenceSchema {
@@ -57197,7 +57147,6 @@ export type WorkflowSubworkflowUnitSchema = {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -57308,7 +57257,6 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         arguments: string[];
     }[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -57435,7 +57383,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -57537,7 +57484,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -57867,7 +57813,6 @@ export type WorkflowSubworkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -57983,7 +57928,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -58091,7 +58035,6 @@ export type WorkflowSubworkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
-    [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow/subworkflow.json */
 export interface Subworkflow {
@@ -58268,7 +58211,6 @@ export interface Subworkflow {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -58379,7 +58321,6 @@ export interface Subworkflow {
              */
             arguments: string[];
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -58506,7 +58447,6 @@ export interface Subworkflow {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -58608,7 +58548,6 @@ export interface Subworkflow {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -58938,7 +58877,6 @@ export interface Subworkflow {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -59054,7 +58992,6 @@ export interface Subworkflow {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -59162,7 +59099,6 @@ export interface Subworkflow {
         inputData: {
             [k: string]: unknown;
         };
-        [k: string]: unknown;
     })[];
     model: {
         /**
@@ -59463,7 +59399,6 @@ export interface AssertionUnitSchema {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/assignment.json */
 export interface AssignmentUnitSchema {
@@ -59581,7 +59516,6 @@ export interface AssignmentUnitSchema {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/base.json */
 export interface WorkflowBaseUnitSchema {
@@ -59677,7 +59611,6 @@ export interface WorkflowBaseUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/condition.json */
 export interface ConditionUnitSchema {
@@ -59806,7 +59739,6 @@ export interface ConditionUnitSchema {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/execution.json */
 export interface ExecutionUnitSchemaBase {
@@ -60138,7 +60070,6 @@ export interface ExecutionUnitSchemaBase {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
 export interface ExecutionUnitInputSchema {
@@ -60512,7 +60443,6 @@ export interface DataIOUnitSchema {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/map.json */
 export interface MapUnitSchema {
@@ -60634,7 +60564,6 @@ export interface MapUnitSchema {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/mixins/assertion.json */
 export interface AssertionUnitMixinSchema {
@@ -60705,7 +60634,6 @@ export interface WorkflowBaseUnitMixinSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/mixins/condition.json */
 export interface ConditionUnitMixinSchema {
@@ -61246,7 +61174,6 @@ export interface ProcessingUnitSchema {
     inputData: {
         [k: string]: unknown;
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/reduce.json */
 export interface ReduceUnitSchema {
@@ -61359,7 +61286,6 @@ export interface ReduceUnitSchema {
          */
         arguments: string[];
     }[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/subworkflow.json */
 export interface SubworkflowUnitSchema {
@@ -61455,7 +61381,6 @@ export interface SubworkflowUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit.json */
 export type WorkflowUnitSchema = {
@@ -61628,7 +61553,6 @@ export type WorkflowUnitSchema = {
         filetype?: string;
         [k: string]: unknown;
     })[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -61739,7 +61663,6 @@ export type WorkflowUnitSchema = {
          */
         arguments: string[];
     }[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -61866,7 +61789,6 @@ export type WorkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -61968,7 +61890,6 @@ export type WorkflowUnitSchema = {
      * The error message to be displayed if the assertion fails
      */
     errorMessage?: string;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -62298,7 +62219,6 @@ export type WorkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -62414,7 +62334,6 @@ export type WorkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -62522,7 +62441,6 @@ export type WorkflowUnitSchema = {
     inputData: {
         [k: string]: unknown;
     };
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -62642,7 +62560,6 @@ export type WorkflowUnitSchema = {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
-    [k: string]: unknown;
 } | {
     /**
      * entity identity
@@ -62736,7 +62653,6 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
-    [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow.json */
 export interface WorkflowSchema {
@@ -62917,7 +62833,6 @@ export interface WorkflowSchema {
                 filetype?: string;
                 [k: string]: unknown;
             })[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63028,7 +62943,6 @@ export interface WorkflowSchema {
                  */
                 arguments: string[];
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63155,7 +63069,6 @@ export interface WorkflowSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63257,7 +63170,6 @@ export interface WorkflowSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63587,7 +63499,6 @@ export interface WorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63703,7 +63614,6 @@ export interface WorkflowSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-            [k: string]: unknown;
         } | {
             /**
              * entity identity
@@ -63811,7 +63721,6 @@ export interface WorkflowSchema {
             inputData: {
                 [k: string]: unknown;
             };
-            [k: string]: unknown;
         })[];
         model: {
             /**
@@ -64183,7 +64092,6 @@ export interface WorkflowSchema {
             filetype?: string;
             [k: string]: unknown;
         })[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -64294,7 +64202,6 @@ export interface WorkflowSchema {
              */
             arguments: string[];
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -64421,7 +64328,6 @@ export interface WorkflowSchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -64523,7 +64429,6 @@ export interface WorkflowSchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -64853,7 +64758,6 @@ export interface WorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -64969,7 +64873,6 @@ export interface WorkflowSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -65077,7 +64980,6 @@ export interface WorkflowSchema {
         inputData: {
             [k: string]: unknown;
         };
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -65197,7 +65099,6 @@ export interface WorkflowSchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
-        [k: string]: unknown;
     } | {
         /**
          * entity identity
@@ -65291,7 +65192,6 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
-        [k: string]: unknown;
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
