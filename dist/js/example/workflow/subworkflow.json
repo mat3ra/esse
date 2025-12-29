@@ -71,14 +71,22 @@
             "head": true,
             "input": [
                 {
-                    "content": "K_POINTS automatic\n2 2 2 0 0 0",
+                    "template": {
+                        "applicationName": "espresso",
+                        "applicationVersions": [
+                            "6.0"
+                        ],
+                        "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
+                        "contextProviders": [
+                            {
+                                "name": "KGridManagerMixin"
+                            }
+                        ],
+                        "executableName": "pw.x",
+                        "name": "kpoints_grid"
+                    },
                     "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
-                    "name": "pw_scf.in",
-                    "contextProviders": [
-                        {
-                            "name": "KGridFormDataManager"
-                        }
-                    ]
+                    "isManuallyChanged": false
                 }
             ],
             "monitors": [

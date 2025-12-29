@@ -1498,40 +1498,78 @@
                                     "title": "execution unit input item schema",
                                     "type": "object",
                                     "required": [
-                                        "name",
-                                        "content",
                                         "rendered",
-                                        "contextProviders"
+                                        "isManuallyChanged",
+                                        "template"
                                     ],
                                     "properties": {
-                                        "name": {
-                                            "description": "Input file name. e.g. pw_scf.in",
-                                            "type": "string"
-                                        },
-                                        "content": {
-                                            "description": "Content of the input file. e.g. &CONTROL    calculation='scf' ...",
-                                            "type": "string"
+                                        "template": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "template schema",
+                                            "type": "object",
+                                            "required": [
+                                                "applicationName",
+                                                "content",
+                                                "contextProviders",
+                                                "executableName",
+                                                "name"
+                                            ],
+                                            "properties": {
+                                                "_id": {
+                                                    "description": "entity identity",
+                                                    "type": "string"
+                                                },
+                                                "slug": {
+                                                    "description": "entity slug",
+                                                    "type": "string"
+                                                },
+                                                "systemName": {
+                                                    "type": "string"
+                                                },
+                                                "schemaVersion": {
+                                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                                    "type": "string",
+                                                    "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
+                                                },
+                                                "applicationName": {
+                                                    "type": "string"
+                                                },
+                                                "applicationVersion": {
+                                                    "type": "string"
+                                                },
+                                                "executableName": {
+                                                    "type": "string"
+                                                },
+                                                "contextProviders": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "runtime item name object schema",
+                                                        "type": "object",
+                                                        "required": [
+                                                            "name"
+                                                        ],
+                                                        "properties": {
+                                                            "name": {
+                                                                "description": "The name of this item. e.g. scf_accuracy",
+                                                                "type": "string"
+                                                            }
+                                                        }
+                                                    }
+                                                },
+                                                "content": {
+                                                    "description": "Content of the template. e.g. &CONTROL    calculation='scf' ...",
+                                                    "type": "string"
+                                                }
+                                            }
                                         },
                                         "rendered": {
                                             "description": "Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...",
                                             "type": "string"
-                                        },
-                                        "contextProviders": {
-                                            "type": "array",
-                                            "items": {
-                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                "title": "runtime item name object schema",
-                                                "type": "object",
-                                                "required": [
-                                                    "name"
-                                                ],
-                                                "properties": {
-                                                    "name": {
-                                                        "description": "The name of this item. e.g. scf_accuracy",
-                                                        "type": "string"
-                                                    }
-                                                }
-                                            }
                                         },
                                         "isManuallyChanged": {
                                             "type": "boolean",

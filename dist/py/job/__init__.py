@@ -669,20 +669,40 @@ class FlavorSchema(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchema(BaseModel):
+class TemplateSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    Input file name. e.g. pw_scf.in
+    entity name
     """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
     content: str
     """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
     rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
-    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 
@@ -1674,20 +1694,40 @@ class FlavorSchema8(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchema9(BaseModel):
+class TemplateSchema11(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    Input file name. e.g. pw_scf.in
+    entity name
     """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
     content: str
     """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """
+
+
+class ExecutionUnitInputItemSchema9(BaseModel):
+    template: TemplateSchema11 = Field(..., title="template schema")
     rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
-    contextProviders: List[RuntimeItemNameObjectSchema]
     isManuallyChanged: Optional[bool] = False
 
 

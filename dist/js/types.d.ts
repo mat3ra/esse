@@ -6264,25 +6264,43 @@ export interface JobSchema {
                     supportedApplicationVersions?: string[];
                 };
                 input: {
-                    /**
-                     * Input file name. e.g. pw_scf.in
-                     */
-                    name: string;
-                    /**
-                     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                     */
-                    content: string;
+                    template: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        applicationName: string;
+                        applicationVersion?: string;
+                        executableName: string;
+                        contextProviders: {
+                            /**
+                             * The name of this item. e.g. scf_accuracy
+                             */
+                            name: string;
+                        }[];
+                        /**
+                         * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                         */
+                        content: string;
+                    };
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
                     rendered: string;
-                    contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    isManuallyChanged?: boolean;
+                    isManuallyChanged: boolean;
                 }[];
                 [k: string]: unknown;
             } | {
@@ -7512,25 +7530,43 @@ export interface JobSchema {
                 supportedApplicationVersions?: string[];
             };
             input: {
-                /**
-                 * Input file name. e.g. pw_scf.in
-                 */
-                name: string;
-                /**
-                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
-                contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                isManuallyChanged?: boolean;
+                isManuallyChanged: boolean;
             }[];
             [k: string]: unknown;
         } | {
@@ -48870,25 +48906,43 @@ export interface WorkflowPropertySchema {
                 supportedApplicationVersions?: string[];
             };
             input: {
-                /**
-                 * Input file name. e.g. pw_scf.in
-                 */
-                name: string;
-                /**
-                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
-                contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                isManuallyChanged?: boolean;
+                isManuallyChanged: boolean;
             }[];
             [k: string]: unknown;
         } | {
@@ -50118,25 +50172,43 @@ export interface WorkflowPropertySchema {
             supportedApplicationVersions?: string[];
         };
         input: {
-            /**
-             * Input file name. e.g. pw_scf.in
-             */
-            name: string;
-            /**
-             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-             */
-            content: string;
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
-            contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            isManuallyChanged?: boolean;
+            isManuallyChanged: boolean;
         }[];
         [k: string]: unknown;
     } | {
@@ -52712,25 +52784,43 @@ export interface PropertyHolderSchema {
                     supportedApplicationVersions?: string[];
                 };
                 input: {
-                    /**
-                     * Input file name. e.g. pw_scf.in
-                     */
-                    name: string;
-                    /**
-                     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                     */
-                    content: string;
+                    template: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        applicationName: string;
+                        applicationVersion?: string;
+                        executableName: string;
+                        contextProviders: {
+                            /**
+                             * The name of this item. e.g. scf_accuracy
+                             */
+                            name: string;
+                        }[];
+                        /**
+                         * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                         */
+                        content: string;
+                    };
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
                     rendered: string;
-                    contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    isManuallyChanged?: boolean;
+                    isManuallyChanged: boolean;
                 }[];
                 [k: string]: unknown;
             } | {
@@ -53960,25 +54050,43 @@ export interface PropertyHolderSchema {
                 supportedApplicationVersions?: string[];
             };
             input: {
-                /**
-                 * Input file name. e.g. pw_scf.in
-                 */
-                name: string;
-                /**
-                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
-                contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                isManuallyChanged?: boolean;
+                isManuallyChanged: boolean;
             }[];
             [k: string]: unknown;
         } | {
@@ -55637,25 +55745,43 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         supportedApplicationVersions?: string[];
     };
     input: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -56182,25 +56308,43 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         supportedApplicationVersions?: string[];
     };
     input: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -57685,25 +57829,43 @@ export type WorkflowSubworkflowUnitSchema = {
         supportedApplicationVersions?: string[];
     };
     input: {
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     }[];
     [k: string]: unknown;
 } | {
@@ -58738,25 +58900,43 @@ export interface Subworkflow {
             supportedApplicationVersions?: string[];
         };
         input: {
-            /**
-             * Input file name. e.g. pw_scf.in
-             */
-            name: string;
-            /**
-             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-             */
-            content: string;
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
-            contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            isManuallyChanged?: boolean;
+            isManuallyChanged: boolean;
         }[];
         [k: string]: unknown;
     } | {
@@ -59920,50 +60100,86 @@ export interface ExecutionUnitSchemaBase {
         supportedApplicationVersions?: string[];
     };
     input: {
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     }[];
     [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
 export interface ExecutionUnitInputSchema {
     input?: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     } | {
         templateId?: string;
         templateName?: string;
@@ -59975,25 +60191,43 @@ export interface ExecutionUnitInputSchema {
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
 export interface ExecutionUnitInputItemSchema {
-    /**
-     * Input file name. e.g. pw_scf.in
-     */
-    name: string;
-    /**
-     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-     */
-    content: string;
+    template: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        applicationName: string;
+        applicationVersion?: string;
+        executableName: string;
+        contextProviders: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * Content of the template. e.g. &CONTROL    calculation='scf' ...
+         */
+        content: string;
+    };
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
     rendered: string;
-    contextProviders: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    isManuallyChanged?: boolean;
+    isManuallyChanged: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
@@ -60711,25 +60945,43 @@ export interface ExecutionUnitMixinSchema {
         supportedApplicationVersions?: string[];
     };
     input: {
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     }[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/io.json */
@@ -62008,25 +62260,43 @@ export type WorkflowUnitSchema = {
         supportedApplicationVersions?: string[];
     };
     input: {
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
         rendered: string;
-        contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        isManuallyChanged?: boolean;
+        isManuallyChanged: boolean;
     }[];
     [k: string]: unknown;
 } | {
@@ -63279,25 +63549,43 @@ export interface WorkflowSchema {
                 supportedApplicationVersions?: string[];
             };
             input: {
-                /**
-                 * Input file name. e.g. pw_scf.in
-                 */
-                name: string;
-                /**
-                 * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
                 rendered: string;
-                contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                isManuallyChanged?: boolean;
+                isManuallyChanged: boolean;
             }[];
             [k: string]: unknown;
         } | {
@@ -64527,25 +64815,43 @@ export interface WorkflowSchema {
             supportedApplicationVersions?: string[];
         };
         input: {
-            /**
-             * Input file name. e.g. pw_scf.in
-             */
-            name: string;
-            /**
-             * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-             */
-            content: string;
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
             rendered: string;
-            contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            isManuallyChanged?: boolean;
+            isManuallyChanged: boolean;
         }[];
         [k: string]: unknown;
     } | {
