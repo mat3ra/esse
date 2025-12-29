@@ -174,9 +174,6 @@
             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
             "type": "boolean"
         },
-        "context": {
-            "type": "object"
-        },
         "statement": {
             "type": "string",
             "description": "The statement to be evaluated"

@@ -281,6 +281,13 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines5(BaseModel)
     """
 
 
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -349,10 +356,10 @@ class ExecutionUnitSchemaForScriptingBasedApplications(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[
         Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines5]
     ] = Field(..., title="execution unit input schema")
+    context: Optional[List[ContextItem]] = None

@@ -437,6 +437,32 @@
                     }
                 }
             }
+        },
+        "context": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "name",
+                    "isEdited",
+                    "data"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "tsType": "ContextProviderNameEnum"
+                    },
+                    "isEdited": {
+                        "type": "boolean"
+                    },
+                    "data": {
+                        "type": "object"
+                    },
+                    "extraData": {
+                        "type": "object"
+                    }
+                }
+            }
         }
     }
 }

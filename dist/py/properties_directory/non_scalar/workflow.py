@@ -207,7 +207,6 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     subtype: Subtype
     source: Source
     input: List[
@@ -298,7 +297,6 @@ class ReduceUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     mapFlowchartId: str
     """
     corresponding map unit flowchart ID
@@ -388,7 +386,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -483,7 +480,6 @@ class AssertionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     statement: str
     """
     The statement to be evaluated
@@ -698,6 +694,13 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitSchemaBase(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -766,11 +769,11 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
+    context: Optional[List[ContextItem]] = None
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -841,7 +844,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     scope: Optional[str] = None
     input: List[WorkflowUnitInputSchema]
     """
@@ -925,7 +927,6 @@ class ProcessingUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     operation: str
     """
     Contains information about the operation used.
@@ -1293,7 +1294,6 @@ class DataIOUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     subtype: Subtype
     source: Source
     input: List[
@@ -1373,7 +1373,6 @@ class ReduceUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     mapFlowchartId: str
     """
     corresponding map unit flowchart ID
@@ -1452,7 +1451,6 @@ class ConditionUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -1547,7 +1545,6 @@ class AssertionUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     statement: str
     """
     The statement to be evaluated
@@ -1770,11 +1767,11 @@ class ExecutionUnitSchemaBase11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema15] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema15] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema16]
+    context: Optional[List[ContextItem]] = None
 
 
 class AssignmentUnitSchema11(BaseModel):
@@ -1845,7 +1842,6 @@ class AssignmentUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     scope: Optional[str] = None
     input: List[WorkflowUnitInputSchema]
     """
@@ -1929,7 +1925,6 @@ class ProcessingUnitSchema11(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     operation: str
     """
     Contains information about the operation used.
@@ -2032,7 +2027,6 @@ class MapUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     workflowId: str
     """
     Id of workflow to run inside map
@@ -2111,7 +2105,6 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
 
 
 class WorkflowUnitSchema(

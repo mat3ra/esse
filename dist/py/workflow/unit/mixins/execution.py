@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -220,9 +220,17 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitMixinSchema(BaseModel):
     type: Literal["execution"] = "execution"
     application: ApplicationSchemaBase = Field(..., title="application schema (base)")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
+    context: Optional[List[ContextItem]] = None

@@ -203,7 +203,6 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     subtype: Subtype
     source: Source
     input: List[

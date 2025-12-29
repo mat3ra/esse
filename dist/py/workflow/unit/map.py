@@ -119,7 +119,6 @@ class MapUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     workflowId: str
     """
     Id of workflow to run inside map

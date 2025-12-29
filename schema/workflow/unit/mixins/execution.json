@@ -24,6 +24,32 @@
             "items": {
                 "$ref": "../input/_inputItem.json"
             }
+        },
+        "context": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "tsType": "ContextProviderNameEnum"
+                    },
+                    "isEdited": {
+                        "type": "boolean"
+                    },
+                    "data": {
+                        "type": "object"
+                    },
+                    "extraData": {
+                        "type": "object"
+                    }
+                },
+                "required": [
+                    "name",
+                    "isEdited",
+                    "data"
+                ]
+            }
         }
     },
     "required": [

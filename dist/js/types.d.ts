@@ -5554,7 +5554,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
@@ -5724,7 +5723,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * corresponding map unit flowchart ID
                  */
@@ -5834,7 +5832,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * Input information for condition.
                  */
@@ -5960,7 +5957,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * The statement to be evaluated
                  */
@@ -6061,7 +6057,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 application: {
                     /**
                      * entity identity
@@ -6298,6 +6293,12 @@ export interface JobSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
+                context?: {
+                    name: ContextProviderNameEnum;
+                    isEdited: boolean;
+                    data: {};
+                    extraData?: {};
+                }[];
             } | {
                 /**
                  * entity identity
@@ -6390,7 +6391,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 scope?: string;
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -6505,7 +6505,6 @@ export interface JobSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * Contains information about the operation used.
                  */
@@ -6813,7 +6812,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -6983,7 +6981,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * corresponding map unit flowchart ID
              */
@@ -7093,7 +7090,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Input information for condition.
              */
@@ -7219,7 +7215,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * The statement to be evaluated
              */
@@ -7320,7 +7315,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             application: {
                 /**
                  * entity identity
@@ -7557,6 +7551,12 @@ export interface JobSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
         } | {
             /**
              * entity identity
@@ -7649,7 +7649,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -7764,7 +7763,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Contains information about the operation used.
              */
@@ -7871,7 +7869,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Id of workflow to run inside map
              */
@@ -7990,7 +7987,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -48180,7 +48176,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -48350,7 +48345,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * corresponding map unit flowchart ID
              */
@@ -48460,7 +48454,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Input information for condition.
              */
@@ -48586,7 +48579,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * The statement to be evaluated
              */
@@ -48687,7 +48679,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             application: {
                 /**
                  * entity identity
@@ -48924,6 +48915,12 @@ export interface WorkflowPropertySchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
         } | {
             /**
              * entity identity
@@ -49016,7 +49013,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -49131,7 +49127,6 @@ export interface WorkflowPropertySchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Contains information about the operation used.
              */
@@ -49439,7 +49434,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -49609,7 +49603,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * corresponding map unit flowchart ID
          */
@@ -49719,7 +49712,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Input information for condition.
          */
@@ -49845,7 +49837,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * The statement to be evaluated
          */
@@ -49946,7 +49937,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         application: {
             /**
              * entity identity
@@ -50183,6 +50173,12 @@ export interface WorkflowPropertySchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
     } | {
         /**
          * entity identity
@@ -50275,7 +50271,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -50390,7 +50385,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Contains information about the operation used.
          */
@@ -50497,7 +50491,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Id of workflow to run inside map
          */
@@ -50616,7 +50609,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -52042,7 +52034,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
@@ -52212,7 +52203,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * corresponding map unit flowchart ID
                  */
@@ -52322,7 +52312,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * Input information for condition.
                  */
@@ -52448,7 +52437,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * The statement to be evaluated
                  */
@@ -52549,7 +52537,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 application: {
                     /**
                      * entity identity
@@ -52786,6 +52773,12 @@ export interface PropertyHolderSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
+                context?: {
+                    name: ContextProviderNameEnum;
+                    isEdited: boolean;
+                    data: {};
+                    extraData?: {};
+                }[];
             } | {
                 /**
                  * entity identity
@@ -52878,7 +52871,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 scope?: string;
                 /**
                  * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -52993,7 +52985,6 @@ export interface PropertyHolderSchema {
                  * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
                  */
                 enableRender?: boolean;
-                context?: {};
                 /**
                  * Contains information about the operation used.
                  */
@@ -53301,7 +53292,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -53471,7 +53461,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * corresponding map unit flowchart ID
              */
@@ -53581,7 +53570,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Input information for condition.
              */
@@ -53707,7 +53695,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * The statement to be evaluated
              */
@@ -53808,7 +53795,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             application: {
                 /**
                  * entity identity
@@ -54045,6 +54031,12 @@ export interface PropertyHolderSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
         } | {
             /**
              * entity identity
@@ -54137,7 +54129,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -54252,7 +54243,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Contains information about the operation used.
              */
@@ -54359,7 +54349,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Id of workflow to run inside map
              */
@@ -54478,7 +54467,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -55498,7 +55486,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     application: {
         /**
          * entity identity
@@ -55742,6 +55729,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
@@ -56060,7 +56053,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     application: {
         /**
          * entity identity
@@ -56304,6 +56296,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
 }
 /** Schema dist/js/schema/system/_material.json */
 export interface MaterialEntityReferenceSchema {
@@ -57069,7 +57067,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
@@ -57239,7 +57236,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * corresponding map unit flowchart ID
      */
@@ -57349,7 +57345,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Input information for condition.
      */
@@ -57475,7 +57470,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * The statement to be evaluated
      */
@@ -57576,7 +57570,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     application: {
         /**
          * entity identity
@@ -57813,6 +57806,12 @@ export type WorkflowSubworkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
 } | {
     /**
      * entity identity
@@ -57905,7 +57904,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -58020,7 +58018,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Contains information about the operation used.
      */
@@ -58133,7 +58130,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -58303,7 +58299,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * corresponding map unit flowchart ID
          */
@@ -58413,7 +58408,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Input information for condition.
          */
@@ -58539,7 +58533,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * The statement to be evaluated
          */
@@ -58640,7 +58633,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         application: {
             /**
              * entity identity
@@ -58877,6 +58869,12 @@ export interface Subworkflow {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
     } | {
         /**
          * entity identity
@@ -58969,7 +58967,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -59084,7 +59081,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Contains information about the operation used.
          */
@@ -59390,7 +59386,6 @@ export interface AssertionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * The statement to be evaluated
      */
@@ -59493,7 +59488,6 @@ export interface AssignmentUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -59610,7 +59604,6 @@ export interface WorkflowBaseUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
 }
 /** Schema dist/js/schema/workflow/unit/condition.json */
 export interface ConditionUnitSchema {
@@ -59705,7 +59698,6 @@ export interface ConditionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Input information for condition.
      */
@@ -59833,7 +59825,6 @@ export interface ExecutionUnitSchemaBase {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     application: {
         /**
          * entity identity
@@ -60069,6 +60060,12 @@ export interface ExecutionUnitSchemaBase {
          */
         rendered: string;
         isManuallyChanged: boolean;
+    }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
     }[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
@@ -60365,7 +60362,6 @@ export interface DataIOUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
@@ -60537,7 +60533,6 @@ export interface MapUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Id of workflow to run inside map
      */
@@ -60633,7 +60628,6 @@ export interface WorkflowBaseUnitMixinSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
 }
 /** Schema dist/js/schema/workflow/unit/mixins/condition.json */
 export interface ConditionUnitMixinSchema {
@@ -60911,6 +60905,12 @@ export interface ExecutionUnitMixinSchema {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/io.json */
 export interface DataIOUnitMixinSchema {
@@ -61159,7 +61159,6 @@ export interface ProcessingUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Contains information about the operation used.
      */
@@ -61268,7 +61267,6 @@ export interface ReduceUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * corresponding map unit flowchart ID
      */
@@ -61380,7 +61378,6 @@ export interface SubworkflowUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
 }
 /** Schema dist/js/schema/workflow/unit.json */
 export type WorkflowUnitSchema = {
@@ -61475,7 +61472,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
@@ -61645,7 +61641,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * corresponding map unit flowchart ID
      */
@@ -61755,7 +61750,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Input information for condition.
      */
@@ -61881,7 +61875,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * The statement to be evaluated
      */
@@ -61982,7 +61975,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     application: {
         /**
          * entity identity
@@ -62219,6 +62211,12 @@ export type WorkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
 } | {
     /**
      * entity identity
@@ -62311,7 +62309,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -62426,7 +62423,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Contains information about the operation used.
      */
@@ -62533,7 +62529,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
     /**
      * Id of workflow to run inside map
      */
@@ -62652,7 +62647,6 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
 };
 /** Schema dist/js/schema/workflow.json */
 export interface WorkflowSchema {
@@ -62755,7 +62749,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
@@ -62925,7 +62918,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * corresponding map unit flowchart ID
              */
@@ -63035,7 +63027,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Input information for condition.
              */
@@ -63161,7 +63152,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * The statement to be evaluated
              */
@@ -63262,7 +63252,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             application: {
                 /**
                  * entity identity
@@ -63499,6 +63488,12 @@ export interface WorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
         } | {
             /**
              * entity identity
@@ -63591,7 +63586,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -63706,7 +63700,6 @@ export interface WorkflowSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
             /**
              * Contains information about the operation used.
              */
@@ -64014,7 +64007,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
@@ -64184,7 +64176,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * corresponding map unit flowchart ID
          */
@@ -64294,7 +64285,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Input information for condition.
          */
@@ -64420,7 +64410,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * The statement to be evaluated
          */
@@ -64521,7 +64510,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         application: {
             /**
              * entity identity
@@ -64758,6 +64746,12 @@ export interface WorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
     } | {
         /**
          * entity identity
@@ -64850,7 +64844,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -64965,7 +64958,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Contains information about the operation used.
          */
@@ -65072,7 +65064,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
         /**
          * Id of workflow to run inside map
          */
@@ -65191,7 +65182,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)

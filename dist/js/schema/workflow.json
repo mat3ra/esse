@@ -208,9 +208,6 @@
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
                                         },
-                                        "context": {
-                                            "type": "object"
-                                        },
                                         "subtype": {
                                             "enum": [
                                                 "input",
@@ -532,9 +529,6 @@
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
                                         },
-                                        "context": {
-                                            "type": "object"
-                                        },
                                         "mapFlowchartId": {
                                             "description": "corresponding map unit flowchart ID",
                                             "type": "string"
@@ -743,9 +737,6 @@
                                         "enableRender": {
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
-                                        },
-                                        "context": {
-                                            "type": "object"
                                         },
                                         "input": {
                                             "description": "Input information for condition.",
@@ -967,9 +958,6 @@
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
                                         },
-                                        "context": {
-                                            "type": "object"
-                                        },
                                         "statement": {
                                             "type": "string",
                                             "description": "The statement to be evaluated"
@@ -1155,9 +1143,6 @@
                                         "enableRender": {
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
-                                        },
-                                        "context": {
-                                            "type": "object"
                                         },
                                         "application": {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1585,6 +1570,32 @@
                                                     }
                                                 }
                                             }
+                                        },
+                                        "context": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "required": [
+                                                    "name",
+                                                    "isEdited",
+                                                    "data"
+                                                ],
+                                                "properties": {
+                                                    "name": {
+                                                        "type": "string",
+                                                        "tsType": "ContextProviderNameEnum"
+                                                    },
+                                                    "isEdited": {
+                                                        "type": "boolean"
+                                                    },
+                                                    "data": {
+                                                        "type": "object"
+                                                    },
+                                                    "extraData": {
+                                                        "type": "object"
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 },
@@ -1763,9 +1774,6 @@
                                         "enableRender": {
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
-                                        },
-                                        "context": {
-                                            "type": "object"
                                         },
                                         "scope": {
                                             "type": "string"
@@ -1989,9 +1997,6 @@
                                         "enableRender": {
                                             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                             "type": "boolean"
-                                        },
-                                        "context": {
-                                            "type": "object"
                                         },
                                         "operation": {
                                             "description": "Contains information about the operation used.",
@@ -2512,9 +2517,6 @@
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
                             },
-                            "context": {
-                                "type": "object"
-                            },
                             "subtype": {
                                 "enum": [
                                     "input",
@@ -2836,9 +2838,6 @@
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
                             },
-                            "context": {
-                                "type": "object"
-                            },
                             "mapFlowchartId": {
                                 "description": "corresponding map unit flowchart ID",
                                 "type": "string"
@@ -3047,9 +3046,6 @@
                             "enableRender": {
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
-                            },
-                            "context": {
-                                "type": "object"
                             },
                             "input": {
                                 "description": "Input information for condition.",
@@ -3271,9 +3267,6 @@
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
                             },
-                            "context": {
-                                "type": "object"
-                            },
                             "statement": {
                                 "type": "string",
                                 "description": "The statement to be evaluated"
@@ -3459,9 +3452,6 @@
                             "enableRender": {
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
-                            },
-                            "context": {
-                                "type": "object"
                             },
                             "application": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
@@ -3889,6 +3879,32 @@
                                         }
                                     }
                                 }
+                            },
+                            "context": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "name",
+                                        "isEdited",
+                                        "data"
+                                    ],
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "tsType": "ContextProviderNameEnum"
+                                        },
+                                        "isEdited": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "object"
+                                        },
+                                        "extraData": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
                             }
                         }
                     },
@@ -4067,9 +4083,6 @@
                             "enableRender": {
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
-                            },
-                            "context": {
-                                "type": "object"
                             },
                             "scope": {
                                 "type": "string"
@@ -4294,9 +4307,6 @@
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
                             },
-                            "context": {
-                                "type": "object"
-                            },
                             "operation": {
                                 "description": "Contains information about the operation used.",
                                 "type": "string"
@@ -4485,9 +4495,6 @@
                             "enableRender": {
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
-                            },
-                            "context": {
-                                "type": "object"
                             },
                             "workflowId": {
                                 "description": "Id of workflow to run inside map",
@@ -4709,9 +4716,6 @@
                             "enableRender": {
                                 "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
                                 "type": "boolean"
-                            },
-                            "context": {
-                                "type": "object"
                             }
                         }
                     }

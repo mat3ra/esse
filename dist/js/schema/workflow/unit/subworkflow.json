@@ -172,9 +172,6 @@
         "enableRender": {
             "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
             "type": "boolean"
-        },
-        "context": {
-            "type": "object"
         }
     }
 }
