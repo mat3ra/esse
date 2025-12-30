@@ -4,9 +4,19 @@
 
 from __future__ import annotations
 
-from typing import Any, Dict, Optional
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict
+
+
+class Data(BaseModel):
+    features: Optional[List[str]] = None
+    targets: Optional[List[str]] = None
+    ids: Optional[List[str]] = None
+
+
+class EndpointOptions(BaseModel):
+    data: Optional[Data] = None
 
 
 class DataIORestAPIInputSchema(BaseModel):
@@ -17,7 +27,7 @@ class DataIORestAPIInputSchema(BaseModel):
     """
     rest API endpoint
     """
-    endpoint_options: Dict[str, Any]
+    endpoint_options: EndpointOptions
     """
     rest API endpoint options
     """

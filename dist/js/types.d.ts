@@ -5564,7 +5564,13 @@ export interface JobSchema {
                     /**
                      * rest API endpoint options
                      */
-                    endpoint_options: {};
+                    endpoint_options: {
+                        data?: {
+                            features?: string[];
+                            targets?: string[];
+                            ids?: string[];
+                        };
+                    };
                     /**
                      * the name of the variable in local scope to save the data under
                      */
@@ -6822,7 +6828,13 @@ export interface JobSchema {
                 /**
                  * rest API endpoint options
                  */
-                endpoint_options: {};
+                endpoint_options: {
+                    data?: {
+                        features?: string[];
+                        targets?: string[];
+                        ids?: string[];
+                    };
+                };
                 /**
                  * the name of the variable in local scope to save the data under
                  */
@@ -48186,7 +48198,13 @@ export interface WorkflowPropertySchema {
                 /**
                  * rest API endpoint options
                  */
-                endpoint_options: {};
+                endpoint_options: {
+                    data?: {
+                        features?: string[];
+                        targets?: string[];
+                        ids?: string[];
+                    };
+                };
                 /**
                  * the name of the variable in local scope to save the data under
                  */
@@ -49444,7 +49462,13 @@ export interface WorkflowPropertySchema {
             /**
              * rest API endpoint options
              */
-            endpoint_options: {};
+            endpoint_options: {
+                data?: {
+                    features?: string[];
+                    targets?: string[];
+                    ids?: string[];
+                };
+            };
             /**
              * the name of the variable in local scope to save the data under
              */
@@ -52044,7 +52068,13 @@ export interface PropertyHolderSchema {
                     /**
                      * rest API endpoint options
                      */
-                    endpoint_options: {};
+                    endpoint_options: {
+                        data?: {
+                            features?: string[];
+                            targets?: string[];
+                            ids?: string[];
+                        };
+                    };
                     /**
                      * the name of the variable in local scope to save the data under
                      */
@@ -53302,7 +53332,13 @@ export interface PropertyHolderSchema {
                 /**
                  * rest API endpoint options
                  */
-                endpoint_options: {};
+                endpoint_options: {
+                    data?: {
+                        features?: string[];
+                        targets?: string[];
+                        ids?: string[];
+                    };
+                };
                 /**
                  * the name of the variable in local scope to save the data under
                  */
@@ -57077,7 +57113,13 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * rest API endpoint options
          */
-        endpoint_options: {};
+        endpoint_options: {
+            data?: {
+                features?: string[];
+                targets?: string[];
+                ids?: string[];
+            };
+        };
         /**
          * the name of the variable in local scope to save the data under
          */
@@ -58140,7 +58182,13 @@ export interface Subworkflow {
             /**
              * rest API endpoint options
              */
-            endpoint_options: {};
+            endpoint_options: {
+                data?: {
+                    features?: string[];
+                    targets?: string[];
+                    ids?: string[];
+                };
+            };
             /**
              * the name of the variable in local scope to save the data under
              */
@@ -60198,7 +60246,13 @@ export interface DataIORestAPIInputSchema {
     /**
      * rest API endpoint options
      */
-    endpoint_options: {};
+    endpoint_options: {
+        data?: {
+            features?: string[];
+            targets?: string[];
+            ids?: string[];
+        };
+    };
     /**
      * the name of the variable in local scope to save the data under
      */
@@ -60372,7 +60426,13 @@ export interface DataIOUnitSchema {
         /**
          * rest API endpoint options
          */
-        endpoint_options: {};
+        endpoint_options: {
+            data?: {
+                features?: string[];
+                targets?: string[];
+                ids?: string[];
+            };
+        };
         /**
          * the name of the variable in local scope to save the data under
          */
@@ -60925,7 +60985,13 @@ export interface DataIOUnitMixinSchema {
         /**
          * rest API endpoint options
          */
-        endpoint_options: {};
+        endpoint_options: {
+            data?: {
+                features?: string[];
+                targets?: string[];
+                ids?: string[];
+            };
+        };
         /**
          * the name of the variable in local scope to save the data under
          */
@@ -61482,7 +61548,13 @@ export type WorkflowUnitSchema = {
         /**
          * rest API endpoint options
          */
-        endpoint_options: {};
+        endpoint_options: {
+            data?: {
+                features?: string[];
+                targets?: string[];
+                ids?: string[];
+            };
+        };
         /**
          * the name of the variable in local scope to save the data under
          */
@@ -62759,7 +62831,13 @@ export interface WorkflowSchema {
                 /**
                  * rest API endpoint options
                  */
-                endpoint_options: {};
+                endpoint_options: {
+                    data?: {
+                        features?: string[];
+                        targets?: string[];
+                        ids?: string[];
+                    };
+                };
                 /**
                  * the name of the variable in local scope to save the data under
                  */
@@ -64017,7 +64095,13 @@ export interface WorkflowSchema {
             /**
              * rest API endpoint options
              */
-            endpoint_options: {};
+            endpoint_options: {
+                data?: {
+                    features?: string[];
+                    targets?: string[];
+                    ids?: string[];
+                };
+            };
             /**
              * the name of the variable in local scope to save the data under
              */

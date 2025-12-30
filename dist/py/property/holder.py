@@ -1160,6 +1160,16 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
+class Data(BaseModel):
+    features: Optional[List[str]] = None
+    targets: Optional[List[str]] = None
+    ids: Optional[List[str]] = None
+
+
+class EndpointOptions(BaseModel):
+    data: Optional[Data] = None
+
+
 class DataIORestAPIInputSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1168,7 +1178,7 @@ class DataIORestAPIInputSchema(BaseModel):
     """
     rest API endpoint
     """
-    endpoint_options: Dict[str, Any]
+    endpoint_options: EndpointOptions
     """
     rest API endpoint options
     """
@@ -2265,6 +2275,28 @@ class Subworkflow(BaseModel):
     """
 
 
+class EndpointOptions2(BaseModel):
+    data: Optional[Data] = None
+
+
+class DataIORestAPIInputSchema2(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    endpoint: str
+    """
+    rest API endpoint
+    """
+    endpoint_options: EndpointOptions2
+    """
+    rest API endpoint options
+    """
+    name: Optional[str] = None
+    """
+    the name of the variable in local scope to save the data under
+    """
+
+
 class DataIODatabaseInputOutputSchema4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2384,7 +2416,7 @@ class DataIOUnitSchema1(BaseModel):
     source: Source
     input: List[
         Union[
-            DataIORestAPIInputSchema,
+            DataIORestAPIInputSchema2,
             Union[DataIODatabaseInputOutputSchema4, DataIODatabaseInputOutputSchema5],
             ObjectStorageIoSchema1,
         ]
