@@ -630,6 +630,10 @@ class FlavorSchema(BaseModel):
     """
     name of the application this flavor belongs to
     """
+    applicationId: Optional[str] = None
+    """
+    _id of the application this flavor belongs to
+    """
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"
     )
@@ -1620,6 +1624,10 @@ class FlavorSchema14(BaseModel):
     applicationName: Optional[str] = None
     """
     name of the application this flavor belongs to
+    """
+    applicationId: Optional[str] = None
+    """
+    _id of the application this flavor belongs to
     """
     input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
         None, title="execution unit input schema"

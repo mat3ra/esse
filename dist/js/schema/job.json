@@ -1424,6 +1424,10 @@
                                                             "description": "name of the application this flavor belongs to",
                                                             "type": "string"
                                                         },
+                                                        "applicationId": {
+                                                            "description": "_id of the application this flavor belongs to",
+                                                            "type": "string"
+                                                        },
                                                         "input": {
                                                             "title": "execution unit input schema",
                                                             "type": "array",
@@ -4022,6 +4026,10 @@
                                             },
                                             "applicationName": {
                                                 "description": "name of the application this flavor belongs to",
+                                                "type": "string"
+                                            },
+                                            "applicationId": {
+                                                "description": "_id of the application this flavor belongs to",
                                                 "type": "string"
                                             },
                                             "input": {

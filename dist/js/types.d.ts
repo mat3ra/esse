@@ -6166,6 +6166,10 @@ export interface JobSchema {
                      * name of the application this flavor belongs to
                      */
                     applicationName?: string;
+                    /**
+                     * _id of the application this flavor belongs to
+                     */
+                    applicationId?: string;
                     input?: {
                         templateId?: string;
                         templateName?: string;
@@ -7401,6 +7405,10 @@ export interface JobSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
+                /**
+                 * _id of the application this flavor belongs to
+                 */
+                applicationId?: string;
                 input?: {
                     templateId?: string;
                     templateName?: string;
@@ -47945,6 +47953,10 @@ export interface WorkflowPropertySchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
+                /**
+                 * _id of the application this flavor belongs to
+                 */
+                applicationId?: string;
                 input?: {
                     templateId?: string;
                     templateName?: string;
@@ -49180,6 +49192,10 @@ export interface WorkflowPropertySchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
+            /**
+             * _id of the application this flavor belongs to
+             */
+            applicationId?: string;
             input?: {
                 templateId?: string;
                 templateName?: string;
@@ -51760,6 +51776,10 @@ export interface PropertyHolderSchema {
                      * name of the application this flavor belongs to
                      */
                     applicationName?: string;
+                    /**
+                     * _id of the application this flavor belongs to
+                     */
+                    applicationId?: string;
                     input?: {
                         templateId?: string;
                         templateName?: string;
@@ -52995,6 +53015,10 @@ export interface PropertyHolderSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
+                /**
+                 * _id of the application this flavor belongs to
+                 */
+                applicationId?: string;
                 input?: {
                     templateId?: string;
                     templateName?: string;
@@ -54207,6 +54231,10 @@ export interface FlavorSchema {
      * name of the application this flavor belongs to
      */
     applicationName?: string;
+    /**
+     * _id of the application this flavor belongs to
+     */
+    applicationId?: string;
     input?: {
         templateId?: string;
         templateName?: string;
@@ -54578,6 +54606,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * name of the application this flavor belongs to
          */
         applicationName?: string;
+        /**
+         * _id of the application this flavor belongs to
+         */
+        applicationId?: string;
         input?: {
             templateId?: string;
             templateName?: string;
@@ -55120,6 +55152,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
+        /**
+         * _id of the application this flavor belongs to
+         */
+        applicationId?: string;
         input?: {
             templateId?: string;
             templateName?: string;
@@ -56574,6 +56610,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
+        /**
+         * _id of the application this flavor belongs to
+         */
+        applicationId?: string;
         input?: {
             templateId?: string;
             templateName?: string;
@@ -57613,6 +57653,10 @@ export interface Subworkflow {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
+            /**
+             * _id of the application this flavor belongs to
+             */
+            applicationId?: string;
             input?: {
                 templateId?: string;
                 templateName?: string;
@@ -58782,6 +58826,10 @@ export interface ExecutionUnitSchemaBase {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
+        /**
+         * _id of the application this flavor belongs to
+         */
+        applicationId?: string;
         input?: {
             templateId?: string;
             templateName?: string;
@@ -60423,6 +60471,10 @@ export type WorkflowUnitSchema = {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
+        /**
+         * _id of the application this flavor belongs to
+         */
+        applicationId?: string;
         input?: {
             templateId?: string;
             templateName?: string;
@@ -61680,6 +61732,10 @@ export interface WorkflowSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
+                /**
+                 * _id of the application this flavor belongs to
+                 */
+                applicationId?: string;
                 input?: {
                     templateId?: string;
                     templateName?: string;
@@ -62915,6 +62971,10 @@ export interface WorkflowSchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
+            /**
+             * _id of the application this flavor belongs to
+             */
+            applicationId?: string;
             input?: {
                 templateId?: string;
                 templateName?: string;
