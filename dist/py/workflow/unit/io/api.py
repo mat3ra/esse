@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class Data(BaseModel):
@@ -20,9 +20,6 @@ class EndpointOptions(BaseModel):
 
 
 class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint

@@ -1171,9 +1171,6 @@ class EndpointOptions(BaseModel):
 
 
 class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint
@@ -1189,9 +1186,6 @@ class DataIORestAPIInputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -1199,9 +1193,6 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema3(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name
@@ -1213,9 +1204,6 @@ class DataIODatabaseInputOutputSchema3(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -2280,9 +2268,6 @@ class EndpointOptions2(BaseModel):
 
 
 class DataIORestAPIInputSchema2(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint
@@ -2298,9 +2283,6 @@ class DataIORestAPIInputSchema2(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema4(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -2308,9 +2290,6 @@ class DataIODatabaseInputOutputSchema4(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema5(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name
@@ -2322,9 +2301,6 @@ class DataIODatabaseInputOutputSchema5(BaseModel):
 
 
 class ObjectStorageIoSchema1(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """

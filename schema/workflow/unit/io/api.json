@@ -45,6 +45,5 @@
     "required": [
         "endpoint",
         "endpoint_options"
-    ],
-    "additionalProperties": true
+    ]
 }

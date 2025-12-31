@@ -6,7 +6,6 @@
     "required": [
         "objectData"
     ],
-    "additionalProperties": true,
     "properties": {
         "objectData": {
             "$schema": "http://json-schema.org/draft-07/schema#",

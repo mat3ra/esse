@@ -19,6 +19,5 @@
     },
     "required": [
         "objectData"
-    ],
-    "additionalProperties": true
+    ]
 }

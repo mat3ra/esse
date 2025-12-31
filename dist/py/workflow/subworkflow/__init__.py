@@ -54,9 +54,6 @@ class EndpointOptions(BaseModel):
 
 
 class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint
@@ -72,9 +69,6 @@ class DataIORestAPIInputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -82,9 +76,6 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema15(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name
@@ -123,9 +114,6 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """

@@ -6,13 +6,10 @@ from __future__ import annotations
 
 from typing import List, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel
+from pydantic import BaseModel, Field, RootModel
 
 
 class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -20,9 +17,6 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema1(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name

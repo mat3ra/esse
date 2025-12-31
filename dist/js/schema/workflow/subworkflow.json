@@ -259,8 +259,7 @@
                                             "required": [
                                                 "endpoint",
                                                 "endpoint_options"
-                                            ],
-                                            "additionalProperties": true
+                                            ]
                                         },
                                         {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -279,8 +278,7 @@
                                                     },
                                                     "required": [
                                                         "ids"
-                                                    ],
-                                                    "additionalProperties": true
+                                                    ]
                                                 },
                                                 {
                                                     "properties": {
@@ -296,8 +294,7 @@
                                                     "required": [
                                                         "collection",
                                                         "draft"
-                                                    ],
-                                                    "additionalProperties": true
+                                                    ]
                                                 }
                                             ]
                                         },
@@ -308,7 +305,6 @@
                                             "required": [
                                                 "objectData"
                                             ],
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "objectData": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",

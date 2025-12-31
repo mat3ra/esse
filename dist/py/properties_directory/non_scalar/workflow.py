@@ -58,9 +58,6 @@ class EndpointOptions(BaseModel):
 
 
 class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint
@@ -76,9 +73,6 @@ class DataIORestAPIInputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -86,9 +80,6 @@ class DataIODatabaseInputOutputSchema(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema25(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name
@@ -127,9 +118,6 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -1194,9 +1182,6 @@ class EndpointOptions13(BaseModel):
 
 
 class DataIORestAPIInputSchema13(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     endpoint: str
     """
     rest API endpoint
@@ -1212,9 +1197,6 @@ class DataIORestAPIInputSchema13(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema26(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     ids: List[str]
     """
     IDs of item to retrieve from db
@@ -1222,9 +1204,6 @@ class DataIODatabaseInputOutputSchema26(BaseModel):
 
 
 class DataIODatabaseInputOutputSchema27(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     collection: str
     """
     db collection name
@@ -1236,9 +1215,6 @@ class DataIODatabaseInputOutputSchema27(BaseModel):
 
 
 class ObjectStorageIoSchema13(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """

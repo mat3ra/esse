@@ -5575,13 +5575,11 @@ export interface JobSchema {
                      * the name of the variable in local scope to save the data under
                      */
                     name?: string;
-                    [k: string]: unknown;
                 } | ({
                     /**
                      * IDs of item to retrieve from db
                      */
                     ids: string[];
-                    [k: string]: unknown;
                 } | {
                     /**
                      * db collection name
@@ -5591,7 +5589,6 @@ export interface JobSchema {
                      * whether the result should be saved as draft
                      */
                     draft: boolean;
-                    [k: string]: unknown;
                 }) | {
                     objectData: {
                         /**
@@ -5635,7 +5632,6 @@ export interface JobSchema {
                      * What kind of file this is, e.g. image / text
                      */
                     filetype?: string;
-                    [k: string]: unknown;
                 })[];
             } | {
                 /**
@@ -6839,13 +6835,11 @@ export interface JobSchema {
                  * the name of the variable in local scope to save the data under
                  */
                 name?: string;
-                [k: string]: unknown;
             } | ({
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
                 /**
                  * db collection name
@@ -6855,7 +6849,6 @@ export interface JobSchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
             }) | {
                 objectData: {
                     /**
@@ -6899,7 +6892,6 @@ export interface JobSchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
         } | {
             /**
@@ -48209,13 +48201,11 @@ export interface WorkflowPropertySchema {
                  * the name of the variable in local scope to save the data under
                  */
                 name?: string;
-                [k: string]: unknown;
             } | ({
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
                 /**
                  * db collection name
@@ -48225,7 +48215,6 @@ export interface WorkflowPropertySchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
             }) | {
                 objectData: {
                     /**
@@ -48269,7 +48258,6 @@ export interface WorkflowPropertySchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
         } | {
             /**
@@ -49473,13 +49461,11 @@ export interface WorkflowPropertySchema {
              * the name of the variable in local scope to save the data under
              */
             name?: string;
-            [k: string]: unknown;
         } | ({
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
             /**
              * db collection name
@@ -49489,7 +49475,6 @@ export interface WorkflowPropertySchema {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
         }) | {
             objectData: {
                 /**
@@ -49533,7 +49518,6 @@ export interface WorkflowPropertySchema {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
     } | {
         /**
@@ -52079,13 +52063,11 @@ export interface PropertyHolderSchema {
                      * the name of the variable in local scope to save the data under
                      */
                     name?: string;
-                    [k: string]: unknown;
                 } | ({
                     /**
                      * IDs of item to retrieve from db
                      */
                     ids: string[];
-                    [k: string]: unknown;
                 } | {
                     /**
                      * db collection name
@@ -52095,7 +52077,6 @@ export interface PropertyHolderSchema {
                      * whether the result should be saved as draft
                      */
                     draft: boolean;
-                    [k: string]: unknown;
                 }) | {
                     objectData: {
                         /**
@@ -52139,7 +52120,6 @@ export interface PropertyHolderSchema {
                      * What kind of file this is, e.g. image / text
                      */
                     filetype?: string;
-                    [k: string]: unknown;
                 })[];
             } | {
                 /**
@@ -53343,13 +53323,11 @@ export interface PropertyHolderSchema {
                  * the name of the variable in local scope to save the data under
                  */
                 name?: string;
-                [k: string]: unknown;
             } | ({
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
                 /**
                  * db collection name
@@ -53359,7 +53337,6 @@ export interface PropertyHolderSchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
             }) | {
                 objectData: {
                     /**
@@ -53403,7 +53380,6 @@ export interface PropertyHolderSchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
         } | {
             /**
@@ -57124,13 +57100,11 @@ export type WorkflowSubworkflowUnitSchema = {
          * the name of the variable in local scope to save the data under
          */
         name?: string;
-        [k: string]: unknown;
     } | ({
         /**
          * IDs of item to retrieve from db
          */
         ids: string[];
-        [k: string]: unknown;
     } | {
         /**
          * db collection name
@@ -57140,7 +57114,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * whether the result should be saved as draft
          */
         draft: boolean;
-        [k: string]: unknown;
     }) | {
         objectData: {
             /**
@@ -57184,7 +57157,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * What kind of file this is, e.g. image / text
          */
         filetype?: string;
-        [k: string]: unknown;
     })[];
 } | {
     /**
@@ -58193,13 +58165,11 @@ export interface Subworkflow {
              * the name of the variable in local scope to save the data under
              */
             name?: string;
-            [k: string]: unknown;
         } | ({
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
             /**
              * db collection name
@@ -58209,7 +58179,6 @@ export interface Subworkflow {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
         }) | {
             objectData: {
                 /**
@@ -58253,7 +58222,6 @@ export interface Subworkflow {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
     } | {
         /**
@@ -60257,7 +60225,6 @@ export interface DataIORestAPIInputSchema {
      * the name of the variable in local scope to save the data under
      */
     name?: string;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/io/db.json */
 export type DataIODatabaseInputOutputSchema = {
@@ -60265,7 +60232,6 @@ export type DataIODatabaseInputOutputSchema = {
      * IDs of item to retrieve from db
      */
     ids: string[];
-    [k: string]: unknown;
 } | {
     /**
      * db collection name
@@ -60275,7 +60241,6 @@ export type DataIODatabaseInputOutputSchema = {
      * whether the result should be saved as draft
      */
     draft: boolean;
-    [k: string]: unknown;
 };
 /** Schema dist/js/schema/workflow/unit/io/object_storage.json */
 export interface ObjectStorageIoSchema {
@@ -60321,7 +60286,6 @@ export interface ObjectStorageIoSchema {
      * What kind of file this is, e.g. image / text
      */
     filetype?: string;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/io.json */
 export interface DataIOUnitSchema {
@@ -60437,13 +60401,11 @@ export interface DataIOUnitSchema {
          * the name of the variable in local scope to save the data under
          */
         name?: string;
-        [k: string]: unknown;
     } | ({
         /**
          * IDs of item to retrieve from db
          */
         ids: string[];
-        [k: string]: unknown;
     } | {
         /**
          * db collection name
@@ -60453,7 +60415,6 @@ export interface DataIOUnitSchema {
          * whether the result should be saved as draft
          */
         draft: boolean;
-        [k: string]: unknown;
     }) | {
         objectData: {
             /**
@@ -60497,7 +60458,6 @@ export interface DataIOUnitSchema {
          * What kind of file this is, e.g. image / text
          */
         filetype?: string;
-        [k: string]: unknown;
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/map.json */
@@ -60996,13 +60956,11 @@ export interface DataIOUnitMixinSchema {
          * the name of the variable in local scope to save the data under
          */
         name?: string;
-        [k: string]: unknown;
     } | ({
         /**
          * IDs of item to retrieve from db
          */
         ids: string[];
-        [k: string]: unknown;
     } | {
         /**
          * db collection name
@@ -61012,7 +60970,6 @@ export interface DataIOUnitMixinSchema {
          * whether the result should be saved as draft
          */
         draft: boolean;
-        [k: string]: unknown;
     }) | {
         objectData: {
             /**
@@ -61056,7 +61013,6 @@ export interface DataIOUnitMixinSchema {
          * What kind of file this is, e.g. image / text
          */
         filetype?: string;
-        [k: string]: unknown;
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/map.json */
@@ -61559,13 +61515,11 @@ export type WorkflowUnitSchema = {
          * the name of the variable in local scope to save the data under
          */
         name?: string;
-        [k: string]: unknown;
     } | ({
         /**
          * IDs of item to retrieve from db
          */
         ids: string[];
-        [k: string]: unknown;
     } | {
         /**
          * db collection name
@@ -61575,7 +61529,6 @@ export type WorkflowUnitSchema = {
          * whether the result should be saved as draft
          */
         draft: boolean;
-        [k: string]: unknown;
     }) | {
         objectData: {
             /**
@@ -61619,7 +61572,6 @@ export type WorkflowUnitSchema = {
          * What kind of file this is, e.g. image / text
          */
         filetype?: string;
-        [k: string]: unknown;
     })[];
 } | {
     /**
@@ -62842,13 +62794,11 @@ export interface WorkflowSchema {
                  * the name of the variable in local scope to save the data under
                  */
                 name?: string;
-                [k: string]: unknown;
             } | ({
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
                 /**
                  * db collection name
@@ -62858,7 +62808,6 @@ export interface WorkflowSchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
             }) | {
                 objectData: {
                     /**
@@ -62902,7 +62851,6 @@ export interface WorkflowSchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
         } | {
             /**
@@ -64106,13 +64054,11 @@ export interface WorkflowSchema {
              * the name of the variable in local scope to save the data under
              */
             name?: string;
-            [k: string]: unknown;
         } | ({
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
             /**
              * db collection name
@@ -64122,7 +64068,6 @@ export interface WorkflowSchema {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
         }) | {
             objectData: {
                 /**
@@ -64166,7 +64111,6 @@ export interface WorkflowSchema {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
     } | {
         /**
