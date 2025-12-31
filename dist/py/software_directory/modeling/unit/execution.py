@@ -31,7 +31,7 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -356,7 +356,7 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[

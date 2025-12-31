@@ -54958,7 +54958,7 @@ export interface PropertySourceSchema {
     };
 }
 /** Schema dist/js/schema/software/application.json */
-export interface ApplicationSchemaBase {
+export interface ApplicationSchema {
     /**
      * entity identity
      */

@@ -1179,7 +1179,7 @@
                                                 },
                                                 "application": {
                                                     "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "application schema (base)",
+                                                    "title": "application schema",
                                                     "type": "object",
                                                     "required": [
                                                         "build",
@@ -2103,7 +2103,7 @@
                             },
                             "application": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "application schema (base)",
+                                "title": "application schema",
                                 "type": "object",
                                 "required": [
                                     "build",
@@ -3509,7 +3509,7 @@
                                     },
                                     "application": {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "application schema (base)",
+                                        "title": "application schema",
                                         "type": "object",
                                         "required": [
                                             "build",

@@ -1574,7 +1574,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1853,7 +1853,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
@@ -2240,7 +2240,7 @@ class Subworkflow(BaseModel):
     Contains the Units of the subworkflow
     """
     model: BaseModelModel = Field(..., title="base model")
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
@@ -2861,7 +2861,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema6] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema6] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema7]

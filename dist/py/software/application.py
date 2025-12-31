@@ -9,7 +9,7 @@ from typing import Optional
 from pydantic import BaseModel, Field
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
