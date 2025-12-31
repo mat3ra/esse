@@ -55004,7 +55004,6 @@ export interface ApplicationSchemaBase {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software/application_properties.json */
 export interface ApplicationPropertiesSchema {
@@ -55324,7 +55323,6 @@ export interface DeePMDAppSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -55403,7 +55401,6 @@ export interface NWChem {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
@@ -55797,7 +55794,6 @@ export interface ViennaAbInitoSimulationPackage {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
@@ -55848,7 +55844,6 @@ export interface JupyterLabApplicationSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
@@ -55911,7 +55906,6 @@ export interface PythonProgramingLanguageSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
@@ -55970,7 +55964,6 @@ export interface ShellScriptingLanguageSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
