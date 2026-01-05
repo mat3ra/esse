@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import List, Literal, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, RootModel
 
 
 class Subtype(Enum):
@@ -22,39 +22,16 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
-class Data(BaseModel):
-    features: Optional[List[str]] = None
-    targets: Optional[List[str]] = None
-    ids: Optional[List[str]] = None
-
-
-class EndpointOptions(BaseModel):
-    data: Optional[Data] = None
-
-
-class DataIORestAPIInputSchema(BaseModel):
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: EndpointOptions
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
+class DataIODatabaseIdsInputOutputSchema(BaseModel):
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     ids: List[str]
     """
     IDs of item to retrieve from db
     """
 
 
-class DataIODatabaseInputOutputSchema9(BaseModel):
+class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     collection: str
     """
     db collection name
@@ -93,6 +70,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -112,14 +90,18 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
+class Input(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
+    ] = Field(..., discriminator="type")
+
+
 class DataIOUnitMixinSchema(BaseModel):
     type: Literal["io"] = "io"
     subtype: Subtype
     source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema9],
-            ObjectStorageIoSchema,
-        ]
-    ]
+    input: List[Input]

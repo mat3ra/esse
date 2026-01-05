@@ -26,15 +26,18 @@
             "items": {
                 "oneOf": [
                     {
-                        "$ref": "../io/api.json"
+                        "$ref": "../io/db_ids.json"
                     },
                     {
-                        "$ref": "../io/db.json"
+                        "$ref": "../io/db_collection.json"
                     },
                     {
                         "$ref": "../io/object_storage.json"
                     }
-                ]
+                ],
+                "discriminator": {
+                    "propertyName": "type"
+                }
             }
         }
     },

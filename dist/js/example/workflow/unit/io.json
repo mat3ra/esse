@@ -3,34 +3,29 @@
     "head": true,
     "input": [
         {
-            "endpoint": "data-frame",
-            "endpoint_options": {
-                "data": {
-                    "features": [
-                        "elemental_ratio:Si",
-                        "elemental_ratio:Ge",
-                        "ionization_potential:Ge",
-                        "ionization_potential:Si"
-                    ],
-                    "ids": [
-                        "KuAsBRwofzGfHPWiT"
-                    ],
-                    "targets": [
-                        "band_gaps:indirect",
-                        "band_gaps:direct"
-                    ]
-                },
-                "headers": {
-                    "X-Auth-Token": "",
-                    "X-User-Id": ""
-                },
-                "method": "POST",
-                "params": {
-                    "query": {
-                        "formula": "SiGe"
-                    }
-                }
-            }
+            "ids": [
+                "KuAsBRwofzGfHPWiT"
+            ],
+            "type": "db_ids"
+        },
+        {
+            "collection": "features",
+            "draft": false,
+            "type": "db_collection"
+        },
+        {
+            "basename": "index.html",
+            "overwrite": true,
+            "objectData": {
+                "CONTAINER": "production-20160630-cluster-001",
+                "NAME": "/cluster-001-home/jrd101/data/jrd101-default/kernel-train-Cxmkj97aXKZeaRZov/Cxmkj97aXKZeaRZov.json",
+                "PROVIDER": "aws",
+                "REGION": "us-east-1",
+                "SIZE": 6582,
+                "TIMESTAMP": "1614217411"
+            },
+            "filetype": "text/html",
+            "type": "object_storage"
         }
     ],
     "name": "io",

@@ -196,87 +196,46 @@
                 "oneOf": [
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "data IO rest API input schema",
+                        "title": "data IO database ids input/output schema",
                         "type": "object",
                         "properties": {
-                            "endpoint": {
-                                "description": "rest API endpoint",
-                                "type": "string"
+                            "type": {
+                                "const": "db_ids"
                             },
-                            "endpoint_options": {
-                                "description": "rest API endpoint options",
-                                "type": "object",
-                                "properties": {
-                                    "data": {
-                                        "type": "object",
-                                        "properties": {
-                                            "features": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "targets": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            },
-                                            "ids": {
-                                                "type": "array",
-                                                "items": {
-                                                    "type": "string"
-                                                }
-                                            }
-                                        }
-                                    }
+                            "ids": {
+                                "description": "IDs of item to retrieve from db",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
                                 }
-                            },
-                            "name": {
-                                "description": "the name of the variable in local scope to save the data under",
-                                "type": "string"
                             }
                         },
                         "required": [
-                            "endpoint",
-                            "endpoint_options"
+                            "type",
+                            "ids"
                         ]
                     },
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "data IO database input/output schema",
+                        "title": "data IO database collection input/output schema",
                         "type": "object",
-                        "oneOf": [
-                            {
-                                "properties": {
-                                    "ids": {
-                                        "description": "IDs of item to retrieve from db",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "ids"
-                                ]
+                        "properties": {
+                            "type": {
+                                "const": "db_collection"
                             },
-                            {
-                                "properties": {
-                                    "collection": {
-                                        "description": "db collection name",
-                                        "type": "string"
-                                    },
-                                    "draft": {
-                                        "description": "whether the result should be saved as draft",
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "collection",
-                                    "draft"
-                                ]
+                            "collection": {
+                                "description": "db collection name",
+                                "type": "string"
+                            },
+                            "draft": {
+                                "description": "whether the result should be saved as draft",
+                                "type": "boolean"
                             }
+                        },
+                        "required": [
+                            "type",
+                            "collection",
+                            "draft"
                         ]
                     },
                     {
@@ -284,9 +243,13 @@
                         "title": "object_storage io schema",
                         "type": "object",
                         "required": [
+                            "type",
                             "objectData"
                         ],
                         "properties": {
+                            "type": {
+                                "const": "object_storage"
+                            },
                             "objectData": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                 "title": "Object Storage Container Data",
@@ -337,7 +300,10 @@
                             }
                         }
                     }
-                ]
+                ],
+                "discriminator": {
+                    "propertyName": "type"
+                }
             }
         }
     }

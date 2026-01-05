@@ -1160,39 +1160,16 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
-class Data(BaseModel):
-    features: Optional[List[str]] = None
-    targets: Optional[List[str]] = None
-    ids: Optional[List[str]] = None
-
-
-class EndpointOptions(BaseModel):
-    data: Optional[Data] = None
-
-
-class DataIORestAPIInputSchema(BaseModel):
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: EndpointOptions
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
+class DataIODatabaseIdsInputOutputSchema(BaseModel):
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     ids: List[str]
     """
     IDs of item to retrieve from db
     """
 
 
-class DataIODatabaseInputOutputSchema3(BaseModel):
+class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     collection: str
     """
     db collection name
@@ -1204,6 +1181,7 @@ class DataIODatabaseInputOutputSchema3(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -1221,6 +1199,16 @@ class ObjectStorageIoSchema(BaseModel):
     """
     What kind of file this is, e.g. image / text
     """
+
+
+class Input(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
+    ] = Field(..., discriminator="type")
 
 
 class DataIOUnitSchema(BaseModel):
@@ -1293,13 +1281,7 @@ class DataIOUnitSchema(BaseModel):
     """
     subtype: Subtype
     source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema3],
-            ObjectStorageIoSchema,
-        ]
-    ]
+    input: List[Input]
 
 
 class InputItem(BaseModel):
@@ -2263,44 +2245,8 @@ class Subworkflow(BaseModel):
     """
 
 
-class EndpointOptions2(BaseModel):
-    data: Optional[Data] = None
-
-
-class DataIORestAPIInputSchema2(BaseModel):
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: EndpointOptions2
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema4(BaseModel):
-    ids: List[str]
-    """
-    IDs of item to retrieve from db
-    """
-
-
-class DataIODatabaseInputOutputSchema5(BaseModel):
-    collection: str
-    """
-    db collection name
-    """
-    draft: bool
-    """
-    whether the result should be saved as draft
-    """
-
-
 class ObjectStorageIoSchema1(BaseModel):
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -2318,6 +2264,16 @@ class ObjectStorageIoSchema1(BaseModel):
     """
     What kind of file this is, e.g. image / text
     """
+
+
+class Input1(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema1]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema1
+    ] = Field(..., discriminator="type")
 
 
 class DataIOUnitSchema1(BaseModel):
@@ -2390,13 +2346,7 @@ class DataIOUnitSchema1(BaseModel):
     """
     subtype: Subtype
     source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema2,
-            Union[DataIODatabaseInputOutputSchema4, DataIODatabaseInputOutputSchema5],
-            ObjectStorageIoSchema1,
-        ]
-    ]
+    input: List[Input1]
 
 
 class ReduceUnitSchema1(BaseModel):
@@ -3033,7 +2983,7 @@ class ProcessingUnitSchema1(BaseModel):
     """
 
 
-class Input(BaseModel):
+class Input2(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -3125,7 +3075,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input
+    input: Input2
     """
     Input information for map.
     """
