@@ -20,7 +20,11 @@
                         "minimum": -1,
                         "maximum": 1
                     }
-                }
+                },
+                "required": [
+                    "atomicSpecies",
+                    "value"
+                ]
             }
         },
         "isTotalMagnetization": {
@@ -31,5 +35,10 @@
             "type": "number",
             "title": "Total magnetization"
         }
-    }
+    },
+    "required": [
+        "startingMagnetization",
+        "isTotalMagnetization",
+        "totalMagnetization"
+    ]
 }

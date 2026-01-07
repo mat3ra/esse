@@ -3264,12 +3264,12 @@ export interface VASPNEBContextProviderSchema {
  * Set starting magnetization, can have values in the range [-1, +1].
  */
 export interface CollinearMagnetizationContextProviderSchema {
-    startingMagnetization?: {
-        atomicSpecies?: string;
-        value?: number;
+    startingMagnetization: {
+        atomicSpecies: string;
+        value: number;
     }[];
-    isTotalMagnetization?: boolean;
-    totalMagnetization?: number;
+    isTotalMagnetization: boolean;
+    totalMagnetization: number;
 }
 /** Schema dist/js/schema/context_providers_directory/enum.json */
 export interface ContextProvidersDirectoryEnum {

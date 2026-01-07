@@ -4,11 +4,20 @@
     "title": "Collinear Magnetization Context Provider Schema",
     "description": "Set starting magnetization, can have values in the range [-1, +1].",
     "type": "object",
+    "required": [
+        "startingMagnetization",
+        "isTotalMagnetization",
+        "totalMagnetization"
+    ],
     "properties": {
         "startingMagnetization": {
             "type": "array",
             "items": {
                 "type": "object",
+                "required": [
+                    "atomicSpecies",
+                    "value"
+                ],
                 "properties": {
                     "atomicSpecies": {
                         "type": "string",
