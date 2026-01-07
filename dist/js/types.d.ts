@@ -3472,8 +3472,8 @@ export interface PointsGridDataProviderSchema {
      * @maxItems 3
      */
     reciprocalVectorRatios?: [number, number, number];
-    gridMetricType?: "KPPRA" | "spacing";
-    gridMetricValue?: number;
+    gridMetricType: "KPPRA" | "spacing";
+    gridMetricValue: number;
     preferGridMetric?: boolean;
 }
 /** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */

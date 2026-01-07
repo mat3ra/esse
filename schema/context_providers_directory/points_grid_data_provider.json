@@ -42,5 +42,9 @@
         "preferGridMetric": {
             "type": "boolean"
         }
-    }
+    },
+    "required": [
+        "gridMetricType",
+        "gridMetricValue"
+    ]
 }

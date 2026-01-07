@@ -19,6 +19,6 @@ class PointsGridDataProviderSchema(BaseModel):
     dimensions: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    gridMetricType: Optional[GridMetricType] = None
-    gridMetricValue: Optional[float] = None
+    gridMetricType: GridMetricType
+    gridMetricValue: float
     preferGridMetric: Optional[bool] = None
