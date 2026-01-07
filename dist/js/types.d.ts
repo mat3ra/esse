@@ -3424,6 +3424,7 @@ export interface NonCollinearMagnetizationContextProviderSchema {
         value?: number;
     }[];
     isArbitrarySpinAngle?: boolean;
+    isArbitrarySpinDirection?: boolean;
     spinAngles?: {
         index?: number;
         atomicSpecies?: string;

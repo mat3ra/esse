@@ -37,6 +37,10 @@
             "type": "boolean",
             "title": "Set arbitrary spin angle"
         },
+        "isArbitrarySpinDirection": {
+            "type": "boolean",
+            "title": "Set arbitrary spin direction"
+        },
         "spinAngles": {
             "type": "array",
             "items": {
