@@ -48,6 +48,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
+    lforcet: Optional[bool] = None
     spinAngles: Optional[List[SpinAngle]] = None
     isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
     constrainedMagnetization: Optional[ConstrainedMagnetization] = None
