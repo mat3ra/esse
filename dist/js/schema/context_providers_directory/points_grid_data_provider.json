@@ -5,6 +5,7 @@
     "description": "3D grid with shifts for k-point or q-point sampling.",
     "type": "object",
     "required": [
+        "dimensions",
         "gridMetricType",
         "gridMetricValue"
     ],

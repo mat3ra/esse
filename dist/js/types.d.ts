@@ -3461,7 +3461,7 @@ export interface PointsGridDataProviderSchema {
      * @minItems 3
      * @maxItems 3
      */
-    dimensions?: [number, number, number];
+    dimensions: [number, number, number];
     /**
      * @minItems 3
      * @maxItems 3
