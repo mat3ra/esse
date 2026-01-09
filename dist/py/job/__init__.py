@@ -1126,7 +1126,24 @@ class BaseModel1(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Subworkflow(BaseModel):
+class SubworkflowSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
     properties: Optional[List[str]] = None
     """
     Array of characteristic properties calculated by this subworkflow
@@ -1144,23 +1161,6 @@ class Subworkflow(BaseModel):
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
     """
 
 
@@ -2099,7 +2099,7 @@ class WorkflowUnitSchema(
 
 
 class WorkflowSchema(BaseModel):
-    subworkflows: List[Subworkflow]
+    subworkflows: List[SubworkflowSchema]
     """
     Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
     """

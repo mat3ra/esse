@@ -1126,7 +1126,24 @@ class BaseModel1(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Subworkflow(BaseModel):
+class SubworkflowSchema(BaseModel):
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
     properties: Optional[List[str]] = None
     """
     Array of characteristic properties calculated by this subworkflow
@@ -1145,26 +1162,9 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
 
 
-class ObjectStorageIoSchema11(BaseModel):
+class ObjectStorageIoSchema12(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
@@ -1185,17 +1185,17 @@ class ObjectStorageIoSchema11(BaseModel):
     """
 
 
-class Input15(
+class Input16(
     RootModel[
-        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema11]
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema12]
     ]
 ):
     root: Union[
-        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema11
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema12
     ] = Field(..., discriminator="type")
 
 
-class DataIOUnitSchema9(BaseModel):
+class DataIOUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1265,10 +1265,10 @@ class DataIOUnitSchema9(BaseModel):
     """
     subtype: Subtype
     source: Source
-    input: List[Input15]
+    input: List[Input16]
 
 
-class ReduceUnitSchema9(BaseModel):
+class ReduceUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1346,7 +1346,7 @@ class ReduceUnitSchema9(BaseModel):
     """
 
 
-class ConditionUnitSchema9(BaseModel):
+class ConditionUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1440,7 +1440,7 @@ class ConditionUnitSchema9(BaseModel):
     """
 
 
-class AssertionUnitSchema9(BaseModel):
+class AssertionUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1518,7 +1518,7 @@ class AssertionUnitSchema9(BaseModel):
     """
 
 
-class ExecutableSchema13(BaseModel):
+class ExecutableSchema14(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1566,7 +1566,7 @@ class ExecutableSchema13(BaseModel):
     """
 
 
-class FlavorSchema13(BaseModel):
+class FlavorSchema14(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1625,7 +1625,7 @@ class FlavorSchema13(BaseModel):
     """
 
 
-class TemplateSchema17(BaseModel):
+class TemplateSchema18(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1653,8 +1653,8 @@ class TemplateSchema17(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchema14(BaseModel):
-    template: TemplateSchema17 = Field(..., title="template schema")
+class ExecutionUnitInputItemSchema15(BaseModel):
+    template: TemplateSchema18 = Field(..., title="template schema")
     rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
@@ -1662,7 +1662,7 @@ class ExecutionUnitInputItemSchema14(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class ExecutionUnitSchemaBase9(BaseModel):
+class ExecutionUnitSchemaBase10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1731,13 +1731,13 @@ class ExecutionUnitSchemaBase9(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     application: ApplicationSchema = Field(..., title="application schema")
-    executable: Optional[ExecutableSchema13] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema13] = Field(None, title="flavor schema")
-    input: List[ExecutionUnitInputItemSchema14]
+    executable: Optional[ExecutableSchema14] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema14] = Field(None, title="flavor schema")
+    input: List[ExecutionUnitInputItemSchema15]
     context: Optional[List[ContextItem]] = None
 
 
-class AssignmentUnitSchema9(BaseModel):
+class AssignmentUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1820,7 +1820,7 @@ class AssignmentUnitSchema9(BaseModel):
     """
 
 
-class ProcessingUnitSchema9(BaseModel):
+class ProcessingUnitSchema10(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1902,7 +1902,7 @@ class ProcessingUnitSchema9(BaseModel):
     """
 
 
-class Input16(BaseModel):
+class Input17(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -1994,7 +1994,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input16
+    input: Input17
     """
     Input information for map.
     """
@@ -2073,33 +2073,33 @@ class SubworkflowUnitSchema(BaseModel):
 class WorkflowUnitSchema(
     RootModel[
         Union[
-            DataIOUnitSchema9,
-            ReduceUnitSchema9,
-            ConditionUnitSchema9,
-            AssertionUnitSchema9,
-            ExecutionUnitSchemaBase9,
-            AssignmentUnitSchema9,
-            ProcessingUnitSchema9,
+            DataIOUnitSchema10,
+            ReduceUnitSchema10,
+            ConditionUnitSchema10,
+            AssertionUnitSchema10,
+            ExecutionUnitSchemaBase10,
+            AssignmentUnitSchema10,
+            ProcessingUnitSchema10,
             MapUnitSchema,
             SubworkflowUnitSchema,
         ]
     ]
 ):
     root: Union[
-        DataIOUnitSchema9,
-        ReduceUnitSchema9,
-        ConditionUnitSchema9,
-        AssertionUnitSchema9,
-        ExecutionUnitSchemaBase9,
-        AssignmentUnitSchema9,
-        ProcessingUnitSchema9,
+        DataIOUnitSchema10,
+        ReduceUnitSchema10,
+        ConditionUnitSchema10,
+        AssertionUnitSchema10,
+        ExecutionUnitSchemaBase10,
+        AssignmentUnitSchema10,
+        ProcessingUnitSchema10,
         MapUnitSchema,
         SubworkflowUnitSchema,
     ] = Field(..., discriminator="type", title="workflow unit schema")
 
 
 class WorkflowSchema(BaseModel):
-    subworkflows: List[Subworkflow]
+    subworkflows: List[SubworkflowSchema]
     """
     Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
     """

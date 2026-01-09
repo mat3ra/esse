@@ -14,7 +14,7 @@
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "Subworkflow",
+                "title": "Subworkflow Schema",
                 "type": "object",
                 "required": [
                     "application",
@@ -23,6 +23,26 @@
                     "units"
                 ],
                 "properties": {
+                    "_id": {
+                        "description": "entity identity",
+                        "type": "string"
+                    },
+                    "slug": {
+                        "description": "entity slug",
+                        "type": "string"
+                    },
+                    "systemName": {
+                        "type": "string"
+                    },
+                    "schemaVersion": {
+                        "description": "entity's schema version. Used to distinct between different schemas.",
+                        "type": "string",
+                        "default": "2022.8.16"
+                    },
+                    "name": {
+                        "description": "entity name",
+                        "type": "string"
+                    },
                     "properties": {
                         "description": "Array of characteristic properties calculated by this subworkflow",
                         "type": "array",
@@ -2307,26 +2327,6 @@
                         "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
                         "type": "boolean",
                         "default": false
-                    },
-                    "_id": {
-                        "description": "entity identity",
-                        "type": "string"
-                    },
-                    "slug": {
-                        "description": "entity slug",
-                        "type": "string"
-                    },
-                    "systemName": {
-                        "type": "string"
-                    },
-                    "schemaVersion": {
-                        "description": "entity's schema version. Used to distinct between different schemas.",
-                        "type": "string",
-                        "default": "2022.8.16"
-                    },
-                    "name": {
-                        "description": "entity name",
-                        "type": "string"
                     }
                 }
             }

@@ -917,7 +917,7 @@ class ProcessingUnitSchema(BaseModel):
     """
 
 
-class Input12(BaseModel):
+class Input13(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -1009,7 +1009,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input12
+    input: Input13
     """
     Input information for map.
     """
