@@ -543,6 +543,7 @@ class Source(Enum):
     MaterialsProjectLegacy = "MaterialsProjectLegacy"
     ICSD = "ICSD"
     field_2dmatpedia = "2dmatpedia"
+    MaterialsVirtualLab = "MaterialsVirtualLab"
 
 
 class DatabaseSourceSchema(BaseModel):

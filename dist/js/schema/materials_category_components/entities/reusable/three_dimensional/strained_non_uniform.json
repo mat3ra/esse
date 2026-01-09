@@ -638,7 +638,8 @@
                                 "MaterialsProject",
                                 "MaterialsProjectLegacy",
                                 "ICSD",
-                                "2dmatpedia"
+                                "2dmatpedia",
+                                "MaterialsVirtualLab"
                             ]
                         },
                         "origin": {
