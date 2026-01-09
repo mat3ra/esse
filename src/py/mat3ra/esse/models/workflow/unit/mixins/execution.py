@@ -4,12 +4,12 @@
 
 from __future__ import annotations
 
-from typing import Any, List, Literal, Optional
+from typing import Any, Dict, List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -183,12 +183,54 @@ class FlavorSchema(BaseModel):
     """
 
 
+class TemplateSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
+    """
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+
+
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitMixinSchema(BaseModel):
     type: Literal["execution"] = "execution"
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
+    input: List[ExecutionUnitInputItemSchema]
+    context: Optional[List[ContextItem]] = None

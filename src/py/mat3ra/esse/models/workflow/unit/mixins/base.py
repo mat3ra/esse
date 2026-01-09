@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, Optional
+from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class Status(Enum):
@@ -19,9 +19,6 @@ class Status(Enum):
 
 
 class WorkflowBaseUnitMixinSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     isDraft: Optional[bool] = None
     type: str
     """
@@ -51,4 +48,3 @@ class WorkflowBaseUnitMixinSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None

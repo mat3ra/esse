@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field, RootModel
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
@@ -43,38 +43,16 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
-class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: Dict[str, Any]
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class DataIODatabaseIdsInputOutputSchema(BaseModel):
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     ids: List[str]
     """
     IDs of item to retrieve from db
     """
 
 
-class DataIODatabaseInputOutputSchema7(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     collection: str
     """
     db collection name
@@ -113,9 +91,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -135,10 +111,17 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
+class Input(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
+    ] = Field(..., discriminator="type")
+
+
 class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -206,13 +189,6 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     subtype: Subtype
     source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema7],
-            ObjectStorageIoSchema,
-        ]
-    ]
+    input: List[Input]

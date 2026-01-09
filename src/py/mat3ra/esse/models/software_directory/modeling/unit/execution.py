@@ -31,7 +31,7 @@ class StatusTrackItem(BaseModel):
     repetition: Optional[float] = None
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -198,25 +198,97 @@ class FlavorSchema(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+class TemplateSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    Input file name. e.g. pw_scf.in
+    entity name
     """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
     content: str
     """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """
-    rendered: Optional[str] = None
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
+    rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
+    isManuallyChanged: Optional[bool] = False
+
+
+class TemplateSchema7(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
+    """
+
+
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    template: TemplateSchema7 = Field(..., title="template schema")
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+    templateId: Optional[str] = None
+    templateName: Optional[str] = None
+    name: Optional[str] = None
+    """
+    name of the resulting input file, if different than template name
+    """
+
+
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
 
 
 class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -284,16 +356,10 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[
-        Union[
-            ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines,
-            ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines,
-        ]
+        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7]
     ] = Field(..., title="execution unit input schema")
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
+    context: Optional[List[ContextItem]] = None

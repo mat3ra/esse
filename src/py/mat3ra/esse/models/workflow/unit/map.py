@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
@@ -52,9 +52,6 @@ class Input(BaseModel):
 
 
 class MapUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -122,7 +119,6 @@ class MapUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     workflowId: str
     """
     Id of workflow to run inside map

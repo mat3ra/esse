@@ -5,9 +5,9 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional
+from typing import Any, List, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
@@ -32,9 +32,6 @@ class StatusTrackItem(BaseModel):
 
 
 class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -102,7 +99,6 @@ class ProcessingUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     operation: str
     """
     Contains information about the operation used.

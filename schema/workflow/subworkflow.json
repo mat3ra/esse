@@ -5,10 +5,22 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "base_flow.json"
+            "$ref": "../in_memory_entity/named.json"
         }
     ],
     "properties": {
+        "properties": {
+            "description": "Array of characteristic properties calculated by this subworkflow",
+            "type": "array",
+            "items": {
+                "description": "property names, eg. `band_gaps`, `band_structure`",
+                "type": "string"
+            }
+        },
+        "compute": {
+            "description": "compute parameters",
+            "$ref": "../job/compute.json"
+        },
         "units": {
             "description": "Contains the Units of the subworkflow",
             "type": "array",
@@ -32,6 +44,7 @@
     },
     "required": [
         "model",
-        "application"
+        "application",
+        "units"
     ]
 }

@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
@@ -29,9 +29,6 @@ class Exec(Enum):
 
 
 class DeePMDAppSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     name: Name
     """
     entity name

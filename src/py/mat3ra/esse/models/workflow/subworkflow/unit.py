@@ -43,38 +43,16 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
-class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: Dict[str, Any]
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class DataIODatabaseIdsInputOutputSchema(BaseModel):
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     ids: List[str]
     """
     IDs of item to retrieve from db
     """
 
 
-class DataIODatabaseInputOutputSchema19(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     collection: str
     """
     db collection name
@@ -113,9 +91,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -135,10 +111,17 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
+class Input(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
+    ] = Field(..., discriminator="type")
+
+
 class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -206,16 +189,9 @@ class DataIOUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     subtype: Subtype
     source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
-            ObjectStorageIoSchema,
-        ]
-    ]
+    input: List[Input]
 
 
 class InputItem(BaseModel):
@@ -230,9 +206,6 @@ class InputItem(BaseModel):
 
 
 class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -300,7 +273,6 @@ class ReduceUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     mapFlowchartId: str
     """
     corresponding map unit flowchart ID
@@ -323,9 +295,6 @@ class WorkflowUnitInputSchema(BaseModel):
 
 
 class ConditionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -393,7 +362,6 @@ class ConditionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     input: List[WorkflowUnitInputSchema]
     """
     Input information for condition.
@@ -421,9 +389,6 @@ class ConditionUnitSchema(BaseModel):
 
 
 class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -491,7 +456,6 @@ class AssertionUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     statement: str
     """
     The statement to be evaluated
@@ -502,7 +466,7 @@ class AssertionUnitSchema(BaseModel):
     """
 
 
-class ApplicationSchemaBase(BaseModel):
+class ApplicationSchema(BaseModel):
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -669,10 +633,51 @@ class FlavorSchema(BaseModel):
     """
 
 
+class TemplateSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
+    """
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+
+
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -740,20 +745,14 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
+    application: ApplicationSchema = Field(..., title="application schema")
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
+    input: List[ExecutionUnitInputItemSchema]
+    context: Optional[List[ContextItem]] = None
 
 
 class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -821,7 +820,6 @@ class AssignmentUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     scope: Optional[str] = None
     input: List[WorkflowUnitInputSchema]
     """
@@ -838,9 +836,6 @@ class AssignmentUnitSchema(BaseModel):
 
 
 class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -908,7 +903,6 @@ class ProcessingUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
     operation: str
     """
     Contains information about the operation used.

@@ -38,12 +38,7 @@ class TemplateSchema(BaseModel):
     applicationVersion: Optional[str] = None
     executableName: str
     contextProviders: List[RuntimeItemNameObjectSchema]
-    isManuallyChanged: Optional[bool] = None
     content: str
     """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
-    """
-    rendered: Optional[str] = None
-    """
-    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """
