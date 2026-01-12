@@ -16,7 +16,8 @@
                 "type": "object",
                 "required": [
                     "atomicSpecies",
-                    "value"
+                    "value",
+                    "index"
                 ],
                 "properties": {
                     "atomicSpecies": {
@@ -28,6 +29,10 @@
                         "title": "Starting magnetization",
                         "minimum": -1,
                         "maximum": 1
+                    },
+                    "index": {
+                        "type": "integer",
+                        "title": "Index"
                     }
                 }
             }

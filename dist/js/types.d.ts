@@ -3267,6 +3267,7 @@ export interface CollinearMagnetizationContextProviderSchema {
     startingMagnetization: {
         atomicSpecies: string;
         value: number;
+        index: number;
     }[];
     isTotalMagnetization: boolean;
     totalMagnetization: number;

@@ -19,11 +19,16 @@
                         "title": "Starting magnetization",
                         "minimum": -1,
                         "maximum": 1
+                    },
+                    "index": {
+                        "type": "integer",
+                        "title": "Index"
                     }
                 },
                 "required": [
                     "atomicSpecies",
-                    "value"
+                    "value",
+                    "index"
                 ]
             }
         },
