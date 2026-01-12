@@ -3484,12 +3484,14 @@ export interface PointsGridDataProviderSchema {
  */
 export type PointsPathDataProviderSchema = [
     {
-        point?: string;
-        steps?: number;
+        point: string;
+        steps: number;
+        coordinates: number[];
     },
     ...{
-        point?: string;
-        steps?: number;
+        point: string;
+        steps: number;
+        coordinates: number[];
     }[]
 ];
 /** Schema dist/js/schema/core/abstract/2d_data.json */

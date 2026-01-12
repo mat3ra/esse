@@ -13,7 +13,18 @@
             },
             "steps": {
                 "type": "integer"
+            },
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
             }
-        }
+        },
+        "required": [
+            "point",
+            "steps",
+            "coordinates"
+        ]
     }
 }
