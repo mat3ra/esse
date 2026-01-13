@@ -114,11 +114,11 @@ class Cutoffs(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    wavefunction: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    wavefunction: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for wavefunction plane wave expansion.
     """
-    density: Optional[List[g.UsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
+    density: Optional[List[g.FieldUsedForSuggestedWavefunctionAndChargeDensityCutoffs]] = None
     """
     Energy cutoff values for charge density plane wave expansion.
     """
@@ -197,7 +197,7 @@ class UnitMethodPseudopotential(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

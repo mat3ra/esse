@@ -10,980 +10,6 @@ from typing import Any, Dict, List, Literal, Optional, Union
 from pydantic import BaseModel, ConfigDict, Field, RootModel, conint
 
 
-class Subtype(Enum):
-    input = "input"
-    output = "output"
-    dataFrame = "dataFrame"
-
-
-class Source(Enum):
-    api = "api"
-    db = "db"
-    object_storage = "object_storage"
-
-
-class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: Dict[str, Any]
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    ids: List[str]
-    """
-    IDs of item to retrieve from db
-    """
-
-
-class DataIODatabaseInputOutputSchema19(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    collection: str
-    """
-    db collection name
-    """
-    draft: bool
-    """
-    whether the result should be saved as draft
-    """
-
-
-class ObjectStorageContainerData(BaseModel):
-    CONTAINER: Optional[str] = None
-    """
-    Object storage container for the file
-    """
-    NAME: Optional[str] = None
-    """
-    Name of the file inside the object storage bucket
-    """
-    PROVIDER: Optional[str] = None
-    """
-    Object storage provider
-    """
-    REGION: Optional[str] = None
-    """
-    Region for the object container specified in Container
-    """
-    SIZE: Optional[int] = None
-    """
-    Size of the file in bytes
-    """
-    TIMESTAMP: Optional[str] = None
-    """
-    Unix timestamp showing when the file was last modified
-    """
-
-
-class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = None
-    """
-    if a file with the same filename already exists, whether to overwrite the old file
-    """
-    pathname: Optional[str] = None
-    """
-    Relative path to the directory that contains the file.
-    """
-    basename: Optional[str] = None
-    """
-    Basename of the file
-    """
-    filetype: Optional[str] = None
-    """
-    What kind of file this is, e.g. image / text
-    """
-
-
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
-class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    subtype: Subtype
-    source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema19],
-            ObjectStorageIoSchema,
-        ]
-    ]
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class InputItem(BaseModel):
-    operation: str
-    """
-    reduce operation, e.g. aggregate
-    """
-    arguments: List[str]
-    """
-    arguments which are passed to reduce operation function
-    """
-
-
-class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class WorkflowUnitInputSchema(BaseModel):
-    scope: str
-    """
-    Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-    """
-    name: str
-    """
-    Name of the input data. e.g. total_energy
-    """
-
-
-class ConditionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for condition.
-    """
-    statement: str
-    """
-    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-    """
-    then: str
-    """
-    Flowchart ID reference for `then` part of the condition.
-    """
-    else_: str = Field(..., alias="else")
-    """
-    Flowchart ID reference for `else` part of the condition.
-    """
-    maxOccurrences: int
-    """
-    Maximum occurrence of the condition, usable for loops.
-    """
-    throwException: Optional[bool] = None
-    """
-    Throw exception on reaching to maximum occurence.
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    statement: str
-    """
-    The statement to be evaluated
-    """
-    errorMessage: Optional[str] = None
-    """
-    The error message to be displayed if the assertion fails
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    summary: Optional[str] = None
-    """
-    Application's short description.
-    """
-    version: Optional[str] = None
-    """
-    Application version. e.g. 5.3.5
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-
-
-class ExecutableSchema(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
-    """
-    _ids of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-
-
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
-    """
-    name of the resulting input file, if different than template name
-    """
-
-
-class FlavorSchema(BaseModel):
-    executableId: Optional[str] = None
-    """
-    _id of the executable this flavor belongs to
-    """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
-    )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-
-
-class ExecutionUnitSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-    """
-    operand: str
-    """
-    Name of the global variable. e.g. 'x'
-    """
-    value: Union[str, bool, float]
-    """
-    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    scope: Optional[str] = None
-
-
-class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class WorkflowSubworkflowUnitSchema(
-    RootModel[
-        Union[
-            DataIOUnitSchema,
-            ReduceUnitSchema,
-            ConditionUnitSchema,
-            AssertionUnitSchema,
-            ExecutionUnitSchemaBase,
-            AssignmentUnitSchema,
-            ProcessingUnitSchema,
-        ]
-    ]
-):
-    root: Union[
-        DataIOUnitSchema,
-        ReduceUnitSchema,
-        ConditionUnitSchema,
-        AssertionUnitSchema,
-        ExecutionUnitSchemaBase,
-        AssignmentUnitSchema,
-        ProcessingUnitSchema,
-    ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
-
-
-class BaseMethod(BaseModel):
-    type: str
-    """
-    general type of this method, eg. `pseudopotential`
-    """
-    subtype: str
-    """
-    general subtype of this method, eg. `ultra-soft`
-    """
-    precision: Optional[Dict[str, Any]] = None
-    """
-    Object showing the actual possible precision based on theory and implementation
-    """
-    data: Optional[Dict[str, Any]] = None
-    """
-    additional data specific to method, eg. array of pseudopotentials
-    """
-
-
-class BaseModel1(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: str
-    """
-    general type of the model, eg. `dft`
-    """
-    subtype: str
-    """
-    general subtype of the model, eg. `lda`
-    """
-    method: BaseMethod = Field(..., title="base method")
-
-
 class Queue(Enum):
     D = "D"
     OR = "OR"
@@ -1135,49 +161,49 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class Subworkflow(BaseModel):
-    units: List[WorkflowSubworkflowUnitSchema]
-    """
-    Contains the Units of the subworkflow
-    """
-    model: BaseModel1 = Field(..., title="base model")
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    isDraft: Optional[bool] = False
-    """
-    Defines whether to store the results/properties extracted in this unit to properties collection
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    subworkflow identity
-    """
+class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
-    Human-readable name of the subworkflow. e.g. Total-energy
-    """
-    properties: Optional[List[str]] = None
-    """
-    Array of characteristic properties calculated by this subworkflow
-    """
-    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
-    """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+    The name of this item. e.g. scf_accuracy
     """
 
 
-class DataIODatabaseInputOutputSchema20(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
+
+
+class Subtype(Enum):
+    input = "input"
+    output = "output"
+    dataFrame = "dataFrame"
+
+
+class Source(Enum):
+    api = "api"
+    db = "db"
+    object_storage = "object_storage"
+
+
+class DataIODatabaseIdsInputOutputSchema(BaseModel):
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     ids: List[str]
     """
     IDs of item to retrieve from db
     """
 
 
-class DataIODatabaseInputOutputSchema21(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     collection: str
     """
     db collection name
@@ -1188,10 +214,35 @@ class DataIODatabaseInputOutputSchema21(BaseModel):
     """
 
 
-class ObjectStorageIoSchema10(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class ObjectStorageContainerData(BaseModel):
+    CONTAINER: Optional[str] = None
+    """
+    Object storage container for the file
+    """
+    NAME: Optional[str] = None
+    """
+    Name of the file inside the object storage bucket
+    """
+    PROVIDER: Optional[str] = None
+    """
+    Object storage provider
+    """
+    REGION: Optional[str] = None
+    """
+    Region for the object container specified in Container
+    """
+    SIZE: Optional[int] = None
+    """
+    Size of the file in bytes
+    """
+    TIMESTAMP: Optional[str] = None
+    """
+    Unix timestamp showing when the file was last modified
+    """
+
+
+class ObjectStorageIoSchema(BaseModel):
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -1211,35 +262,67 @@ class ObjectStorageIoSchema10(BaseModel):
     """
 
 
-class DataIOUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    subtype: Subtype
-    source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema20, DataIODatabaseInputOutputSchema21],
-            ObjectStorageIoSchema10,
-        ]
+class Input(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
     ]
-    id: Optional[str] = Field(None, alias="_id")
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
+    ] = Field(..., discriminator="type")
+
+
+class DataIOUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
+    slug: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1257,7 +340,27 @@ class DataIOUnitSchema9(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
+    subtype: Subtype
+    source: Source
+    input: List[Input]
+
+
+class InputItem(BaseModel):
+    operation: str
+    """
+    reduce operation, e.g. aggregate
+    """
+    arguments: List[str]
+    """
+    arguments which are passed to reduce operation function
+    """
+
+
+class ReduceUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1267,23 +370,27 @@ class DataIOUnitSchema9(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
@@ -1291,16 +398,31 @@ class DataIOUnitSchema9(BaseModel):
     """
     entity tags
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class ReduceUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    isDraft: Optional[bool] = None
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     mapFlowchartId: str
     """
@@ -1310,18 +432,70 @@ class ReduceUnitSchema9(BaseModel):
     """
     input information for reduce unit
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class WorkflowUnitInputSchema(BaseModel):
+    scope: str
+    """
+    Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+    """
+    name: str
+    """
+    Name of the input data. e.g. total_energy
+    """
+
+
+class ConditionUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
+    slug: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1338,51 +512,6 @@ class ReduceUnitSchema9(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class ConditionUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
     """
     input: List[WorkflowUnitInputSchema]
     """
@@ -1408,18 +537,59 @@ class ConditionUnitSchema9(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class AssertionUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
+    slug: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1436,51 +606,6 @@ class ConditionUnitSchema9(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssertionUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
     """
     statement: str
     """
@@ -1490,36 +615,13 @@ class AssertionUnitSchema9(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class ApplicationSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
     slug: Optional[str] = None
     """
     entity slug
@@ -1529,39 +631,79 @@ class AssertionUnitSchema9(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    summary: str
+    """
+    Application's short description.
+    """
+    version: str
+    """
+    Application version. e.g. 5.3.5
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
+    """
+
+
+class ExecutableSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class ExecutableSchema12(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
+    applicationId: List[str]
     """
     _ids of the application this executable belongs to
     """
@@ -1569,7 +711,22 @@ class ExecutableSchema12(BaseModel):
     """
     Whether advanced compute options are present
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    templateId: Optional[str] = None
+    templateName: Optional[str] = None
+    name: Optional[str] = None
+    """
+    name of the resulting input file, if different than template name
+    """
+
+
+class FlavorSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1582,30 +739,31 @@ class ExecutableSchema12(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
-
-
-class FlavorSchema12(BaseModel):
-    executableId: Optional[str] = None
+    executableId: str
     """
     _id of the executable this flavor belongs to
     """
@@ -1617,14 +775,17 @@ class FlavorSchema12(BaseModel):
     """
     name of the application this flavor belongs to
     """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
+    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
+        ..., title="execution unit input schema"
     )
     supportedApplicationVersions: Optional[List[str]] = None
     """
     list of application versions this flavor supports
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class TemplateSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1637,7 +798,51 @@ class FlavorSchema12(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
+    """
+
+
+class ExecutionUnitInputItemSchema(BaseModel):
+    template: TemplateSchema = Field(..., title="template schema")
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+
+
+class ContextItem(BaseModel):
+    name: str
+    isEdited: bool
+    data: Dict[str, Any]
+    extraData: Optional[Dict[str, Any]] = None
+
+
+class ExecutionUnitSchemaBase(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
     """
     entity name
     """
@@ -1645,51 +850,35 @@ class FlavorSchema12(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
-
-
-class ExecutionUnitSchemaBase9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
+    tags: Optional[List[str]] = None
     """
-    type of the unit
-    """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema12] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema12] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1707,7 +896,18 @@ class ExecutionUnitSchemaBase9(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
+    application: ApplicationSchema = Field(..., title="application schema")
+    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
+    input: List[ExecutionUnitInputItemSchema]
+    context: Optional[List[ContextItem]] = None
+
+
+class AssignmentUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1717,23 +917,27 @@ class ExecutionUnitSchemaBase9(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
@@ -1741,17 +945,33 @@ class ExecutionUnitSchemaBase9(BaseModel):
     """
     entity tags
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssignmentUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    isDraft: Optional[bool] = None
     type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    scope: Optional[str] = None
     input: List[WorkflowUnitInputSchema]
     """
     Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
@@ -1764,18 +984,59 @@ class AssignmentUnitSchema9(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class ProcessingUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1792,52 +1053,6 @@ class AssignmentUnitSchema9(BaseModel):
     enableRender: Optional[bool] = None
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    scope: Optional[str] = None
-
-
-class ProcessingUnitSchema9(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
     """
     operation: str
     """
@@ -1851,18 +1066,186 @@ class ProcessingUnitSchema9(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class WorkflowSubworkflowUnitSchema(
+    RootModel[
+        Union[
+            DataIOUnitSchema,
+            ReduceUnitSchema,
+            ConditionUnitSchema,
+            AssertionUnitSchema,
+            ExecutionUnitSchemaBase,
+            AssignmentUnitSchema,
+            ProcessingUnitSchema,
+        ]
+    ]
+):
+    root: Union[
+        DataIOUnitSchema,
+        ReduceUnitSchema,
+        ConditionUnitSchema,
+        AssertionUnitSchema,
+        ExecutionUnitSchemaBase,
+        AssignmentUnitSchema,
+        ProcessingUnitSchema,
+    ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
+
+
+class BaseMethod(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Dict[str, Any]] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
+class BaseModel1(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: str
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: str
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+
+
+class Subworkflow(BaseModel):
+    properties: Optional[List[str]] = None
+    """
+    Array of characteristic properties calculated by this subworkflow
+    """
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
+    """
+    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+    """
+    units: List[WorkflowSubworkflowUnitSchema]
+    """
+    Contains the Units of the subworkflow
+    """
+    model: BaseModel1 = Field(..., title="base model")
+    application: ApplicationSchema = Field(..., title="application schema")
+    isDraft: Optional[bool] = False
+    """
+    Defines whether to store the results/properties extracted in this unit to properties collection
+    """
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+
+
+class ObjectStorageIoSchema11(BaseModel):
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
+    overwrite: Optional[bool] = None
+    """
+    if a file with the same filename already exists, whether to overwrite the old file
+    """
+    pathname: Optional[str] = None
+    """
+    Relative path to the directory that contains the file.
+    """
+    basename: Optional[str] = None
+    """
+    Basename of the file
+    """
+    filetype: Optional[str] = None
+    """
+    What kind of file this is, e.g. image / text
+    """
+
+
+class Input15(
+    RootModel[
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema11]
+    ]
+):
+    root: Union[
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema11
+    ] = Field(..., discriminator="type")
+
+
+class DataIOUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -1880,7 +1263,16 @@ class ProcessingUnitSchema9(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
+    subtype: Subtype
+    source: Source
+    input: List[Input15]
+
+
+class ReduceUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1890,23 +1282,27 @@ class ProcessingUnitSchema9(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
@@ -1914,10 +1310,599 @@ class ProcessingUnitSchema9(BaseModel):
     """
     entity tags
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    mapFlowchartId: str
+    """
+    corresponding map unit flowchart ID
+    """
+    input: List[InputItem]
+    """
+    input information for reduce unit
+    """
 
 
-class Input(BaseModel):
+class ConditionUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    input: List[WorkflowUnitInputSchema]
+    """
+    Input information for condition.
+    """
+    statement: str
+    """
+    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+    """
+    then: str
+    """
+    Flowchart ID reference for `then` part of the condition.
+    """
+    else_: str = Field(..., alias="else")
+    """
+    Flowchart ID reference for `else` part of the condition.
+    """
+    maxOccurrences: int
+    """
+    Maximum occurrence of the condition, usable for loops.
+    """
+    throwException: Optional[bool] = None
+    """
+    Throw exception on reaching to maximum occurence.
+    """
+
+
+class AssertionUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    statement: str
+    """
+    The statement to be evaluated
+    """
+    errorMessage: Optional[str] = None
+    """
+    The error message to be displayed if the assertion fails
+    """
+
+
+class ExecutableSchema13(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    applicationId: List[str]
+    """
+    _ids of the application this executable belongs to
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+
+
+class FlavorSchema13(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    executableId: str
+    """
+    _id of the executable this flavor belongs to
+    """
+    executableName: Optional[str] = None
+    """
+    name of the executable this flavor belongs to
+    """
+    applicationName: Optional[str] = None
+    """
+    name of the application this flavor belongs to
+    """
+    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
+        ..., title="execution unit input schema"
+    )
+    supportedApplicationVersions: Optional[List[str]] = None
+    """
+    list of application versions this flavor supports
+    """
+
+
+class TemplateSchema17(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
+    """
+
+
+class ExecutionUnitInputItemSchema14(BaseModel):
+    template: TemplateSchema17 = Field(..., title="template schema")
+    rendered: str
+    """
+    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+    """
+    isManuallyChanged: Optional[bool] = False
+
+
+class ExecutionUnitSchemaBase9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    application: ApplicationSchema = Field(..., title="application schema")
+    executable: Optional[ExecutableSchema13] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema13] = Field(None, title="flavor schema")
+    input: List[ExecutionUnitInputItemSchema14]
+    context: Optional[List[ContextItem]] = None
+
+
+class AssignmentUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    scope: Optional[str] = None
+    input: List[WorkflowUnitInputSchema]
+    """
+    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+    """
+    operand: str
+    """
+    Name of the global variable. e.g. 'x'
+    """
+    value: Union[str, bool, float]
+    """
+    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+    """
+
+
+class ProcessingUnitSchema9(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+    """
+    operation: str
+    """
+    Contains information about the operation used.
+    """
+    operationType: str
+    """
+    Contains information about the specific type of the operation used.
+    """
+    inputData: Any
+    """
+    unit input (type to be specified by the child units)
+    """
+
+
+class Input16(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -1938,51 +1923,88 @@ class Input(BaseModel):
 
 
 class MapUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    field_id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
+    """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
     type: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
+    """
+    head: Optional[bool] = None
+    """
+    Whether this unit is the first one to be executed.
+    """
+    flowchartId: str
+    """
+    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+    """
+    next: Optional[str] = None
+    """
+    Next unit's flowchartId. If empty, the current unit is the last.
+    """
+    enableRender: Optional[bool] = None
+    """
+    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     workflowId: str
     """
     Id of workflow to run inside map
     """
-    input: Input
+    input: Input16
     """
     Input information for map.
     """
-    id: Optional[str] = Field(None, alias="_id")
+
+
+class SubworkflowUnitSchema(BaseModel):
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
     slug: Optional[str] = None
     """
     entity slug
@@ -1992,23 +2014,27 @@ class MapUnitSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
     """
@@ -2016,30 +2042,16 @@ class MapUnitSchema(BaseModel):
     """
     entity tags
     """
+    status: Optional[Status] = None
+    """
+    Status of the unit.
+    """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class SubworkflowUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+    isDraft: Optional[bool] = None
     type: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
     head: Optional[bool] = None
     """
     Whether this unit is the first one to be executed.
@@ -2056,41 +2068,6 @@ class SubworkflowUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
 
 
 class WorkflowUnitSchema(
@@ -2142,7 +2119,7 @@ class WorkflowSchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2155,7 +2132,7 @@ class WorkflowSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

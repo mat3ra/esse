@@ -205,7 +205,7 @@ class ModelGeneralizedGradientApproximation(BaseModel):
     Model parameters defined in-place or via model mixins
     """
     reference: Optional[LiteratureReferenceSchema] = Field(None, title="literature reference schema")
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

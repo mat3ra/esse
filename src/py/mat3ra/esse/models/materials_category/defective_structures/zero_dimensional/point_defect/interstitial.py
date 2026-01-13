@@ -481,6 +481,25 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditions(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions] = None
+
+
 class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
@@ -514,7 +533,8 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    id: Optional[str] = Field(None, alias="_id")
+    metadata: Optional[Metadata] = None
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -527,7 +547,7 @@ class CrystalSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -535,7 +555,6 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class Value123(Enum):
@@ -917,6 +936,18 @@ class MaterialConsistencyCheckSchema58(BaseModel):
     """
 
 
+class BoundaryConditions57(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata57(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions57] = None
+
+
 class CrystalSchema55(BaseModel):
     formula: Optional[str] = None
     """
@@ -950,7 +981,8 @@ class CrystalSchema55(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema58]] = None
-    id: Optional[str] = Field(None, alias="_id")
+    metadata: Optional[Metadata57] = None
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -963,7 +995,7 @@ class CrystalSchema55(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -971,7 +1003,6 @@ class CrystalSchema55(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class ChemicalElement(Enum):

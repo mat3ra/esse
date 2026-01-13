@@ -9,7 +9,7 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class NameResultSchema(BaseModel):
+class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,24 +17,7 @@ class NameResultSchema(BaseModel):
 
 
 class TemplateSchema(BaseModel):
-    applicationName: Optional[str] = None
-    applicationVersion: Optional[str] = None
-    executableName: Optional[str] = None
-    contextProviders: Optional[List[NameResultSchema]] = None
-    isManuallyChanged: Optional[bool] = None
-    name: str
-    """
-    Input file name. e.g. pw_scf.in
-    """
-    content: str
-    """
-    Content of the input file. e.g. &CONTROL    calculation='scf' ...
-    """
-    rendered: Optional[str] = None
-    """
-    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -46,4 +29,16 @@ class TemplateSchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    applicationName: str
+    applicationVersion: Optional[str] = None
+    executableName: str
+    contextProviders: List[RuntimeItemNameObjectSchema]
+    content: str
+    """
+    Content of the template. e.g. &CONTROL    calculation='scf' ...
     """

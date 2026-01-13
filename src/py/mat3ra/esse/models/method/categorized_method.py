@@ -56,7 +56,7 @@ class CategorizedUnitMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -72,7 +72,7 @@ class CategorizedUnitMethod(BaseModel):
 
 class CategorizedMethod(BaseModel):
     units: List[CategorizedUnitMethod]
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

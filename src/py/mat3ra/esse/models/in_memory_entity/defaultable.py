@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 
 class DefaultableInMemoryEntitySchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

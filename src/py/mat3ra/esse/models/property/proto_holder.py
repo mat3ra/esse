@@ -71,7 +71,7 @@ class ProtoPropertyHolderSchema(BaseModel):
     container of the information, specific to each property
     """
     source: Source
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

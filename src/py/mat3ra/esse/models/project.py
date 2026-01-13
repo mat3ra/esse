@@ -25,7 +25,7 @@ class ProjectSchema(BaseModel):
     charge rates info for project
     """
     isExternal: Optional[bool] = False
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -38,7 +38,7 @@ class ProjectSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

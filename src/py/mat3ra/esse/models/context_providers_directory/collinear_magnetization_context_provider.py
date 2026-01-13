@@ -4,17 +4,17 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel, Field, confloat
 
 
 class StartingMagnetizationItem(BaseModel):
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
-    value: Optional[confloat(ge=-1.0, le=1.0)] = Field(None, title="Starting magnetization")
+    atomicSpecies: str = Field(..., title="Atomic species")
+    value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
 
 
 class CollinearMagnetizationContextProviderSchema(BaseModel):
-    startingMagnetization: Optional[List[StartingMagnetizationItem]] = None
-    isTotalMagnetization: Optional[bool] = Field(None, title="Set total magnetization instead")
-    totalMagnetization: Optional[float] = Field(None, title="Total magnetization")
+    startingMagnetization: List[StartingMagnetizationItem]
+    isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
+    totalMagnetization: float = Field(..., title="Total magnetization")
