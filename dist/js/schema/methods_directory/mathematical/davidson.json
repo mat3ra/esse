@@ -5,7 +5,8 @@
     "description": "Davidson diagonalization method",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "properties": {
         "categories": {

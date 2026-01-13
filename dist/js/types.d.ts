@@ -3264,12 +3264,13 @@ export interface VASPNEBContextProviderSchema {
  * Set starting magnetization, can have values in the range [-1, +1].
  */
 export interface CollinearMagnetizationContextProviderSchema {
-    startingMagnetization?: {
-        atomicSpecies?: string;
-        value?: number;
+    startingMagnetization: {
+        atomicSpecies: string;
+        value: number;
+        index: number;
     }[];
-    isTotalMagnetization?: boolean;
-    totalMagnetization?: number;
+    isTotalMagnetization: boolean;
+    totalMagnetization: number;
 }
 /** Schema dist/js/schema/context_providers_directory/enum.json */
 export interface ContextProvidersDirectoryEnum {
@@ -3424,6 +3425,8 @@ export interface NonCollinearMagnetizationContextProviderSchema {
         value?: number;
     }[];
     isArbitrarySpinAngle?: boolean;
+    isArbitrarySpinDirection?: boolean;
+    lforcet?: boolean;
     spinAngles?: {
         index?: number;
         atomicSpecies?: string;
@@ -3459,7 +3462,7 @@ export interface PointsGridDataProviderSchema {
      * @minItems 3
      * @maxItems 3
      */
-    dimensions?: [number, number, number];
+    dimensions: [number, number, number];
     /**
      * @minItems 3
      * @maxItems 3
@@ -3470,8 +3473,8 @@ export interface PointsGridDataProviderSchema {
      * @maxItems 3
      */
     reciprocalVectorRatios?: [number, number, number];
-    gridMetricType?: "KPPRA" | "spacing";
-    gridMetricValue?: number;
+    gridMetricType: "KPPRA" | "spacing";
+    gridMetricValue: number;
     preferGridMetric?: boolean;
 }
 /** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
@@ -3482,12 +3485,14 @@ export interface PointsGridDataProviderSchema {
  */
 export type PointsPathDataProviderSchema = [
     {
-        point?: string;
-        steps?: number;
+        point: string;
+        steps: number;
+        coordinates: number[];
     },
     ...{
-        point?: string;
-        steps?: number;
+        point: string;
+        steps: number;
+        coordinates: number[];
     }[]
 ];
 /** Schema dist/js/schema/core/abstract/2d_data.json */
@@ -3685,7 +3690,7 @@ export interface NamedNodeSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /**
  * This interface was referenced by `NamedNodeSchema`'s JSON-Schema
@@ -3714,7 +3719,7 @@ export interface NamedNodeInGroupSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Human-readable name of group of nodes
      */
@@ -3790,7 +3795,7 @@ export type LinkedListSchema = ({
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 } | {
     /**
      * Flowchart ID of next node
@@ -3807,7 +3812,7 @@ export type LinkedListSchema = ({
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Human-readable name of group of nodes
      */
@@ -5048,7 +5053,7 @@ export interface HasConsistencyCheckHasMetadataNamedDefaultableInMemoryEntitySch
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -5091,7 +5096,7 @@ export interface NamedInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/in_memory_entity/named_defaultable.json */
 export interface NamedDefaultableInMemoryEntitySchema {
@@ -5111,7 +5116,7 @@ export interface NamedDefaultableInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -5135,72 +5140,12 @@ export interface NamedDefaultableHasMetadataInMemoryEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     metadata?: {};
-}
-/** Schema dist/js/schema/in_memory_entity/named_defaultable_runtime_items.json */
-export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
 }
 /** Schema dist/js/schema/job/base.json */
 export interface JobBaseSchema {
@@ -5400,7 +5345,7 @@ export interface JobBaseSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -5520,1129 +5465,20 @@ export interface JobSchema {
          */
         subworkflows: {
             /**
-             * Contains the Units of the subworkflow
-             */
-            units: ({
-                /**
-                 * type of the unit
-                 */
-                type: "io";
-                subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
-                input: ({
-                    /**
-                     * rest API endpoint
-                     */
-                    endpoint: string;
-                    /**
-                     * rest API endpoint options
-                     */
-                    endpoint_options: {};
-                    /**
-                     * the name of the variable in local scope to save the data under
-                     */
-                    name?: string;
-                    [k: string]: unknown;
-                } | ({
-                    /**
-                     * IDs of item to retrieve from db
-                     */
-                    ids: string[];
-                    [k: string]: unknown;
-                } | {
-                    /**
-                     * db collection name
-                     */
-                    collection: string;
-                    /**
-                     * whether the result should be saved as draft
-                     */
-                    draft: boolean;
-                    [k: string]: unknown;
-                }) | {
-                    objectData: {
-                        /**
-                         * Object storage container for the file
-                         */
-                        CONTAINER?: string;
-                        /**
-                         * Name of the file inside the object storage bucket
-                         */
-                        NAME?: string;
-                        /**
-                         * Object storage provider
-                         */
-                        PROVIDER?: string;
-                        /**
-                         * Region for the object container specified in Container
-                         */
-                        REGION?: string;
-                        /**
-                         * Size of the file in bytes
-                         */
-                        SIZE?: number;
-                        /**
-                         * Unix timestamp showing when the file was last modified
-                         */
-                        TIMESTAMP?: string;
-                    };
-                    /**
-                     * if a file with the same filename already exists, whether to overwrite the old file
-                     */
-                    overwrite?: boolean;
-                    /**
-                     * Relative path to the directory that contains the file.
-                     */
-                    pathname?: string;
-                    /**
-                     * Basename of the file
-                     */
-                    basename?: string;
-                    /**
-                     * What kind of file this is, e.g. image / text
-                     */
-                    filetype?: string;
-                    [k: string]: unknown;
-                })[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
-                /**
-                 * Input information for condition.
-                 */
-                input: {
-                    /**
-                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                     */
-                    scope: string;
-                    /**
-                     * Name of the input data. e.g. total_energy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-                 */
-                statement: string;
-                /**
-                 * Flowchart ID reference for `then` part of the condition.
-                 */
-                then: string;
-                /**
-                 * Flowchart ID reference for `else` part of the condition.
-                 */
-                else: string;
-                /**
-                 * Maximum occurrence of the condition, usable for loops.
-                 */
-                maxOccurrences: number;
-                /**
-                 * Throw exception on reaching to maximum occurence.
-                 */
-                throwException?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
-                /**
-                 * The statement to be evaluated
-                 */
-                statement: string;
-                /**
-                 * The error message to be displayed if the assertion fails
-                 */
-                errorMessage?: string;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
-                application: {
-                    /**
-                     * The short name of the application. e.g. qe
-                     */
-                    shortName?: string;
-                    /**
-                     * Application's short description.
-                     */
-                    summary?: string;
-                    /**
-                     * Application version. e.g. 5.3.5
-                     */
-                    version?: string;
-                    /**
-                     * Application build. e.g. VTST
-                     */
-                    build?: string;
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * Whether licensing is present
-                     */
-                    isLicensed?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    [k: string]: unknown;
-                };
-                executable?: {
-                    /**
-                     * The name of the executable. e.g. pw.x
-                     */
-                    name: string;
-                    /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId?: string[];
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                };
-                flavor?: {
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId?: string;
-                    /**
-                     * name of the executable this flavor belongs to
-                     */
-                    executableName?: string;
-                    /**
-                     * name of the application this flavor belongs to
-                     */
-                    applicationName?: string;
-                    input?: {
-                        templateId?: string;
-                        templateName?: string;
-                        /**
-                         * name of the resulting input file, if different than template name
-                         */
-                        name?: string;
-                    }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                };
-                /**
-                 * unit input (type to be specified by the application's execution unit)
-                 */
-                input: {
-                    [k: string]: unknown;
-                };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
-                /**
-                 * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-                 */
-                input?: {
-                    /**
-                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                     */
-                    scope: string;
-                    /**
-                     * Name of the input data. e.g. total_energy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Name of the global variable. e.g. 'x'
-                 */
-                operand: string;
-                /**
-                 * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-                 */
-                value: string | boolean | number;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                scope?: string;
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
-                /**
-                 * Contains information about the operation used.
-                 */
-                operation: string;
-                /**
-                 * Contains information about the specific type of the operation used.
-                 */
-                operationType: string;
-                /**
-                 * unit input (type to be specified by the child units)
-                 */
-                inputData: {
-                    [k: string]: unknown;
-                };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            })[];
-            model: {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
-                type: string;
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
-                subtype: string;
-                method: {
-                    /**
-                     * general type of this method, eg. `pseudopotential`
-                     */
-                    type: string;
-                    /**
-                     * general subtype of this method, eg. `ultra-soft`
-                     */
-                    subtype: string;
-                    /**
-                     * Object showing the actual possible precision based on theory and implementation
-                     */
-                    precision?: {};
-                    /**
-                     * additional data specific to method, eg. array of pseudopotentials
-                     */
-                    data?: {};
-                };
-                [k: string]: unknown;
-            };
-            application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            /**
-             * Defines whether to store the results/properties extracted in this unit to properties collection
-             */
-            isDraft?: boolean;
-            /**
-             * subworkflow identity
+             * entity identity
              */
             _id?: string;
             /**
-             * Human-readable name of the subworkflow. e.g. Total-energy
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
             /**
@@ -6753,38 +5589,1239 @@ export interface JobSchema {
                  */
                 excludeFilesPattern?: string;
             };
+            /**
+             * Contains the Units of the subworkflow
+             */
+            units: ({
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "io";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                subtype: "input" | "output" | "dataFrame";
+                source: "api" | "db" | "object_storage";
+                input: ({
+                    type: "db_ids";
+                    /**
+                     * IDs of item to retrieve from db
+                     */
+                    ids: string[];
+                } | {
+                    type: "db_collection";
+                    /**
+                     * db collection name
+                     */
+                    collection: string;
+                    /**
+                     * whether the result should be saved as draft
+                     */
+                    draft: boolean;
+                } | {
+                    type: "object_storage";
+                    objectData: {
+                        /**
+                         * Object storage container for the file
+                         */
+                        CONTAINER?: string;
+                        /**
+                         * Name of the file inside the object storage bucket
+                         */
+                        NAME?: string;
+                        /**
+                         * Object storage provider
+                         */
+                        PROVIDER?: string;
+                        /**
+                         * Region for the object container specified in Container
+                         */
+                        REGION?: string;
+                        /**
+                         * Size of the file in bytes
+                         */
+                        SIZE?: number;
+                        /**
+                         * Unix timestamp showing when the file was last modified
+                         */
+                        TIMESTAMP?: string;
+                    };
+                    /**
+                     * if a file with the same filename already exists, whether to overwrite the old file
+                     */
+                    overwrite?: boolean;
+                    /**
+                     * Relative path to the directory that contains the file.
+                     */
+                    pathname?: string;
+                    /**
+                     * Basename of the file
+                     */
+                    basename?: string;
+                    /**
+                     * What kind of file this is, e.g. image / text
+                     */
+                    filetype?: string;
+                })[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "reduce";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * corresponding map unit flowchart ID
+                 */
+                mapFlowchartId: string;
+                /**
+                 * input information for reduce unit
+                 */
+                input: {
+                    /**
+                     * reduce operation, e.g. aggregate
+                     */
+                    operation: string;
+                    /**
+                     * arguments which are passed to reduce operation function
+                     */
+                    arguments: string[];
+                }[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "condition";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * Input information for condition.
+                 */
+                input: {
+                    /**
+                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                     */
+                    scope: string;
+                    /**
+                     * Name of the input data. e.g. total_energy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+                 */
+                statement: string;
+                /**
+                 * Flowchart ID reference for `then` part of the condition.
+                 */
+                then: string;
+                /**
+                 * Flowchart ID reference for `else` part of the condition.
+                 */
+                else: string;
+                /**
+                 * Maximum occurrence of the condition, usable for loops.
+                 */
+                maxOccurrences: number;
+                /**
+                 * Throw exception on reaching to maximum occurence.
+                 */
+                throwException?: boolean;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "assertion";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * The statement to be evaluated
+                 */
+                statement: string;
+                /**
+                 * The error message to be displayed if the assertion fails
+                 */
+                errorMessage?: string;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                application: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * The short name of the application. e.g. qe
+                     */
+                    shortName: string;
+                    /**
+                     * Application's short description.
+                     */
+                    summary: string;
+                    /**
+                     * Application version. e.g. 5.3.5
+                     */
+                    version: string;
+                    /**
+                     * Application build. e.g. VTST
+                     */
+                    build: string;
+                    /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                    /**
+                     * Whether licensing is present
+                     */
+                    isLicensed?: boolean;
+                };
+                executable?: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * _ids of the application this executable belongs to
+                     */
+                    applicationId: string[];
+                    /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                };
+                flavor?: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * _id of the executable this flavor belongs to
+                     */
+                    executableId: string;
+                    /**
+                     * name of the executable this flavor belongs to
+                     */
+                    executableName?: string;
+                    /**
+                     * name of the application this flavor belongs to
+                     */
+                    applicationName?: string;
+                    input: {
+                        templateId?: string;
+                        templateName?: string;
+                        /**
+                         * name of the resulting input file, if different than template name
+                         */
+                        name?: string;
+                    }[];
+                    /**
+                     * list of application versions this flavor supports
+                     */
+                    supportedApplicationVersions?: string[];
+                };
+                input: {
+                    template: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        applicationName: string;
+                        applicationVersion?: string;
+                        executableName: string;
+                        contextProviders: {
+                            /**
+                             * The name of this item. e.g. scf_accuracy
+                             */
+                            name: string;
+                        }[];
+                        /**
+                         * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                         */
+                        content: string;
+                    };
+                    /**
+                     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    rendered: string;
+                    isManuallyChanged: boolean;
+                }[];
+                context?: {
+                    name: ContextProviderNameEnum;
+                    isEdited: boolean;
+                    data: {};
+                    extraData?: {};
+                }[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "assignment";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                scope?: string;
+                /**
+                 * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+                 */
+                input?: {
+                    /**
+                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                     */
+                    scope: string;
+                    /**
+                     * Name of the input data. e.g. total_energy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Name of the global variable. e.g. 'x'
+                 */
+                operand: string;
+                /**
+                 * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+                 */
+                value: string | boolean | number;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "processing";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * Contains information about the operation used.
+                 */
+                operation: string;
+                /**
+                 * Contains information about the specific type of the operation used.
+                 */
+                operationType: string;
+                /**
+                 * unit input (type to be specified by the child units)
+                 */
+                inputData: {
+                    [k: string]: unknown;
+                };
+            })[];
+            model: {
+                /**
+                 * general type of the model, eg. `dft`
+                 */
+                type: string;
+                /**
+                 * general subtype of the model, eg. `lda`
+                 */
+                subtype: string;
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
+                [k: string]: unknown;
+            };
+            application: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * The short name of the application. e.g. qe
+                 */
+                shortName: string;
+                /**
+                 * Application's short description.
+                 */
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            /**
+             * Defines whether to store the results/properties extracted in this unit to properties collection
+             */
+            isDraft?: boolean;
         }[];
         /**
          * Contains the Units of the Workflow
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
-                /**
-                 * rest API endpoint
-                 */
-                endpoint: string;
-                /**
-                 * rest API endpoint options
-                 */
-                endpoint_options: {};
-                /**
-                 * the name of the variable in local scope to save the data under
-                 */
-                name?: string;
-                [k: string]: unknown;
-            } | ({
+                type: "db_ids";
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
+                type: "db_collection";
                 /**
                  * db collection name
                  */
@@ -6793,8 +6830,8 @@ export interface JobSchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
-            }) | {
+            } | {
+                type: "object_storage";
                 objectData: {
                     /**
                      * Object storage container for the file
@@ -6837,21 +6874,83 @@ export interface JobSchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6868,71 +6967,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -6950,19 +6984,82 @@ export interface JobSchema {
                  */
                 arguments: string[];
             }[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "condition";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -6979,71 +7076,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -7077,19 +7109,82 @@ export interface JobSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assertion";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7106,71 +7201,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -7179,19 +7209,82 @@ export interface JobSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7208,96 +7301,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "execution";
             application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
                 /**
                  * entity identity
                  */
@@ -7314,26 +7318,37 @@ export interface JobSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * The short name of the application. e.g. qe
                  */
-                name: string;
+                shortName: string;
                 /**
-                 * _ids of the application this executable belongs to
+                 * Application's short description.
                  */
-                applicationId?: string[];
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -7348,51 +7363,120 @@ export interface JobSchema {
                  */
                 schemaVersion?: string;
                 /**
+                 * entity name
+                 */
+                name: string;
+                /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
+                /**
+                 * _ids of the application this executable belongs to
+                 */
+                applicationId: string[];
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
             };
             flavor?: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -7401,7 +7485,7 @@ export interface JobSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -7413,83 +7497,128 @@ export interface JobSchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged: boolean;
+            }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assignment";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7506,71 +7635,7 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -7592,19 +7657,82 @@ export interface JobSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "processing";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7621,72 +7749,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -7701,19 +7763,82 @@ export interface JobSchema {
             inputData: {
                 [k: string]: unknown;
             };
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "map";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -7730,71 +7855,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -7821,36 +7881,11 @@ export interface JobSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
             /**
              * entity slug
              */
@@ -7861,74 +7896,68 @@ export interface JobSchema {
              */
             schemaVersion?: string;
             /**
+             * entity name
+             */
+            name: string;
+            /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
             tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
-            [k: string]: unknown;
-        } | {
+            isDraft?: boolean;
             /**
              * type of the unit
              */
             type: "subworkflow";
             /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -7944,66 +7973,6 @@ export interface JobSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -8033,7 +8002,7 @@ export interface JobSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
@@ -8236,7 +8205,7 @@ export interface JobSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -8503,6 +8472,15 @@ export interface MaterialSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -8519,12 +8497,11 @@ export interface MaterialSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category/compound_pristine_structures/two_dimensional/interface/configuration.json */
 /**
@@ -8805,6 +8782,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -8821,12 +8807,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9078,6 +9063,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9094,12 +9088,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -9399,6 +9392,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9415,12 +9417,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -9672,6 +9673,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9688,12 +9698,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -9982,6 +9991,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -9998,12 +10016,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -10255,6 +10272,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10271,12 +10297,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -10576,6 +10601,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10592,12 +10626,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -10849,6 +10882,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -10865,12 +10907,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -11160,6 +11201,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11176,12 +11226,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -11433,6 +11482,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11449,12 +11507,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -11754,6 +11811,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -11770,12 +11836,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -12027,6 +12092,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12043,12 +12117,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -12337,6 +12410,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12353,12 +12435,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -12610,6 +12691,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12626,12 +12716,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -12931,6 +13020,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -12947,12 +13045,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -13204,6 +13301,15 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -13220,12 +13326,11 @@ export interface InterfaceConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -13492,6 +13597,15 @@ export interface InterfaceConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -13508,12 +13622,11 @@ export interface InterfaceConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -13821,6 +13934,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -13837,12 +13959,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -14094,6 +14215,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14110,12 +14240,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -14415,6 +14544,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14431,12 +14569,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -14688,6 +14825,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -14704,12 +14850,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -14998,6 +15143,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15014,12 +15168,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15271,6 +15424,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15287,12 +15449,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -15592,6 +15753,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15608,12 +15778,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -15865,6 +16034,15 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -15881,12 +16059,11 @@ export interface GrainBoundaryLinearConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -16215,6 +16392,15 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -16231,12 +16417,11 @@ export interface AdatomDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -16488,6 +16673,15 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -16504,12 +16698,11 @@ export interface AdatomDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -16768,6 +16961,15 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -16784,12 +16986,11 @@ export interface AdatomDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -17050,6 +17251,15 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -17066,12 +17276,11 @@ export interface AdatomDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -17376,6 +17585,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17392,12 +17610,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -17649,6 +17866,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17665,12 +17891,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -17970,6 +18195,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -17986,12 +18220,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18243,6 +18476,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18259,12 +18501,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -18553,6 +18794,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18569,12 +18819,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -18826,6 +19075,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -18842,12 +19100,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -19147,6 +19404,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19163,12 +19429,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -19420,6 +19685,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19436,12 +19710,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -19731,6 +20004,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -19747,12 +20029,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -20004,6 +20285,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20020,12 +20310,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -20325,6 +20614,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20341,12 +20639,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -20598,6 +20895,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20614,12 +20920,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -20908,6 +21213,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -20924,12 +21238,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21181,6 +21494,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21197,12 +21519,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -21502,6 +21823,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21518,12 +21848,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -21775,6 +22104,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -21791,12 +22129,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -22063,6 +22400,15 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -22079,12 +22425,11 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -22386,6 +22731,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -22402,12 +22756,11 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -22659,6 +23012,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -22675,12 +23037,11 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -22975,6 +23336,15 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -22991,12 +23361,11 @@ export interface IslandDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -23248,6 +23617,15 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -23264,12 +23642,11 @@ export interface IslandDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                         }
                     ];
@@ -23528,6 +23905,15 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -23544,12 +23930,11 @@ export interface IslandDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -23858,6 +24243,15 @@ export interface IslandDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -23874,12 +24268,11 @@ export interface IslandDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -24178,6 +24571,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -24194,12 +24596,11 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -24451,6 +24852,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -24467,12 +24877,11 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -24767,6 +25176,15 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -24783,12 +25201,11 @@ export interface TerraceDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                             /**
                              * Use the conventional cell for the crystal structure
@@ -25040,6 +25457,15 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
+                                metadata?: {
+                                    boundaryConditions?: {
+                                        /**
+                                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                         */
+                                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                                        offset: number;
+                                    };
+                                };
                                 /**
                                  * entity identity
                                  */
@@ -25056,12 +25482,11 @@ export interface TerraceDefectConfigurationSchema {
                                 /**
                                  * entity name
                                  */
-                                name?: string;
+                                name: string;
                                 /**
                                  * Identifies that entity is defaultable
                                  */
                                 isDefault?: boolean;
-                                metadata?: {};
                             };
                         }
                     ];
@@ -25320,6 +25745,15 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -25336,12 +25770,11 @@ export interface TerraceDefectConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Combined schema for all coordinate condition types
@@ -25650,6 +26083,15 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -25666,12 +26108,11 @@ export interface TerraceDefectConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -25943,6 +26384,15 @@ export interface PointDefectBaseConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -25959,12 +26409,11 @@ export interface PointDefectBaseConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         unknown
     ];
@@ -26216,6 +26665,15 @@ export interface InterstitialPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -26232,12 +26690,11 @@ export interface InterstitialPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -26476,6 +26933,15 @@ export interface InterstitialPointDefectSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -26492,12 +26958,11 @@ export interface InterstitialPointDefectSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -26762,6 +27227,15 @@ export interface SubstitutionalPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -26778,12 +27252,11 @@ export interface SubstitutionalPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -27022,6 +27495,15 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -27038,12 +27520,11 @@ export interface SubstitutionalPointDefectSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -27308,6 +27789,15 @@ export interface VacancyPointDefectSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -27324,12 +27814,11 @@ export interface VacancyPointDefectSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         },
         {
             /**
@@ -27580,6 +28069,15 @@ export interface IdealCrystalSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -27596,12 +28094,11 @@ export interface IdealCrystalSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category/pristine_structures/two_dimensional/nanoribbon.json */
 /**
@@ -27897,6 +28394,15 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -27913,12 +28419,11 @@ export interface NanoribbonConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -28170,6 +28675,15 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -28186,12 +28700,11 @@ export interface NanoribbonConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -28458,6 +28971,15 @@ export interface NanoribbonConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -28474,12 +28996,11 @@ export interface NanoribbonConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -28789,6 +29310,15 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -28805,12 +29335,11 @@ export interface NanoTapeConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -29062,6 +29591,15 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29078,12 +29616,11 @@ export interface NanoTapeConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -29376,6 +29913,15 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29392,12 +29938,11 @@ export interface SlabConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -29649,6 +30194,15 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29665,12 +30219,11 @@ export interface SlabConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -29975,6 +30528,15 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -29991,12 +30553,11 @@ export interface SlabStrainedSupercellConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * Use the conventional cell for the crystal structure
@@ -30248,6 +30809,15 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -30264,12 +30834,11 @@ export interface SlabStrainedSupercellConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -30533,6 +31102,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -30549,12 +31127,11 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -30792,6 +31369,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -30808,12 +31394,11 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -31062,6 +31647,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -31078,12 +31672,11 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -31321,6 +31914,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -31337,12 +31939,11 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -31591,6 +32192,15 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
+            metadata?: {
+                boundaryConditions?: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset: number;
+                };
+            };
             /**
              * entity identity
              */
@@ -31607,12 +32217,11 @@ export interface PassivationConfigurationSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            metadata?: {};
         } | {
             /**
              * A crystal structure, referencing the base material schema
@@ -31850,6 +32459,15 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -31866,12 +32484,11 @@ export interface PassivationConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
             /**
              * @minItems 3
@@ -32190,6 +32807,15 @@ export interface CrystalSiteSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32206,12 +32832,11 @@ export interface CrystalSiteSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -32460,6 +33085,15 @@ export interface PointDefectSiteSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32476,12 +33110,11 @@ export interface PointDefectSiteSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -32738,6 +33371,15 @@ export interface VoidRegionSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -32754,12 +33396,11 @@ export interface VoidRegionSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Combined schema for all coordinate condition types
@@ -33054,6 +33695,15 @@ export interface CrystalSchema {
          */
         message: string;
     }[];
+    metadata?: {
+        boundaryConditions?: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type: "pbc" | "bc1" | "bc2" | "bc3";
+            offset: number;
+        };
+    };
     /**
      * entity identity
      */
@@ -33070,12 +33720,11 @@ export interface CrystalSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/three_dimensional/void.json */
 /**
@@ -33392,6 +34041,15 @@ export interface VacuumConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -33408,12 +34066,11 @@ export interface VacuumConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
 }
 /** Schema dist/js/schema/materials_category_components/entities/core/zero_dimensional/atom.json */
@@ -33681,6 +34338,15 @@ export interface CrystalLatticeLinesSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -33697,12 +34363,11 @@ export interface CrystalLatticeLinesSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -33991,6 +34656,15 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34007,12 +34681,11 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34260,6 +34933,15 @@ export interface CrystalLatticeBaseSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34276,12 +34958,11 @@ export interface CrystalLatticeBaseSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -34537,6 +35218,15 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34553,12 +35243,11 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -34807,6 +35496,15 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -34823,12 +35521,11 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Percentage of uniform strain to apply to the crystal structure
@@ -35076,6 +35773,15 @@ export interface SupercellConfigurationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35092,12 +35798,11 @@ export interface SupercellConfigurationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * @minItems 3
@@ -35380,6 +36085,15 @@ export interface AtomicLayersSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35396,12 +36110,11 @@ export interface AtomicLayersSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -35683,6 +36396,15 @@ export interface AtomicLayersUniqueSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35699,12 +36421,11 @@ export interface AtomicLayersUniqueSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -35976,6 +36697,15 @@ export interface AtomicLayersUniqueRepeatedSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -35992,12 +36722,11 @@ export interface AtomicLayersUniqueRepeatedSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36252,6 +36981,15 @@ export interface CrystalLatticePlanesSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -36268,12 +37006,11 @@ export interface CrystalLatticePlanesSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * Use the conventional cell for the crystal structure
@@ -36557,6 +37294,15 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -36573,12 +37319,11 @@ export interface SlabStackConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                     /**
                      * Use the conventional cell for the crystal structure
@@ -36830,6 +37575,15 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
+                        metadata?: {
+                            boundaryConditions?: {
+                                /**
+                                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                                 */
+                                type: "pbc" | "bc1" | "bc2" | "bc3";
+                                offset: number;
+                            };
+                        };
                         /**
                          * entity identity
                          */
@@ -36846,12 +37600,11 @@ export interface SlabStackConfigurationSchema {
                         /**
                          * entity name
                          */
-                        name?: string;
+                        name: string;
                         /**
                          * Identifies that entity is defaultable
                          */
                         isDefault?: boolean;
-                        metadata?: {};
                     };
                 }
             ];
@@ -37119,6 +37872,15 @@ export interface SlabStackConfigurationSchema {
                      */
                     message: string;
                 }[];
+                metadata?: {
+                    boundaryConditions?: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset: number;
+                    };
+                };
                 /**
                  * entity identity
                  */
@@ -37135,12 +37897,11 @@ export interface SlabStackConfigurationSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                metadata?: {};
             };
         }
     ];
@@ -37440,6 +38201,15 @@ export interface PerturbationSchema {
              */
             message: string;
         }[];
+        metadata?: {
+            boundaryConditions?: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type: "pbc" | "bc1" | "bc2" | "bc3";
+                offset: number;
+            };
+        };
         /**
          * entity identity
          */
@@ -37456,12 +38226,11 @@ export interface PerturbationSchema {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        metadata?: {};
     };
     /**
      * A function that defines the perturbation (delta in coordinates) to be applied to the atomic coordinates.
@@ -37570,7 +38339,7 @@ export interface CategorizedMethod {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * TODO: Use regex once schema draft version has been updated
          */
@@ -37583,7 +38352,7 @@ export interface CategorizedMethod {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -37684,7 +38453,7 @@ export interface CategorizedUnitMethod {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42090,7 +42859,7 @@ export interface UnitMethodConjugateGradient {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42186,7 +42955,7 @@ export interface UnitMethodDavidsonSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42542,7 +43311,7 @@ export interface UnitMethodRegression {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42640,7 +43409,7 @@ export interface UnitMethodAoDunning {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42749,7 +43518,7 @@ export interface UnitMethodAoOther {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -42854,7 +43623,7 @@ export interface UnitMethodAoPople {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -43264,7 +44033,7 @@ export interface UnitMethodPseudopotential {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -43360,7 +44129,7 @@ export interface UnitMethodPlaneWave {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -43456,7 +44225,7 @@ export interface UnitMethodSmearing {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -43549,7 +44318,7 @@ export interface UnitMethodTetrahedron {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -43644,7 +44413,7 @@ export interface CategorizedModel {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * TODO: Use regex once schema draft version has been updated
              */
@@ -43657,7 +44426,7 @@ export interface CategorizedModel {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * TODO: Use regex once schema draft version has been updated
          */
@@ -43812,7 +44581,7 @@ export interface CategorizedModel {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -44039,7 +44808,7 @@ export interface ModelWithoutMethodSchemaBase {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45406,7 +46175,7 @@ export interface ModelDoubleHybridFunctional {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45573,7 +46342,7 @@ export interface ModelGeneralizedGradientApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45745,7 +46514,7 @@ export interface ModelGwApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -45912,7 +46681,7 @@ export interface ModelHybridFunctional {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -46079,7 +46848,7 @@ export interface ModelLocalDensityApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -46369,7 +47138,7 @@ export interface ModelMetaGeneralizedGradientApproximation {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -46529,7 +47298,7 @@ export interface ModelRegression {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
@@ -46570,7 +47339,7 @@ export interface ProjectSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
@@ -47299,1129 +48068,20 @@ export interface WorkflowPropertySchema {
      */
     subworkflows: {
         /**
-         * Contains the Units of the subworkflow
-         */
-        units: ({
-            /**
-             * type of the unit
-             */
-            type: "io";
-            subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
-            input: ({
-                /**
-                 * rest API endpoint
-                 */
-                endpoint: string;
-                /**
-                 * rest API endpoint options
-                 */
-                endpoint_options: {};
-                /**
-                 * the name of the variable in local scope to save the data under
-                 */
-                name?: string;
-                [k: string]: unknown;
-            } | ({
-                /**
-                 * IDs of item to retrieve from db
-                 */
-                ids: string[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * db collection name
-                 */
-                collection: string;
-                /**
-                 * whether the result should be saved as draft
-                 */
-                draft: boolean;
-                [k: string]: unknown;
-            }) | {
-                objectData: {
-                    /**
-                     * Object storage container for the file
-                     */
-                    CONTAINER?: string;
-                    /**
-                     * Name of the file inside the object storage bucket
-                     */
-                    NAME?: string;
-                    /**
-                     * Object storage provider
-                     */
-                    PROVIDER?: string;
-                    /**
-                     * Region for the object container specified in Container
-                     */
-                    REGION?: string;
-                    /**
-                     * Size of the file in bytes
-                     */
-                    SIZE?: number;
-                    /**
-                     * Unix timestamp showing when the file was last modified
-                     */
-                    TIMESTAMP?: string;
-                };
-                /**
-                 * if a file with the same filename already exists, whether to overwrite the old file
-                 */
-                overwrite?: boolean;
-                /**
-                 * Relative path to the directory that contains the file.
-                 */
-                pathname?: string;
-                /**
-                 * Basename of the file
-                 */
-                basename?: string;
-                /**
-                 * What kind of file this is, e.g. image / text
-                 */
-                filetype?: string;
-                [k: string]: unknown;
-            })[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
-             * Input information for condition.
-             */
-            input: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-             */
-            statement: string;
-            /**
-             * Flowchart ID reference for `then` part of the condition.
-             */
-            then: string;
-            /**
-             * Flowchart ID reference for `else` part of the condition.
-             */
-            else: string;
-            /**
-             * Maximum occurrence of the condition, usable for loops.
-             */
-            maxOccurrences: number;
-            /**
-             * Throw exception on reaching to maximum occurence.
-             */
-            throwException?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
-             * The statement to be evaluated
-             */
-            statement: string;
-            /**
-             * The error message to be displayed if the assertion fails
-             */
-            errorMessage?: string;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
-                /**
-                 * The name of the executable. e.g. pw.x
-                 */
-                name: string;
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId?: string[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-            };
-            flavor?: {
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId?: string;
-                /**
-                 * name of the executable this flavor belongs to
-                 */
-                executableName?: string;
-                /**
-                 * name of the application this flavor belongs to
-                 */
-                applicationName?: string;
-                input?: {
-                    templateId?: string;
-                    templateName?: string;
-                    /**
-                     * name of the resulting input file, if different than template name
-                     */
-                    name?: string;
-                }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-            };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
-            input: {
-                [k: string]: unknown;
-            };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
-             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-             */
-            input?: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Name of the global variable. e.g. 'x'
-             */
-            operand: string;
-            /**
-             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-             */
-            value: string | boolean | number;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        })[];
-        model: {
-            /**
-             * general type of the model, eg. `dft`
-             */
-            type: string;
-            /**
-             * general subtype of the model, eg. `lda`
-             */
-            subtype: string;
-            method: {
-                /**
-                 * general type of this method, eg. `pseudopotential`
-                 */
-                type: string;
-                /**
-                 * general subtype of this method, eg. `ultra-soft`
-                 */
-                subtype: string;
-                /**
-                 * Object showing the actual possible precision based on theory and implementation
-                 */
-                precision?: {};
-                /**
-                 * additional data specific to method, eg. array of pseudopotentials
-                 */
-                data?: {};
-            };
-            [k: string]: unknown;
-        };
-        application: {
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName?: string;
-            /**
-             * Application's short description.
-             */
-            summary?: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version?: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build?: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        /**
-         * Defines whether to store the results/properties extracted in this unit to properties collection
-         */
-        isDraft?: boolean;
-        /**
-         * subworkflow identity
+         * entity identity
          */
         _id?: string;
         /**
-         * Human-readable name of the subworkflow. e.g. Total-energy
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
         /**
@@ -48532,38 +48192,1239 @@ export interface WorkflowPropertySchema {
              */
             excludeFilesPattern?: string;
         };
+        /**
+         * Contains the Units of the subworkflow
+         */
+        units: ({
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            subtype: "input" | "output" | "dataFrame";
+            source: "api" | "db" | "object_storage";
+            input: ({
+                type: "db_ids";
+                /**
+                 * IDs of item to retrieve from db
+                 */
+                ids: string[];
+            } | {
+                type: "db_collection";
+                /**
+                 * db collection name
+                 */
+                collection: string;
+                /**
+                 * whether the result should be saved as draft
+                 */
+                draft: boolean;
+            } | {
+                type: "object_storage";
+                objectData: {
+                    /**
+                     * Object storage container for the file
+                     */
+                    CONTAINER?: string;
+                    /**
+                     * Name of the file inside the object storage bucket
+                     */
+                    NAME?: string;
+                    /**
+                     * Object storage provider
+                     */
+                    PROVIDER?: string;
+                    /**
+                     * Region for the object container specified in Container
+                     */
+                    REGION?: string;
+                    /**
+                     * Size of the file in bytes
+                     */
+                    SIZE?: number;
+                    /**
+                     * Unix timestamp showing when the file was last modified
+                     */
+                    TIMESTAMP?: string;
+                };
+                /**
+                 * if a file with the same filename already exists, whether to overwrite the old file
+                 */
+                overwrite?: boolean;
+                /**
+                 * Relative path to the directory that contains the file.
+                 */
+                pathname?: string;
+                /**
+                 * Basename of the file
+                 */
+                basename?: string;
+                /**
+                 * What kind of file this is, e.g. image / text
+                 */
+                filetype?: string;
+            })[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Input information for condition.
+             */
+            input: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+             */
+            statement: string;
+            /**
+             * Flowchart ID reference for `then` part of the condition.
+             */
+            then: string;
+            /**
+             * Flowchart ID reference for `else` part of the condition.
+             */
+            else: string;
+            /**
+             * Maximum occurrence of the condition, usable for loops.
+             */
+            maxOccurrences: number;
+            /**
+             * Throw exception on reaching to maximum occurence.
+             */
+            throwException?: boolean;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * The statement to be evaluated
+             */
+            statement: string;
+            /**
+             * The error message to be displayed if the assertion fails
+             */
+            errorMessage?: string;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            application: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * The short name of the application. e.g. qe
+                 */
+                shortName: string;
+                /**
+                 * Application's short description.
+                 */
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            executable?: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * _ids of the application this executable belongs to
+                 */
+                applicationId: string[];
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * _id of the executable this flavor belongs to
+                 */
+                executableId: string;
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName?: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName?: string;
+                input: {
+                    templateId?: string;
+                    templateName?: string;
+                    /**
+                     * name of the resulting input file, if different than template name
+                     */
+                    name?: string;
+                }[];
+                /**
+                 * list of application versions this flavor supports
+                 */
+                supportedApplicationVersions?: string[];
+            };
+            input: {
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged: boolean;
+            }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            scope?: string;
+            /**
+             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+             */
+            input?: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Name of the global variable. e.g. 'x'
+             */
+            operand: string;
+            /**
+             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+             */
+            value: string | boolean | number;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Contains information about the operation used.
+             */
+            operation: string;
+            /**
+             * Contains information about the specific type of the operation used.
+             */
+            operationType: string;
+            /**
+             * unit input (type to be specified by the child units)
+             */
+            inputData: {
+                [k: string]: unknown;
+            };
+        })[];
+        model: {
+            /**
+             * general type of the model, eg. `dft`
+             */
+            type: string;
+            /**
+             * general subtype of the model, eg. `lda`
+             */
+            subtype: string;
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
+            [k: string]: unknown;
+        };
+        application: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * The short name of the application. e.g. qe
+             */
+            shortName: string;
+            /**
+             * Application's short description.
+             */
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        /**
+         * Defines whether to store the results/properties extracted in this unit to properties collection
+         */
+        isDraft?: boolean;
     }[];
     /**
      * Contains the Units of the Workflow
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
-            /**
-             * rest API endpoint
-             */
-            endpoint: string;
-            /**
-             * rest API endpoint options
-             */
-            endpoint_options: {};
-            /**
-             * the name of the variable in local scope to save the data under
-             */
-            name?: string;
-            [k: string]: unknown;
-        } | ({
+            type: "db_ids";
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
+            type: "db_collection";
             /**
              * db collection name
              */
@@ -48572,8 +49433,8 @@ export interface WorkflowPropertySchema {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
-        }) | {
+        } | {
+            type: "object_storage";
             objectData: {
                 /**
                  * Object storage container for the file
@@ -48616,21 +49477,83 @@ export interface WorkflowPropertySchema {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -48647,71 +49570,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -48729,19 +49587,82 @@ export interface WorkflowPropertySchema {
              */
             arguments: string[];
         }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "condition";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -48758,71 +49679,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -48856,19 +49712,82 @@ export interface WorkflowPropertySchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assertion";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -48885,71 +49804,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -48958,19 +49812,82 @@ export interface WorkflowPropertySchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -48987,96 +49904,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "execution";
         application: {
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName?: string;
-            /**
-             * Application's short description.
-             */
-            summary?: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version?: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build?: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
             /**
              * entity identity
              */
@@ -49093,26 +49921,37 @@ export interface WorkflowPropertySchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * The short name of the application. e.g. qe
              */
-            name: string;
+            shortName: string;
             /**
-             * _ids of the application this executable belongs to
+             * Application's short description.
              */
-            applicationId?: string[];
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
             /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -49127,51 +49966,120 @@ export interface WorkflowPropertySchema {
              */
             schemaVersion?: string;
             /**
+             * entity name
+             */
+            name: string;
+            /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
+            /**
+             * _ids of the application this executable belongs to
+             */
+            applicationId: string[];
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
         };
         flavor?: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -49180,7 +50088,7 @@ export interface WorkflowPropertySchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**
@@ -49192,83 +50100,128 @@ export interface WorkflowPropertySchema {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged: boolean;
+        }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assignment";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -49285,71 +50238,7 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -49371,19 +50260,82 @@ export interface WorkflowPropertySchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "processing";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -49400,72 +50352,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -49480,19 +50366,82 @@ export interface WorkflowPropertySchema {
         inputData: {
             [k: string]: unknown;
         };
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "map";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -49509,71 +50458,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -49600,36 +50484,11 @@ export interface WorkflowPropertySchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
-        /**
-         * name of the unit. e.g. pw_scf
-         */
-        name?: string;
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
         /**
          * entity slug
          */
@@ -49640,74 +50499,68 @@ export interface WorkflowPropertySchema {
          */
         schemaVersion?: string;
         /**
+         * entity name
+         */
+        name: string;
+        /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
         tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
-        [k: string]: unknown;
-    } | {
+        isDraft?: boolean;
         /**
          * type of the unit
          */
         type: "subworkflow";
         /**
-         * entity identity
-         */
-        _id?: string;
-        isDraft?: boolean;
-        /**
-         * name of the unit. e.g. pw_scf
-         */
-        name?: string;
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -49723,66 +50576,6 @@ export interface WorkflowPropertySchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -51114,1129 +51907,20 @@ export interface PropertyHolderSchema {
          */
         subworkflows: {
             /**
-             * Contains the Units of the subworkflow
-             */
-            units: ({
-                /**
-                 * type of the unit
-                 */
-                type: "io";
-                subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
-                input: ({
-                    /**
-                     * rest API endpoint
-                     */
-                    endpoint: string;
-                    /**
-                     * rest API endpoint options
-                     */
-                    endpoint_options: {};
-                    /**
-                     * the name of the variable in local scope to save the data under
-                     */
-                    name?: string;
-                    [k: string]: unknown;
-                } | ({
-                    /**
-                     * IDs of item to retrieve from db
-                     */
-                    ids: string[];
-                    [k: string]: unknown;
-                } | {
-                    /**
-                     * db collection name
-                     */
-                    collection: string;
-                    /**
-                     * whether the result should be saved as draft
-                     */
-                    draft: boolean;
-                    [k: string]: unknown;
-                }) | {
-                    objectData: {
-                        /**
-                         * Object storage container for the file
-                         */
-                        CONTAINER?: string;
-                        /**
-                         * Name of the file inside the object storage bucket
-                         */
-                        NAME?: string;
-                        /**
-                         * Object storage provider
-                         */
-                        PROVIDER?: string;
-                        /**
-                         * Region for the object container specified in Container
-                         */
-                        REGION?: string;
-                        /**
-                         * Size of the file in bytes
-                         */
-                        SIZE?: number;
-                        /**
-                         * Unix timestamp showing when the file was last modified
-                         */
-                        TIMESTAMP?: string;
-                    };
-                    /**
-                     * if a file with the same filename already exists, whether to overwrite the old file
-                     */
-                    overwrite?: boolean;
-                    /**
-                     * Relative path to the directory that contains the file.
-                     */
-                    pathname?: string;
-                    /**
-                     * Basename of the file
-                     */
-                    basename?: string;
-                    /**
-                     * What kind of file this is, e.g. image / text
-                     */
-                    filetype?: string;
-                    [k: string]: unknown;
-                })[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "condition";
-                /**
-                 * Input information for condition.
-                 */
-                input: {
-                    /**
-                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                     */
-                    scope: string;
-                    /**
-                     * Name of the input data. e.g. total_energy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-                 */
-                statement: string;
-                /**
-                 * Flowchart ID reference for `then` part of the condition.
-                 */
-                then: string;
-                /**
-                 * Flowchart ID reference for `else` part of the condition.
-                 */
-                else: string;
-                /**
-                 * Maximum occurrence of the condition, usable for loops.
-                 */
-                maxOccurrences: number;
-                /**
-                 * Throw exception on reaching to maximum occurence.
-                 */
-                throwException?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assertion";
-                /**
-                 * The statement to be evaluated
-                 */
-                statement: string;
-                /**
-                 * The error message to be displayed if the assertion fails
-                 */
-                errorMessage?: string;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "execution";
-                application: {
-                    /**
-                     * The short name of the application. e.g. qe
-                     */
-                    shortName?: string;
-                    /**
-                     * Application's short description.
-                     */
-                    summary?: string;
-                    /**
-                     * Application version. e.g. 5.3.5
-                     */
-                    version?: string;
-                    /**
-                     * Application build. e.g. VTST
-                     */
-                    build?: string;
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * Whether licensing is present
-                     */
-                    isLicensed?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    [k: string]: unknown;
-                };
-                executable?: {
-                    /**
-                     * The name of the executable. e.g. pw.x
-                     */
-                    name: string;
-                    /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId?: string[];
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                };
-                flavor?: {
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId?: string;
-                    /**
-                     * name of the executable this flavor belongs to
-                     */
-                    executableName?: string;
-                    /**
-                     * name of the application this flavor belongs to
-                     */
-                    applicationName?: string;
-                    input?: {
-                        templateId?: string;
-                        templateName?: string;
-                        /**
-                         * name of the resulting input file, if different than template name
-                         */
-                        name?: string;
-                    }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results?: ({
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    } | string)[];
-                };
-                /**
-                 * unit input (type to be specified by the application's execution unit)
-                 */
-                input: {
-                    [k: string]: unknown;
-                };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "assignment";
-                /**
-                 * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-                 */
-                input?: {
-                    /**
-                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                     */
-                    scope: string;
-                    /**
-                     * Name of the input data. e.g. total_energy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Name of the global variable. e.g. 'x'
-                 */
-                operand: string;
-                /**
-                 * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-                 */
-                value: string | boolean | number;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                scope?: string;
-                [k: string]: unknown;
-            } | {
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
-                /**
-                 * Contains information about the operation used.
-                 */
-                operation: string;
-                /**
-                 * Contains information about the specific type of the operation used.
-                 */
-                operationType: string;
-                /**
-                 * unit input (type to be specified by the child units)
-                 */
-                inputData: {
-                    [k: string]: unknown;
-                };
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                isDraft?: boolean;
-                /**
-                 * name of the unit. e.g. pw_scf
-                 */
-                name?: string;
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                context?: {};
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                [k: string]: unknown;
-            })[];
-            model: {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
-                type: string;
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
-                subtype: string;
-                method: {
-                    /**
-                     * general type of this method, eg. `pseudopotential`
-                     */
-                    type: string;
-                    /**
-                     * general subtype of this method, eg. `ultra-soft`
-                     */
-                    subtype: string;
-                    /**
-                     * Object showing the actual possible precision based on theory and implementation
-                     */
-                    precision?: {};
-                    /**
-                     * additional data specific to method, eg. array of pseudopotentials
-                     */
-                    data?: {};
-                };
-                [k: string]: unknown;
-            };
-            application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            /**
-             * Defines whether to store the results/properties extracted in this unit to properties collection
-             */
-            isDraft?: boolean;
-            /**
-             * subworkflow identity
+             * entity identity
              */
             _id?: string;
             /**
-             * Human-readable name of the subworkflow. e.g. Total-energy
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
             /**
@@ -52347,38 +52031,1239 @@ export interface PropertyHolderSchema {
                  */
                 excludeFilesPattern?: string;
             };
+            /**
+             * Contains the Units of the subworkflow
+             */
+            units: ({
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "io";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                subtype: "input" | "output" | "dataFrame";
+                source: "api" | "db" | "object_storage";
+                input: ({
+                    type: "db_ids";
+                    /**
+                     * IDs of item to retrieve from db
+                     */
+                    ids: string[];
+                } | {
+                    type: "db_collection";
+                    /**
+                     * db collection name
+                     */
+                    collection: string;
+                    /**
+                     * whether the result should be saved as draft
+                     */
+                    draft: boolean;
+                } | {
+                    type: "object_storage";
+                    objectData: {
+                        /**
+                         * Object storage container for the file
+                         */
+                        CONTAINER?: string;
+                        /**
+                         * Name of the file inside the object storage bucket
+                         */
+                        NAME?: string;
+                        /**
+                         * Object storage provider
+                         */
+                        PROVIDER?: string;
+                        /**
+                         * Region for the object container specified in Container
+                         */
+                        REGION?: string;
+                        /**
+                         * Size of the file in bytes
+                         */
+                        SIZE?: number;
+                        /**
+                         * Unix timestamp showing when the file was last modified
+                         */
+                        TIMESTAMP?: string;
+                    };
+                    /**
+                     * if a file with the same filename already exists, whether to overwrite the old file
+                     */
+                    overwrite?: boolean;
+                    /**
+                     * Relative path to the directory that contains the file.
+                     */
+                    pathname?: string;
+                    /**
+                     * Basename of the file
+                     */
+                    basename?: string;
+                    /**
+                     * What kind of file this is, e.g. image / text
+                     */
+                    filetype?: string;
+                })[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "reduce";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * corresponding map unit flowchart ID
+                 */
+                mapFlowchartId: string;
+                /**
+                 * input information for reduce unit
+                 */
+                input: {
+                    /**
+                     * reduce operation, e.g. aggregate
+                     */
+                    operation: string;
+                    /**
+                     * arguments which are passed to reduce operation function
+                     */
+                    arguments: string[];
+                }[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "condition";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * Input information for condition.
+                 */
+                input: {
+                    /**
+                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                     */
+                    scope: string;
+                    /**
+                     * Name of the input data. e.g. total_energy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+                 */
+                statement: string;
+                /**
+                 * Flowchart ID reference for `then` part of the condition.
+                 */
+                then: string;
+                /**
+                 * Flowchart ID reference for `else` part of the condition.
+                 */
+                else: string;
+                /**
+                 * Maximum occurrence of the condition, usable for loops.
+                 */
+                maxOccurrences: number;
+                /**
+                 * Throw exception on reaching to maximum occurence.
+                 */
+                throwException?: boolean;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "assertion";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * The statement to be evaluated
+                 */
+                statement: string;
+                /**
+                 * The error message to be displayed if the assertion fails
+                 */
+                errorMessage?: string;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "execution";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                application: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * The short name of the application. e.g. qe
+                     */
+                    shortName: string;
+                    /**
+                     * Application's short description.
+                     */
+                    summary: string;
+                    /**
+                     * Application version. e.g. 5.3.5
+                     */
+                    version: string;
+                    /**
+                     * Application build. e.g. VTST
+                     */
+                    build: string;
+                    /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                    /**
+                     * Whether licensing is present
+                     */
+                    isLicensed?: boolean;
+                };
+                executable?: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * _ids of the application this executable belongs to
+                     */
+                    applicationId: string[];
+                    /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                };
+                flavor?: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    /**
+                     * Identifies that entity is defaultable
+                     */
+                    isDefault?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the results for this calculation
+                     */
+                    results: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * _id of the executable this flavor belongs to
+                     */
+                    executableId: string;
+                    /**
+                     * name of the executable this flavor belongs to
+                     */
+                    executableName?: string;
+                    /**
+                     * name of the application this flavor belongs to
+                     */
+                    applicationName?: string;
+                    input: {
+                        templateId?: string;
+                        templateName?: string;
+                        /**
+                         * name of the resulting input file, if different than template name
+                         */
+                        name?: string;
+                    }[];
+                    /**
+                     * list of application versions this flavor supports
+                     */
+                    supportedApplicationVersions?: string[];
+                };
+                input: {
+                    template: {
+                        /**
+                         * entity identity
+                         */
+                        _id?: string;
+                        /**
+                         * entity slug
+                         */
+                        slug?: string;
+                        systemName?: string;
+                        /**
+                         * entity's schema version. Used to distinct between different schemas.
+                         */
+                        schemaVersion?: string;
+                        /**
+                         * entity name
+                         */
+                        name: string;
+                        applicationName: string;
+                        applicationVersion?: string;
+                        executableName: string;
+                        contextProviders: {
+                            /**
+                             * The name of this item. e.g. scf_accuracy
+                             */
+                            name: string;
+                        }[];
+                        /**
+                         * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                         */
+                        content: string;
+                    };
+                    /**
+                     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    rendered: string;
+                    isManuallyChanged: boolean;
+                }[];
+                context?: {
+                    name: ContextProviderNameEnum;
+                    isEdited: boolean;
+                    data: {};
+                    extraData?: {};
+                }[];
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "assignment";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                scope?: string;
+                /**
+                 * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+                 */
+                input?: {
+                    /**
+                     * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                     */
+                    scope: string;
+                    /**
+                     * Name of the input data. e.g. total_energy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Name of the global variable. e.g. 'x'
+                 */
+                operand: string;
+                /**
+                 * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+                 */
+                value: string | boolean | number;
+            } | {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * entity tags
+                 */
+                tags?: string[];
+                /**
+                 * Status of the unit.
+                 */
+                status?: "idle" | "active" | "warning" | "error" | "finished";
+                statusTrack?: {
+                    trackedAt: number;
+                    status: string;
+                    repetition?: number;
+                }[];
+                isDraft?: boolean;
+                /**
+                 * type of the unit
+                 */
+                type: "processing";
+                /**
+                 * Whether this unit is the first one to be executed.
+                 */
+                head?: boolean;
+                /**
+                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+                 */
+                flowchartId: string;
+                /**
+                 * Next unit's flowchartId. If empty, the current unit is the last.
+                 */
+                next?: string;
+                /**
+                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+                 */
+                enableRender?: boolean;
+                /**
+                 * Contains information about the operation used.
+                 */
+                operation: string;
+                /**
+                 * Contains information about the specific type of the operation used.
+                 */
+                operationType: string;
+                /**
+                 * unit input (type to be specified by the child units)
+                 */
+                inputData: {
+                    [k: string]: unknown;
+                };
+            })[];
+            model: {
+                /**
+                 * general type of the model, eg. `dft`
+                 */
+                type: string;
+                /**
+                 * general subtype of the model, eg. `lda`
+                 */
+                subtype: string;
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
+                [k: string]: unknown;
+            };
+            application: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * The short name of the application. e.g. qe
+                 */
+                shortName: string;
+                /**
+                 * Application's short description.
+                 */
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            /**
+             * Defines whether to store the results/properties extracted in this unit to properties collection
+             */
+            isDraft?: boolean;
         }[];
         /**
          * Contains the Units of the Workflow
          */
         units: ({
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
              * type of the unit
              */
             type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
-                /**
-                 * rest API endpoint
-                 */
-                endpoint: string;
-                /**
-                 * rest API endpoint options
-                 */
-                endpoint_options: {};
-                /**
-                 * the name of the variable in local scope to save the data under
-                 */
-                name?: string;
-                [k: string]: unknown;
-            } | ({
+                type: "db_ids";
                 /**
                  * IDs of item to retrieve from db
                  */
                 ids: string[];
-                [k: string]: unknown;
             } | {
+                type: "db_collection";
                 /**
                  * db collection name
                  */
@@ -52387,8 +53272,8 @@ export interface PropertyHolderSchema {
                  * whether the result should be saved as draft
                  */
                 draft: boolean;
-                [k: string]: unknown;
-            }) | {
+            } | {
+                type: "object_storage";
                 objectData: {
                     /**
                      * Object storage container for the file
@@ -52431,21 +53316,83 @@ export interface PropertyHolderSchema {
                  * What kind of file this is, e.g. image / text
                  */
                 filetype?: string;
-                [k: string]: unknown;
             })[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -52462,71 +53409,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
             /**
              * corresponding map unit flowchart ID
              */
@@ -52544,19 +53426,82 @@ export interface PropertyHolderSchema {
                  */
                 arguments: string[];
             }[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "condition";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -52573,71 +53518,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
             /**
              * Input information for condition.
              */
@@ -52671,19 +53551,82 @@ export interface PropertyHolderSchema {
              * Throw exception on reaching to maximum occurence.
              */
             throwException?: boolean;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assertion";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -52700,71 +53643,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
             /**
              * The statement to be evaluated
              */
@@ -52773,19 +53651,82 @@ export interface PropertyHolderSchema {
              * The error message to be displayed if the assertion fails
              */
             errorMessage?: string;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -52802,96 +53743,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "execution";
             application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
                 /**
                  * entity identity
                  */
@@ -52908,26 +53760,37 @@ export interface PropertyHolderSchema {
                 /**
                  * entity name
                  */
-                name?: string;
+                name: string;
                 /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
                 /**
-                 * The name of the executable. e.g. pw.x
+                 * The short name of the application. e.g. qe
                  */
-                name: string;
+                shortName: string;
                 /**
-                 * _ids of the application this executable belongs to
+                 * Application's short description.
                  */
-                applicationId?: string[];
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
                 /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            executable?: {
                 /**
                  * entity identity
                  */
@@ -52942,51 +53805,120 @@ export interface PropertyHolderSchema {
                  */
                 schemaVersion?: string;
                 /**
+                 * entity name
+                 */
+                name: string;
+                /**
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
                 /**
                  * names of the pre-processors for this calculation
                  */
-                preProcessors?: ({
+                preProcessors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the post-processors for this calculation
                  */
-                postProcessors?: ({
+                postProcessors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the monitors for this calculation
                  */
-                monitors?: ({
+                monitors: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
                 /**
                  * names of the results for this calculation
                  */
-                results?: ({
+                results: {
                     /**
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                } | string)[];
+                }[];
+                /**
+                 * _ids of the application this executable belongs to
+                 */
+                applicationId: string[];
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
             };
             flavor?: {
                 /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
                  * _id of the executable this flavor belongs to
                  */
-                executableId?: string;
+                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -52995,7 +53927,7 @@ export interface PropertyHolderSchema {
                  * name of the application this flavor belongs to
                  */
                 applicationName?: string;
-                input?: {
+                input: {
                     templateId?: string;
                     templateName?: string;
                     /**
@@ -53007,83 +53939,128 @@ export interface PropertyHolderSchema {
                  * list of application versions this flavor supports
                  */
                 supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
             };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
             input: {
-                [k: string]: unknown;
-            };
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged: boolean;
+            }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assignment";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -53100,71 +54077,7 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
+            scope?: string;
             /**
              * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
              */
@@ -53186,19 +54099,82 @@ export interface PropertyHolderSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
              */
             name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "processing";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -53215,72 +54191,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
             /**
              * Contains information about the operation used.
              */
@@ -53295,19 +54205,82 @@ export interface PropertyHolderSchema {
             inputData: {
                 [k: string]: unknown;
             };
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
             /**
-             * name of the unit. e.g. pw_scf
+             * entity slug
              */
-            name?: string;
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
             /**
              * Status of the unit.
              */
             status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "map";
             /**
              * Whether this unit is the first one to be executed.
              */
@@ -53324,71 +54297,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "map";
             /**
              * Id of workflow to run inside map
              */
@@ -53415,36 +54323,11 @@ export interface PropertyHolderSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+        } | {
             /**
              * entity identity
              */
             _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
             /**
              * entity slug
              */
@@ -53455,74 +54338,68 @@ export interface PropertyHolderSchema {
              */
             schemaVersion?: string;
             /**
+             * entity name
+             */
+            name: string;
+            /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * entity tags
              */
             tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
             statusTrack?: {
                 trackedAt: number;
                 status: string;
                 repetition?: number;
             }[];
-            [k: string]: unknown;
-        } | {
+            isDraft?: boolean;
             /**
              * type of the unit
              */
             type: "subworkflow";
             /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
              * Whether this unit is the first one to be executed.
              */
             head?: boolean;
@@ -53538,66 +54415,6 @@ export interface PropertyHolderSchema {
              * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
              */
             enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
         })[];
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -54077,31 +54894,7 @@ export interface PropertySourceSchema {
     };
 }
 /** Schema dist/js/schema/software/application.json */
-export interface ApplicationSchemaBase {
-    /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application's short description.
-     */
-    summary?: string;
-    /**
-     * Application version. e.g. 5.3.5
-     */
-    version?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
+export interface ApplicationSchema {
     /**
      * entity identity
      */
@@ -54118,27 +54911,65 @@ export interface ApplicationSchemaBase {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/software/executable.json */
-export interface ExecutableSchema {
     /**
-     * The name of the executable. e.g. pw.x
+     * The short name of the application. e.g. qe
      */
-    name: string;
+    shortName: string;
     /**
-     * _ids of the application this executable belongs to
+     * Application's short description.
      */
-    applicationId?: string[];
+    summary: string;
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
     /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
+}
+/** Schema dist/js/schema/software/application_properties.json */
+export interface ApplicationPropertiesSchema {
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application's short description.
+     */
+    summary: string;
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
+}
+/** Schema dist/js/schema/software/executable.json */
+export interface ExecutableSchema {
     /**
      * entity identity
      */
@@ -54153,52 +54984,136 @@ export interface ExecutableSchema {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
+    /**
+     * _ids of the application this executable belongs to
+     */
+    applicationId: string[];
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+}
+/** Schema dist/js/schema/software/executable_properties.json */
+export interface ExecutablePropertiesSchema {
+    /**
+     * The name of the executable. e.g. pw.x
+     */
+    name: string;
+    /**
+     * _ids of the application this executable belongs to
+     */
+    applicationId: string[];
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
 }
 /** Schema dist/js/schema/software/flavor.json */
 export interface FlavorSchema {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
      * _id of the executable this flavor belongs to
      */
-    executableId?: string;
+    executableId: string;
     /**
      * name of the executable this flavor belongs to
      */
@@ -54207,7 +55122,7 @@ export interface FlavorSchema {
      * name of the application this flavor belongs to
      */
     applicationName?: string;
-    input?: {
+    input: {
         templateId?: string;
         templateName?: string;
         /**
@@ -54219,6 +55134,36 @@ export interface FlavorSchema {
      * list of application versions this flavor supports
      */
     supportedApplicationVersions?: string[];
+}
+/** Schema dist/js/schema/software/flavor_properties.json */
+export interface FlavorPropertiesSchema {
+    /**
+     * _id of the executable this flavor belongs to
+     */
+    executableId: string;
+    /**
+     * name of the executable this flavor belongs to
+     */
+    executableName?: string;
+    /**
+     * name of the application this flavor belongs to
+     */
+    applicationName?: string;
+    input: {
+        templateId?: string;
+        templateName?: string;
+        /**
+         * name of the resulting input file, if different than template name
+         */
+        name?: string;
+    }[];
+    /**
+     * list of application versions this flavor supports
+     */
+    supportedApplicationVersions?: string[];
+}
+/** Schema dist/js/schema/software/template.json */
+export interface TemplateSchema {
     /**
      * entity identity
      */
@@ -54235,109 +55180,77 @@ export interface FlavorSchema {
     /**
      * entity name
      */
-    name?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-}
-/** Schema dist/js/schema/software/template.json */
-export interface TemplateSchema {
-    applicationName?: string;
+    name: string;
+    applicationName: string;
     applicationVersion?: string;
-    executableName?: string;
-    contextProviders?: {
+    executableName: string;
+    contextProviders: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
     }[];
-    isManuallyChanged?: boolean;
     /**
-     * Input file name. e.g. pw_scf.in
-     */
-    name: string;
-    /**
-     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+     * Content of the template. e.g. &CONTROL    calculation='scf' ...
      */
     content: string;
+}
+/** Schema dist/js/schema/software/template_properties.json */
+export interface TemplatePropertiesSchema {
+    applicationName: string;
+    applicationVersion?: string;
+    executableName: string;
+    contextProviders: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
     /**
-     * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+     * Content of the template. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered?: string;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
+    content: string;
 }
 /** Schema dist/js/schema/software_directory/modeling/deepmd.json */
 export interface DeePMDAppSchema {
     /**
      * entity name
      */
-    name?: "deepmd";
+    name: "deepmd";
     /**
      * Application's short description.
      */
-    summary?: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
+    summary: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "2.0.2";
+    version: "2.0.2";
     exec?: "dp" | "lmp" | "python";
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
     /**
      * The short name of the application. e.g. qe
      */
-    shortName?: string;
+    shortName: string;
     /**
      * Application build. e.g. VTST
      */
-    build?: string;
+    build: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54346,24 +55259,6 @@ export interface DeePMDAppSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -54399,32 +55294,16 @@ export interface NWChem {
     /**
      * entity name
      */
-    name?: "NWChem";
+    name: "NWChem";
     /**
      * Application's short description.
      */
-    summary?: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
+    summary: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "6.6" | "7.0.2";
+    version: "6.6" | "7.0.2";
     exec?: "nwchem";
-    /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
     /**
      * entity identity
      */
@@ -54442,249 +55321,100 @@ export interface NWChem {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
     /**
-     * type of the unit
-     */
-    type: "execution";
-    application: {
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName?: string;
-        /**
-         * Application's short description.
-         */
-        summary?: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version?: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build?: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
-        /**
-         * The name of the executable. e.g. pw.x
-         */
-        name: string;
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId?: string[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    flavor?: {
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId?: string;
-        /**
-         * name of the executable this flavor belongs to
-         */
-        executableName?: string;
-        /**
-         * name of the application this flavor belongs to
-         */
-        applicationName?: string;
-        input?: {
-            templateId?: string;
-            templateName?: string;
-            /**
-             * name of the resulting input file, if different than template name
-             */
-            name?: string;
-        }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
-    input: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
-        /**
-         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        rendered?: string;
-    } | {
-        templateId?: string;
-        templateName?: string;
-        /**
-         * name of the resulting input file, if different than template name
-         */
-        name?: string;
-    })[];
-    /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -54701,99 +55431,272 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
+    application: {
         /**
-         * The name of this item. e.g. scf_accuracy
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName: string;
+        /**
+         * Application's short description.
+         */
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    executable?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
          */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input: {
+            templateId?: string;
+            templateName?: string;
+            /**
+             * name of the resulting input file, if different than template name
+             */
+            name?: string;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+    };
+    input: ({
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged: boolean;
+    } | {
+        templateId?: string;
+        templateName?: string;
+        /**
+         * name of the resulting input file, if different than template name
+         */
+        name?: string;
+    })[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
     }[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
     /**
      * entity name
      */
-    name?: "vasp";
+    name: "vasp";
     /**
      * Application's short description.
      */
-    summary?: "vienna ab-initio simulation package";
+    summary: "vienna ab-initio simulation package";
     flavor?: "vasp" | "vasp_nscf" | "vasp_bands";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "5.3.5";
+    version: "5.3.5";
     exec?: "vasp";
-    /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
     /**
      * entity identity
      */
@@ -54811,40 +55714,39 @@ export interface ViennaAbInitoSimulationPackage {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
     /**
      * entity name
      */
-    name?: "jupyterLab";
+    name: "jupyterLab";
     flavor?: "notebook";
     /**
      * Application's short description.
      */
-    summary?: "Jupyter Lab";
+    summary: "Jupyter Lab";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "0.33.12";
+    version: "0.33.12";
     exec?: "jupyter";
-    /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
     /**
      * entity identity
      */
@@ -54862,23 +55764,38 @@ export interface JupyterLabApplicationSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
     /**
      * entity name
      */
-    name?: "python";
+    name: "python";
     flavor?: "python2" | "python3";
     /**
      * Application's short description.
      */
-    summary?: "Python Script";
+    summary: "Python Script";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "2.7.5" | "3.6.1";
+    version: "2.7.5" | "3.6.1";
     exec?: "python";
     /**
      * Optional arguments passed to the Python script
@@ -54893,22 +55810,6 @@ export interface PythonProgramingLanguageSchema {
      */
     dependencies?: unknown[];
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54925,23 +55826,38 @@ export interface PythonProgramingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
     /**
      * entity name
      */
-    name?: "shell";
+    name: "shell";
     flavor?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Application's short description.
      */
-    summary?: "Shell Script";
+    summary: "Shell Script";
     /**
      * Application version. e.g. 5.3.5
      */
-    version?: "4.2.46";
+    version: "4.2.46";
     exec?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Optional arguments passed to the Shell script
@@ -54952,22 +55868,6 @@ export interface ShellScriptingLanguageSchema {
      */
     environment?: {};
     /**
-     * The short name of the application. e.g. qe
-     */
-    shortName?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    /**
-     * Whether licensing is present
-     */
-    isLicensed?: boolean;
-    /**
      * entity identity
      */
     _id?: string;
@@ -54984,249 +55884,100 @@ export interface ShellScriptingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
     /**
-     * type of the unit
-     */
-    type: "execution";
-    application: {
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName?: string;
-        /**
-         * Application's short description.
-         */
-        summary?: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version?: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build?: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
-        /**
-         * The name of the executable. e.g. pw.x
-         */
-        name: string;
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId?: string[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    flavor?: {
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId?: string;
-        /**
-         * name of the executable this flavor belongs to
-         */
-        executableName?: string;
-        /**
-         * name of the application this flavor belongs to
-         */
-        applicationName?: string;
-        input?: {
-            templateId?: string;
-            templateName?: string;
-            /**
-             * name of the resulting input file, if different than template name
-             */
-            name?: string;
-        }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
-    input: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        content: string;
-        /**
-         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        rendered?: string;
-    } | {
-        templateId?: string;
-        templateName?: string;
-        /**
-         * name of the resulting input file, if different than template name
-         */
-        name?: string;
-    })[];
-    /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -55243,66 +55994,255 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
+    application: {
         /**
-         * The name of this item. e.g. scf_accuracy
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName: string;
+        /**
+         * Application's short description.
+         */
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    executable?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Identifies that entity is defaultable
          */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input: {
+            templateId?: string;
+            templateName?: string;
+            /**
+             * name of the resulting input file, if different than template name
+             */
+            name?: string;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+    };
+    input: ({
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged: boolean;
+    } | {
+        templateId?: string;
+        templateName?: string;
+        /**
+         * name of the resulting input file, if different than template name
+         */
+        name?: string;
+    })[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
     }[];
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/system/_material.json */
 export interface MaterialEntityReferenceSchema {
@@ -55664,7 +56604,7 @@ export interface NameEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/system/owner.json */
 export interface EntityOwnerReferenceSchema {
@@ -55693,11 +56633,57 @@ export interface PathEntitySchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * TODO: Use regex once schema draft version has been updated
      */
     path?: string;
+}
+/** Schema dist/js/schema/system/runtime_item.json */
+export interface RuntimeItemNameObjectSchema {
+    /**
+     * The name of this item. e.g. scf_accuracy
+     */
+    name: string;
+}
+/** Schema dist/js/schema/system/runtime_items.json */
+export interface RuntimeItemsSchema {
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
 }
 /** Schema dist/js/schema/system/schema_version.json */
 export interface SchemaVersion {
@@ -55794,23 +56780,24 @@ export interface BaseWorkflowSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     metadata?: {};
 }
-/** Schema dist/js/schema/workflow/base_flow.json */
-export interface BaseFlow {
-    /**
-     * subworkflow identity
-     */
-    _id?: string;
-    /**
-     * Human-readable name of the subworkflow. e.g. Total-energy
-     */
-    name: string;
+/** Schema dist/js/schema/workflow/scope.json */
+export interface WorkflowScopeSchema {
+    global: {
+        [k: string]: unknown;
+    };
+    local: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/subworkflow/mixin.json */
+export interface SubworkflowMixinSchema {
     /**
      * Array of characteristic properties calculated by this subworkflow
      */
@@ -55919,1084 +56906,111 @@ export interface BaseFlow {
          */
         excludeFilesPattern?: string;
     };
-}
-/** Schema dist/js/schema/workflow/scope.json */
-export interface WorkflowScopeSchema {
-    global: {
-        [k: string]: unknown;
-    };
-    local: {
-        [k: string]: unknown;
-    };
-}
-/** Schema dist/js/schema/workflow/subworkflow/unit.json */
-export type WorkflowSubworkflowUnitSchema = {
-    /**
-     * type of the unit
-     */
-    type: "io";
-    subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
-    input: ({
-        /**
-         * rest API endpoint
-         */
-        endpoint: string;
-        /**
-         * rest API endpoint options
-         */
-        endpoint_options: {};
-        /**
-         * the name of the variable in local scope to save the data under
-         */
-        name?: string;
-        [k: string]: unknown;
-    } | ({
-        /**
-         * IDs of item to retrieve from db
-         */
-        ids: string[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * db collection name
-         */
-        collection: string;
-        /**
-         * whether the result should be saved as draft
-         */
-        draft: boolean;
-        [k: string]: unknown;
-    }) | {
-        objectData: {
-            /**
-             * Object storage container for the file
-             */
-            CONTAINER?: string;
-            /**
-             * Name of the file inside the object storage bucket
-             */
-            NAME?: string;
-            /**
-             * Object storage provider
-             */
-            PROVIDER?: string;
-            /**
-             * Region for the object container specified in Container
-             */
-            REGION?: string;
-            /**
-             * Size of the file in bytes
-             */
-            SIZE?: number;
-            /**
-             * Unix timestamp showing when the file was last modified
-             */
-            TIMESTAMP?: string;
-        };
-        /**
-         * if a file with the same filename already exists, whether to overwrite the old file
-         */
-        overwrite?: boolean;
-        /**
-         * Relative path to the directory that contains the file.
-         */
-        pathname?: string;
-        /**
-         * Basename of the file
-         */
-        basename?: string;
-        /**
-         * What kind of file this is, e.g. image / text
-         */
-        filetype?: string;
-        [k: string]: unknown;
-    })[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "condition";
-    /**
-     * Input information for condition.
-     */
-    input: {
-        /**
-         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-         */
-        scope: string;
-        /**
-         * Name of the input data. e.g. total_energy
-         */
-        name: string;
-    }[];
-    /**
-     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-     */
-    statement: string;
-    /**
-     * Flowchart ID reference for `then` part of the condition.
-     */
-    then: string;
-    /**
-     * Flowchart ID reference for `else` part of the condition.
-     */
-    else: string;
-    /**
-     * Maximum occurrence of the condition, usable for loops.
-     */
-    maxOccurrences: number;
-    /**
-     * Throw exception on reaching to maximum occurence.
-     */
-    throwException?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
-     * The statement to be evaluated
-     */
-    statement: string;
-    /**
-     * The error message to be displayed if the assertion fails
-     */
-    errorMessage?: string;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    application: {
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName?: string;
-        /**
-         * Application's short description.
-         */
-        summary?: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version?: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build?: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
-        /**
-         * The name of the executable. e.g. pw.x
-         */
-        name: string;
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId?: string[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    flavor?: {
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId?: string;
-        /**
-         * name of the executable this flavor belongs to
-         */
-        executableName?: string;
-        /**
-         * name of the application this flavor belongs to
-         */
-        applicationName?: string;
-        input?: {
-            templateId?: string;
-            templateName?: string;
-            /**
-             * name of the resulting input file, if different than template name
-             */
-            name?: string;
-        }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
-    input: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assignment";
-    /**
-     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-     */
-    input?: {
-        /**
-         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-         */
-        scope: string;
-        /**
-         * Name of the input data. e.g. total_energy
-         */
-        name: string;
-    }[];
-    /**
-     * Name of the global variable. e.g. 'x'
-     */
-    operand: string;
-    /**
-     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-     */
-    value: string | boolean | number;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    scope?: string;
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-};
-/** Schema dist/js/schema/workflow/subworkflow.json */
-export interface Subworkflow {
     /**
      * Contains the Units of the subworkflow
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
-            /**
-             * rest API endpoint
-             */
-            endpoint: string;
-            /**
-             * rest API endpoint options
-             */
-            endpoint_options: {};
-            /**
-             * the name of the variable in local scope to save the data under
-             */
-            name?: string;
-            [k: string]: unknown;
-        } | ({
+            type: "db_ids";
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
+            type: "db_collection";
             /**
              * db collection name
              */
@@ -57005,8 +57019,8 @@ export interface Subworkflow {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
-        }) | {
+        } | {
+            type: "object_storage";
             objectData: {
                 /**
                  * Object storage container for the file
@@ -57049,21 +57063,83 @@ export interface Subworkflow {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57080,71 +57156,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -57162,19 +57173,82 @@ export interface Subworkflow {
              */
             arguments: string[];
         }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "condition";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57191,71 +57265,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -57289,19 +57298,82 @@ export interface Subworkflow {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assertion";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57318,71 +57390,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -57391,19 +57398,82 @@ export interface Subworkflow {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57420,96 +57490,7 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "execution";
         application: {
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName?: string;
-            /**
-             * Application's short description.
-             */
-            summary?: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version?: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build?: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
             /**
              * entity identity
              */
@@ -57526,26 +57507,37 @@ export interface Subworkflow {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * The short name of the application. e.g. qe
              */
-            name: string;
+            shortName: string;
             /**
-             * _ids of the application this executable belongs to
+             * Application's short description.
              */
-            applicationId?: string[];
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
             /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -57560,51 +57552,120 @@ export interface Subworkflow {
              */
             schemaVersion?: string;
             /**
+             * entity name
+             */
+            name: string;
+            /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
+            /**
+             * _ids of the application this executable belongs to
+             */
+            applicationId: string[];
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
         };
         flavor?: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -57613,7 +57674,7 @@ export interface Subworkflow {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**
@@ -57625,83 +57686,128 @@ export interface Subworkflow {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged: boolean;
+        }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assignment";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57718,71 +57824,7 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -57804,19 +57846,82 @@ export interface Subworkflow {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "processing";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -57833,72 +57938,6 @@ export interface Subworkflow {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -57913,95 +57952,6 @@ export interface Subworkflow {
         inputData: {
             [k: string]: unknown;
         };
-        /**
-         * entity identity
-         */
-        _id?: string;
-        isDraft?: boolean;
-        /**
-         * name of the unit. e.g. pw_scf
-         */
-        name?: string;
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
     })[];
     model: {
         /**
@@ -58034,21 +57984,42 @@ export interface Subworkflow {
     };
     application: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
          * The short name of the application. e.g. qe
          */
-        shortName?: string;
+        shortName: string;
         /**
          * Application's short description.
          */
-        summary?: string;
+        summary: string;
         /**
          * Application version. e.g. 5.3.5
          */
-        version?: string;
+        version: string;
         /**
          * Application build. e.g. VTST
          */
-        build?: string;
+        build: string;
         /**
          * Whether advanced compute options are present
          */
@@ -58057,6 +58028,595 @@ export interface Subworkflow {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+    };
+    /**
+     * Defines whether to store the results/properties extracted in this unit to properties collection
+     */
+    isDraft?: boolean;
+}
+/** Schema dist/js/schema/workflow/subworkflow/unit.json */
+export type WorkflowSubworkflowUnitSchema = {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "io";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        type: "db_ids";
+        /**
+         * IDs of item to retrieve from db
+         */
+        ids: string[];
+    } | {
+        type: "db_collection";
+        /**
+         * db collection name
+         */
+        collection: string;
+        /**
+         * whether the result should be saved as draft
+         */
+        draft: boolean;
+    } | {
+        type: "object_storage";
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
+        /**
+         * if a file with the same filename already exists, whether to overwrite the old file
+         */
+        overwrite?: boolean;
+        /**
+         * Relative path to the directory that contains the file.
+         */
+        pathname?: string;
+        /**
+         * Basename of the file
+         */
+        basename?: string;
+        /**
+         * What kind of file this is, e.g. image / text
+         */
+        filetype?: string;
+    })[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "condition";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Input information for condition.
+     */
+    input: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+     */
+    statement: string;
+    /**
+     * Flowchart ID reference for `then` part of the condition.
+     */
+    then: string;
+    /**
+     * Flowchart ID reference for `else` part of the condition.
+     */
+    else: string;
+    /**
+     * Maximum occurrence of the condition, usable for loops.
+     */
+    maxOccurrences: number;
+    /**
+     * Throw exception on reaching to maximum occurence.
+     */
+    throwException?: boolean;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assertion";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    application: {
         /**
          * entity identity
          */
@@ -58073,23 +58633,469 @@ export interface Subworkflow {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName: string;
+        /**
+         * Application's short description.
+         */
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
     };
+    executable?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input: {
+            templateId?: string;
+            templateName?: string;
+            /**
+             * name of the resulting input file, if different than template name
+             */
+            name?: string;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+    };
+    input: {
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged: boolean;
+    }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
+} | {
     /**
-     * Defines whether to store the results/properties extracted in this unit to properties collection
-     */
-    isDraft?: boolean;
-    /**
-     * subworkflow identity
+     * entity identity
      */
     _id?: string;
     /**
-     * Human-readable name of the subworkflow. e.g. Total-energy
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assignment";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    scope?: string;
+    /**
+     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+     */
+    input?: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Name of the global variable. e.g. 'x'
+     */
+    operand: string;
+    /**
+     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+     */
+    value: string | boolean | number;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "processing";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+};
+/** Schema dist/js/schema/workflow/subworkflow.json */
+export interface SubworkflowSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
     /**
@@ -58200,34 +59206,1211 @@ export interface Subworkflow {
          */
         excludeFilesPattern?: string;
     };
+    /**
+     * Contains the Units of the subworkflow
+     */
+    units: ({
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        subtype: "input" | "output" | "dataFrame";
+        source: "api" | "db" | "object_storage";
+        input: ({
+            type: "db_ids";
+            /**
+             * IDs of item to retrieve from db
+             */
+            ids: string[];
+        } | {
+            type: "db_collection";
+            /**
+             * db collection name
+             */
+            collection: string;
+            /**
+             * whether the result should be saved as draft
+             */
+            draft: boolean;
+        } | {
+            type: "object_storage";
+            objectData: {
+                /**
+                 * Object storage container for the file
+                 */
+                CONTAINER?: string;
+                /**
+                 * Name of the file inside the object storage bucket
+                 */
+                NAME?: string;
+                /**
+                 * Object storage provider
+                 */
+                PROVIDER?: string;
+                /**
+                 * Region for the object container specified in Container
+                 */
+                REGION?: string;
+                /**
+                 * Size of the file in bytes
+                 */
+                SIZE?: number;
+                /**
+                 * Unix timestamp showing when the file was last modified
+                 */
+                TIMESTAMP?: string;
+            };
+            /**
+             * if a file with the same filename already exists, whether to overwrite the old file
+             */
+            overwrite?: boolean;
+            /**
+             * Relative path to the directory that contains the file.
+             */
+            pathname?: string;
+            /**
+             * Basename of the file
+             */
+            basename?: string;
+            /**
+             * What kind of file this is, e.g. image / text
+             */
+            filetype?: string;
+        })[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "condition";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Input information for condition.
+         */
+        input: {
+            /**
+             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+             */
+            scope: string;
+            /**
+             * Name of the input data. e.g. total_energy
+             */
+            name: string;
+        }[];
+        /**
+         * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+         */
+        statement: string;
+        /**
+         * Flowchart ID reference for `then` part of the condition.
+         */
+        then: string;
+        /**
+         * Flowchart ID reference for `else` part of the condition.
+         */
+        else: string;
+        /**
+         * Maximum occurrence of the condition, usable for loops.
+         */
+        maxOccurrences: number;
+        /**
+         * Throw exception on reaching to maximum occurence.
+         */
+        throwException?: boolean;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assertion";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * The statement to be evaluated
+         */
+        statement: string;
+        /**
+         * The error message to be displayed if the assertion fails
+         */
+        errorMessage?: string;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        application: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * The short name of the application. e.g. qe
+             */
+            shortName: string;
+            /**
+             * Application's short description.
+             */
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        executable?: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * _ids of the application this executable belongs to
+             */
+            applicationId: string[];
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+        };
+        flavor?: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * _id of the executable this flavor belongs to
+             */
+            executableId: string;
+            /**
+             * name of the executable this flavor belongs to
+             */
+            executableName?: string;
+            /**
+             * name of the application this flavor belongs to
+             */
+            applicationName?: string;
+            input: {
+                templateId?: string;
+                templateName?: string;
+                /**
+                 * name of the resulting input file, if different than template name
+                 */
+                name?: string;
+            }[];
+            /**
+             * list of application versions this flavor supports
+             */
+            supportedApplicationVersions?: string[];
+        };
+        input: {
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged: boolean;
+        }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assignment";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        scope?: string;
+        /**
+         * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+         */
+        input?: {
+            /**
+             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+             */
+            scope: string;
+            /**
+             * Name of the input data. e.g. total_energy
+             */
+            name: string;
+        }[];
+        /**
+         * Name of the global variable. e.g. 'x'
+         */
+        operand: string;
+        /**
+         * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+         */
+        value: string | boolean | number;
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "processing";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Contains information about the operation used.
+         */
+        operation: string;
+        /**
+         * Contains information about the specific type of the operation used.
+         */
+        operationType: string;
+        /**
+         * unit input (type to be specified by the child units)
+         */
+        inputData: {
+            [k: string]: unknown;
+        };
+    })[];
+    model: {
+        /**
+         * general type of the model, eg. `dft`
+         */
+        type: string;
+        /**
+         * general subtype of the model, eg. `lda`
+         */
+        subtype: string;
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
+        [k: string]: unknown;
+    };
+    application: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName: string;
+        /**
+         * Application's short description.
+         */
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    /**
+     * Defines whether to store the results/properties extracted in this unit to properties collection
+     */
+    isDraft?: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/assertion.json */
 export interface AssertionUnitSchema {
     /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
-     * The statement to be evaluated
-     */
-    statement: string;
-    /**
-     * The error message to be displayed if the assertion fails
-     */
-    errorMessage?: string;
-    /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
      */
     name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assertion";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -58244,7 +60427,21 @@ export interface AssertionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+}
+/** Schema dist/js/schema/workflow/unit/assignment.json */
+export interface AssignmentUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
     /**
      * entity slug
      */
@@ -58255,62 +60452,84 @@ export interface AssertionUnitSchema {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
     tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/assignment.json */
-export interface AssignmentUnitSchema {
+    isDraft?: boolean;
     /**
      * type of the unit
      */
     type: "assignment";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    scope?: string;
     /**
      * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
      */
@@ -58332,96 +60551,6 @@ export interface AssignmentUnitSchema {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    scope?: string;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/base.json */
 export interface WorkflowBaseUnitSchema {
@@ -58429,19 +60558,77 @@ export interface WorkflowBaseUnitSchema {
      * entity identity
      */
     _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
     isDraft?: boolean;
     /**
      * type of the unit
      */
     type: string;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -58458,7 +60645,13 @@ export interface WorkflowBaseUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
+}
+/** Schema dist/js/schema/workflow/unit/condition.json */
+export interface ConditionUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
     /**
      * entity slug
      */
@@ -58469,62 +60662,83 @@ export interface WorkflowBaseUnitSchema {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
     tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/condition.json */
-export interface ConditionUnitSchema {
+    isDraft?: boolean;
     /**
      * type of the unit
      */
     type: "condition";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
     /**
      * Input information for condition.
      */
@@ -58558,19 +60772,84 @@ export interface ConditionUnitSchema {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/execution.json */
+export interface ExecutionUnitSchemaBase {
     /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -58587,98 +60866,7 @@ export interface ConditionUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/execution.json */
-export interface ExecutionUnitSchemaBase {
-    /**
-     * type of the unit
-     */
-    type: "execution";
     application: {
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName?: string;
-        /**
-         * Application's short description.
-         */
-        summary?: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version?: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build?: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
         /**
          * entity identity
          */
@@ -58695,26 +60883,37 @@ export interface ExecutionUnitSchemaBase {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * The short name of the application. e.g. qe
          */
-        name: string;
+        shortName: string;
         /**
-         * _ids of the application this executable belongs to
+         * Application's short description.
          */
-        applicationId?: string[];
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -58729,51 +60928,120 @@ export interface ExecutionUnitSchemaBase {
          */
         schemaVersion?: string;
         /**
+         * entity name
+         */
+        name: string;
+        /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
     };
     flavor?: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -58782,7 +61050,7 @@ export interface ExecutionUnitSchemaBase {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -58794,6 +61062,105 @@ export interface ExecutionUnitSchemaBase {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
+    };
+    input: {
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged: boolean;
+    }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
+}
+/** Schema dist/js/schema/workflow/unit/input/_input.json */
+export interface ExecutionUnitInputSchema {
+    input?: ({
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
+        /**
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+         */
+        rendered: string;
+        isManuallyChanged: boolean;
+    } | {
+        templateId?: string;
+        templateName?: string;
+        /**
+         * name of the resulting input file, if different than template name
+         */
+        name?: string;
+    })[];
+}
+/** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
+export interface ExecutionUnitInputItemSchema {
+    template: {
         /**
          * entity identity
          */
@@ -58810,182 +61177,26 @@ export interface ExecutionUnitSchemaBase {
         /**
          * entity name
          */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
+        name: string;
+        applicationName: string;
+        applicationVersion?: string;
+        executableName: string;
+        contextProviders: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-    };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
-    input: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/input/_input.json */
-export interface ExecutionUnitInputSchemaForPhysicsBasedSimulationEngines {
-    input?: ({
-        /**
-         * Input file name. e.g. pw_scf.in
-         */
-        name: string;
-        /**
-         * Content of the input file. e.g. &CONTROL    calculation='scf' ...
+         * Content of the template. e.g. &CONTROL    calculation='scf' ...
          */
         content: string;
-        /**
-         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        rendered?: string;
-    } | {
-        templateId?: string;
-        templateName?: string;
-        /**
-         * name of the resulting input file, if different than template name
-         */
-        name?: string;
-    })[];
-}
-/** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
-export interface ExecutionUnitInputItemSchemaForPhysicsBasedSimulationEngines {
-    /**
-     * Input file name. e.g. pw_scf.in
-     */
-    name: string;
-    /**
-     * Content of the input file. e.g. &CONTROL    calculation='scf' ...
-     */
-    content: string;
+    };
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered?: string;
+    rendered: string;
+    isManuallyChanged: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
@@ -59019,30 +61230,9 @@ export interface UnitMapInputSchema {
     scope?: string;
     name?: string;
 }
-/** Schema dist/js/schema/workflow/unit/io/api.json */
-export interface DataIORestAPIInputSchema {
-    /**
-     * rest API endpoint
-     */
-    endpoint: string;
-    /**
-     * rest API endpoint options
-     */
-    endpoint_options: {};
-    /**
-     * the name of the variable in local scope to save the data under
-     */
-    name?: string;
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/io/db.json */
-export type DataIODatabaseInputOutputSchema = {
-    /**
-     * IDs of item to retrieve from db
-     */
-    ids: string[];
-    [k: string]: unknown;
-} | {
+/** Schema dist/js/schema/workflow/unit/io/db_collection.json */
+export interface DataIODatabaseCollectionInputOutputSchema {
+    type: "db_collection";
     /**
      * db collection name
      */
@@ -59051,10 +61241,18 @@ export type DataIODatabaseInputOutputSchema = {
      * whether the result should be saved as draft
      */
     draft: boolean;
-    [k: string]: unknown;
-};
+}
+/** Schema dist/js/schema/workflow/unit/io/db_ids.json */
+export interface DataIODatabaseIdsInputOutputSchema {
+    type: "db_ids";
+    /**
+     * IDs of item to retrieve from db
+     */
+    ids: string[];
+}
 /** Schema dist/js/schema/workflow/unit/io/object_storage.json */
 export interface ObjectStorageIoSchema {
+    type: "object_storage";
     objectData: {
         /**
          * Object storage container for the file
@@ -59097,37 +61295,110 @@ export interface ObjectStorageIoSchema {
      * What kind of file this is, e.g. image / text
      */
     filetype?: string;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/io.json */
 export interface DataIOUnitSchema {
     /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
      * type of the unit
      */
     type: "io";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
-        /**
-         * rest API endpoint
-         */
-        endpoint: string;
-        /**
-         * rest API endpoint options
-         */
-        endpoint_options: {};
-        /**
-         * the name of the variable in local scope to save the data under
-         */
-        name?: string;
-        [k: string]: unknown;
-    } | ({
+        type: "db_ids";
         /**
          * IDs of item to retrieve from db
          */
         ids: string[];
-        [k: string]: unknown;
     } | {
+        type: "db_collection";
         /**
          * db collection name
          */
@@ -59136,8 +61407,8 @@ export interface DataIOUnitSchema {
          * whether the result should be saved as draft
          */
         draft: boolean;
-        [k: string]: unknown;
-    }) | {
+    } | {
+        type: "object_storage";
         objectData: {
             /**
              * Object storage container for the file
@@ -59180,21 +61451,85 @@ export interface DataIOUnitSchema {
          * What kind of file this is, e.g. image / text
          */
         filetype?: string;
-        [k: string]: unknown;
     })[];
+}
+/** Schema dist/js/schema/workflow/unit/map.json */
+export interface MapUnitSchema {
     /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "map";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -59211,73 +61546,6 @@ export interface DataIOUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/map.json */
-export interface MapUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -59304,11 +61572,51 @@ export interface MapUnitSchema {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/assertion.json */
+export interface AssertionUnitMixinSchema {
+    type?: "assertion";
     /**
-     * entity identity
+     * The statement to be evaluated
      */
-    _id?: string;
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/assignment.json */
+export interface AssignmentUnitMixinSchema {
+    type?: "assignment";
+    /**
+     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+     */
+    input?: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Name of the global variable. e.g. 'x'
+     */
+    operand: string;
+    /**
+     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+     */
+    value: string | boolean | number;
+}
+/** Schema dist/js/schema/workflow/unit/mixins/base.json */
+export interface WorkflowBaseUnitMixinSchema {
     isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: string;
     /**
      * name of the unit. e.g. pw_scf
      */
@@ -59333,739 +61641,10 @@ export interface MapUnitSchema {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
 }
-/** Schema dist/js/schema/workflow/unit/processing.json */
-export interface ProcessingUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/reduce.json */
-export interface ReduceUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit/runtime/_runtime_item_full_object.json */
-export interface FullResultSchema {
-    /**
-     * The name of this item. e.g. 'my_custom_property. <OTHER FIELDS TO BE ADDED>'
-     */
-    name: string;
-}
-/** Schema dist/js/schema/workflow/unit/runtime/_runtime_item_name_object.json */
-export interface NameResultSchema {
-    /**
-     * The name of this item. e.g. scf_accuracy
-     */
-    name: string;
-}
-/** Schema dist/js/schema/workflow/unit/runtime/_runtime_item_string.json */
-/**
- * name of runtime item in shortened notation
- */
-export type RuntimeItemString = string;
-/** Schema dist/js/schema/workflow/unit/runtime/runtime_item.json */
-export type RuntimeItemSchema = {
-    /**
-     * The name of this item. e.g. scf_accuracy
-     */
-    name: string;
-} | string;
-/** Schema dist/js/schema/workflow/unit/runtime/runtime_items.json */
-export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-}
-/** Schema dist/js/schema/workflow/unit/subworkflow.json */
-export interface SubworkflowUnitSchema {
-    /**
-     * type of the unit
-     */
-    type: "subworkflow";
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/workflow/unit.json */
-export type WorkflowUnitSchema = {
-    /**
-     * type of the unit
-     */
-    type: "io";
-    subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
-    input: ({
-        /**
-         * rest API endpoint
-         */
-        endpoint: string;
-        /**
-         * rest API endpoint options
-         */
-        endpoint_options: {};
-        /**
-         * the name of the variable in local scope to save the data under
-         */
-        name?: string;
-        [k: string]: unknown;
-    } | ({
-        /**
-         * IDs of item to retrieve from db
-         */
-        ids: string[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * db collection name
-         */
-        collection: string;
-        /**
-         * whether the result should be saved as draft
-         */
-        draft: boolean;
-        [k: string]: unknown;
-    }) | {
-        objectData: {
-            /**
-             * Object storage container for the file
-             */
-            CONTAINER?: string;
-            /**
-             * Name of the file inside the object storage bucket
-             */
-            NAME?: string;
-            /**
-             * Object storage provider
-             */
-            PROVIDER?: string;
-            /**
-             * Region for the object container specified in Container
-             */
-            REGION?: string;
-            /**
-             * Size of the file in bytes
-             */
-            SIZE?: number;
-            /**
-             * Unix timestamp showing when the file was last modified
-             */
-            TIMESTAMP?: string;
-        };
-        /**
-         * if a file with the same filename already exists, whether to overwrite the old file
-         */
-        overwrite?: boolean;
-        /**
-         * Relative path to the directory that contains the file.
-         */
-        pathname?: string;
-        /**
-         * Basename of the file
-         */
-        basename?: string;
-        /**
-         * What kind of file this is, e.g. image / text
-         */
-        filetype?: string;
-        [k: string]: unknown;
-    })[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "condition";
+/** Schema dist/js/schema/workflow/unit/mixins/condition.json */
+export interface ConditionUnitMixinSchema {
+    type?: "condition";
     /**
      * Input information for condition.
      */
@@ -60099,227 +61678,11 @@ export type WorkflowUnitSchema = {
      * Throw exception on reaching to maximum occurence.
      */
     throwException?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
-     * The statement to be evaluated
-     */
-    statement: string;
-    /**
-     * The error message to be displayed if the assertion fails
-     */
-    errorMessage?: string;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "execution";
+}
+/** Schema dist/js/schema/workflow/unit/mixins/execution.json */
+export interface ExecutionUnitMixinSchema {
+    type?: "execution";
     application: {
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName?: string;
-        /**
-         * Application's short description.
-         */
-        summary?: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version?: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build?: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
         /**
          * entity identity
          */
@@ -60336,26 +61699,37 @@ export type WorkflowUnitSchema = {
         /**
          * entity name
          */
-        name?: string;
+        name: string;
         /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
-    };
-    executable?: {
         /**
-         * The name of the executable. e.g. pw.x
+         * The short name of the application. e.g. qe
          */
-        name: string;
+        shortName: string;
         /**
-         * _ids of the application this executable belongs to
+         * Application's short description.
          */
-        applicationId?: string[];
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    executable?: {
         /**
          * entity identity
          */
@@ -60370,51 +61744,120 @@ export type WorkflowUnitSchema = {
          */
         schemaVersion?: string;
         /**
+         * entity name
+         */
+        name: string;
+        /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
     };
     flavor?: {
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
          * _id of the executable this flavor belongs to
          */
-        executableId?: string;
+        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -60423,7 +61866,7 @@ export type WorkflowUnitSchema = {
          * name of the application this flavor belongs to
          */
         applicationName?: string;
-        input?: {
+        input: {
             templateId?: string;
             templateName?: string;
             /**
@@ -60435,388 +61878,123 @@ export type WorkflowUnitSchema = {
          * list of application versions this flavor supports
          */
         supportedApplicationVersions?: string[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
     };
-    /**
-     * unit input (type to be specified by the application's execution unit)
-     */
     input: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
+        template: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
+             */
+            content: string;
+        };
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
+        rendered: string;
+        isManuallyChanged: boolean;
     }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "assignment";
-    /**
-     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-     */
-    input?: {
-        /**
-         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-         */
-        scope: string;
-        /**
-         * Name of the input data. e.g. total_energy
-         */
-        name: string;
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
     }[];
-    /**
-     * Name of the global variable. e.g. 'x'
-     */
-    operand: string;
-    /**
-     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-     */
-    value: string | boolean | number;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
+}
+/** Schema dist/js/schema/workflow/unit/mixins/io.json */
+export interface DataIOUnitMixinSchema {
+    type?: "io";
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        type: "db_ids";
         /**
-         * The name of this item. e.g. scf_accuracy
+         * IDs of item to retrieve from db
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
+        ids: string[];
+    } | {
+        type: "db_collection";
         /**
-         * The name of this item. e.g. scf_accuracy
+         * db collection name
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
+        collection: string;
         /**
-         * The name of this item. e.g. scf_accuracy
+         * whether the result should be saved as draft
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
+        draft: boolean;
+    } | {
+        type: "object_storage";
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
         /**
-         * The name of this item. e.g. scf_accuracy
+         * if a file with the same filename already exists, whether to overwrite the old file
          */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    scope?: string;
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
-    /**
-     * entity identity
-     */
-    _id?: string;
-    isDraft?: boolean;
-    /**
-     * name of the unit. e.g. pw_scf
-     */
-    name?: string;
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    context?: {};
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors?: ({
+        overwrite?: boolean;
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Relative path to the directory that contains the file.
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors?: ({
+        pathname?: string;
         /**
-         * The name of this item. e.g. scf_accuracy
+         * Basename of the file
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors?: ({
+        basename?: string;
         /**
-         * The name of this item. e.g. scf_accuracy
+         * What kind of file this is, e.g. image / text
          */
-        name: string;
-    } | string)[];
-    /**
-     * names of the results for this calculation
-     */
-    results?: ({
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    } | string)[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    [k: string]: unknown;
-} | {
-    /**
-     * type of the unit
-     */
-    type: "map";
+        filetype?: string;
+    })[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/map.json */
+export interface MapUnitMixinSchema {
+    type?: "map";
     /**
      * Id of workflow to run inside map
      */
@@ -60843,19 +62021,127 @@ export type WorkflowUnitSchema = {
         values?: (string | number | {})[];
         useValues?: boolean;
     };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/processing.json */
+export interface ProcessingUnitMixinSchema {
+    type?: "processing";
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/mixins/reduce.json */
+export interface ReduceUnitMixinSchema {
+    type?: "reduce";
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+}
+/** Schema dist/js/schema/workflow/unit/mixins/subworkflow.json */
+export interface SubworkflowUnitMixinSchema {
+    type?: "subworkflow";
+}
+/** Schema dist/js/schema/workflow/unit/processing.json */
+export interface ProcessingUnitSchema {
     /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "processing";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -60872,7 +62158,27 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+}
+/** Schema dist/js/schema/workflow/unit/reduce.json */
+export interface ReduceUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
     /**
      * entity slug
      */
@@ -60883,73 +62189,272 @@ export type WorkflowUnitSchema = {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
     tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
-    [k: string]: unknown;
-} | {
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+}
+/** Schema dist/js/schema/workflow/unit/subworkflow.json */
+export interface SubworkflowUnitSchema {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
     /**
      * type of the unit
      */
     type: "subworkflow";
     /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+}
+/** Schema dist/js/schema/workflow/unit.json */
+export type WorkflowUnitSchema = {
+    /**
      * entity identity
      */
     _id?: string;
-    isDraft?: boolean;
     /**
-     * name of the unit. e.g. pw_scf
+     * entity slug
      */
-    name?: string;
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
     /**
      * Status of the unit.
      */
     status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "io";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -60966,7 +62471,74 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    context?: {};
+    subtype: "input" | "output" | "dataFrame";
+    source: "api" | "db" | "object_storage";
+    input: ({
+        type: "db_ids";
+        /**
+         * IDs of item to retrieve from db
+         */
+        ids: string[];
+    } | {
+        type: "db_collection";
+        /**
+         * db collection name
+         */
+        collection: string;
+        /**
+         * whether the result should be saved as draft
+         */
+        draft: boolean;
+    } | {
+        type: "object_storage";
+        objectData: {
+            /**
+             * Object storage container for the file
+             */
+            CONTAINER?: string;
+            /**
+             * Name of the file inside the object storage bucket
+             */
+            NAME?: string;
+            /**
+             * Object storage provider
+             */
+            PROVIDER?: string;
+            /**
+             * Region for the object container specified in Container
+             */
+            REGION?: string;
+            /**
+             * Size of the file in bytes
+             */
+            SIZE?: number;
+            /**
+             * Unix timestamp showing when the file was last modified
+             */
+            TIMESTAMP?: string;
+        };
+        /**
+         * if a file with the same filename already exists, whether to overwrite the old file
+         */
+        overwrite?: boolean;
+        /**
+         * Relative path to the directory that contains the file.
+         */
+        pathname?: string;
+        /**
+         * Basename of the file
+         */
+        basename?: string;
+        /**
+         * What kind of file this is, e.g. image / text
+         */
+        filetype?: string;
+    })[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
     /**
      * entity slug
      */
@@ -60977,1153 +62549,616 @@ export type WorkflowUnitSchema = {
      */
     schemaVersion?: string;
     /**
+     * entity name
+     */
+    name: string;
+    /**
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
     /**
      * names of the pre-processors for this calculation
      */
-    preProcessors?: ({
+    preProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the post-processors for this calculation
      */
-    postProcessors?: ({
+    postProcessors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the monitors for this calculation
      */
-    monitors?: ({
+    monitors: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * names of the results for this calculation
      */
-    results?: ({
+    results: {
         /**
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-    } | string)[];
+    }[];
     /**
      * entity tags
      */
     tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
     statusTrack?: {
         trackedAt: number;
         status: string;
         repetition?: number;
     }[];
-    [k: string]: unknown;
-};
-/** Schema dist/js/schema/workflow.json */
-export interface WorkflowSchema {
+    isDraft?: boolean;
     /**
-     * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
+     * type of the unit
      */
-    subworkflows: {
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
         /**
-         * Contains the Units of the subworkflow
+         * reduce operation, e.g. aggregate
          */
-        units: ({
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "condition";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Input information for condition.
+     */
+    input: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+     */
+    statement: string;
+    /**
+     * Flowchart ID reference for `then` part of the condition.
+     */
+    then: string;
+    /**
+     * Flowchart ID reference for `else` part of the condition.
+     */
+    else: string;
+    /**
+     * Maximum occurrence of the condition, usable for loops.
+     */
+    maxOccurrences: number;
+    /**
+     * Throw exception on reaching to maximum occurence.
+     */
+    throwException?: boolean;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assertion";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * The statement to be evaluated
+     */
+    statement: string;
+    /**
+     * The error message to be displayed if the assertion fails
+     */
+    errorMessage?: string;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "execution";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    application: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * The short name of the application. e.g. qe
+         */
+        shortName: string;
+        /**
+         * Application's short description.
+         */
+        summary: string;
+        /**
+         * Application version. e.g. 5.3.5
+         */
+        version: string;
+        /**
+         * Application build. e.g. VTST
+         */
+        build: string;
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
+         * Whether licensing is present
+         */
+        isLicensed?: boolean;
+    };
+    executable?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
             /**
-             * type of the unit
-             */
-            type: "io";
-            subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
-            input: ({
-                /**
-                 * rest API endpoint
-                 */
-                endpoint: string;
-                /**
-                 * rest API endpoint options
-                 */
-                endpoint_options: {};
-                /**
-                 * the name of the variable in local scope to save the data under
-                 */
-                name?: string;
-                [k: string]: unknown;
-            } | ({
-                /**
-                 * IDs of item to retrieve from db
-                 */
-                ids: string[];
-                [k: string]: unknown;
-            } | {
-                /**
-                 * db collection name
-                 */
-                collection: string;
-                /**
-                 * whether the result should be saved as draft
-                 */
-                draft: boolean;
-                [k: string]: unknown;
-            }) | {
-                objectData: {
-                    /**
-                     * Object storage container for the file
-                     */
-                    CONTAINER?: string;
-                    /**
-                     * Name of the file inside the object storage bucket
-                     */
-                    NAME?: string;
-                    /**
-                     * Object storage provider
-                     */
-                    PROVIDER?: string;
-                    /**
-                     * Region for the object container specified in Container
-                     */
-                    REGION?: string;
-                    /**
-                     * Size of the file in bytes
-                     */
-                    SIZE?: number;
-                    /**
-                     * Unix timestamp showing when the file was last modified
-                     */
-                    TIMESTAMP?: string;
-                };
-                /**
-                 * if a file with the same filename already exists, whether to overwrite the old file
-                 */
-                overwrite?: boolean;
-                /**
-                 * Relative path to the directory that contains the file.
-                 */
-                pathname?: string;
-                /**
-                 * Basename of the file
-                 */
-                basename?: string;
-                /**
-                 * What kind of file this is, e.g. image / text
-                 */
-                filetype?: string;
-                [k: string]: unknown;
-            })[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
-             * Input information for condition.
-             */
-            input: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-             */
-            statement: string;
-            /**
-             * Flowchart ID reference for `then` part of the condition.
-             */
-            then: string;
-            /**
-             * Flowchart ID reference for `else` part of the condition.
-             */
-            else: string;
-            /**
-             * Maximum occurrence of the condition, usable for loops.
-             */
-            maxOccurrences: number;
-            /**
-             * Throw exception on reaching to maximum occurence.
-             */
-            throwException?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
-             * The statement to be evaluated
-             */
-            statement: string;
-            /**
-             * The error message to be displayed if the assertion fails
-             */
-            errorMessage?: string;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
+             * The name of this item. e.g. scf_accuracy
              */
             name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
             /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            application: {
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName?: string;
-                /**
-                 * Application's short description.
-                 */
-                summary?: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version?: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build?: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                [k: string]: unknown;
-            };
-            executable?: {
-                /**
-                 * The name of the executable. e.g. pw.x
-                 */
-                name: string;
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId?: string[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-            };
-            flavor?: {
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId?: string;
-                /**
-                 * name of the executable this flavor belongs to
-                 */
-                executableName?: string;
-                /**
-                 * name of the application this flavor belongs to
-                 */
-                applicationName?: string;
-                input?: {
-                    templateId?: string;
-                    templateName?: string;
-                    /**
-                     * name of the resulting input file, if different than template name
-                     */
-                    name?: string;
-                }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results?: ({
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                } | string)[];
-            };
-            /**
-             * unit input (type to be specified by the application's execution unit)
-             */
-            input: {
-                [k: string]: unknown;
-            };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
-             */
-            name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
-             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-             */
-            input?: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Name of the global variable. e.g. 'x'
-             */
-            operand: string;
-            /**
-             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-             */
-            value: string | boolean | number;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
+             * The name of this item. e.g. scf_accuracy
              */
             name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
             /**
-             * Status of the unit.
+             * The name of this item. e.g. scf_accuracy
              */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
             /**
-             * Whether this unit is the first one to be executed.
+             * The name of this item. e.g. scf_accuracy
              */
-            head?: boolean;
+            name: string;
+        }[];
+        /**
+         * _ids of the application this executable belongs to
+         */
+        applicationId: string[];
+        /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+    };
+    flavor?: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
             /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             * The name of this item. e.g. scf_accuracy
              */
-            flowchartId: string;
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
             /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
+             * The name of this item. e.g. scf_accuracy
              */
-            next?: string;
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
             /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             * The name of this item. e.g. scf_accuracy
              */
-            enableRender?: boolean;
-            context?: {};
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
             /**
-             * entity slug
+             * The name of this item. e.g. scf_accuracy
              */
-            slug?: string;
-            systemName?: string;
+            name: string;
+        }[];
+        /**
+         * _id of the executable this flavor belongs to
+         */
+        executableId: string;
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName?: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName?: string;
+        input: {
+            templateId?: string;
+            templateName?: string;
             /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            scope?: string;
-            [k: string]: unknown;
-        } | {
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
-            /**
-             * entity identity
-             */
-            _id?: string;
-            isDraft?: boolean;
-            /**
-             * name of the unit. e.g. pw_scf
+             * name of the resulting input file, if different than template name
              */
             name?: string;
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            context?: {};
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            [k: string]: unknown;
-        })[];
-        model: {
-            /**
-             * general type of the model, eg. `dft`
-             */
-            type: string;
-            /**
-             * general subtype of the model, eg. `lda`
-             */
-            subtype: string;
-            method: {
-                /**
-                 * general type of this method, eg. `pseudopotential`
-                 */
-                type: string;
-                /**
-                 * general subtype of this method, eg. `ultra-soft`
-                 */
-                subtype: string;
-                /**
-                 * Object showing the actual possible precision based on theory and implementation
-                 */
-                precision?: {};
-                /**
-                 * additional data specific to method, eg. array of pseudopotentials
-                 */
-                data?: {};
-            };
-            [k: string]: unknown;
-        };
-        application: {
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName?: string;
-            /**
-             * Application's short description.
-             */
-            summary?: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version?: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build?: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
+        }[];
+        /**
+         * list of application versions this flavor supports
+         */
+        supportedApplicationVersions?: string[];
+    };
+    input: {
+        template: {
             /**
              * entity identity
              */
@@ -62140,23 +63175,485 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
+            applicationName: string;
+            applicationVersion?: string;
+            executableName: string;
+            contextProviders: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
             /**
-             * Identifies that entity is defaultable
+             * Content of the template. e.g. &CONTROL    calculation='scf' ...
              */
-            isDefault?: boolean;
-            [k: string]: unknown;
+            content: string;
         };
         /**
-         * Defines whether to store the results/properties extracted in this unit to properties collection
+         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        isDraft?: boolean;
+        rendered: string;
+        isManuallyChanged: boolean;
+    }[];
+    context?: {
+        name: ContextProviderNameEnum;
+        isEdited: boolean;
+        data: {};
+        extraData?: {};
+    }[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
         /**
-         * subworkflow identity
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "assignment";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    scope?: string;
+    /**
+     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+     */
+    input?: {
+        /**
+         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+         */
+        scope: string;
+        /**
+         * Name of the input data. e.g. total_energy
+         */
+        name: string;
+    }[];
+    /**
+     * Name of the global variable. e.g. 'x'
+     */
+    operand: string;
+    /**
+     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+     */
+    value: string | boolean | number;
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "processing";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Contains information about the operation used.
+     */
+    operation: string;
+    /**
+     * Contains information about the specific type of the operation used.
+     */
+    operationType: string;
+    /**
+     * unit input (type to be specified by the child units)
+     */
+    inputData: {
+        [k: string]: unknown;
+    };
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "map";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * Id of workflow to run inside map
+     */
+    workflowId: string;
+    /**
+     * Input information for map.
+     */
+    input: {
+        /**
+         * Name of the target variable to substitute using the values below. e.g. K_POINTS
+         */
+        target: string;
+        /**
+         * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
+         */
+        scope?: string;
+        /**
+         * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
+         */
+        name?: string;
+        /**
+         * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
+         */
+        values?: (string | number | {})[];
+        useValues?: boolean;
+    };
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
+    type: "subworkflow";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+};
+/** Schema dist/js/schema/workflow.json */
+export interface WorkflowSchema {
+    /**
+     * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
+     */
+    subworkflows: {
+        /**
+         * entity identity
          */
         _id?: string;
         /**
-         * Human-readable name of the subworkflow. e.g. Total-energy
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
         /**
@@ -62267,38 +63764,1239 @@ export interface WorkflowSchema {
              */
             excludeFilesPattern?: string;
         };
+        /**
+         * Contains the Units of the subworkflow
+         */
+        units: ({
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            subtype: "input" | "output" | "dataFrame";
+            source: "api" | "db" | "object_storage";
+            input: ({
+                type: "db_ids";
+                /**
+                 * IDs of item to retrieve from db
+                 */
+                ids: string[];
+            } | {
+                type: "db_collection";
+                /**
+                 * db collection name
+                 */
+                collection: string;
+                /**
+                 * whether the result should be saved as draft
+                 */
+                draft: boolean;
+            } | {
+                type: "object_storage";
+                objectData: {
+                    /**
+                     * Object storage container for the file
+                     */
+                    CONTAINER?: string;
+                    /**
+                     * Name of the file inside the object storage bucket
+                     */
+                    NAME?: string;
+                    /**
+                     * Object storage provider
+                     */
+                    PROVIDER?: string;
+                    /**
+                     * Region for the object container specified in Container
+                     */
+                    REGION?: string;
+                    /**
+                     * Size of the file in bytes
+                     */
+                    SIZE?: number;
+                    /**
+                     * Unix timestamp showing when the file was last modified
+                     */
+                    TIMESTAMP?: string;
+                };
+                /**
+                 * if a file with the same filename already exists, whether to overwrite the old file
+                 */
+                overwrite?: boolean;
+                /**
+                 * Relative path to the directory that contains the file.
+                 */
+                pathname?: string;
+                /**
+                 * Basename of the file
+                 */
+                basename?: string;
+                /**
+                 * What kind of file this is, e.g. image / text
+                 */
+                filetype?: string;
+            })[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Input information for condition.
+             */
+            input: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+             */
+            statement: string;
+            /**
+             * Flowchart ID reference for `then` part of the condition.
+             */
+            then: string;
+            /**
+             * Flowchart ID reference for `else` part of the condition.
+             */
+            else: string;
+            /**
+             * Maximum occurrence of the condition, usable for loops.
+             */
+            maxOccurrences: number;
+            /**
+             * Throw exception on reaching to maximum occurence.
+             */
+            throwException?: boolean;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * The statement to be evaluated
+             */
+            statement: string;
+            /**
+             * The error message to be displayed if the assertion fails
+             */
+            errorMessage?: string;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            application: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * The short name of the application. e.g. qe
+                 */
+                shortName: string;
+                /**
+                 * Application's short description.
+                 */
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            executable?: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * _ids of the application this executable belongs to
+                 */
+                applicationId: string[];
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+            };
+            flavor?: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * _id of the executable this flavor belongs to
+                 */
+                executableId: string;
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName?: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName?: string;
+                input: {
+                    templateId?: string;
+                    templateName?: string;
+                    /**
+                     * name of the resulting input file, if different than template name
+                     */
+                    name?: string;
+                }[];
+                /**
+                 * list of application versions this flavor supports
+                 */
+                supportedApplicationVersions?: string[];
+            };
+            input: {
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged: boolean;
+            }[];
+            context?: {
+                name: ContextProviderNameEnum;
+                isEdited: boolean;
+                data: {};
+                extraData?: {};
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            scope?: string;
+            /**
+             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+             */
+            input?: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Name of the global variable. e.g. 'x'
+             */
+            operand: string;
+            /**
+             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+             */
+            value: string | boolean | number;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "processing";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Contains information about the operation used.
+             */
+            operation: string;
+            /**
+             * Contains information about the specific type of the operation used.
+             */
+            operationType: string;
+            /**
+             * unit input (type to be specified by the child units)
+             */
+            inputData: {
+                [k: string]: unknown;
+            };
+        })[];
+        model: {
+            /**
+             * general type of the model, eg. `dft`
+             */
+            type: string;
+            /**
+             * general subtype of the model, eg. `lda`
+             */
+            subtype: string;
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
+            [k: string]: unknown;
+        };
+        application: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * The short name of the application. e.g. qe
+             */
+            shortName: string;
+            /**
+             * Application's short description.
+             */
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        /**
+         * Defines whether to store the results/properties extracted in this unit to properties collection
+         */
+        isDraft?: boolean;
     }[];
     /**
      * Contains the Units of the Workflow
      */
     units: ({
         /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
          * type of the unit
          */
         type: "io";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
-            /**
-             * rest API endpoint
-             */
-            endpoint: string;
-            /**
-             * rest API endpoint options
-             */
-            endpoint_options: {};
-            /**
-             * the name of the variable in local scope to save the data under
-             */
-            name?: string;
-            [k: string]: unknown;
-        } | ({
+            type: "db_ids";
             /**
              * IDs of item to retrieve from db
              */
             ids: string[];
-            [k: string]: unknown;
         } | {
+            type: "db_collection";
             /**
              * db collection name
              */
@@ -62307,8 +65005,8 @@ export interface WorkflowSchema {
              * whether the result should be saved as draft
              */
             draft: boolean;
-            [k: string]: unknown;
-        }) | {
+        } | {
+            type: "object_storage";
             objectData: {
                 /**
                  * Object storage container for the file
@@ -62351,21 +65049,83 @@ export interface WorkflowSchema {
              * What kind of file this is, e.g. image / text
              */
             filetype?: string;
-            [k: string]: unknown;
         })[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -62382,71 +65142,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "reduce";
         /**
          * corresponding map unit flowchart ID
          */
@@ -62464,19 +65159,82 @@ export interface WorkflowSchema {
              */
             arguments: string[];
         }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "condition";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -62493,71 +65251,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "condition";
         /**
          * Input information for condition.
          */
@@ -62591,19 +65284,82 @@ export interface WorkflowSchema {
          * Throw exception on reaching to maximum occurence.
          */
         throwException?: boolean;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assertion";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -62620,71 +65376,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assertion";
         /**
          * The statement to be evaluated
          */
@@ -62693,19 +65384,82 @@ export interface WorkflowSchema {
          * The error message to be displayed if the assertion fails
          */
         errorMessage?: string;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "execution";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -62722,96 +65476,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "execution";
         application: {
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName?: string;
-            /**
-             * Application's short description.
-             */
-            summary?: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version?: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build?: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
             /**
              * entity identity
              */
@@ -62828,26 +65493,37 @@ export interface WorkflowSchema {
             /**
              * entity name
              */
-            name?: string;
+            name: string;
             /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
-        };
-        executable?: {
             /**
-             * The name of the executable. e.g. pw.x
+             * The short name of the application. e.g. qe
              */
-            name: string;
+            shortName: string;
             /**
-             * _ids of the application this executable belongs to
+             * Application's short description.
              */
-            applicationId?: string[];
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
             /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        executable?: {
             /**
              * entity identity
              */
@@ -62862,51 +65538,120 @@ export interface WorkflowSchema {
              */
             schemaVersion?: string;
             /**
+             * entity name
+             */
+            name: string;
+            /**
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
             /**
              * names of the pre-processors for this calculation
              */
-            preProcessors?: ({
+            preProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the post-processors for this calculation
              */
-            postProcessors?: ({
+            postProcessors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the monitors for this calculation
              */
-            monitors?: ({
+            monitors: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
             /**
              * names of the results for this calculation
              */
-            results?: ({
+            results: {
                 /**
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-            } | string)[];
+            }[];
+            /**
+             * _ids of the application this executable belongs to
+             */
+            applicationId: string[];
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
         };
         flavor?: {
             /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
              * _id of the executable this flavor belongs to
              */
-            executableId?: string;
+            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -62915,7 +65660,7 @@ export interface WorkflowSchema {
              * name of the application this flavor belongs to
              */
             applicationName?: string;
-            input?: {
+            input: {
                 templateId?: string;
                 templateName?: string;
                 /**
@@ -62927,83 +65672,128 @@ export interface WorkflowSchema {
              * list of application versions this flavor supports
              */
             supportedApplicationVersions?: string[];
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
-            /**
-             * names of the results for this calculation
-             */
-            results?: ({
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            } | string)[];
         };
-        /**
-         * unit input (type to be specified by the application's execution unit)
-         */
         input: {
-            [k: string]: unknown;
-        };
+            template: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                applicationName: string;
+                applicationVersion?: string;
+                executableName: string;
+                contextProviders: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                 */
+                content: string;
+            };
+            /**
+             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+             */
+            rendered: string;
+            isManuallyChanged: boolean;
+        }[];
+        context?: {
+            name: ContextProviderNameEnum;
+            isEdited: boolean;
+            data: {};
+            extraData?: {};
+        }[];
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "assignment";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -63020,71 +65810,7 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "assignment";
+        scope?: string;
         /**
          * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
          */
@@ -63106,19 +65832,82 @@ export interface WorkflowSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
          */
         name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "processing";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -63135,72 +65924,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        scope?: string;
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "processing";
         /**
          * Contains information about the operation used.
          */
@@ -63215,19 +65938,82 @@ export interface WorkflowSchema {
         inputData: {
             [k: string]: unknown;
         };
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
         /**
-         * name of the unit. e.g. pw_scf
+         * entity slug
          */
-        name?: string;
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
         /**
          * Status of the unit.
          */
         status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "map";
         /**
          * Whether this unit is the first one to be executed.
          */
@@ -63244,71 +66030,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
-    } | {
-        /**
-         * type of the unit
-         */
-        type: "map";
         /**
          * Id of workflow to run inside map
          */
@@ -63335,36 +66056,11 @@ export interface WorkflowSchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+    } | {
         /**
          * entity identity
          */
         _id?: string;
-        isDraft?: boolean;
-        /**
-         * name of the unit. e.g. pw_scf
-         */
-        name?: string;
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        context?: {};
         /**
          * entity slug
          */
@@ -63375,74 +66071,68 @@ export interface WorkflowSchema {
          */
         schemaVersion?: string;
         /**
+         * entity name
+         */
+        name: string;
+        /**
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
         /**
          * names of the pre-processors for this calculation
          */
-        preProcessors?: ({
+        preProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the post-processors for this calculation
          */
-        postProcessors?: ({
+        postProcessors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the monitors for this calculation
          */
-        monitors?: ({
+        monitors: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * names of the results for this calculation
          */
-        results?: ({
+        results: {
             /**
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-        } | string)[];
+        }[];
         /**
          * entity tags
          */
         tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
         statusTrack?: {
             trackedAt: number;
             status: string;
             repetition?: number;
         }[];
-        [k: string]: unknown;
-    } | {
+        isDraft?: boolean;
         /**
          * type of the unit
          */
         type: "subworkflow";
         /**
-         * entity identity
-         */
-        _id?: string;
-        isDraft?: boolean;
-        /**
-         * name of the unit. e.g. pw_scf
-         */
-        name?: string;
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        /**
          * Whether this unit is the first one to be executed.
          */
         head?: boolean;
@@ -63458,66 +66148,6 @@ export interface WorkflowSchema {
          * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
          */
         enableRender?: boolean;
-        context?: {};
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * names of the results for this calculation
-         */
-        results?: ({
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        } | string)[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        [k: string]: unknown;
     })[];
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -63547,7 +66177,7 @@ export interface WorkflowSchema {
     /**
      * entity name
      */
-    name?: string;
+    name: string;
     /**
      * Identifies that entity is defaultable
      */

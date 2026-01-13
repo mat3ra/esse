@@ -5,8 +5,9 @@
     "type": "object",
     "required": [
         "categories",
-        "precision",
-        "data"
+        "data",
+        "name",
+        "precision"
     ],
     "properties": {
         "categories": {

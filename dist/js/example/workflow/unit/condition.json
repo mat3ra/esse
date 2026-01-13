@@ -18,5 +18,9 @@
     "status": "idle",
     "then": "sample_id_4",
     "throwException": true,
-    "type": "condition"
+    "type": "condition",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }
