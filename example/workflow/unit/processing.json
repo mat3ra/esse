@@ -9,5 +9,9 @@
     "operation": "data_transformation",
     "operationType": "manipulation",
     "status": "idle",
-    "type": "processing"
+    "type": "processing",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

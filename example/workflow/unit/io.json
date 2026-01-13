@@ -3,39 +3,22 @@
     "head": true,
     "input": [
         {
-            "endpoint": "data-frame",
-            "endpoint_options": {
-                "data": {
-                    "features": [
-                        "elemental_ratio:Si",
-                        "elemental_ratio:Ge",
-                        "ionization_potential:Ge",
-                        "ionization_potential:Si"
-                    ],
-                    "ids": [
-                        "KuAsBRwofzGfHPWiT"
-                    ],
-                    "targets": [
-                        "band_gaps:indirect",
-                        "band_gaps:direct"
-                    ]
-                },
-                "headers": {
-                    "X-Auth-Token": "",
-                    "X-User-Id": ""
-                },
-                "method": "POST",
-                "params": {
-                    "query": {
-                        "formula": "SiGe"
-                    }
-                }
-            }
+            "...": "include(./io/db_ids.json)"
+        },
+        {
+            "...": "include(./io/db_collection.json)"
+        },
+        {
+            "...": "include(./io/object_storage.json)"
         }
     ],
     "name": "io",
     "source": "api",
     "status": "idle",
     "subtype": "input",
-    "type": "io"
+    "type": "io",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

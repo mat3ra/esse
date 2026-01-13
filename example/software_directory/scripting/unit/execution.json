@@ -7,10 +7,18 @@
     "head": true,
     "input": [
         {
-            "...": "include(../../../software/template.json)"
+            "template": {
+                "...": "include(../../../software/template.json)"
+            },
+            "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
+            "isManuallyChanged": false
         }
     ],
     "name": "scripting",
     "status": "idle",
-    "type": "execution"
+    "type": "execution",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

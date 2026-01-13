@@ -4,5 +4,6 @@
     "objectData": {
         "...": "include(../../../core/reusable/object_storage_container_data.json)"
     },
-    "filetype": "text/html"
+    "filetype": "text/html",
+    "type": "object_storage"
 }
