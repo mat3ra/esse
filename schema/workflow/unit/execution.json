@@ -8,31 +8,10 @@
             "$ref": "./base.json"
         },
         {
-            "$ref": "runtime/runtime_items.json"
+            "$ref": "../../system/runtime_items.json"
+        },
+        {
+            "$ref": "./mixins/execution.json"
         }
-    ],
-    "properties": {
-        "type": {
-            "const": "execution"
-        },
-        "application": {
-            "description": "Contains information about the simulation engine/application.",
-            "$ref": "../../software/application.json"
-        },
-        "executable": {
-            "description": "Contains information about the simulation engine/application executable.",
-            "$ref": "../../software/executable.json"
-        },
-        "flavor": {
-            "description": "Contains information about the simulation engine/application flavor.",
-            "$ref": "../../software/flavor.json"
-        },
-        "input": {
-            "description": "unit input (type to be specified by the application's execution unit)"
-        }
-    },
-    "required": [
-        "input",
-        "application"
     ]
 }

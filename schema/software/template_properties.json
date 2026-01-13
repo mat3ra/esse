@@ -1,0 +1,34 @@
+{
+    "$id": "software/template-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "template properties schema",
+    "type": "object",
+    "properties": {
+        "applicationName": {
+            "type": "string"
+        },
+        "applicationVersion": {
+            "type": "string"
+        },
+        "executableName": {
+            "type": "string"
+        },
+        "contextProviders": {
+            "type": "array",
+            "items": {
+                "description": "render context provider names",
+                "$ref": "../system/runtime_item.json"
+            }
+        },
+        "content": {
+            "description": "Content of the template. e.g. &CONTROL    calculation='scf' ...",
+            "type": "string"
+        }
+    },
+    "required": [
+        "applicationName",
+        "executableName",
+        "contextProviders",
+        "content"
+    ]
+}

@@ -6,7 +6,7 @@
     "allOf": [
         {
             "description": "in-memory entity",
-            "$ref": "in_memory_entity/named_defaultable_has_metadata.json"
+            "$ref": "in_memory_entity/named_defaultable.json"
         }
     ],
     "properties": {
@@ -60,6 +60,26 @@
             "type": "array",
             "items": {
                 "$ref": "material/consistency_check.json"
+            }
+        },
+        "metadata": {
+            "type": "object",
+            "properties": {
+                "boundaryConditions": {
+                    "type": "object",
+                    "properties": {
+                        "type": {
+                            "$ref": "apse/file/applications/espresso/7.2/pw.x/system.json#/properties/esm_bc"
+                        },
+                        "offset": {
+                            "type": "number"
+                        }
+                    },
+                    "required": [
+                        "type",
+                        "offset"
+                    ]
+                }
             }
         }
     },
