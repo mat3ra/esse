@@ -1223,6 +1223,10 @@
                                 "type": "string"
                             }
                         },
+                        "applicationName": {
+                            "description": "name of the application this executable belongs to",
+                            "type": "string"
+                        },
                         "hasAdvancedComputeOptions": {
                             "description": "Whether advanced compute options are present",
                             "type": "boolean"
