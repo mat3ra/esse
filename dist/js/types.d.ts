@@ -6096,6 +6096,10 @@ export interface JobSchema {
                      */
                     applicationId?: string[];
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName?: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -7330,6 +7334,10 @@ export interface JobSchema {
                  * _ids of the application this executable belongs to
                  */
                 applicationId?: string[];
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -47875,6 +47883,10 @@ export interface WorkflowPropertySchema {
                  */
                 applicationId?: string[];
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -49109,6 +49121,10 @@ export interface WorkflowPropertySchema {
              * _ids of the application this executable belongs to
              */
             applicationId?: string[];
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
             /**
              * Whether advanced compute options are present
              */
@@ -51690,6 +51706,10 @@ export interface PropertyHolderSchema {
                      */
                     applicationId?: string[];
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName?: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52925,6 +52945,10 @@ export interface PropertyHolderSchema {
                  */
                 applicationId?: string[];
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -54136,6 +54160,10 @@ export interface ExecutableSchema {
      */
     applicationId?: string[];
     /**
+     * name of the application this executable belongs to
+     */
+    applicationName?: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54507,6 +54535,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55049,6 +55081,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -56504,6 +56540,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         applicationId?: string[];
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -57542,6 +57582,10 @@ export interface Subworkflow {
              * _ids of the application this executable belongs to
              */
             applicationId?: string[];
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
             /**
              * Whether advanced compute options are present
              */
@@ -58711,6 +58755,10 @@ export interface ExecutionUnitSchemaBase {
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -60353,6 +60401,10 @@ export type WorkflowUnitSchema = {
          */
         applicationId?: string[];
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61610,6 +61662,10 @@ export interface WorkflowSchema {
                  */
                 applicationId?: string[];
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -62844,6 +62900,10 @@ export interface WorkflowSchema {
              * _ids of the application this executable belongs to
              */
             applicationId?: string[];
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
             /**
              * Whether advanced compute options are present
              */

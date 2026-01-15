@@ -566,6 +566,10 @@ class ExecutableSchema(BaseModel):
     """
     _ids of the application this executable belongs to
     """
+    applicationName: Optional[str] = None
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -1568,6 +1572,10 @@ class ExecutableSchema14(BaseModel):
     applicationId: Optional[List[str]] = None
     """
     _ids of the application this executable belongs to
+    """
+    applicationName: Optional[str] = None
+    """
+    name of the application this executable belongs to
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
