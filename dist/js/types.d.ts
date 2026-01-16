@@ -3035,17 +3035,83 @@ export interface QENEBContextProviderSchema {
         v3?: [number, number, number];
     };
     /**
-     * Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
+     * https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
      */
-    FIRST_IMAGE: string;
+    FIRST_IMAGE: {
+        card_option?: "alat" | "bohr" | "angstrom" | "crystal" | "crystal_sg";
+        values?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+    };
     /**
-     * Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
+     * https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
      */
-    LAST_IMAGE: string;
-    /**
-     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
-     */
-    INTERMEDIATE_IMAGES: string[];
+    LAST_IMAGE: {
+        card_option?: "alat" | "bohr" | "angstrom" | "crystal" | "crystal_sg";
+        values?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+    };
+    INTERMEDIATE_IMAGES: {
+        card_option?: "alat" | "bohr" | "angstrom" | "crystal" | "crystal_sg";
+        values?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+    }[];
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_base_context_provider.json */
 /**

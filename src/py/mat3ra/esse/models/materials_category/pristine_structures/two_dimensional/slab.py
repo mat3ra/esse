@@ -265,13 +265,13 @@ class Value(Enum):
     Og = "Og"
 
 
-class Value147(Enum):
+class Value150(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema(BaseModel):
-    value: Union[Value, Value147]
+    value: Union[Value, Value150]
     """
     All elements, including extra elements
     """
@@ -701,7 +701,7 @@ class AxisEnum(Enum):
     z = "z"
 
 
-class Value148(Enum):
+class Value151(Enum):
     H = "H"
     He = "He"
     Li = "Li"
@@ -822,13 +822,13 @@ class Value148(Enum):
     Og = "Og"
 
 
-class Value149(Enum):
+class Value152(Enum):
     X = "X"
     Vac = "Vac"
 
 
 class AtomicElementSchema70(BaseModel):
-    value: Union[Value148, Value149]
+    value: Union[Value151, Value152]
     """
     All elements, including extra elements
     """

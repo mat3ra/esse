@@ -85,6 +85,63 @@ class CELLPARAMETERS(BaseModel):
     v3: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
 
 
+class CardOption(Enum):
+    alat = "alat"
+    bohr = "bohr"
+    angstrom = "angstrom"
+    crystal = "crystal"
+    crystal_sg = "crystal_sg"
+
+
+class Value(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class AtomicPositionsSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    card_option: Optional[CardOption] = "alat"
+    values: Optional[List[Value]] = None
+
+
+class AtomicPositionsSchema3(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    card_option: Optional[CardOption] = "alat"
+    values: Optional[List[Value]] = None
+
+
+class AtomicPositionsSchema4(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    card_option: Optional[CardOption] = "alat"
+    values: Optional[List[Value]] = None
+
+
 class QENEBContextProviderSchema(BaseModel):
     IBRAV: int
     RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
@@ -108,15 +165,12 @@ class QENEBContextProviderSchema(BaseModel):
     Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
     """
     CELL_PARAMETERS: CELLPARAMETERS
-    FIRST_IMAGE: str
+    FIRST_IMAGE: AtomicPositionsSchema = Field(..., title="atomic positions schema")
     """
-    Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.
+    https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
     """
-    LAST_IMAGE: str
+    LAST_IMAGE: AtomicPositionsSchema3 = Field(..., title="atomic positions schema")
     """
-    Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.
+    https://www.quantum-espresso.org/Doc/INPUT_PW.html#idm1493
     """
-    INTERMEDIATE_IMAGES: List[str]
-    """
-    Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
-    """
+    INTERMEDIATE_IMAGES: List[AtomicPositionsSchema4]
