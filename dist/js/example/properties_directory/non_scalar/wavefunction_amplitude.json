@@ -1,0 +1,41 @@
+{
+    "yDataSeries": [
+        [
+            0,
+            0.1,
+            0.3,
+            0.5,
+            0.7,
+            0.9,
+            1,
+            0.9,
+            0.7,
+            0.5,
+            0.3,
+            0.1,
+            0
+        ]
+    ],
+    "yAxis": {
+        "label": "amplitude"
+    },
+    "xDataArray": [
+        -6,
+        -5,
+        -4,
+        -3,
+        -2,
+        -1,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+    ],
+    "xAxis": {
+        "label": "z coordinate"
+    },
+    "name": "wavefunction_amplitude"
+}

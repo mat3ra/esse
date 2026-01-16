@@ -47296,6 +47296,35 @@ export interface VibrationalSpectrumPropertySchema {
     xDataArray: (number | number[])[];
     yDataSeries: [number, ...number[]][];
 }
+/** Schema dist/js/schema/properties_directory/non_scalar/wavefunction_amplitude.json */
+export interface WavefunctionAmplitudePropertySchema {
+    xAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "z coordinate";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    yAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "amplitude";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    name: "wavefunction_amplitude";
+    /**
+     * array containing values of x Axis
+     */
+    xDataArray: (number | number[])[];
+    yDataSeries: [number, ...number[]][];
+}
 /** Schema dist/js/schema/properties_directory/non_scalar/workflow.json */
 export interface WorkflowPropertySchema {
     /**
