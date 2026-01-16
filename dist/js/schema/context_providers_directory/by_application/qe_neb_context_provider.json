@@ -176,18 +176,160 @@
             }
         },
         "FIRST_IMAGE": {
-            "type": "string",
-            "description": "Atomic positions block (ATOMIC_POSITIONS) for the first NEB image."
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "x",
+                    "y",
+                    "z"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "X": {
+                        "type": "string",
+                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                    },
+                    "x": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "y": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "z": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "if_pos(1)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "if_pos(2)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "if_pos(3)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    }
+                }
+            }
         },
         "LAST_IMAGE": {
-            "type": "string",
-            "description": "Atomic positions block (ATOMIC_POSITIONS) for the last NEB image."
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "x",
+                    "y",
+                    "z"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                    "X": {
+                        "type": "string",
+                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                    },
+                    "x": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "y": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "z": {
+                        "type": "number",
+                        "description": "atomic positions"
+                    },
+                    "if_pos(1)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "if_pos(2)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    },
+                    "if_pos(3)": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "integer one or zero",
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 1
+                    }
+                }
+            }
         },
         "INTERMEDIATE_IMAGES": {
             "type": "array",
             "description": "Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.",
             "items": {
-                "type": "string"
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "required": [
+                        "x",
+                        "y",
+                        "z"
+                    ],
+                    "additionalProperties": false,
+                    "properties": {
+                        "X": {
+                            "type": "string",
+                            "description": "label of the atom as specified in ATOMIC_SPECIES"
+                        },
+                        "x": {
+                            "type": "number",
+                            "description": "atomic positions"
+                        },
+                        "y": {
+                            "type": "number",
+                            "description": "atomic positions"
+                        },
+                        "z": {
+                            "type": "number",
+                            "description": "atomic positions"
+                        },
+                        "if_pos(1)": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "integer one or zero",
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "if_pos(2)": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "integer one or zero",
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1
+                        },
+                        "if_pos(3)": {
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "integer one or zero",
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 1
+                        }
+                    }
+                }
             }
         }
     }
