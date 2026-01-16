@@ -25,12 +25,12 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label35(Enum):
+class Label37(Enum):
     amplitude = "amplitude"
 
 
-class AxisSchema38(BaseModel):
-    label: Label35
+class AxisSchema40(BaseModel):
+    label: Label37
     """
     label of an axis object
     """
@@ -46,7 +46,7 @@ class Name(Enum):
 
 class WavefunctionAmplitudePropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema38 = Field(..., title="axis schema")
+    yAxis: AxisSchema40 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

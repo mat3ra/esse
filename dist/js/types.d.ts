@@ -50891,6 +50891,33 @@ export interface PropertyHolderSchema {
             /**
              * label of an axis object
              */
+            label: "z coordinate";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        yAxis: {
+            /**
+             * label of an axis object
+             */
+            label: "amplitude";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        name: "wavefunction_amplitude";
+        /**
+         * array containing values of x Axis
+         */
+        xDataArray: (number | number[])[];
+        yDataSeries: [number, ...number[]][];
+    } | {
+        xAxis: {
+            /**
+             * label of an axis object
+             */
             label: "reaction coordinate";
             /**
              * units for an axis
