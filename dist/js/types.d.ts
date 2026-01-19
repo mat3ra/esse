@@ -1400,15 +1400,15 @@ export interface AtomicSpeciesSchema {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
 }
 /** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/cell.json */
@@ -2589,15 +2589,15 @@ export interface PwxMainSchema {
             /**
              * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
              */
-            X?: string;
+            X: string;
             /**
              * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
              */
-            Mass_X?: number;
+            Mass_X: number;
             /**
              * PseudoPot_X
              */
-            PseudoPot_X?: string;
+            PseudoPot_X: string;
         }[];
     };
     /**
@@ -2956,29 +2956,29 @@ export interface QENEBContextProviderSchema {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     ATOMIC_SPECIES_WITH_LABELS: {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     /**
      * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
@@ -3112,29 +3112,29 @@ export interface QEPwxBaseContextProviderSchema {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     ATOMIC_SPECIES_WITH_LABELS?: {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     /**
      * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
@@ -3202,29 +3202,29 @@ export interface QEPwxContextProviderSchema {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     ATOMIC_SPECIES_WITH_LABELS: {
         /**
          * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
          */
-        X?: string;
+        X: string;
         /**
          * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
          */
-        Mass_X?: number;
+        Mass_X: number;
         /**
          * PseudoPot_X
          */
-        PseudoPot_X?: string;
+        PseudoPot_X: string;
     }[];
     /**
      * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
