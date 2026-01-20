@@ -47302,7 +47302,7 @@ export interface WavefunctionAmplitudePropertySchema {
         /**
          * label of an axis object
          */
-        label: "z coordinate";
+        label: "coordinate";
         /**
          * units for an axis
          */
@@ -50891,7 +50891,7 @@ export interface PropertyHolderSchema {
             /**
              * label of an axis object
              */
-            label: "z coordinate";
+            label: "coordinate";
             /**
              * units for an axis
              */

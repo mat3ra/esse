@@ -729,7 +729,7 @@ class PotentialProfilePropertySchema(BaseModel):
 
 
 class Label16(Enum):
-    z_coordinate = "z coordinate"
+    coordinate = "coordinate"
 
 
 class AxisSchema19(BaseModel):

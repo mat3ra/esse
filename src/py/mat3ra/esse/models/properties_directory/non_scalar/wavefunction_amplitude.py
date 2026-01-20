@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field
 
 
 class Label(Enum):
-    z_coordinate = "z coordinate"
+    coordinate = "coordinate"
 
 
 class AxisSchema(BaseModel):

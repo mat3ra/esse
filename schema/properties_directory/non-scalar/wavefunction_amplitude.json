@@ -14,7 +14,7 @@
             "properties": {
                 "label": {
                     "enum": [
-                        "z coordinate"
+                        "coordinate"
                     ]
                 }
             }
@@ -39,4 +39,3 @@
         "name"
     ]
 }
-
