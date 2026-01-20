@@ -35,7 +35,7 @@
         6
     ],
     "xAxis": {
-        "label": "z coordinate"
+        "label": "coordinate"
     },
     "name": "wavefunction_amplitude"
 }
