@@ -9,11 +9,8 @@ from typing import List, Optional
 from pydantic import BaseModel, Field
 
 
-class RuntimeItemNameObjectSchema(BaseModel):
+class ContextProvider(BaseModel):
     name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
 
 
 class TemplateSchema(BaseModel):
@@ -37,7 +34,7 @@ class TemplateSchema(BaseModel):
     applicationName: str
     applicationVersion: Optional[str] = None
     executableName: str
-    contextProviders: List[RuntimeItemNameObjectSchema]
+    contextProviders: List[ContextProvider]
     content: str
     """
     Content of the template. e.g. &CONTROL    calculation='scf' ...

@@ -1732,16 +1732,15 @@
                                                             "contextProviders": {
                                                                 "type": "array",
                                                                 "items": {
-                                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                    "title": "runtime item name object schema",
+                                                                    "description": "render context provider names",
                                                                     "type": "object",
                                                                     "required": [
                                                                         "name"
                                                                     ],
                                                                     "properties": {
                                                                         "name": {
-                                                                            "description": "The name of this item. e.g. scf_accuracy",
-                                                                            "type": "string"
+                                                                            "type": "string",
+                                                                            "tsType": "ContextProviderNameEnum"
                                                                         }
                                                                     }
                                                                 }
@@ -3835,16 +3834,15 @@
                                                 "contextProviders": {
                                                     "type": "array",
                                                     "items": {
-                                                        "$schema": "http://json-schema.org/draft-07/schema#",
-                                                        "title": "runtime item name object schema",
+                                                        "description": "render context provider names",
                                                         "type": "object",
                                                         "required": [
                                                             "name"
                                                         ],
                                                         "properties": {
                                                             "name": {
-                                                                "description": "The name of this item. e.g. scf_accuracy",
-                                                                "type": "string"
+                                                                "type": "string",
+                                                                "tsType": "ContextProviderNameEnum"
                                                             }
                                                         }
                                                     }
