@@ -42,7 +42,7 @@ class InfoForCharacteristicObtainedByExabyteCalculation(BaseModel):
     owner: EntityReferenceSchema = Field(..., title="entity reference schema")
 
 
-class Type93(Enum):
+class Type102(Enum):
     experiment = "experiment"
 
 
@@ -83,7 +83,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type94(Enum):
+class Type103(Enum):
     literature = "literature"
 
 
@@ -93,7 +93,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type94] = None
+    type: Optional[Type103] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.
@@ -153,7 +153,7 @@ class LiteratureReferenceSchema(BaseModel):
 
 
 class InfoForCharacteristicObtainedByExperiment(BaseModel):
-    type: Optional[Type93] = None
+    type: Optional[Type102] = None
     authors: List[ExperimentAuthorSchema]
     """
     experiment authors
@@ -183,7 +183,7 @@ class InfoForCharacteristicObtainedByExperiment(BaseModel):
 
 
 class LiteratureReferenceSchema12(BaseModel):
-    type: Optional[Type94] = None
+    type: Optional[Type103] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.

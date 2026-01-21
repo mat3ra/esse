@@ -38,7 +38,69 @@
                         "type": "boolean"
                     },
                     "data": {
-                        "type": "object"
+                        "oneOf": [
+                            {
+                                "$ref": "../../../context_providers_directory/boundary_conditions_data_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/nwchem_total_energy_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/qe_neb_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/qe_pwx_base_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/qe_pwx_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/vasp_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/by_application/vasp_neb_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/collinear_magnetization_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/hubbard_j_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/hubbard_legacy_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/hubbard_u_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/hubbard_v_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/ion_dynamics_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/ml_settings_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/ml_train_test_split_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/neb_data_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/non_collinear_magnetization_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/planewave_cutoffs_context_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/points_grid_data_provider.json"
+                            },
+                            {
+                                "$ref": "../../../context_providers_directory/points_path_data_provider.json"
+                            }
+                        ],
+                        "additionalProperties": false
                     },
                     "extraData": {
                         "type": "object"

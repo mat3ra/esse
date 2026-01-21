@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel, conint
+from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
 
 class Name(Enum):
@@ -829,10 +829,541 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditionsDataProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: Optional[float] = None
+    electricField: Optional[float] = Field(None, title="Electric Field (eV/A)")
+    targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
+
+
+class NWChemTotalEnergyContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    CHARGE: int
+    """
+    Total charge of the system.
+    """
+    MULT: int
+    """
+    Spin multiplicity of the system.
+    """
+    BASIS: str
+    """
+    Basis set label used in the calculation (e.g., '6-31G').
+    """
+    NAT: int
+    """
+    Number of atoms in the system.
+    """
+    NTYP: int
+    """
+    Number of unique atomic species in the system.
+    """
+    ATOMIC_POSITIONS: str
+    """
+    Formatted text block with atomic positions including constraints.
+    """
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
+    """
+    Formatted text block with atomic positions without constraints.
+    """
+    ATOMIC_SPECIES: str
+    """
+    Formatted text block for atomic species, including element symbols and masses.
+    """
+    FUNCTIONAL: str
+    """
+    Exchange-correlation functional identifier (e.g., 'B3LYP').
+    """
+    CARTESIAN: bool
+    """
+    Whether atomic positions are expressed in cartesian coordinates.
+    """
+
+
+class RESTARTMODE(Enum):
+    from_scratch = "from_scratch"
+    restart = "restart"
+
+
+class ATOMICSPECY(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: str
+    """
+    label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+    """
+    Mass_X: float
+    """
+    mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+    """
+    PseudoPot_X: str
+    """
+    PseudoPot_X
+    """
+
+
+class ATOMICSPECIESWITHLABEL(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: str
+    """
+    label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+    """
+    Mass_X: float
+    """
+    mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+    """
+    PseudoPot_X: str
+    """
+    PseudoPot_X
+    """
+
+
+class ATOMICPOSITION(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class CELLPARAMETERS(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    v1: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+    v2: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+    v3: Optional[List[float]] = Field(None, max_length=3, min_length=3, title="array of 3 number elements schema")
+
+
+class FIRSTIMAGEItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class LASTIMAGEItem(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class INTERMEDIATEIMAGE(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    X: Optional[str] = None
+    """
+    label of the atom as specified in ATOMIC_SPECIES
+    """
+    x: float
+    """
+    atomic positions
+    """
+    y: float
+    """
+    atomic positions
+    """
+    z: float
+    """
+    atomic positions
+    """
+    if_pos_1_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(1)", title="integer one or zero")
+    if_pos_2_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(2)", title="integer one or zero")
+    if_pos_3_: Optional[conint(ge=0, le=1)] = Field(None, alias="if_pos(3)", title="integer one or zero")
+
+
+class QENEBContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: int
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: List[ATOMICSPECY]
+    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
+    NAT: int
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: int
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: conint(ge=1)
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: CELLPARAMETERS
+    FIRST_IMAGE: List[FIRSTIMAGEItem]
+    LAST_IMAGE: List[LASTIMAGEItem]
+    INTERMEDIATE_IMAGES: List[List[INTERMEDIATEIMAGE]]
+    """
+    Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+    """
+
+
+class QEPwxBaseContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: Optional[int] = None
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: Optional[List[ATOMICSPECY]] = None
+    ATOMIC_SPECIES_WITH_LABELS: Optional[List[ATOMICSPECIESWITHLABEL]] = None
+    NAT: Optional[int] = None
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: Optional[int] = None
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: Optional[conint(ge=1)] = None
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: Optional[CELLPARAMETERS] = None
+
+
+class QEPwxContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: int
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: List[ATOMICSPECY]
+    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
+    NAT: int
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: int
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: conint(ge=1)
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: List[ATOMICPOSITION]
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: CELLPARAMETERS
+
+
+class VASPContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    POSCAR: str
+    """
+    POSCAR content for VASP including lattice, atom types, positions and constraints.
+    """
+    POSCAR_WITH_CONSTRAINTS: str
+    """
+    POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+    """
+
+
+class VASPNEBContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    FIRST_IMAGE: str
+    """
+    POSCAR content with constraints for the first NEB image.
+    """
+    LAST_IMAGE: str
+    """
+    POSCAR content with constraints for the last NEB image.
+    """
+    INTERMEDIATE_IMAGES: List[str]
+    """
+    POSCAR contents with constraints for all intermediate NEB images.
+    """
+
+
+class StartingMagnetizationItem(BaseModel):
+    atomicSpecies: str = Field(..., title="Atomic species")
+    value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
+    index: int = Field(..., title="Index")
+
+
+class CollinearMagnetizationContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    startingMagnetization: List[StartingMagnetizationItem]
+    isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
+    totalMagnetization: float = Field(..., title="Total magnetization")
+
+
+class Species(Enum):
+    U = "U"
+    J = "J"
+    B = "B"
+    E2 = "E2"
+    E3 = "E3"
+
+
+class HubbardJContextProviderSchemaItem(BaseModel):
+    paramType: Optional[Species] = Field(None, title="Species")
+    atomicSpecies: Optional[str] = Field(None, title="Species")
+    atomicOrbital: Optional[str] = Field(None, title="Orbital")
+    value: Optional[float] = Field(None, title="Value (eV)")
+
+
+class HubbardLegacyContextProviderSchemaItem(BaseModel):
+    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    atomicSpeciesIndex: Optional[int] = Field(None, title="Species index")
+    hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
+
+
+class HubbardUContextProviderSchemaItem(BaseModel):
+    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    atomicOrbital: Optional[str] = Field(None, title="Atomic orbital")
+    hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
+
+
+class HubbardVContextProviderSchemaItem(BaseModel):
+    atomicSpecies: Optional[str] = Field(None, title="Species 1")
+    siteIndex: Optional[int] = Field(None, title="Site no 1")
+    atomicOrbital: Optional[str] = Field(None, title="Orbital 1")
+    atomicSpecies2: Optional[str] = Field(None, title="Species 2")
+    siteIndex2: Optional[int] = Field(None, title="Site no 2")
+    atomicOrbital2: Optional[str] = Field(None, title="Orbital 2")
+    hubbardVValue: Optional[float] = Field(None, title="V (eV)")
+
+
+class IonDynamicsContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    numberOfSteps: Optional[int] = Field(None, title="numberOfSteps")
+    timeStep: Optional[float] = Field(None, title="timeStep (Hartree a.u.)")
+    electronMass: Optional[float] = Field(None, title="Effective electron mass")
+    temperature: Optional[float] = Field(None, title="Ionic temperature (K)")
+
+
+class ProblemCategory(Enum):
+    regression = "regression"
+    classification = "classification"
+    clustering = "clustering"
+
+
+class MLSettingsContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    target_column_name: Optional[str] = None
+    problem_category: Optional[ProblemCategory] = None
+
+
+class MLTrainTestSplitContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    fraction_held_as_test_set: Optional[confloat(ge=0.0, le=1.0)] = None
+
+
+class NEBDataProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    nImages: Optional[float] = None
+
+
+class StartingMagnetizationItem31(BaseModel):
+    index: Optional[int] = Field(None, title="Index")
+    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    value: Optional[float] = Field(None, title="Starting magnetization")
+
+
+class SpinAngle(BaseModel):
+    index: Optional[int] = Field(None, title="Index")
+    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    angle1: Optional[float] = Field(None, title="Angle1 (deg)")
+    angle2: Optional[float] = Field(None, title="Angle2 (deg)")
+
+
+class ConstrainType(Enum):
+    none = "none"
+    total = "total"
+    atomic = "atomic"
+    total_direction = "total direction"
+    atomic_direction = "atomic direction"
+
+
+class ConstrainedMagnetization(BaseModel):
+    constrainType: Optional[ConstrainType] = Field(None, title="Constrain type")
+    lambda_: Optional[float] = Field(None, alias="lambda", title="lambda")
+
+
+class FixedMagnetization(BaseModel):
+    x: Optional[float] = Field(None, title="X-component")
+    y: Optional[float] = Field(None, title="Y-component")
+    z: Optional[float] = Field(None, title="Z-component")
+
+
+class NonCollinearMagnetizationContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
+    isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
+    startingMagnetization: Optional[List[StartingMagnetizationItem31]] = None
+    isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
+    isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
+    lforcet: Optional[bool] = None
+    spinAngles: Optional[List[SpinAngle]] = None
+    isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
+    constrainedMagnetization: Optional[ConstrainedMagnetization] = None
+    isFixedMagnetization: Optional[bool] = Field(
+        None, title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
+    )
+    fixedMagnetization: Optional[FixedMagnetization] = None
+
+
+class PlanewaveCutoffsContextProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    wavefunction: Optional[float] = None
+    density: Optional[float] = None
+
+
+class GridMetricType(Enum):
+    KPPRA = "KPPRA"
+    spacing = "spacing"
+
+
+class PointsGridDataProviderSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    dimensions: List[float] = Field(..., max_length=3, min_length=3)
+    shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
+    reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
+    gridMetricType: GridMetricType
+    gridMetricValue: float
+    preferGridMetric: Optional[bool] = None
+
+
+class PointsPathDataProviderSchemaItem(BaseModel):
+    point: Optional[str] = None
+    steps: int
+    coordinates: List[float]
+
+
 class ContextItem(BaseModel):
     name: str
     isEdited: bool
-    data: Dict[str, Any]
+    data: Union[
+        BoundaryConditionsDataProviderSchema,
+        NWChemTotalEnergyContextProviderSchema,
+        QENEBContextProviderSchema,
+        QEPwxBaseContextProviderSchema,
+        QEPwxContextProviderSchema,
+        VASPContextProviderSchema,
+        VASPNEBContextProviderSchema,
+        CollinearMagnetizationContextProviderSchema,
+        List[HubbardJContextProviderSchemaItem],
+        List[HubbardLegacyContextProviderSchemaItem],
+        List[HubbardUContextProviderSchemaItem],
+        List[HubbardVContextProviderSchemaItem],
+        IonDynamicsContextProviderSchema,
+        MLSettingsContextProviderSchema,
+        MLTrainTestSplitContextProviderSchema,
+        NEBDataProviderSchema,
+        NonCollinearMagnetizationContextProviderSchema,
+        PlanewaveCutoffsContextProviderSchema,
+        PointsGridDataProviderSchema,
+        List[PointsPathDataProviderSchemaItem],
+    ]
     extraData: Optional[Dict[str, Any]] = None
 
 
@@ -1670,6 +2201,209 @@ class ExecutionUnitInputItemSchema17(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class BoundaryConditionsDataProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: Optional[float] = None
+    electricField: Optional[float] = Field(None, title="Electric Field (eV/A)")
+    targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
+
+
+class QENEBContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: int
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: List[ATOMICSPECY]
+    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
+    NAT: int
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: int
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: conint(ge=1)
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: CELLPARAMETERS
+    FIRST_IMAGE: List[FIRSTIMAGEItem]
+    LAST_IMAGE: List[LASTIMAGEItem]
+    INTERMEDIATE_IMAGES: List[List[INTERMEDIATEIMAGE]]
+    """
+    Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+    """
+
+
+class QEPwxBaseContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: Optional[int] = None
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: Optional[List[ATOMICSPECY]] = None
+    ATOMIC_SPECIES_WITH_LABELS: Optional[List[ATOMICSPECIESWITHLABEL]] = None
+    NAT: Optional[int] = None
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: Optional[int] = None
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: Optional[conint(ge=1)] = None
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: Optional[CELLPARAMETERS] = None
+
+
+class QEPwxContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    IBRAV: int
+    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
+    ATOMIC_SPECIES: List[ATOMICSPECY]
+    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
+    NAT: int
+    """
+    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+    """
+    NTYP: int
+    """
+    number of types of atoms in the unit cell
+    """
+    NTYP_WITH_LABELS: conint(ge=1)
+    """
+    Number of different atomic species including labels
+    """
+    ATOMIC_POSITIONS: List[ATOMICPOSITION]
+    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
+    """
+    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+    """
+    CELL_PARAMETERS: CELLPARAMETERS
+
+
+class StartingMagnetizationItem32(BaseModel):
+    atomicSpecies: str = Field(..., title="Atomic species")
+    value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
+    index: int = Field(..., title="Index")
+
+
+class CollinearMagnetizationContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    startingMagnetization: List[StartingMagnetizationItem32]
+    isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
+    totalMagnetization: float = Field(..., title="Total magnetization")
+
+
+class HubbardJContextProviderSchemaItem16(BaseModel):
+    paramType: Optional[Species] = Field(None, title="Species")
+    atomicSpecies: Optional[str] = Field(None, title="Species")
+    atomicOrbital: Optional[str] = Field(None, title="Orbital")
+    value: Optional[float] = Field(None, title="Value (eV)")
+
+
+class MLSettingsContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    target_column_name: Optional[str] = None
+    problem_category: Optional[ProblemCategory] = None
+
+
+class StartingMagnetizationItem33(BaseModel):
+    index: Optional[int] = Field(None, title="Index")
+    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
+    value: Optional[float] = Field(None, title="Starting magnetization")
+
+
+class ConstrainedMagnetization20(BaseModel):
+    constrainType: Optional[ConstrainType] = Field(None, title="Constrain type")
+    lambda_: Optional[float] = Field(None, alias="lambda", title="lambda")
+
+
+class NonCollinearMagnetizationContextProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
+    isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
+    startingMagnetization: Optional[List[StartingMagnetizationItem33]] = None
+    isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
+    isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
+    lforcet: Optional[bool] = None
+    spinAngles: Optional[List[SpinAngle]] = None
+    isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
+    constrainedMagnetization: Optional[ConstrainedMagnetization20] = None
+    isFixedMagnetization: Optional[bool] = Field(
+        None, title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
+    )
+    fixedMagnetization: Optional[FixedMagnetization] = None
+
+
+class PointsGridDataProviderSchema16(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
+    dimensions: List[float] = Field(..., max_length=3, min_length=3)
+    shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
+    reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
+    gridMetricType: GridMetricType
+    gridMetricValue: float
+    preferGridMetric: Optional[bool] = None
+
+
+class ContextItem15(BaseModel):
+    name: str
+    isEdited: bool
+    data: Union[
+        BoundaryConditionsDataProviderSchema16,
+        NWChemTotalEnergyContextProviderSchema,
+        QENEBContextProviderSchema16,
+        QEPwxBaseContextProviderSchema16,
+        QEPwxContextProviderSchema16,
+        VASPContextProviderSchema,
+        VASPNEBContextProviderSchema,
+        CollinearMagnetizationContextProviderSchema16,
+        List[HubbardJContextProviderSchemaItem16],
+        List[HubbardLegacyContextProviderSchemaItem],
+        List[HubbardUContextProviderSchemaItem],
+        List[HubbardVContextProviderSchemaItem],
+        IonDynamicsContextProviderSchema,
+        MLSettingsContextProviderSchema16,
+        MLTrainTestSplitContextProviderSchema,
+        NEBDataProviderSchema,
+        NonCollinearMagnetizationContextProviderSchema16,
+        PlanewaveCutoffsContextProviderSchema,
+        PointsGridDataProviderSchema16,
+        List[PointsPathDataProviderSchemaItem],
+    ]
+    extraData: Optional[Dict[str, Any]] = None
+
+
 class ExecutionUnitSchemaBase12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -1742,7 +2476,7 @@ class ExecutionUnitSchemaBase12(BaseModel):
     executable: Optional[ExecutableSchema16] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema16] = Field(None, title="flavor schema")
     input: List[ExecutionUnitInputItemSchema17]
-    context: Optional[List[ContextItem]] = None
+    context: Optional[List[ContextItem15]] = None
 
 
 class AssignmentUnitSchema12(BaseModel):
