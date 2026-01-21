@@ -157,6 +157,17 @@ potential_profile:
   schemaId: properties-directory/non-scalar/potential-profile
   isResult: true
 
+wavefunction_amplitude:
+  defaults:
+    xAxis:
+      label: coordinate
+      units: angstrom
+    yAxis:
+      label: amplitude
+      units: a.u.
+  schemaId: properties-directory/non-scalar/wavefunction-amplitude
+  isResult: true
+
 charge_density_profile:
   defaults:
     xAxis:
