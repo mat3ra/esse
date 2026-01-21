@@ -6507,10 +6507,7 @@ export interface JobSchema {
                         applicationVersion?: string;
                         executableName: string;
                         contextProviders: {
-                            /**
-                             * The name of this item. e.g. scf_accuracy
-                             */
-                            name: string;
+                            name: ContextProviderNameEnum;
                         }[];
                         /**
                          * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -7635,10 +7632,7 @@ export interface JobSchema {
                     applicationVersion?: string;
                     executableName: string;
                     contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
+                        name: ContextProviderNameEnum;
                     }[];
                     /**
                      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -49110,10 +49104,7 @@ export interface WorkflowPropertySchema {
                     applicationVersion?: string;
                     executableName: string;
                     contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
+                        name: ContextProviderNameEnum;
                     }[];
                     /**
                      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -50238,10 +50229,7 @@ export interface WorkflowPropertySchema {
                 applicationVersion?: string;
                 executableName: string;
                 contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
+                    name: ContextProviderNameEnum;
                 }[];
                 /**
                  * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -52949,10 +52937,7 @@ export interface PropertyHolderSchema {
                         applicationVersion?: string;
                         executableName: string;
                         contextProviders: {
-                            /**
-                             * The name of this item. e.g. scf_accuracy
-                             */
-                            name: string;
+                            name: ContextProviderNameEnum;
                         }[];
                         /**
                          * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -54077,10 +54062,7 @@ export interface PropertyHolderSchema {
                     applicationVersion?: string;
                     executableName: string;
                     contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
+                        name: ContextProviderNameEnum;
                     }[];
                     /**
                      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -55299,10 +55281,7 @@ export interface TemplateSchema {
     applicationVersion?: string;
     executableName: string;
     contextProviders: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
+        name: ContextProviderNameEnum;
     }[];
     /**
      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -55315,10 +55294,7 @@ export interface TemplatePropertiesSchema {
     applicationVersion?: string;
     executableName: string;
     contextProviders: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
+        name: ContextProviderNameEnum;
     }[];
     /**
      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -55765,10 +55741,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -56328,10 +56301,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -57943,10 +57913,7 @@ export interface SubworkflowMixinSchema {
                 applicationVersion?: string;
                 executableName: string;
                 contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
+                    name: ContextProviderNameEnum;
                 }[];
                 /**
                  * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -59069,10 +59036,7 @@ export type WorkflowSubworkflowUnitSchema = {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -60243,10 +60207,7 @@ export interface SubworkflowSchema {
                 applicationVersion?: string;
                 executableName: string;
                 contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
+                    name: ContextProviderNameEnum;
                 }[];
                 /**
                  * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -61319,10 +61280,7 @@ export interface ExecutionUnitSchemaBase {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -61367,10 +61325,7 @@ export interface ExecutionUnitInputSchema {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -61415,10 +61370,7 @@ export interface ExecutionUnitInputItemSchema {
         applicationVersion?: string;
         executableName: string;
         contextProviders: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
+            name: ContextProviderNameEnum;
         }[];
         /**
          * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -62169,10 +62121,7 @@ export interface ExecutionUnitMixinSchema {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -63512,10 +63461,7 @@ export type WorkflowUnitSchema = {
             applicationVersion?: string;
             executableName: string;
             contextProviders: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
+                name: ContextProviderNameEnum;
             }[];
             /**
              * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -64900,10 +64846,7 @@ export interface WorkflowSchema {
                     applicationVersion?: string;
                     executableName: string;
                     contextProviders: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
+                        name: ContextProviderNameEnum;
                     }[];
                     /**
                      * Content of the template. e.g. &CONTROL    calculation='scf' ...
@@ -66028,10 +65971,7 @@ export interface WorkflowSchema {
                 applicationVersion?: string;
                 executableName: string;
                 contextProviders: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
+                    name: ContextProviderNameEnum;
                 }[];
                 /**
                  * Content of the template. e.g. &CONTROL    calculation='scf' ...
