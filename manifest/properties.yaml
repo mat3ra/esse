@@ -164,7 +164,6 @@ wavefunction_amplitude:
       units: angstrom
     yAxis:
       label: amplitude
-      units: a.u.
   schemaId: properties-directory/non-scalar/wavefunction-amplitude
   isResult: true
 

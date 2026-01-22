@@ -21,7 +21,7 @@
             "properties": {
                 "label": {
                     "enum": [
-                        "coordinate"
+                        "z coordinate"
                     ],
                     "description": "label of an axis object",
                     "type": "string"
