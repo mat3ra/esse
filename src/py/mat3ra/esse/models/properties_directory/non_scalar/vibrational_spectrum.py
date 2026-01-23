@@ -32,7 +32,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label33(Enum):
+class Label35(Enum):
     Intensity = "Intensity"
     Absorbance = "Absorbance"
     Absorption_coefficient = "Absorption coefficient"
@@ -45,8 +45,8 @@ class Units336(Enum):
     a_u_ = "a.u."
 
 
-class AxisSchema36(BaseModel):
-    label: Label33
+class AxisSchema38(BaseModel):
+    label: Label35
     """
     label of an axis object
     """
@@ -62,7 +62,7 @@ class Name(Enum):
 
 class VibrationalSpectrumPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema36 = Field(..., title="axis schema")
+    yAxis: AxisSchema38 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

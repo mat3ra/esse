@@ -31,7 +31,7 @@ class AxisSchema(BaseModel):
     """
 
 
-class Label27(Enum):
+class Label29(Enum):
     Phonon_DOS = "Phonon DOS"
 
 
@@ -41,8 +41,8 @@ class Units274(Enum):
     states_meV = "states/meV"
 
 
-class AxisSchema30(BaseModel):
-    label: Label27
+class AxisSchema32(BaseModel):
+    label: Label29
     """
     label of an axis object
     """
@@ -58,7 +58,7 @@ class Name(Enum):
 
 class PhononDensityOfStatesPropertySchema(BaseModel):
     xAxis: AxisSchema = Field(..., title="axis schema")
-    yAxis: AxisSchema30 = Field(..., title="axis schema")
+    yAxis: AxisSchema32 = Field(..., title="axis schema")
     name: Name
     xDataArray: List[Union[float, List[float]]]
     """

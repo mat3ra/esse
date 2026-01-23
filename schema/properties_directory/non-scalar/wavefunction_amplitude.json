@@ -1,0 +1,41 @@
+{
+    "$id": "properties-directory/non-scalar/wavefunction-amplitude",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Wavefunction amplitude property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/abstract/2d_plot.json"
+        }
+    ],
+    "properties": {
+        "xAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "coordinate"
+                    ]
+                }
+            }
+        },
+        "yAxis": {
+            "type": "object",
+            "properties": {
+                "label": {
+                    "enum": [
+                        "amplitude"
+                    ]
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "wavefunction_amplitude"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
