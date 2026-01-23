@@ -17,10 +17,58 @@
             "type": "object",
             "required": [
                 "name",
+                "properties",
                 "subworkflows",
                 "units"
             ],
             "properties": {
+                "workflows": {
+                    "description": "Array of workflows with the same schema as the current one.",
+                    "type": "array",
+                    "items": {
+                        "type": "object"
+                    }
+                },
+                "_id": {
+                    "description": "entity identity",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "entity slug",
+                    "type": "string"
+                },
+                "systemName": {
+                    "type": "string"
+                },
+                "schemaVersion": {
+                    "description": "entity's schema version. Used to distinct between different schemas.",
+                    "type": "string",
+                    "default": "2022.8.16"
+                },
+                "name": {
+                    "description": "entity name",
+                    "type": "string"
+                },
+                "isDefault": {
+                    "description": "Identifies that entity is defaultable",
+                    "type": "boolean",
+                    "default": false
+                },
+                "metadata": {
+                    "type": "object"
+                },
+                "properties": {
+                    "description": "Array of characteristic properties calculated by this workflow (TODO: add enums)",
+                    "type": "array",
+                    "items": {
+                        "description": "property names, eg. `band_gaps`, `band_structure`",
+                        "type": "string"
+                    }
+                },
+                "isUsingDataset": {
+                    "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
+                    "type": "boolean"
+                },
                 "subworkflows": {
                     "description": "Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting",
                     "type": "array",
@@ -7307,60 +7355,6 @@
                             "type"
                         ]
                     }
-                },
-                "properties": {
-                    "description": "Array of characteristic properties calculated by this workflow (TODO: add enums)",
-                    "type": "array",
-                    "items": {
-                        "description": "property names, eg. `band_gaps`, `band_structure`",
-                        "oneOf": [
-                            {
-                                "type": "string"
-                            },
-                            {
-                                "type": "object"
-                            }
-                        ]
-                    }
-                },
-                "isUsingDataset": {
-                    "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
-                    "type": "boolean"
-                },
-                "workflows": {
-                    "description": "Array of workflows with the same schema as the current one.",
-                    "type": "array",
-                    "items": {
-                        "type": "object"
-                    }
-                },
-                "_id": {
-                    "description": "entity identity",
-                    "type": "string"
-                },
-                "slug": {
-                    "description": "entity slug",
-                    "type": "string"
-                },
-                "systemName": {
-                    "type": "string"
-                },
-                "schemaVersion": {
-                    "description": "entity's schema version. Used to distinct between different schemas.",
-                    "type": "string",
-                    "default": "2022.8.16"
-                },
-                "name": {
-                    "description": "entity name",
-                    "type": "string"
-                },
-                "isDefault": {
-                    "description": "Identifies that entity is defaultable",
-                    "type": "boolean",
-                    "default": false
-                },
-                "metadata": {
-                    "type": "object"
                 }
             }
         },

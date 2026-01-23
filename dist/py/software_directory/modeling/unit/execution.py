@@ -239,7 +239,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class TemplateSchema7(BaseModel):
+class TemplateSchema9(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -267,11 +267,11 @@ class TemplateSchema7(BaseModel):
     """
 
 
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7(BaseModel):
+class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines9(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    template: TemplateSchema7 = Field(..., title="template schema")
+    template: TemplateSchema9 = Field(..., title="template schema")
     rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
@@ -713,7 +713,7 @@ class NEBDataProviderSchema(BaseModel):
     nImages: Optional[float] = None
 
 
-class StartingMagnetizationItem8(BaseModel):
+class StartingMagnetizationItem12(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -751,7 +751,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     )
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem8]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem12]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -895,6 +895,6 @@ class ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsE
     executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
     flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
     input: List[
-        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines7]
+        Union[ExecutionUnitInputItemSchema, ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines9]
     ] = Field(..., title="execution unit input schema")
     context: Optional[List[ContextItem]] = None

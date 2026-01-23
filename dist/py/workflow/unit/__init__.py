@@ -1102,7 +1102,7 @@ class NEBDataProviderSchema(BaseModel):
     nImages: Optional[float] = None
 
 
-class StartingMagnetizationItem23(BaseModel):
+class StartingMagnetizationItem27(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1140,7 +1140,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     )
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem23]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem27]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1452,7 +1452,7 @@ class ProcessingUnitSchema(BaseModel):
     """
 
 
-class Input13(BaseModel):
+class Input16(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -1544,7 +1544,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input13
+    input: Input16
     """
     Input information for map.
     """

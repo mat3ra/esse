@@ -1253,7 +1253,7 @@ class NEBDataProviderSchema(BaseModel):
     nImages: Optional[float] = None
 
 
-class StartingMagnetizationItem27(BaseModel):
+class StartingMagnetizationItem31(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1291,7 +1291,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     )
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem27]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem31]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1699,7 +1699,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class ObjectStorageIoSchema12(BaseModel):
+class ObjectStorageIoSchema14(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
@@ -1720,17 +1720,17 @@ class ObjectStorageIoSchema12(BaseModel):
     """
 
 
-class Input16(
+class Input19(
     RootModel[
-        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema12]
+        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema14]
     ]
 ):
     root: Union[
-        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema12
+        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema14
     ] = Field(..., discriminator="type")
 
 
-class DataIOUnitSchema10(BaseModel):
+class DataIOUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1800,10 +1800,10 @@ class DataIOUnitSchema10(BaseModel):
     """
     subtype: Subtype
     source: Source
-    input: List[Input16]
+    input: List[Input19]
 
 
-class ReduceUnitSchema10(BaseModel):
+class ReduceUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1881,7 +1881,7 @@ class ReduceUnitSchema10(BaseModel):
     """
 
 
-class ConditionUnitSchema10(BaseModel):
+class ConditionUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1975,7 +1975,7 @@ class ConditionUnitSchema10(BaseModel):
     """
 
 
-class AssertionUnitSchema10(BaseModel):
+class AssertionUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2053,7 +2053,7 @@ class AssertionUnitSchema10(BaseModel):
     """
 
 
-class ExecutableSchema14(BaseModel):
+class ExecutableSchema16(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2101,7 +2101,7 @@ class ExecutableSchema14(BaseModel):
     """
 
 
-class FlavorSchema14(BaseModel):
+class FlavorSchema16(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2160,7 +2160,7 @@ class FlavorSchema14(BaseModel):
     """
 
 
-class TemplateSchema18(BaseModel):
+class TemplateSchema20(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2188,8 +2188,8 @@ class TemplateSchema18(BaseModel):
     """
 
 
-class ExecutionUnitInputItemSchema15(BaseModel):
-    template: TemplateSchema18 = Field(..., title="template schema")
+class ExecutionUnitInputItemSchema17(BaseModel):
+    template: TemplateSchema20 = Field(..., title="template schema")
     rendered: str
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
@@ -2197,7 +2197,7 @@ class ExecutionUnitInputItemSchema15(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class BoundaryConditionsDataProviderSchema14(BaseModel):
+class BoundaryConditionsDataProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2210,7 +2210,7 @@ class BoundaryConditionsDataProviderSchema14(BaseModel):
     targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
 
 
-class QENEBContextProviderSchema14(BaseModel):
+class QENEBContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2244,7 +2244,7 @@ class QENEBContextProviderSchema14(BaseModel):
     """
 
 
-class QEPwxBaseContextProviderSchema14(BaseModel):
+class QEPwxBaseContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2272,7 +2272,7 @@ class QEPwxBaseContextProviderSchema14(BaseModel):
     CELL_PARAMETERS: Optional[CELLPARAMETERS] = None
 
 
-class QEPwxContextProviderSchema14(BaseModel):
+class QEPwxContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2300,29 +2300,29 @@ class QEPwxContextProviderSchema14(BaseModel):
     CELL_PARAMETERS: CELLPARAMETERS
 
 
-class StartingMagnetizationItem28(BaseModel):
+class StartingMagnetizationItem32(BaseModel):
     atomicSpecies: str = Field(..., title="Atomic species")
     value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
     index: int = Field(..., title="Index")
 
 
-class CollinearMagnetizationContextProviderSchema14(BaseModel):
+class CollinearMagnetizationContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    startingMagnetization: List[StartingMagnetizationItem28]
+    startingMagnetization: List[StartingMagnetizationItem32]
     isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
     totalMagnetization: float = Field(..., title="Total magnetization")
 
 
-class HubbardJContextProviderSchemaItem14(BaseModel):
+class HubbardJContextProviderSchemaItem16(BaseModel):
     paramType: Optional[Species] = Field(None, title="Species")
     atomicSpecies: Optional[str] = Field(None, title="Species")
     atomicOrbital: Optional[str] = Field(None, title="Orbital")
     value: Optional[float] = Field(None, title="Value (eV)")
 
 
-class MLSettingsContextProviderSchema14(BaseModel):
+class MLSettingsContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2330,37 +2330,37 @@ class MLSettingsContextProviderSchema14(BaseModel):
     problem_category: Optional[ProblemCategory] = None
 
 
-class StartingMagnetizationItem29(BaseModel):
+class StartingMagnetizationItem33(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
 
 
-class ConstrainedMagnetization18(BaseModel):
+class ConstrainedMagnetization20(BaseModel):
     constrainType: Optional[ConstrainType] = Field(None, title="Constrain type")
     lambda_: Optional[float] = Field(None, alias="lambda", title="lambda")
 
 
-class NonCollinearMagnetizationContextProviderSchema14(BaseModel):
+class NonCollinearMagnetizationContextProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem29]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem33]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
     spinAngles: Optional[List[SpinAngle]] = None
     isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
-    constrainedMagnetization: Optional[ConstrainedMagnetization18] = None
+    constrainedMagnetization: Optional[ConstrainedMagnetization20] = None
     isFixedMagnetization: Optional[bool] = Field(
         None, title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
     )
     fixedMagnetization: Optional[FixedMagnetization] = None
 
 
-class PointsGridDataProviderSchema14(BaseModel):
+class PointsGridDataProviderSchema16(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
@@ -2372,35 +2372,35 @@ class PointsGridDataProviderSchema14(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class ContextItem13(BaseModel):
+class ContextItem15(BaseModel):
     name: str
     isEdited: bool
     data: Union[
-        BoundaryConditionsDataProviderSchema14,
+        BoundaryConditionsDataProviderSchema16,
         NWChemTotalEnergyContextProviderSchema,
-        QENEBContextProviderSchema14,
-        QEPwxBaseContextProviderSchema14,
-        QEPwxContextProviderSchema14,
+        QENEBContextProviderSchema16,
+        QEPwxBaseContextProviderSchema16,
+        QEPwxContextProviderSchema16,
         VASPContextProviderSchema,
         VASPNEBContextProviderSchema,
-        CollinearMagnetizationContextProviderSchema14,
-        List[HubbardJContextProviderSchemaItem14],
+        CollinearMagnetizationContextProviderSchema16,
+        List[HubbardJContextProviderSchemaItem16],
         List[HubbardLegacyContextProviderSchemaItem],
         List[HubbardUContextProviderSchemaItem],
         List[HubbardVContextProviderSchemaItem],
         IonDynamicsContextProviderSchema,
-        MLSettingsContextProviderSchema14,
+        MLSettingsContextProviderSchema16,
         MLTrainTestSplitContextProviderSchema,
         NEBDataProviderSchema,
-        NonCollinearMagnetizationContextProviderSchema14,
+        NonCollinearMagnetizationContextProviderSchema16,
         PlanewaveCutoffsContextProviderSchema,
-        PointsGridDataProviderSchema14,
+        PointsGridDataProviderSchema16,
         List[PointsPathDataProviderSchemaItem],
     ]
     extraData: Optional[Dict[str, Any]] = None
 
 
-class ExecutionUnitSchemaBase10(BaseModel):
+class ExecutionUnitSchemaBase12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2469,13 +2469,13 @@ class ExecutionUnitSchemaBase10(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     application: ApplicationSchema = Field(..., title="application schema")
-    executable: Optional[ExecutableSchema14] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema14] = Field(None, title="flavor schema")
-    input: List[ExecutionUnitInputItemSchema15]
-    context: Optional[List[ContextItem13]] = None
+    executable: Optional[ExecutableSchema16] = Field(None, title="executable schema")
+    flavor: Optional[FlavorSchema16] = Field(None, title="flavor schema")
+    input: List[ExecutionUnitInputItemSchema17]
+    context: Optional[List[ContextItem15]] = None
 
 
-class AssignmentUnitSchema10(BaseModel):
+class AssignmentUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2558,7 +2558,7 @@ class AssignmentUnitSchema10(BaseModel):
     """
 
 
-class ProcessingUnitSchema10(BaseModel):
+class ProcessingUnitSchema12(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2640,7 +2640,7 @@ class ProcessingUnitSchema10(BaseModel):
     """
 
 
-class Input17(BaseModel):
+class Input20(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -2732,7 +2732,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input17
+    input: Input20
     """
     Input information for map.
     """
@@ -2811,48 +2811,32 @@ class SubworkflowUnitSchema(BaseModel):
 class WorkflowUnitSchema(
     RootModel[
         Union[
-            DataIOUnitSchema10,
-            ReduceUnitSchema10,
-            ConditionUnitSchema10,
-            AssertionUnitSchema10,
-            ExecutionUnitSchemaBase10,
-            AssignmentUnitSchema10,
-            ProcessingUnitSchema10,
+            DataIOUnitSchema12,
+            ReduceUnitSchema12,
+            ConditionUnitSchema12,
+            AssertionUnitSchema12,
+            ExecutionUnitSchemaBase12,
+            AssignmentUnitSchema12,
+            ProcessingUnitSchema12,
             MapUnitSchema,
             SubworkflowUnitSchema,
         ]
     ]
 ):
     root: Union[
-        DataIOUnitSchema10,
-        ReduceUnitSchema10,
-        ConditionUnitSchema10,
-        AssertionUnitSchema10,
-        ExecutionUnitSchemaBase10,
-        AssignmentUnitSchema10,
-        ProcessingUnitSchema10,
+        DataIOUnitSchema12,
+        ReduceUnitSchema12,
+        ConditionUnitSchema12,
+        AssertionUnitSchema12,
+        ExecutionUnitSchemaBase12,
+        AssignmentUnitSchema12,
+        ProcessingUnitSchema12,
         MapUnitSchema,
         SubworkflowUnitSchema,
     ] = Field(..., discriminator="type", title="workflow unit schema")
 
 
 class WorkflowSchema(BaseModel):
-    subworkflows: List[SubworkflowSchema]
-    """
-    Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
-    """
-    units: List[WorkflowUnitSchema]
-    """
-    Contains the Units of the Workflow
-    """
-    properties: Optional[List[Union[str, Dict[str, Any]]]] = None
-    """
-    Array of characteristic properties calculated by this workflow (TODO: add enums)
-    """
-    isUsingDataset: Optional[bool] = None
-    """
-    Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
-    """
     workflows: Optional[List[Dict[str, Any]]] = None
     """
     Array of workflows with the same schema as the current one.
@@ -2879,3 +2863,19 @@ class WorkflowSchema(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+    properties: List[str]
+    """
+    Array of characteristic properties calculated by this workflow (TODO: add enums)
+    """
+    isUsingDataset: Optional[bool] = None
+    """
+    Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+    """
+    subworkflows: List[SubworkflowSchema]
+    """
+    Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
+    """
+    units: List[WorkflowUnitSchema]
+    """
+    Contains the Units of the Workflow
+    """
