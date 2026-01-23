@@ -19,7 +19,8 @@
                 "name",
                 "properties",
                 "subworkflows",
-                "units"
+                "units",
+                "workflows"
             ],
             "properties": {
                 "workflows": {

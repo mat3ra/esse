@@ -19,5 +19,8 @@
                 "type": "object"
             }
         }
-    }
+    },
+    "required": [
+        "workflows"
+    ]
 }

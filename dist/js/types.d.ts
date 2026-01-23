@@ -5577,7 +5577,7 @@ export interface JobSchema {
         /**
          * Array of workflows with the same schema as the current one.
          */
-        workflows?: {}[];
+        workflows: {}[];
         /**
          * entity identity
          */
@@ -49214,7 +49214,7 @@ export interface WorkflowPropertySchema {
     /**
      * Array of workflows with the same schema as the current one.
      */
-    workflows?: {}[];
+    workflows: {}[];
     /**
      * entity identity
      */
@@ -54087,7 +54087,7 @@ export interface PropertyHolderSchema {
         /**
          * Array of workflows with the same schema as the current one.
          */
-        workflows?: {}[];
+        workflows: {}[];
         /**
          * entity identity
          */
@@ -74718,7 +74718,7 @@ export interface WorkflowSchema {
     /**
      * Array of workflows with the same schema as the current one.
      */
-    workflows?: {}[];
+    workflows: {}[];
     /**
      * entity identity
      */

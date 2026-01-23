@@ -2845,7 +2845,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     entity name
     """
-    workflows: Optional[List[Dict[str, Any]]] = None
+    workflows: List[Dict[str, Any]]
     """
     Array of workflows with the same schema as the current one.
     """
