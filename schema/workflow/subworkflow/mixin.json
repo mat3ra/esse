@@ -39,6 +39,7 @@
     },
     "required": [
         "model",
+        "properties",
         "application",
         "units"
     ]

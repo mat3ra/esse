@@ -5632,7 +5632,7 @@ export interface JobSchema {
             /**
              * Array of characteristic properties calculated by this subworkflow
              */
-            properties?: string[];
+            properties: string[];
             /**
              * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
              */
@@ -49265,7 +49265,7 @@ export interface WorkflowPropertySchema {
         /**
          * Array of characteristic properties calculated by this subworkflow
          */
-        properties?: string[];
+        properties: string[];
         /**
          * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
          */
@@ -54138,7 +54138,7 @@ export interface PropertyHolderSchema {
             /**
              * Array of characteristic properties calculated by this subworkflow
              */
-            properties?: string[];
+            properties: string[];
             /**
              * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
              */
@@ -61028,7 +61028,7 @@ export interface BaseWorkflowSchema {
         /**
          * Array of characteristic properties calculated by this subworkflow
          */
-        properties?: string[];
+        properties: string[];
         /**
          * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
          */
@@ -64686,7 +64686,7 @@ export interface SubworkflowMixinSchema {
     /**
      * Array of characteristic properties calculated by this subworkflow
      */
-    properties?: string[];
+    properties: string[];
     /**
      * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
      */
@@ -68020,7 +68020,7 @@ export interface SubworkflowSchema {
     /**
      * Array of characteristic properties calculated by this subworkflow
      */
-    properties?: string[];
+    properties: string[];
     /**
      * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
      */
@@ -74773,7 +74773,7 @@ export interface WorkflowSchema {
         /**
          * Array of characteristic properties calculated by this subworkflow
          */
-        properties?: string[];
+        properties: string[];
         /**
          * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
          */

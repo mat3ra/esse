@@ -1662,7 +1662,7 @@ class BaseModel1(BaseModel):
 
 
 class SubworkflowMixinSchema(BaseModel):
-    properties: Optional[List[str]] = None
+    properties: List[str]
     """
     Array of characteristic properties calculated by this subworkflow
     """

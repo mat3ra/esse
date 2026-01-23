@@ -68,6 +68,7 @@
                     "application",
                     "model",
                     "name",
+                    "properties",
                     "units"
                 ],
                 "properties": {

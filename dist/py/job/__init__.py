@@ -1679,7 +1679,7 @@ class SubworkflowSchema(BaseModel):
     """
     entity name
     """
-    properties: Optional[List[str]] = None
+    properties: List[str]
     """
     Array of characteristic properties calculated by this subworkflow
     """
