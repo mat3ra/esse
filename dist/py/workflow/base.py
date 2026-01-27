@@ -1646,15 +1646,113 @@ class BaseMethod(BaseModel):
     """
 
 
-class BaseModelModel(BaseModel):
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: str
+    type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: str
+    subtype: Literal["lda"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional] = None
+
+
+class Functional1(Enum):
+    pbe = "pbe"
+    pbesol = "pbesol"
+    pw91 = "pw91"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory1(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["gga"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional1] = None
+
+
+class Functional2(Enum):
+    b3lyp = "b3lyp"
+    hse06 = "hse06"
+
+
+class LegacyModelDensityFunctionalTheory2(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["hybrid"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional2] = None
+
+
+class Type6(Enum):
+    ml = "ml"
+
+
+class Subtype1(Enum):
+    re = "re"
+
+
+class LegacyModelRegression(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype1
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+
+
+class Type7(Enum):
+    unknown = "unknown"
+
+
+class Subtype2(Enum):
+    unknown = "unknown"
+
+
+class LegacyModelUnknown(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype2
     """
     general subtype of the model, eg. `lda`
     """
@@ -1685,18 +1783,30 @@ class SubworkflowSchema(BaseModel):
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+    Compute schema
     """
     units: List[WorkflowSubworkflowUnitSchema]
     """
     Contains the Units of the subworkflow
     """
-    model: BaseModelModel = Field(..., title="base model")
+    model: Union[
+        Union[
+            LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory1, LegacyModelDensityFunctionalTheory2
+        ],
+        LegacyModelRegression,
+        LegacyModelUnknown,
+    ] = Field(..., discriminator="type")
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
+
+
+class Subtype3(Enum):
+    input = "input"
+    output = "output"
+    dataFrame = "dataFrame"
 
 
 class ObjectStorageIoSchema1(BaseModel):
@@ -1798,7 +1908,7 @@ class DataIOUnitSchema1(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    subtype: Subtype
+    subtype: Subtype3
     source: Source
     input: List[Input1]
 
@@ -2197,11 +2307,18 @@ class ExecutionUnitInputItemSchema3(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class Type8(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
 class BoundaryConditionsDataProviderSchema1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: Optional[Type] = "pbc"
+    type: Optional[Type8] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """

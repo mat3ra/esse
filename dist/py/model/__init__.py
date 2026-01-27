@@ -28,7 +28,7 @@ class BaseMethod(BaseModel):
     """
 
 
-class BaseModel1(BaseModel):
+class BaseModelModel(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )

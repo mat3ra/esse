@@ -1646,15 +1646,113 @@ class BaseMethod(BaseModel):
     """
 
 
-class BaseModel1(BaseModel):
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: str
+    type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: str
+    subtype: Literal["lda"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional] = None
+
+
+class Functional54(Enum):
+    pbe = "pbe"
+    pbesol = "pbesol"
+    pw91 = "pw91"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory16(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["gga"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional54] = None
+
+
+class Functional55(Enum):
+    b3lyp = "b3lyp"
+    hse06 = "hse06"
+
+
+class LegacyModelDensityFunctionalTheory17(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["hybrid"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional55] = None
+
+
+class Type130(Enum):
+    ml = "ml"
+
+
+class Subtype21(Enum):
+    re = "re"
+
+
+class LegacyModelRegression(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype21
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+
+
+class Type131(Enum):
+    unknown = "unknown"
+
+
+class Subtype22(Enum):
+    unknown = "unknown"
+
+
+class LegacyModelUnknown(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype22
     """
     general subtype of the model, eg. `lda`
     """
@@ -1685,13 +1783,21 @@ class SubworkflowSchema(BaseModel):
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+    Compute schema
     """
     units: List[WorkflowSubworkflowUnitSchema]
     """
     Contains the Units of the subworkflow
     """
-    model: BaseModel1 = Field(..., title="base model")
+    model: Union[
+        Union[
+            LegacyModelDensityFunctionalTheory,
+            LegacyModelDensityFunctionalTheory16,
+            LegacyModelDensityFunctionalTheory17,
+        ],
+        LegacyModelRegression,
+        LegacyModelUnknown,
+    ] = Field(..., discriminator="type")
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
     """

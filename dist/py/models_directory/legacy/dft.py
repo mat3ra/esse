@@ -52,14 +52,14 @@ class LegacyModelDensityFunctionalTheory(BaseModel):
     functional: Optional[Functional] = None
 
 
-class Functional1(Enum):
+class Functional4(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class LegacyModelDensityFunctionalTheory1(BaseModel):
+class LegacyModelDensityFunctionalTheory4(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -72,15 +72,15 @@ class LegacyModelDensityFunctionalTheory1(BaseModel):
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional1] = None
+    functional: Optional[Functional4] = None
 
 
-class Functional2(Enum):
+class Functional5(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
-class LegacyModelDensityFunctionalTheory2(BaseModel):
+class LegacyModelDensityFunctionalTheory5(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
@@ -93,22 +93,22 @@ class LegacyModelDensityFunctionalTheory2(BaseModel):
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional2] = None
+    functional: Optional[Functional5] = None
 
 
 class ESSE(
     RootModel[
         Union[
-            LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory1, LegacyModelDensityFunctionalTheory2
+            LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory4, LegacyModelDensityFunctionalTheory5
         ]
     ]
 ):
     root: Union[
-        LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory1, LegacyModelDensityFunctionalTheory2
+        LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory4, LegacyModelDensityFunctionalTheory5
     ] = Field(..., title="legacy model density functional theory")
 
 
-class Functional3(Enum):
+class Functional6(Enum):
     pz = "pz"
     pw = "pw"
     vwn = "vwn"
@@ -117,10 +117,10 @@ class Functional3(Enum):
 
 class Lda(BaseModel):
     subtype: Literal["lda"] = "lda"
-    functional: Optional[Functional3] = None
+    functional: Optional[Functional6] = None
 
 
-class Functional4(Enum):
+class Functional7(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
@@ -129,14 +129,14 @@ class Functional4(Enum):
 
 class Gga(BaseModel):
     subtype: Literal["gga"] = "gga"
-    functional: Optional[Functional4] = None
+    functional: Optional[Functional7] = None
 
 
-class Functional5(Enum):
+class Functional8(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
 class Hybrid(BaseModel):
     subtype: Literal["hybrid"] = "hybrid"
-    functional: Optional[Functional5] = None
+    functional: Optional[Functional8] = None

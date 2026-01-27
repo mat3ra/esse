@@ -37,10 +37,139 @@
             "description": "The path to the working directory of this job, when the job originates from command-line",
             "type": "string"
         },
+        "_project": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "entity reference schema",
+            "type": "object",
+            "required": [
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "description": "entity identity",
+                    "type": "string"
+                },
+                "cls": {
+                    "description": "entity class",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "entity slug",
+                    "type": "string"
+                }
+            }
+        },
+        "_material": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "entity reference schema",
+            "type": "object",
+            "required": [
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "description": "entity identity",
+                    "type": "string"
+                },
+                "cls": {
+                    "description": "entity class",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "entity slug",
+                    "type": "string"
+                }
+            }
+        },
+        "parent": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "entity reference schema",
+            "type": "object",
+            "required": [
+                "_id"
+            ],
+            "properties": {
+                "_id": {
+                    "description": "entity identity",
+                    "type": "string"
+                },
+                "cls": {
+                    "description": "entity class",
+                    "type": "string"
+                },
+                "slug": {
+                    "description": "entity slug",
+                    "type": "string"
+                }
+            }
+        },
+        "runtimeContext": {
+            "description": "Context variables that the job will have access to at runtime",
+            "type": "object"
+        },
+        "scopeTrack": {
+            "description": "history of the workflow scope on each update",
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "repetition": {
+                        "type": "number"
+                    },
+                    "scope": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "workflow scope schema",
+                        "type": "object",
+                        "required": [
+                            "global",
+                            "local"
+                        ],
+                        "properties": {
+                            "global": {
+                                "type": "object",
+                                "additionalProperties": true
+                            },
+                            "local": {
+                                "type": "object",
+                                "additionalProperties": true
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "metadata": {
+            "type": "object"
+        },
         "compute": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "compute arguments schema",
-            "description": "Custom keywords prefixed with validate correspond to custom validation methods implemented downstream",
+            "description": "Compute schema",
             "type": "object",
             "required": [
                 "queue",
@@ -213,135 +342,6 @@
                     "type": "string"
                 }
             }
-        },
-        "_project": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "entity reference schema",
-            "type": "object",
-            "required": [
-                "_id"
-            ],
-            "properties": {
-                "_id": {
-                    "description": "entity identity",
-                    "type": "string"
-                },
-                "cls": {
-                    "description": "entity class",
-                    "type": "string"
-                },
-                "slug": {
-                    "description": "entity slug",
-                    "type": "string"
-                }
-            }
-        },
-        "_material": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "entity reference schema",
-            "type": "object",
-            "required": [
-                "_id"
-            ],
-            "properties": {
-                "_id": {
-                    "description": "entity identity",
-                    "type": "string"
-                },
-                "cls": {
-                    "description": "entity class",
-                    "type": "string"
-                },
-                "slug": {
-                    "description": "entity slug",
-                    "type": "string"
-                }
-            }
-        },
-        "parent": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "entity reference schema",
-            "type": "object",
-            "required": [
-                "_id"
-            ],
-            "properties": {
-                "_id": {
-                    "description": "entity identity",
-                    "type": "string"
-                },
-                "cls": {
-                    "description": "entity class",
-                    "type": "string"
-                },
-                "slug": {
-                    "description": "entity slug",
-                    "type": "string"
-                }
-            }
-        },
-        "runtimeContext": {
-            "description": "Context variables that the job will have access to at runtime",
-            "type": "object"
-        },
-        "scopeTrack": {
-            "description": "history of the workflow scope on each update",
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "repetition": {
-                        "type": "number"
-                    },
-                    "scope": {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "workflow scope schema",
-                        "type": "object",
-                        "required": [
-                            "global",
-                            "local"
-                        ],
-                        "properties": {
-                            "global": {
-                                "type": "object",
-                                "additionalProperties": true
-                            },
-                            "local": {
-                                "type": "object",
-                                "additionalProperties": true
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "_id": {
-            "description": "entity identity",
-            "type": "string"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
-        "schemaVersion": {
-            "description": "entity's schema version. Used to distinct between different schemas.",
-            "type": "string",
-            "default": "2022.8.16"
-        },
-        "name": {
-            "description": "entity name",
-            "type": "string"
-        },
-        "isDefault": {
-            "description": "Identifies that entity is defaultable",
-            "type": "boolean",
-            "default": false
-        },
-        "metadata": {
-            "type": "object"
         }
     }
 }

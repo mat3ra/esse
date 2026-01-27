@@ -1,29 +1,12 @@
 {
-    "$id": "workflow/base-flow",
+    "$id": "job/compute-property",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "BaseFlow",
+    "title": "Compute Property Schema",
     "type": "object",
     "required": [
-        "name",
-        "units"
+        "compute"
     ],
     "properties": {
-        "_id": {
-            "description": "subworkflow identity",
-            "type": "string"
-        },
-        "name": {
-            "description": "Human-readable name of the subworkflow. e.g. Total-energy",
-            "type": "string"
-        },
-        "properties": {
-            "description": "Array of characteristic properties calculated by this subworkflow",
-            "type": "array",
-            "items": {
-                "description": "property names, eg. `band_gaps`, `band_structure`",
-                "type": "string"
-            }
-        },
         "compute": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "compute arguments schema",

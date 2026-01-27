@@ -7,6 +7,10 @@
         {
             "description": "in-memory entity",
             "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
+        },
+        {
+            "description": "Compute Property Schema",
+            "$ref": "./compute_property.json"
         }
     ],
     "properties": {
@@ -36,10 +40,6 @@
         "workDir": {
             "description": "The path to the working directory of this job, when the job originates from command-line",
             "type": "string"
-        },
-        "compute": {
-            "description": "Job's compute parameters",
-            "$ref": "./compute.json"
         },
         "_project": {
             "description": "Subset of the full information about the project that this job belongs to.",
@@ -75,7 +75,6 @@
     },
     "required": [
         "status",
-        "compute",
         "_project"
     ]
 }

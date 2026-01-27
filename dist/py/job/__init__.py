@@ -1646,15 +1646,113 @@ class BaseMethod(BaseModel):
     """
 
 
-class BaseModel1(BaseModel):
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory(BaseModel):
     model_config = ConfigDict(
         extra="allow",
     )
-    type: str
+    type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: str
+    subtype: Literal["lda"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional] = None
+
+
+class Functional33(Enum):
+    pbe = "pbe"
+    pbesol = "pbesol"
+    pw91 = "pw91"
+    other = "other"
+
+
+class LegacyModelDensityFunctionalTheory10(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["gga"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional33] = None
+
+
+class Functional34(Enum):
+    b3lyp = "b3lyp"
+    hse06 = "hse06"
+
+
+class LegacyModelDensityFunctionalTheory11(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["dft"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Literal["hybrid"]
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+    functional: Optional[Functional34] = None
+
+
+class Type87(Enum):
+    ml = "ml"
+
+
+class Subtype11(Enum):
+    re = "re"
+
+
+class LegacyModelRegression(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype11
+    """
+    general subtype of the model, eg. `lda`
+    """
+    method: BaseMethod = Field(..., title="base method")
+
+
+class Type88(Enum):
+    unknown = "unknown"
+
+
+class Subtype12(Enum):
+    unknown = "unknown"
+
+
+class LegacyModelUnknown(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    """
+    general type of the model, eg. `dft`
+    """
+    subtype: Subtype12
     """
     general subtype of the model, eg. `lda`
     """
@@ -1685,18 +1783,32 @@ class SubworkflowSchema(BaseModel):
     """
     compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
     """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+    Compute schema
     """
     units: List[WorkflowSubworkflowUnitSchema]
     """
     Contains the Units of the subworkflow
     """
-    model: BaseModel1 = Field(..., title="base model")
+    model: Union[
+        Union[
+            LegacyModelDensityFunctionalTheory,
+            LegacyModelDensityFunctionalTheory10,
+            LegacyModelDensityFunctionalTheory11,
+        ],
+        LegacyModelRegression,
+        LegacyModelUnknown,
+    ] = Field(..., discriminator="type")
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
+
+
+class Subtype13(Enum):
+    input = "input"
+    output = "output"
+    dataFrame = "dataFrame"
 
 
 class ObjectStorageIoSchema7(BaseModel):
@@ -1798,7 +1910,7 @@ class DataIOUnitSchema6(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    subtype: Subtype
+    subtype: Subtype13
     source: Source
     input: List[Input9]
 
@@ -2197,11 +2309,18 @@ class ExecutionUnitInputItemSchema11(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
+class Type89(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
 class BoundaryConditionsDataProviderSchema10(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: Optional[Type] = "pbc"
+    type: Optional[Type89] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -2894,7 +3013,32 @@ class Status58(Enum):
     timeout = "timeout"
 
 
-class Error6(BaseModel):
+class EntityReferenceSchema(BaseModel):
+    id: str = Field(..., alias="_id")
+    """
+    entity identity
+    """
+    cls: Optional[str] = None
+    """
+    entity class
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+
+
+class WorkflowScopeSchema(BaseModel):
+    global_: Dict[str, Any] = Field(..., alias="global")
+    local: Dict[str, Any]
+
+
+class ScopeTrackItem(BaseModel):
+    repetition: Optional[float] = None
+    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
+
+
+class Error7(BaseModel):
     domain: Optional[Domain] = None
     """
     Domain of the error appearance (internal).
@@ -2913,7 +3057,7 @@ class Error6(BaseModel):
     """
 
 
-class ComputeArgumentsSchema6(BaseModel):
+class ComputeArgumentsSchema7(BaseModel):
     queue: Queue
     """
     Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
@@ -2958,7 +3102,7 @@ class ComputeArgumentsSchema6(BaseModel):
     """
     Cluster where the job is executed. Optional on create. Required on job submission.
     """
-    errors: Optional[List[Error6]] = None
+    errors: Optional[List[Error7]] = None
     """
     Computation error. Optional. Appears only if something happens on jobs execution.
     """
@@ -2966,31 +3110,6 @@ class ComputeArgumentsSchema6(BaseModel):
     """
     A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
     """
-
-
-class EntityReferenceSchema(BaseModel):
-    id: str = Field(..., alias="_id")
-    """
-    entity identity
-    """
-    cls: Optional[str] = None
-    """
-    entity class
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-
-
-class WorkflowScopeSchema(BaseModel):
-    global_: Dict[str, Any] = Field(..., alias="global")
-    local: Dict[str, Any]
-
-
-class ScopeTrackItem(BaseModel):
-    repetition: Optional[float] = None
-    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
 
 
 class JobSchema(BaseModel):
@@ -3010,10 +3129,6 @@ class JobSchema(BaseModel):
     workDir: Optional[str] = None
     """
     The path to the working directory of this job, when the job originates from command-line
-    """
-    compute: ComputeArgumentsSchema6 = Field(..., title="compute arguments schema")
-    """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
     project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
     material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
@@ -3048,3 +3163,7 @@ class JobSchema(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+    compute: ComputeArgumentsSchema7 = Field(..., title="compute arguments schema")
+    """
+    Compute schema
+    """
