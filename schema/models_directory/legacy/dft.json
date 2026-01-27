@@ -18,17 +18,26 @@
                 {
                     "$ref": "#/definitions/hybrid"
                 }
-            ]
+            ],
+            "discriminator": {
+                "propertyName": "subtype"
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "dft"
+                }
+            }
         }
     ],
-    "properties": {
-        "type": {
-            "const": "dft"
-        }
-    },
     "definitions": {
         "lda": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "lda"
                 },
@@ -40,10 +49,18 @@
                         "other"
                     ]
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional"
+            ]
         },
         "gga": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "gga"
                 },
@@ -55,10 +72,18 @@
                         "other"
                     ]
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional"
+            ]
         },
         "hybrid": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "hybrid"
                 },
@@ -68,7 +93,12 @@
                         "hse06"
                     ]
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional"
+            ]
         }
     }
 }

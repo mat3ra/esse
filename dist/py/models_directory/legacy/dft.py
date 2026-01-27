@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field, RootModel
+from pydantic import BaseModel, Field, RootModel
 
 
 class BaseMethod(BaseModel):
@@ -37,19 +37,16 @@ class Functional(Enum):
 
 
 class LegacyModelDensityFunctionalTheory(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: Literal["lda"]
+    subtype: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     """
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional] = None
+    functional: Functional
 
 
 class Functional4(Enum):
@@ -60,19 +57,16 @@ class Functional4(Enum):
 
 
 class LegacyModelDensityFunctionalTheory4(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: Literal["gga"]
+    subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional4] = None
+    functional: Functional4
 
 
 class Functional5(Enum):
@@ -81,19 +75,16 @@ class Functional5(Enum):
 
 
 class LegacyModelDensityFunctionalTheory5(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
     """
-    subtype: Literal["hybrid"]
+    subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     """
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional5] = None
+    functional: Functional5
 
 
 class ESSE(
@@ -105,7 +96,7 @@ class ESSE(
 ):
     root: Union[
         LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory4, LegacyModelDensityFunctionalTheory5
-    ] = Field(..., title="legacy model density functional theory")
+    ] = Field(..., discriminator="subtype", title="legacy model density functional theory")
 
 
 class Functional6(Enum):
@@ -116,8 +107,9 @@ class Functional6(Enum):
 
 
 class Lda(BaseModel):
-    subtype: Literal["lda"] = "lda"
-    functional: Optional[Functional6] = None
+    type: Literal["dft"]
+    subtype: Literal["lda"]
+    functional: Functional6
 
 
 class Functional7(Enum):
@@ -128,8 +120,9 @@ class Functional7(Enum):
 
 
 class Gga(BaseModel):
-    subtype: Literal["gga"] = "gga"
-    functional: Optional[Functional7] = None
+    type: Literal["dft"]
+    subtype: Literal["gga"]
+    functional: Functional7
 
 
 class Functional8(Enum):
@@ -138,5 +131,6 @@ class Functional8(Enum):
 
 
 class Hybrid(BaseModel):
-    subtype: Literal["hybrid"] = "hybrid"
-    functional: Optional[Functional8] = None
+    type: Literal["dft"]
+    subtype: Literal["hybrid"]
+    functional: Functional8

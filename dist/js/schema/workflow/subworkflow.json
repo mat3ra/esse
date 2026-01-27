@@ -3499,7 +3499,15 @@
                     "type": "object",
                     "definitions": {
                         "lda": {
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ],
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "lda"
                                 },
@@ -3514,7 +3522,15 @@
                             }
                         },
                         "gga": {
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ],
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "gga"
                                 },
@@ -3529,7 +3545,15 @@
                             }
                         },
                         "hybrid": {
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ],
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "hybrid"
                                 },
@@ -3550,6 +3574,9 @@
                     "oneOf": [
                         {
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "lda"
                                 },
@@ -3561,10 +3588,18 @@
                                         "other"
                                     ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ]
                         },
                         {
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "gga"
                                 },
@@ -3576,10 +3611,18 @@
                                         "other"
                                     ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ]
                         },
                         {
                             "properties": {
+                                "type": {
+                                    "const": "dft"
+                                },
                                 "subtype": {
                                     "const": "hybrid"
                                 },
@@ -3589,15 +3632,22 @@
                                         "hse06"
                                     ]
                                 }
-                            }
+                            },
+                            "required": [
+                                "type",
+                                "subtype",
+                                "functional"
+                            ]
                         }
                     ],
-                    "additionalProperties": true,
+                    "discriminator": {
+                        "propertyName": "subtype"
+                    },
                     "properties": {
                         "type": {
-                            "const": "dft",
                             "description": "general type of the model, eg. `dft`",
-                            "type": "string"
+                            "type": "string",
+                            "const": "dft"
                         },
                         "subtype": {
                             "description": "general subtype of the model, eg. `lda`",
@@ -3641,7 +3691,6 @@
                         "subtype",
                         "method"
                     ],
-                    "additionalProperties": true,
                     "properties": {
                         "type": {
                             "enum": [
@@ -3695,7 +3744,6 @@
                         "subtype",
                         "method"
                     ],
-                    "additionalProperties": true,
                     "properties": {
                         "type": {
                             "enum": [

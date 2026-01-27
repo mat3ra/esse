@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Type(Enum):
@@ -38,9 +38,6 @@ class BaseMethod(BaseModel):
 
 
 class LegacyModelRegression(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Type
     """
     general type of the model, eg. `dft`

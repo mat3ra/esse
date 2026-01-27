@@ -7409,14 +7409,17 @@ export interface JobSchema {
                 };
             })[];
             model: ({
-                subtype?: "lda";
-                functional?: "pz" | "pw" | "vwn" | "other";
+                type: "dft";
+                subtype: "lda";
+                functional: "pz" | "pw" | "vwn" | "other";
             } | {
-                subtype?: "gga";
-                functional?: "pbe" | "pbesol" | "pw91" | "other";
+                type: "dft";
+                subtype: "gga";
+                functional: "pbe" | "pbesol" | "pw91" | "other";
             } | {
-                subtype?: "hybrid";
-                functional?: "b3lyp" | "hse06";
+                type: "dft";
+                subtype: "hybrid";
+                functional: "b3lyp" | "hse06";
             }) | {
                 /**
                  * general type of the model, eg. `dft`
@@ -7444,7 +7447,6 @@ export interface JobSchema {
                      */
                     data?: {};
                 };
-                [k: string]: unknown;
             } | {
                 /**
                  * general type of the model, eg. `dft`
@@ -7472,7 +7474,6 @@ export interface JobSchema {
                      */
                     data?: {};
                 };
-                [k: string]: unknown;
             };
             application: {
                 /**
@@ -46138,7 +46139,6 @@ export interface BaseModel {
          */
         data?: {};
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/models_category/enum_options.json */
 export interface ModelsCategoryEnumOptions {
@@ -48178,40 +48178,45 @@ export type LegacyModelDensityFunctionalTheory = {
          */
         data?: {};
     };
-    [k: string]: unknown;
 } & ({
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
 } | {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
 } | {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
 });
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "lda".
  */
 export interface Lda {
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "gga".
  */
 export interface Gga {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
  * via the `definition` "hybrid".
  */
 export interface Hybrid {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
 }
 /** Schema dist/js/schema/models_directory/legacy/ml.json */
 export interface LegacyModelRegression {
@@ -48241,7 +48246,6 @@ export interface LegacyModelRegression {
          */
         data?: {};
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/models_directory/legacy/unknown.json */
 export interface LegacyModelUnknown {
@@ -48271,7 +48275,6 @@ export interface LegacyModelUnknown {
          */
         data?: {};
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/models_directory/mgga.json */
 export interface ModelMetaGeneralizedGradientApproximation {
@@ -51079,14 +51082,17 @@ export interface WorkflowPropertySchema {
             };
         })[];
         model: ({
-            subtype?: "lda";
-            functional?: "pz" | "pw" | "vwn" | "other";
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
         } | {
-            subtype?: "gga";
-            functional?: "pbe" | "pbesol" | "pw91" | "other";
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
         } | {
-            subtype?: "hybrid";
-            functional?: "b3lyp" | "hse06";
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
         }) | {
             /**
              * general type of the model, eg. `dft`
@@ -51114,7 +51120,6 @@ export interface WorkflowPropertySchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         } | {
             /**
              * general type of the model, eg. `dft`
@@ -51142,7 +51147,6 @@ export interface WorkflowPropertySchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         };
         application: {
             /**
@@ -55989,14 +55993,17 @@ export interface PropertyHolderSchema {
                 };
             })[];
             model: ({
-                subtype?: "lda";
-                functional?: "pz" | "pw" | "vwn" | "other";
+                type: "dft";
+                subtype: "lda";
+                functional: "pz" | "pw" | "vwn" | "other";
             } | {
-                subtype?: "gga";
-                functional?: "pbe" | "pbesol" | "pw91" | "other";
+                type: "dft";
+                subtype: "gga";
+                functional: "pbe" | "pbesol" | "pw91" | "other";
             } | {
-                subtype?: "hybrid";
-                functional?: "b3lyp" | "hse06";
+                type: "dft";
+                subtype: "hybrid";
+                functional: "b3lyp" | "hse06";
             }) | {
                 /**
                  * general type of the model, eg. `dft`
@@ -56024,7 +56031,6 @@ export interface PropertyHolderSchema {
                      */
                     data?: {};
                 };
-                [k: string]: unknown;
             } | {
                 /**
                  * general type of the model, eg. `dft`
@@ -56052,7 +56058,6 @@ export interface PropertyHolderSchema {
                      */
                     data?: {};
                 };
-                [k: string]: unknown;
             };
             application: {
                 /**
@@ -62916,14 +62921,17 @@ export interface BaseWorkflowSchema {
             };
         })[];
         model: ({
-            subtype?: "lda";
-            functional?: "pz" | "pw" | "vwn" | "other";
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
         } | {
-            subtype?: "gga";
-            functional?: "pbe" | "pbesol" | "pw91" | "other";
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
         } | {
-            subtype?: "hybrid";
-            functional?: "b3lyp" | "hse06";
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
         }) | {
             /**
              * general type of the model, eg. `dft`
@@ -62951,7 +62959,6 @@ export interface BaseWorkflowSchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         } | {
             /**
              * general type of the model, eg. `dft`
@@ -62979,7 +62986,6 @@ export interface BaseWorkflowSchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         };
         application: {
             /**
@@ -66611,14 +66617,17 @@ export interface SubworkflowMixinSchema {
         };
     })[];
     model: ({
-        subtype?: "lda";
-        functional?: "pz" | "pw" | "vwn" | "other";
+        type: "dft";
+        subtype: "lda";
+        functional: "pz" | "pw" | "vwn" | "other";
     } | {
-        subtype?: "gga";
-        functional?: "pbe" | "pbesol" | "pw91" | "other";
+        type: "dft";
+        subtype: "gga";
+        functional: "pbe" | "pbesol" | "pw91" | "other";
     } | {
-        subtype?: "hybrid";
-        functional?: "b3lyp" | "hse06";
+        type: "dft";
+        subtype: "hybrid";
+        functional: "b3lyp" | "hse06";
     }) | {
         /**
          * general type of the model, eg. `dft`
@@ -66646,7 +66655,6 @@ export interface SubworkflowMixinSchema {
              */
             data?: {};
         };
-        [k: string]: unknown;
     } | {
         /**
          * general type of the model, eg. `dft`
@@ -66674,7 +66682,6 @@ export interface SubworkflowMixinSchema {
              */
             data?: {};
         };
-        [k: string]: unknown;
     };
     application: {
         /**
@@ -69982,14 +69989,17 @@ export interface SubworkflowSchema {
         };
     })[];
     model: ({
-        subtype?: "lda";
-        functional?: "pz" | "pw" | "vwn" | "other";
+        type: "dft";
+        subtype: "lda";
+        functional: "pz" | "pw" | "vwn" | "other";
     } | {
-        subtype?: "gga";
-        functional?: "pbe" | "pbesol" | "pw91" | "other";
+        type: "dft";
+        subtype: "gga";
+        functional: "pbe" | "pbesol" | "pw91" | "other";
     } | {
-        subtype?: "hybrid";
-        functional?: "b3lyp" | "hse06";
+        type: "dft";
+        subtype: "hybrid";
+        functional: "b3lyp" | "hse06";
     }) | {
         /**
          * general type of the model, eg. `dft`
@@ -70017,7 +70027,6 @@ export interface SubworkflowSchema {
              */
             data?: {};
         };
-        [k: string]: unknown;
     } | {
         /**
          * general type of the model, eg. `dft`
@@ -70045,7 +70054,6 @@ export interface SubworkflowSchema {
              */
             data?: {};
         };
-        [k: string]: unknown;
     };
     application: {
         /**
@@ -76772,14 +76780,17 @@ export interface WorkflowSchema {
             };
         })[];
         model: ({
-            subtype?: "lda";
-            functional?: "pz" | "pw" | "vwn" | "other";
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
         } | {
-            subtype?: "gga";
-            functional?: "pbe" | "pbesol" | "pw91" | "other";
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
         } | {
-            subtype?: "hybrid";
-            functional?: "b3lyp" | "hse06";
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
         }) | {
             /**
              * general type of the model, eg. `dft`
@@ -76807,7 +76818,6 @@ export interface WorkflowSchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         } | {
             /**
              * general type of the model, eg. `dft`
@@ -76835,7 +76845,6 @@ export interface WorkflowSchema {
                  */
                 data?: {};
             };
-            [k: string]: unknown;
         };
         application: {
             /**

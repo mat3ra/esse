@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class BaseMethod(BaseModel):
@@ -29,9 +29,6 @@ class BaseMethod(BaseModel):
 
 
 class BaseModelModel(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: str
     """
     general type of the model, eg. `dft`

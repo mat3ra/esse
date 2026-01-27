@@ -8,7 +8,6 @@
         "subtype",
         "method"
     ],
-    "additionalProperties": true,
     "properties": {
         "type": {
             "enum": [

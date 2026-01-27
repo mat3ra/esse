@@ -1658,9 +1658,6 @@ class Functional(Enum):
 
 
 class LegacyModelDensityFunctionalTheory(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1670,7 +1667,7 @@ class LegacyModelDensityFunctionalTheory(BaseModel):
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional] = None
+    functional: Functional
 
 
 class Functional60(Enum):
@@ -1681,9 +1678,6 @@ class Functional60(Enum):
 
 
 class LegacyModelDensityFunctionalTheory22(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1693,7 +1687,7 @@ class LegacyModelDensityFunctionalTheory22(BaseModel):
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional60] = None
+    functional: Functional60
 
 
 class Functional61(Enum):
@@ -1702,9 +1696,6 @@ class Functional61(Enum):
 
 
 class LegacyModelDensityFunctionalTheory23(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1714,7 +1705,7 @@ class LegacyModelDensityFunctionalTheory23(BaseModel):
     general subtype of the model, eg. `lda`
     """
     method: BaseMethod = Field(..., title="base method")
-    functional: Optional[Functional61] = None
+    functional: Functional61
 
 
 class Type144(Enum):
@@ -1726,9 +1717,6 @@ class Subtype31(Enum):
 
 
 class LegacyModelRegression(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     general type of the model, eg. `dft`
@@ -1749,9 +1737,6 @@ class Subtype32(Enum):
 
 
 class LegacyModelUnknown(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     """
     general type of the model, eg. `dft`
