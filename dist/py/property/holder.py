@@ -2745,14 +2745,8 @@ class Functional(Enum):
 
 class DFTModelSchema(BaseModel):
     type: Literal["dft"]
-    """
-    general type of the model, eg. `dft`
-    """
-    subtype: Literal["lda"]
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")
+    subtype: Literal["lda"]
     functional: Functional
 
 
@@ -2765,14 +2759,8 @@ class Functional25(Enum):
 
 class DFTModelSchema7(BaseModel):
     type: Literal["dft"]
-    """
-    general type of the model, eg. `dft`
-    """
-    subtype: Literal["gga"]
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")
+    subtype: Literal["gga"]
     functional: Functional25
 
 
@@ -2783,14 +2771,8 @@ class Functional26(Enum):
 
 class DFTModelSchema8(BaseModel):
     type: Literal["dft"]
-    """
-    general type of the model, eg. `dft`
-    """
-    subtype: Literal["hybrid"]
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")
+    subtype: Literal["hybrid"]
     functional: Functional26
 
 
@@ -2804,13 +2786,7 @@ class Subtype5(Enum):
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    general type of the model, eg. `dft`
-    """
     subtype: Subtype5
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")
 
 
@@ -2824,13 +2800,7 @@ class Subtype6(Enum):
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    general type of the model, eg. `dft`
-    """
     subtype: Subtype6
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")
 
 

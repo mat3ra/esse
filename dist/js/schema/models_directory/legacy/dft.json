@@ -72,11 +72,6 @@
             }
         }
     },
-    "required": [
-        "type",
-        "subtype",
-        "method"
-    ],
     "oneOf": [
         {
             "properties": {
@@ -149,15 +144,13 @@
     "discriminator": {
         "propertyName": "subtype"
     },
+    "required": [
+        "type",
+        "method"
+    ],
     "properties": {
         "type": {
-            "description": "general type of the model, eg. `dft`",
-            "type": "string",
             "const": "dft"
-        },
-        "subtype": {
-            "description": "general subtype of the model, eg. `lda`",
-            "type": "string"
         },
         "method": {
             "$schema": "http://json-schema.org/draft-07/schema#",

@@ -3566,11 +3566,6 @@
                             }
                         }
                     },
-                    "required": [
-                        "type",
-                        "subtype",
-                        "method"
-                    ],
                     "oneOf": [
                         {
                             "properties": {
@@ -3643,15 +3638,13 @@
                     "discriminator": {
                         "propertyName": "subtype"
                     },
+                    "required": [
+                        "type",
+                        "method"
+                    ],
                     "properties": {
                         "type": {
-                            "description": "general type of the model, eg. `dft`",
-                            "type": "string",
                             "const": "dft"
-                        },
-                        "subtype": {
-                            "description": "general subtype of the model, eg. `lda`",
-                            "type": "string"
                         },
                         "method": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -3686,25 +3679,16 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "ML model schema",
                     "type": "object",
-                    "required": [
-                        "type",
-                        "subtype",
-                        "method"
-                    ],
                     "properties": {
                         "type": {
                             "enum": [
                                 "ml"
-                            ],
-                            "description": "general type of the model, eg. `dft`",
-                            "type": "string"
+                            ]
                         },
                         "subtype": {
                             "enum": [
                                 "re"
-                            ],
-                            "description": "general subtype of the model, eg. `lda`",
-                            "type": "string"
+                            ]
                         },
                         "method": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -3733,31 +3717,27 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "required": [
+                        "type",
+                        "subtype",
+                        "method"
+                    ]
                 },
                 {
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "Unknown model schema",
                     "type": "object",
-                    "required": [
-                        "type",
-                        "subtype",
-                        "method"
-                    ],
                     "properties": {
                         "type": {
                             "enum": [
                                 "unknown"
-                            ],
-                            "description": "general type of the model, eg. `dft`",
-                            "type": "string"
+                            ]
                         },
                         "subtype": {
                             "enum": [
                                 "unknown"
-                            ],
-                            "description": "general subtype of the model, eg. `lda`",
-                            "type": "string"
+                            ]
                         },
                         "method": {
                             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -3786,7 +3766,12 @@
                                 }
                             }
                         }
-                    }
+                    },
+                    "required": [
+                        "type",
+                        "subtype",
+                        "method"
+                    ]
                 }
             ],
             "discriminator": {

@@ -7421,13 +7421,7 @@ export interface JobSchema {
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
             }) | {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
                 type: "ml";
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
                 subtype: "re";
                 method: {
                     /**
@@ -7448,13 +7442,7 @@ export interface JobSchema {
                     data?: {};
                 };
             } | {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
                 type: "unknown";
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
                 subtype: "unknown";
                 method: {
                     /**
@@ -48152,14 +48140,7 @@ export interface ModelLocalDensityApproximation {
 }
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
 export type DFTModelSchema = {
-    /**
-     * general type of the model, eg. `dft`
-     */
     type: "dft";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
-    subtype: string;
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -48220,13 +48201,7 @@ export interface Hybrid {
 }
 /** Schema dist/js/schema/models_directory/legacy/ml.json */
 export interface MLModelSchema {
-    /**
-     * general type of the model, eg. `dft`
-     */
     type: "ml";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
     subtype: "re";
     method: {
         /**
@@ -48249,13 +48224,7 @@ export interface MLModelSchema {
 }
 /** Schema dist/js/schema/models_directory/legacy/unknown.json */
 export interface UnknownModelSchema {
-    /**
-     * general type of the model, eg. `dft`
-     */
     type: "unknown";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
     subtype: "unknown";
     method: {
         /**
@@ -51094,13 +51063,7 @@ export interface WorkflowPropertySchema {
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
         }) | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "ml";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "re";
             method: {
                 /**
@@ -51121,13 +51084,7 @@ export interface WorkflowPropertySchema {
                 data?: {};
             };
         } | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "unknown";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "unknown";
             method: {
                 /**
@@ -56005,13 +55962,7 @@ export interface PropertyHolderSchema {
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
             }) | {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
                 type: "ml";
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
                 subtype: "re";
                 method: {
                     /**
@@ -56032,13 +55983,7 @@ export interface PropertyHolderSchema {
                     data?: {};
                 };
             } | {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
                 type: "unknown";
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
                 subtype: "unknown";
                 method: {
                     /**
@@ -62933,13 +62878,7 @@ export interface BaseWorkflowSchema {
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
         }) | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "ml";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "re";
             method: {
                 /**
@@ -62960,13 +62899,7 @@ export interface BaseWorkflowSchema {
                 data?: {};
             };
         } | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "unknown";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "unknown";
             method: {
                 /**
@@ -66629,13 +66562,7 @@ export interface SubworkflowMixinSchema {
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
     }) | {
-        /**
-         * general type of the model, eg. `dft`
-         */
         type: "ml";
-        /**
-         * general subtype of the model, eg. `lda`
-         */
         subtype: "re";
         method: {
             /**
@@ -66656,13 +66583,7 @@ export interface SubworkflowMixinSchema {
             data?: {};
         };
     } | {
-        /**
-         * general type of the model, eg. `dft`
-         */
         type: "unknown";
-        /**
-         * general subtype of the model, eg. `lda`
-         */
         subtype: "unknown";
         method: {
             /**
@@ -70001,13 +69922,7 @@ export interface SubworkflowSchema {
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
     }) | {
-        /**
-         * general type of the model, eg. `dft`
-         */
         type: "ml";
-        /**
-         * general subtype of the model, eg. `lda`
-         */
         subtype: "re";
         method: {
             /**
@@ -70028,13 +69943,7 @@ export interface SubworkflowSchema {
             data?: {};
         };
     } | {
-        /**
-         * general type of the model, eg. `dft`
-         */
         type: "unknown";
-        /**
-         * general subtype of the model, eg. `lda`
-         */
         subtype: "unknown";
         method: {
             /**
@@ -76792,13 +76701,7 @@ export interface WorkflowSchema {
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
         }) | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "ml";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "re";
             method: {
                 /**
@@ -76819,13 +76722,7 @@ export interface WorkflowSchema {
                 data?: {};
             };
         } | {
-            /**
-             * general type of the model, eg. `dft`
-             */
             type: "unknown";
-            /**
-             * general subtype of the model, eg. `lda`
-             */
             subtype: "unknown";
             method: {
                 /**

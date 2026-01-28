@@ -39,11 +39,5 @@ class BaseMethod(BaseModel):
 
 class MLModelSchema(BaseModel):
     type: Type
-    """
-    general type of the model, eg. `dft`
-    """
     subtype: Subtype
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")

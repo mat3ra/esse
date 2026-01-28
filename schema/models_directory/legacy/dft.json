@@ -5,9 +5,6 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../../model.json"
-        },
-        {
             "oneOf": [
                 {
                     "$ref": "#/definitions/lda"
@@ -28,8 +25,15 @@
             "properties": {
                 "type": {
                     "const": "dft"
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
-            }
+            },
+            "required": [
+                "type",
+                "method"
+            ]
         }
     ],
     "definitions": {

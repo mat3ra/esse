@@ -3,11 +3,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Unknown model schema",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../../model.json"
-        }
-    ],
     "properties": {
         "type": {
             "enum": [
@@ -18,6 +13,14 @@
             "enum": [
                 "unknown"
             ]
+        },
+        "method": {
+            "$ref": "../../method.json"
         }
-    }
+    },
+    "required": [
+        "type",
+        "subtype",
+        "method"
+    ]
 }
