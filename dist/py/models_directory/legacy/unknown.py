@@ -37,7 +37,7 @@ class BaseMethod(BaseModel):
     """
 
 
-class LegacyModelUnknown(BaseModel):
+class UnknownModelSchema(BaseModel):
     type: Type
     """
     general type of the model, eg. `dft`

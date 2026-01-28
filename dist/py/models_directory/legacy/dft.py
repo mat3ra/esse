@@ -36,7 +36,7 @@ class Functional(Enum):
     other = "other"
 
 
-class LegacyModelDensityFunctionalTheory(BaseModel):
+class DFTModelSchema(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -56,7 +56,7 @@ class Functional4(Enum):
     other = "other"
 
 
-class LegacyModelDensityFunctionalTheory4(BaseModel):
+class DFTModelSchema4(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -74,7 +74,7 @@ class Functional5(Enum):
     hse06 = "hse06"
 
 
-class LegacyModelDensityFunctionalTheory5(BaseModel):
+class DFTModelSchema5(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -87,16 +87,10 @@ class LegacyModelDensityFunctionalTheory5(BaseModel):
     functional: Functional5
 
 
-class ESSE(
-    RootModel[
-        Union[
-            LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory4, LegacyModelDensityFunctionalTheory5
-        ]
-    ]
-):
-    root: Union[
-        LegacyModelDensityFunctionalTheory, LegacyModelDensityFunctionalTheory4, LegacyModelDensityFunctionalTheory5
-    ] = Field(..., discriminator="subtype", title="legacy model density functional theory")
+class ESSE(RootModel[Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5]]):
+    root: Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5] = Field(
+        ..., discriminator="subtype", title="DFT model schema"
+    )
 
 
 class Functional6(Enum):

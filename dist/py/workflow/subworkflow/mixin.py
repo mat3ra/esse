@@ -1653,7 +1653,7 @@ class Functional(Enum):
     other = "other"
 
 
-class LegacyModelDensityFunctionalTheory(BaseModel):
+class DFTModelSchema(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1673,7 +1673,7 @@ class Functional46(Enum):
     other = "other"
 
 
-class LegacyModelDensityFunctionalTheory13(BaseModel):
+class DFTModelSchema13(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1691,7 +1691,7 @@ class Functional47(Enum):
     hse06 = "hse06"
 
 
-class LegacyModelDensityFunctionalTheory14(BaseModel):
+class DFTModelSchema14(BaseModel):
     type: Literal["dft"]
     """
     general type of the model, eg. `dft`
@@ -1712,7 +1712,7 @@ class Subtype15(Enum):
     re = "re"
 
 
-class LegacyModelRegression(BaseModel):
+class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     general type of the model, eg. `dft`
@@ -1732,7 +1732,7 @@ class Subtype16(Enum):
     unknown = "unknown"
 
 
-class LegacyModelUnknown(BaseModel):
+class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     """
     general type of the model, eg. `dft`
@@ -1757,15 +1757,9 @@ class SubworkflowMixinSchema(BaseModel):
     """
     Contains the Units of the subworkflow
     """
-    model: Union[
-        Union[
-            LegacyModelDensityFunctionalTheory,
-            LegacyModelDensityFunctionalTheory13,
-            LegacyModelDensityFunctionalTheory14,
-        ],
-        LegacyModelRegression,
-        LegacyModelUnknown,
-    ] = Field(..., discriminator="type")
+    model: Union[Union[DFTModelSchema, DFTModelSchema13, DFTModelSchema14], MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="type"
+    )
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
     """

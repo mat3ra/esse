@@ -37,7 +37,7 @@ class BaseMethod(BaseModel):
     """
 
 
-class LegacyModelRegression(BaseModel):
+class MLModelSchema(BaseModel):
     type: Type
     """
     general type of the model, eg. `dft`

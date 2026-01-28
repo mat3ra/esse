@@ -3569,7 +3569,7 @@
                                 "oneOf": [
                                     {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "legacy model density functional theory",
+                                        "title": "DFT model schema",
                                         "type": "object",
                                         "definitions": {
                                             "lda": {
@@ -3758,7 +3758,7 @@
                                     },
                                     {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "legacy model regression",
+                                        "title": "ML model schema",
                                         "type": "object",
                                         "required": [
                                             "type",
@@ -3811,7 +3811,7 @@
                                     },
                                     {
                                         "$schema": "http://json-schema.org/draft-07/schema#",
-                                        "title": "legacy model unknown",
+                                        "title": "Unknown model schema",
                                         "type": "object",
                                         "required": [
                                             "type",

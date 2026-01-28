@@ -48151,7 +48151,7 @@ export interface ModelLocalDensityApproximation {
     tags?: string[];
 }
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
-export type LegacyModelDensityFunctionalTheory = {
+export type DFTModelSchema = {
     /**
      * general type of the model, eg. `dft`
      */
@@ -48219,7 +48219,7 @@ export interface Hybrid {
     functional: "b3lyp" | "hse06";
 }
 /** Schema dist/js/schema/models_directory/legacy/ml.json */
-export interface LegacyModelRegression {
+export interface MLModelSchema {
     /**
      * general type of the model, eg. `dft`
      */
@@ -48248,7 +48248,7 @@ export interface LegacyModelRegression {
     };
 }
 /** Schema dist/js/schema/models_directory/legacy/unknown.json */
-export interface LegacyModelUnknown {
+export interface UnknownModelSchema {
     /**
      * general type of the model, eg. `dft`
      */
