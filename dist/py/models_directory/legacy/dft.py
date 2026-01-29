@@ -10,6 +10,13 @@ from typing import Any, Dict, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel
 
 
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -29,18 +36,11 @@ class BaseMethod(BaseModel):
     """
 
 
-class Functional(Enum):
-    pz = "pz"
-    pw = "pw"
-    vwn = "vwn"
-    other = "other"
-
-
 class DFTModelSchema(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional7(Enum):
@@ -52,9 +52,9 @@ class Functional7(Enum):
 
 class DFTModelSchema7(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional7
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional8(Enum):
@@ -64,9 +64,9 @@ class Functional8(Enum):
 
 class DFTModelSchema8(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     functional: Functional8
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class ESSE(RootModel[Union[DFTModelSchema, DFTModelSchema7, DFTModelSchema8]]):
@@ -86,6 +86,7 @@ class Lda(BaseModel):
     type: Literal["dft"]
     subtype: Literal["lda"]
     functional: Functional9
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional10(Enum):
@@ -99,6 +100,7 @@ class Gga(BaseModel):
     type: Literal["dft"]
     subtype: Literal["gga"]
     functional: Functional10
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional11(Enum):
@@ -110,3 +112,4 @@ class Hybrid(BaseModel):
     type: Literal["dft"]
     subtype: Literal["hybrid"]
     functional: Functional11
+    method: Optional[BaseMethod] = Field(None, title="base method")

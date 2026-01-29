@@ -1627,6 +1627,13 @@ class WorkflowSubworkflowUnitSchema(
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
 
 
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -1646,18 +1653,11 @@ class BaseMethod(BaseModel):
     """
 
 
-class Functional(Enum):
-    pz = "pz"
-    pw = "pw"
-    vwn = "vwn"
-    other = "other"
-
-
 class DFTModelSchema(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["lda"]
     functional: Functional
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional57(Enum):
@@ -1669,9 +1669,9 @@ class Functional57(Enum):
 
 class DFTModelSchema19(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["gga"]
     functional: Functional57
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional58(Enum):
@@ -1681,9 +1681,9 @@ class Functional58(Enum):
 
 class DFTModelSchema20(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["hybrid"]
     functional: Functional58
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Type132(Enum):

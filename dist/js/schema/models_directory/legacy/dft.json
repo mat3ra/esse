@@ -24,6 +24,33 @@
                         "vwn",
                         "other"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             }
         },
@@ -47,6 +74,33 @@
                         "pw91",
                         "other"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             }
         },
@@ -68,6 +122,33 @@
                         "b3lyp",
                         "hse06"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             }
         }
@@ -88,6 +169,33 @@
                         "vwn",
                         "other"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             },
             "required": [
@@ -111,6 +219,33 @@
                         "pw91",
                         "other"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             },
             "required": [
@@ -132,6 +267,33 @@
                         "b3lyp",
                         "hse06"
                     ]
+                },
+                "method": {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "base method",
+                    "type": "object",
+                    "required": [
+                        "type",
+                        "subtype"
+                    ],
+                    "properties": {
+                        "type": {
+                            "description": "general type of this method, eg. `pseudopotential`",
+                            "type": "string"
+                        },
+                        "subtype": {
+                            "description": "general subtype of this method, eg. `ultra-soft`",
+                            "type": "string"
+                        },
+                        "precision": {
+                            "description": "Object showing the actual possible precision based on theory and implementation",
+                            "type": "object"
+                        },
+                        "data": {
+                            "description": "additional data specific to method, eg. array of pseudopotentials",
+                            "type": "object"
+                        }
+                    }
                 }
             },
             "required": [
@@ -145,39 +307,11 @@
         "propertyName": "subtype"
     },
     "required": [
-        "type",
-        "method"
+        "type"
     ],
     "properties": {
         "type": {
             "const": "dft"
-        },
-        "method": {
-            "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base method",
-            "type": "object",
-            "required": [
-                "type",
-                "subtype"
-            ],
-            "properties": {
-                "type": {
-                    "description": "general type of this method, eg. `pseudopotential`",
-                    "type": "string"
-                },
-                "subtype": {
-                    "description": "general subtype of this method, eg. `ultra-soft`",
-                    "type": "string"
-                },
-                "precision": {
-                    "description": "Object showing the actual possible precision based on theory and implementation",
-                    "type": "object"
-                },
-                "data": {
-                    "description": "additional data specific to method, eg. array of pseudopotentials",
-                    "type": "object"
-                }
-            }
         }
     }
 }

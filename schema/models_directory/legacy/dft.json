@@ -25,14 +25,10 @@
             "properties": {
                 "type": {
                     "const": "dft"
-                },
-                "method": {
-                    "$ref": "../../method.json"
                 }
             },
             "required": [
-                "type",
-                "method"
+                "type"
             ]
         }
     ],
@@ -52,6 +48,9 @@
                         "vwn",
                         "other"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
             },
             "required": [
@@ -75,6 +74,9 @@
                         "pw91",
                         "other"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
             },
             "required": [
@@ -96,6 +98,9 @@
                         "b3lyp",
                         "hse06"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
             },
             "required": [

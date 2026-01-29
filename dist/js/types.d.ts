@@ -7412,14 +7412,68 @@ export interface JobSchema {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             } | {
                 type: "dft";
                 subtype: "gga";
                 functional: "pbe" | "pbesol" | "pw91" | "other";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             } | {
                 type: "dft";
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             }) | {
                 type: "ml";
                 subtype: "re";
@@ -48143,14 +48197,68 @@ export type AnyModelSchema = ({
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 } | {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 } | {
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 }) | {
     type: "ml";
     subtype: "re";
@@ -48197,7 +48305,11 @@ export type AnyModelSchema = ({
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
 export type DFTModelSchema = {
     type: "dft";
-    method: {
+} & ({
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
+    method?: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48215,18 +48327,50 @@ export type DFTModelSchema = {
          */
         data?: {};
     };
-} & ({
-    type: "dft";
-    subtype: "lda";
-    functional: "pz" | "pw" | "vwn" | "other";
 } | {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 } | {
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 });
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
@@ -48236,6 +48380,24 @@ export interface Lda {
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
@@ -48245,6 +48407,24 @@ export interface Gga {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 }
 /**
  * This interface was referenced by `undefined`'s JSON-Schema
@@ -48254,6 +48434,24 @@ export interface Hybrid {
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
+    method?: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
 }
 /** Schema dist/js/schema/models_directory/legacy/ml.json */
 export interface MLModelSchema {
@@ -51110,14 +51308,68 @@ export interface WorkflowPropertySchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         }) | {
             type: "ml";
             subtype: "re";
@@ -56009,14 +56261,68 @@ export interface PropertyHolderSchema {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             } | {
                 type: "dft";
                 subtype: "gga";
                 functional: "pbe" | "pbesol" | "pw91" | "other";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             } | {
                 type: "dft";
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
+                method?: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {};
+                };
             }) | {
                 type: "ml";
                 subtype: "re";
@@ -62925,14 +63231,68 @@ export interface BaseWorkflowSchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         }) | {
             type: "ml";
             subtype: "re";
@@ -66609,14 +66969,68 @@ export interface SubworkflowMixinSchema {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     } | {
         type: "dft";
         subtype: "gga";
         functional: "pbe" | "pbesol" | "pw91" | "other";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     } | {
         type: "dft";
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     }) | {
         type: "ml";
         subtype: "re";
@@ -69969,14 +70383,68 @@ export interface SubworkflowSchema {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     } | {
         type: "dft";
         subtype: "gga";
         functional: "pbe" | "pbesol" | "pw91" | "other";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     } | {
         type: "dft";
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
+        method?: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {};
+        };
     }) | {
         type: "ml";
         subtype: "re";
@@ -76748,14 +77216,68 @@ export interface WorkflowSchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         } | {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
+            method?: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {};
+            };
         }) | {
             type: "ml";
             subtype: "re";

@@ -10,6 +10,13 @@ from typing import Any, Dict, Literal, Optional, Union
 from pydantic import BaseModel, Field, RootModel
 
 
+class Functional(Enum):
+    pz = "pz"
+    pw = "pw"
+    vwn = "vwn"
+    other = "other"
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -29,18 +36,11 @@ class BaseMethod(BaseModel):
     """
 
 
-class Functional(Enum):
-    pz = "pz"
-    pw = "pw"
-    vwn = "vwn"
-    other = "other"
-
-
 class DFTModelSchema(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["lda"]
     functional: Functional
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional1(Enum):
@@ -52,9 +52,9 @@ class Functional1(Enum):
 
 class DFTModelSchema1(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["gga"]
     functional: Functional1
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Functional2(Enum):
@@ -64,9 +64,9 @@ class Functional2(Enum):
 
 class DFTModelSchema2(BaseModel):
     type: Literal["dft"]
-    method: BaseMethod = Field(..., title="base method")
     subtype: Literal["hybrid"]
     functional: Functional2
+    method: Optional[BaseMethod] = Field(None, title="base method")
 
 
 class Type(Enum):
