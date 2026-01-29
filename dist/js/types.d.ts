@@ -7412,7 +7412,7 @@ export interface JobSchema {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -7434,7 +7434,7 @@ export interface JobSchema {
                 type: "dft";
                 subtype: "gga";
                 functional: "pbe" | "pbesol" | "pw91" | "other";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -7456,7 +7456,7 @@ export interface JobSchema {
                 type: "dft";
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -48197,7 +48197,7 @@ export type AnyModelSchema = ({
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48219,7 +48219,7 @@ export type AnyModelSchema = ({
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48241,7 +48241,7 @@ export type AnyModelSchema = ({
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48309,7 +48309,7 @@ export type DFTModelSchema = {
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48331,7 +48331,7 @@ export type DFTModelSchema = {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48353,7 +48353,7 @@ export type DFTModelSchema = {
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48380,7 +48380,7 @@ export interface Lda {
     type: "dft";
     subtype: "lda";
     functional: "pz" | "pw" | "vwn" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48407,7 +48407,7 @@ export interface Gga {
     type: "dft";
     subtype: "gga";
     functional: "pbe" | "pbesol" | "pw91" | "other";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -48434,7 +48434,7 @@ export interface Hybrid {
     type: "dft";
     subtype: "hybrid";
     functional: "b3lyp" | "hse06";
-    method?: {
+    method: {
         /**
          * general type of this method, eg. `pseudopotential`
          */
@@ -51308,7 +51308,7 @@ export interface WorkflowPropertySchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -51330,7 +51330,7 @@ export interface WorkflowPropertySchema {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -51352,7 +51352,7 @@ export interface WorkflowPropertySchema {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -56261,7 +56261,7 @@ export interface PropertyHolderSchema {
                 type: "dft";
                 subtype: "lda";
                 functional: "pz" | "pw" | "vwn" | "other";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -56283,7 +56283,7 @@ export interface PropertyHolderSchema {
                 type: "dft";
                 subtype: "gga";
                 functional: "pbe" | "pbesol" | "pw91" | "other";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -56305,7 +56305,7 @@ export interface PropertyHolderSchema {
                 type: "dft";
                 subtype: "hybrid";
                 functional: "b3lyp" | "hse06";
-                method?: {
+                method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
                      */
@@ -63231,7 +63231,7 @@ export interface BaseWorkflowSchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -63253,7 +63253,7 @@ export interface BaseWorkflowSchema {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -63275,7 +63275,7 @@ export interface BaseWorkflowSchema {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -66969,7 +66969,7 @@ export interface SubworkflowMixinSchema {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -66991,7 +66991,7 @@ export interface SubworkflowMixinSchema {
         type: "dft";
         subtype: "gga";
         functional: "pbe" | "pbesol" | "pw91" | "other";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -67013,7 +67013,7 @@ export interface SubworkflowMixinSchema {
         type: "dft";
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -70383,7 +70383,7 @@ export interface SubworkflowSchema {
         type: "dft";
         subtype: "lda";
         functional: "pz" | "pw" | "vwn" | "other";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -70405,7 +70405,7 @@ export interface SubworkflowSchema {
         type: "dft";
         subtype: "gga";
         functional: "pbe" | "pbesol" | "pw91" | "other";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -70427,7 +70427,7 @@ export interface SubworkflowSchema {
         type: "dft";
         subtype: "hybrid";
         functional: "b3lyp" | "hse06";
-        method?: {
+        method: {
             /**
              * general type of this method, eg. `pseudopotential`
              */
@@ -77216,7 +77216,7 @@ export interface WorkflowSchema {
             type: "dft";
             subtype: "lda";
             functional: "pz" | "pw" | "vwn" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -77238,7 +77238,7 @@ export interface WorkflowSchema {
             type: "dft";
             subtype: "gga";
             functional: "pbe" | "pbesol" | "pw91" | "other";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */
@@ -77260,7 +77260,7 @@ export interface WorkflowSchema {
             type: "dft";
             subtype: "hybrid";
             functional: "b3lyp" | "hse06";
-            method?: {
+            method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
                  */

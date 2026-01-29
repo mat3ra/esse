@@ -1657,7 +1657,7 @@ class DFTModelSchema(BaseModel):
     type: Literal["dft"]
     subtype: Literal["lda"]
     functional: Functional
-    method: Optional[BaseMethod] = Field(None, title="base method")
+    method: BaseMethod = Field(..., title="base method")
 
 
 class Functional57(Enum):
@@ -1671,7 +1671,7 @@ class DFTModelSchema19(BaseModel):
     type: Literal["dft"]
     subtype: Literal["gga"]
     functional: Functional57
-    method: Optional[BaseMethod] = Field(None, title="base method")
+    method: BaseMethod = Field(..., title="base method")
 
 
 class Functional58(Enum):
@@ -1683,7 +1683,7 @@ class DFTModelSchema20(BaseModel):
     type: Literal["dft"]
     subtype: Literal["hybrid"]
     functional: Functional58
-    method: Optional[BaseMethod] = Field(None, title="base method")
+    method: BaseMethod = Field(..., title="base method")
 
 
 class Type132(Enum):

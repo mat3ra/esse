@@ -13,7 +13,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ],
                     "properties": {
                         "type": {
@@ -63,7 +64,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ],
                     "properties": {
                         "type": {
@@ -113,7 +115,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ],
                     "properties": {
                         "type": {
@@ -206,7 +209,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ]
                 },
                 {
@@ -256,7 +260,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ]
                 },
                 {
@@ -304,7 +309,8 @@
                     "required": [
                         "type",
                         "subtype",
-                        "functional"
+                        "functional",
+                        "method"
                     ]
                 }
             ],
