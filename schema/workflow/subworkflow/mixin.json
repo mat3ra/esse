@@ -24,20 +24,7 @@
             }
         },
         "model": {
-            "oneOf": [
-                {
-                    "$ref": "../../models_directory/legacy/dft.json"
-                },
-                {
-                    "$ref": "../../models_directory/legacy/ml.json"
-                },
-                {
-                    "$ref": "../../models_directory/legacy/unknown.json"
-                }
-            ],
-            "discriminator": {
-                "propertyName": "type"
-            }
+            "$ref": "../../models_directory/legacy/any.json"
         },
         "application": {
             "description": "information about the simulation engine/application.",

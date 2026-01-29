@@ -62,7 +62,7 @@ class LocationSchema(BaseModel):
     """
 
 
-class Type124(Enum):
+class Type126(Enum):
     literature = "literature"
 
 
@@ -72,7 +72,7 @@ class PagesSchema(BaseModel):
 
 
 class LiteratureReferenceSchema(BaseModel):
-    type: Optional[Type124] = None
+    type: Optional[Type126] = None
     doi: Optional[str] = None
     """
     Digital Object Identifier of the reference.

@@ -1660,57 +1660,57 @@ class DFTModelSchema(BaseModel):
     functional: Functional
 
 
-class Functional1(Enum):
+class Functional4(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class DFTModelSchema1(BaseModel):
+class DFTModelSchema4(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["gga"]
-    functional: Functional1
+    functional: Functional4
 
 
-class Functional2(Enum):
+class Functional5(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
-class DFTModelSchema2(BaseModel):
+class DFTModelSchema5(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["hybrid"]
-    functional: Functional2
+    functional: Functional5
 
 
-class Type6(Enum):
+class Type8(Enum):
     ml = "ml"
 
 
-class Subtype1(Enum):
+class Subtype3(Enum):
     re = "re"
 
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype1
+    subtype: Subtype3
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type7(Enum):
+class Type9(Enum):
     unknown = "unknown"
 
 
-class Subtype2(Enum):
+class Subtype4(Enum):
     unknown = "unknown"
 
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype2
+    subtype: Subtype4
     method: BaseMethod = Field(..., title="base method")
 
 
@@ -1744,8 +1744,8 @@ class SubworkflowSchema(BaseModel):
     """
     Contains the Units of the subworkflow
     """
-    model: Union[Union[DFTModelSchema, DFTModelSchema1, DFTModelSchema2], MLModelSchema, UnknownModelSchema] = Field(
-        ..., discriminator="type"
+    model: Union[Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5], MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="type", title="Any model schema"
     )
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
@@ -1754,7 +1754,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Subtype3(Enum):
+class Subtype5(Enum):
     input = "input"
     output = "output"
     dataFrame = "dataFrame"
@@ -1859,7 +1859,7 @@ class DataIOUnitSchema1(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    subtype: Subtype3
+    subtype: Subtype5
     source: Source
     input: List[Input1]
 
@@ -2258,7 +2258,7 @@ class ExecutionUnitInputItemSchema3(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class Type8(Enum):
+class Type10(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -2269,7 +2269,7 @@ class BoundaryConditionsDataProviderSchema1(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: Optional[Type8] = "pbc"
+    type: Optional[Type10] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """

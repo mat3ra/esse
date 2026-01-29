@@ -1660,57 +1660,57 @@ class DFTModelSchema(BaseModel):
     functional: Functional
 
 
-class Functional46(Enum):
+class Functional49(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class DFTModelSchema13(BaseModel):
+class DFTModelSchema16(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["gga"]
-    functional: Functional46
+    functional: Functional49
 
 
-class Functional47(Enum):
+class Functional50(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
-class DFTModelSchema14(BaseModel):
+class DFTModelSchema17(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["hybrid"]
-    functional: Functional47
+    functional: Functional50
 
 
-class Type96(Enum):
+class Type98(Enum):
     ml = "ml"
 
 
-class Subtype15(Enum):
+class Subtype17(Enum):
     re = "re"
 
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype15
+    subtype: Subtype17
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type97(Enum):
+class Type99(Enum):
     unknown = "unknown"
 
 
-class Subtype16(Enum):
+class Subtype18(Enum):
     unknown = "unknown"
 
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype16
+    subtype: Subtype18
     method: BaseMethod = Field(..., title="base method")
 
 
@@ -1727,8 +1727,8 @@ class SubworkflowMixinSchema(BaseModel):
     """
     Contains the Units of the subworkflow
     """
-    model: Union[Union[DFTModelSchema, DFTModelSchema13, DFTModelSchema14], MLModelSchema, UnknownModelSchema] = Field(
-        ..., discriminator="type"
+    model: Union[Union[DFTModelSchema, DFTModelSchema16, DFTModelSchema17], MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="type", title="Any model schema"
     )
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False

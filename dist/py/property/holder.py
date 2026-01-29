@@ -1915,7 +1915,7 @@ class ExecutionUnitInputItemSchema(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class Type77(Enum):
+class Type79(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -1926,7 +1926,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: Optional[Type77] = "pbc"
+    type: Optional[Type79] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -2750,57 +2750,57 @@ class DFTModelSchema(BaseModel):
     functional: Functional
 
 
-class Functional25(Enum):
+class Functional28(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class DFTModelSchema7(BaseModel):
+class DFTModelSchema10(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["gga"]
-    functional: Functional25
+    functional: Functional28
 
 
-class Functional26(Enum):
+class Functional29(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
-class DFTModelSchema8(BaseModel):
+class DFTModelSchema11(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["hybrid"]
-    functional: Functional26
+    functional: Functional29
 
 
-class Type78(Enum):
+class Type80(Enum):
     ml = "ml"
 
 
-class Subtype5(Enum):
+class Subtype7(Enum):
     re = "re"
 
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype5
+    subtype: Subtype7
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type79(Enum):
+class Type81(Enum):
     unknown = "unknown"
 
 
-class Subtype6(Enum):
+class Subtype8(Enum):
     unknown = "unknown"
 
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype6
+    subtype: Subtype8
     method: BaseMethod = Field(..., title="base method")
 
 
@@ -2834,8 +2834,8 @@ class SubworkflowSchema(BaseModel):
     """
     Contains the Units of the subworkflow
     """
-    model: Union[Union[DFTModelSchema, DFTModelSchema7, DFTModelSchema8], MLModelSchema, UnknownModelSchema] = Field(
-        ..., discriminator="type"
+    model: Union[Union[DFTModelSchema, DFTModelSchema10, DFTModelSchema11], MLModelSchema, UnknownModelSchema] = Field(
+        ..., discriminator="type", title="Any model schema"
     )
     application: ApplicationSchema = Field(..., title="application schema")
     isDraft: Optional[bool] = False
@@ -2844,7 +2844,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Subtype7(Enum):
+class Subtype9(Enum):
     input = "input"
     output = "output"
     dataFrame = "dataFrame"
@@ -2949,7 +2949,7 @@ class DataIOUnitSchema3(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    subtype: Subtype7
+    subtype: Subtype9
     source: Source
     input: List[Input4]
 
@@ -3348,7 +3348,7 @@ class ExecutionUnitInputItemSchema9(BaseModel):
     isManuallyChanged: Optional[bool] = False
 
 
-class Type80(Enum):
+class Type82(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -3359,7 +3359,7 @@ class BoundaryConditionsDataProviderSchema8(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    type: Optional[Type80] = "pbc"
+    type: Optional[Type82] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """

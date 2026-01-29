@@ -48138,6 +48138,62 @@ export interface ModelLocalDensityApproximation {
      */
     tags?: string[];
 }
+/** Schema dist/js/schema/models_directory/legacy/any.json */
+export type AnyModelSchema = ({
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
+} | {
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
+} | {
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
+}) | {
+    type: "ml";
+    subtype: "re";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
+} | {
+    type: "unknown";
+    subtype: "unknown";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {};
+    };
+};
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
 export type DFTModelSchema = {
     type: "dft";

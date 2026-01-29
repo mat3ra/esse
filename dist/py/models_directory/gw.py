@@ -87,7 +87,7 @@ class LDAFunctionalMixin(BaseModel):
     functional: Optional[Functional] = None
 
 
-class Functional19(Enum):
+class Functional22(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
 
@@ -101,10 +101,10 @@ class GGAFunctionalMixin(BaseModel):
     TODO: Use regex once schema draft version has been updated
     """
     spinPolarization: Optional[SpinPolarization] = None
-    functional: Optional[Functional19] = None
+    functional: Optional[Functional22] = None
 
 
-class Functional20(Enum):
+class Functional23(Enum):
     scan = "scan"
 
 
@@ -117,10 +117,10 @@ class MetaGGAFunctionalMixin(BaseModel):
     TODO: Use regex once schema draft version has been updated
     """
     spinPolarization: Optional[SpinPolarization] = None
-    functional: Optional[Functional20] = None
+    functional: Optional[Functional23] = None
 
 
-class Functional21(Enum):
+class Functional24(Enum):
     pz = "pz"
 
 
@@ -133,10 +133,10 @@ class LDAFunctionalMixin1(BaseModel):
     TODO: Use regex once schema draft version has been updated
     """
     spinOrbitCoupling: Optional[bool] = None
-    functional: Optional[Functional21] = None
+    functional: Optional[Functional24] = None
 
 
-class Functional22(Enum):
+class Functional25(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
 
@@ -150,10 +150,10 @@ class GGAFunctionalMixin2(BaseModel):
     TODO: Use regex once schema draft version has been updated
     """
     spinOrbitCoupling: Optional[bool] = None
-    functional: Optional[Functional22] = None
+    functional: Optional[Functional25] = None
 
 
-class Functional23(Enum):
+class Functional26(Enum):
     scan = "scan"
 
 
@@ -166,7 +166,7 @@ class MetaGGAFunctionalMixin1(BaseModel):
     TODO: Use regex once schema draft version has been updated
     """
     spinOrbitCoupling: Optional[bool] = None
-    functional: Optional[Functional23] = None
+    functional: Optional[Functional26] = None
 
 
 class Type(Enum):

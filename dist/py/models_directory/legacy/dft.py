@@ -43,39 +43,39 @@ class DFTModelSchema(BaseModel):
     functional: Functional
 
 
-class Functional4(Enum):
+class Functional7(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
     other = "other"
 
 
-class DFTModelSchema4(BaseModel):
+class DFTModelSchema7(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional4
+    functional: Functional7
 
 
-class Functional5(Enum):
+class Functional8(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
 
-class DFTModelSchema5(BaseModel):
+class DFTModelSchema8(BaseModel):
     type: Literal["dft"]
     method: BaseMethod = Field(..., title="base method")
     subtype: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    functional: Functional5
+    functional: Functional8
 
 
-class ESSE(RootModel[Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5]]):
-    root: Union[DFTModelSchema, DFTModelSchema4, DFTModelSchema5] = Field(
+class ESSE(RootModel[Union[DFTModelSchema, DFTModelSchema7, DFTModelSchema8]]):
+    root: Union[DFTModelSchema, DFTModelSchema7, DFTModelSchema8] = Field(
         ..., discriminator="subtype", title="DFT model schema"
     )
 
 
-class Functional6(Enum):
+class Functional9(Enum):
     pz = "pz"
     pw = "pw"
     vwn = "vwn"
@@ -85,10 +85,10 @@ class Functional6(Enum):
 class Lda(BaseModel):
     type: Literal["dft"]
     subtype: Literal["lda"]
-    functional: Functional6
+    functional: Functional9
 
 
-class Functional7(Enum):
+class Functional10(Enum):
     pbe = "pbe"
     pbesol = "pbesol"
     pw91 = "pw91"
@@ -98,10 +98,10 @@ class Functional7(Enum):
 class Gga(BaseModel):
     type: Literal["dft"]
     subtype: Literal["gga"]
-    functional: Functional7
+    functional: Functional10
 
 
-class Functional8(Enum):
+class Functional11(Enum):
     b3lyp = "b3lyp"
     hse06 = "hse06"
 
@@ -109,4 +109,4 @@ class Functional8(Enum):
 class Hybrid(BaseModel):
     type: Literal["dft"]
     subtype: Literal["hybrid"]
-    functional: Functional8
+    functional: Functional11

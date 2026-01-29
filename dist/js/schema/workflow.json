@@ -3554,6 +3554,9 @@
                         }
                     },
                     "model": {
+                        "$schema": "http://json-schema.org/draft-07/schema#",
+                        "title": "Any model schema",
+                        "type": "object",
                         "oneOf": [
                             {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
