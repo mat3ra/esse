@@ -1,0 +1,30 @@
+{
+    "$id": "workflow/unit/context/collinear-magnetization",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "collinearMagnetization context item schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "_base.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "collinearMagnetization"
+        },
+        "data": {
+            "$ref": "../../../context_providers_directory/collinear_magnetization_context_provider.json"
+        },
+        "extraData": {
+            "allOf": [
+                {
+                    "$ref": "_extra_data_material_hash.json"
+                }
+            ]
+        }
+    },
+    "required": [
+        "extraData"
+    ]
+}

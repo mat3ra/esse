@@ -1,0 +1,20 @@
+{
+    "$id": "workflow/unit/context/ml-train-test-split",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "mlTrainTestSplit context item schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "_base.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "mlTrainTestSplit"
+        },
+        "data": {
+            "$ref": "../../../context_providers_directory/ml_train_test_split_context_provider.json"
+        }
+    }
+}

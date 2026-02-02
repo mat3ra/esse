@@ -1,0 +1,34 @@
+{
+    "$id": "workflow/unit/context/cutoffs",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "cutoffs context item schema",
+    "type": "object",
+    "required": [
+        "name",
+        "isEdited",
+        "data"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "cutoffs"
+        },
+        "data": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "Planewave Cutoffs Context Provider Schema",
+            "description": "Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.",
+            "type": "object",
+            "properties": {
+                "wavefunction": {
+                    "type": "number"
+                },
+                "density": {
+                    "type": "number"
+                }
+            }
+        },
+        "isEdited": {
+            "type": "boolean"
+        }
+    }
+}

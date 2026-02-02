@@ -6661,18 +6661,9 @@ export interface JobSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: {
-                    name: ContextProviderNameEnum;
-                    isEdited: boolean;
+                context?: ({
+                    name: "input";
                     data: {
-                        /**
-                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                         */
-                        type?: "pbc" | "bc1" | "bc2" | "bc3";
-                        offset?: number;
-                        electricField?: number;
-                        targetFermiEnergy?: number;
-                    } | {
                         /**
                          * Total charge of the system.
                          */
@@ -6865,91 +6856,6 @@ export interface JobSchema {
                             "if_pos(3)"?: number;
                         }[][];
                     } | {
-                        IBRAV?: number;
-                        RESTART_MODE?: "from_scratch" | "restart";
-                        ATOMIC_SPECIES?: {
-                            /**
-                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                             */
-                            X: string;
-                            /**
-                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                             */
-                            Mass_X: number;
-                            /**
-                             * PseudoPot_X
-                             */
-                            PseudoPot_X: string;
-                        }[];
-                        ATOMIC_SPECIES_WITH_LABELS?: {
-                            /**
-                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                             */
-                            X: string;
-                            /**
-                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                             */
-                            Mass_X: number;
-                            /**
-                             * PseudoPot_X
-                             */
-                            PseudoPot_X: string;
-                        }[];
-                        /**
-                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                         */
-                        NAT?: number;
-                        /**
-                         * number of types of atoms in the unit cell
-                         */
-                        NTYP?: number;
-                        /**
-                         * Number of different atomic species including labels
-                         */
-                        NTYP_WITH_LABELS?: number;
-                        ATOMIC_POSITIONS?: {
-                            /**
-                             * label of the atom as specified in ATOMIC_SPECIES
-                             */
-                            X?: string;
-                            /**
-                             * atomic positions
-                             */
-                            x: number;
-                            /**
-                             * atomic positions
-                             */
-                            y: number;
-                            /**
-                             * atomic positions
-                             */
-                            z: number;
-                            "if_pos(1)"?: number;
-                            "if_pos(2)"?: number;
-                            "if_pos(3)"?: number;
-                        }[];
-                        /**
-                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                         */
-                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                        CELL_PARAMETERS?: {
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v1?: [number, number, number];
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v2?: [number, number, number];
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v3?: [number, number, number];
-                        };
-                    } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
                         ATOMIC_SPECIES: {
@@ -7056,7 +6962,218 @@ export interface JobSchema {
                          * POSCAR contents with constraints for all intermediate NEB images.
                          */
                         INTERMEDIATE_IMAGES: string[];
-                    } | {
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "cutoffs";
+                    /**
+                     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                     */
+                    data: {
+                        wavefunction?: number;
+                        density?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "kgrid" | "qgrid" | "igrid";
+                    /**
+                     * 3D grid with shifts for k-point or q-point sampling.
+                     */
+                    data: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        dimensions: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        shifts?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        reciprocalVectorRatios?: [number, number, number];
+                        gridMetricType: "KPPRA" | "spacing";
+                        gridMetricValue: number;
+                        preferGridMetric?: boolean;
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                    /**
+                     * Path in reciprocal space for band structure calculations.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        },
+                        ...{
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        }[]
+                    ];
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_j";
+                    /**
+                     * Hubbard parameters for DFT+U+J calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        },
+                        ...{
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_u";
+                    /**
+                     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                     */
+                    data: {
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        hubbardUValue?: number;
+                    }[];
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_v";
+                    /**
+                     * Hubbard V parameters for DFT+U+V calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_legacy";
+                    /**
+                     * Hubbard parameters for DFT+U calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "neb";
+                    /**
+                     * Number of intermediate NEB images.
+                     */
+                    data: {
+                        nImages?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "boundaryConditions";
+                    data: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type?: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset?: number;
+                        electricField?: number;
+                        targetFermiEnergy?: number;
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlSettings";
+                    /**
+                     * Settings important to machine learning runs.
+                     */
+                    data: {
+                        target_column_name?: string;
+                        problem_category?: "regression" | "classification" | "clustering";
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlTrainTestSplit";
+                    /**
+                     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                     */
+                    data: {
+                        fraction_held_as_test_set?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "dynamics";
+                    /**
+                     * Important parameters for molecular dynamics calculation
+                     */
+                    data: {
+                        numberOfSteps?: number;
+                        timeStep?: number;
+                        electronMass?: number;
+                        temperature?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "collinearMagnetization";
+                    /**
+                     * Set starting magnetization, can have values in the range [-1, +1].
+                     */
+                    data: {
                         startingMagnetization: {
                             atomicSpecies: string;
                             value: number;
@@ -7064,66 +7181,17 @@ export interface JobSchema {
                         }[];
                         isTotalMagnetization: boolean;
                         totalMagnetization: number;
-                    } | [
-                        {
-                            paramType?: "U" | "J" | "B" | "E2" | "E3";
-                            atomicSpecies?: string;
-                            atomicOrbital?: string;
-                            value?: number;
-                        },
-                        ...{
-                            paramType?: "U" | "J" | "B" | "E2" | "E3";
-                            atomicSpecies?: string;
-                            atomicOrbital?: string;
-                            value?: number;
-                        }[]
-                    ] | [
-                        {
-                            atomicSpecies?: string;
-                            atomicSpeciesIndex?: number;
-                            hubbardUValue?: number;
-                        },
-                        ...{
-                            atomicSpecies?: string;
-                            atomicSpeciesIndex?: number;
-                            hubbardUValue?: number;
-                        }[]
-                    ] | {
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        hubbardUValue?: number;
-                    }[] | [
-                        {
-                            atomicSpecies?: string;
-                            siteIndex?: number;
-                            atomicOrbital?: string;
-                            atomicSpecies2?: string;
-                            siteIndex2?: number;
-                            atomicOrbital2?: string;
-                            hubbardVValue?: number;
-                        },
-                        ...{
-                            atomicSpecies?: string;
-                            siteIndex?: number;
-                            atomicOrbital?: string;
-                            atomicSpecies2?: string;
-                            siteIndex2?: number;
-                            atomicOrbital2?: string;
-                            hubbardVValue?: number;
-                        }[]
-                    ] | {
-                        numberOfSteps?: number;
-                        timeStep?: number;
-                        electronMass?: number;
-                        temperature?: number;
-                    } | {
-                        target_column_name?: string;
-                        problem_category?: "regression" | "classification" | "clustering";
-                    } | {
-                        fraction_held_as_test_set?: number;
-                    } | {
-                        nImages?: number;
-                    } | {
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "nonCollinearMagnetization";
+                    /**
+                     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                     */
+                    data: {
                         isExistingChargeDensity?: boolean;
                         isStartingMagnetization?: boolean;
                         startingMagnetization?: {
@@ -7151,42 +7219,12 @@ export interface JobSchema {
                             y?: number;
                             z?: number;
                         };
-                    } | {
-                        wavefunction?: number;
-                        density?: number;
-                    } | {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        dimensions: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        shifts?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        reciprocalVectorRatios?: [number, number, number];
-                        gridMetricType: "KPPRA" | "spacing";
-                        gridMetricValue: number;
-                        preferGridMetric?: boolean;
-                    } | [
-                        {
-                            point?: string;
-                            steps: number;
-                            coordinates: number[];
-                        },
-                        ...{
-                            point?: string;
-                            steps: number;
-                            coordinates: number[];
-                        }[]
-                    ];
-                    extraData?: {};
-                }[];
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                })[];
             } | {
                 /**
                  * entity identity
@@ -8386,18 +8424,9 @@ export interface JobSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
+            context?: ({
+                name: "input";
                 data: {
-                    /**
-                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                     */
-                    type?: "pbc" | "bc1" | "bc2" | "bc3";
-                    offset?: number;
-                    electricField?: number;
-                    targetFermiEnergy?: number;
-                } | {
                     /**
                      * Total charge of the system.
                      */
@@ -8590,91 +8619,6 @@ export interface JobSchema {
                         "if_pos(3)"?: number;
                     }[][];
                 } | {
-                    IBRAV?: number;
-                    RESTART_MODE?: "from_scratch" | "restart";
-                    ATOMIC_SPECIES?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    ATOMIC_SPECIES_WITH_LABELS?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    /**
-                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                     */
-                    NAT?: number;
-                    /**
-                     * number of types of atoms in the unit cell
-                     */
-                    NTYP?: number;
-                    /**
-                     * Number of different atomic species including labels
-                     */
-                    NTYP_WITH_LABELS?: number;
-                    ATOMIC_POSITIONS?: {
-                        /**
-                         * label of the atom as specified in ATOMIC_SPECIES
-                         */
-                        X?: string;
-                        /**
-                         * atomic positions
-                         */
-                        x: number;
-                        /**
-                         * atomic positions
-                         */
-                        y: number;
-                        /**
-                         * atomic positions
-                         */
-                        z: number;
-                        "if_pos(1)"?: number;
-                        "if_pos(2)"?: number;
-                        "if_pos(3)"?: number;
-                    }[];
-                    /**
-                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                     */
-                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                    CELL_PARAMETERS?: {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v1?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v2?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v3?: [number, number, number];
-                    };
-                } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
                     ATOMIC_SPECIES: {
@@ -8781,7 +8725,218 @@ export interface JobSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
                     startingMagnetization: {
                         atomicSpecies: string;
                         value: number;
@@ -8789,66 +8944,17 @@ export interface JobSchema {
                     }[];
                     isTotalMagnetization: boolean;
                     totalMagnetization: number;
-                } | [
-                    {
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    },
-                    ...{
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    }[]
-                ] | [
-                    {
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    }[]
-                ] | {
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    hubbardUValue?: number;
-                }[] | [
-                    {
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    }[]
-                ] | {
-                    numberOfSteps?: number;
-                    timeStep?: number;
-                    electronMass?: number;
-                    temperature?: number;
-                } | {
-                    target_column_name?: string;
-                    problem_category?: "regression" | "classification" | "clustering";
-                } | {
-                    fraction_held_as_test_set?: number;
-                } | {
-                    nImages?: number;
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
                     isExistingChargeDensity?: boolean;
                     isStartingMagnetization?: boolean;
                     startingMagnetization?: {
@@ -8876,42 +8982,12 @@ export interface JobSchema {
                         y?: number;
                         z?: number;
                     };
-                } | {
-                    wavefunction?: number;
-                    density?: number;
-                } | {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    dimensions: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    shifts?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    reciprocalVectorRatios?: [number, number, number];
-                    gridMetricType: "KPPRA" | "spacing";
-                    gridMetricValue: number;
-                    preferGridMetric?: boolean;
-                } | [
-                    {
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    },
-                    ...{
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    }[]
-                ];
-                extraData?: {};
-            }[];
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -50557,18 +50633,9 @@ export interface WorkflowPropertySchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
+            context?: ({
+                name: "input";
                 data: {
-                    /**
-                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                     */
-                    type?: "pbc" | "bc1" | "bc2" | "bc3";
-                    offset?: number;
-                    electricField?: number;
-                    targetFermiEnergy?: number;
-                } | {
                     /**
                      * Total charge of the system.
                      */
@@ -50761,91 +50828,6 @@ export interface WorkflowPropertySchema {
                         "if_pos(3)"?: number;
                     }[][];
                 } | {
-                    IBRAV?: number;
-                    RESTART_MODE?: "from_scratch" | "restart";
-                    ATOMIC_SPECIES?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    ATOMIC_SPECIES_WITH_LABELS?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    /**
-                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                     */
-                    NAT?: number;
-                    /**
-                     * number of types of atoms in the unit cell
-                     */
-                    NTYP?: number;
-                    /**
-                     * Number of different atomic species including labels
-                     */
-                    NTYP_WITH_LABELS?: number;
-                    ATOMIC_POSITIONS?: {
-                        /**
-                         * label of the atom as specified in ATOMIC_SPECIES
-                         */
-                        X?: string;
-                        /**
-                         * atomic positions
-                         */
-                        x: number;
-                        /**
-                         * atomic positions
-                         */
-                        y: number;
-                        /**
-                         * atomic positions
-                         */
-                        z: number;
-                        "if_pos(1)"?: number;
-                        "if_pos(2)"?: number;
-                        "if_pos(3)"?: number;
-                    }[];
-                    /**
-                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                     */
-                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                    CELL_PARAMETERS?: {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v1?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v2?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v3?: [number, number, number];
-                    };
-                } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
                     ATOMIC_SPECIES: {
@@ -50952,7 +50934,218 @@ export interface WorkflowPropertySchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
                     startingMagnetization: {
                         atomicSpecies: string;
                         value: number;
@@ -50960,66 +51153,17 @@ export interface WorkflowPropertySchema {
                     }[];
                     isTotalMagnetization: boolean;
                     totalMagnetization: number;
-                } | [
-                    {
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    },
-                    ...{
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    }[]
-                ] | [
-                    {
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    }[]
-                ] | {
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    hubbardUValue?: number;
-                }[] | [
-                    {
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    }[]
-                ] | {
-                    numberOfSteps?: number;
-                    timeStep?: number;
-                    electronMass?: number;
-                    temperature?: number;
-                } | {
-                    target_column_name?: string;
-                    problem_category?: "regression" | "classification" | "clustering";
-                } | {
-                    fraction_held_as_test_set?: number;
-                } | {
-                    nImages?: number;
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
                     isExistingChargeDensity?: boolean;
                     isStartingMagnetization?: boolean;
                     startingMagnetization?: {
@@ -51047,42 +51191,12 @@ export interface WorkflowPropertySchema {
                         y?: number;
                         z?: number;
                     };
-                } | {
-                    wavefunction?: number;
-                    density?: number;
-                } | {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    dimensions: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    shifts?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    reciprocalVectorRatios?: [number, number, number];
-                    gridMetricType: "KPPRA" | "spacing";
-                    gridMetricValue: number;
-                    preferGridMetric?: boolean;
-                } | [
-                    {
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    },
-                    ...{
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    }[]
-                ];
-                extraData?: {};
-            }[];
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -52282,18 +52396,9 @@ export interface WorkflowPropertySchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
+        context?: ({
+            name: "input";
             data: {
-                /**
-                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                 */
-                type?: "pbc" | "bc1" | "bc2" | "bc3";
-                offset?: number;
-                electricField?: number;
-                targetFermiEnergy?: number;
-            } | {
                 /**
                  * Total charge of the system.
                  */
@@ -52486,91 +52591,6 @@ export interface WorkflowPropertySchema {
                     "if_pos(3)"?: number;
                 }[][];
             } | {
-                IBRAV?: number;
-                RESTART_MODE?: "from_scratch" | "restart";
-                ATOMIC_SPECIES?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                ATOMIC_SPECIES_WITH_LABELS?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                /**
-                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                 */
-                NAT?: number;
-                /**
-                 * number of types of atoms in the unit cell
-                 */
-                NTYP?: number;
-                /**
-                 * Number of different atomic species including labels
-                 */
-                NTYP_WITH_LABELS?: number;
-                ATOMIC_POSITIONS?: {
-                    /**
-                     * label of the atom as specified in ATOMIC_SPECIES
-                     */
-                    X?: string;
-                    /**
-                     * atomic positions
-                     */
-                    x: number;
-                    /**
-                     * atomic positions
-                     */
-                    y: number;
-                    /**
-                     * atomic positions
-                     */
-                    z: number;
-                    "if_pos(1)"?: number;
-                    "if_pos(2)"?: number;
-                    "if_pos(3)"?: number;
-                }[];
-                /**
-                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                 */
-                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                CELL_PARAMETERS?: {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v1?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v2?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v3?: [number, number, number];
-                };
-            } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
                 ATOMIC_SPECIES: {
@@ -52677,7 +52697,218 @@ export interface WorkflowPropertySchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
                 startingMagnetization: {
                     atomicSpecies: string;
                     value: number;
@@ -52685,66 +52916,17 @@ export interface WorkflowPropertySchema {
                 }[];
                 isTotalMagnetization: boolean;
                 totalMagnetization: number;
-            } | [
-                {
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                },
-                ...{
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                }[]
-            ] | [
-                {
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                }[]
-            ] | {
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                hubbardUValue?: number;
-            }[] | [
-                {
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                }[]
-            ] | {
-                numberOfSteps?: number;
-                timeStep?: number;
-                electronMass?: number;
-                temperature?: number;
-            } | {
-                target_column_name?: string;
-                problem_category?: "regression" | "classification" | "clustering";
-            } | {
-                fraction_held_as_test_set?: number;
-            } | {
-                nImages?: number;
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
                 isExistingChargeDensity?: boolean;
                 isStartingMagnetization?: boolean;
                 startingMagnetization?: {
@@ -52772,42 +52954,12 @@ export interface WorkflowPropertySchema {
                     y?: number;
                     z?: number;
                 };
-            } | {
-                wavefunction?: number;
-                density?: number;
-            } | {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                dimensions: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                shifts?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                reciprocalVectorRatios?: [number, number, number];
-                gridMetricType: "KPPRA" | "spacing";
-                gridMetricValue: number;
-                preferGridMetric?: boolean;
-            } | [
-                {
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                },
-                ...{
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                }[]
-            ];
-            extraData?: {};
-        }[];
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -55510,18 +55662,9 @@ export interface PropertyHolderSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: {
-                    name: ContextProviderNameEnum;
-                    isEdited: boolean;
+                context?: ({
+                    name: "input";
                     data: {
-                        /**
-                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                         */
-                        type?: "pbc" | "bc1" | "bc2" | "bc3";
-                        offset?: number;
-                        electricField?: number;
-                        targetFermiEnergy?: number;
-                    } | {
                         /**
                          * Total charge of the system.
                          */
@@ -55714,91 +55857,6 @@ export interface PropertyHolderSchema {
                             "if_pos(3)"?: number;
                         }[][];
                     } | {
-                        IBRAV?: number;
-                        RESTART_MODE?: "from_scratch" | "restart";
-                        ATOMIC_SPECIES?: {
-                            /**
-                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                             */
-                            X: string;
-                            /**
-                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                             */
-                            Mass_X: number;
-                            /**
-                             * PseudoPot_X
-                             */
-                            PseudoPot_X: string;
-                        }[];
-                        ATOMIC_SPECIES_WITH_LABELS?: {
-                            /**
-                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                             */
-                            X: string;
-                            /**
-                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                             */
-                            Mass_X: number;
-                            /**
-                             * PseudoPot_X
-                             */
-                            PseudoPot_X: string;
-                        }[];
-                        /**
-                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                         */
-                        NAT?: number;
-                        /**
-                         * number of types of atoms in the unit cell
-                         */
-                        NTYP?: number;
-                        /**
-                         * Number of different atomic species including labels
-                         */
-                        NTYP_WITH_LABELS?: number;
-                        ATOMIC_POSITIONS?: {
-                            /**
-                             * label of the atom as specified in ATOMIC_SPECIES
-                             */
-                            X?: string;
-                            /**
-                             * atomic positions
-                             */
-                            x: number;
-                            /**
-                             * atomic positions
-                             */
-                            y: number;
-                            /**
-                             * atomic positions
-                             */
-                            z: number;
-                            "if_pos(1)"?: number;
-                            "if_pos(2)"?: number;
-                            "if_pos(3)"?: number;
-                        }[];
-                        /**
-                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                         */
-                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                        CELL_PARAMETERS?: {
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v1?: [number, number, number];
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v2?: [number, number, number];
-                            /**
-                             * @minItems 3
-                             * @maxItems 3
-                             */
-                            v3?: [number, number, number];
-                        };
-                    } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
                         ATOMIC_SPECIES: {
@@ -55905,7 +55963,218 @@ export interface PropertyHolderSchema {
                          * POSCAR contents with constraints for all intermediate NEB images.
                          */
                         INTERMEDIATE_IMAGES: string[];
-                    } | {
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "cutoffs";
+                    /**
+                     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                     */
+                    data: {
+                        wavefunction?: number;
+                        density?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "kgrid" | "qgrid" | "igrid";
+                    /**
+                     * 3D grid with shifts for k-point or q-point sampling.
+                     */
+                    data: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        dimensions: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        shifts?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        reciprocalVectorRatios?: [number, number, number];
+                        gridMetricType: "KPPRA" | "spacing";
+                        gridMetricValue: number;
+                        preferGridMetric?: boolean;
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                    /**
+                     * Path in reciprocal space for band structure calculations.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        },
+                        ...{
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        }[]
+                    ];
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_j";
+                    /**
+                     * Hubbard parameters for DFT+U+J calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        },
+                        ...{
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_u";
+                    /**
+                     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                     */
+                    data: {
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        hubbardUValue?: number;
+                    }[];
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_v";
+                    /**
+                     * Hubbard V parameters for DFT+U+V calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_legacy";
+                    /**
+                     * Hubbard parameters for DFT+U calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                } | {
+                    name: "neb";
+                    /**
+                     * Number of intermediate NEB images.
+                     */
+                    data: {
+                        nImages?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "boundaryConditions";
+                    data: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type?: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset?: number;
+                        electricField?: number;
+                        targetFermiEnergy?: number;
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlSettings";
+                    /**
+                     * Settings important to machine learning runs.
+                     */
+                    data: {
+                        target_column_name?: string;
+                        problem_category?: "regression" | "classification" | "clustering";
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlTrainTestSplit";
+                    /**
+                     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                     */
+                    data: {
+                        fraction_held_as_test_set?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "dynamics";
+                    /**
+                     * Important parameters for molecular dynamics calculation
+                     */
+                    data: {
+                        numberOfSteps?: number;
+                        timeStep?: number;
+                        electronMass?: number;
+                        temperature?: number;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "collinearMagnetization";
+                    /**
+                     * Set starting magnetization, can have values in the range [-1, +1].
+                     */
+                    data: {
                         startingMagnetization: {
                             atomicSpecies: string;
                             value: number;
@@ -55913,66 +56182,17 @@ export interface PropertyHolderSchema {
                         }[];
                         isTotalMagnetization: boolean;
                         totalMagnetization: number;
-                    } | [
-                        {
-                            paramType?: "U" | "J" | "B" | "E2" | "E3";
-                            atomicSpecies?: string;
-                            atomicOrbital?: string;
-                            value?: number;
-                        },
-                        ...{
-                            paramType?: "U" | "J" | "B" | "E2" | "E3";
-                            atomicSpecies?: string;
-                            atomicOrbital?: string;
-                            value?: number;
-                        }[]
-                    ] | [
-                        {
-                            atomicSpecies?: string;
-                            atomicSpeciesIndex?: number;
-                            hubbardUValue?: number;
-                        },
-                        ...{
-                            atomicSpecies?: string;
-                            atomicSpeciesIndex?: number;
-                            hubbardUValue?: number;
-                        }[]
-                    ] | {
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        hubbardUValue?: number;
-                    }[] | [
-                        {
-                            atomicSpecies?: string;
-                            siteIndex?: number;
-                            atomicOrbital?: string;
-                            atomicSpecies2?: string;
-                            siteIndex2?: number;
-                            atomicOrbital2?: string;
-                            hubbardVValue?: number;
-                        },
-                        ...{
-                            atomicSpecies?: string;
-                            siteIndex?: number;
-                            atomicOrbital?: string;
-                            atomicSpecies2?: string;
-                            siteIndex2?: number;
-                            atomicOrbital2?: string;
-                            hubbardVValue?: number;
-                        }[]
-                    ] | {
-                        numberOfSteps?: number;
-                        timeStep?: number;
-                        electronMass?: number;
-                        temperature?: number;
-                    } | {
-                        target_column_name?: string;
-                        problem_category?: "regression" | "classification" | "clustering";
-                    } | {
-                        fraction_held_as_test_set?: number;
-                    } | {
-                        nImages?: number;
-                    } | {
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "nonCollinearMagnetization";
+                    /**
+                     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                     */
+                    data: {
                         isExistingChargeDensity?: boolean;
                         isStartingMagnetization?: boolean;
                         startingMagnetization?: {
@@ -56000,42 +56220,12 @@ export interface PropertyHolderSchema {
                             y?: number;
                             z?: number;
                         };
-                    } | {
-                        wavefunction?: number;
-                        density?: number;
-                    } | {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        dimensions: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        shifts?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        reciprocalVectorRatios?: [number, number, number];
-                        gridMetricType: "KPPRA" | "spacing";
-                        gridMetricValue: number;
-                        preferGridMetric?: boolean;
-                    } | [
-                        {
-                            point?: string;
-                            steps: number;
-                            coordinates: number[];
-                        },
-                        ...{
-                            point?: string;
-                            steps: number;
-                            coordinates: number[];
-                        }[]
-                    ];
-                    extraData?: {};
-                }[];
+                    };
+                    extraData: {
+                        materialHash?: string;
+                    };
+                    isEdited: boolean;
+                })[];
             } | {
                 /**
                  * entity identity
@@ -57235,18 +57425,9 @@ export interface PropertyHolderSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
+            context?: ({
+                name: "input";
                 data: {
-                    /**
-                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                     */
-                    type?: "pbc" | "bc1" | "bc2" | "bc3";
-                    offset?: number;
-                    electricField?: number;
-                    targetFermiEnergy?: number;
-                } | {
                     /**
                      * Total charge of the system.
                      */
@@ -57439,91 +57620,6 @@ export interface PropertyHolderSchema {
                         "if_pos(3)"?: number;
                     }[][];
                 } | {
-                    IBRAV?: number;
-                    RESTART_MODE?: "from_scratch" | "restart";
-                    ATOMIC_SPECIES?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    ATOMIC_SPECIES_WITH_LABELS?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    /**
-                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                     */
-                    NAT?: number;
-                    /**
-                     * number of types of atoms in the unit cell
-                     */
-                    NTYP?: number;
-                    /**
-                     * Number of different atomic species including labels
-                     */
-                    NTYP_WITH_LABELS?: number;
-                    ATOMIC_POSITIONS?: {
-                        /**
-                         * label of the atom as specified in ATOMIC_SPECIES
-                         */
-                        X?: string;
-                        /**
-                         * atomic positions
-                         */
-                        x: number;
-                        /**
-                         * atomic positions
-                         */
-                        y: number;
-                        /**
-                         * atomic positions
-                         */
-                        z: number;
-                        "if_pos(1)"?: number;
-                        "if_pos(2)"?: number;
-                        "if_pos(3)"?: number;
-                    }[];
-                    /**
-                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                     */
-                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                    CELL_PARAMETERS?: {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v1?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v2?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v3?: [number, number, number];
-                    };
-                } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
                     ATOMIC_SPECIES: {
@@ -57630,7 +57726,218 @@ export interface PropertyHolderSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
                     startingMagnetization: {
                         atomicSpecies: string;
                         value: number;
@@ -57638,66 +57945,17 @@ export interface PropertyHolderSchema {
                     }[];
                     isTotalMagnetization: boolean;
                     totalMagnetization: number;
-                } | [
-                    {
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    },
-                    ...{
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    }[]
-                ] | [
-                    {
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    }[]
-                ] | {
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    hubbardUValue?: number;
-                }[] | [
-                    {
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    }[]
-                ] | {
-                    numberOfSteps?: number;
-                    timeStep?: number;
-                    electronMass?: number;
-                    temperature?: number;
-                } | {
-                    target_column_name?: string;
-                    problem_category?: "regression" | "classification" | "clustering";
-                } | {
-                    fraction_held_as_test_set?: number;
-                } | {
-                    nImages?: number;
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
                     isExistingChargeDensity?: boolean;
                     isStartingMagnetization?: boolean;
                     startingMagnetization?: {
@@ -57725,42 +57983,12 @@ export interface PropertyHolderSchema {
                         y?: number;
                         z?: number;
                     };
-                } | {
-                    wavefunction?: number;
-                    density?: number;
-                } | {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    dimensions: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    shifts?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    reciprocalVectorRatios?: [number, number, number];
-                    gridMetricType: "KPPRA" | "spacing";
-                    gridMetricValue: number;
-                    preferGridMetric?: boolean;
-                } | [
-                    {
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    },
-                    ...{
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    }[]
-                ];
-                extraData?: {};
-            }[];
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -59411,18 +59639,9 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -59615,91 +59834,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -59806,7 +59940,218 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -59814,66 +60159,17 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -59901,42 +60197,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
@@ -60491,18 +60757,9 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -60695,91 +60952,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -60886,7 +61058,218 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -60894,66 +61277,17 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -60981,42 +61315,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/system/_material.json */
 export interface MaterialEntityReferenceSchema {
@@ -62480,18 +62784,9 @@ export interface BaseWorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
+            context?: ({
+                name: "input";
                 data: {
-                    /**
-                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                     */
-                    type?: "pbc" | "bc1" | "bc2" | "bc3";
-                    offset?: number;
-                    electricField?: number;
-                    targetFermiEnergy?: number;
-                } | {
                     /**
                      * Total charge of the system.
                      */
@@ -62684,91 +62979,6 @@ export interface BaseWorkflowSchema {
                         "if_pos(3)"?: number;
                     }[][];
                 } | {
-                    IBRAV?: number;
-                    RESTART_MODE?: "from_scratch" | "restart";
-                    ATOMIC_SPECIES?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    ATOMIC_SPECIES_WITH_LABELS?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    /**
-                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                     */
-                    NAT?: number;
-                    /**
-                     * number of types of atoms in the unit cell
-                     */
-                    NTYP?: number;
-                    /**
-                     * Number of different atomic species including labels
-                     */
-                    NTYP_WITH_LABELS?: number;
-                    ATOMIC_POSITIONS?: {
-                        /**
-                         * label of the atom as specified in ATOMIC_SPECIES
-                         */
-                        X?: string;
-                        /**
-                         * atomic positions
-                         */
-                        x: number;
-                        /**
-                         * atomic positions
-                         */
-                        y: number;
-                        /**
-                         * atomic positions
-                         */
-                        z: number;
-                        "if_pos(1)"?: number;
-                        "if_pos(2)"?: number;
-                        "if_pos(3)"?: number;
-                    }[];
-                    /**
-                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                     */
-                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                    CELL_PARAMETERS?: {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v1?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v2?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v3?: [number, number, number];
-                    };
-                } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
                     ATOMIC_SPECIES: {
@@ -62875,7 +63085,218 @@ export interface BaseWorkflowSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
                     startingMagnetization: {
                         atomicSpecies: string;
                         value: number;
@@ -62883,66 +63304,17 @@ export interface BaseWorkflowSchema {
                     }[];
                     isTotalMagnetization: boolean;
                     totalMagnetization: number;
-                } | [
-                    {
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    },
-                    ...{
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    }[]
-                ] | [
-                    {
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    }[]
-                ] | {
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    hubbardUValue?: number;
-                }[] | [
-                    {
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    }[]
-                ] | {
-                    numberOfSteps?: number;
-                    timeStep?: number;
-                    electronMass?: number;
-                    temperature?: number;
-                } | {
-                    target_column_name?: string;
-                    problem_category?: "regression" | "classification" | "clustering";
-                } | {
-                    fraction_held_as_test_set?: number;
-                } | {
-                    nImages?: number;
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
                     isExistingChargeDensity?: boolean;
                     isStartingMagnetization?: boolean;
                     startingMagnetization?: {
@@ -62970,42 +63342,12 @@ export interface BaseWorkflowSchema {
                         y?: number;
                         z?: number;
                     };
-                } | {
-                    wavefunction?: number;
-                    density?: number;
-                } | {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    dimensions: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    shifts?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    reciprocalVectorRatios?: [number, number, number];
-                    gridMetricType: "KPPRA" | "spacing";
-                    gridMetricValue: number;
-                    preferGridMetric?: boolean;
-                } | [
-                    {
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    },
-                    ...{
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    }[]
-                ];
-                extraData?: {};
-            }[];
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -64205,18 +64547,9 @@ export interface BaseWorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
+        context?: ({
+            name: "input";
             data: {
-                /**
-                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                 */
-                type?: "pbc" | "bc1" | "bc2" | "bc3";
-                offset?: number;
-                electricField?: number;
-                targetFermiEnergy?: number;
-            } | {
                 /**
                  * Total charge of the system.
                  */
@@ -64409,91 +64742,6 @@ export interface BaseWorkflowSchema {
                     "if_pos(3)"?: number;
                 }[][];
             } | {
-                IBRAV?: number;
-                RESTART_MODE?: "from_scratch" | "restart";
-                ATOMIC_SPECIES?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                ATOMIC_SPECIES_WITH_LABELS?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                /**
-                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                 */
-                NAT?: number;
-                /**
-                 * number of types of atoms in the unit cell
-                 */
-                NTYP?: number;
-                /**
-                 * Number of different atomic species including labels
-                 */
-                NTYP_WITH_LABELS?: number;
-                ATOMIC_POSITIONS?: {
-                    /**
-                     * label of the atom as specified in ATOMIC_SPECIES
-                     */
-                    X?: string;
-                    /**
-                     * atomic positions
-                     */
-                    x: number;
-                    /**
-                     * atomic positions
-                     */
-                    y: number;
-                    /**
-                     * atomic positions
-                     */
-                    z: number;
-                    "if_pos(1)"?: number;
-                    "if_pos(2)"?: number;
-                    "if_pos(3)"?: number;
-                }[];
-                /**
-                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                 */
-                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                CELL_PARAMETERS?: {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v1?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v2?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v3?: [number, number, number];
-                };
-            } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
                 ATOMIC_SPECIES: {
@@ -64600,7 +64848,218 @@ export interface BaseWorkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
                 startingMagnetization: {
                     atomicSpecies: string;
                     value: number;
@@ -64608,66 +65067,17 @@ export interface BaseWorkflowSchema {
                 }[];
                 isTotalMagnetization: boolean;
                 totalMagnetization: number;
-            } | [
-                {
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                },
-                ...{
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                }[]
-            ] | [
-                {
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                }[]
-            ] | {
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                hubbardUValue?: number;
-            }[] | [
-                {
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                }[]
-            ] | {
-                numberOfSteps?: number;
-                timeStep?: number;
-                electronMass?: number;
-                temperature?: number;
-            } | {
-                target_column_name?: string;
-                problem_category?: "regression" | "classification" | "clustering";
-            } | {
-                fraction_held_as_test_set?: number;
-            } | {
-                nImages?: number;
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
                 isExistingChargeDensity?: boolean;
                 isStartingMagnetization?: boolean;
                 startingMagnetization?: {
@@ -64695,42 +65105,12 @@ export interface BaseWorkflowSchema {
                     y?: number;
                     z?: number;
                 };
-            } | {
-                wavefunction?: number;
-                density?: number;
-            } | {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                dimensions: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                shifts?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                reciprocalVectorRatios?: [number, number, number];
-                gridMetricType: "KPPRA" | "spacing";
-                gridMetricValue: number;
-                preferGridMetric?: boolean;
-            } | [
-                {
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                },
-                ...{
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                }[]
-            ];
-            extraData?: {};
-        }[];
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -66218,18 +66598,9 @@ export interface SubworkflowMixinSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
+        context?: ({
+            name: "input";
             data: {
-                /**
-                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                 */
-                type?: "pbc" | "bc1" | "bc2" | "bc3";
-                offset?: number;
-                electricField?: number;
-                targetFermiEnergy?: number;
-            } | {
                 /**
                  * Total charge of the system.
                  */
@@ -66422,91 +66793,6 @@ export interface SubworkflowMixinSchema {
                     "if_pos(3)"?: number;
                 }[][];
             } | {
-                IBRAV?: number;
-                RESTART_MODE?: "from_scratch" | "restart";
-                ATOMIC_SPECIES?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                ATOMIC_SPECIES_WITH_LABELS?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                /**
-                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                 */
-                NAT?: number;
-                /**
-                 * number of types of atoms in the unit cell
-                 */
-                NTYP?: number;
-                /**
-                 * Number of different atomic species including labels
-                 */
-                NTYP_WITH_LABELS?: number;
-                ATOMIC_POSITIONS?: {
-                    /**
-                     * label of the atom as specified in ATOMIC_SPECIES
-                     */
-                    X?: string;
-                    /**
-                     * atomic positions
-                     */
-                    x: number;
-                    /**
-                     * atomic positions
-                     */
-                    y: number;
-                    /**
-                     * atomic positions
-                     */
-                    z: number;
-                    "if_pos(1)"?: number;
-                    "if_pos(2)"?: number;
-                    "if_pos(3)"?: number;
-                }[];
-                /**
-                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                 */
-                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                CELL_PARAMETERS?: {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v1?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v2?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v3?: [number, number, number];
-                };
-            } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
                 ATOMIC_SPECIES: {
@@ -66613,7 +66899,218 @@ export interface SubworkflowMixinSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
                 startingMagnetization: {
                     atomicSpecies: string;
                     value: number;
@@ -66621,66 +67118,17 @@ export interface SubworkflowMixinSchema {
                 }[];
                 isTotalMagnetization: boolean;
                 totalMagnetization: number;
-            } | [
-                {
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                },
-                ...{
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                }[]
-            ] | [
-                {
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                }[]
-            ] | {
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                hubbardUValue?: number;
-            }[] | [
-                {
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                }[]
-            ] | {
-                numberOfSteps?: number;
-                timeStep?: number;
-                electronMass?: number;
-                temperature?: number;
-            } | {
-                target_column_name?: string;
-                problem_category?: "regression" | "classification" | "clustering";
-            } | {
-                fraction_held_as_test_set?: number;
-            } | {
-                nImages?: number;
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
                 isExistingChargeDensity?: boolean;
                 isStartingMagnetization?: boolean;
                 startingMagnetization?: {
@@ -66708,42 +67156,12 @@ export interface SubworkflowMixinSchema {
                     y?: number;
                     z?: number;
                 };
-            } | {
-                wavefunction?: number;
-                density?: number;
-            } | {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                dimensions: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                shifts?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                reciprocalVectorRatios?: [number, number, number];
-                gridMetricType: "KPPRA" | "spacing";
-                gridMetricValue: number;
-                preferGridMetric?: boolean;
-            } | [
-                {
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                },
-                ...{
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                }[]
-            ];
-            extraData?: {};
-        }[];
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -67941,18 +68359,9 @@ export type WorkflowSubworkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -68145,91 +68554,6 @@ export type WorkflowSubworkflowUnitSchema = {
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -68336,7 +68660,218 @@ export type WorkflowSubworkflowUnitSchema = {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -68344,66 +68879,17 @@ export type WorkflowSubworkflowUnitSchema = {
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -68431,42 +68917,12 @@ export type WorkflowSubworkflowUnitSchema = {
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 } | {
     /**
      * entity identity
@@ -69632,18 +70088,9 @@ export interface SubworkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
+        context?: ({
+            name: "input";
             data: {
-                /**
-                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                 */
-                type?: "pbc" | "bc1" | "bc2" | "bc3";
-                offset?: number;
-                electricField?: number;
-                targetFermiEnergy?: number;
-            } | {
                 /**
                  * Total charge of the system.
                  */
@@ -69836,91 +70283,6 @@ export interface SubworkflowSchema {
                     "if_pos(3)"?: number;
                 }[][];
             } | {
-                IBRAV?: number;
-                RESTART_MODE?: "from_scratch" | "restart";
-                ATOMIC_SPECIES?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                ATOMIC_SPECIES_WITH_LABELS?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                /**
-                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                 */
-                NAT?: number;
-                /**
-                 * number of types of atoms in the unit cell
-                 */
-                NTYP?: number;
-                /**
-                 * Number of different atomic species including labels
-                 */
-                NTYP_WITH_LABELS?: number;
-                ATOMIC_POSITIONS?: {
-                    /**
-                     * label of the atom as specified in ATOMIC_SPECIES
-                     */
-                    X?: string;
-                    /**
-                     * atomic positions
-                     */
-                    x: number;
-                    /**
-                     * atomic positions
-                     */
-                    y: number;
-                    /**
-                     * atomic positions
-                     */
-                    z: number;
-                    "if_pos(1)"?: number;
-                    "if_pos(2)"?: number;
-                    "if_pos(3)"?: number;
-                }[];
-                /**
-                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                 */
-                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                CELL_PARAMETERS?: {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v1?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v2?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v3?: [number, number, number];
-                };
-            } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
                 ATOMIC_SPECIES: {
@@ -70027,7 +70389,218 @@ export interface SubworkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
                 startingMagnetization: {
                     atomicSpecies: string;
                     value: number;
@@ -70035,66 +70608,17 @@ export interface SubworkflowSchema {
                 }[];
                 isTotalMagnetization: boolean;
                 totalMagnetization: number;
-            } | [
-                {
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                },
-                ...{
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                }[]
-            ] | [
-                {
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                }[]
-            ] | {
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                hubbardUValue?: number;
-            }[] | [
-                {
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                }[]
-            ] | {
-                numberOfSteps?: number;
-                timeStep?: number;
-                electronMass?: number;
-                temperature?: number;
-            } | {
-                target_column_name?: string;
-                problem_category?: "regression" | "classification" | "clustering";
-            } | {
-                fraction_held_as_test_set?: number;
-            } | {
-                nImages?: number;
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
                 isExistingChargeDensity?: boolean;
                 isStartingMagnetization?: boolean;
                 startingMagnetization?: {
@@ -70122,42 +70646,12 @@ export interface SubworkflowSchema {
                     y?: number;
                     z?: number;
                 };
-            } | {
-                wavefunction?: number;
-                density?: number;
-            } | {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                dimensions: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                shifts?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                reciprocalVectorRatios?: [number, number, number];
-                gridMetricType: "KPPRA" | "spacing";
-                gridMetricValue: number;
-                preferGridMetric?: boolean;
-            } | [
-                {
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                },
-                ...{
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                }[]
-            ];
-            extraData?: {};
-        }[];
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -70979,6 +71473,607 @@ export interface ConditionUnitSchema {
      */
     throwException?: boolean;
 }
+/** Schema dist/js/schema/workflow/unit/context/_base.json */
+export interface BaseContextItemSchema {
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/_extra_data_material_hash.json */
+export interface ExtraDataWithMaterialHashSchema {
+    materialHash?: string;
+}
+/** Schema dist/js/schema/workflow/unit/context/boundary_conditions.json */
+export interface BoundaryConditionsContextItemSchema {
+    name: "boundaryConditions";
+    data: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type?: "pbc" | "bc1" | "bc2" | "bc3";
+        offset?: number;
+        electricField?: number;
+        targetFermiEnergy?: number;
+    };
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/collinear_magnetization.json */
+export interface CollinearMagnetizationContextItemSchema {
+    name: "collinearMagnetization";
+    /**
+     * Set starting magnetization, can have values in the range [-1, +1].
+     */
+    data: {
+        startingMagnetization: {
+            atomicSpecies: string;
+            value: number;
+            index: number;
+        }[];
+        isTotalMagnetization: boolean;
+        totalMagnetization: number;
+    };
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/cutoffs.json */
+export interface CutoffsContextItemSchema {
+    name: "cutoffs";
+    /**
+     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+     */
+    data: {
+        wavefunction?: number;
+        density?: number;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/dynamics.json */
+export interface DynamicsContextItemSchema {
+    name: "dynamics";
+    /**
+     * Important parameters for molecular dynamics calculation
+     */
+    data: {
+        numberOfSteps?: number;
+        timeStep?: number;
+        electronMass?: number;
+        temperature?: number;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/grid.json */
+export interface GridContextItemSchema {
+    name: "kgrid" | "qgrid" | "igrid";
+    /**
+     * 3D grid with shifts for k-point or q-point sampling.
+     */
+    data: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        dimensions: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        shifts?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        reciprocalVectorRatios?: [number, number, number];
+        gridMetricType: "KPPRA" | "spacing";
+        gridMetricValue: number;
+        preferGridMetric?: boolean;
+    };
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/hubbard_j.json */
+export interface HubbardJContextItemSchema {
+    name: "hubbard_j";
+    /**
+     * Hubbard parameters for DFT+U+J calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        },
+        ...{
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        }[]
+    ];
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/hubbard_legacy.json */
+export interface HubbardLegacyContextItemSchema {
+    name: "hubbard_legacy";
+    /**
+     * Hubbard parameters for DFT+U calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/hubbard_u.json */
+export interface HubbardUContextItemSchema {
+    name: "hubbard_u";
+    /**
+     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+     */
+    data: {
+        atomicSpecies?: string;
+        atomicOrbital?: string;
+        hubbardUValue?: number;
+    }[];
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/hubbard_v.json */
+export interface HubbardVContextItemSchema {
+    name: "hubbard_v";
+    /**
+     * Hubbard V parameters for DFT+U+V calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/input.json */
+export interface InputContextItemSchema {
+    name: "input";
+    data: {
+        /**
+         * Total charge of the system.
+         */
+        CHARGE: number;
+        /**
+         * Spin multiplicity of the system.
+         */
+        MULT: number;
+        /**
+         * Basis set label used in the calculation (e.g., '6-31G').
+         */
+        BASIS: string;
+        /**
+         * Number of atoms in the system.
+         */
+        NAT: number;
+        /**
+         * Number of unique atomic species in the system.
+         */
+        NTYP: number;
+        /**
+         * Formatted text block with atomic positions including constraints.
+         */
+        ATOMIC_POSITIONS: string;
+        /**
+         * Formatted text block with atomic positions without constraints.
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        /**
+         * Formatted text block for atomic species, including element symbols and masses.
+         */
+        ATOMIC_SPECIES: string;
+        /**
+         * Exchange-correlation functional identifier (e.g., 'B3LYP').
+         */
+        FUNCTIONAL: string;
+        /**
+         * Whether atomic positions are expressed in cartesian coordinates.
+         */
+        CARTESIAN: boolean;
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+        FIRST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        LAST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[][];
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+    } | {
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints.
+         */
+        POSCAR: string;
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+         */
+        POSCAR_WITH_CONSTRAINTS: string;
+    } | {
+        /**
+         * POSCAR content with constraints for the first NEB image.
+         */
+        FIRST_IMAGE: string;
+        /**
+         * POSCAR content with constraints for the last NEB image.
+         */
+        LAST_IMAGE: string;
+        /**
+         * POSCAR contents with constraints for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: string[];
+    };
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/ml_settings.json */
+export interface MlSettingsContextItemSchema {
+    name: "mlSettings";
+    /**
+     * Settings important to machine learning runs.
+     */
+    data: {
+        target_column_name?: string;
+        problem_category?: "regression" | "classification" | "clustering";
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/ml_train_test_split.json */
+export interface MlTrainTestSplitContextItemSchema {
+    name: "mlTrainTestSplit";
+    /**
+     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+     */
+    data: {
+        fraction_held_as_test_set?: number;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/neb.json */
+export interface NebContextItemSchema {
+    name: "neb";
+    /**
+     * Number of intermediate NEB images.
+     */
+    data: {
+        nImages?: number;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/non_collinear_magnetization.json */
+export interface NonCollinearMagnetizationContextItemSchema {
+    name: "nonCollinearMagnetization";
+    /**
+     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+     */
+    data: {
+        isExistingChargeDensity?: boolean;
+        isStartingMagnetization?: boolean;
+        startingMagnetization?: {
+            index?: number;
+            atomicSpecies?: string;
+            value?: number;
+        }[];
+        isArbitrarySpinAngle?: boolean;
+        isArbitrarySpinDirection?: boolean;
+        lforcet?: boolean;
+        spinAngles?: {
+            index?: number;
+            atomicSpecies?: string;
+            angle1?: number;
+            angle2?: number;
+        }[];
+        isConstrainedMagnetization?: boolean;
+        constrainedMagnetization?: {
+            constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+            lambda?: number;
+        };
+        isFixedMagnetization?: boolean;
+        fixedMagnetization?: {
+            x?: number;
+            y?: number;
+            z?: number;
+        };
+    };
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/path.json */
+export interface PathContextItemSchema {
+    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+    /**
+     * Path in reciprocal space for band structure calculations.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        },
+        ...{
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        }[]
+    ];
+    extraData: {
+        materialHash?: string;
+    };
+    isEdited: boolean;
+}
 /** Schema dist/js/schema/workflow/unit/execution.json */
 export interface ExecutionUnitSchemaBase {
     /**
@@ -71305,18 +72400,9 @@ export interface ExecutionUnitSchemaBase {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -71509,91 +72595,6 @@ export interface ExecutionUnitSchemaBase {
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -71700,7 +72701,218 @@ export interface ExecutionUnitSchemaBase {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -71708,66 +72920,17 @@ export interface ExecutionUnitSchemaBase {
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -71795,42 +72958,12 @@ export interface ExecutionUnitSchemaBase {
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
 export interface ExecutionUnitInputSchema {
@@ -72666,18 +73799,9 @@ export interface ExecutionUnitMixinSchema {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -72870,91 +73994,6 @@ export interface ExecutionUnitMixinSchema {
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -73061,7 +74100,218 @@ export interface ExecutionUnitMixinSchema {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -73069,66 +74319,17 @@ export interface ExecutionUnitMixinSchema {
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -73156,42 +74357,12 @@ export interface ExecutionUnitMixinSchema {
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/io.json */
 export interface DataIOUnitMixinSchema {
@@ -74526,18 +75697,9 @@ export type WorkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
+    context?: ({
+        name: "input";
         data: {
-            /**
-             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-             */
-            type?: "pbc" | "bc1" | "bc2" | "bc3";
-            offset?: number;
-            electricField?: number;
-            targetFermiEnergy?: number;
-        } | {
             /**
              * Total charge of the system.
              */
@@ -74730,91 +75892,6 @@ export type WorkflowUnitSchema = {
                 "if_pos(3)"?: number;
             }[][];
         } | {
-            IBRAV?: number;
-            RESTART_MODE?: "from_scratch" | "restart";
-            ATOMIC_SPECIES?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            ATOMIC_SPECIES_WITH_LABELS?: {
-                /**
-                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                 */
-                X: string;
-                /**
-                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                 */
-                Mass_X: number;
-                /**
-                 * PseudoPot_X
-                 */
-                PseudoPot_X: string;
-            }[];
-            /**
-             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-             */
-            NAT?: number;
-            /**
-             * number of types of atoms in the unit cell
-             */
-            NTYP?: number;
-            /**
-             * Number of different atomic species including labels
-             */
-            NTYP_WITH_LABELS?: number;
-            ATOMIC_POSITIONS?: {
-                /**
-                 * label of the atom as specified in ATOMIC_SPECIES
-                 */
-                X?: string;
-                /**
-                 * atomic positions
-                 */
-                x: number;
-                /**
-                 * atomic positions
-                 */
-                y: number;
-                /**
-                 * atomic positions
-                 */
-                z: number;
-                "if_pos(1)"?: number;
-                "if_pos(2)"?: number;
-                "if_pos(3)"?: number;
-            }[];
-            /**
-             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-             */
-            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-            CELL_PARAMETERS?: {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v1?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v2?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                v3?: [number, number, number];
-            };
-        } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
             ATOMIC_SPECIES: {
@@ -74921,7 +75998,218 @@ export type WorkflowUnitSchema = {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
             startingMagnetization: {
                 atomicSpecies: string;
                 value: number;
@@ -74929,66 +76217,17 @@ export type WorkflowUnitSchema = {
             }[];
             isTotalMagnetization: boolean;
             totalMagnetization: number;
-        } | [
-            {
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            },
-            ...{
-                paramType?: "U" | "J" | "B" | "E2" | "E3";
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                value?: number;
-            }[]
-        ] | [
-            {
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                atomicSpeciesIndex?: number;
-                hubbardUValue?: number;
-            }[]
-        ] | {
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            hubbardUValue?: number;
-        }[] | [
-            {
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            },
-            ...{
-                atomicSpecies?: string;
-                siteIndex?: number;
-                atomicOrbital?: string;
-                atomicSpecies2?: string;
-                siteIndex2?: number;
-                atomicOrbital2?: string;
-                hubbardVValue?: number;
-            }[]
-        ] | {
-            numberOfSteps?: number;
-            timeStep?: number;
-            electronMass?: number;
-            temperature?: number;
-        } | {
-            target_column_name?: string;
-            problem_category?: "regression" | "classification" | "clustering";
-        } | {
-            fraction_held_as_test_set?: number;
-        } | {
-            nImages?: number;
-        } | {
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
             isExistingChargeDensity?: boolean;
             isStartingMagnetization?: boolean;
             startingMagnetization?: {
@@ -75016,42 +76255,12 @@ export type WorkflowUnitSchema = {
                 y?: number;
                 z?: number;
             };
-        } | {
-            wavefunction?: number;
-            density?: number;
-        } | {
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            dimensions: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            shifts?: [number, number, number];
-            /**
-             * @minItems 3
-             * @maxItems 3
-             */
-            reciprocalVectorRatios?: [number, number, number];
-            gridMetricType: "KPPRA" | "spacing";
-            gridMetricValue: number;
-            preferGridMetric?: boolean;
-        } | [
-            {
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            },
-            ...{
-                point?: string;
-                steps: number;
-                coordinates: number[];
-            }[]
-        ];
-        extraData?: {};
-    }[];
+        };
+        extraData: {
+            materialHash?: string;
+        };
+        isEdited: boolean;
+    })[];
 } | {
     /**
      * entity identity
@@ -76465,18 +77674,9 @@ export interface WorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
+            context?: ({
+                name: "input";
                 data: {
-                    /**
-                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                     */
-                    type?: "pbc" | "bc1" | "bc2" | "bc3";
-                    offset?: number;
-                    electricField?: number;
-                    targetFermiEnergy?: number;
-                } | {
                     /**
                      * Total charge of the system.
                      */
@@ -76669,91 +77869,6 @@ export interface WorkflowSchema {
                         "if_pos(3)"?: number;
                     }[][];
                 } | {
-                    IBRAV?: number;
-                    RESTART_MODE?: "from_scratch" | "restart";
-                    ATOMIC_SPECIES?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    ATOMIC_SPECIES_WITH_LABELS?: {
-                        /**
-                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                         */
-                        X: string;
-                        /**
-                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                         */
-                        Mass_X: number;
-                        /**
-                         * PseudoPot_X
-                         */
-                        PseudoPot_X: string;
-                    }[];
-                    /**
-                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                     */
-                    NAT?: number;
-                    /**
-                     * number of types of atoms in the unit cell
-                     */
-                    NTYP?: number;
-                    /**
-                     * Number of different atomic species including labels
-                     */
-                    NTYP_WITH_LABELS?: number;
-                    ATOMIC_POSITIONS?: {
-                        /**
-                         * label of the atom as specified in ATOMIC_SPECIES
-                         */
-                        X?: string;
-                        /**
-                         * atomic positions
-                         */
-                        x: number;
-                        /**
-                         * atomic positions
-                         */
-                        y: number;
-                        /**
-                         * atomic positions
-                         */
-                        z: number;
-                        "if_pos(1)"?: number;
-                        "if_pos(2)"?: number;
-                        "if_pos(3)"?: number;
-                    }[];
-                    /**
-                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                     */
-                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                    CELL_PARAMETERS?: {
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v1?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v2?: [number, number, number];
-                        /**
-                         * @minItems 3
-                         * @maxItems 3
-                         */
-                        v3?: [number, number, number];
-                    };
-                } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
                     ATOMIC_SPECIES: {
@@ -76860,7 +77975,218 @@ export interface WorkflowSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
                     startingMagnetization: {
                         atomicSpecies: string;
                         value: number;
@@ -76868,66 +78194,17 @@ export interface WorkflowSchema {
                     }[];
                     isTotalMagnetization: boolean;
                     totalMagnetization: number;
-                } | [
-                    {
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    },
-                    ...{
-                        paramType?: "U" | "J" | "B" | "E2" | "E3";
-                        atomicSpecies?: string;
-                        atomicOrbital?: string;
-                        value?: number;
-                    }[]
-                ] | [
-                    {
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        atomicSpeciesIndex?: number;
-                        hubbardUValue?: number;
-                    }[]
-                ] | {
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    hubbardUValue?: number;
-                }[] | [
-                    {
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    },
-                    ...{
-                        atomicSpecies?: string;
-                        siteIndex?: number;
-                        atomicOrbital?: string;
-                        atomicSpecies2?: string;
-                        siteIndex2?: number;
-                        atomicOrbital2?: string;
-                        hubbardVValue?: number;
-                    }[]
-                ] | {
-                    numberOfSteps?: number;
-                    timeStep?: number;
-                    electronMass?: number;
-                    temperature?: number;
-                } | {
-                    target_column_name?: string;
-                    problem_category?: "regression" | "classification" | "clustering";
-                } | {
-                    fraction_held_as_test_set?: number;
-                } | {
-                    nImages?: number;
-                } | {
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
                     isExistingChargeDensity?: boolean;
                     isStartingMagnetization?: boolean;
                     startingMagnetization?: {
@@ -76955,42 +78232,12 @@ export interface WorkflowSchema {
                         y?: number;
                         z?: number;
                     };
-                } | {
-                    wavefunction?: number;
-                    density?: number;
-                } | {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    dimensions: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    shifts?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    reciprocalVectorRatios?: [number, number, number];
-                    gridMetricType: "KPPRA" | "spacing";
-                    gridMetricValue: number;
-                    preferGridMetric?: boolean;
-                } | [
-                    {
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    },
-                    ...{
-                        point?: string;
-                        steps: number;
-                        coordinates: number[];
-                    }[]
-                ];
-                extraData?: {};
-            }[];
+                };
+                extraData: {
+                    materialHash?: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -78190,18 +79437,9 @@ export interface WorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
+        context?: ({
+            name: "input";
             data: {
-                /**
-                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-                 */
-                type?: "pbc" | "bc1" | "bc2" | "bc3";
-                offset?: number;
-                electricField?: number;
-                targetFermiEnergy?: number;
-            } | {
                 /**
                  * Total charge of the system.
                  */
@@ -78394,91 +79632,6 @@ export interface WorkflowSchema {
                     "if_pos(3)"?: number;
                 }[][];
             } | {
-                IBRAV?: number;
-                RESTART_MODE?: "from_scratch" | "restart";
-                ATOMIC_SPECIES?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                ATOMIC_SPECIES_WITH_LABELS?: {
-                    /**
-                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
-                     */
-                    X: string;
-                    /**
-                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
-                     */
-                    Mass_X: number;
-                    /**
-                     * PseudoPot_X
-                     */
-                    PseudoPot_X: string;
-                }[];
-                /**
-                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-                 */
-                NAT?: number;
-                /**
-                 * number of types of atoms in the unit cell
-                 */
-                NTYP?: number;
-                /**
-                 * Number of different atomic species including labels
-                 */
-                NTYP_WITH_LABELS?: number;
-                ATOMIC_POSITIONS?: {
-                    /**
-                     * label of the atom as specified in ATOMIC_SPECIES
-                     */
-                    X?: string;
-                    /**
-                     * atomic positions
-                     */
-                    x: number;
-                    /**
-                     * atomic positions
-                     */
-                    y: number;
-                    /**
-                     * atomic positions
-                     */
-                    z: number;
-                    "if_pos(1)"?: number;
-                    "if_pos(2)"?: number;
-                    "if_pos(3)"?: number;
-                }[];
-                /**
-                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-                 */
-                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
-                CELL_PARAMETERS?: {
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v1?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v2?: [number, number, number];
-                    /**
-                     * @minItems 3
-                     * @maxItems 3
-                     */
-                    v3?: [number, number, number];
-                };
-            } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
                 ATOMIC_SPECIES: {
@@ -78585,7 +79738,218 @@ export interface WorkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
                 startingMagnetization: {
                     atomicSpecies: string;
                     value: number;
@@ -78593,66 +79957,17 @@ export interface WorkflowSchema {
                 }[];
                 isTotalMagnetization: boolean;
                 totalMagnetization: number;
-            } | [
-                {
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                },
-                ...{
-                    paramType?: "U" | "J" | "B" | "E2" | "E3";
-                    atomicSpecies?: string;
-                    atomicOrbital?: string;
-                    value?: number;
-                }[]
-            ] | [
-                {
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    atomicSpeciesIndex?: number;
-                    hubbardUValue?: number;
-                }[]
-            ] | {
-                atomicSpecies?: string;
-                atomicOrbital?: string;
-                hubbardUValue?: number;
-            }[] | [
-                {
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                },
-                ...{
-                    atomicSpecies?: string;
-                    siteIndex?: number;
-                    atomicOrbital?: string;
-                    atomicSpecies2?: string;
-                    siteIndex2?: number;
-                    atomicOrbital2?: string;
-                    hubbardVValue?: number;
-                }[]
-            ] | {
-                numberOfSteps?: number;
-                timeStep?: number;
-                electronMass?: number;
-                temperature?: number;
-            } | {
-                target_column_name?: string;
-                problem_category?: "regression" | "classification" | "clustering";
-            } | {
-                fraction_held_as_test_set?: number;
-            } | {
-                nImages?: number;
-            } | {
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
                 isExistingChargeDensity?: boolean;
                 isStartingMagnetization?: boolean;
                 startingMagnetization?: {
@@ -78680,42 +79995,12 @@ export interface WorkflowSchema {
                     y?: number;
                     z?: number;
                 };
-            } | {
-                wavefunction?: number;
-                density?: number;
-            } | {
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                dimensions: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                shifts?: [number, number, number];
-                /**
-                 * @minItems 3
-                 * @maxItems 3
-                 */
-                reciprocalVectorRatios?: [number, number, number];
-                gridMetricType: "KPPRA" | "spacing";
-                gridMetricValue: number;
-                preferGridMetric?: boolean;
-            } | [
-                {
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                },
-                ...{
-                    point?: string;
-                    steps: number;
-                    coordinates: number[];
-                }[]
-            ];
-            extraData?: {};
-        }[];
+            };
+            extraData: {
+                materialHash?: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
