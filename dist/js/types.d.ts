@@ -2905,6 +2905,10 @@ export interface BoundaryConditionsDataProviderSchema {
  */
 export interface NWChemTotalEnergyContextProviderSchema {
     /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "nwchem-total-energy";
+    /**
      * Total charge of the system.
      */
     CHARGE: number;
@@ -3100,6 +3104,10 @@ export interface QENEBContextProviderSchema {
         "if_pos(2)"?: number;
         "if_pos(3)"?: number;
     }[][];
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "qe-neb";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_base_context_provider.json */
 /**
@@ -3280,6 +3288,10 @@ export interface QEPwxContextProviderSchema {
          */
         v3?: [number, number, number];
     };
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "qe-pwx";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/vasp_context_provider.json */
 /**
@@ -3294,6 +3306,10 @@ export interface VASPContextProviderSchema {
      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
      */
     POSCAR_WITH_CONSTRAINTS: string;
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "vasp";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/vasp_neb_context_provider.json */
 /**
@@ -3312,6 +3328,10 @@ export interface VASPNEBContextProviderSchema {
      * POSCAR contents with constraints for all intermediate NEB images.
      */
     INTERMEDIATE_IMAGES: string[];
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "vasp-neb";
 }
 /** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**
@@ -6475,7 +6495,7 @@ export interface JobSchema {
                      */
                     isLicensed?: boolean;
                 };
-                executable?: {
+                executable: {
                     /**
                      * entity identity
                      */
@@ -6542,7 +6562,7 @@ export interface JobSchema {
                      */
                     hasAdvancedComputeOptions?: boolean;
                 };
-                flavor?: {
+                flavor: {
                     /**
                      * entity identity
                      */
@@ -6661,9 +6681,13 @@ export interface JobSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: ({
+                context: ({
                     name: "input";
                     data: {
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "nwchem-total-energy";
                         /**
                          * Total charge of the system.
                          */
@@ -6855,6 +6879,10 @@ export interface JobSchema {
                             "if_pos(2)"?: number;
                             "if_pos(3)"?: number;
                         }[][];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-neb";
                     } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
@@ -6940,6 +6968,10 @@ export interface JobSchema {
                              */
                             v3?: [number, number, number];
                         };
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-pwx";
                     } | {
                         /**
                          * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -6949,6 +6981,10 @@ export interface JobSchema {
                          * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                          */
                         POSCAR_WITH_CONSTRAINTS: string;
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp";
                     } | {
                         /**
                          * POSCAR content with constraints for the first NEB image.
@@ -6962,9 +6998,13 @@ export interface JobSchema {
                          * POSCAR contents with constraints for all intermediate NEB images.
                          */
                         INTERMEDIATE_IMAGES: string[];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp-neb";
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7003,7 +7043,7 @@ export interface JobSchema {
                         preferGridMetric?: boolean;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7026,7 +7066,7 @@ export interface JobSchema {
                         }[]
                     ];
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7062,7 +7102,7 @@ export interface JobSchema {
                         hubbardUValue?: number;
                     }[];
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7134,7 +7174,7 @@ export interface JobSchema {
                         targetFermiEnergy?: number;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7183,7 +7223,7 @@ export interface JobSchema {
                         totalMagnetization: number;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -7221,7 +7261,7 @@ export interface JobSchema {
                         };
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 })[];
@@ -8238,7 +8278,7 @@ export interface JobSchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -8305,7 +8345,7 @@ export interface JobSchema {
                  */
                 hasAdvancedComputeOptions?: boolean;
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -8424,9 +8464,13 @@ export interface JobSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: ({
+            context: ({
                 name: "input";
                 data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
                     /**
                      * Total charge of the system.
                      */
@@ -8618,6 +8662,10 @@ export interface JobSchema {
                         "if_pos(2)"?: number;
                         "if_pos(3)"?: number;
                     }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -8703,6 +8751,10 @@ export interface JobSchema {
                          */
                         v3?: [number, number, number];
                     };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
                 } | {
                     /**
                      * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -8712,6 +8764,10 @@ export interface JobSchema {
                      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                      */
                     POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
                 } | {
                     /**
                      * POSCAR content with constraints for the first NEB image.
@@ -8725,9 +8781,13 @@ export interface JobSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8766,7 +8826,7 @@ export interface JobSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8789,7 +8849,7 @@ export interface JobSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8825,7 +8885,7 @@ export interface JobSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8897,7 +8957,7 @@ export interface JobSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8946,7 +9006,7 @@ export interface JobSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -8984,7 +9044,7 @@ export interface JobSchema {
                     };
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             })[];
@@ -50447,7 +50507,7 @@ export interface WorkflowPropertySchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -50514,7 +50574,7 @@ export interface WorkflowPropertySchema {
                  */
                 hasAdvancedComputeOptions?: boolean;
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -50633,9 +50693,13 @@ export interface WorkflowPropertySchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: ({
+            context: ({
                 name: "input";
                 data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
                     /**
                      * Total charge of the system.
                      */
@@ -50827,6 +50891,10 @@ export interface WorkflowPropertySchema {
                         "if_pos(2)"?: number;
                         "if_pos(3)"?: number;
                     }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -50912,6 +50980,10 @@ export interface WorkflowPropertySchema {
                          */
                         v3?: [number, number, number];
                     };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
                 } | {
                     /**
                      * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -50921,6 +50993,10 @@ export interface WorkflowPropertySchema {
                      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                      */
                     POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
                 } | {
                     /**
                      * POSCAR content with constraints for the first NEB image.
@@ -50934,9 +51010,13 @@ export interface WorkflowPropertySchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -50975,7 +51055,7 @@ export interface WorkflowPropertySchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -50998,7 +51078,7 @@ export interface WorkflowPropertySchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -51034,7 +51114,7 @@ export interface WorkflowPropertySchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -51106,7 +51186,7 @@ export interface WorkflowPropertySchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -51155,7 +51235,7 @@ export interface WorkflowPropertySchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -51193,7 +51273,7 @@ export interface WorkflowPropertySchema {
                     };
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             })[];
@@ -52210,7 +52290,7 @@ export interface WorkflowPropertySchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -52277,7 +52357,7 @@ export interface WorkflowPropertySchema {
              */
             hasAdvancedComputeOptions?: boolean;
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -52396,9 +52476,13 @@ export interface WorkflowPropertySchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: ({
+        context: ({
             name: "input";
             data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
                 /**
                  * Total charge of the system.
                  */
@@ -52590,6 +52674,10 @@ export interface WorkflowPropertySchema {
                     "if_pos(2)"?: number;
                     "if_pos(3)"?: number;
                 }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -52675,6 +52763,10 @@ export interface WorkflowPropertySchema {
                      */
                     v3?: [number, number, number];
                 };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
             } | {
                 /**
                  * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -52684,6 +52776,10 @@ export interface WorkflowPropertySchema {
                  * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                  */
                 POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
             } | {
                 /**
                  * POSCAR content with constraints for the first NEB image.
@@ -52697,9 +52793,13 @@ export interface WorkflowPropertySchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52738,7 +52838,7 @@ export interface WorkflowPropertySchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52761,7 +52861,7 @@ export interface WorkflowPropertySchema {
                 }[]
             ];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52797,7 +52897,7 @@ export interface WorkflowPropertySchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52869,7 +52969,7 @@ export interface WorkflowPropertySchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52918,7 +53018,7 @@ export interface WorkflowPropertySchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -52956,7 +53056,7 @@ export interface WorkflowPropertySchema {
                 };
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         })[];
@@ -55476,7 +55576,7 @@ export interface PropertyHolderSchema {
                      */
                     isLicensed?: boolean;
                 };
-                executable?: {
+                executable: {
                     /**
                      * entity identity
                      */
@@ -55543,7 +55643,7 @@ export interface PropertyHolderSchema {
                      */
                     hasAdvancedComputeOptions?: boolean;
                 };
-                flavor?: {
+                flavor: {
                     /**
                      * entity identity
                      */
@@ -55662,9 +55762,13 @@ export interface PropertyHolderSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: ({
+                context: ({
                     name: "input";
                     data: {
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "nwchem-total-energy";
                         /**
                          * Total charge of the system.
                          */
@@ -55856,6 +55960,10 @@ export interface PropertyHolderSchema {
                             "if_pos(2)"?: number;
                             "if_pos(3)"?: number;
                         }[][];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-neb";
                     } | {
                         IBRAV: number;
                         RESTART_MODE: "from_scratch" | "restart";
@@ -55941,6 +56049,10 @@ export interface PropertyHolderSchema {
                              */
                             v3?: [number, number, number];
                         };
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-pwx";
                     } | {
                         /**
                          * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -55950,6 +56062,10 @@ export interface PropertyHolderSchema {
                          * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                          */
                         POSCAR_WITH_CONSTRAINTS: string;
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp";
                     } | {
                         /**
                          * POSCAR content with constraints for the first NEB image.
@@ -55963,9 +56079,13 @@ export interface PropertyHolderSchema {
                          * POSCAR contents with constraints for all intermediate NEB images.
                          */
                         INTERMEDIATE_IMAGES: string[];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp-neb";
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56004,7 +56124,7 @@ export interface PropertyHolderSchema {
                         preferGridMetric?: boolean;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56027,7 +56147,7 @@ export interface PropertyHolderSchema {
                         }[]
                     ];
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56063,7 +56183,7 @@ export interface PropertyHolderSchema {
                         hubbardUValue?: number;
                     }[];
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56135,7 +56255,7 @@ export interface PropertyHolderSchema {
                         targetFermiEnergy?: number;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56184,7 +56304,7 @@ export interface PropertyHolderSchema {
                         totalMagnetization: number;
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 } | {
@@ -56222,7 +56342,7 @@ export interface PropertyHolderSchema {
                         };
                     };
                     extraData: {
-                        materialHash?: string;
+                        materialHash: string;
                     };
                     isEdited: boolean;
                 })[];
@@ -57239,7 +57359,7 @@ export interface PropertyHolderSchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -57306,7 +57426,7 @@ export interface PropertyHolderSchema {
                  */
                 hasAdvancedComputeOptions?: boolean;
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -57425,9 +57545,13 @@ export interface PropertyHolderSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: ({
+            context: ({
                 name: "input";
                 data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
                     /**
                      * Total charge of the system.
                      */
@@ -57619,6 +57743,10 @@ export interface PropertyHolderSchema {
                         "if_pos(2)"?: number;
                         "if_pos(3)"?: number;
                     }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -57704,6 +57832,10 @@ export interface PropertyHolderSchema {
                          */
                         v3?: [number, number, number];
                     };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
                 } | {
                     /**
                      * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -57713,6 +57845,10 @@ export interface PropertyHolderSchema {
                      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                      */
                     POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
                 } | {
                     /**
                      * POSCAR content with constraints for the first NEB image.
@@ -57726,9 +57862,13 @@ export interface PropertyHolderSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57767,7 +57907,7 @@ export interface PropertyHolderSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57790,7 +57930,7 @@ export interface PropertyHolderSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57826,7 +57966,7 @@ export interface PropertyHolderSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57898,7 +58038,7 @@ export interface PropertyHolderSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57947,7 +58087,7 @@ export interface PropertyHolderSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -57985,7 +58125,7 @@ export interface PropertyHolderSchema {
                     };
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             })[];
@@ -59446,7 +59586,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -59513,7 +59653,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -59639,9 +59779,13 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -59833,6 +59977,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -59918,6 +60066,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -59927,6 +60079,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -59940,9 +60096,13 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -59981,7 +60141,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -60004,7 +60164,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -60040,7 +60200,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -60112,7 +60272,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -60161,7 +60321,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -60199,7 +60359,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -60564,7 +60724,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -60631,7 +60791,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -60757,9 +60917,13 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -60951,6 +61115,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -61036,6 +61204,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -61045,6 +61217,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -61058,9 +61234,13 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61099,7 +61279,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61122,7 +61302,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61158,7 +61338,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61230,7 +61410,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61279,7 +61459,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -61317,7 +61497,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -62598,7 +62778,7 @@ export interface BaseWorkflowSchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -62665,7 +62845,7 @@ export interface BaseWorkflowSchema {
                  */
                 hasAdvancedComputeOptions?: boolean;
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -62784,9 +62964,13 @@ export interface BaseWorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: ({
+            context: ({
                 name: "input";
                 data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
                     /**
                      * Total charge of the system.
                      */
@@ -62978,6 +63162,10 @@ export interface BaseWorkflowSchema {
                         "if_pos(2)"?: number;
                         "if_pos(3)"?: number;
                     }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -63063,6 +63251,10 @@ export interface BaseWorkflowSchema {
                          */
                         v3?: [number, number, number];
                     };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
                 } | {
                     /**
                      * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -63072,6 +63264,10 @@ export interface BaseWorkflowSchema {
                      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                      */
                     POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
                 } | {
                     /**
                      * POSCAR content with constraints for the first NEB image.
@@ -63085,9 +63281,13 @@ export interface BaseWorkflowSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63126,7 +63326,7 @@ export interface BaseWorkflowSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63149,7 +63349,7 @@ export interface BaseWorkflowSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63185,7 +63385,7 @@ export interface BaseWorkflowSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63257,7 +63457,7 @@ export interface BaseWorkflowSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63306,7 +63506,7 @@ export interface BaseWorkflowSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -63344,7 +63544,7 @@ export interface BaseWorkflowSchema {
                     };
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             })[];
@@ -64361,7 +64561,7 @@ export interface BaseWorkflowSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -64428,7 +64628,7 @@ export interface BaseWorkflowSchema {
              */
             hasAdvancedComputeOptions?: boolean;
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -64547,9 +64747,13 @@ export interface BaseWorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: ({
+        context: ({
             name: "input";
             data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
                 /**
                  * Total charge of the system.
                  */
@@ -64741,6 +64945,10 @@ export interface BaseWorkflowSchema {
                     "if_pos(2)"?: number;
                     "if_pos(3)"?: number;
                 }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -64826,6 +65034,10 @@ export interface BaseWorkflowSchema {
                      */
                     v3?: [number, number, number];
                 };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
             } | {
                 /**
                  * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -64835,6 +65047,10 @@ export interface BaseWorkflowSchema {
                  * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                  */
                 POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
             } | {
                 /**
                  * POSCAR content with constraints for the first NEB image.
@@ -64848,9 +65064,13 @@ export interface BaseWorkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -64889,7 +65109,7 @@ export interface BaseWorkflowSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -64912,7 +65132,7 @@ export interface BaseWorkflowSchema {
                 }[]
             ];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -64948,7 +65168,7 @@ export interface BaseWorkflowSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -65020,7 +65240,7 @@ export interface BaseWorkflowSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -65069,7 +65289,7 @@ export interface BaseWorkflowSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -65107,7 +65327,7 @@ export interface BaseWorkflowSchema {
                 };
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         })[];
@@ -66412,7 +66632,7 @@ export interface SubworkflowMixinSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -66479,7 +66699,7 @@ export interface SubworkflowMixinSchema {
              */
             hasAdvancedComputeOptions?: boolean;
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -66598,9 +66818,13 @@ export interface SubworkflowMixinSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: ({
+        context: ({
             name: "input";
             data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
                 /**
                  * Total charge of the system.
                  */
@@ -66792,6 +67016,10 @@ export interface SubworkflowMixinSchema {
                     "if_pos(2)"?: number;
                     "if_pos(3)"?: number;
                 }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -66877,6 +67105,10 @@ export interface SubworkflowMixinSchema {
                      */
                     v3?: [number, number, number];
                 };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
             } | {
                 /**
                  * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -66886,6 +67118,10 @@ export interface SubworkflowMixinSchema {
                  * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                  */
                 POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
             } | {
                 /**
                  * POSCAR content with constraints for the first NEB image.
@@ -66899,9 +67135,13 @@ export interface SubworkflowMixinSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -66940,7 +67180,7 @@ export interface SubworkflowMixinSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -66963,7 +67203,7 @@ export interface SubworkflowMixinSchema {
                 }[]
             ];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -66999,7 +67239,7 @@ export interface SubworkflowMixinSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -67071,7 +67311,7 @@ export interface SubworkflowMixinSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -67120,7 +67360,7 @@ export interface SubworkflowMixinSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -67158,7 +67398,7 @@ export interface SubworkflowMixinSchema {
                 };
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         })[];
@@ -68173,7 +68413,7 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -68240,7 +68480,7 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -68359,9 +68599,13 @@ export type WorkflowSubworkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -68553,6 +68797,10 @@ export type WorkflowSubworkflowUnitSchema = {
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -68638,6 +68886,10 @@ export type WorkflowSubworkflowUnitSchema = {
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -68647,6 +68899,10 @@ export type WorkflowSubworkflowUnitSchema = {
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -68660,9 +68916,13 @@ export type WorkflowSubworkflowUnitSchema = {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68701,7 +68961,7 @@ export type WorkflowSubworkflowUnitSchema = {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68724,7 +68984,7 @@ export type WorkflowSubworkflowUnitSchema = {
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68760,7 +69020,7 @@ export type WorkflowSubworkflowUnitSchema = {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68832,7 +69092,7 @@ export type WorkflowSubworkflowUnitSchema = {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68881,7 +69141,7 @@ export type WorkflowSubworkflowUnitSchema = {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -68919,7 +69179,7 @@ export type WorkflowSubworkflowUnitSchema = {
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -69902,7 +70162,7 @@ export interface SubworkflowSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -69969,7 +70229,7 @@ export interface SubworkflowSchema {
              */
             hasAdvancedComputeOptions?: boolean;
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -70088,9 +70348,13 @@ export interface SubworkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: ({
+        context: ({
             name: "input";
             data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
                 /**
                  * Total charge of the system.
                  */
@@ -70282,6 +70546,10 @@ export interface SubworkflowSchema {
                     "if_pos(2)"?: number;
                     "if_pos(3)"?: number;
                 }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -70367,6 +70635,10 @@ export interface SubworkflowSchema {
                      */
                     v3?: [number, number, number];
                 };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
             } | {
                 /**
                  * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -70376,6 +70648,10 @@ export interface SubworkflowSchema {
                  * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                  */
                 POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
             } | {
                 /**
                  * POSCAR content with constraints for the first NEB image.
@@ -70389,9 +70665,13 @@ export interface SubworkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70430,7 +70710,7 @@ export interface SubworkflowSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70453,7 +70733,7 @@ export interface SubworkflowSchema {
                 }[]
             ];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70489,7 +70769,7 @@ export interface SubworkflowSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70561,7 +70841,7 @@ export interface SubworkflowSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70610,7 +70890,7 @@ export interface SubworkflowSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -70648,7 +70928,7 @@ export interface SubworkflowSchema {
                 };
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         })[];
@@ -71479,198 +71759,16 @@ export interface BaseContextItemSchema {
 }
 /** Schema dist/js/schema/workflow/unit/context/_extra_data_material_hash.json */
 export interface ExtraDataWithMaterialHashSchema {
-    materialHash?: string;
+    materialHash: string;
 }
-/** Schema dist/js/schema/workflow/unit/context/boundary_conditions.json */
-export interface BoundaryConditionsContextItemSchema {
-    name: "boundaryConditions";
-    data: {
-        /**
-         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-         */
-        type?: "pbc" | "bc1" | "bc2" | "bc3";
-        offset?: number;
-        electricField?: number;
-        targetFermiEnergy?: number;
-    };
-    extraData: {
-        materialHash?: string;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/collinear_magnetization.json */
-export interface CollinearMagnetizationContextItemSchema {
-    name: "collinearMagnetization";
-    /**
-     * Set starting magnetization, can have values in the range [-1, +1].
-     */
-    data: {
-        startingMagnetization: {
-            atomicSpecies: string;
-            value: number;
-            index: number;
-        }[];
-        isTotalMagnetization: boolean;
-        totalMagnetization: number;
-    };
-    extraData: {
-        materialHash?: string;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/cutoffs.json */
-export interface CutoffsContextItemSchema {
-    name: "cutoffs";
-    /**
-     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
-     */
-    data: {
-        wavefunction?: number;
-        density?: number;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/dynamics.json */
-export interface DynamicsContextItemSchema {
-    name: "dynamics";
-    /**
-     * Important parameters for molecular dynamics calculation
-     */
-    data: {
-        numberOfSteps?: number;
-        timeStep?: number;
-        electronMass?: number;
-        temperature?: number;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/grid.json */
-export interface GridContextItemSchema {
-    name: "kgrid" | "qgrid" | "igrid";
-    /**
-     * 3D grid with shifts for k-point or q-point sampling.
-     */
-    data: {
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        dimensions: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        shifts?: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        reciprocalVectorRatios?: [number, number, number];
-        gridMetricType: "KPPRA" | "spacing";
-        gridMetricValue: number;
-        preferGridMetric?: boolean;
-    };
-    extraData: {
-        materialHash?: string;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/hubbard_j.json */
-export interface HubbardJContextItemSchema {
-    name: "hubbard_j";
-    /**
-     * Hubbard parameters for DFT+U+J calculation.
-     *
-     * @minItems 1
-     */
-    data: [
-        {
-            paramType?: "U" | "J" | "B" | "E2" | "E3";
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            value?: number;
-        },
-        ...{
-            paramType?: "U" | "J" | "B" | "E2" | "E3";
-            atomicSpecies?: string;
-            atomicOrbital?: string;
-            value?: number;
-        }[]
-    ];
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/hubbard_legacy.json */
-export interface HubbardLegacyContextItemSchema {
-    name: "hubbard_legacy";
-    /**
-     * Hubbard parameters for DFT+U calculation.
-     *
-     * @minItems 1
-     */
-    data: [
-        {
-            atomicSpecies?: string;
-            atomicSpeciesIndex?: number;
-            hubbardUValue?: number;
-        },
-        ...{
-            atomicSpecies?: string;
-            atomicSpeciesIndex?: number;
-            hubbardUValue?: number;
-        }[]
-    ];
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/hubbard_u.json */
-export interface HubbardUContextItemSchema {
-    name: "hubbard_u";
-    /**
-     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
-     */
-    data: {
-        atomicSpecies?: string;
-        atomicOrbital?: string;
-        hubbardUValue?: number;
-    }[];
-    extraData: {
-        materialHash?: string;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/hubbard_v.json */
-export interface HubbardVContextItemSchema {
-    name: "hubbard_v";
-    /**
-     * Hubbard V parameters for DFT+U+V calculation.
-     *
-     * @minItems 1
-     */
-    data: [
-        {
-            atomicSpecies?: string;
-            siteIndex?: number;
-            atomicOrbital?: string;
-            atomicSpecies2?: string;
-            siteIndex2?: number;
-            atomicOrbital2?: string;
-            hubbardVValue?: number;
-        },
-        ...{
-            atomicSpecies?: string;
-            siteIndex?: number;
-            atomicOrbital?: string;
-            atomicSpecies2?: string;
-            siteIndex2?: number;
-            atomicOrbital2?: string;
-            hubbardVValue?: number;
-        }[]
-    ];
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/input.json */
-export interface InputContextItemSchema {
+/** Schema dist/js/schema/workflow/unit/context/item.json */
+export type ContextItemSchema = {
     name: "input";
     data: {
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "nwchem-total-energy";
         /**
          * Total charge of the system.
          */
@@ -71862,6 +71960,10 @@ export interface InputContextItemSchema {
             "if_pos(2)"?: number;
             "if_pos(3)"?: number;
         }[][];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-neb";
     } | {
         IBRAV: number;
         RESTART_MODE: "from_scratch" | "restart";
@@ -71947,6 +72049,10 @@ export interface InputContextItemSchema {
              */
             v3?: [number, number, number];
         };
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-pwx";
     } | {
         /**
          * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -71956,6 +72062,10 @@ export interface InputContextItemSchema {
          * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
          */
         POSCAR_WITH_CONSTRAINTS: string;
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp";
     } | {
         /**
          * POSCAR content with constraints for the first NEB image.
@@ -71969,14 +72079,186 @@ export interface InputContextItemSchema {
          * POSCAR contents with constraints for all intermediate NEB images.
          */
         INTERMEDIATE_IMAGES: string[];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp-neb";
     };
     extraData: {
-        materialHash?: string;
+        materialHash: string;
     };
     isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/ml_settings.json */
-export interface MlSettingsContextItemSchema {
+} | {
+    name: "cutoffs";
+    /**
+     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+     */
+    data: {
+        wavefunction?: number;
+        density?: number;
+    };
+    isEdited: boolean;
+} | {
+    name: "kgrid" | "qgrid" | "igrid";
+    /**
+     * 3D grid with shifts for k-point or q-point sampling.
+     */
+    data: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        dimensions: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        shifts?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        reciprocalVectorRatios?: [number, number, number];
+        gridMetricType: "KPPRA" | "spacing";
+        gridMetricValue: number;
+        preferGridMetric?: boolean;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+    /**
+     * Path in reciprocal space for band structure calculations.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        },
+        ...{
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        }[]
+    ];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "hubbard_j";
+    /**
+     * Hubbard parameters for DFT+U+J calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        },
+        ...{
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        }[]
+    ];
+    isEdited: boolean;
+} | {
+    name: "hubbard_u";
+    /**
+     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+     */
+    data: {
+        atomicSpecies?: string;
+        atomicOrbital?: string;
+        hubbardUValue?: number;
+    }[];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "hubbard_v";
+    /**
+     * Hubbard V parameters for DFT+U+V calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+} | {
+    name: "hubbard_legacy";
+    /**
+     * Hubbard parameters for DFT+U calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+} | {
+    name: "neb";
+    /**
+     * Number of intermediate NEB images.
+     */
+    data: {
+        nImages?: number;
+    };
+    isEdited: boolean;
+} | {
+    name: "boundaryConditions";
+    data: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type?: "pbc" | "bc1" | "bc2" | "bc3";
+        offset?: number;
+        electricField?: number;
+        targetFermiEnergy?: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
     name: "mlSettings";
     /**
      * Settings important to machine learning runs.
@@ -71986,9 +72268,7 @@ export interface MlSettingsContextItemSchema {
         problem_category?: "regression" | "classification" | "clustering";
     };
     isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/ml_train_test_split.json */
-export interface MlTrainTestSplitContextItemSchema {
+} | {
     name: "mlTrainTestSplit";
     /**
      * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
@@ -71997,20 +72277,37 @@ export interface MlTrainTestSplitContextItemSchema {
         fraction_held_as_test_set?: number;
     };
     isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/neb.json */
-export interface NebContextItemSchema {
-    name: "neb";
+} | {
+    name: "dynamics";
     /**
-     * Number of intermediate NEB images.
+     * Important parameters for molecular dynamics calculation
      */
     data: {
-        nImages?: number;
+        numberOfSteps?: number;
+        timeStep?: number;
+        electronMass?: number;
+        temperature?: number;
     };
     isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/non_collinear_magnetization.json */
-export interface NonCollinearMagnetizationContextItemSchema {
+} | {
+    name: "collinearMagnetization";
+    /**
+     * Set starting magnetization, can have values in the range [-1, +1].
+     */
+    data: {
+        startingMagnetization: {
+            atomicSpecies: string;
+            value: number;
+            index: number;
+        }[];
+        isTotalMagnetization: boolean;
+        totalMagnetization: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
     name: "nonCollinearMagnetization";
     /**
      * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
@@ -72045,35 +72342,10 @@ export interface NonCollinearMagnetizationContextItemSchema {
         };
     };
     extraData: {
-        materialHash?: string;
+        materialHash: string;
     };
     isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/path.json */
-export interface PathContextItemSchema {
-    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
-    /**
-     * Path in reciprocal space for band structure calculations.
-     *
-     * @minItems 1
-     */
-    data: [
-        {
-            point?: string;
-            steps: number;
-            coordinates: number[];
-        },
-        ...{
-            point?: string;
-            steps: number;
-            coordinates: number[];
-        }[]
-    ];
-    extraData: {
-        materialHash?: string;
-    };
-    isEdited: boolean;
-}
+};
 /** Schema dist/js/schema/workflow/unit/execution.json */
 export interface ExecutionUnitSchemaBase {
     /**
@@ -72214,7 +72486,7 @@ export interface ExecutionUnitSchemaBase {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -72281,7 +72553,7 @@ export interface ExecutionUnitSchemaBase {
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -72400,9 +72672,13 @@ export interface ExecutionUnitSchemaBase {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -72594,6 +72870,10 @@ export interface ExecutionUnitSchemaBase {
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -72679,6 +72959,10 @@ export interface ExecutionUnitSchemaBase {
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -72688,6 +72972,10 @@ export interface ExecutionUnitSchemaBase {
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -72701,9 +72989,13 @@ export interface ExecutionUnitSchemaBase {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72742,7 +73034,7 @@ export interface ExecutionUnitSchemaBase {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72765,7 +73057,7 @@ export interface ExecutionUnitSchemaBase {
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72801,7 +73093,7 @@ export interface ExecutionUnitSchemaBase {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72873,7 +73165,7 @@ export interface ExecutionUnitSchemaBase {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72922,7 +73214,7 @@ export interface ExecutionUnitSchemaBase {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -72960,7 +73252,7 @@ export interface ExecutionUnitSchemaBase {
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -73565,7 +73857,7 @@ export interface ConditionUnitMixinSchema {
 }
 /** Schema dist/js/schema/workflow/unit/mixins/execution.json */
 export interface ExecutionUnitMixinSchema {
-    type?: "execution";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -73613,7 +73905,7 @@ export interface ExecutionUnitMixinSchema {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -73680,7 +73972,7 @@ export interface ExecutionUnitMixinSchema {
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -73799,9 +74091,13 @@ export interface ExecutionUnitMixinSchema {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -73993,6 +74289,10 @@ export interface ExecutionUnitMixinSchema {
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -74078,6 +74378,10 @@ export interface ExecutionUnitMixinSchema {
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -74087,6 +74391,10 @@ export interface ExecutionUnitMixinSchema {
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -74100,9 +74408,13 @@ export interface ExecutionUnitMixinSchema {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74141,7 +74453,7 @@ export interface ExecutionUnitMixinSchema {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74164,7 +74476,7 @@ export interface ExecutionUnitMixinSchema {
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74200,7 +74512,7 @@ export interface ExecutionUnitMixinSchema {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74272,7 +74584,7 @@ export interface ExecutionUnitMixinSchema {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74321,7 +74633,7 @@ export interface ExecutionUnitMixinSchema {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -74359,7 +74671,7 @@ export interface ExecutionUnitMixinSchema {
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -75511,7 +75823,7 @@ export type WorkflowUnitSchema = {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -75578,7 +75890,7 @@ export type WorkflowUnitSchema = {
          */
         hasAdvancedComputeOptions?: boolean;
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -75697,9 +76009,13 @@ export type WorkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: ({
+    context: ({
         name: "input";
         data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
             /**
              * Total charge of the system.
              */
@@ -75891,6 +76207,10 @@ export type WorkflowUnitSchema = {
                 "if_pos(2)"?: number;
                 "if_pos(3)"?: number;
             }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
         } | {
             IBRAV: number;
             RESTART_MODE: "from_scratch" | "restart";
@@ -75976,6 +76296,10 @@ export type WorkflowUnitSchema = {
                  */
                 v3?: [number, number, number];
             };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
         } | {
             /**
              * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -75985,6 +76309,10 @@ export type WorkflowUnitSchema = {
              * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
              */
             POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
         } | {
             /**
              * POSCAR content with constraints for the first NEB image.
@@ -75998,9 +76326,13 @@ export type WorkflowUnitSchema = {
              * POSCAR contents with constraints for all intermediate NEB images.
              */
             INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76039,7 +76371,7 @@ export type WorkflowUnitSchema = {
             preferGridMetric?: boolean;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76062,7 +76394,7 @@ export type WorkflowUnitSchema = {
             }[]
         ];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76098,7 +76430,7 @@ export type WorkflowUnitSchema = {
             hubbardUValue?: number;
         }[];
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76170,7 +76502,7 @@ export type WorkflowUnitSchema = {
             targetFermiEnergy?: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76219,7 +76551,7 @@ export type WorkflowUnitSchema = {
             totalMagnetization: number;
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     } | {
@@ -76257,7 +76589,7 @@ export type WorkflowUnitSchema = {
             };
         };
         extraData: {
-            materialHash?: string;
+            materialHash: string;
         };
         isEdited: boolean;
     })[];
@@ -77488,7 +77820,7 @@ export interface WorkflowSchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -77555,7 +77887,7 @@ export interface WorkflowSchema {
                  */
                 hasAdvancedComputeOptions?: boolean;
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -77674,9 +78006,13 @@ export interface WorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: ({
+            context: ({
                 name: "input";
                 data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
                     /**
                      * Total charge of the system.
                      */
@@ -77868,6 +78204,10 @@ export interface WorkflowSchema {
                         "if_pos(2)"?: number;
                         "if_pos(3)"?: number;
                     }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
                 } | {
                     IBRAV: number;
                     RESTART_MODE: "from_scratch" | "restart";
@@ -77953,6 +78293,10 @@ export interface WorkflowSchema {
                          */
                         v3?: [number, number, number];
                     };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
                 } | {
                     /**
                      * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -77962,6 +78306,10 @@ export interface WorkflowSchema {
                      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                      */
                     POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
                 } | {
                     /**
                      * POSCAR content with constraints for the first NEB image.
@@ -77975,9 +78323,13 @@ export interface WorkflowSchema {
                      * POSCAR contents with constraints for all intermediate NEB images.
                      */
                     INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78016,7 +78368,7 @@ export interface WorkflowSchema {
                     preferGridMetric?: boolean;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78039,7 +78391,7 @@ export interface WorkflowSchema {
                     }[]
                 ];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78075,7 +78427,7 @@ export interface WorkflowSchema {
                     hubbardUValue?: number;
                 }[];
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78147,7 +78499,7 @@ export interface WorkflowSchema {
                     targetFermiEnergy?: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78196,7 +78548,7 @@ export interface WorkflowSchema {
                     totalMagnetization: number;
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             } | {
@@ -78234,7 +78586,7 @@ export interface WorkflowSchema {
                     };
                 };
                 extraData: {
-                    materialHash?: string;
+                    materialHash: string;
                 };
                 isEdited: boolean;
             })[];
@@ -79251,7 +79603,7 @@ export interface WorkflowSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -79318,7 +79670,7 @@ export interface WorkflowSchema {
              */
             hasAdvancedComputeOptions?: boolean;
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -79437,9 +79789,13 @@ export interface WorkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: ({
+        context: ({
             name: "input";
             data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
                 /**
                  * Total charge of the system.
                  */
@@ -79631,6 +79987,10 @@ export interface WorkflowSchema {
                     "if_pos(2)"?: number;
                     "if_pos(3)"?: number;
                 }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
             } | {
                 IBRAV: number;
                 RESTART_MODE: "from_scratch" | "restart";
@@ -79716,6 +80076,10 @@ export interface WorkflowSchema {
                      */
                     v3?: [number, number, number];
                 };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
             } | {
                 /**
                  * POSCAR content for VASP including lattice, atom types, positions and constraints.
@@ -79725,6 +80089,10 @@ export interface WorkflowSchema {
                  * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
                  */
                 POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
             } | {
                 /**
                  * POSCAR content with constraints for the first NEB image.
@@ -79738,9 +80106,13 @@ export interface WorkflowSchema {
                  * POSCAR contents with constraints for all intermediate NEB images.
                  */
                 INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79779,7 +80151,7 @@ export interface WorkflowSchema {
                 preferGridMetric?: boolean;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79802,7 +80174,7 @@ export interface WorkflowSchema {
                 }[]
             ];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79838,7 +80210,7 @@ export interface WorkflowSchema {
                 hubbardUValue?: number;
             }[];
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79910,7 +80282,7 @@ export interface WorkflowSchema {
                 targetFermiEnergy?: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79959,7 +80331,7 @@ export interface WorkflowSchema {
                 totalMagnetization: number;
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         } | {
@@ -79997,7 +80369,7 @@ export interface WorkflowSchema {
                 };
             };
             extraData: {
-                materialHash?: string;
+                materialHash: string;
             };
             isEdited: boolean;
         })[];

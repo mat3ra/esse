@@ -1228,6 +1228,9 @@
                                             "type": "object",
                                             "required": [
                                                 "application",
+                                                "context",
+                                                "executable",
+                                                "flavor",
                                                 "flowchartId",
                                                 "input",
                                                 "monitors",
@@ -1827,10 +1830,10 @@
                                                 "context": {
                                                     "type": "array",
                                                     "items": {
+                                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                                        "title": "context item schema",
                                                         "oneOf": [
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "input context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -1838,6 +1841,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -1851,6 +1856,11 @@
                                                                                 "description": "Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.",
                                                                                 "type": "object",
                                                                                 "properties": {
+                                                                                    "contextProviderName": {
+                                                                                        "type": "string",
+                                                                                        "const": "nwchem-total-energy",
+                                                                                        "description": "Descriminator for AJV validator"
+                                                                                    },
                                                                                     "CHARGE": {
                                                                                         "type": "integer",
                                                                                         "description": "Total charge of the system."
@@ -1902,7 +1912,8 @@
                                                                                     "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
                                                                                     "ATOMIC_SPECIES",
                                                                                     "FUNCTIONAL",
-                                                                                    "CARTESIAN"
+                                                                                    "CARTESIAN",
+                                                                                    "contextProviderName"
                                                                                 ]
                                                                             },
                                                                             {
@@ -1921,7 +1932,8 @@
                                                                                     "CELL_PARAMETERS",
                                                                                     "FIRST_IMAGE",
                                                                                     "LAST_IMAGE",
-                                                                                    "INTERMEDIATE_IMAGES"
+                                                                                    "INTERMEDIATE_IMAGES",
+                                                                                    "contextProviderName"
                                                                                 ],
                                                                                 "properties": {
                                                                                     "IBRAV": {
@@ -2247,6 +2259,11 @@
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                    },
+                                                                                    "contextProviderName": {
+                                                                                        "type": "string",
+                                                                                        "const": "qe-neb",
+                                                                                        "description": "Descriminator for AJV validator"
                                                                                     }
                                                                                 }
                                                                             },
@@ -2265,7 +2282,8 @@
                                                                                     "NTYP_WITH_LABELS",
                                                                                     "ATOMIC_POSITIONS",
                                                                                     "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-                                                                                    "CELL_PARAMETERS"
+                                                                                    "CELL_PARAMETERS",
+                                                                                    "contextProviderName"
                                                                                 ],
                                                                                 "properties": {
                                                                                     "IBRAV": {
@@ -2434,6 +2452,11 @@
                                                                                                 }
                                                                                             }
                                                                                         }
+                                                                                    },
+                                                                                    "contextProviderName": {
+                                                                                        "type": "string",
+                                                                                        "const": "qe-pwx",
+                                                                                        "description": "Descriminator for AJV validator"
                                                                                     }
                                                                                 }
                                                                             },
@@ -2450,11 +2473,17 @@
                                                                                     "POSCAR_WITH_CONSTRAINTS": {
                                                                                         "type": "string",
                                                                                         "description": "POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented."
+                                                                                    },
+                                                                                    "contextProviderName": {
+                                                                                        "type": "string",
+                                                                                        "const": "vasp",
+                                                                                        "description": "Descriminator for AJV validator"
                                                                                     }
                                                                                 },
                                                                                 "required": [
                                                                                     "POSCAR",
-                                                                                    "POSCAR_WITH_CONSTRAINTS"
+                                                                                    "POSCAR_WITH_CONSTRAINTS",
+                                                                                    "contextProviderName"
                                                                                 ]
                                                                             },
                                                                             {
@@ -2477,21 +2506,32 @@
                                                                                         "items": {
                                                                                             "type": "string"
                                                                                         }
+                                                                                    },
+                                                                                    "contextProviderName": {
+                                                                                        "type": "string",
+                                                                                        "const": "vasp-neb",
+                                                                                        "description": "Descriminator for AJV validator"
                                                                                     }
                                                                                 },
                                                                                 "required": [
                                                                                     "FIRST_IMAGE",
                                                                                     "LAST_IMAGE",
-                                                                                    "INTERMEDIATE_IMAGES"
+                                                                                    "INTERMEDIATE_IMAGES",
+                                                                                    "contextProviderName"
                                                                                 ]
                                                                             }
                                                                         ],
-                                                                        "additionalProperties": true
+                                                                        "discriminator": {
+                                                                            "propertyName": "contextProviderName"
+                                                                        }
                                                                     },
                                                                     "extraData": {
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -2504,9 +2544,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "cutoffs context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -2537,8 +2577,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "grid context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -2546,6 +2584,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -2609,6 +2649,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -2621,8 +2664,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "path context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -2630,6 +2671,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -2673,6 +2716,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -2685,9 +2731,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "hubbard_j context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -2739,8 +2785,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "hubbard_u context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -2748,6 +2792,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -2780,6 +2826,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -2792,9 +2841,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "hubbard_v context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -2851,9 +2900,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "hubbard_legacy context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -2895,9 +2944,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "neb context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -2925,8 +2974,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "boundaryConditions context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -2934,6 +2981,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -2972,6 +3021,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -2984,9 +3036,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "mlSettings context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -3022,9 +3074,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "mlTrainTestSplit context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -3054,9 +3106,9 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "dynamics context item schema",
                                                                 "type": "object",
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "required": [
                                                                     "name",
                                                                     "isEdited",
@@ -3097,8 +3149,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "collinearMagnetization context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -3106,6 +3156,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -3163,6 +3215,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -3175,8 +3230,6 @@
                                                                 }
                                                             },
                                                             {
-                                                                "$schema": "http://json-schema.org/draft-07/schema#",
-                                                                "title": "nonCollinearMagnetization context item schema",
                                                                 "type": "object",
                                                                 "required": [
                                                                     "data",
@@ -3184,6 +3237,8 @@
                                                                     "isEdited",
                                                                     "name"
                                                                 ],
+                                                                "$schema": "http://json-schema.org/draft-07/schema#",
+                                                                "title": "base context item schema",
                                                                 "properties": {
                                                                     "name": {
                                                                         "type": "string",
@@ -3309,6 +3364,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "extraData with materialHash schema",
                                                                         "type": "object",
+                                                                        "required": [
+                                                                            "materialHash"
+                                                                        ],
                                                                         "properties": {
                                                                             "materialHash": {
                                                                                 "type": "string"
@@ -3320,17 +3378,7 @@
                                                                     }
                                                                 }
                                                             }
-                                                        ],
-                                                        "required": [
-                                                            "name",
-                                                            "isEdited",
-                                                            "data"
-                                                        ],
-                                                        "properties": {
-                                                            "extraData": {
-                                                                "type": "object"
-                                                            }
-                                                        }
+                                                        ]
                                                     }
                                                 }
                                             }
@@ -5195,6 +5243,9 @@
                                 "type": "object",
                                 "required": [
                                     "application",
+                                    "context",
+                                    "executable",
+                                    "flavor",
                                     "flowchartId",
                                     "input",
                                     "monitors",
@@ -5794,10 +5845,10 @@
                                     "context": {
                                         "type": "array",
                                         "items": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "context item schema",
                                             "oneOf": [
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "input context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -5805,6 +5856,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -5818,6 +5871,11 @@
                                                                     "description": "Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.",
                                                                     "type": "object",
                                                                     "properties": {
+                                                                        "contextProviderName": {
+                                                                            "type": "string",
+                                                                            "const": "nwchem-total-energy",
+                                                                            "description": "Descriminator for AJV validator"
+                                                                        },
                                                                         "CHARGE": {
                                                                             "type": "integer",
                                                                             "description": "Total charge of the system."
@@ -5869,7 +5927,8 @@
                                                                         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
                                                                         "ATOMIC_SPECIES",
                                                                         "FUNCTIONAL",
-                                                                        "CARTESIAN"
+                                                                        "CARTESIAN",
+                                                                        "contextProviderName"
                                                                     ]
                                                                 },
                                                                 {
@@ -5888,7 +5947,8 @@
                                                                         "CELL_PARAMETERS",
                                                                         "FIRST_IMAGE",
                                                                         "LAST_IMAGE",
-                                                                        "INTERMEDIATE_IMAGES"
+                                                                        "INTERMEDIATE_IMAGES",
+                                                                        "contextProviderName"
                                                                     ],
                                                                     "properties": {
                                                                         "IBRAV": {
@@ -6214,6 +6274,11 @@
                                                                                     }
                                                                                 }
                                                                             }
+                                                                        },
+                                                                        "contextProviderName": {
+                                                                            "type": "string",
+                                                                            "const": "qe-neb",
+                                                                            "description": "Descriminator for AJV validator"
                                                                         }
                                                                     }
                                                                 },
@@ -6232,7 +6297,8 @@
                                                                         "NTYP_WITH_LABELS",
                                                                         "ATOMIC_POSITIONS",
                                                                         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-                                                                        "CELL_PARAMETERS"
+                                                                        "CELL_PARAMETERS",
+                                                                        "contextProviderName"
                                                                     ],
                                                                     "properties": {
                                                                         "IBRAV": {
@@ -6401,6 +6467,11 @@
                                                                                     }
                                                                                 }
                                                                             }
+                                                                        },
+                                                                        "contextProviderName": {
+                                                                            "type": "string",
+                                                                            "const": "qe-pwx",
+                                                                            "description": "Descriminator for AJV validator"
                                                                         }
                                                                     }
                                                                 },
@@ -6417,11 +6488,17 @@
                                                                         "POSCAR_WITH_CONSTRAINTS": {
                                                                             "type": "string",
                                                                             "description": "POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented."
+                                                                        },
+                                                                        "contextProviderName": {
+                                                                            "type": "string",
+                                                                            "const": "vasp",
+                                                                            "description": "Descriminator for AJV validator"
                                                                         }
                                                                     },
                                                                     "required": [
                                                                         "POSCAR",
-                                                                        "POSCAR_WITH_CONSTRAINTS"
+                                                                        "POSCAR_WITH_CONSTRAINTS",
+                                                                        "contextProviderName"
                                                                     ]
                                                                 },
                                                                 {
@@ -6444,21 +6521,32 @@
                                                                             "items": {
                                                                                 "type": "string"
                                                                             }
+                                                                        },
+                                                                        "contextProviderName": {
+                                                                            "type": "string",
+                                                                            "const": "vasp-neb",
+                                                                            "description": "Descriminator for AJV validator"
                                                                         }
                                                                     },
                                                                     "required": [
                                                                         "FIRST_IMAGE",
                                                                         "LAST_IMAGE",
-                                                                        "INTERMEDIATE_IMAGES"
+                                                                        "INTERMEDIATE_IMAGES",
+                                                                        "contextProviderName"
                                                                     ]
                                                                 }
                                                             ],
-                                                            "additionalProperties": true
+                                                            "discriminator": {
+                                                                "propertyName": "contextProviderName"
+                                                            }
                                                         },
                                                         "extraData": {
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -6471,9 +6559,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "cutoffs context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6504,8 +6592,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "grid context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -6513,6 +6599,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -6576,6 +6664,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -6588,8 +6679,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "path context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -6597,6 +6686,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -6640,6 +6731,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -6652,9 +6746,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "hubbard_j context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6706,8 +6800,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "hubbard_u context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -6715,6 +6807,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -6747,6 +6841,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -6759,9 +6856,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "hubbard_v context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6818,9 +6915,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "hubbard_legacy context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6862,9 +6959,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "neb context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6892,8 +6989,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "boundaryConditions context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -6901,6 +6996,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -6939,6 +7036,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -6951,9 +7051,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "mlSettings context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -6989,9 +7089,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "mlTrainTestSplit context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -7021,9 +7121,9 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "dynamics context item schema",
                                                     "type": "object",
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "required": [
                                                         "name",
                                                         "isEdited",
@@ -7064,8 +7164,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "collinearMagnetization context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -7073,6 +7171,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -7130,6 +7230,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -7142,8 +7245,6 @@
                                                     }
                                                 },
                                                 {
-                                                    "$schema": "http://json-schema.org/draft-07/schema#",
-                                                    "title": "nonCollinearMagnetization context item schema",
                                                     "type": "object",
                                                     "required": [
                                                         "data",
@@ -7151,6 +7252,8 @@
                                                         "isEdited",
                                                         "name"
                                                     ],
+                                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                                    "title": "base context item schema",
                                                     "properties": {
                                                         "name": {
                                                             "type": "string",
@@ -7276,6 +7379,9 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "extraData with materialHash schema",
                                                             "type": "object",
+                                                            "required": [
+                                                                "materialHash"
+                                                            ],
                                                             "properties": {
                                                                 "materialHash": {
                                                                     "type": "string"
@@ -7287,17 +7393,7 @@
                                                         }
                                                     }
                                                 }
-                                            ],
-                                            "required": [
-                                                "name",
-                                                "isEdited",
-                                                "data"
-                                            ],
-                                            "properties": {
-                                                "extraData": {
-                                                    "type": "object"
-                                                }
-                                            }
+                                            ]
                                         }
                                     }
                                 }

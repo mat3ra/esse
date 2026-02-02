@@ -19,5 +19,12 @@
     "preProcessors": [],
     "postProcessors": [],
     "monitors": [],
-    "results": []
+    "results": [],
+    "context": [],
+    "executable": {
+        "...": "include(../../../software/executable.json)"
+    },
+    "flavor": {
+        "...": "include(../../../software/flavor.json)"
+    }
 }

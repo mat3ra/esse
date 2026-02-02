@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, conint
 
@@ -108,3 +108,7 @@ class QEPwxContextProviderSchema(BaseModel):
     Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
     """
     CELL_PARAMETERS: CELLPARAMETERS
+    contextProviderName: Literal["qe-pwx"]
+    """
+    Descriminator for AJV validator
+    """

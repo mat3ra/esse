@@ -1,0 +1,361 @@
+{
+    "$id": "workflow/unit/context/item",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "context item schema",
+    "oneOf": [
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "input"
+                },
+                "data": {
+                    "oneOf": [
+                        {
+                            "$ref": "../../../context_providers_directory/by_application/nwchem_total_energy_context_provider.json"
+                        },
+                        {
+                            "$ref": "../../../context_providers_directory/by_application/qe_neb_context_provider.json"
+                        },
+                        {
+                            "$ref": "../../../context_providers_directory/by_application/qe_pwx_context_provider.json"
+                        },
+                        {
+                            "$ref": "../../../context_providers_directory/by_application/vasp_context_provider.json"
+                        },
+                        {
+                            "$ref": "../../../context_providers_directory/by_application/vasp_neb_context_provider.json"
+                        }
+                    ],
+                    "discriminator": {
+                        "propertyName": "contextProviderName"
+                    }
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "cutoffs"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/planewave_cutoffs_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "enum": [
+                        "kgrid",
+                        "qgrid",
+                        "igrid"
+                    ]
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/points_grid_data_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "enum": [
+                        "qpath",
+                        "ipath",
+                        "kpath",
+                        "explicitKPath",
+                        "explicitKPath2PIBA"
+                    ]
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/points_path_data_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "hubbard_j"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/hubbard_j_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "hubbard_u"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/hubbard_u_context_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "hubbard_v"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/hubbard_v_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "hubbard_legacy"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/hubbard_legacy_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "neb"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/neb_data_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "boundaryConditions"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/boundary_conditions_data_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "mlSettings"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/ml_settings_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "mlTrainTestSplit"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/ml_train_test_split_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "dynamics"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/ion_dynamics_context_provider.json"
+                }
+            }
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "collinearMagnetization"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/collinear_magnetization_context_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        },
+        {
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "_base.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "const": "nonCollinearMagnetization"
+                },
+                "data": {
+                    "$ref": "../../../context_providers_directory/non_collinear_magnetization_context_provider.json"
+                },
+                "extraData": {
+                    "allOf": [
+                        {
+                            "$ref": "_extra_data_material_hash.json"
+                        }
+                    ]
+                }
+            },
+            "required": [
+                "extraData"
+            ]
+        }
+    ]
+}

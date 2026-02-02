@@ -108,7 +108,8 @@
                 }
             ],
             "status": "idle",
-            "type": "execution"
+            "type": "execution",
+            "context": []
         }
     ]
 }
