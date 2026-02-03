@@ -6,11 +6,15 @@
     "required": [
         "name",
         "isEdited",
-        "data"
+        "data",
+        "extraData"
     ],
     "properties": {
         "isEdited": {
             "type": "boolean"
+        },
+        "extraData": {
+            "type": "object"
         }
     }
 }

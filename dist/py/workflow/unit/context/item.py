@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Literal, Optional, Union
+from typing import Any, Dict, List, Literal, Optional, Union
 
 from pydantic import BaseModel, ConfigDict, Field, RootModel, confloat, conint
 
@@ -334,6 +334,7 @@ class BaseContextItemSchema122(BaseModel):
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Name(Enum):
@@ -412,6 +413,7 @@ class BaseContextItemSchema125(BaseModel):
     Hubbard parameters for DFT+U+J calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class HubbardUContextProviderSchemaItem(BaseModel):
@@ -447,6 +449,7 @@ class BaseContextItemSchema127(BaseModel):
     Hubbard V parameters for DFT+U+V calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class HubbardLegacyContextProviderSchemaItem(BaseModel):
@@ -464,6 +467,7 @@ class BaseContextItemSchema128(BaseModel):
     Hubbard parameters for DFT+U calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class NEBDataProviderSchema(BaseModel):
@@ -477,6 +481,7 @@ class BaseContextItemSchema129(BaseModel):
     Number of intermediate NEB images.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Type(Enum):
@@ -521,6 +526,7 @@ class BaseContextItemSchema131(BaseModel):
     Settings important to machine learning runs.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class MLTrainTestSplitContextProviderSchema(BaseModel):
@@ -534,6 +540,7 @@ class BaseContextItemSchema132(BaseModel):
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class IonDynamicsContextProviderSchema(BaseModel):
@@ -550,6 +557,7 @@ class BaseContextItemSchema133(BaseModel):
     Important parameters for molecular dynamics calculation
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class StartingMagnetizationItem(BaseModel):

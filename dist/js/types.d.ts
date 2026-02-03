@@ -7017,6 +7017,7 @@ export interface JobSchema {
                         density?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "kgrid" | "qgrid" | "igrid";
                     /**
@@ -7091,6 +7092,7 @@ export interface JobSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "hubbard_u";
                     /**
@@ -7133,6 +7135,7 @@ export interface JobSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "hubbard_legacy";
                     /**
@@ -7153,6 +7156,7 @@ export interface JobSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "neb";
                     /**
@@ -7162,6 +7166,7 @@ export interface JobSchema {
                         nImages?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "boundaryConditions";
                     data: {
@@ -7187,6 +7192,7 @@ export interface JobSchema {
                         problem_category?: "regression" | "classification" | "clustering";
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "mlTrainTestSplit";
                     /**
@@ -7196,6 +7202,7 @@ export interface JobSchema {
                         fraction_held_as_test_set?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "dynamics";
                     /**
@@ -7208,6 +7215,7 @@ export interface JobSchema {
                         temperature?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "collinearMagnetization";
                     /**
@@ -8800,6 +8808,7 @@ export interface JobSchema {
                     density?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "kgrid" | "qgrid" | "igrid";
                 /**
@@ -8874,6 +8883,7 @@ export interface JobSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_u";
                 /**
@@ -8916,6 +8926,7 @@ export interface JobSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_legacy";
                 /**
@@ -8936,6 +8947,7 @@ export interface JobSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "neb";
                 /**
@@ -8945,6 +8957,7 @@ export interface JobSchema {
                     nImages?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "boundaryConditions";
                 data: {
@@ -8970,6 +8983,7 @@ export interface JobSchema {
                     problem_category?: "regression" | "classification" | "clustering";
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "mlTrainTestSplit";
                 /**
@@ -8979,6 +8993,7 @@ export interface JobSchema {
                     fraction_held_as_test_set?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "dynamics";
                 /**
@@ -8991,6 +9006,7 @@ export interface JobSchema {
                     temperature?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "collinearMagnetization";
                 /**
@@ -51029,6 +51045,7 @@ export interface WorkflowPropertySchema {
                     density?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "kgrid" | "qgrid" | "igrid";
                 /**
@@ -51103,6 +51120,7 @@ export interface WorkflowPropertySchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_u";
                 /**
@@ -51145,6 +51163,7 @@ export interface WorkflowPropertySchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_legacy";
                 /**
@@ -51165,6 +51184,7 @@ export interface WorkflowPropertySchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "neb";
                 /**
@@ -51174,6 +51194,7 @@ export interface WorkflowPropertySchema {
                     nImages?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "boundaryConditions";
                 data: {
@@ -51199,6 +51220,7 @@ export interface WorkflowPropertySchema {
                     problem_category?: "regression" | "classification" | "clustering";
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "mlTrainTestSplit";
                 /**
@@ -51208,6 +51230,7 @@ export interface WorkflowPropertySchema {
                     fraction_held_as_test_set?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "dynamics";
                 /**
@@ -51220,6 +51243,7 @@ export interface WorkflowPropertySchema {
                     temperature?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "collinearMagnetization";
                 /**
@@ -52812,6 +52836,7 @@ export interface WorkflowPropertySchema {
                 density?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "kgrid" | "qgrid" | "igrid";
             /**
@@ -52886,6 +52911,7 @@ export interface WorkflowPropertySchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_u";
             /**
@@ -52928,6 +52954,7 @@ export interface WorkflowPropertySchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_legacy";
             /**
@@ -52948,6 +52975,7 @@ export interface WorkflowPropertySchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "neb";
             /**
@@ -52957,6 +52985,7 @@ export interface WorkflowPropertySchema {
                 nImages?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "boundaryConditions";
             data: {
@@ -52982,6 +53011,7 @@ export interface WorkflowPropertySchema {
                 problem_category?: "regression" | "classification" | "clustering";
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "mlTrainTestSplit";
             /**
@@ -52991,6 +53021,7 @@ export interface WorkflowPropertySchema {
                 fraction_held_as_test_set?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "dynamics";
             /**
@@ -53003,6 +53034,7 @@ export interface WorkflowPropertySchema {
                 temperature?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "collinearMagnetization";
             /**
@@ -56098,6 +56130,7 @@ export interface PropertyHolderSchema {
                         density?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "kgrid" | "qgrid" | "igrid";
                     /**
@@ -56172,6 +56205,7 @@ export interface PropertyHolderSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "hubbard_u";
                     /**
@@ -56214,6 +56248,7 @@ export interface PropertyHolderSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "hubbard_legacy";
                     /**
@@ -56234,6 +56269,7 @@ export interface PropertyHolderSchema {
                         }[]
                     ];
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "neb";
                     /**
@@ -56243,6 +56279,7 @@ export interface PropertyHolderSchema {
                         nImages?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "boundaryConditions";
                     data: {
@@ -56268,6 +56305,7 @@ export interface PropertyHolderSchema {
                         problem_category?: "regression" | "classification" | "clustering";
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "mlTrainTestSplit";
                     /**
@@ -56277,6 +56315,7 @@ export interface PropertyHolderSchema {
                         fraction_held_as_test_set?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "dynamics";
                     /**
@@ -56289,6 +56328,7 @@ export interface PropertyHolderSchema {
                         temperature?: number;
                     };
                     isEdited: boolean;
+                    extraData: {};
                 } | {
                     name: "collinearMagnetization";
                     /**
@@ -57881,6 +57921,7 @@ export interface PropertyHolderSchema {
                     density?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "kgrid" | "qgrid" | "igrid";
                 /**
@@ -57955,6 +57996,7 @@ export interface PropertyHolderSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_u";
                 /**
@@ -57997,6 +58039,7 @@ export interface PropertyHolderSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_legacy";
                 /**
@@ -58017,6 +58060,7 @@ export interface PropertyHolderSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "neb";
                 /**
@@ -58026,6 +58070,7 @@ export interface PropertyHolderSchema {
                     nImages?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "boundaryConditions";
                 data: {
@@ -58051,6 +58096,7 @@ export interface PropertyHolderSchema {
                     problem_category?: "regression" | "classification" | "clustering";
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "mlTrainTestSplit";
                 /**
@@ -58060,6 +58106,7 @@ export interface PropertyHolderSchema {
                     fraction_held_as_test_set?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "dynamics";
                 /**
@@ -58072,6 +58119,7 @@ export interface PropertyHolderSchema {
                     temperature?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "collinearMagnetization";
                 /**
@@ -60115,6 +60163,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -60189,6 +60238,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -60231,6 +60281,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -60251,6 +60302,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -60260,6 +60312,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -60285,6 +60338,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -60294,6 +60348,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -60306,6 +60361,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -61253,6 +61309,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -61327,6 +61384,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -61369,6 +61427,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -61389,6 +61448,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -61398,6 +61458,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -61423,6 +61484,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -61432,6 +61494,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -61444,6 +61507,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -63300,6 +63364,7 @@ export interface BaseWorkflowSchema {
                     density?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "kgrid" | "qgrid" | "igrid";
                 /**
@@ -63374,6 +63439,7 @@ export interface BaseWorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_u";
                 /**
@@ -63416,6 +63482,7 @@ export interface BaseWorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_legacy";
                 /**
@@ -63436,6 +63503,7 @@ export interface BaseWorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "neb";
                 /**
@@ -63445,6 +63513,7 @@ export interface BaseWorkflowSchema {
                     nImages?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "boundaryConditions";
                 data: {
@@ -63470,6 +63539,7 @@ export interface BaseWorkflowSchema {
                     problem_category?: "regression" | "classification" | "clustering";
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "mlTrainTestSplit";
                 /**
@@ -63479,6 +63549,7 @@ export interface BaseWorkflowSchema {
                     fraction_held_as_test_set?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "dynamics";
                 /**
@@ -63491,6 +63562,7 @@ export interface BaseWorkflowSchema {
                     temperature?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "collinearMagnetization";
                 /**
@@ -65083,6 +65155,7 @@ export interface BaseWorkflowSchema {
                 density?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "kgrid" | "qgrid" | "igrid";
             /**
@@ -65157,6 +65230,7 @@ export interface BaseWorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_u";
             /**
@@ -65199,6 +65273,7 @@ export interface BaseWorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_legacy";
             /**
@@ -65219,6 +65294,7 @@ export interface BaseWorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "neb";
             /**
@@ -65228,6 +65304,7 @@ export interface BaseWorkflowSchema {
                 nImages?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "boundaryConditions";
             data: {
@@ -65253,6 +65330,7 @@ export interface BaseWorkflowSchema {
                 problem_category?: "regression" | "classification" | "clustering";
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "mlTrainTestSplit";
             /**
@@ -65262,6 +65340,7 @@ export interface BaseWorkflowSchema {
                 fraction_held_as_test_set?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "dynamics";
             /**
@@ -65274,6 +65353,7 @@ export interface BaseWorkflowSchema {
                 temperature?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "collinearMagnetization";
             /**
@@ -67154,6 +67234,7 @@ export interface SubworkflowMixinSchema {
                 density?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "kgrid" | "qgrid" | "igrid";
             /**
@@ -67228,6 +67309,7 @@ export interface SubworkflowMixinSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_u";
             /**
@@ -67270,6 +67352,7 @@ export interface SubworkflowMixinSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_legacy";
             /**
@@ -67290,6 +67373,7 @@ export interface SubworkflowMixinSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "neb";
             /**
@@ -67299,6 +67383,7 @@ export interface SubworkflowMixinSchema {
                 nImages?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "boundaryConditions";
             data: {
@@ -67324,6 +67409,7 @@ export interface SubworkflowMixinSchema {
                 problem_category?: "regression" | "classification" | "clustering";
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "mlTrainTestSplit";
             /**
@@ -67333,6 +67419,7 @@ export interface SubworkflowMixinSchema {
                 fraction_held_as_test_set?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "dynamics";
             /**
@@ -67345,6 +67432,7 @@ export interface SubworkflowMixinSchema {
                 temperature?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "collinearMagnetization";
             /**
@@ -68935,6 +69023,7 @@ export type WorkflowSubworkflowUnitSchema = {
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -69009,6 +69098,7 @@ export type WorkflowSubworkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -69051,6 +69141,7 @@ export type WorkflowSubworkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -69071,6 +69162,7 @@ export type WorkflowSubworkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -69080,6 +69172,7 @@ export type WorkflowSubworkflowUnitSchema = {
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -69105,6 +69198,7 @@ export type WorkflowSubworkflowUnitSchema = {
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -69114,6 +69208,7 @@ export type WorkflowSubworkflowUnitSchema = {
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -69126,6 +69221,7 @@ export type WorkflowSubworkflowUnitSchema = {
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -70684,6 +70780,7 @@ export interface SubworkflowSchema {
                 density?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "kgrid" | "qgrid" | "igrid";
             /**
@@ -70758,6 +70855,7 @@ export interface SubworkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_u";
             /**
@@ -70800,6 +70898,7 @@ export interface SubworkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_legacy";
             /**
@@ -70820,6 +70919,7 @@ export interface SubworkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "neb";
             /**
@@ -70829,6 +70929,7 @@ export interface SubworkflowSchema {
                 nImages?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "boundaryConditions";
             data: {
@@ -70854,6 +70955,7 @@ export interface SubworkflowSchema {
                 problem_category?: "regression" | "classification" | "clustering";
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "mlTrainTestSplit";
             /**
@@ -70863,6 +70965,7 @@ export interface SubworkflowSchema {
                 fraction_held_as_test_set?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "dynamics";
             /**
@@ -70875,6 +70978,7 @@ export interface SubworkflowSchema {
                 temperature?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "collinearMagnetization";
             /**
@@ -71756,6 +71860,7 @@ export interface ConditionUnitSchema {
 /** Schema dist/js/schema/workflow/unit/context/_base.json */
 export interface BaseContextItemSchema {
     isEdited: boolean;
+    extraData: {};
 }
 /** Schema dist/js/schema/workflow/unit/context/_extra_data_material_hash.json */
 export interface ExtraDataWithMaterialHashSchema {
@@ -72098,6 +72203,7 @@ export type ContextItemSchema = {
         density?: number;
     };
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "kgrid" | "qgrid" | "igrid";
     /**
@@ -72172,6 +72278,7 @@ export type ContextItemSchema = {
         }[]
     ];
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "hubbard_u";
     /**
@@ -72214,6 +72321,7 @@ export type ContextItemSchema = {
         }[]
     ];
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "hubbard_legacy";
     /**
@@ -72234,6 +72342,7 @@ export type ContextItemSchema = {
         }[]
     ];
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "neb";
     /**
@@ -72243,6 +72352,7 @@ export type ContextItemSchema = {
         nImages?: number;
     };
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "boundaryConditions";
     data: {
@@ -72268,6 +72378,7 @@ export type ContextItemSchema = {
         problem_category?: "regression" | "classification" | "clustering";
     };
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "mlTrainTestSplit";
     /**
@@ -72277,6 +72388,7 @@ export type ContextItemSchema = {
         fraction_held_as_test_set?: number;
     };
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "dynamics";
     /**
@@ -72289,6 +72401,7 @@ export type ContextItemSchema = {
         temperature?: number;
     };
     isEdited: boolean;
+    extraData: {};
 } | {
     name: "collinearMagnetization";
     /**
@@ -73008,6 +73121,7 @@ export interface ExecutionUnitSchemaBase {
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -73082,6 +73196,7 @@ export interface ExecutionUnitSchemaBase {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -73124,6 +73239,7 @@ export interface ExecutionUnitSchemaBase {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -73144,6 +73260,7 @@ export interface ExecutionUnitSchemaBase {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -73153,6 +73270,7 @@ export interface ExecutionUnitSchemaBase {
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -73178,6 +73296,7 @@ export interface ExecutionUnitSchemaBase {
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -73187,6 +73306,7 @@ export interface ExecutionUnitSchemaBase {
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -73199,6 +73319,7 @@ export interface ExecutionUnitSchemaBase {
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -74427,6 +74548,7 @@ export interface ExecutionUnitMixinSchema {
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -74501,6 +74623,7 @@ export interface ExecutionUnitMixinSchema {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -74543,6 +74666,7 @@ export interface ExecutionUnitMixinSchema {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -74563,6 +74687,7 @@ export interface ExecutionUnitMixinSchema {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -74572,6 +74697,7 @@ export interface ExecutionUnitMixinSchema {
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -74597,6 +74723,7 @@ export interface ExecutionUnitMixinSchema {
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -74606,6 +74733,7 @@ export interface ExecutionUnitMixinSchema {
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -74618,6 +74746,7 @@ export interface ExecutionUnitMixinSchema {
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -76345,6 +76474,7 @@ export type WorkflowUnitSchema = {
             density?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "kgrid" | "qgrid" | "igrid";
         /**
@@ -76419,6 +76549,7 @@ export type WorkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_u";
         /**
@@ -76461,6 +76592,7 @@ export type WorkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "hubbard_legacy";
         /**
@@ -76481,6 +76613,7 @@ export type WorkflowUnitSchema = {
             }[]
         ];
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "neb";
         /**
@@ -76490,6 +76623,7 @@ export type WorkflowUnitSchema = {
             nImages?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "boundaryConditions";
         data: {
@@ -76515,6 +76649,7 @@ export type WorkflowUnitSchema = {
             problem_category?: "regression" | "classification" | "clustering";
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "mlTrainTestSplit";
         /**
@@ -76524,6 +76659,7 @@ export type WorkflowUnitSchema = {
             fraction_held_as_test_set?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "dynamics";
         /**
@@ -76536,6 +76672,7 @@ export type WorkflowUnitSchema = {
             temperature?: number;
         };
         isEdited: boolean;
+        extraData: {};
     } | {
         name: "collinearMagnetization";
         /**
@@ -78342,6 +78479,7 @@ export interface WorkflowSchema {
                     density?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "kgrid" | "qgrid" | "igrid";
                 /**
@@ -78416,6 +78554,7 @@ export interface WorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_u";
                 /**
@@ -78458,6 +78597,7 @@ export interface WorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "hubbard_legacy";
                 /**
@@ -78478,6 +78618,7 @@ export interface WorkflowSchema {
                     }[]
                 ];
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "neb";
                 /**
@@ -78487,6 +78628,7 @@ export interface WorkflowSchema {
                     nImages?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "boundaryConditions";
                 data: {
@@ -78512,6 +78654,7 @@ export interface WorkflowSchema {
                     problem_category?: "regression" | "classification" | "clustering";
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "mlTrainTestSplit";
                 /**
@@ -78521,6 +78664,7 @@ export interface WorkflowSchema {
                     fraction_held_as_test_set?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "dynamics";
                 /**
@@ -78533,6 +78677,7 @@ export interface WorkflowSchema {
                     temperature?: number;
                 };
                 isEdited: boolean;
+                extraData: {};
             } | {
                 name: "collinearMagnetization";
                 /**
@@ -80125,6 +80270,7 @@ export interface WorkflowSchema {
                 density?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "kgrid" | "qgrid" | "igrid";
             /**
@@ -80199,6 +80345,7 @@ export interface WorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_u";
             /**
@@ -80241,6 +80388,7 @@ export interface WorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "hubbard_legacy";
             /**
@@ -80261,6 +80409,7 @@ export interface WorkflowSchema {
                 }[]
             ];
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "neb";
             /**
@@ -80270,6 +80419,7 @@ export interface WorkflowSchema {
                 nImages?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "boundaryConditions";
             data: {
@@ -80295,6 +80445,7 @@ export interface WorkflowSchema {
                 problem_category?: "regression" | "classification" | "clustering";
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "mlTrainTestSplit";
             /**
@@ -80304,6 +80455,7 @@ export interface WorkflowSchema {
                 fraction_held_as_test_set?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "dynamics";
             /**
@@ -80316,6 +80468,7 @@ export interface WorkflowSchema {
                 temperature?: number;
             };
             isEdited: boolean;
+            extraData: {};
         } | {
             name: "collinearMagnetization";
             /**

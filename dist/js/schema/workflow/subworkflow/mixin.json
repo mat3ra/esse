@@ -1740,14 +1740,14 @@
                                     "oneOf": [
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -2455,7 +2455,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2478,19 +2479,22 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -2570,14 +2574,14 @@
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -2642,7 +2646,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2686,19 +2691,22 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -2752,7 +2760,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2801,6 +2810,9 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -2811,7 +2823,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2845,6 +2858,9 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -2855,7 +2871,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2875,19 +2892,22 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -2947,7 +2967,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -2975,6 +2996,9 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -2985,7 +3009,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -3007,6 +3032,9 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -3017,7 +3045,8 @@
                                             "required": [
                                                 "name",
                                                 "isEdited",
-                                                "data"
+                                                "data",
+                                                "extraData"
                                             ],
                                             "properties": {
                                                 "name": {
@@ -3050,19 +3079,22 @@
                                                 },
                                                 "isEdited": {
                                                     "type": "boolean"
+                                                },
+                                                "extraData": {
+                                                    "type": "object"
                                                 }
                                             }
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",
@@ -3136,14 +3168,14 @@
                                         },
                                         {
                                             "type": "object",
-                                            "required": [
-                                                "data",
-                                                "extraData",
-                                                "isEdited",
-                                                "name"
-                                            ],
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "base context item schema",
+                                            "required": [
+                                                "name",
+                                                "isEdited",
+                                                "data",
+                                                "extraData"
+                                            ],
                                             "properties": {
                                                 "name": {
                                                     "type": "string",

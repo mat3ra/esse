@@ -1149,6 +1149,7 @@ class BaseContextItemSchema2(BaseModel):
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Name(Enum):
@@ -1227,6 +1228,7 @@ class BaseContextItemSchema5(BaseModel):
     Hubbard parameters for DFT+U+J calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class HubbardUContextProviderSchemaItem(BaseModel):
@@ -1262,6 +1264,7 @@ class BaseContextItemSchema7(BaseModel):
     Hubbard V parameters for DFT+U+V calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class HubbardLegacyContextProviderSchemaItem(BaseModel):
@@ -1279,6 +1282,7 @@ class BaseContextItemSchema8(BaseModel):
     Hubbard parameters for DFT+U calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class NEBDataProviderSchema(BaseModel):
@@ -1292,6 +1296,7 @@ class BaseContextItemSchema9(BaseModel):
     Number of intermediate NEB images.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Type(Enum):
@@ -1336,6 +1341,7 @@ class BaseContextItemSchema11(BaseModel):
     Settings important to machine learning runs.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class MLTrainTestSplitContextProviderSchema(BaseModel):
@@ -1349,6 +1355,7 @@ class BaseContextItemSchema12(BaseModel):
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class IonDynamicsContextProviderSchema(BaseModel):
@@ -1365,6 +1372,7 @@ class BaseContextItemSchema13(BaseModel):
     Important parameters for molecular dynamics calculation
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class StartingMagnetizationItem(BaseModel):
@@ -2448,6 +2456,7 @@ class BaseContextItemSchema17(BaseModel):
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Name32(Enum):
@@ -2507,6 +2516,7 @@ class BaseContextItemSchema20(BaseModel):
     Hubbard parameters for DFT+U+J calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class BaseContextItemSchema21(BaseModel):
@@ -2526,6 +2536,7 @@ class BaseContextItemSchema22(BaseModel):
     Hubbard V parameters for DFT+U+V calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class BaseContextItemSchema23(BaseModel):
@@ -2537,6 +2548,7 @@ class BaseContextItemSchema23(BaseModel):
     Hubbard parameters for DFT+U calculation.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class BaseContextItemSchema24(BaseModel):
@@ -2546,6 +2558,7 @@ class BaseContextItemSchema24(BaseModel):
     Number of intermediate NEB images.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class Type10(Enum):
@@ -2584,6 +2597,7 @@ class BaseContextItemSchema26(BaseModel):
     Settings important to machine learning runs.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class BaseContextItemSchema27(BaseModel):
@@ -2593,6 +2607,7 @@ class BaseContextItemSchema27(BaseModel):
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class BaseContextItemSchema28(BaseModel):
@@ -2602,6 +2617,7 @@ class BaseContextItemSchema28(BaseModel):
     Important parameters for molecular dynamics calculation
     """
     isEdited: bool
+    extraData: Dict[str, Any]
 
 
 class StartingMagnetizationItem2(BaseModel):
