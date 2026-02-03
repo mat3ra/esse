@@ -10,7 +10,7 @@
             "$ref": "item/cutoffs.json"
         },
         {
-            "$ref": "item/kgrid.json"
+            "$ref": "item/grid.json"
         },
         {
             "$ref": "item/path.json"

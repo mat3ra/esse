@@ -1172,7 +1172,7 @@ class PointsGridDataProviderSchema(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class KgridContextItemSchema(BaseModel):
+class GridContextItemSchema(BaseModel):
     name: Name
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -1535,7 +1535,7 @@ class ExecutionUnitSchemaBase(BaseModel):
         Union[
             InputContextItemSchema,
             CutoffsContextItemSchema,
-            KgridContextItemSchema,
+            GridContextItemSchema,
             PathContextItemSchema,
             HubbardJContextItemSchema,
             HubbardUContextItemSchema,
@@ -2474,7 +2474,7 @@ class PointsGridDataProviderSchema18(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class KgridContextItemSchema17(BaseModel):
+class GridContextItemSchema17(BaseModel):
     name: Name821
     data: PointsGridDataProviderSchema18 = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -2761,7 +2761,7 @@ class ExecutionUnitSchemaBase12(BaseModel):
         Union[
             InputContextItemSchema17,
             CutoffsContextItemSchema17,
-            KgridContextItemSchema17,
+            GridContextItemSchema17,
             PathContextItemSchema17,
             HubbardJContextItemSchema17,
             HubbardUContextItemSchema17,

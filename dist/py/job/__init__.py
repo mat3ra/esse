@@ -1172,7 +1172,7 @@ class PointsGridDataProviderSchema(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class KgridContextItemSchema(BaseModel):
+class GridContextItemSchema(BaseModel):
     name: Name
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -1182,7 +1182,7 @@ class KgridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name575(Enum):
+class Name576(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1197,7 +1197,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name575
+    name: Name576
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -1535,7 +1535,7 @@ class ExecutionUnitSchemaBase(BaseModel):
         Union[
             InputContextItemSchema,
             CutoffsContextItemSchema,
-            KgridContextItemSchema,
+            GridContextItemSchema,
             PathContextItemSchema,
             HubbardJContextItemSchema,
             HubbardUContextItemSchema,
@@ -2459,13 +2459,13 @@ class CutoffsContextItemSchema11(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name576(Enum):
+class Name577(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
 
 
-class PointsGridDataProviderSchema10(BaseModel):
+class PointsGridDataProviderSchema11(BaseModel):
     dimensions: List[float] = Field(..., max_length=3, min_length=3)
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
@@ -2474,9 +2474,9 @@ class PointsGridDataProviderSchema10(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class KgridContextItemSchema10(BaseModel):
-    name: Name576
-    data: PointsGridDataProviderSchema10 = Field(..., title="Points Grid Data Provider Schema")
+class GridContextItemSchema11(BaseModel):
+    name: Name577
+    data: PointsGridDataProviderSchema11 = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
     """
@@ -2484,7 +2484,7 @@ class KgridContextItemSchema10(BaseModel):
     isEdited: bool
 
 
-class Name577(Enum):
+class Name578(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -2493,7 +2493,7 @@ class Name577(Enum):
 
 
 class PathContextItemSchema10(BaseModel):
-    name: Name577
+    name: Name578
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -2761,7 +2761,7 @@ class ExecutionUnitSchemaBase6(BaseModel):
         Union[
             InputContextItemSchema11,
             CutoffsContextItemSchema11,
-            KgridContextItemSchema10,
+            GridContextItemSchema11,
             PathContextItemSchema10,
             HubbardJContextItemSchema11,
             HubbardUContextItemSchema11,

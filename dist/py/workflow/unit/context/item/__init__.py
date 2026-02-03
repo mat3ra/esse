@@ -357,7 +357,7 @@ class PointsGridDataProviderSchema(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class KgridContextItemSchema(BaseModel):
+class GridContextItemSchema(BaseModel):
     name: Name
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -367,7 +367,7 @@ class KgridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name573(Enum):
+class Name574(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -382,7 +382,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name573
+    name: Name574
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -649,7 +649,7 @@ class ESSE(
         Union[
             InputContextItemSchema,
             CutoffsContextItemSchema,
-            KgridContextItemSchema,
+            GridContextItemSchema,
             PathContextItemSchema,
             HubbardJContextItemSchema,
             HubbardUContextItemSchema,
@@ -668,7 +668,7 @@ class ESSE(
     root: Union[
         InputContextItemSchema,
         CutoffsContextItemSchema,
-        KgridContextItemSchema,
+        GridContextItemSchema,
         PathContextItemSchema,
         HubbardJContextItemSchema,
         HubbardUContextItemSchema,

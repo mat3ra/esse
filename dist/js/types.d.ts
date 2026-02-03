@@ -71931,6 +71931,37 @@ export interface DynamicsContextItemSchema {
     isEdited: boolean;
     extraData: {};
 }
+/** Schema dist/js/schema/workflow/unit/context/item/grid.json */
+export interface GridContextItemSchema {
+    name: "kgrid" | "qgrid" | "igrid";
+    /**
+     * 3D grid with shifts for k-point or q-point sampling.
+     */
+    data: {
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        dimensions: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        shifts?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        reciprocalVectorRatios?: [number, number, number];
+        gridMetricType: "KPPRA" | "spacing";
+        gridMetricValue: number;
+        preferGridMetric?: boolean;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
 /** Schema dist/js/schema/workflow/unit/context/item/hubbard_j.json */
 export interface HubbardJContextItemSchema {
     name: "hubbard_j";
@@ -72348,37 +72379,6 @@ export interface InputContextItemSchema {
          * Descriminator for AJV validator
          */
         contextProviderName: "vasp-neb";
-    };
-    extraData: {
-        materialHash: string;
-    };
-    isEdited: boolean;
-}
-/** Schema dist/js/schema/workflow/unit/context/item/kgrid.json */
-export interface KgridContextItemSchema {
-    name: "kgrid" | "qgrid" | "igrid";
-    /**
-     * 3D grid with shifts for k-point or q-point sampling.
-     */
-    data: {
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        dimensions: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        shifts?: [number, number, number];
-        /**
-         * @minItems 3
-         * @maxItems 3
-         */
-        reciprocalVectorRatios?: [number, number, number];
-        gridMetricType: "KPPRA" | "spacing";
-        gridMetricValue: number;
-        preferGridMetric?: boolean;
     };
     extraData: {
         materialHash: string;
