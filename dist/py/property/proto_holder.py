@@ -33,7 +33,7 @@ class AtomicConstraintsPropertySchema(BaseModel):
     """
 
 
-class Name659(Enum):
+class Name661(Enum):
     boundary_conditions = "boundary_conditions"
 
 
@@ -45,7 +45,7 @@ class Type(Enum):
 
 
 class BoundaryConditionsPropertySchema(BaseModel):
-    name: Name659
+    name: Name661
     type: Optional[Type] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.

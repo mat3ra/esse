@@ -4,9 +4,9 @@
     "title": "context item schema",
     "oneOf": [
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "input context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -714,9 +714,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "cutoffs context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -751,9 +751,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "kgrid context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -838,9 +838,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "path context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -905,9 +905,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "hubbard_j context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -963,9 +963,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "hubbard_u context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1019,9 +1019,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "hubbard_v context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1082,9 +1082,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "hubbard_legacy context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1130,9 +1130,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "neb context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1164,9 +1164,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "boundaryConditions context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1226,9 +1226,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "mlSettings context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1268,9 +1268,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "mlTrainTestSplit context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1304,9 +1304,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "dynamics context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1351,9 +1351,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "collinearMagnetization context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",
@@ -1432,9 +1432,9 @@
             }
         },
         {
-            "type": "object",
             "$schema": "http://json-schema.org/draft-07/schema#",
-            "title": "base context item schema",
+            "title": "nonCollinearMagnetization context item schema",
+            "type": "object",
             "required": [
                 "name",
                 "isEdited",

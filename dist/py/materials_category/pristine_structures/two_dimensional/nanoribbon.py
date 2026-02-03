@@ -432,7 +432,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name597(Enum):
+class Name598(Enum):
     density = "density"
 
 
@@ -455,7 +455,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name598(Enum):
+class Name599(Enum):
     symmetry = "symmetry"
 
 
@@ -475,7 +475,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name599(Enum):
+class Name600(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -488,7 +488,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name600(Enum):
+class Name601(Enum):
     p_norm = "p-norm"
 
 
@@ -501,7 +501,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name601(Enum):
+class Name602(Enum):
     inchi = "inchi"
 
 
@@ -510,7 +510,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name602(Enum):
+class Name603(Enum):
     inchi_key = "inchi_key"
 
 
@@ -597,7 +597,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name603(Enum):
+class Name604(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -610,7 +610,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name603
+    name: Name604
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -943,7 +943,7 @@ class LatticeSchema61(BaseModel):
     )
 
 
-class Name604(Enum):
+class Name605(Enum):
     volume = "volume"
 
 
@@ -957,7 +957,7 @@ class VolumeSchema61(BaseModel):
     value: float
 
 
-class Name605(Enum):
+class Name606(Enum):
     density = "density"
 
 
@@ -980,7 +980,7 @@ class ScalarSchema76(BaseModel):
     value: float
 
 
-class Name606(Enum):
+class Name607(Enum):
     symmetry = "symmetry"
 
 
@@ -1000,7 +1000,7 @@ class SymmetrySchema61(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name607(Enum):
+class Name608(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1013,7 +1013,7 @@ class ElementalRatio62(BaseModel):
     """
 
 
-class Name608(Enum):
+class Name609(Enum):
     p_norm = "p-norm"
 
 
@@ -1026,7 +1026,7 @@ class PNorm61(BaseModel):
     value: float
 
 
-class Name609(Enum):
+class Name610(Enum):
     inchi = "inchi"
 
 
@@ -1035,7 +1035,7 @@ class InChIRepresentationSchema62(BaseModel):
     value: str
 
 
-class Name610(Enum):
+class Name611(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1095,14 +1095,14 @@ class DatabaseSourceSchema61(BaseModel):
     """
 
 
-class Name611(Enum):
+class Name612(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema61(BaseModel):
-    name: Name611
+    name: Name612
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1431,7 +1431,7 @@ class LatticeSchema62(BaseModel):
     )
 
 
-class Name612(Enum):
+class Name613(Enum):
     volume = "volume"
 
 
@@ -1445,7 +1445,7 @@ class VolumeSchema62(BaseModel):
     value: float
 
 
-class Name613(Enum):
+class Name614(Enum):
     density = "density"
 
 
@@ -1468,7 +1468,7 @@ class ScalarSchema77(BaseModel):
     value: float
 
 
-class Name614(Enum):
+class Name615(Enum):
     symmetry = "symmetry"
 
 
@@ -1488,7 +1488,7 @@ class SymmetrySchema62(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name615(Enum):
+class Name616(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -1501,7 +1501,7 @@ class ElementalRatio63(BaseModel):
     """
 
 
-class Name616(Enum):
+class Name617(Enum):
     p_norm = "p-norm"
 
 
@@ -1514,7 +1514,7 @@ class PNorm62(BaseModel):
     value: float
 
 
-class Name617(Enum):
+class Name618(Enum):
     inchi = "inchi"
 
 
@@ -1523,7 +1523,7 @@ class InChIRepresentationSchema63(BaseModel):
     value: str
 
 
-class Name618(Enum):
+class Name619(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1583,14 +1583,14 @@ class DatabaseSourceSchema62(BaseModel):
     """
 
 
-class Name619(Enum):
+class Name620(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema62(BaseModel):
-    name: Name619
+    name: Name620
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

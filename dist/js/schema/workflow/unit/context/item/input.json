@@ -1,0 +1,711 @@
+{
+    "$id": "workflow/unit/context/item/input",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "input context item schema",
+    "type": "object",
+    "required": [
+        "name",
+        "isEdited",
+        "data",
+        "extraData"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "input"
+        },
+        "data": {
+            "oneOf": [
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "NWChem Total Energy Context Provider Schema",
+                    "description": "Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.",
+                    "type": "object",
+                    "properties": {
+                        "contextProviderName": {
+                            "type": "string",
+                            "const": "nwchem-total-energy",
+                            "description": "Descriminator for AJV validator"
+                        },
+                        "CHARGE": {
+                            "type": "integer",
+                            "description": "Total charge of the system."
+                        },
+                        "MULT": {
+                            "type": "integer",
+                            "description": "Spin multiplicity of the system."
+                        },
+                        "BASIS": {
+                            "type": "string",
+                            "description": "Basis set label used in the calculation (e.g., '6-31G')."
+                        },
+                        "NAT": {
+                            "type": "integer",
+                            "description": "Number of atoms in the system."
+                        },
+                        "NTYP": {
+                            "type": "integer",
+                            "description": "Number of unique atomic species in the system."
+                        },
+                        "ATOMIC_POSITIONS": {
+                            "type": "string",
+                            "description": "Formatted text block with atomic positions including constraints."
+                        },
+                        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
+                            "type": "string",
+                            "description": "Formatted text block with atomic positions without constraints."
+                        },
+                        "ATOMIC_SPECIES": {
+                            "type": "string",
+                            "description": "Formatted text block for atomic species, including element symbols and masses."
+                        },
+                        "FUNCTIONAL": {
+                            "type": "string",
+                            "description": "Exchange-correlation functional identifier (e.g., 'B3LYP')."
+                        },
+                        "CARTESIAN": {
+                            "type": "boolean",
+                            "description": "Whether atomic positions are expressed in cartesian coordinates."
+                        }
+                    },
+                    "required": [
+                        "CHARGE",
+                        "MULT",
+                        "BASIS",
+                        "NAT",
+                        "NTYP",
+                        "ATOMIC_POSITIONS",
+                        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
+                        "ATOMIC_SPECIES",
+                        "FUNCTIONAL",
+                        "CARTESIAN",
+                        "contextProviderName"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "QE NEB Context Provider Schema",
+                    "description": "Schema for QENEBContextProvider that generates context data for Quantum ESPRESSO pw.x NEB input. Extends the pw.x context with image-specific atomic positions.",
+                    "type": "object",
+                    "required": [
+                        "IBRAV",
+                        "RESTART_MODE",
+                        "ATOMIC_SPECIES",
+                        "ATOMIC_SPECIES_WITH_LABELS",
+                        "NAT",
+                        "NTYP",
+                        "NTYP_WITH_LABELS",
+                        "CELL_PARAMETERS",
+                        "FIRST_IMAGE",
+                        "LAST_IMAGE",
+                        "INTERMEDIATE_IMAGES",
+                        "contextProviderName"
+                    ],
+                    "properties": {
+                        "IBRAV": {
+                            "type": "integer"
+                        },
+                        "RESTART_MODE": {
+                            "type": "string",
+                            "enum": [
+                                "from_scratch",
+                                "restart"
+                            ],
+                            "default": "from_scratch"
+                        },
+                        "ATOMIC_SPECIES": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "X",
+                                    "Mass_X",
+                                    "PseudoPot_X"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+                                    },
+                                    "Mass_X": {
+                                        "type": "number",
+                                        "description": "mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)"
+                                    },
+                                    "PseudoPot_X": {
+                                        "type": "string",
+                                        "description": "PseudoPot_X"
+                                    }
+                                }
+                            }
+                        },
+                        "ATOMIC_SPECIES_WITH_LABELS": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "X",
+                                    "Mass_X",
+                                    "PseudoPot_X"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+                                    },
+                                    "Mass_X": {
+                                        "type": "number",
+                                        "description": "mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)"
+                                    },
+                                    "PseudoPot_X": {
+                                        "type": "string",
+                                        "description": "PseudoPot_X"
+                                    }
+                                }
+                            }
+                        },
+                        "NAT": {
+                            "type": "integer",
+                            "description": "number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)"
+                        },
+                        "NTYP": {
+                            "type": "integer",
+                            "description": "number of types of atoms in the unit cell"
+                        },
+                        "NTYP_WITH_LABELS": {
+                            "type": "integer",
+                            "description": "Number of different atomic species including labels",
+                            "minimum": 1
+                        },
+                        "ATOMIC_POSITIONS": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                                    },
+                                    "x": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "y": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "z": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "if_pos(1)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(2)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(3)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    }
+                                }
+                            }
+                        },
+                        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
+                            "type": "string",
+                            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line"
+                        },
+                        "CELL_PARAMETERS": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "v1": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "v2": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "v3": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "FIRST_IMAGE": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                                    },
+                                    "x": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "y": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "z": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "if_pos(1)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(2)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(3)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    }
+                                }
+                            }
+                        },
+                        "LAST_IMAGE": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                                    },
+                                    "x": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "y": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "z": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "if_pos(1)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(2)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(3)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    }
+                                }
+                            }
+                        },
+                        "INTERMEDIATE_IMAGES": {
+                            "type": "array",
+                            "description": "Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.",
+                            "items": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "required": [
+                                        "x",
+                                        "y",
+                                        "z"
+                                    ],
+                                    "additionalProperties": false,
+                                    "properties": {
+                                        "X": {
+                                            "type": "string",
+                                            "description": "label of the atom as specified in ATOMIC_SPECIES"
+                                        },
+                                        "x": {
+                                            "type": "number",
+                                            "description": "atomic positions"
+                                        },
+                                        "y": {
+                                            "type": "number",
+                                            "description": "atomic positions"
+                                        },
+                                        "z": {
+                                            "type": "number",
+                                            "description": "atomic positions"
+                                        },
+                                        "if_pos(1)": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "integer one or zero",
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 1
+                                        },
+                                        "if_pos(2)": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "integer one or zero",
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 1
+                                        },
+                                        "if_pos(3)": {
+                                            "$schema": "http://json-schema.org/draft-07/schema#",
+                                            "title": "integer one or zero",
+                                            "type": "integer",
+                                            "minimum": 0,
+                                            "maximum": 1
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "contextProviderName": {
+                            "type": "string",
+                            "const": "qe-neb",
+                            "description": "Descriminator for AJV validator"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "QE pwx Context Provider Schema",
+                    "description": "Schema for QEPWXContextProvider that generates context data for Quantum ESPRESSO pw.x input files. Contains computed context properties and string-formatted versions of pw.x input sections.",
+                    "type": "object",
+                    "required": [
+                        "IBRAV",
+                        "RESTART_MODE",
+                        "ATOMIC_SPECIES",
+                        "ATOMIC_SPECIES_WITH_LABELS",
+                        "NAT",
+                        "NTYP",
+                        "NTYP_WITH_LABELS",
+                        "ATOMIC_POSITIONS",
+                        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
+                        "CELL_PARAMETERS",
+                        "contextProviderName"
+                    ],
+                    "properties": {
+                        "IBRAV": {
+                            "type": "integer"
+                        },
+                        "RESTART_MODE": {
+                            "type": "string",
+                            "enum": [
+                                "from_scratch",
+                                "restart"
+                            ],
+                            "default": "from_scratch"
+                        },
+                        "ATOMIC_SPECIES": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "X",
+                                    "Mass_X",
+                                    "PseudoPot_X"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+                                    },
+                                    "Mass_X": {
+                                        "type": "number",
+                                        "description": "mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)"
+                                    },
+                                    "PseudoPot_X": {
+                                        "type": "string",
+                                        "description": "PseudoPot_X"
+                                    }
+                                }
+                            }
+                        },
+                        "ATOMIC_SPECIES_WITH_LABELS": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "X",
+                                    "Mass_X",
+                                    "PseudoPot_X"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in \"Xn\" (e.g. Fe1) or \"X_*\" or \"X-*\" (e.g. C1, C_h; max total length cannot exceed 3 characters)"
+                                    },
+                                    "Mass_X": {
+                                        "type": "number",
+                                        "description": "mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)"
+                                    },
+                                    "PseudoPot_X": {
+                                        "type": "string",
+                                        "description": "PseudoPot_X"
+                                    }
+                                }
+                            }
+                        },
+                        "NAT": {
+                            "type": "integer",
+                            "description": "number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)"
+                        },
+                        "NTYP": {
+                            "type": "integer",
+                            "description": "number of types of atoms in the unit cell"
+                        },
+                        "NTYP_WITH_LABELS": {
+                            "type": "integer",
+                            "description": "Number of different atomic species including labels",
+                            "minimum": 1
+                        },
+                        "ATOMIC_POSITIONS": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "required": [
+                                    "x",
+                                    "y",
+                                    "z"
+                                ],
+                                "additionalProperties": false,
+                                "properties": {
+                                    "X": {
+                                        "type": "string",
+                                        "description": "label of the atom as specified in ATOMIC_SPECIES"
+                                    },
+                                    "x": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "y": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "z": {
+                                        "type": "number",
+                                        "description": "atomic positions"
+                                    },
+                                    "if_pos(1)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(2)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    },
+                                    "if_pos(3)": {
+                                        "$schema": "http://json-schema.org/draft-07/schema#",
+                                        "title": "integer one or zero",
+                                        "type": "integer",
+                                        "minimum": 0,
+                                        "maximum": 1
+                                    }
+                                }
+                            }
+                        },
+                        "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS": {
+                            "type": "string",
+                            "description": "Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line"
+                        },
+                        "CELL_PARAMETERS": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "properties": {
+                                "v1": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "v2": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                },
+                                "v3": {
+                                    "$schema": "http://json-schema.org/draft-07/schema#",
+                                    "title": "array of 3 number elements schema",
+                                    "type": "array",
+                                    "minItems": 3,
+                                    "maxItems": 3,
+                                    "items": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        },
+                        "contextProviderName": {
+                            "type": "string",
+                            "const": "qe-pwx",
+                            "description": "Descriminator for AJV validator"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "VASP Context Provider Schema",
+                    "description": "Schema for VASPContextProvider that generates context data for VASP POSCAR input files.",
+                    "type": "object",
+                    "properties": {
+                        "POSCAR": {
+                            "type": "string",
+                            "description": "POSCAR content for VASP including lattice, atom types, positions and constraints."
+                        },
+                        "POSCAR_WITH_CONSTRAINTS": {
+                            "type": "string",
+                            "description": "POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented."
+                        },
+                        "contextProviderName": {
+                            "type": "string",
+                            "const": "vasp",
+                            "description": "Descriminator for AJV validator"
+                        }
+                    },
+                    "required": [
+                        "POSCAR",
+                        "POSCAR_WITH_CONSTRAINTS",
+                        "contextProviderName"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "VASP NEB Context Provider Schema",
+                    "description": "Schema for VASPNEBContextProvider that generates context data for VASP NEB (nudged elastic band) runs.",
+                    "type": "object",
+                    "properties": {
+                        "FIRST_IMAGE": {
+                            "type": "string",
+                            "description": "POSCAR content with constraints for the first NEB image."
+                        },
+                        "LAST_IMAGE": {
+                            "type": "string",
+                            "description": "POSCAR content with constraints for the last NEB image."
+                        },
+                        "INTERMEDIATE_IMAGES": {
+                            "type": "array",
+                            "description": "POSCAR contents with constraints for all intermediate NEB images.",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "contextProviderName": {
+                            "type": "string",
+                            "const": "vasp-neb",
+                            "description": "Descriminator for AJV validator"
+                        }
+                    },
+                    "required": [
+                        "FIRST_IMAGE",
+                        "LAST_IMAGE",
+                        "INTERMEDIATE_IMAGES",
+                        "contextProviderName"
+                    ]
+                }
+            ],
+            "discriminator": {
+                "propertyName": "contextProviderName"
+            }
+        },
+        "extraData": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "extraData with materialHash schema",
+            "type": "object",
+            "required": [
+                "materialHash"
+            ],
+            "properties": {
+                "materialHash": {
+                    "type": "string"
+                }
+            }
+        },
+        "isEdited": {
+            "type": "boolean"
+        }
+    }
+}

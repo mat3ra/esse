@@ -37,12 +37,12 @@ class FunctionalGroupPatternSchema(BaseModel):
     """
 
 
-class Name594(Enum):
+class Name595(Enum):
     ring = "ring"
 
 
 class RingPatternSchema(BaseModel):
-    name: Name594
+    name: Name595
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each
@@ -50,12 +50,12 @@ class RingPatternSchema(BaseModel):
     isAromatic: Optional[bool] = None
 
 
-class Name595(Enum):
+class Name596(Enum):
     special_bond = "special_bond"
 
 
 class SpecialBondPatternSchema(BaseModel):
-    name: Name595
+    name: Name596
     atoms: Optional[List[ObjectWithId]] = Field(None, title="array of ids")
     """
     array of objects containing integer id each

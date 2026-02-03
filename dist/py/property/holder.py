@@ -2214,7 +2214,7 @@ class ExtraDataWithMaterialHashSchema(BaseModel):
     materialHash: str
 
 
-class BaseContextItemSchema(BaseModel):
+class InputContextItemSchema(BaseModel):
     name: Literal["input"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
@@ -2232,7 +2232,7 @@ class PlanewaveCutoffsContextProviderSchema(BaseModel):
     density: Optional[float] = None
 
 
-class BaseContextItemSchema92(BaseModel):
+class CutoffsContextItemSchema(BaseModel):
     name: Literal["cutoffs"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
@@ -2262,7 +2262,7 @@ class PointsGridDataProviderSchema(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class BaseContextItemSchema93(BaseModel):
+class KgridContextItemSchema(BaseModel):
     name: Name528
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -2286,7 +2286,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
     coordinates: List[float]
 
 
-class BaseContextItemSchema94(BaseModel):
+class PathContextItemSchema(BaseModel):
     name: Name529
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
@@ -2311,7 +2311,7 @@ class HubbardJContextProviderSchemaItem(BaseModel):
     value: Optional[float] = Field(None, title="Value (eV)")
 
 
-class BaseContextItemSchema95(BaseModel):
+class HubbardJContextItemSchema(BaseModel):
     name: Literal["hubbard_j"]
     data: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
@@ -2327,7 +2327,7 @@ class HubbardUContextProviderSchemaItem(BaseModel):
     hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
 
 
-class BaseContextItemSchema96(BaseModel):
+class HubbardUContextItemSchema(BaseModel):
     name: Literal["hubbard_u"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
@@ -2347,7 +2347,7 @@ class HubbardVContextProviderSchemaItem(BaseModel):
     hubbardVValue: Optional[float] = Field(None, title="V (eV)")
 
 
-class BaseContextItemSchema97(BaseModel):
+class HubbardVContextItemSchema(BaseModel):
     name: Literal["hubbard_v"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
@@ -2363,7 +2363,7 @@ class HubbardLegacyContextProviderSchemaItem(BaseModel):
     hubbardUValue: Optional[float] = Field(None, title="Hubbard U (eV)")
 
 
-class BaseContextItemSchema98(BaseModel):
+class HubbardLegacyContextItemSchema(BaseModel):
     name: Literal["hubbard_legacy"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
@@ -2379,7 +2379,7 @@ class NEBDataProviderSchema(BaseModel):
     nImages: Optional[float] = None
 
 
-class BaseContextItemSchema99(BaseModel):
+class NebContextItemSchema(BaseModel):
     name: Literal["neb"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
@@ -2389,7 +2389,7 @@ class BaseContextItemSchema99(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Type79(Enum):
+class Type80(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
@@ -2397,7 +2397,7 @@ class Type79(Enum):
 
 
 class BoundaryConditionsDataProviderSchema(BaseModel):
-    type: Optional[Type79] = "pbc"
+    type: Optional[Type80] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -2406,7 +2406,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
     targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
 
 
-class BaseContextItemSchema100(BaseModel):
+class BoundaryConditionsContextItemSchema(BaseModel):
     name: Literal["boundaryConditions"]
     data: BoundaryConditionsDataProviderSchema = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
@@ -2424,7 +2424,7 @@ class MLSettingsContextProviderSchema(BaseModel):
     problem_category: Optional[ProblemCategory] = None
 
 
-class BaseContextItemSchema101(BaseModel):
+class MlSettingsContextItemSchema(BaseModel):
     name: Literal["mlSettings"]
     data: MLSettingsContextProviderSchema = Field(..., title="ML Settings Context Provider Schema")
     """
@@ -2438,7 +2438,7 @@ class MLTrainTestSplitContextProviderSchema(BaseModel):
     fraction_held_as_test_set: Optional[confloat(ge=0.0, le=1.0)] = None
 
 
-class BaseContextItemSchema102(BaseModel):
+class MlTrainTestSplitContextItemSchema(BaseModel):
     name: Literal["mlTrainTestSplit"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
@@ -2455,7 +2455,7 @@ class IonDynamicsContextProviderSchema(BaseModel):
     temperature: Optional[float] = Field(None, title="Ionic temperature (K)")
 
 
-class BaseContextItemSchema103(BaseModel):
+class DynamicsContextItemSchema(BaseModel):
     name: Literal["dynamics"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
@@ -2477,7 +2477,7 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
     totalMagnetization: float = Field(..., title="Total magnetization")
 
 
-class BaseContextItemSchema104(BaseModel):
+class CollinearMagnetizationContextItemSchema(BaseModel):
     name: Literal["collinearMagnetization"]
     data: CollinearMagnetizationContextProviderSchema = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
@@ -2489,7 +2489,7 @@ class BaseContextItemSchema104(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem14(BaseModel):
+class StartingMagnetizationItem15(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -2524,7 +2524,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem14]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem15]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -2537,7 +2537,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     fixedMagnetization: Optional[FixedMagnetization] = None
 
 
-class BaseContextItemSchema105(BaseModel):
+class NonCollinearMagnetizationContextItemSchema(BaseModel):
     name: Literal["nonCollinearMagnetization"]
     data: NonCollinearMagnetizationContextProviderSchema = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
@@ -2623,21 +2623,21 @@ class ExecutionUnitSchemaBase(BaseModel):
     input: List[ExecutionUnitInputItemSchema]
     context: List[
         Union[
-            BaseContextItemSchema,
-            BaseContextItemSchema92,
-            BaseContextItemSchema93,
-            BaseContextItemSchema94,
-            BaseContextItemSchema95,
-            BaseContextItemSchema96,
-            BaseContextItemSchema97,
-            BaseContextItemSchema98,
-            BaseContextItemSchema99,
-            BaseContextItemSchema100,
-            BaseContextItemSchema101,
-            BaseContextItemSchema102,
-            BaseContextItemSchema103,
-            BaseContextItemSchema104,
-            BaseContextItemSchema105,
+            InputContextItemSchema,
+            CutoffsContextItemSchema,
+            KgridContextItemSchema,
+            PathContextItemSchema,
+            HubbardJContextItemSchema,
+            HubbardUContextItemSchema,
+            HubbardVContextItemSchema,
+            HubbardLegacyContextItemSchema,
+            NebContextItemSchema,
+            BoundaryConditionsContextItemSchema,
+            MlSettingsContextItemSchema,
+            MlTrainTestSplitContextItemSchema,
+            DynamicsContextItemSchema,
+            CollinearMagnetizationContextItemSchema,
+            NonCollinearMagnetizationContextItemSchema,
         ]
     ]
 
@@ -2890,7 +2890,7 @@ class DFTModelSchema11(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type80(Enum):
+class Type81(Enum):
     ml = "ml"
 
 
@@ -2904,7 +2904,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type81(Enum):
+class Type82(Enum):
     unknown = "unknown"
 
 
@@ -3526,7 +3526,7 @@ class QEPwxContextProviderSchema7(BaseModel):
     """
 
 
-class BaseContextItemSchema106(BaseModel):
+class InputContextItemSchema7(BaseModel):
     name: Literal["input"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
@@ -3539,7 +3539,7 @@ class BaseContextItemSchema106(BaseModel):
     isEdited: bool
 
 
-class BaseContextItemSchema107(BaseModel):
+class CutoffsContextItemSchema8(BaseModel):
     name: Literal["cutoffs"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
@@ -3564,7 +3564,7 @@ class PointsGridDataProviderSchema7(BaseModel):
     preferGridMetric: Optional[bool] = None
 
 
-class BaseContextItemSchema108(BaseModel):
+class KgridContextItemSchema7(BaseModel):
     name: Name530
     data: PointsGridDataProviderSchema7 = Field(..., title="Points Grid Data Provider Schema")
     """
@@ -3582,7 +3582,7 @@ class Name531(Enum):
     explicitKPath2PIBA = "explicitKPath2PIBA"
 
 
-class BaseContextItemSchema109(BaseModel):
+class PathContextItemSchema7(BaseModel):
     name: Name531
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
@@ -3599,7 +3599,7 @@ class HubbardJContextProviderSchemaItem7(BaseModel):
     value: Optional[float] = Field(None, title="Value (eV)")
 
 
-class BaseContextItemSchema110(BaseModel):
+class HubbardJContextItemSchema7(BaseModel):
     name: Literal["hubbard_j"]
     data: List[HubbardJContextProviderSchemaItem7] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
@@ -3609,7 +3609,7 @@ class BaseContextItemSchema110(BaseModel):
     extraData: Dict[str, Any]
 
 
-class BaseContextItemSchema111(BaseModel):
+class HubbardUContextItemSchema7(BaseModel):
     name: Literal["hubbard_u"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
@@ -3619,7 +3619,7 @@ class BaseContextItemSchema111(BaseModel):
     isEdited: bool
 
 
-class BaseContextItemSchema112(BaseModel):
+class HubbardVContextItemSchema7(BaseModel):
     name: Literal["hubbard_v"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
@@ -3629,7 +3629,7 @@ class BaseContextItemSchema112(BaseModel):
     extraData: Dict[str, Any]
 
 
-class BaseContextItemSchema113(BaseModel):
+class HubbardLegacyContextItemSchema7(BaseModel):
     name: Literal["hubbard_legacy"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
@@ -3641,7 +3641,7 @@ class BaseContextItemSchema113(BaseModel):
     extraData: Dict[str, Any]
 
 
-class BaseContextItemSchema114(BaseModel):
+class NebContextItemSchema7(BaseModel):
     name: Literal["neb"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
@@ -3651,15 +3651,15 @@ class BaseContextItemSchema114(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Type82(Enum):
+class Type83(Enum):
     pbc = "pbc"
     bc1 = "bc1"
     bc2 = "bc2"
     bc3 = "bc3"
 
 
-class BoundaryConditionsDataProviderSchema8(BaseModel):
-    type: Optional[Type82] = "pbc"
+class BoundaryConditionsDataProviderSchema9(BaseModel):
+    type: Optional[Type83] = "pbc"
     """
     If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
     """
@@ -3668,9 +3668,9 @@ class BoundaryConditionsDataProviderSchema8(BaseModel):
     targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
 
 
-class BaseContextItemSchema115(BaseModel):
+class BoundaryConditionsContextItemSchema8(BaseModel):
     name: Literal["boundaryConditions"]
-    data: BoundaryConditionsDataProviderSchema8 = Field(..., title="Boundary Conditions Data Provider Schema")
+    data: BoundaryConditionsDataProviderSchema9 = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
 
@@ -3680,7 +3680,7 @@ class MLSettingsContextProviderSchema7(BaseModel):
     problem_category: Optional[ProblemCategory] = None
 
 
-class BaseContextItemSchema116(BaseModel):
+class MlSettingsContextItemSchema7(BaseModel):
     name: Literal["mlSettings"]
     data: MLSettingsContextProviderSchema7 = Field(..., title="ML Settings Context Provider Schema")
     """
@@ -3690,7 +3690,7 @@ class BaseContextItemSchema116(BaseModel):
     extraData: Dict[str, Any]
 
 
-class BaseContextItemSchema117(BaseModel):
+class MlTrainTestSplitContextItemSchema7(BaseModel):
     name: Literal["mlTrainTestSplit"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
@@ -3700,7 +3700,7 @@ class BaseContextItemSchema117(BaseModel):
     extraData: Dict[str, Any]
 
 
-class BaseContextItemSchema118(BaseModel):
+class DynamicsContextItemSchema8(BaseModel):
     name: Literal["dynamics"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
@@ -3710,21 +3710,21 @@ class BaseContextItemSchema118(BaseModel):
     extraData: Dict[str, Any]
 
 
-class StartingMagnetizationItem15(BaseModel):
+class StartingMagnetizationItem16(BaseModel):
     atomicSpecies: str = Field(..., title="Atomic species")
     value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
     index: int = Field(..., title="Index")
 
 
-class CollinearMagnetizationContextProviderSchema8(BaseModel):
-    startingMagnetization: List[StartingMagnetizationItem15]
+class CollinearMagnetizationContextProviderSchema9(BaseModel):
+    startingMagnetization: List[StartingMagnetizationItem16]
     isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
     totalMagnetization: float = Field(..., title="Total magnetization")
 
 
-class BaseContextItemSchema119(BaseModel):
+class CollinearMagnetizationContextItemSchema8(BaseModel):
     name: Literal["collinearMagnetization"]
-    data: CollinearMagnetizationContextProviderSchema8 = Field(
+    data: CollinearMagnetizationContextProviderSchema9 = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
     )
     """
@@ -3734,7 +3734,7 @@ class BaseContextItemSchema119(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem16(BaseModel):
+class StartingMagnetizationItem17(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -3748,7 +3748,7 @@ class ConstrainedMagnetization7(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema7(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem16]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem17]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -3761,7 +3761,7 @@ class NonCollinearMagnetizationContextProviderSchema7(BaseModel):
     fixedMagnetization: Optional[FixedMagnetization] = None
 
 
-class BaseContextItemSchema120(BaseModel):
+class NonCollinearMagnetizationContextItemSchema7(BaseModel):
     name: Literal["nonCollinearMagnetization"]
     data: NonCollinearMagnetizationContextProviderSchema7 = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
@@ -3847,21 +3847,21 @@ class ExecutionUnitSchemaBase4(BaseModel):
     input: List[ExecutionUnitInputItemSchema9]
     context: List[
         Union[
-            BaseContextItemSchema106,
-            BaseContextItemSchema107,
-            BaseContextItemSchema108,
-            BaseContextItemSchema109,
-            BaseContextItemSchema110,
-            BaseContextItemSchema111,
-            BaseContextItemSchema112,
-            BaseContextItemSchema113,
-            BaseContextItemSchema114,
-            BaseContextItemSchema115,
-            BaseContextItemSchema116,
-            BaseContextItemSchema117,
-            BaseContextItemSchema118,
-            BaseContextItemSchema119,
-            BaseContextItemSchema120,
+            InputContextItemSchema7,
+            CutoffsContextItemSchema8,
+            KgridContextItemSchema7,
+            PathContextItemSchema7,
+            HubbardJContextItemSchema7,
+            HubbardUContextItemSchema7,
+            HubbardVContextItemSchema7,
+            HubbardLegacyContextItemSchema7,
+            NebContextItemSchema7,
+            BoundaryConditionsContextItemSchema8,
+            MlSettingsContextItemSchema7,
+            MlTrainTestSplitContextItemSchema7,
+            DynamicsContextItemSchema8,
+            CollinearMagnetizationContextItemSchema8,
+            NonCollinearMagnetizationContextItemSchema7,
         ]
     ]
 
