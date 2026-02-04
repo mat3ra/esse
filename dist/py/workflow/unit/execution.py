@@ -873,7 +873,7 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class ExecutionUnitSchemaBase(BaseModel):
+class ExecutionUnitSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

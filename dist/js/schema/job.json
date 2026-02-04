@@ -1224,7 +1224,7 @@
                                         },
                                         {
                                             "$schema": "http://json-schema.org/draft-07/schema#",
-                                            "title": "execution unit schema (base)",
+                                            "title": "execution unit schema",
                                             "type": "object",
                                             "required": [
                                                 "application",
@@ -5271,7 +5271,7 @@
                             },
                             {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
-                                "title": "execution unit schema (base)",
+                                "title": "execution unit schema",
                                 "type": "object",
                                 "required": [
                                     "application",

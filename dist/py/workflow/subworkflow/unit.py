@@ -1308,7 +1308,7 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class ExecutionUnitSchemaBase(BaseModel):
+class ExecutionUnitSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1573,7 +1573,7 @@ class ESSE(
             ReduceUnitSchema,
             ConditionUnitSchema,
             AssertionUnitSchema,
-            ExecutionUnitSchemaBase,
+            ExecutionUnitSchema,
             AssignmentUnitSchema,
             ProcessingUnitSchema,
         ]
@@ -1584,7 +1584,7 @@ class ESSE(
         ReduceUnitSchema,
         ConditionUnitSchema,
         AssertionUnitSchema,
-        ExecutionUnitSchemaBase,
+        ExecutionUnitSchema,
         AssignmentUnitSchema,
         ProcessingUnitSchema,
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")

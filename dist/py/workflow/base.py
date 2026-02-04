@@ -1459,7 +1459,7 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class ExecutionUnitSchemaBase(BaseModel):
+class ExecutionUnitSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -1724,7 +1724,7 @@ class WorkflowSubworkflowUnitSchema(
             ReduceUnitSchema,
             ConditionUnitSchema,
             AssertionUnitSchema,
-            ExecutionUnitSchemaBase,
+            ExecutionUnitSchema,
             AssignmentUnitSchema,
             ProcessingUnitSchema,
         ]
@@ -1735,7 +1735,7 @@ class WorkflowSubworkflowUnitSchema(
         ReduceUnitSchema,
         ConditionUnitSchema,
         AssertionUnitSchema,
-        ExecutionUnitSchemaBase,
+        ExecutionUnitSchema,
         AssignmentUnitSchema,
         ProcessingUnitSchema,
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
@@ -2683,7 +2683,7 @@ class NonCollinearMagnetizationContextItemSchema1(BaseModel):
     isEdited: bool
 
 
-class ExecutionUnitSchemaBase1(BaseModel):
+class ExecutionUnitSchema1(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -3116,7 +3116,7 @@ class WorkflowUnitSchema(
             ReduceUnitSchema1,
             ConditionUnitSchema1,
             AssertionUnitSchema2,
-            ExecutionUnitSchemaBase1,
+            ExecutionUnitSchema1,
             AssignmentUnitSchema2,
             ProcessingUnitSchema1,
             MapUnitSchema,
@@ -3129,7 +3129,7 @@ class WorkflowUnitSchema(
         ReduceUnitSchema1,
         ConditionUnitSchema1,
         AssertionUnitSchema2,
-        ExecutionUnitSchemaBase1,
+        ExecutionUnitSchema1,
         AssignmentUnitSchema2,
         ProcessingUnitSchema1,
         MapUnitSchema,

@@ -73081,7 +73081,7 @@ export type ContextItemSchema = {
     isEdited: boolean;
 };
 /** Schema dist/js/schema/workflow/unit/execution.json */
-export interface ExecutionUnitSchemaBase {
+export interface ExecutionUnitSchema {
     /**
      * entity identity
      */
