@@ -8,7 +8,7 @@
         "dimensions": {
             "type": "array",
             "items": {
-                "type": ["number", "string"]
+                "type": "number"
             },
             "minItems": 3,
             "maxItems": 3

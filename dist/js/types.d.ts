@@ -3536,7 +3536,7 @@ export interface PointsGridDataProviderSchema {
      * @minItems 3
      * @maxItems 3
      */
-    dimensions: [number | string, number | string, number | string];
+    dimensions: [number, number, number];
     /**
      * @minItems 3
      * @maxItems 3
@@ -7028,7 +7028,7 @@ export interface JobSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        dimensions: [number | string, number | string, number | string];
+                        dimensions: [number, number, number];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -8819,7 +8819,7 @@ export interface JobSchema {
                      * @minItems 3
                      * @maxItems 3
                      */
-                    dimensions: [number | string, number | string, number | string];
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -51056,7 +51056,7 @@ export interface WorkflowPropertySchema {
                      * @minItems 3
                      * @maxItems 3
                      */
-                    dimensions: [number | string, number | string, number | string];
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -52847,7 +52847,7 @@ export interface WorkflowPropertySchema {
                  * @minItems 3
                  * @maxItems 3
                  */
-                dimensions: [number | string, number | string, number | string];
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -56141,7 +56141,7 @@ export interface PropertyHolderSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        dimensions: [number | string, number | string, number | string];
+                        dimensions: [number, number, number];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -57932,7 +57932,7 @@ export interface PropertyHolderSchema {
                      * @minItems 3
                      * @maxItems 3
                      */
-                    dimensions: [number | string, number | string, number | string];
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -60174,7 +60174,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -61320,7 +61320,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -63375,7 +63375,7 @@ export interface BaseWorkflowSchema {
                      * @minItems 3
                      * @maxItems 3
                      */
-                    dimensions: [number | string, number | string, number | string];
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -65166,7 +65166,7 @@ export interface BaseWorkflowSchema {
                  * @minItems 3
                  * @maxItems 3
                  */
-                dimensions: [number | string, number | string, number | string];
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -67245,7 +67245,7 @@ export interface SubworkflowMixinSchema {
                  * @minItems 3
                  * @maxItems 3
                  */
-                dimensions: [number | string, number | string, number | string];
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -69034,7 +69034,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -70791,7 +70791,7 @@ export interface SubworkflowSchema {
                  * @minItems 3
                  * @maxItems 3
                  */
-                dimensions: [number | string, number | string, number | string];
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -71942,7 +71942,7 @@ export interface GridContextItemSchema {
          * @minItems 3
          * @maxItems 3
          */
-        dimensions: [number | string, number | string, number | string];
+        dimensions: [number, number, number];
         /**
          * @minItems 3
          * @maxItems 3
@@ -72835,7 +72835,7 @@ export type ContextItemSchema = {
          * @minItems 3
          * @maxItems 3
          */
-        dimensions: [number | string, number | string, number | string];
+        dimensions: [number, number, number];
         /**
          * @minItems 3
          * @maxItems 3
@@ -73753,7 +73753,7 @@ export interface ExecutionUnitSchema {
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -75180,7 +75180,7 @@ export interface ExecutionUnitMixinSchema {
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -77106,7 +77106,7 @@ export type WorkflowUnitSchema = {
              * @minItems 3
              * @maxItems 3
              */
-            dimensions: [number | string, number | string, number | string];
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -79111,7 +79111,7 @@ export interface WorkflowSchema {
                      * @minItems 3
                      * @maxItems 3
                      */
-                    dimensions: [number | string, number | string, number | string];
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -80902,7 +80902,7 @@ export interface WorkflowSchema {
                  * @minItems 3
                  * @maxItems 3
                  */
-                dimensions: [number | string, number | string, number | string];
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3

@@ -2603,10 +2603,7 @@
                                                                         "minItems": 3,
                                                                         "maxItems": 3,
                                                                         "items": {
-                                                                            "type": [
-                                                                                "number",
-                                                                                "string"
-                                                                            ]
+                                                                            "type": "number"
                                                                         }
                                                                     },
                                                                     "shifts": {
@@ -6653,10 +6650,7 @@
                                                             "minItems": 3,
                                                             "maxItems": 3,
                                                             "items": {
-                                                                "type": [
-                                                                    "number",
-                                                                    "string"
-                                                                ]
+                                                                "type": "number"
                                                             }
                                                         },
                                                         "shifts": {
