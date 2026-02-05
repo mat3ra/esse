@@ -1164,7 +1164,7 @@ class GridMetricType(Enum):
 
 
 class PointsGridDataProviderSchema(BaseModel):
-    dimensions: List[float] = Field(..., max_length=3, min_length=3)
+    dimensions: Union[List[float], List[str]]
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     gridMetricType: GridMetricType
@@ -2466,7 +2466,7 @@ class Name32(Enum):
 
 
 class PointsGridDataProviderSchema1(BaseModel):
-    dimensions: List[float] = Field(..., max_length=3, min_length=3)
+    dimensions: Union[List[float], List[str]]
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     gridMetricType: GridMetricType
