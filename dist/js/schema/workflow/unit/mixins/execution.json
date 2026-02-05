@@ -1229,7 +1229,10 @@
                                         "minItems": 3,
                                         "maxItems": 3,
                                         "items": {
-                                            "type": "number"
+                                            "type": [
+                                                "number",
+                                                "string"
+                                            ]
                                         }
                                     },
                                     "shifts": {
