@@ -8,9 +8,6 @@
             "$ref": "./../unit/io.json"
         },
         {
-            "$ref": "./../unit/reduce.json"
-        },
-        {
             "$ref": "./../unit/condition.json"
         },
         {

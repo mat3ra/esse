@@ -6093,115 +6093,6 @@ export interface JobSchema {
                 /**
                  * type of the unit
                  */
-                type: "reduce";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
                 type: "condition";
                 /**
                  * Whether this unit is the first one to be executed.
@@ -7662,6 +7553,115 @@ export interface JobSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
         } | {
             /**
              * entity identity
@@ -48385,115 +48385,6 @@ export interface WorkflowPropertySchema {
             /**
              * type of the unit
              */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
             type: "condition";
             /**
              * Whether this unit is the first one to be executed.
@@ -49954,6 +49845,115 @@ export interface WorkflowPropertySchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
     } | {
         /**
          * entity identity
@@ -51734,115 +51734,6 @@ export interface PropertyHolderSchema {
                 /**
                  * type of the unit
                  */
-                type: "reduce";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
                 type: "condition";
                 /**
                  * Whether this unit is the first one to be executed.
@@ -53303,6 +53194,115 @@ export interface PropertyHolderSchema {
                 values?: (string | number | {})[];
                 useValues?: boolean;
             };
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
         } | {
             /**
              * entity identity
@@ -57224,115 +57224,6 @@ export interface BaseWorkflowSchema {
             /**
              * type of the unit
              */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
             type: "condition";
             /**
              * Whether this unit is the first one to be executed.
@@ -58868,6 +58759,115 @@ export interface BaseWorkflowSchema {
         /**
          * type of the unit
          */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
         type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
@@ -59283,115 +59283,6 @@ export interface SubworkflowMixinSchema {
              */
             filetype?: string;
         })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
     } | {
         /**
          * entity identity
@@ -61037,115 +60928,6 @@ export type WorkflowSubworkflowUnitSchema = {
     /**
      * type of the unit
      */
-    type: "reduce";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
     type: "condition";
     /**
      * Whether this unit is the first one to be executed.
@@ -62609,115 +62391,6 @@ export interface SubworkflowSchema {
              */
             filetype?: string;
         })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
     } | {
         /**
          * entity identity
@@ -68728,6 +68401,115 @@ export type WorkflowUnitSchema = {
     /**
      * type of the unit
      */
+    type: "reduce";
+    /**
+     * Whether this unit is the first one to be executed.
+     */
+    head?: boolean;
+    /**
+     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+     */
+    flowchartId: string;
+    /**
+     * Next unit's flowchartId. If empty, the current unit is the last.
+     */
+    next?: string;
+    /**
+     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+     */
+    enableRender?: boolean;
+    /**
+     * corresponding map unit flowchart ID
+     */
+    mapFlowchartId: string;
+    /**
+     * input information for reduce unit
+     */
+    input: {
+        /**
+         * reduce operation, e.g. aggregate
+         */
+        operation: string;
+        /**
+         * arguments which are passed to reduce operation function
+         */
+        arguments: string[];
+    }[];
+} | {
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * names of the pre-processors for this calculation
+     */
+    preProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the post-processors for this calculation
+     */
+    postProcessors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the monitors for this calculation
+     */
+    monitors: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * names of the results for this calculation
+     */
+    results: {
+        /**
+         * The name of this item. e.g. scf_accuracy
+         */
+        name: string;
+    }[];
+    /**
+     * entity tags
+     */
+    tags?: string[];
+    /**
+     * Status of the unit.
+     */
+    status?: "idle" | "active" | "warning" | "error" | "finished";
+    statusTrack?: {
+        trackedAt: number;
+        status: string;
+        repetition?: number;
+    }[];
+    isDraft?: boolean;
+    /**
+     * type of the unit
+     */
     type: "subworkflow";
     /**
      * Whether this unit is the first one to be executed.
@@ -69069,115 +68851,6 @@ export interface WorkflowSchema {
                  */
                 filetype?: string;
             })[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
         } | {
             /**
              * entity identity
@@ -70713,6 +70386,115 @@ export interface WorkflowSchema {
             values?: (string | number | {})[];
             useValues?: boolean;
         };
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
     } | {
         /**
          * entity identity

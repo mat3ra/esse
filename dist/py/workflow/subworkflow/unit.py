@@ -194,95 +194,6 @@ class DataIOUnitSchema(BaseModel):
     input: List[Input]
 
 
-class InputItem(BaseModel):
-    operation: str
-    """
-    reduce operation, e.g. aggregate
-    """
-    arguments: List[str]
-    """
-    arguments which are passed to reduce operation function
-    """
-
-
-class ReduceUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
-
-
 class WorkflowUnitInputSchema(BaseModel):
     scope: str
     """
@@ -342,7 +253,7 @@ class ConditionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -436,7 +347,7 @@ class AssertionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -1356,7 +1267,7 @@ class ExecutionUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -1449,7 +1360,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -1486,21 +1397,9 @@ class AssignmentUnitSchema(BaseModel):
 
 class ESSE(
     RootModel[
-        Union[
-            DataIOUnitSchema,
-            ReduceUnitSchema,
-            ConditionUnitSchema,
-            AssertionUnitSchema,
-            ExecutionUnitSchema,
-            AssignmentUnitSchema,
-        ]
+        Union[DataIOUnitSchema, ConditionUnitSchema, AssertionUnitSchema, ExecutionUnitSchema, AssignmentUnitSchema]
     ]
 ):
     root: Union[
-        DataIOUnitSchema,
-        ReduceUnitSchema,
-        ConditionUnitSchema,
-        AssertionUnitSchema,
-        ExecutionUnitSchema,
-        AssignmentUnitSchema,
+        DataIOUnitSchema, ConditionUnitSchema, AssertionUnitSchema, ExecutionUnitSchema, AssignmentUnitSchema
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")

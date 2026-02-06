@@ -8,6 +8,9 @@
             "$ref": "./unit/map.json"
         },
         {
+            "$ref": "./unit/reduce.json"
+        },
+        {
             "$ref": "./unit/subworkflow.json"
         }
     ],
