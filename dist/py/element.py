@@ -154,16 +154,16 @@ class AtomicRadius(BaseModel):
     value: float
 
 
-class Name469(Enum):
+class Name467(Enum):
     electronegativity = "electronegativity"
 
 
 class Electronegativity(BaseModel):
-    name: Name469
+    name: Name467
     value: float
 
 
-class Name470(Enum):
+class Name468(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -178,7 +178,7 @@ class Units184(Enum):
 
 
 class IonizationPotentialElementalPropertySchema(BaseModel):
-    name: Name470
+    name: Name468
     units: Units184
     value: float
 

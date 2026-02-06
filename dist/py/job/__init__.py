@@ -1182,7 +1182,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name576(Enum):
+class Name572(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1197,7 +1197,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name576
+    name: Name572
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -1399,7 +1399,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem21(BaseModel):
+class StartingMagnetizationItem17(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1434,7 +1434,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem21]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem17]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1635,88 +1635,6 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class ProcessingUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
-
-
 class WorkflowSubworkflowUnitSchema(
     RootModel[
         Union[
@@ -1726,7 +1644,6 @@ class WorkflowSubworkflowUnitSchema(
             AssertionUnitSchema,
             ExecutionUnitSchema,
             AssignmentUnitSchema,
-            ProcessingUnitSchema,
         ]
     ]
 ):
@@ -1737,7 +1654,6 @@ class WorkflowSubworkflowUnitSchema(
         AssertionUnitSchema,
         ExecutionUnitSchema,
         AssignmentUnitSchema,
-        ProcessingUnitSchema,
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
 
 
@@ -1800,31 +1716,31 @@ class DFTModelSchema14(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type91(Enum):
+class Type89(Enum):
     ml = "ml"
 
 
-class Subtype13(Enum):
+class Subtype11(Enum):
     re = "re"
 
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype13
+    subtype: Subtype11
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type92(Enum):
+class Type90(Enum):
     unknown = "unknown"
 
 
-class Subtype14(Enum):
+class Subtype12(Enum):
     unknown = "unknown"
 
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype14
+    subtype: Subtype12
     method: BaseMethod = Field(..., title="base method")
 
 
@@ -1868,1082 +1784,7 @@ class SubworkflowSchema(BaseModel):
     """
 
 
-class Subtype15(Enum):
-    input = "input"
-    output = "output"
-    dataFrame = "dataFrame"
-
-
-class ObjectStorageIoSchema7(BaseModel):
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = None
-    """
-    if a file with the same filename already exists, whether to overwrite the old file
-    """
-    pathname: Optional[str] = None
-    """
-    Relative path to the directory that contains the file.
-    """
-    basename: Optional[str] = None
-    """
-    Basename of the file
-    """
-    filetype: Optional[str] = None
-    """
-    What kind of file this is, e.g. image / text
-    """
-
-
-class Input9(
-    RootModel[
-        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema7]
-    ]
-):
-    root: Union[
-        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema7
-    ] = Field(..., discriminator="type")
-
-
-class DataIOUnitSchema6(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    subtype: Subtype15
-    source: Source
-    input: List[Input9]
-
-
-class ReduceUnitSchema5(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
-
-
-class ConditionUnitSchema6(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for condition.
-    """
-    statement: str
-    """
-    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-    """
-    then: str
-    """
-    Flowchart ID reference for `then` part of the condition.
-    """
-    else_: str = Field(..., alias="else")
-    """
-    Flowchart ID reference for `else` part of the condition.
-    """
-    maxOccurrences: int
-    """
-    Maximum occurrence of the condition, usable for loops.
-    """
-    throwException: Optional[bool] = None
-    """
-    Throw exception on reaching to maximum occurence.
-    """
-
-
-class AssertionUnitSchema6(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    statement: str
-    """
-    The statement to be evaluated
-    """
-    errorMessage: Optional[str] = None
-    """
-    The error message to be displayed if the assertion fails
-    """
-
-
-class ExecutableSchema10(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    applicationId: List[str]
-    """
-    _ids of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-
-
-class FlavorSchema10(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    executableId: str
-    """
-    _id of the executable this flavor belongs to
-    """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
-    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
-        ..., title="execution unit input schema"
-    )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
-
-
-class TemplateSchema13(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    applicationName: str
-    applicationVersion: Optional[str] = None
-    executableName: str
-    contextProviders: List[ContextProvider]
-    content: str
-    """
-    Content of the template. e.g. &CONTROL    calculation='scf' ...
-    """
-
-
-class ExecutionUnitInputItemSchema11(BaseModel):
-    template: TemplateSchema13 = Field(..., title="template schema")
-    rendered: str
-    """
-    Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-    """
-    isManuallyChanged: Optional[bool] = False
-
-
-class QENEBContextProviderSchema11(BaseModel):
-    IBRAV: int
-    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
-    ATOMIC_SPECIES: List[ATOMICSPECY]
-    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
-    NAT: int
-    """
-    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-    """
-    NTYP: int
-    """
-    number of types of atoms in the unit cell
-    """
-    NTYP_WITH_LABELS: conint(ge=1)
-    """
-    Number of different atomic species including labels
-    """
-    ATOMIC_POSITIONS: Optional[List[ATOMICPOSITION]] = None
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: Optional[str] = None
-    """
-    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-    """
-    CELL_PARAMETERS: CELLPARAMETERS
-    FIRST_IMAGE: List[FIRSTIMAGEItem]
-    LAST_IMAGE: List[LASTIMAGEItem]
-    INTERMEDIATE_IMAGES: List[List[INTERMEDIATEIMAGE]]
-    """
-    Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
-    """
-    contextProviderName: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    Descriminator for AJV validator
-    """
-
-
-class QEPwxContextProviderSchema11(BaseModel):
-    IBRAV: int
-    RESTART_MODE: Optional[RESTARTMODE] = "from_scratch"
-    ATOMIC_SPECIES: List[ATOMICSPECY]
-    ATOMIC_SPECIES_WITH_LABELS: List[ATOMICSPECIESWITHLABEL]
-    NAT: int
-    """
-    number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
-    """
-    NTYP: int
-    """
-    number of types of atoms in the unit cell
-    """
-    NTYP_WITH_LABELS: conint(ge=1)
-    """
-    Number of different atomic species including labels
-    """
-    ATOMIC_POSITIONS: List[ATOMICPOSITION]
-    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: str
-    """
-    Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
-    """
-    CELL_PARAMETERS: CELLPARAMETERS
-    contextProviderName: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    Descriminator for AJV validator
-    """
-
-
-class InputContextItemSchema11(BaseModel):
-    name: Literal["input"]
-    data: Union[
-        NWChemTotalEnergyContextProviderSchema,
-        QENEBContextProviderSchema11,
-        QEPwxContextProviderSchema11,
-        VASPContextProviderSchema,
-        VASPNEBContextProviderSchema,
-    ] = Field(..., discriminator="contextProviderName")
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class CutoffsContextItemSchema11(BaseModel):
-    name: Literal["cutoffs"]
-    data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
-    """
-    Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class Name577(Enum):
-    kgrid = "kgrid"
-    qgrid = "qgrid"
-    igrid = "igrid"
-
-
-class PointsGridDataProviderSchema11(BaseModel):
-    dimensions: Union[List[float], List[str]]
-    shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
-    gridMetricType: GridMetricType
-    gridMetricValue: float
-    preferGridMetric: Optional[bool] = None
-
-
-class GridContextItemSchema11(BaseModel):
-    name: Name577
-    data: PointsGridDataProviderSchema11 = Field(..., title="Points Grid Data Provider Schema")
-    """
-    3D grid with shifts for k-point or q-point sampling.
-    """
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class Name578(Enum):
-    qpath = "qpath"
-    ipath = "ipath"
-    kpath = "kpath"
-    explicitKPath = "explicitKPath"
-    explicitKPath2PIBA = "explicitKPath2PIBA"
-
-
-class PathContextItemSchema10(BaseModel):
-    name: Name578
-    data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
-    """
-    Path in reciprocal space for band structure calculations.
-    """
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class HubbardJContextProviderSchemaItem12(BaseModel):
-    paramType: Optional[Species] = Field(None, title="Species")
-    atomicSpecies: Optional[str] = Field(None, title="Species")
-    atomicOrbital: Optional[str] = Field(None, title="Orbital")
-    value: Optional[float] = Field(None, title="Value (eV)")
-
-
-class HubbardJContextItemSchema11(BaseModel):
-    name: Literal["hubbard_j"]
-    data: List[HubbardJContextProviderSchemaItem12] = Field(
-        ..., min_length=1, title="Hubbard J Context Provider Schema"
-    )
-    """
-    Hubbard parameters for DFT+U+J calculation.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class HubbardUContextItemSchema11(BaseModel):
-    name: Literal["hubbard_u"]
-    data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
-    """
-    Hubbard U parameters for DFT+U or DFT+U+V calculation.
-    """
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class HubbardVContextItemSchema11(BaseModel):
-    name: Literal["hubbard_v"]
-    data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
-    """
-    Hubbard V parameters for DFT+U+V calculation.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class HubbardLegacyContextItemSchema11(BaseModel):
-    name: Literal["hubbard_legacy"]
-    data: List[HubbardLegacyContextProviderSchemaItem] = Field(
-        ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
-    )
-    """
-    Hubbard parameters for DFT+U calculation.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class NebContextItemSchema10(BaseModel):
-    name: Literal["neb"]
-    data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
-    """
-    Number of intermediate NEB images.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class Type93(Enum):
-    pbc = "pbc"
-    bc1 = "bc1"
-    bc2 = "bc2"
-    bc3 = "bc3"
-
-
-class BoundaryConditionsDataProviderSchema12(BaseModel):
-    type: Optional[Type93] = "pbc"
-    """
-    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
-    """
-    offset: Optional[float] = None
-    electricField: Optional[float] = Field(None, title="Electric Field (eV/A)")
-    targetFermiEnergy: Optional[float] = Field(None, title="Target Fermi Energy (eV)")
-
-
-class BoundaryConditionsContextItemSchema11(BaseModel):
-    name: Literal["boundaryConditions"]
-    data: BoundaryConditionsDataProviderSchema12 = Field(..., title="Boundary Conditions Data Provider Schema")
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class MLSettingsContextProviderSchema10(BaseModel):
-    target_column_name: Optional[str] = None
-    problem_category: Optional[ProblemCategory] = None
-
-
-class MlSettingsContextItemSchema10(BaseModel):
-    name: Literal["mlSettings"]
-    data: MLSettingsContextProviderSchema10 = Field(..., title="ML Settings Context Provider Schema")
-    """
-    Settings important to machine learning runs.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class MlTrainTestSplitContextItemSchema10(BaseModel):
-    name: Literal["mlTrainTestSplit"]
-    data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
-    """
-    Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class DynamicsContextItemSchema11(BaseModel):
-    name: Literal["dynamics"]
-    data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
-    """
-    Important parameters for molecular dynamics calculation
-    """
-    isEdited: bool
-    extraData: Dict[str, Any]
-
-
-class StartingMagnetizationItem22(BaseModel):
-    atomicSpecies: str = Field(..., title="Atomic species")
-    value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
-    index: int = Field(..., title="Index")
-
-
-class CollinearMagnetizationContextProviderSchema12(BaseModel):
-    startingMagnetization: List[StartingMagnetizationItem22]
-    isTotalMagnetization: bool = Field(..., title="Set total magnetization instead")
-    totalMagnetization: float = Field(..., title="Total magnetization")
-
-
-class CollinearMagnetizationContextItemSchema11(BaseModel):
-    name: Literal["collinearMagnetization"]
-    data: CollinearMagnetizationContextProviderSchema12 = Field(
-        ..., title="Collinear Magnetization Context Provider Schema"
-    )
-    """
-    Set starting magnetization, can have values in the range [-1, +1].
-    """
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class StartingMagnetizationItem23(BaseModel):
-    index: Optional[int] = Field(None, title="Index")
-    atomicSpecies: Optional[str] = Field(None, title="Atomic species")
-    value: Optional[float] = Field(None, title="Starting magnetization")
-
-
-class ConstrainedMagnetization10(BaseModel):
-    constrainType: Optional[ConstrainType] = Field(None, title="Constrain type")
-    lambda_: Optional[float] = Field(None, alias="lambda", title="lambda")
-
-
-class NonCollinearMagnetizationContextProviderSchema10(BaseModel):
-    isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
-    isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem23]] = None
-    isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
-    isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
-    lforcet: Optional[bool] = None
-    spinAngles: Optional[List[SpinAngle]] = None
-    isConstrainedMagnetization: Optional[bool] = Field(None, title="Set constrained magnetization")
-    constrainedMagnetization: Optional[ConstrainedMagnetization10] = None
-    isFixedMagnetization: Optional[bool] = Field(
-        None, title="Set Fixed magnetization (only applicable to constrained magnetization of 'total' type)"
-    )
-    fixedMagnetization: Optional[FixedMagnetization] = None
-
-
-class NonCollinearMagnetizationContextItemSchema10(BaseModel):
-    name: Literal["nonCollinearMagnetization"]
-    data: NonCollinearMagnetizationContextProviderSchema10 = Field(
-        ..., title="Non Collinear Magnetization Context Provider Schema"
-    )
-    """
-    Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
-    """
-    extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
-    isEdited: bool
-
-
-class ExecutionUnitSchema6(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    application: ApplicationSchema = Field(..., title="application schema")
-    executable: ExecutableSchema10 = Field(..., title="executable schema")
-    flavor: FlavorSchema10 = Field(..., title="flavor schema")
-    input: List[ExecutionUnitInputItemSchema11]
-    context: List[
-        Union[
-            InputContextItemSchema11,
-            CutoffsContextItemSchema11,
-            GridContextItemSchema11,
-            PathContextItemSchema10,
-            HubbardJContextItemSchema11,
-            HubbardUContextItemSchema11,
-            HubbardVContextItemSchema11,
-            HubbardLegacyContextItemSchema11,
-            NebContextItemSchema10,
-            BoundaryConditionsContextItemSchema11,
-            MlSettingsContextItemSchema10,
-            MlTrainTestSplitContextItemSchema10,
-            DynamicsContextItemSchema11,
-            CollinearMagnetizationContextItemSchema11,
-            NonCollinearMagnetizationContextItemSchema10,
-        ]
-    ]
-
-
-class AssignmentUnitSchema6(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    scope: Optional[str] = None
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-    """
-    operand: str
-    """
-    Name of the global variable. e.g. 'x'
-    """
-    value: Union[str, bool, float]
-    """
-    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-    """
-
-
-class ProcessingUnitSchema5(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
-
-
-class Input10(BaseModel):
+class Input7(BaseModel):
     target: str
     """
     Name of the target variable to substitute using the values below. e.g. K_POINTS
@@ -3011,7 +1852,7 @@ class MapUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -3035,7 +1876,7 @@ class MapUnitSchema(BaseModel):
     """
     Id of workflow to run inside map
     """
-    input: Input10
+    input: Input7
     """
     Input information for map.
     """
@@ -3089,7 +1930,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
     isDraft: Optional[bool] = None
-    type: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     """
     type of the unit
     """
@@ -3111,32 +1952,8 @@ class SubworkflowUnitSchema(BaseModel):
     """
 
 
-class WorkflowUnitSchema(
-    RootModel[
-        Union[
-            DataIOUnitSchema6,
-            ReduceUnitSchema5,
-            ConditionUnitSchema6,
-            AssertionUnitSchema6,
-            ExecutionUnitSchema6,
-            AssignmentUnitSchema6,
-            ProcessingUnitSchema5,
-            MapUnitSchema,
-            SubworkflowUnitSchema,
-        ]
-    ]
-):
-    root: Union[
-        DataIOUnitSchema6,
-        ReduceUnitSchema5,
-        ConditionUnitSchema6,
-        AssertionUnitSchema6,
-        ExecutionUnitSchema6,
-        AssignmentUnitSchema6,
-        ProcessingUnitSchema5,
-        MapUnitSchema,
-        SubworkflowUnitSchema,
-    ] = Field(..., discriminator="type", title="workflow unit schema")
+class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, SubworkflowUnitSchema]]):
+    root: Union[MapUnitSchema, SubworkflowUnitSchema] = Field(..., discriminator="type", title="workflow unit schema")
 
 
 class WorkflowSchema(BaseModel):
@@ -3184,7 +2001,7 @@ class WorkflowSchema(BaseModel):
     """
 
 
-class Status58(Enum):
+class Status34(Enum):
     pre_submission = "pre-submission"
     queued = "queued"
     submitted = "submitted"
@@ -3302,7 +2119,7 @@ class JobSchema(BaseModel):
     """
     Identity used to track jobs originated from command-line
     """
-    status: Status58
+    status: Status34
     """
     job status
     """

@@ -1182,7 +1182,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name759(Enum):
+class Name753(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1197,7 +1197,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name759
+    name: Name753
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -1399,7 +1399,7 @@ class CollinearMagnetizationContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class StartingMagnetizationItem29(BaseModel):
+class StartingMagnetizationItem23(BaseModel):
     index: Optional[int] = Field(None, title="Index")
     atomicSpecies: Optional[str] = Field(None, title="Atomic species")
     value: Optional[float] = Field(None, title="Starting magnetization")
@@ -1434,7 +1434,7 @@ class FixedMagnetization(BaseModel):
 class NonCollinearMagnetizationContextProviderSchema(BaseModel):
     isExistingChargeDensity: Optional[bool] = Field(None, title="Use existing charge density")
     isStartingMagnetization: Optional[bool] = Field(None, title="Set starting magnetization")
-    startingMagnetization: Optional[List[StartingMagnetizationItem29]] = None
+    startingMagnetization: Optional[List[StartingMagnetizationItem23]] = None
     isArbitrarySpinAngle: Optional[bool] = Field(None, title="Set arbitrary spin angle")
     isArbitrarySpinDirection: Optional[bool] = Field(None, title="Set arbitrary spin direction")
     lforcet: Optional[bool] = None
@@ -1635,88 +1635,6 @@ class AssignmentUnitSchema(BaseModel):
     """
 
 
-class ProcessingUnitSchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: str
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    isDraft: Optional[bool] = None
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
-
-
 class WorkflowSubworkflowUnitSchema(
     RootModel[
         Union[
@@ -1726,7 +1644,6 @@ class WorkflowSubworkflowUnitSchema(
             AssertionUnitSchema,
             ExecutionUnitSchema,
             AssignmentUnitSchema,
-            ProcessingUnitSchema,
         ]
     ]
 ):
@@ -1737,7 +1654,6 @@ class WorkflowSubworkflowUnitSchema(
         AssertionUnitSchema,
         ExecutionUnitSchema,
         AssignmentUnitSchema,
-        ProcessingUnitSchema,
     ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
 
 
@@ -1800,31 +1716,31 @@ class DFTModelSchema20(BaseModel):
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type134(Enum):
+class Type131(Enum):
     ml = "ml"
 
 
-class Subtype23(Enum):
+class Subtype20(Enum):
     re = "re"
 
 
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype23
+    subtype: Subtype20
     method: BaseMethod = Field(..., title="base method")
 
 
-class Type135(Enum):
+class Type132(Enum):
     unknown = "unknown"
 
 
-class Subtype24(Enum):
+class Subtype21(Enum):
     unknown = "unknown"
 
 
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    subtype: Subtype24
+    subtype: Subtype21
     method: BaseMethod = Field(..., title="base method")
 
 

@@ -21,9 +21,6 @@
         },
         {
             "$ref": "./../unit/assignment.json"
-        },
-        {
-            "$ref": "./../unit/processing.json"
         }
     ],
     "discriminator": {
