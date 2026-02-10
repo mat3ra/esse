@@ -6441,10 +6441,6 @@ export interface JobSchema {
                         name: string;
                     }[];
                     /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId: string[];
-                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -6507,10 +6503,6 @@ export interface JobSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -48733,10 +48725,6 @@ export interface WorkflowPropertySchema {
                     name: string;
                 }[];
                 /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
-                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -48799,10 +48787,6 @@ export interface WorkflowPropertySchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -52082,10 +52066,6 @@ export interface PropertyHolderSchema {
                         name: string;
                     }[];
                     /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId: string[];
-                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52148,10 +52128,6 @@ export interface PropertyHolderSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -53978,10 +53954,6 @@ export interface ExecutableSchema {
         name: string;
     }[];
     /**
-     * _ids of the application this executable belongs to
-     */
-    applicationId: string[];
-    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -53992,10 +53964,6 @@ export interface ExecutablePropertiesSchema {
      * The name of the executable. e.g. pw.x
      */
     name: string;
-    /**
-     * _ids of the application this executable belongs to
-     */
-    applicationId: string[];
     /**
      * Whether advanced compute options are present
      */
@@ -54061,10 +54029,6 @@ export interface FlavorSchema {
         name: string;
     }[];
     /**
-     * _id of the executable this flavor belongs to
-     */
-    executableId: string;
-    /**
      * name of the executable this flavor belongs to
      */
     executableName?: string;
@@ -54087,10 +54051,6 @@ export interface FlavorSchema {
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
 export interface FlavorPropertiesSchema {
-    /**
-     * _id of the executable this flavor belongs to
-     */
-    executableId: string;
     /**
      * name of the executable this flavor belongs to
      */
@@ -54481,10 +54441,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             name: string;
         }[];
         /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -54547,10 +54503,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -55623,10 +55575,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             name: string;
         }[];
         /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -55689,10 +55637,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -57572,10 +57516,6 @@ export interface BaseWorkflowSchema {
                     name: string;
                 }[];
                 /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
-                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -57638,10 +57578,6 @@ export interface BaseWorkflowSchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -59706,10 +59642,6 @@ export interface SubworkflowMixinSchema {
                 name: string;
             }[];
             /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
-            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -59772,10 +59704,6 @@ export interface SubworkflowMixinSchema {
                  */
                 name: string;
             }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -61276,10 +61204,6 @@ export type WorkflowSubworkflowUnitSchema = {
             name: string;
         }[];
         /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61342,10 +61266,6 @@ export type WorkflowSubworkflowUnitSchema = {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -62814,10 +62734,6 @@ export interface SubworkflowSchema {
                 name: string;
             }[];
             /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
-            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -62880,10 +62796,6 @@ export interface SubworkflowSchema {
                  */
                 name: string;
             }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -65658,10 +65570,6 @@ export interface ExecutionUnitSchema {
             name: string;
         }[];
         /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -65724,10 +65632,6 @@ export interface ExecutionUnitSchema {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -67081,10 +66985,6 @@ export interface ExecutionUnitMixinSchema {
             name: string;
         }[];
         /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -67147,10 +67047,6 @@ export interface ExecutionUnitMixinSchema {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -69274,10 +69170,6 @@ export interface WorkflowSchema {
                     name: string;
                 }[];
                 /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
-                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -69340,10 +69232,6 @@ export interface WorkflowSchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */

@@ -4,7 +4,6 @@
     "title": "executable schema",
     "type": "object",
     "required": [
-        "applicationId",
         "monitors",
         "name",
         "postProcessors",
@@ -107,13 +106,6 @@
                         "type": "string"
                     }
                 }
-            }
-        },
-        "applicationId": {
-            "description": "_ids of the application this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
             }
         },
         "hasAdvancedComputeOptions": {

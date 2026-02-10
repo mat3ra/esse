@@ -1189,7 +1189,6 @@
                                 "title": "executable schema",
                                 "type": "object",
                                 "required": [
-                                    "applicationId",
                                     "monitors",
                                     "name",
                                     "postProcessors",
@@ -1294,13 +1293,6 @@
                                             }
                                         }
                                     },
-                                    "applicationId": {
-                                        "description": "_ids of the application this executable belongs to",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    },
                                     "hasAdvancedComputeOptions": {
                                         "description": "Whether advanced compute options are present",
                                         "type": "boolean"
@@ -1312,7 +1304,6 @@
                                 "title": "flavor schema",
                                 "type": "object",
                                 "required": [
-                                    "executableId",
                                     "input",
                                     "monitors",
                                     "name",
@@ -1417,10 +1408,6 @@
                                                 }
                                             }
                                         }
-                                    },
-                                    "executableId": {
-                                        "description": "_id of the executable this flavor belongs to",
-                                        "type": "string"
                                     },
                                     "executableName": {
                                         "description": "name of the executable this flavor belongs to",

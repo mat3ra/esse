@@ -4,20 +4,12 @@
     "title": "executable properties schema",
     "type": "object",
     "required": [
-        "name",
-        "applicationId"
+        "name"
     ],
     "properties": {
         "name": {
             "description": "The name of the executable. e.g. pw.x",
             "type": "string"
-        },
-        "applicationId": {
-            "description": "_ids of the application this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
         },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",

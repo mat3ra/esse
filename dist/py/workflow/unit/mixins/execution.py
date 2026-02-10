@@ -103,10 +103,6 @@ class ExecutableSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    applicationId: List[str]
-    """
-    _ids of the application this executable belongs to
-    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -162,10 +158,6 @@ class FlavorSchema(BaseModel):
     results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
-    """
-    executableId: str
-    """
-    _id of the executable this flavor belongs to
     """
     executableName: Optional[str] = None
     """

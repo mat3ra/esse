@@ -4,10 +4,6 @@
     "title": "flavor properties schema",
     "type": "object",
     "properties": {
-        "executableId": {
-            "description": "_id of the executable this flavor belongs to",
-            "type": "string"
-        },
         "executableName": {
             "description": "name of the executable this flavor belongs to",
             "type": "string"
@@ -32,7 +28,6 @@
         }
     },
     "required": [
-        "executableId",
         "input"
     ]
 }

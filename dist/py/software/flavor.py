@@ -66,10 +66,6 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableId: str
-    """
-    _id of the executable this flavor belongs to
-    """
     executableName: Optional[str] = None
     """
     name of the executable this flavor belongs to
