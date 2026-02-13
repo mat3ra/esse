@@ -5958,21 +5958,19 @@ export interface JobSchema {
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
-                    type: "db_ids";
+                    type: "api";
                     /**
-                     * IDs of item to retrieve from db
+                     * rest API endpoint
                      */
-                    ids: string[];
-                } | {
-                    type: "db_collection";
+                    endpoint: string;
                     /**
-                     * db collection name
+                     * rest API endpoint options
                      */
-                    collection: string;
+                    endpoint_options: {};
                     /**
-                     * whether the result should be saved as draft
+                     * the name of the variable in local scope to save the data under
                      */
-                    draft: boolean;
+                    name?: string;
                 } | {
                     type: "object_storage";
                     objectData: {
@@ -48242,21 +48240,19 @@ export interface WorkflowPropertySchema {
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
-                type: "db_ids";
+                type: "api";
                 /**
-                 * IDs of item to retrieve from db
+                 * rest API endpoint
                  */
-                ids: string[];
-            } | {
-                type: "db_collection";
+                endpoint: string;
                 /**
-                 * db collection name
+                 * rest API endpoint options
                  */
-                collection: string;
+                endpoint_options: {};
                 /**
-                 * whether the result should be saved as draft
+                 * the name of the variable in local scope to save the data under
                  */
-                draft: boolean;
+                name?: string;
             } | {
                 type: "object_storage";
                 objectData: {
@@ -51583,21 +51579,19 @@ export interface PropertyHolderSchema {
                 subtype: "input" | "output" | "dataFrame";
                 source: "api" | "db" | "object_storage";
                 input: ({
-                    type: "db_ids";
+                    type: "api";
                     /**
-                     * IDs of item to retrieve from db
+                     * rest API endpoint
                      */
-                    ids: string[];
-                } | {
-                    type: "db_collection";
+                    endpoint: string;
                     /**
-                     * db collection name
+                     * rest API endpoint options
                      */
-                    collection: string;
+                    endpoint_options: {};
                     /**
-                     * whether the result should be saved as draft
+                     * the name of the variable in local scope to save the data under
                      */
-                    draft: boolean;
+                    name?: string;
                 } | {
                     type: "object_storage";
                     objectData: {
@@ -57033,21 +57027,19 @@ export interface BaseWorkflowSchema {
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
-                type: "db_ids";
+                type: "api";
                 /**
-                 * IDs of item to retrieve from db
+                 * rest API endpoint
                  */
-                ids: string[];
-            } | {
-                type: "db_collection";
+                endpoint: string;
                 /**
-                 * db collection name
+                 * rest API endpoint options
                  */
-                collection: string;
+                endpoint_options: {};
                 /**
-                 * whether the result should be saved as draft
+                 * the name of the variable in local scope to save the data under
                  */
-                draft: boolean;
+                name?: string;
             } | {
                 type: "object_storage";
                 objectData: {
@@ -59159,21 +59151,19 @@ export interface SubworkflowMixinSchema {
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
-            type: "db_ids";
+            type: "api";
             /**
-             * IDs of item to retrieve from db
+             * rest API endpoint
              */
-            ids: string[];
-        } | {
-            type: "db_collection";
+            endpoint: string;
             /**
-             * db collection name
+             * rest API endpoint options
              */
-            collection: string;
+            endpoint_options: {};
             /**
-             * whether the result should be saved as draft
+             * the name of the variable in local scope to save the data under
              */
-            draft: boolean;
+            name?: string;
         } | {
             type: "object_storage";
             objectData: {
@@ -60721,21 +60711,19 @@ export type WorkflowSubworkflowUnitSchema = {
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -62251,21 +62239,19 @@ export interface SubworkflowSchema {
         subtype: "input" | "output" | "dataFrame";
         source: "api" | "db" | "object_storage";
         input: ({
-            type: "db_ids";
+            type: "api";
             /**
-             * IDs of item to retrieve from db
+             * rest API endpoint
              */
-            ids: string[];
-        } | {
-            type: "db_collection";
+            endpoint: string;
             /**
-             * db collection name
+             * rest API endpoint options
              */
-            collection: string;
+            endpoint_options: {};
             /**
-             * whether the result should be saved as draft
+             * the name of the variable in local scope to save the data under
              */
-            draft: boolean;
+            name?: string;
         } | {
             type: "object_storage";
             objectData: {
@@ -66395,6 +66381,7 @@ export interface UnitMapInputSchema {
 }
 /** Schema dist/js/schema/workflow/unit/io/api.json */
 export interface DataIORestAPIInputSchema {
+    type: "api";
     /**
      * rest API endpoint
      */
@@ -66407,28 +66394,9 @@ export interface DataIORestAPIInputSchema {
      * the name of the variable in local scope to save the data under
      */
     name?: string;
-    [k: string]: unknown;
 }
-/** Schema dist/js/schema/workflow/unit/io/db.json */
-export type DataIODatabaseInputOutputSchema = {
-    /**
-     * IDs of item to retrieve from db
-     */
-    ids: string[];
-    [k: string]: unknown;
-} | {
-    /**
-     * db collection name
-     */
-    collection: string;
-    /**
-     * whether the result should be saved as draft
-     */
-    draft: boolean;
-    [k: string]: unknown;
-};
 /** Schema dist/js/schema/workflow/unit/io/db_collection.json */
-export interface DataIODatabaseCollectionInputOutputSchema {
+export interface DataIODatabaseCollectionInputOutputSchemaNotUsed {
     type: "db_collection";
     /**
      * db collection name
@@ -66440,7 +66408,7 @@ export interface DataIODatabaseCollectionInputOutputSchema {
     draft: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/io/db_ids.json */
-export interface DataIODatabaseIdsInputOutputSchema {
+export interface DataIODatabaseIdsInputOutputSchemaNotUsed {
     type: "db_ids";
     /**
      * IDs of item to retrieve from db
@@ -66589,21 +66557,19 @@ export interface DataIOUnitSchema {
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -67699,21 +67665,19 @@ export interface DataIOUnitMixinSchema {
     subtype: "input" | "output" | "dataFrame";
     source: "api" | "db" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -68687,21 +68651,19 @@ export interface WorkflowSchema {
             subtype: "input" | "output" | "dataFrame";
             source: "api" | "db" | "object_storage";
             input: ({
-                type: "db_ids";
+                type: "api";
                 /**
-                 * IDs of item to retrieve from db
+                 * rest API endpoint
                  */
-                ids: string[];
-            } | {
-                type: "db_collection";
+                endpoint: string;
                 /**
-                 * db collection name
+                 * rest API endpoint options
                  */
-                collection: string;
+                endpoint_options: {};
                 /**
-                 * whether the result should be saved as draft
+                 * the name of the variable in local scope to save the data under
                  */
-                draft: boolean;
+                name?: string;
             } | {
                 type: "object_storage";
                 objectData: {

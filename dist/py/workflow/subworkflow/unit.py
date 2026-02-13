@@ -43,23 +43,19 @@ class Source(Enum):
     object_storage = "object_storage"
 
 
-class DataIODatabaseIdsInputOutputSchema(BaseModel):
+class DataIORestAPIInputSchema(BaseModel):
     type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    ids: List[str]
+    endpoint: str
     """
-    IDs of item to retrieve from db
+    rest API endpoint
     """
-
-
-class DataIODatabaseCollectionInputOutputSchema(BaseModel):
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    collection: str
+    endpoint_options: Dict[str, Any]
     """
-    db collection name
+    rest API endpoint options
     """
-    draft: bool
+    name: Optional[str] = None
     """
-    whether the result should be saved as draft
+    the name of the variable in local scope to save the data under
     """
 
 
@@ -91,7 +87,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class ObjectStorageIoSchema(BaseModel):
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
+    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
     overwrite: Optional[bool] = None
     """
@@ -111,14 +107,8 @@ class ObjectStorageIoSchema(BaseModel):
     """
 
 
-class Input(
-    RootModel[
-        Union[DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema]
-    ]
-):
-    root: Union[
-        DataIODatabaseIdsInputOutputSchema, DataIODatabaseCollectionInputOutputSchema, ObjectStorageIoSchema
-    ] = Field(..., discriminator="type")
+class Input(RootModel[Union[DataIORestAPIInputSchema, ObjectStorageIoSchema]]):
+    root: Union[DataIORestAPIInputSchema, ObjectStorageIoSchema] = Field(..., discriminator="type")
 
 
 class DataIOUnitSchema(BaseModel):

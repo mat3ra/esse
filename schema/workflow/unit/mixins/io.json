@@ -26,10 +26,7 @@
             "items": {
                 "oneOf": [
                     {
-                        "$ref": "../io/db_ids.json"
-                    },
-                    {
-                        "$ref": "../io/db_collection.json"
+                        "$ref": "../io/api.json"
                     },
                     {
                         "$ref": "../io/object_storage.json"
@@ -47,4 +44,3 @@
         "input"
     ]
 }
-

@@ -1,4 +1,5 @@
 {
+    "type": "api",
     "endpoint": "data-frame",
     "endpoint_options": {
         "data": {

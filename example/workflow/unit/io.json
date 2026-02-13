@@ -3,13 +3,10 @@
     "head": true,
     "input": [
         {
-            "...": "include(./io/db_ids.json)"
-        },
-        {
-            "...": "include(./io/db_collection.json)"
-        },
-        {
             "...": "include(./io/object_storage.json)"
+        },
+        {
+            "...": "include(./io/api.json)"
         }
     ],
     "name": "io",

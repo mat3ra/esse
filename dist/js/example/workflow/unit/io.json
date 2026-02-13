@@ -3,17 +3,6 @@
     "head": true,
     "input": [
         {
-            "ids": [
-                "KuAsBRwofzGfHPWiT"
-            ],
-            "type": "db_ids"
-        },
-        {
-            "collection": "features",
-            "draft": false,
-            "type": "db_collection"
-        },
-        {
             "basename": "index.html",
             "overwrite": true,
             "objectData": {
@@ -26,6 +15,38 @@
             },
             "filetype": "text/html",
             "type": "object_storage"
+        },
+        {
+            "type": "api",
+            "endpoint": "data-frame",
+            "endpoint_options": {
+                "data": {
+                    "features": [
+                        "elemental_ratio:Si",
+                        "elemental_ratio:Ge",
+                        "ionization_potential:Ge",
+                        "ionization_potential:Si"
+                    ],
+                    "ids": [
+                        "KuAsBRwofzGfHPWiT"
+                    ],
+                    "targets": [
+                        "band_gaps:indirect",
+                        "band_gaps:direct"
+                    ]
+                },
+                "headers": {
+                    "X-Auth-Token": "",
+                    "X-User-Id": ""
+                },
+                "method": "POST",
+                "params": {
+                    "query": {
+                        "formula": "SiGe"
+                    }
+                }
+            },
+            "name": "DATA"
         }
     ],
     "name": "io",
