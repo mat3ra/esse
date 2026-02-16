@@ -3732,6 +3732,15 @@
                                 "properties": {
                                     "type": {
                                         "const": "dft"
+                                    },
+                                    "subtype": {
+                                        "type": "string"
+                                    },
+                                    "functional": {
+                                        "type": "string"
+                                    },
+                                    "method": {
+                                        "type": "object"
                                     }
                                 }
                             },
