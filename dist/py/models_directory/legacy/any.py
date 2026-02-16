@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, Dict, Literal, Optional, Union
 
-from pydantic import BaseModel, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel
 
 
 class Functional(Enum):
@@ -15,6 +15,13 @@ class Functional(Enum):
     pw = "pw"
     vwn = "vwn"
     other = "other"
+
+
+class Data(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    searchText: Optional[str] = None
 
 
 class BaseMethod(BaseModel):
@@ -30,7 +37,7 @@ class BaseMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    data: Optional[Dict[str, Any]] = None
+    data: Optional[Data] = None
     """
     additional data specific to method, eg. array of pseudopotentials
     """
@@ -50,11 +57,30 @@ class Functional1(Enum):
     other = "other"
 
 
+class BaseMethod1(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class DFTModelSchema1(BaseModel):
     type: Literal["dft"]
     subtype: Literal["gga"]
     functional: Functional1
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod1 = Field(..., title="base method")
 
 
 class Functional2(Enum):
@@ -62,11 +88,30 @@ class Functional2(Enum):
     hse06 = "hse06"
 
 
+class BaseMethod2(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class DFTModelSchema2(BaseModel):
     type: Literal["dft"]
     subtype: Literal["hybrid"]
     functional: Functional2
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod2 = Field(..., title="base method")
 
 
 class Type(Enum):
@@ -77,10 +122,29 @@ class Subtype(Enum):
     re = "re"
 
 
+class BaseMethod3(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     subtype: Subtype
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod3 = Field(..., title="base method")
 
 
 class Type1(Enum):
@@ -91,10 +155,29 @@ class Subtype1(Enum):
     unknown = "unknown"
 
 
+class BaseMethod4(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     subtype: Subtype1
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod4 = Field(..., title="base method")
 
 
 class ESSE(

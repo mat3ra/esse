@@ -6,7 +6,14 @@ from __future__ import annotations
 
 from typing import Any, Dict, Literal, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
+
+
+class Data(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    searchText: Optional[str] = None
 
 
 class LegacyMethodLocalorbital(BaseModel):
@@ -22,7 +29,7 @@ class LegacyMethodLocalorbital(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    data: Optional[Dict[str, Any]] = None
+    data: Optional[Data] = None
     """
     additional data specific to method, eg. array of pseudopotentials
     """

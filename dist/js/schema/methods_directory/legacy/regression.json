@@ -64,6 +64,7 @@
             "title": "regression data",
             "type": "object",
             "description": "additional data specific to method, eg. array of pseudopotentials",
+            "additionalProperties": true,
             "properties": {
                 "perProperty": {
                     "type": "array",
@@ -178,6 +179,9 @@
                             "description": "holder for any extra information, eg. coming from user-uploaded CSV file"
                         }
                     }
+                },
+                "searchText": {
+                    "type": "string"
                 }
             }
         }

@@ -190,7 +190,6 @@ class Subtype(Enum):
 
 class Source(Enum):
     api = "api"
-    db = "db"
     object_storage = "object_storage"
 
 
@@ -1545,6 +1544,13 @@ class Functional(Enum):
     other = "other"
 
 
+class Data(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    searchText: Optional[str] = None
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -1558,7 +1564,7 @@ class BaseMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    data: Optional[Dict[str, Any]] = None
+    data: Optional[Data] = None
     """
     additional data specific to method, eg. array of pseudopotentials
     """
@@ -1578,11 +1584,30 @@ class Functional49(Enum):
     other = "other"
 
 
+class BaseMethod28(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class DFTModelSchema16(BaseModel):
     type: Literal["dft"]
     subtype: Literal["gga"]
     functional: Functional49
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod28 = Field(..., title="base method")
 
 
 class Functional50(Enum):
@@ -1590,11 +1615,30 @@ class Functional50(Enum):
     hse06 = "hse06"
 
 
+class BaseMethod29(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class DFTModelSchema17(BaseModel):
     type: Literal["dft"]
     subtype: Literal["hybrid"]
     functional: Functional50
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod29 = Field(..., title="base method")
 
 
 class Type97(Enum):
@@ -1605,10 +1649,29 @@ class Subtype14(Enum):
     re = "re"
 
 
+class BaseMethod30(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class MLModelSchema(BaseModel):
     type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     subtype: Subtype14
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod30 = Field(..., title="base method")
 
 
 class Type98(Enum):
@@ -1619,10 +1682,29 @@ class Subtype15(Enum):
     unknown = "unknown"
 
 
+class BaseMethod31(BaseModel):
+    type: str
+    """
+    general type of this method, eg. `pseudopotential`
+    """
+    subtype: str
+    """
+    general subtype of this method, eg. `ultra-soft`
+    """
+    precision: Optional[Dict[str, Any]] = None
+    """
+    Object showing the actual possible precision based on theory and implementation
+    """
+    data: Optional[Data] = None
+    """
+    additional data specific to method, eg. array of pseudopotentials
+    """
+
+
 class UnknownModelSchema(BaseModel):
     type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     subtype: Subtype15
-    method: BaseMethod = Field(..., title="base method")
+    method: BaseMethod31 = Field(..., title="base method")
 
 
 class SubworkflowMixinSchema(BaseModel):

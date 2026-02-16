@@ -473,7 +473,6 @@
                                         "source": {
                                             "enum": [
                                                 "api",
-                                                "db",
                                                 "object_storage"
                                             ]
                                         },
@@ -3465,7 +3464,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3516,7 +3521,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3565,7 +3576,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3612,7 +3629,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3663,7 +3686,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3712,7 +3741,13 @@
                                                     },
                                                     "data": {
                                                         "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                        "type": "object"
+                                                        "type": "object",
+                                                        "additionalProperties": true,
+                                                        "properties": {
+                                                            "searchText": {
+                                                                "type": "string"
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             }
@@ -3775,7 +3810,13 @@
                                             },
                                             "data": {
                                                 "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                "type": "object"
+                                                "type": "object",
+                                                "additionalProperties": true,
+                                                "properties": {
+                                                    "searchText": {
+                                                        "type": "string"
+                                                    }
+                                                }
                                             }
                                         }
                                     }
@@ -3824,7 +3865,13 @@
                                             },
                                             "data": {
                                                 "description": "additional data specific to method, eg. array of pseudopotentials",
-                                                "type": "object"
+                                                "type": "object",
+                                                "additionalProperties": true,
+                                                "properties": {
+                                                    "searchText": {
+                                                        "type": "string"
+                                                    }
+                                                }
                                             }
                                         }
                                     }

@@ -191,7 +191,6 @@
                 "source": {
                     "enum": [
                         "api",
-                        "db",
                         "object_storage"
                     ]
                 },

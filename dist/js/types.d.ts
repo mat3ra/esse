@@ -5956,7 +5956,7 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
+                source: "api" | "object_storage";
                 input: ({
                     type: "api";
                     /**
@@ -7281,7 +7281,10 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "dft";
@@ -7303,7 +7306,10 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "dft";
@@ -7325,7 +7331,10 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             }) | {
                 type: "ml";
@@ -7346,7 +7355,10 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "unknown";
@@ -7367,7 +7379,10 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             };
             application: {
@@ -38217,7 +38232,10 @@ export interface BaseMethod {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_category/mathematical/diff/enum_options.json */
 export interface MethodsCategoryMathematicalDiffEnumOptions {
@@ -42371,7 +42389,10 @@ export interface LegacyMethodLocalorbital {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/legacy/pseudopotential.json */
 export interface LegacyMethodPseudopotential {
@@ -42390,7 +42411,10 @@ export interface LegacyMethodPseudopotential {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/legacy/regression.json */
 export interface LegacyMethodRegression {
@@ -42489,6 +42513,8 @@ export interface LegacyMethodRegression {
                 [k: string]: unknown;
             };
         };
+        searchText?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/methods_directory/legacy/unknown.json */
@@ -42508,7 +42534,10 @@ export interface LegacyMethodUnknown {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/mathematical/cg.json */
 /**
@@ -44581,7 +44610,10 @@ export interface BaseModel {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /** Schema dist/js/schema/models_category/enum_options.json */
@@ -46615,7 +46647,10 @@ export type AnyModelSchema = ({
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 } | {
     type: "dft";
@@ -46637,7 +46672,10 @@ export type AnyModelSchema = ({
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 } | {
     type: "dft";
@@ -46659,7 +46697,10 @@ export type AnyModelSchema = ({
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }) | {
     type: "ml";
@@ -46680,7 +46721,10 @@ export type AnyModelSchema = ({
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 } | {
     type: "unknown";
@@ -46701,7 +46745,10 @@ export type AnyModelSchema = ({
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 };
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
@@ -46727,7 +46774,10 @@ export type DFTModelSchema = {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 } | {
     type: "dft";
@@ -46749,7 +46799,10 @@ export type DFTModelSchema = {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 } | {
     type: "dft";
@@ -46771,7 +46824,10 @@ export type DFTModelSchema = {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 });
 /**
@@ -46798,7 +46854,10 @@ export interface Lda {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /**
@@ -46825,7 +46884,10 @@ export interface Gga {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /**
@@ -46852,7 +46914,10 @@ export interface Hybrid {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /** Schema dist/js/schema/models_directory/legacy/ml.json */
@@ -46875,7 +46940,10 @@ export interface MLModelSchema {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /** Schema dist/js/schema/models_directory/legacy/unknown.json */
@@ -46898,7 +46966,10 @@ export interface UnknownModelSchema {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
 }
 /** Schema dist/js/schema/models_directory/mgga.json */
@@ -48238,7 +48309,7 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
+            source: "api" | "object_storage";
             input: ({
                 type: "api";
                 /**
@@ -49563,7 +49634,10 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -49585,7 +49659,10 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -49607,7 +49684,10 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         }) | {
             type: "ml";
@@ -49628,7 +49708,10 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "unknown";
@@ -49649,7 +49732,10 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         };
         application: {
@@ -51577,7 +51663,7 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
+                source: "api" | "object_storage";
                 input: ({
                     type: "api";
                     /**
@@ -52902,7 +52988,10 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "dft";
@@ -52924,7 +53013,10 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "dft";
@@ -52946,7 +53038,10 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             }) | {
                 type: "ml";
@@ -52967,7 +53062,10 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             } | {
                 type: "unknown";
@@ -52988,7 +53086,10 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
             };
             application: {
@@ -57025,7 +57126,7 @@ export interface BaseWorkflowSchema {
              */
             enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
+            source: "api" | "object_storage";
             input: ({
                 type: "api";
                 /**
@@ -58350,7 +58451,10 @@ export interface BaseWorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -58372,7 +58476,10 @@ export interface BaseWorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -58394,7 +58501,10 @@ export interface BaseWorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         }) | {
             type: "ml";
@@ -58415,7 +58525,10 @@ export interface BaseWorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "unknown";
@@ -58436,7 +58549,10 @@ export interface BaseWorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         };
         application: {
@@ -59149,7 +59265,7 @@ export interface SubworkflowMixinSchema {
          */
         enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
+        source: "api" | "object_storage";
         input: ({
             type: "api";
             /**
@@ -60474,7 +60590,10 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "dft";
@@ -60496,7 +60615,10 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "dft";
@@ -60518,7 +60640,10 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     }) | {
         type: "ml";
@@ -60539,7 +60664,10 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "unknown";
@@ -60560,7 +60688,10 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     };
     application: {
@@ -60709,7 +60840,7 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
         type: "api";
         /**
@@ -62237,7 +62368,7 @@ export interface SubworkflowSchema {
          */
         enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
+        source: "api" | "object_storage";
         input: ({
             type: "api";
             /**
@@ -63562,7 +63693,10 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "dft";
@@ -63584,7 +63718,10 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "dft";
@@ -63606,7 +63743,10 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     }) | {
         type: "ml";
@@ -63627,7 +63767,10 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     } | {
         type: "unknown";
@@ -63648,7 +63791,10 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
     };
     application: {
@@ -66555,7 +66701,7 @@ export interface DataIOUnitSchema {
      */
     enableRender?: boolean;
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
         type: "api";
         /**
@@ -67663,7 +67809,7 @@ export interface ExecutionUnitMixinSchema {
 export interface DataIOUnitMixinSchema {
     type?: "io";
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
         type: "api";
         /**
@@ -68649,7 +68795,7 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
+            source: "api" | "object_storage";
             input: ({
                 type: "api";
                 /**
@@ -69974,7 +70120,10 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -69996,7 +70145,10 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "dft";
@@ -70018,7 +70170,10 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         }) | {
             type: "ml";
@@ -70039,7 +70194,10 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         } | {
             type: "unknown";
@@ -70060,7 +70218,10 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
         };
         application: {

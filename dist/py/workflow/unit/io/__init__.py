@@ -39,7 +39,6 @@ class Subtype(Enum):
 
 class Source(Enum):
     api = "api"
-    db = "db"
     object_storage = "object_storage"
 
 
