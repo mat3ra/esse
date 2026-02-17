@@ -1741,6 +1741,7 @@ class SubworkflowSchema(BaseModel):
         ..., discriminator="type", title="Any model schema"
     )
     application: ApplicationSchema = Field(..., title="application schema")
+    isMultiMaterial: Optional[bool] = None
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection

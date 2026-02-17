@@ -7432,6 +7432,7 @@ export interface JobSchema {
                  */
                 isLicensed?: boolean;
             };
+            isMultiMaterial?: boolean;
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
              */
@@ -7760,6 +7761,7 @@ export interface JobSchema {
              */
             enableRender?: boolean;
         })[];
+        isMultiMaterial?: boolean;
     };
     /**
      * Identity used to track jobs originated from command-line
@@ -46754,6 +46756,9 @@ export type AnyModelSchema = ({
 /** Schema dist/js/schema/models_directory/legacy/dft.json */
 export type DFTModelSchema = {
     type: "dft";
+    subtype?: string;
+    functional?: string;
+    method?: {};
 } & ({
     type: "dft";
     subtype: "lda";
@@ -49785,6 +49790,7 @@ export interface WorkflowPropertySchema {
              */
             isLicensed?: boolean;
         };
+        isMultiMaterial?: boolean;
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
@@ -50113,6 +50119,7 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
     })[];
+    isMultiMaterial?: boolean;
 }
 /** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
 /**
@@ -53139,6 +53146,7 @@ export interface PropertyHolderSchema {
                  */
                 isLicensed?: boolean;
             };
+            isMultiMaterial?: boolean;
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
              */
@@ -53467,6 +53475,7 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
         })[];
+        isMultiMaterial?: boolean;
     } | {
         name: "magnetic_moments";
         values: {
@@ -58602,6 +58611,7 @@ export interface BaseWorkflowSchema {
              */
             isLicensed?: boolean;
         };
+        isMultiMaterial?: boolean;
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
@@ -58930,6 +58940,7 @@ export interface BaseWorkflowSchema {
          */
         enableRender?: boolean;
     })[];
+    isMultiMaterial?: boolean;
 }
 /** Schema dist/js/schema/workflow/base_flow.json */
 export interface BaseFlow {
@@ -60741,6 +60752,7 @@ export interface SubworkflowMixinSchema {
          */
         isLicensed?: boolean;
     };
+    isMultiMaterial?: boolean;
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
@@ -63844,6 +63856,7 @@ export interface SubworkflowSchema {
          */
         isLicensed?: boolean;
     };
+    isMultiMaterial?: boolean;
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
@@ -70271,6 +70284,7 @@ export interface WorkflowSchema {
              */
             isLicensed?: boolean;
         };
+        isMultiMaterial?: boolean;
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
@@ -70599,4 +70613,5 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
     })[];
+    isMultiMaterial?: boolean;
 }

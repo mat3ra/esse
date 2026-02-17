@@ -3922,6 +3922,9 @@
                             }
                         }
                     },
+                    "isMultiMaterial": {
+                        "type": "boolean"
+                    },
                     "isDraft": {
                         "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
                         "type": "boolean",
@@ -4551,6 +4554,9 @@
                     "type"
                 ]
             }
+        },
+        "isMultiMaterial": {
+            "type": "boolean"
         }
     }
 }

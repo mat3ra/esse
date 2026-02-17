@@ -29,6 +29,9 @@
             "items": {
                 "$ref": "unit.json"
             }
+        },
+        "isMultiMaterial": {
+            "type": "boolean"
         }
     },
     "required": [
