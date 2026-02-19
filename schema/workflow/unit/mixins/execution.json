@@ -12,8 +12,33 @@
             "$ref": "../../../software/application.json"
         },
         "executable": {
-            "description": "Contains information about the simulation engine/application executable.",
-            "$ref": "../../../software/executable.json"
+            "allOf": [
+                {
+                    "$ref": "../../../in_memory_entity/named_defaultable.json"
+                },
+                {
+                    "$ref": "../../../software/executable_properties.json"
+                },
+                {
+                    "type": "object",
+                    "properties": {
+                        "preProcessors": {
+                            "$ref": "../../../system/runtime_items.json#/properties/preProcessors"
+                        },
+                        "postProcessors": {
+                            "$ref": "../../../system/runtime_items.json#/properties/postProcessors"
+                        },
+                        "monitors": {
+                            "$ref": "../../../system/runtime_items.json#/properties/monitors"
+                        }
+                    },
+                    "required": [
+                        "preProcessors",
+                        "postProcessors",
+                        "monitors"
+                    ]
+                }
+            ]
         },
         "flavor": {
             "description": "Contains information about the simulation engine/application flavor.",
@@ -41,4 +66,3 @@
         "context"
     ]
 }
-

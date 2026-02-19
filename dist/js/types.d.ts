@@ -6403,6 +6403,10 @@ export interface JobSchema {
                      */
                     isDefault?: boolean;
                     /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                    /**
                      * names of the pre-processors for this calculation
                      */
                     preProcessors: {
@@ -6429,19 +6433,6 @@ export interface JobSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
                 };
                 flavor: {
                     /**
@@ -48761,6 +48752,10 @@ export interface WorkflowPropertySchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
                  * names of the pre-processors for this calculation
                  */
                 preProcessors: {
@@ -48787,19 +48782,6 @@ export interface WorkflowPropertySchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
             };
             flavor: {
                 /**
@@ -52117,6 +52099,10 @@ export interface PropertyHolderSchema {
                      */
                     isDefault?: boolean;
                     /**
+                     * Whether advanced compute options are present
+                     */
+                    hasAdvancedComputeOptions?: boolean;
+                    /**
                      * names of the pre-processors for this calculation
                      */
                     preProcessors: {
@@ -52143,19 +52129,6 @@ export interface PropertyHolderSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * Whether advanced compute options are present
-                     */
-                    hasAdvancedComputeOptions?: boolean;
                 };
                 flavor: {
                     /**
@@ -54509,6 +54482,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         isDefault?: boolean;
         /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -54535,19 +54512,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              */
             name: string;
         }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
     };
     flavor: {
         /**
@@ -55643,6 +55607,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         isDefault?: boolean;
         /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -55669,19 +55637,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name: string;
         }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
     };
     flavor: {
         /**
@@ -57582,6 +57537,10 @@ export interface BaseWorkflowSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
                  * names of the pre-processors for this calculation
                  */
                 preProcessors: {
@@ -57608,19 +57567,6 @@ export interface BaseWorkflowSchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
             };
             flavor: {
                 /**
@@ -59723,6 +59669,10 @@ export interface SubworkflowMixinSchema {
              */
             isDefault?: boolean;
             /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -59749,19 +59699,6 @@ export interface SubworkflowMixinSchema {
                  */
                 name: string;
             }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
         };
         flavor: {
             /**
@@ -61299,6 +61236,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isDefault?: boolean;
         /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -61325,19 +61266,6 @@ export type WorkflowSubworkflowUnitSchema = {
              */
             name: string;
         }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
     };
     flavor: {
         /**
@@ -62827,6 +62755,10 @@ export interface SubworkflowSchema {
              */
             isDefault?: boolean;
             /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
              * names of the pre-processors for this calculation
              */
             preProcessors: {
@@ -62853,19 +62785,6 @@ export interface SubworkflowSchema {
                  */
                 name: string;
             }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
         };
         flavor: {
             /**
@@ -65679,6 +65598,10 @@ export interface ExecutionUnitSchema {
          */
         isDefault?: boolean;
         /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -65705,19 +65628,6 @@ export interface ExecutionUnitSchema {
              */
             name: string;
         }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
     };
     flavor: {
         /**
@@ -67074,6 +66984,10 @@ export interface ExecutionUnitMixinSchema {
          */
         isDefault?: boolean;
         /**
+         * Whether advanced compute options are present
+         */
+        hasAdvancedComputeOptions?: boolean;
+        /**
          * names of the pre-processors for this calculation
          */
         preProcessors: {
@@ -67100,19 +67014,6 @@ export interface ExecutionUnitMixinSchema {
              */
             name: string;
         }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
     };
     flavor: {
         /**
@@ -69255,6 +69156,10 @@ export interface WorkflowSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
                  * names of the pre-processors for this calculation
                  */
                 preProcessors: {
@@ -69281,19 +69186,6 @@ export interface WorkflowSchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
             };
             flavor: {
                 /**

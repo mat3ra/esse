@@ -414,7 +414,7 @@ class ApplicationSchema(BaseModel):
     """
 
 
-class ExecutableSchema(BaseModel):
+class NamedDefaultableInMemoryEntitySchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -436,6 +436,10 @@ class ExecutableSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
     preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
@@ -447,14 +451,6 @@ class ExecutableSchema(BaseModel):
     monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
-    """
-    results: List[RuntimeItemNameObjectSchema]
-    """
-    names of the results for this calculation
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
     """
 
 
@@ -1269,7 +1265,7 @@ class ExecutionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     application: ApplicationSchema = Field(..., title="application schema")
-    executable: ExecutableSchema = Field(..., title="executable schema")
+    executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
     context: List[
