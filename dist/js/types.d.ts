@@ -54205,6 +54205,79 @@ export interface ApplicationSchemaBase {
     isDefault?: boolean;
     [k: string]: unknown;
 }
+/** Schema dist/js/schema/software/application_with_build_config.json */
+export interface ApplicationWithBuildConfigSchema {
+    /**
+     * The bio description used for the module files.
+     */
+    bio?: string;
+    /**
+     * Modulefile name specific to application version and build type.
+     */
+    module_name?: string;
+    /**
+     * Apptainer image name.
+     */
+    image_name?: string;
+    /**
+     * Apptainer image tag.
+     */
+    image_tag?: string;
+    /**
+     * List of modulefile dependencies.
+     */
+    dependencies?: string[];
+    /**
+     * Environment variables to be exported before running the application, containing the key and value pairs.
+     */
+    environment_variables?: {};
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName?: string;
+    /**
+     * Application's short description.
+     */
+    summary?: string;
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/software/executable.json */
 export interface ExecutableSchema {
     /**
