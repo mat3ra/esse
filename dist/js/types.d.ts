@@ -8039,6 +8039,10 @@ export interface JobSchema {
             name?: string;
         };
         /**
+         * tags for the workflow
+         */
+        tags?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -49868,6 +49872,10 @@ export interface WorkflowPropertySchema {
         name?: string;
     };
     /**
+     * tags for the workflow
+     */
+    tags?: string[];
+    /**
      * entity identity
      */
     _id?: string;
@@ -53731,6 +53739,10 @@ export interface PropertyHolderSchema {
             name?: string;
         };
         /**
+         * tags for the workflow
+         */
+        tags?: string[];
+        /**
          * entity identity
          */
         _id?: string;
@@ -56043,6 +56055,10 @@ export interface BaseWorkflowSchema {
          */
         name?: string;
     };
+    /**
+     * tags for the workflow
+     */
+    tags?: string[];
     /**
      * entity identity
      */
@@ -63837,6 +63853,10 @@ export interface WorkflowSchema {
          */
         name?: string;
     };
+    /**
+     * tags for the workflow
+     */
+    tags?: string[];
     /**
      * entity identity
      */

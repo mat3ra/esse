@@ -5468,6 +5468,13 @@
                         }
                     }
                 },
+                "tags": {
+                    "description": "tags for the workflow",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"

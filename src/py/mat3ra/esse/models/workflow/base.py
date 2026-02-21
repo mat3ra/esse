@@ -33,6 +33,10 @@ class BaseWorkflowSchema(BaseModel):
     """
     information about the simulation engine/application.
     """
+    tags: Optional[List[str]] = None
+    """
+    tags for the workflow
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
