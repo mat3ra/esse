@@ -6060,6 +6060,10 @@ export interface JobSchema {
                      */
                     build?: string;
                     /**
+                     * Whether the build is the default build
+                     */
+                    isDefault?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -6592,6 +6596,10 @@ export interface JobSchema {
                  * Application build. e.g. VTST
                  */
                 build?: string;
+                /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -7266,6 +7274,10 @@ export interface JobSchema {
                  * Application build. e.g. VTST
                  */
                 build?: string;
+                /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -47839,6 +47851,10 @@ export interface WorkflowPropertySchema {
                  */
                 build?: string;
                 /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -48371,6 +48387,10 @@ export interface WorkflowPropertySchema {
              * Application build. e.g. VTST
              */
             build?: string;
+            /**
+             * Whether the build is the default build
+             */
+            isDefault?: boolean;
             /**
              * Whether advanced compute options are present
              */
@@ -49045,6 +49065,10 @@ export interface WorkflowPropertySchema {
              * Application build. e.g. VTST
              */
             build?: string;
+            /**
+             * Whether the build is the default build
+             */
+            isDefault?: boolean;
             /**
              * Whether advanced compute options are present
              */
@@ -51652,6 +51676,10 @@ export interface PropertyHolderSchema {
                      */
                     build?: string;
                     /**
+                     * Whether the build is the default build
+                     */
+                    isDefault?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52184,6 +52212,10 @@ export interface PropertyHolderSchema {
                  * Application build. e.g. VTST
                  */
                 build?: string;
+                /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -52858,6 +52890,10 @@ export interface PropertyHolderSchema {
                  * Application build. e.g. VTST
                  */
                 build?: string;
+                /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -54096,6 +54132,10 @@ export interface ApplicationSchemaBase {
      */
     build?: string;
     /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54126,6 +54166,10 @@ export interface ApplicationWithBuildConfigSchema {
      * Application build. e.g. VTST
      */
     build?: string;
+    /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54352,6 +54396,10 @@ export interface DeePMDAppSchema {
      */
     build?: string;
     /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54412,6 +54460,10 @@ export interface NWChem {
      */
     build?: string;
     /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54447,6 +54499,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Application build. e.g. VTST
          */
         build?: string;
+        /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
         /**
          * Whether advanced compute options are present
          */
@@ -54747,6 +54803,10 @@ export interface ViennaAbInitoSimulationPackage {
      */
     build?: string;
     /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54777,6 +54837,10 @@ export interface JupyterLabApplicationSchema {
      * Application build. e.g. VTST
      */
     build?: string;
+    /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54809,6 +54873,10 @@ export interface PythonProgramingLanguageSchema {
      */
     build?: string;
     /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54839,6 +54907,10 @@ export interface ShellScriptingLanguageSchema {
      * Application build. e.g. VTST
      */
     build?: string;
+    /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54875,6 +54947,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Application build. e.g. VTST
          */
         build?: string;
+        /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
         /**
          * Whether advanced compute options are present
          */
@@ -56329,6 +56405,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         build?: string;
         /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -57354,6 +57434,10 @@ export interface Subworkflow {
              */
             build?: string;
             /**
+             * Whether the build is the default build
+             */
+            isDefault?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -57886,6 +57970,10 @@ export interface Subworkflow {
          * Application build. e.g. VTST
          */
         build?: string;
+        /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
         /**
          * Whether advanced compute options are present
          */
@@ -58494,6 +58582,10 @@ export interface ExecutionUnitSchemaBase {
          * Application build. e.g. VTST
          */
         build?: string;
+        /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
         /**
          * Whether advanced compute options are present
          */
@@ -60122,6 +60214,10 @@ export type WorkflowUnitSchema = {
          */
         build?: string;
         /**
+         * Whether the build is the default build
+         */
+        isDefault?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61365,6 +61461,10 @@ export interface WorkflowSchema {
                  */
                 build?: string;
                 /**
+                 * Whether the build is the default build
+                 */
+                isDefault?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -61897,6 +61997,10 @@ export interface WorkflowSchema {
              * Application build. e.g. VTST
              */
             build?: string;
+            /**
+             * Whether the build is the default build
+             */
+            isDefault?: boolean;
             /**
              * Whether advanced compute options are present
              */
@@ -62571,6 +62675,10 @@ export interface WorkflowSchema {
              * Application build. e.g. VTST
              */
             build?: string;
+            /**
+             * Whether the build is the default build
+             */
+            isDefault?: boolean;
             /**
              * Whether advanced compute options are present
              */

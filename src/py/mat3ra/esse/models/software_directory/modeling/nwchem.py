@@ -49,6 +49,10 @@ class NWChem(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefault: Optional[bool] = False
+    """
+    Whether the build is the default build
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
