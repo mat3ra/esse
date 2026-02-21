@@ -9,6 +9,13 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Field
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class BaseWorkflowSchema(BaseModel):
     properties: Optional[List[Union[str, Dict[str, Any]]]] = None
     """
@@ -21,6 +28,10 @@ class BaseWorkflowSchema(BaseModel):
     workflows: Optional[List[Dict[str, Any]]] = None
     """
     Array of workflows with the same schema as the current one.
+    """
+    application: Optional[Application] = None
+    """
+    information about the simulation engine/application.
     """
     id: Optional[str] = Field(None, alias="_id")
     """

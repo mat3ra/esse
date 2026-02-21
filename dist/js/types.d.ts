@@ -8030,6 +8030,15 @@ export interface JobSchema {
          */
         workflows?: {}[];
         /**
+         * information about the simulation engine/application.
+         */
+        application?: {
+            /**
+             * name of the application
+             */
+            name?: string;
+        };
+        /**
          * entity identity
          */
         _id?: string;
@@ -49850,6 +49859,15 @@ export interface WorkflowPropertySchema {
      */
     workflows?: {}[];
     /**
+     * information about the simulation engine/application.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
+    /**
      * entity identity
      */
     _id?: string;
@@ -53704,6 +53722,15 @@ export interface PropertyHolderSchema {
          */
         workflows?: {}[];
         /**
+         * information about the simulation engine/application.
+         */
+        application?: {
+            /**
+             * name of the application
+             */
+            name?: string;
+        };
+        /**
          * entity identity
          */
         _id?: string;
@@ -56007,6 +56034,15 @@ export interface BaseWorkflowSchema {
      * Array of workflows with the same schema as the current one.
      */
     workflows?: {}[];
+    /**
+     * information about the simulation engine/application.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
     /**
      * entity identity
      */
@@ -63792,6 +63828,15 @@ export interface WorkflowSchema {
      * Array of workflows with the same schema as the current one.
      */
     workflows?: {}[];
+    /**
+     * information about the simulation engine/application.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
     /**
      * entity identity
      */

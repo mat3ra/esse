@@ -2137,6 +2137,13 @@ class WorkflowUnitSchema(
     ] = Field(..., discriminator="type", title="workflow unit schema")
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class WorkflowPropertySchema(BaseModel):
     name: Name
     """
@@ -2161,6 +2168,10 @@ class WorkflowPropertySchema(BaseModel):
     workflows: Optional[List[Dict[str, Any]]] = None
     """
     Array of workflows with the same schema as the current one.
+    """
+    application: Optional[Application] = None
+    """
+    information about the simulation engine/application.
     """
     id: Optional[str] = Field(None, alias="_id")
     """

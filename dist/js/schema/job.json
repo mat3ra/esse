@@ -5458,6 +5458,16 @@
                         "type": "object"
                     }
                 },
+                "application": {
+                    "description": "information about the simulation engine/application.",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "name of the application",
+                            "type": "string"
+                        }
+                    }
+                },
                 "_id": {
                     "description": "entity identity",
                     "type": "string"
