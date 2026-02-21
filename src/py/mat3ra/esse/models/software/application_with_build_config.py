@@ -40,9 +40,6 @@ class ApplicationVersionsWithBuildConfigSchema(BaseModel):
 
 
 class ApplicationWithBuildConfigSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     build_config: Optional[ApplicationVersionsWithBuildConfigSchema] = Field(
         None, title="application versions with build config schema"
     )

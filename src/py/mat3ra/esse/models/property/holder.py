@@ -1638,9 +1638,6 @@ class AssertionUnitSchema(BaseModel):
 
 
 class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe

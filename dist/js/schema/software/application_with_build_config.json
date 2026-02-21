@@ -3,7 +3,6 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "application with build config schema",
     "type": "object",
-    "additionalProperties": true,
     "properties": {
         "build_config": {
             "$schema": "http://json-schema.org/draft-07/schema#",

@@ -6084,7 +6084,6 @@ export interface JobSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    [k: string]: unknown;
                 };
                 executable?: {
                     /**
@@ -6635,7 +6634,6 @@ export interface JobSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -7327,7 +7325,6 @@ export interface JobSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             executable?: {
                 /**
@@ -47917,7 +47914,6 @@ export interface WorkflowPropertySchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             executable?: {
                 /**
@@ -48468,7 +48464,6 @@ export interface WorkflowPropertySchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -49160,7 +49155,6 @@ export interface WorkflowPropertySchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
         };
         executable?: {
             /**
@@ -51784,7 +51778,6 @@ export interface PropertyHolderSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    [k: string]: unknown;
                 };
                 executable?: {
                     /**
@@ -52335,7 +52328,6 @@ export interface PropertyHolderSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -53027,7 +53019,6 @@ export interface PropertyHolderSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             executable?: {
                 /**
@@ -54235,26 +54226,6 @@ export interface ApplicationVersionsWithBuildConfigSchema {
     environment_variables?: {};
     [k: string]: unknown;
 }
-/** Schema dist/js/schema/software/application/versions.json */
-export interface ApplicationVersionsSchema {
-    /**
-     * Application version. e.g. 5.3.5
-     */
-    version?: string;
-    /**
-     * Application build. e.g. VTST
-     */
-    build?: string;
-    /**
-     * Identifies that build is default.
-     */
-    isDefault?: boolean;
-    /**
-     * Whether advanced compute options are present
-     */
-    hasAdvancedComputeOptions?: boolean;
-    [k: string]: unknown;
-}
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**
@@ -54302,7 +54273,6 @@ export interface ApplicationSchemaBase {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
@@ -54379,7 +54349,6 @@ export interface ApplicationWithBuildConfigSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software/executable.json */
 export interface ExecutableSchema {
@@ -54623,7 +54592,6 @@ export interface DeePMDAppSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -54702,7 +54670,6 @@ export interface NWChem {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
@@ -54756,7 +54723,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     executable?: {
         /**
@@ -55075,7 +55041,6 @@ export interface ViennaAbInitoSimulationPackage {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
@@ -55126,7 +55091,6 @@ export interface JupyterLabApplicationSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
@@ -55189,7 +55153,6 @@ export interface PythonProgramingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
@@ -55248,7 +55211,6 @@ export interface ShellScriptingLanguageSchema {
      * Identifies that entity is defaultable
      */
     isDefault?: boolean;
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
@@ -55302,7 +55264,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     executable?: {
         /**
@@ -56773,7 +56734,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     executable?: {
         /**
@@ -57816,7 +57776,6 @@ export interface Subworkflow {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
         };
         executable?: {
             /**
@@ -58367,7 +58326,6 @@ export interface Subworkflow {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -58993,7 +58951,6 @@ export interface ExecutionUnitSchemaBase {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     executable?: {
         /**
@@ -60638,7 +60595,6 @@ export type WorkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        [k: string]: unknown;
     };
     executable?: {
         /**
@@ -61899,7 +61855,6 @@ export interface WorkflowSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                [k: string]: unknown;
             };
             executable?: {
                 /**
@@ -62450,7 +62405,6 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -63142,7 +63096,6 @@ export interface WorkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            [k: string]: unknown;
         };
         executable?: {
             /**

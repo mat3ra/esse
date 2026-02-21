@@ -1185,7 +1185,6 @@
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "application schema (base)",
                                             "type": "object",
-                                            "additionalProperties": true,
                                             "properties": {
                                                 "shortName": {
                                                     "description": "The short name of the application. e.g. qe",
@@ -2380,7 +2379,6 @@
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "application schema (base)",
                         "type": "object",
-                        "additionalProperties": true,
                         "properties": {
                             "shortName": {
                                 "description": "The short name of the application. e.g. qe",
@@ -3793,7 +3791,6 @@
                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                 "title": "application schema (base)",
                                 "type": "object",
-                                "additionalProperties": true,
                                 "properties": {
                                     "shortName": {
                                         "description": "The short name of the application. e.g. qe",
