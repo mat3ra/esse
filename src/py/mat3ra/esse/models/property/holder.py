@@ -2285,6 +2285,10 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the subworkflow is for a multi-material simulation
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity

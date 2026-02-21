@@ -6642,6 +6642,10 @@ export interface JobSchema {
              */
             isDraft?: boolean;
             /**
+             * Defines whether the subworkflow is for a multi-material simulation
+             */
+            isMultiMaterial?: boolean;
+            /**
              * subworkflow identity
              */
             _id?: string;
@@ -48458,6 +48462,10 @@ export interface WorkflowPropertySchema {
          */
         isDraft?: boolean;
         /**
+         * Defines whether the subworkflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
+        /**
          * subworkflow identity
          */
         _id?: string;
@@ -52307,6 +52315,10 @@ export interface PropertyHolderSchema {
              * Defines whether to store the results/properties extracted in this unit to properties collection
              */
             isDraft?: boolean;
+            /**
+             * Defines whether the subworkflow is for a multi-material simulation
+             */
+            isMultiMaterial?: boolean;
             /**
              * subworkflow identity
              */
@@ -58310,6 +58322,10 @@ export interface Subworkflow {
      */
     isDraft?: boolean;
     /**
+     * Defines whether the subworkflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
+    /**
      * subworkflow identity
      */
     _id?: string;
@@ -62388,6 +62404,10 @@ export interface WorkflowSchema {
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
         isDraft?: boolean;
+        /**
+         * Defines whether the subworkflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
         /**
          * subworkflow identity
          */
