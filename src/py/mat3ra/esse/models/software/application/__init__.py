@@ -6,10 +6,13 @@ from __future__ import annotations
 
 from typing import Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict
 
 
 class ApplicationSchemaBase(BaseModel):
+    model_config = ConfigDict(
+        extra="forbid",
+    )
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -33,25 +36,4 @@ class ApplicationSchemaBase(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """

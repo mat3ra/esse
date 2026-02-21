@@ -33,5 +33,6 @@
             "description": "Whether licensing is present",
             "type": "boolean"
         }
-    }
+    },
+    "additionalProperties": false
 }

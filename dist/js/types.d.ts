@@ -6063,27 +6063,6 @@ export interface JobSchema {
                      * Whether licensing is present
                      */
                     isLicensed?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
                 };
                 executable?: {
                     /**
@@ -6613,27 +6592,6 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -7304,27 +7262,6 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             executable?: {
                 /**
@@ -47893,27 +47830,6 @@ export interface WorkflowPropertySchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             executable?: {
                 /**
@@ -48443,27 +48359,6 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -49134,27 +49029,6 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         };
         executable?: {
             /**
@@ -51757,27 +51631,6 @@ export interface PropertyHolderSchema {
                      * Whether licensing is present
                      */
                     isLicensed?: boolean;
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name?: string;
-                    /**
-                     * Identifies that entity is defaultable
-                     */
-                    isDefault?: boolean;
                 };
                 executable?: {
                     /**
@@ -52307,27 +52160,6 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -52998,27 +52830,6 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             executable?: {
                 /**
@@ -54252,58 +54063,9 @@ export interface ApplicationSchemaBase {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
-    build_config?: {
-        /**
-         * The bio description used for the module files.
-         */
-        bio?: string;
-        /**
-         * Modulefile name specific to application version and build type.
-         */
-        module_name?: string;
-        /**
-         * Apptainer image name.
-         */
-        image_name?: string;
-        /**
-         * Apptainer image tag.
-         */
-        image_tag?: string;
-        /**
-         * List of modulefile dependencies.
-         */
-        dependencies?: string[];
-        /**
-         * Environment variables to be exported before running the application, containing the key and value pairs.
-         */
-        environment_variables?: {};
-        [k: string]: unknown;
-    };
-    additionalProperties?: unknown;
     /**
      * The short name of the application. e.g. qe
      */
@@ -54328,27 +54090,6 @@ export interface ApplicationWithBuildConfigSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software/executable.json */
 export interface ExecutableSchema {
@@ -54547,10 +54288,6 @@ export interface TemplateSchema {
 /** Schema dist/js/schema/software_directory/modeling/deepmd.json */
 export interface DeePMDAppSchema {
     /**
-     * entity name
-     */
-    name?: "deepmd";
-    /**
      * Application's short description.
      */
     summary?: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
@@ -54558,7 +54295,6 @@ export interface DeePMDAppSchema {
      * Application version. e.g. 5.3.5
      */
     version?: "2.0.2";
-    exec?: "dp" | "lmp" | "python";
     /**
      * The short name of the application. e.g. qe
      */
@@ -54575,23 +54311,6 @@ export interface DeePMDAppSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/modeling/espresso/arguments.json */
 export interface QuantumEspressoArgumentsSchema {
@@ -54625,10 +54344,6 @@ export interface EspressoAppSchema {
 /** Schema dist/js/schema/software_directory/modeling/nwchem.json */
 export interface NWChem {
     /**
-     * entity name
-     */
-    name?: "NWChem";
-    /**
      * Application's short description.
      */
     summary?: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
@@ -54636,7 +54351,6 @@ export interface NWChem {
      * Application version. e.g. 5.3.5
      */
     version?: "6.6" | "7.0.2";
-    exec?: "nwchem";
     /**
      * The short name of the application. e.g. qe
      */
@@ -54653,23 +54367,6 @@ export interface NWChem {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/modeling/unit/execution.json */
 export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsingEspressoAsExample {
@@ -54702,27 +54399,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     executable?: {
         /**
@@ -54995,19 +54671,13 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
     /**
-     * entity name
-     */
-    name?: "vasp";
-    /**
      * Application's short description.
      */
     summary?: "vienna ab-initio simulation package";
-    flavor?: "vasp" | "vasp_nscf" | "vasp_bands";
     /**
      * Application version. e.g. 5.3.5
      */
     version?: "5.3.5";
-    exec?: "vasp";
     /**
      * The short name of the application. e.g. qe
      */
@@ -55024,31 +54694,9 @@ export interface ViennaAbInitoSimulationPackage {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
-    /**
-     * entity name
-     */
-    name?: "jupyterLab";
-    flavor?: "notebook";
     /**
      * Application's short description.
      */
@@ -55057,7 +54705,6 @@ export interface JupyterLabApplicationSchema {
      * Application version. e.g. 5.3.5
      */
     version?: "0.33.12";
-    exec?: "jupyter";
     /**
      * The short name of the application. e.g. qe
      */
@@ -55074,31 +54721,9 @@ export interface JupyterLabApplicationSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
-    /**
-     * entity name
-     */
-    name?: "python";
-    flavor?: "python2" | "python3";
     /**
      * Application's short description.
      */
@@ -55107,19 +54732,6 @@ export interface PythonProgramingLanguageSchema {
      * Application version. e.g. 5.3.5
      */
     version?: "2.7.5" | "3.6.1";
-    exec?: "python";
-    /**
-     * Optional arguments passed to the Python script
-     */
-    arguments?: string;
-    /**
-     * Optional environment variables exported before running the Python script
-     */
-    environment?: {};
-    /**
-     * Optional Python dependencies, e.g. amqp==1.4.6
-     */
-    dependencies?: unknown[];
     /**
      * The short name of the application. e.g. qe
      */
@@ -55136,31 +54748,9 @@ export interface PythonProgramingLanguageSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
-    /**
-     * entity name
-     */
-    name?: "shell";
-    flavor?: "sh" | "bash" | "zsh" | "csh";
     /**
      * Application's short description.
      */
@@ -55169,15 +54759,6 @@ export interface ShellScriptingLanguageSchema {
      * Application version. e.g. 5.3.5
      */
     version?: "4.2.46";
-    exec?: "sh" | "bash" | "zsh" | "csh";
-    /**
-     * Optional arguments passed to the Shell script
-     */
-    arguments?: string;
-    /**
-     * Optional environment variables exported before running the Shell script
-     */
-    environment?: {};
     /**
      * The short name of the application. e.g. qe
      */
@@ -55194,23 +54775,6 @@ export interface ShellScriptingLanguageSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
 }
 /** Schema dist/js/schema/software_directory/scripting/unit/execution.json */
 export interface ExecutionUnitSchemaForScriptingBasedApplications {
@@ -55243,27 +54807,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     executable?: {
         /**
@@ -56713,27 +56256,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     executable?: {
         /**
@@ -57755,27 +57277,6 @@ export interface Subworkflow {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         };
         executable?: {
             /**
@@ -58305,27 +57806,6 @@ export interface Subworkflow {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -58930,27 +58410,6 @@ export interface ExecutionUnitSchemaBase {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     executable?: {
         /**
@@ -60574,27 +60033,6 @@ export type WorkflowUnitSchema = {
          * Whether licensing is present
          */
         isLicensed?: boolean;
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
     };
     executable?: {
         /**
@@ -61834,27 +61272,6 @@ export interface WorkflowSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name?: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
             };
             executable?: {
                 /**
@@ -62384,27 +61801,6 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         };
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
@@ -63075,27 +62471,6 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name?: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
         };
         executable?: {
             /**
