@@ -5,6 +5,13 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "name": {
+            "enum": [
+                "NWChem"
+            ],
+            "description": "name of the application",
+            "type": "string"
+        },
         "summary": {
             "enum": [
                 "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations"

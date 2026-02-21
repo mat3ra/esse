@@ -5,6 +5,13 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "name": {
+            "enum": [
+                "vasp"
+            ],
+            "description": "name of the application",
+            "type": "string"
+        },
         "summary": {
             "enum": [
                 "vienna ab-initio simulation package"

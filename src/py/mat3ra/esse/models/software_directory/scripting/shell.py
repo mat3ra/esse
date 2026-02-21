@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    shell = "shell"
+
+
 class Summary(Enum):
     Shell_Script = "Shell Script"
 
@@ -22,6 +26,10 @@ class ShellScriptingLanguageSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.

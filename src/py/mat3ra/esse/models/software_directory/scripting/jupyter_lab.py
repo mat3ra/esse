@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    jupyterLab = "jupyterLab"
+
+
 class Summary(Enum):
     Jupyter_Lab = "Jupyter Lab"
 
@@ -22,6 +26,10 @@ class JupyterLabApplicationSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.

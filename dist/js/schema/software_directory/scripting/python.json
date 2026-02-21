@@ -5,6 +5,13 @@
     "type": "object",
     "additionalProperties": false,
     "properties": {
+        "name": {
+            "enum": [
+                "python"
+            ],
+            "description": "name of the application",
+            "type": "string"
+        },
         "summary": {
             "enum": [
                 "Python Script"

@@ -6040,6 +6040,10 @@ export interface JobSchema {
                 type: "execution";
                 application: {
                     /**
+                     * name of the application
+                     */
+                    name?: string;
+                    /**
                      * The short name of the application. e.g. qe
                      */
                     shortName?: string;
@@ -6568,6 +6572,10 @@ export interface JobSchema {
                 [k: string]: unknown;
             };
             application: {
+                /**
+                 * name of the application
+                 */
+                name?: string;
                 /**
                  * The short name of the application. e.g. qe
                  */
@@ -7238,6 +7246,10 @@ export interface JobSchema {
              */
             type: "execution";
             application: {
+                /**
+                 * name of the application
+                 */
+                name?: string;
                 /**
                  * The short name of the application. e.g. qe
                  */
@@ -47807,6 +47819,10 @@ export interface WorkflowPropertySchema {
             type: "execution";
             application: {
                 /**
+                 * name of the application
+                 */
+                name?: string;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -48335,6 +48351,10 @@ export interface WorkflowPropertySchema {
             [k: string]: unknown;
         };
         application: {
+            /**
+             * name of the application
+             */
+            name?: string;
             /**
              * The short name of the application. e.g. qe
              */
@@ -49005,6 +49025,10 @@ export interface WorkflowPropertySchema {
          */
         type: "execution";
         application: {
+            /**
+             * name of the application
+             */
+            name?: string;
             /**
              * The short name of the application. e.g. qe
              */
@@ -51608,6 +51632,10 @@ export interface PropertyHolderSchema {
                 type: "execution";
                 application: {
                     /**
+                     * name of the application
+                     */
+                    name?: string;
+                    /**
                      * The short name of the application. e.g. qe
                      */
                     shortName?: string;
@@ -52136,6 +52164,10 @@ export interface PropertyHolderSchema {
                 [k: string]: unknown;
             };
             application: {
+                /**
+                 * name of the application
+                 */
+                name?: string;
                 /**
                  * The short name of the application. e.g. qe
                  */
@@ -52806,6 +52838,10 @@ export interface PropertyHolderSchema {
              */
             type: "execution";
             application: {
+                /**
+                 * name of the application
+                 */
+                name?: string;
                 /**
                  * The short name of the application. e.g. qe
                  */
@@ -54040,6 +54076,10 @@ export interface ApplicationVersionsWithBuildConfigSchema {
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**
+     * name of the application
+     */
+    name?: string;
+    /**
      * The short name of the application. e.g. qe
      */
     shortName?: string;
@@ -54066,6 +54106,10 @@ export interface ApplicationSchemaBase {
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
+    /**
+     * name of the application
+     */
+    name?: string;
     /**
      * The short name of the application. e.g. qe
      */
@@ -54288,6 +54332,10 @@ export interface TemplateSchema {
 /** Schema dist/js/schema/software_directory/modeling/deepmd.json */
 export interface DeePMDAppSchema {
     /**
+     * name of the application
+     */
+    name?: "deepmd";
+    /**
      * Application's short description.
      */
     summary?: "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics";
@@ -54344,6 +54392,10 @@ export interface EspressoAppSchema {
 /** Schema dist/js/schema/software_directory/modeling/nwchem.json */
 export interface NWChem {
     /**
+     * name of the application
+     */
+    name?: "NWChem";
+    /**
      * Application's short description.
      */
     summary?: "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations";
@@ -54375,6 +54427,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
      */
     type: "execution";
     application: {
+        /**
+         * name of the application
+         */
+        name?: string;
         /**
          * The short name of the application. e.g. qe
          */
@@ -54671,6 +54727,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
     /**
+     * name of the application
+     */
+    name?: "vasp";
+    /**
      * Application's short description.
      */
     summary?: "vienna ab-initio simulation package";
@@ -54697,6 +54757,10 @@ export interface ViennaAbInitoSimulationPackage {
 }
 /** Schema dist/js/schema/software_directory/scripting/jupyter_lab.json */
 export interface JupyterLabApplicationSchema {
+    /**
+     * name of the application
+     */
+    name?: "jupyterLab";
     /**
      * Application's short description.
      */
@@ -54725,6 +54789,10 @@ export interface JupyterLabApplicationSchema {
 /** Schema dist/js/schema/software_directory/scripting/python.json */
 export interface PythonProgramingLanguageSchema {
     /**
+     * name of the application
+     */
+    name?: "python";
+    /**
      * Application's short description.
      */
     summary?: "Python Script";
@@ -54751,6 +54819,10 @@ export interface PythonProgramingLanguageSchema {
 }
 /** Schema dist/js/schema/software_directory/scripting/shell.json */
 export interface ShellScriptingLanguageSchema {
+    /**
+     * name of the application
+     */
+    name?: "shell";
     /**
      * Application's short description.
      */
@@ -54783,6 +54855,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      */
     type: "execution";
     application: {
+        /**
+         * name of the application
+         */
+        name?: string;
         /**
          * The short name of the application. e.g. qe
          */
@@ -56233,6 +56309,10 @@ export type WorkflowSubworkflowUnitSchema = {
     type: "execution";
     application: {
         /**
+         * name of the application
+         */
+        name?: string;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -57254,6 +57334,10 @@ export interface Subworkflow {
         type: "execution";
         application: {
             /**
+             * name of the application
+             */
+            name?: string;
+            /**
              * The short name of the application. e.g. qe
              */
             shortName?: string;
@@ -57782,6 +57866,10 @@ export interface Subworkflow {
         [k: string]: unknown;
     };
     application: {
+        /**
+         * name of the application
+         */
+        name?: string;
         /**
          * The short name of the application. e.g. qe
          */
@@ -58386,6 +58474,10 @@ export interface ExecutionUnitSchemaBase {
      */
     type: "execution";
     application: {
+        /**
+         * name of the application
+         */
+        name?: string;
         /**
          * The short name of the application. e.g. qe
          */
@@ -60010,6 +60102,10 @@ export type WorkflowUnitSchema = {
     type: "execution";
     application: {
         /**
+         * name of the application
+         */
+        name?: string;
+        /**
          * The short name of the application. e.g. qe
          */
         shortName?: string;
@@ -61249,6 +61345,10 @@ export interface WorkflowSchema {
             type: "execution";
             application: {
                 /**
+                 * name of the application
+                 */
+                name?: string;
+                /**
                  * The short name of the application. e.g. qe
                  */
                 shortName?: string;
@@ -61777,6 +61877,10 @@ export interface WorkflowSchema {
             [k: string]: unknown;
         };
         application: {
+            /**
+             * name of the application
+             */
+            name?: string;
             /**
              * The short name of the application. e.g. qe
              */
@@ -62447,6 +62551,10 @@ export interface WorkflowSchema {
          */
         type: "execution";
         application: {
+            /**
+             * name of the application
+             */
+            name?: string;
             /**
              * The short name of the application. e.g. qe
              */

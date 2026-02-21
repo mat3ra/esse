@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    vasp = "vasp"
+
+
 class Summary(Enum):
     vienna_ab_initio_simulation_package = "vienna ab-initio simulation package"
 
@@ -22,6 +26,10 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.

@@ -13,6 +13,10 @@ class ApplicationSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[str] = None
+    """
+    name of the application
+    """
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe

@@ -3285,6 +3285,10 @@
                                                             "type": "object",
                                                             "additionalProperties": false,
                                                             "properties": {
+                                                                "name": {
+                                                                    "description": "name of the application",
+                                                                    "type": "string"
+                                                                },
                                                                 "shortName": {
                                                                     "description": "The short name of the application. e.g. qe",
                                                                     "type": "string"
@@ -4455,6 +4459,10 @@
                                         "type": "object",
                                         "additionalProperties": false,
                                         "properties": {
+                                            "name": {
+                                                "description": "name of the application",
+                                                "type": "string"
+                                            },
                                             "shortName": {
                                                 "description": "The short name of the application. e.g. qe",
                                                 "type": "string"
@@ -5843,6 +5851,10 @@
                                                 "type": "object",
                                                 "additionalProperties": false,
                                                 "properties": {
+                                                    "name": {
+                                                        "description": "name of the application",
+                                                        "type": "string"
+                                                    },
                                                     "shortName": {
                                                         "description": "The short name of the application. e.g. qe",
                                                         "type": "string"

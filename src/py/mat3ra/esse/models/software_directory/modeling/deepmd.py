@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    deepmd = "deepmd"
+
+
 class Summary(Enum):
     DeePMD_is_a_deep_learning_package_that_is_based_on_neural_network_fitted_first_principles_data_for_many_body_potential_energy_representation_and_molecular_dynamics = "DeePMD is a deep learning package that is based on neural network fitted first-principles data for many-body potential energy representation and molecular dynamics"
 
@@ -22,6 +26,10 @@ class DeePMDAppSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.

@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    python = "python"
+
+
 class Summary(Enum):
     Python_Script = "Python Script"
 
@@ -23,6 +27,10 @@ class PythonProgramingLanguageSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.

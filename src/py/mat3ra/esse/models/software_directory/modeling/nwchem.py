@@ -10,6 +10,10 @@ from typing import Optional
 from pydantic import BaseModel, ConfigDict
 
 
+class Name(Enum):
+    NWChem = "NWChem"
+
+
 class Summary(Enum):
     NWChem__a_comprehensive_and_scalable_open_source_solution_for_large_scale_molecular_simulations = (
         "NWChem: a comprehensive and scalable open-source solution for large scale molecular simulations"
@@ -25,6 +29,10 @@ class NWChem(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    name: Optional[Name] = None
+    """
+    name of the application
+    """
     summary: Optional[Summary] = None
     """
     Application's short description.
