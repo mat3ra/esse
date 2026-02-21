@@ -5,13 +5,20 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
+from typing import Any, Dict, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
     shell = "shell"
+
+
+class Flavor(Enum):
+    sh = "sh"
+    bash = "bash"
+    zsh = "zsh"
+    csh = "csh"
 
 
 class Summary(Enum):
@@ -22,14 +29,19 @@ class Version(Enum):
     field_4_2_46 = "4.2.46"
 
 
+class Exec(Enum):
+    sh = "sh"
+    bash = "bash"
+    zsh = "zsh"
+    csh = "csh"
+
+
 class ShellScriptingLanguageSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     name: Optional[Name] = None
     """
-    name of the application
+    entity name
     """
+    flavor: Optional[Flavor] = None
     summary: Optional[Summary] = None
     """
     Application's short description.
@@ -37,6 +49,15 @@ class ShellScriptingLanguageSchema(BaseModel):
     version: Optional[Version] = None
     """
     Application version. e.g. 5.3.5
+    """
+    exec: Optional[Exec] = None
+    arguments: Optional[str] = None
+    """
+    Optional arguments passed to the Shell script
+    """
+    environment: Optional[Dict[str, Any]] = None
+    """
+    Optional environment variables exported before running the Shell script
     """
     shortName: Optional[str] = None
     """
@@ -57,4 +78,17 @@ class ShellScriptingLanguageSchema(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
+    """
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
     """

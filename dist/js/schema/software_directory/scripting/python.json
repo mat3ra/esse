@@ -3,14 +3,19 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Python Programing Language Schema",
     "type": "object",
-    "additionalProperties": false,
     "properties": {
         "name": {
             "enum": [
                 "python"
             ],
-            "description": "name of the application",
+            "description": "entity name",
             "type": "string"
+        },
+        "flavor": {
+            "enum": [
+                "python2",
+                "python3"
+            ]
         },
         "summary": {
             "enum": [
@@ -26,6 +31,23 @@
             ],
             "description": "Application version. e.g. 5.3.5",
             "type": "string"
+        },
+        "exec": {
+            "enum": [
+                "python"
+            ]
+        },
+        "arguments": {
+            "description": "Optional arguments passed to the Python script",
+            "type": "string"
+        },
+        "environment": {
+            "description": "Optional environment variables exported before running the Python script",
+            "type": "object"
+        },
+        "dependencies": {
+            "description": "Optional Python dependencies, e.g. amqp==1.4.6",
+            "type": "array"
         },
         "shortName": {
             "description": "The short name of the application. e.g. qe",
@@ -47,6 +69,22 @@
         "isLicensed": {
             "description": "Whether licensing is present",
             "type": "boolean"
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
         }
     }
 }

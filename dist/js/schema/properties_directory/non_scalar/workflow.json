@@ -1185,12 +1185,7 @@
                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                             "title": "application schema (base)",
                                             "type": "object",
-                                            "additionalProperties": false,
                                             "properties": {
-                                                "name": {
-                                                    "description": "name of the application",
-                                                    "type": "string"
-                                                },
                                                 "shortName": {
                                                     "description": "The short name of the application. e.g. qe",
                                                     "type": "string"
@@ -1219,6 +1214,26 @@
                                                 "isLicensed": {
                                                     "description": "Whether licensing is present",
                                                     "type": "boolean"
+                                                },
+                                                "_id": {
+                                                    "description": "entity identity",
+                                                    "type": "string"
+                                                },
+                                                "slug": {
+                                                    "description": "entity slug",
+                                                    "type": "string"
+                                                },
+                                                "systemName": {
+                                                    "type": "string"
+                                                },
+                                                "schemaVersion": {
+                                                    "description": "entity's schema version. Used to distinct between different schemas.",
+                                                    "type": "string",
+                                                    "default": "2022.8.16"
+                                                },
+                                                "name": {
+                                                    "description": "entity name",
+                                                    "type": "string"
                                                 }
                                             }
                                         },
@@ -2364,12 +2379,7 @@
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "application schema (base)",
                         "type": "object",
-                        "additionalProperties": false,
                         "properties": {
-                            "name": {
-                                "description": "name of the application",
-                                "type": "string"
-                            },
                             "shortName": {
                                 "description": "The short name of the application. e.g. qe",
                                 "type": "string"
@@ -2398,6 +2408,26 @@
                             "isLicensed": {
                                 "description": "Whether licensing is present",
                                 "type": "boolean"
+                            },
+                            "_id": {
+                                "description": "entity identity",
+                                "type": "string"
+                            },
+                            "slug": {
+                                "description": "entity slug",
+                                "type": "string"
+                            },
+                            "systemName": {
+                                "type": "string"
+                            },
+                            "schemaVersion": {
+                                "description": "entity's schema version. Used to distinct between different schemas.",
+                                "type": "string",
+                                "default": "2022.8.16"
+                            },
+                            "name": {
+                                "description": "entity name",
+                                "type": "string"
                             }
                         }
                     },
@@ -3761,12 +3791,7 @@
                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                 "title": "application schema (base)",
                                 "type": "object",
-                                "additionalProperties": false,
                                 "properties": {
-                                    "name": {
-                                        "description": "name of the application",
-                                        "type": "string"
-                                    },
                                     "shortName": {
                                         "description": "The short name of the application. e.g. qe",
                                         "type": "string"
@@ -3795,6 +3820,26 @@
                                     "isLicensed": {
                                         "description": "Whether licensing is present",
                                         "type": "boolean"
+                                    },
+                                    "_id": {
+                                        "description": "entity identity",
+                                        "type": "string"
+                                    },
+                                    "slug": {
+                                        "description": "entity slug",
+                                        "type": "string"
+                                    },
+                                    "systemName": {
+                                        "type": "string"
+                                    },
+                                    "schemaVersion": {
+                                        "description": "entity's schema version. Used to distinct between different schemas.",
+                                        "type": "string",
+                                        "default": "2022.8.16"
+                                    },
+                                    "name": {
+                                        "description": "entity name",
+                                        "type": "string"
                                     }
                                 }
                             },

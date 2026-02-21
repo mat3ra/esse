@@ -5,13 +5,18 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
     python = "python"
+
+
+class Flavor(Enum):
+    python2 = "python2"
+    python3 = "python3"
 
 
 class Summary(Enum):
@@ -23,14 +28,16 @@ class Version(Enum):
     field_3_6_1 = "3.6.1"
 
 
+class Exec(Enum):
+    python = "python"
+
+
 class PythonProgramingLanguageSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     name: Optional[Name] = None
     """
-    name of the application
+    entity name
     """
+    flavor: Optional[Flavor] = None
     summary: Optional[Summary] = None
     """
     Application's short description.
@@ -38,6 +45,19 @@ class PythonProgramingLanguageSchema(BaseModel):
     version: Optional[Version] = None
     """
     Application version. e.g. 5.3.5
+    """
+    exec: Optional[Exec] = None
+    arguments: Optional[str] = None
+    """
+    Optional arguments passed to the Python script
+    """
+    environment: Optional[Dict[str, Any]] = None
+    """
+    Optional environment variables exported before running the Python script
+    """
+    dependencies: Optional[List] = None
+    """
+    Optional Python dependencies, e.g. amqp==1.4.6
     """
     shortName: Optional[str] = None
     """
@@ -58,4 +78,17 @@ class PythonProgramingLanguageSchema(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
+    """
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
     """

@@ -4,19 +4,46 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
+
+
+class ApplicationVersionsWithBuildConfigSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    bio: Optional[str] = None
+    """
+    The bio description used for the module files.
+    """
+    module_name: Optional[str] = None
+    """
+    Modulefile name specific to application version and build type.
+    """
+    image_name: Optional[str] = None
+    """
+    Apptainer image name.
+    """
+    image_tag: Optional[str] = None
+    """
+    Apptainer image tag.
+    """
+    dependencies: Optional[List[str]] = None
+    """
+    List of modulefile dependencies.
+    """
+    environment_variables: Optional[Dict[str, Any]] = None
+    """
+    Environment variables to be exported before running the application, containing the key and value pairs.
+    """
 
 
 class ApplicationWithBuildConfigSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
+    build_config: Optional[ApplicationVersionsWithBuildConfigSchema] = Field(
+        None, title="application versions with build config schema"
     )
-    name: Optional[str] = None
-    """
-    name of the application
-    """
+    additionalProperties: Optional[Any] = None
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -44,4 +71,21 @@ class ApplicationWithBuildConfigSchema(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
+    """
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: Optional[str] = None
+    """
+    entity name
     """

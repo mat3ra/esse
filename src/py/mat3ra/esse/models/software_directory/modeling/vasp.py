@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
@@ -18,26 +18,35 @@ class Summary(Enum):
     vienna_ab_initio_simulation_package = "vienna ab-initio simulation package"
 
 
+class Flavor(Enum):
+    vasp = "vasp"
+    vasp_nscf = "vasp_nscf"
+    vasp_bands = "vasp_bands"
+
+
 class Version(Enum):
     field_5_3_5 = "5.3.5"
 
 
+class Exec(Enum):
+    vasp = "vasp"
+
+
 class ViennaAbInitoSimulationPackage(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     name: Optional[Name] = None
     """
-    name of the application
+    entity name
     """
     summary: Optional[Summary] = None
     """
     Application's short description.
     """
+    flavor: Optional[Flavor] = None
     version: Optional[Version] = None
     """
     Application version. e.g. 5.3.5
     """
+    exec: Optional[Exec] = None
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -57,4 +66,17 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
+    """
+    id: Optional[str] = Field(None, alias="_id")
+    """
+    entity identity
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
     """
