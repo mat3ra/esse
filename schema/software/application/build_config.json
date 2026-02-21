@@ -1,0 +1,36 @@
+{
+    "$id": "software/application/build-config",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "application versions with build config schema",
+    "type": "object",
+    "properties": {
+        "bio": {
+            "description": "The bio description used for the module files.",
+            "type": "string"
+        },
+        "module_name": {
+            "description": "Modulefile name specific to application version and build type.",
+            "type": "string"
+        },
+        "image_name": {
+            "description": "Apptainer image name.",
+            "type": "string"
+        },
+        "image_tag": {
+            "description": "Apptainer image tag.",
+            "type": "string"
+        },
+        "dependencies": {
+            "description": "List of modulefile dependencies.",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "environment_variables": {
+            "description": "Environment variables to be exported before running the application, containing the key and value pairs.",
+            "type": "object"
+        }
+    },
+    "additionalProperties": true
+}

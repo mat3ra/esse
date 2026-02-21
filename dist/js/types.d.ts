@@ -54156,6 +54156,54 @@ export interface PropertySourceSchema {
         }[];
     };
 }
+/** Schema dist/js/schema/software/application/build_config.json */
+export interface ApplicationVersionsWithBuildConfigSchema {
+    /**
+     * The bio description used for the module files.
+     */
+    bio?: string;
+    /**
+     * Modulefile name specific to application version and build type.
+     */
+    module_name?: string;
+    /**
+     * Apptainer image name.
+     */
+    image_name?: string;
+    /**
+     * Apptainer image tag.
+     */
+    image_tag?: string;
+    /**
+     * List of modulefile dependencies.
+     */
+    dependencies?: string[];
+    /**
+     * Environment variables to be exported before running the application, containing the key and value pairs.
+     */
+    environment_variables?: {};
+    [k: string]: unknown;
+}
+/** Schema dist/js/schema/software/application/versions.json */
+export interface ApplicationVersionsSchema {
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version?: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build?: string;
+    /**
+     * Identifies that build is default.
+     */
+    isDefault?: boolean;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
     /**
@@ -54207,30 +54255,34 @@ export interface ApplicationSchemaBase {
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
-    /**
-     * The bio description used for the module files.
-     */
-    bio?: string;
-    /**
-     * Modulefile name specific to application version and build type.
-     */
-    module_name?: string;
-    /**
-     * Apptainer image name.
-     */
-    image_name?: string;
-    /**
-     * Apptainer image tag.
-     */
-    image_tag?: string;
-    /**
-     * List of modulefile dependencies.
-     */
-    dependencies?: string[];
-    /**
-     * Environment variables to be exported before running the application, containing the key and value pairs.
-     */
-    environment_variables?: {};
+    build_config?: {
+        /**
+         * The bio description used for the module files.
+         */
+        bio?: string;
+        /**
+         * Modulefile name specific to application version and build type.
+         */
+        module_name?: string;
+        /**
+         * Apptainer image name.
+         */
+        image_name?: string;
+        /**
+         * Apptainer image tag.
+         */
+        image_tag?: string;
+        /**
+         * List of modulefile dependencies.
+         */
+        dependencies?: string[];
+        /**
+         * Environment variables to be exported before running the application, containing the key and value pairs.
+         */
+        environment_variables?: {};
+        [k: string]: unknown;
+    };
+    additionalProperties?: unknown;
     /**
      * The short name of the application. e.g. qe
      */
