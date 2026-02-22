@@ -131,6 +131,14 @@ class NameResultSchema(BaseModel):
     """
     The name of this item. e.g. scf_accuracy
     """
+    filetype: Optional[str] = None
+    """
+    Type of result file, e.g. image, text
+    """
+    basename: Optional[str] = None
+    """
+    Base filename of the result file
+    """
 
 
 class StatusTrackItem(BaseModel):
@@ -186,14 +194,6 @@ class DataIOUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -287,14 +287,6 @@ class ReduceUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -404,14 +396,6 @@ class ConditionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -494,14 +478,6 @@ class AssertionUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -754,14 +730,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -848,14 +816,6 @@ class AssignmentUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -943,14 +903,6 @@ class ProcessingUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1327,14 +1279,6 @@ class DataIOUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1417,14 +1361,6 @@ class ReduceUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1523,14 +1459,6 @@ class ConditionUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1613,14 +1541,6 @@ class AssertionUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1813,14 +1733,6 @@ class ExecutionUnitSchemaBase11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -1907,14 +1819,6 @@ class AssignmentUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -2002,14 +1906,6 @@ class ProcessingUnitSchema11(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -2112,14 +2008,6 @@ class MapUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
@@ -2194,14 +2082,6 @@ class SubworkflowUnitSchema(BaseModel):
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
     context: Optional[Dict[str, Any]] = None
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
-    """
     slug: Optional[str] = None
     """
     entity slug
