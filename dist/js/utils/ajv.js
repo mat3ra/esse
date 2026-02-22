@@ -65,7 +65,7 @@ function getAjvInstance({ clean, coerceTypes, useDefaults }) {
     }
     return ajvValidator;
 }
-function getValidator(jsonSchema, { clean, coerceTypes, useDefaults = true }) {
+function getValidator(jsonSchema, { clean, coerceTypes, useDefaults = true, }) {
     const schemaKey = jsonSchema.$id;
     const ajv = getAjvInstance({ clean, coerceTypes, useDefaults });
     let validate = ajv.getSchema(schemaKey);

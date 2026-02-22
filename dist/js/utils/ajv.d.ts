@@ -6,7 +6,7 @@ interface AjvInstanceOptions {
     coerceTypes: boolean;
     useDefaults: boolean;
 }
-export declare function getValidator(jsonSchema: SchemaObject, { clean, coerceTypes, useDefaults }: Omit<AjvInstanceOptions, "useDefaults"> & Partial<Pick<AjvInstanceOptions, "useDefaults">>): AnyValidateFunction;
+export declare function getValidator(jsonSchema: SchemaObject, { clean, coerceTypes, useDefaults, }: Omit<AjvInstanceOptions, "useDefaults"> & Partial<Pick<AjvInstanceOptions, "useDefaults">>): AnyValidateFunction;
 /**
  * Validates a given example against the schema.
  * @param example example to validate.

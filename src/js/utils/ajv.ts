@@ -82,7 +82,11 @@ function getAjvInstance({ clean, coerceTypes, useDefaults }: AjvInstanceOptions)
 
 export function getValidator(
     jsonSchema: SchemaObject,
-    { clean, coerceTypes, useDefaults = true }: Omit<AjvInstanceOptions, "useDefaults"> & Partial<Pick<AjvInstanceOptions, "useDefaults">>,
+    {
+        clean,
+        coerceTypes,
+        useDefaults = true,
+    }: Omit<AjvInstanceOptions, "useDefaults"> & Partial<Pick<AjvInstanceOptions, "useDefaults">>,
 ): AnyValidateFunction {
     const schemaKey = jsonSchema.$id as string;
     const ajv = getAjvInstance({ clean, coerceTypes, useDefaults });
