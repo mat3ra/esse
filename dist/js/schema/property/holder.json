@@ -2338,6 +2338,14 @@
                                                         "context": {
                                                             "type": "object"
                                                         },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
+                                                        },
                                                         "slug": {
                                                             "description": "entity slug",
                                                             "type": "string"
@@ -2590,6 +2598,14 @@
                                                         },
                                                         "context": {
                                                             "type": "object"
+                                                        },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
                                                         },
                                                         "slug": {
                                                             "description": "entity slug",
@@ -2862,6 +2878,14 @@
                                                         "context": {
                                                             "type": "object"
                                                         },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
+                                                        },
                                                         "slug": {
                                                             "description": "entity slug",
                                                             "type": "string"
@@ -3094,6 +3118,14 @@
                                                         },
                                                         "context": {
                                                             "type": "object"
+                                                        },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
                                                         },
                                                         "slug": {
                                                             "description": "entity slug",
@@ -3742,6 +3774,14 @@
                                                         "context": {
                                                             "type": "object"
                                                         },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
+                                                        },
                                                         "slug": {
                                                             "description": "entity slug",
                                                             "type": "string"
@@ -4009,6 +4049,14 @@
                                                         "context": {
                                                             "type": "object"
                                                         },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
+                                                        },
                                                         "slug": {
                                                             "description": "entity slug",
                                                             "type": "string"
@@ -4248,6 +4296,14 @@
                                                         },
                                                         "context": {
                                                             "type": "object"
+                                                        },
+                                                        "filetype": {
+                                                            "description": "Type of result file, e.g. image, text",
+                                                            "type": "string"
+                                                        },
+                                                        "basename": {
+                                                            "description": "Base filename of the result file",
+                                                            "type": "string"
                                                         },
                                                         "slug": {
                                                             "description": "entity slug",
@@ -4537,6 +4593,10 @@
                                     "isMultiMaterial": {
                                         "description": "Defines whether the subworkflow is for a multi-material simulation",
                                         "type": "boolean"
+                                    },
+                                    "systemName": {
+                                        "description": "system name of the subworkflow",
+                                        "type": "string"
                                     },
                                     "_id": {
                                         "description": "subworkflow identity",
@@ -4944,6 +5004,14 @@
                                             "context": {
                                                 "type": "object"
                                             },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "description": "entity slug",
                                                 "type": "string"
@@ -5196,6 +5264,14 @@
                                             },
                                             "context": {
                                                 "type": "object"
+                                            },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
                                             },
                                             "slug": {
                                                 "description": "entity slug",
@@ -5468,6 +5544,14 @@
                                             "context": {
                                                 "type": "object"
                                             },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "description": "entity slug",
                                                 "type": "string"
@@ -5700,6 +5784,14 @@
                                             },
                                             "context": {
                                                 "type": "object"
+                                            },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
                                             },
                                             "slug": {
                                                 "description": "entity slug",
@@ -6348,6 +6440,14 @@
                                             "context": {
                                                 "type": "object"
                                             },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "description": "entity slug",
                                                 "type": "string"
@@ -6615,6 +6715,14 @@
                                             "context": {
                                                 "type": "object"
                                             },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "description": "entity slug",
                                                 "type": "string"
@@ -6854,6 +6962,14 @@
                                             },
                                             "context": {
                                                 "type": "object"
+                                            },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
                                             },
                                             "slug": {
                                                 "description": "entity slug",
@@ -7125,6 +7241,14 @@
                                             "context": {
                                                 "type": "object"
                                             },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
+                                            },
                                             "slug": {
                                                 "description": "entity slug",
                                                 "type": "string"
@@ -7347,6 +7471,14 @@
                                             },
                                             "context": {
                                                 "type": "object"
+                                            },
+                                            "filetype": {
+                                                "description": "Type of result file, e.g. image, text",
+                                                "type": "string"
+                                            },
+                                            "basename": {
+                                                "description": "Base filename of the result file",
+                                                "type": "string"
                                             },
                                             "slug": {
                                                 "description": "entity slug",

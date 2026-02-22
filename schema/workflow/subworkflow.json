@@ -32,6 +32,10 @@
         "isMultiMaterial": {
             "description": "Defines whether the subworkflow is for a multi-material simulation",
             "type": "boolean"
+        },
+        "systemName": {
+            "description": "system name of the subworkflow",
+            "type": "string"
         }
     },
     "required": [

@@ -479,6 +479,14 @@
         "context": {
             "type": "object"
         },
+        "filetype": {
+            "description": "Type of result file, e.g. image, text",
+            "type": "string"
+        },
+        "basename": {
+            "description": "Base filename of the result file",
+            "type": "string"
+        },
         "slug": {
             "description": "entity slug",
             "type": "string"

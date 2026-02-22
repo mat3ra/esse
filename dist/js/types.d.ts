@@ -356,23 +356,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -411,23 +395,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -483,23 +451,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -538,23 +490,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -610,23 +546,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -665,23 +585,7 @@ export interface MaterialsProjectSchema {
                          * @minItems 3
                          * @maxItems 3
                          */
-                        matrix: [
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ],
-                            [
-                                number,
-                                number,
-                                number
-                            ]
-                        ];
+                        matrix: [[number, number, number], [number, number, number], [number, number, number]];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -992,23 +896,7 @@ export interface BandstructureData {
                  * @minItems 3
                  * @maxItems 3
                  */
-                matrix: [
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ]
-                ];
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -1047,23 +935,7 @@ export interface BandstructureData {
                  * @minItems 3
                  * @maxItems 3
                  */
-                matrix: [
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ],
-                    [
-                        number,
-                        number,
-                        number
-                    ]
-                ];
+                matrix: [[number, number, number], [number, number, number], [number, number, number]];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -1452,23 +1324,7 @@ export interface NISTJARVISDbEntrySchema {
          * @minItems 3
          * @maxItems 3
          */
-        lattice_mat?: [
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ],
-            [
-                number,
-                number,
-                number
-            ]
-        ];
+        lattice_mat?: [[number, number, number], [number, number, number], [number, number, number]];
         /**
          * Atomic coordinates for each atom in the unit cell
          *
@@ -3700,23 +3556,7 @@ export type Coordinate3DSchema = [number, number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type Matrix3X3Schema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type Matrix3X3Schema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/core/abstract/vector_2d.json */
 /**
  * @minItems 2
@@ -5795,6 +5635,14 @@ export interface JobSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -5905,6 +5753,14 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -6033,6 +5889,14 @@ export interface JobSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -6134,6 +5998,14 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -6436,6 +6308,14 @@ export interface JobSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -6551,6 +6431,14 @@ export interface JobSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -6659,6 +6547,14 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -6803,6 +6699,10 @@ export interface JobSchema {
              * Defines whether the subworkflow is for a multi-material simulation
              */
             isMultiMaterial?: boolean;
+            /**
+             * system name of the subworkflow
+             */
+            systemName?: string;
             /**
              * subworkflow identity
              */
@@ -7036,6 +6936,14 @@ export interface JobSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -7146,6 +7054,14 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -7274,6 +7190,14 @@ export interface JobSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -7375,6 +7299,14 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -7677,6 +7609,14 @@ export interface JobSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -7792,6 +7732,14 @@ export interface JobSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -7900,6 +7848,14 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -8021,6 +7977,14 @@ export interface JobSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -8114,6 +8078,14 @@ export interface JobSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -9314,23 +9286,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -10507,23 +10463,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -11701,23 +11641,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -12894,23 +12818,7 @@ export interface InterfaceConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -14394,23 +14302,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -15587,23 +15479,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -17981,23 +17857,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -19174,23 +19034,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -20368,23 +20212,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -21561,23 +21389,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
              * @minItems 3
              * @maxItems 3
              */
-            strain_matrix: [
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ],
-                [
-                    number,
-                    number,
-                    number
-                ]
-            ];
+            strain_matrix: [[number, number, number], [number, number, number], [number, number, number]];
             /**
              * @minItems 2
              * @maxItems 2
@@ -32260,23 +32072,7 @@ export type DMillerIndicesSchema = [number, number];
  * @minItems 3
  * @maxItems 3
  */
-export type SupercellMatrix3DSchema = [
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ],
-    [
-        number,
-        number,
-        number
-    ]
-];
+export type SupercellMatrix3DSchema = [[number, number, number], [number, number, number], [number, number, number]];
 /** Schema dist/js/schema/materials_category_components/entities/auxiliary/two_dimensional/miller_indices.json */
 /**
  * Miller indices [h, k, l] defining crystallographic planes
@@ -47801,6 +47597,14 @@ export interface WorkflowPropertySchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -47911,6 +47715,14 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -48039,6 +47851,14 @@ export interface WorkflowPropertySchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -48140,6 +47960,14 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -48442,6 +48270,14 @@ export interface WorkflowPropertySchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -48557,6 +48393,14 @@ export interface WorkflowPropertySchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -48665,6 +48509,14 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -48809,6 +48661,10 @@ export interface WorkflowPropertySchema {
          * Defines whether the subworkflow is for a multi-material simulation
          */
         isMultiMaterial?: boolean;
+        /**
+         * system name of the subworkflow
+         */
+        systemName?: string;
         /**
          * subworkflow identity
          */
@@ -49042,6 +48898,14 @@ export interface WorkflowPropertySchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -49152,6 +49016,14 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -49280,6 +49152,14 @@ export interface WorkflowPropertySchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -49381,6 +49261,14 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -49683,6 +49571,14 @@ export interface WorkflowPropertySchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -49798,6 +49694,14 @@ export interface WorkflowPropertySchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -49906,6 +49810,14 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -50027,6 +49939,14 @@ export interface WorkflowPropertySchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -50120,6 +50040,14 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -51665,6 +51593,14 @@ export interface PropertyHolderSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -51775,6 +51711,14 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -51903,6 +51847,14 @@ export interface PropertyHolderSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -52004,6 +51956,14 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -52306,6 +52266,14 @@ export interface PropertyHolderSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -52421,6 +52389,14 @@ export interface PropertyHolderSchema {
                 enableRender?: boolean;
                 context?: {};
                 /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
+                /**
                  * entity slug
                  */
                 slug?: string;
@@ -52529,6 +52505,14 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 context?: {};
+                /**
+                 * Type of result file, e.g. image, text
+                 */
+                filetype?: string;
+                /**
+                 * Base filename of the result file
+                 */
+                basename?: string;
                 /**
                  * entity slug
                  */
@@ -52673,6 +52657,10 @@ export interface PropertyHolderSchema {
              * Defines whether the subworkflow is for a multi-material simulation
              */
             isMultiMaterial?: boolean;
+            /**
+             * system name of the subworkflow
+             */
+            systemName?: string;
             /**
              * subworkflow identity
              */
@@ -52906,6 +52894,14 @@ export interface PropertyHolderSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -53016,6 +53012,14 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -53144,6 +53148,14 @@ export interface PropertyHolderSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -53245,6 +53257,14 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -53547,6 +53567,14 @@ export interface PropertyHolderSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -53662,6 +53690,14 @@ export interface PropertyHolderSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -53770,6 +53806,14 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -53891,6 +53935,14 @@ export interface PropertyHolderSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -53984,6 +54036,14 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -55269,6 +55329,14 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -55809,6 +55877,14 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -56621,6 +56697,14 @@ export type WorkflowSubworkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -56731,6 +56815,14 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -56859,6 +56951,14 @@ export type WorkflowSubworkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -56960,6 +57060,14 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -57262,6 +57370,14 @@ export type WorkflowSubworkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -57377,6 +57493,14 @@ export type WorkflowSubworkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -57485,6 +57609,14 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -57663,6 +57795,14 @@ export interface Subworkflow {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -57773,6 +57913,14 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -57901,6 +58049,14 @@ export interface Subworkflow {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -58002,6 +58158,14 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -58304,6 +58468,14 @@ export interface Subworkflow {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -58419,6 +58591,14 @@ export interface Subworkflow {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -58527,6 +58707,14 @@ export interface Subworkflow {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -58671,6 +58859,10 @@ export interface Subworkflow {
      * Defines whether the subworkflow is for a multi-material simulation
      */
     isMultiMaterial?: boolean;
+    /**
+     * system name of the subworkflow
+     */
+    systemName?: string;
     /**
      * subworkflow identity
      */
@@ -58833,6 +59025,14 @@ export interface AssertionUnitSchema {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -58950,6 +59150,14 @@ export interface AssignmentUnitSchema {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -59046,6 +59254,14 @@ export interface WorkflowBaseUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -59175,6 +59391,14 @@ export interface ConditionUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -59478,6 +59702,14 @@ export interface ExecutionUnitSchemaBase {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -59803,6 +60035,14 @@ export interface DataIOUnitSchema {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -59925,6 +60165,14 @@ export interface MapUnitSchema {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -60034,6 +60282,14 @@ export interface ProcessingUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -60147,6 +60403,14 @@ export interface ReduceUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -60308,6 +60572,14 @@ export interface SubworkflowUnitSchema {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -60482,6 +60754,14 @@ export type WorkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -60592,6 +60872,14 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -60720,6 +61008,14 @@ export type WorkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -60821,6 +61117,14 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -61123,6 +61427,14 @@ export type WorkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -61238,6 +61550,14 @@ export type WorkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -61346,6 +61666,14 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -61467,6 +61795,14 @@ export type WorkflowUnitSchema = {
     enableRender?: boolean;
     context?: {};
     /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
+    /**
      * entity slug
      */
     slug?: string;
@@ -61560,6 +61896,14 @@ export type WorkflowUnitSchema = {
      */
     enableRender?: boolean;
     context?: {};
+    /**
+     * Type of result file, e.g. image, text
+     */
+    filetype?: string;
+    /**
+     * Base filename of the result file
+     */
+    basename?: string;
     /**
      * entity slug
      */
@@ -61742,6 +62086,14 @@ export interface WorkflowSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -61852,6 +62204,14 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -61980,6 +62340,14 @@ export interface WorkflowSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -62081,6 +62449,14 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -62383,6 +62759,14 @@ export interface WorkflowSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -62498,6 +62882,14 @@ export interface WorkflowSchema {
             enableRender?: boolean;
             context?: {};
             /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
+            /**
              * entity slug
              */
             slug?: string;
@@ -62606,6 +62998,14 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             context?: {};
+            /**
+             * Type of result file, e.g. image, text
+             */
+            filetype?: string;
+            /**
+             * Base filename of the result file
+             */
+            basename?: string;
             /**
              * entity slug
              */
@@ -62750,6 +63150,10 @@ export interface WorkflowSchema {
          * Defines whether the subworkflow is for a multi-material simulation
          */
         isMultiMaterial?: boolean;
+        /**
+         * system name of the subworkflow
+         */
+        systemName?: string;
         /**
          * subworkflow identity
          */
@@ -62983,6 +63387,14 @@ export interface WorkflowSchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -63093,6 +63505,14 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -63221,6 +63641,14 @@ export interface WorkflowSchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -63322,6 +63750,14 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -63624,6 +64060,14 @@ export interface WorkflowSchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -63739,6 +64183,14 @@ export interface WorkflowSchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -63847,6 +64299,14 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
@@ -63968,6 +64428,14 @@ export interface WorkflowSchema {
         enableRender?: boolean;
         context?: {};
         /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
+        /**
          * entity slug
          */
         slug?: string;
@@ -64061,6 +64529,14 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
         context?: {};
+        /**
+         * Type of result file, e.g. image, text
+         */
+        filetype?: string;
+        /**
+         * Base filename of the result file
+         */
+        basename?: string;
         /**
          * entity slug
          */
