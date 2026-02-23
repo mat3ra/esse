@@ -46666,6 +46666,50 @@ export interface IonizationPotentialElementalPropertySchema {
     units: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/enum_options.json */
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ExternalSource".
+ */
+export type ExternalSource = "ICSD" | "MaterialsProject" | "MaterialsProjectLegacy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "PropertyType".
+ */
+export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ScalarPropertyName".
+ */
+export type ScalarPropertyName = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "NonScalarPropertyName".
+ */
+export type NonScalarPropertyName = "average_potential_profile" | "band_gaps" | "band_structure" | "charge_density_profile" | "convergence_electronic" | "convergence_ionic" | "density_of_states" | "dielectric_tensor" | "file_content" | "final_structure" | "hubbard_u" | "hubbard_v" | "hubbard_v_nn" | "is_relaxed" | "jupyter_notebook_endpoint" | "phonon_dispersions" | "phonon_dos" | "potential_profile" | "reaction_energy_profile" | "wavefunction_amplitude" | "workflow:pyml_predict";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "TensorPropertyName".
+ */
+export type TensorPropertyName = "atomic_forces" | "magnetic_moments" | "stress_tensor";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ObjectPropertyName".
+ */
+export type ObjectPropertyName = "total_energy_contributions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ProtoPropertyName".
+ */
+export type ProtoPropertyName = "atomic_constraints" | "boundary_conditions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "MetaPropertyName".
+ */
+export type MetaPropertyName = "pseudopotential";
+export interface PropertiesDirectoryEnumOptions {
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/properties_directory/jupyter_notebook_endpoint.json */
 export interface JupyterNotebookEndpointPropertySchema {
     name: "jupyter_notebook_endpoint";
