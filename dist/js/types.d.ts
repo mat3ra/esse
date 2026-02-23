@@ -5512,6 +5512,33 @@ export interface ComputeArgumentsSchema {
      */
     excludeFilesPattern?: string;
 }
+/** Schema dist/js/schema/job/queue.json */
+export interface QueueSchema {
+    /**
+     * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+     */
+    name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    /**
+     * Maximum processors per node.
+     */
+    maxPpn: number;
+    /**
+     * Maximum number of nodes allowed for this queue.
+     */
+    maxNodes: number;
+    /**
+     * Number of nodes currently available.
+     */
+    availableNodes: number;
+    /**
+     * Number of nodes currently in use.
+     */
+    currentNodes: number;
+    /**
+     * Capacity status of the queue.
+     */
+    capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+}
 /** Schema dist/js/schema/job.json */
 export interface JobSchema {
     workflow: {
