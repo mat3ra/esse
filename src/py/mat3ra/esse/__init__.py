@@ -3,6 +3,17 @@ import jsonschema
 from .data.examples import EXAMPLES
 from .data.schemas import SCHEMAS
 from .data.properties import PROPERTIES_MANIFEST
+from .models.properties_directory.enum_options import (
+    ExternalSource,
+    PropertyType,
+    ScalarPropertyName,
+    NonScalarPropertyName,
+    TensorPropertyName,
+    ObjectPropertyName,
+    ProtoPropertyName,
+    MetaPropertyName,
+    AllPropertyName,
+)
 
 
 class ESSE(object):
