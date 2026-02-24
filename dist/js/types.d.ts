@@ -6960,10 +6960,6 @@ export interface JobSchema {
              */
             isDraft?: boolean;
             /**
-             * Defines whether the subworkflow is for a multi-material simulation
-             */
-            isMultiMaterial?: boolean;
-            /**
              * system name of the subworkflow
              */
             systemName?: string;
@@ -8698,6 +8694,10 @@ export interface JobSchema {
          * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
          */
         isUsingDataset?: boolean;
+        /**
+         * Defines whether the workflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
         /**
          * Array of workflows with the same schema as the current one.
          */
@@ -49434,10 +49434,6 @@ export interface WorkflowPropertySchema {
          */
         isDraft?: boolean;
         /**
-         * Defines whether the subworkflow is for a multi-material simulation
-         */
-        isMultiMaterial?: boolean;
-        /**
          * system name of the subworkflow
          */
         systemName?: string;
@@ -51172,6 +51168,10 @@ export interface WorkflowPropertySchema {
      * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
      */
     isUsingDataset?: boolean;
+    /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
     /**
      * Array of workflows with the same schema as the current one.
      */
@@ -53942,10 +53942,6 @@ export interface PropertyHolderSchema {
              */
             isDraft?: boolean;
             /**
-             * Defines whether the subworkflow is for a multi-material simulation
-             */
-            isMultiMaterial?: boolean;
-            /**
              * system name of the subworkflow
              */
             systemName?: string;
@@ -55680,6 +55676,10 @@ export interface PropertyHolderSchema {
          * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
          */
         isUsingDataset?: boolean;
+        /**
+         * Defines whether the workflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
         /**
          * Array of workflows with the same schema as the current one.
          */
@@ -58231,6 +58231,10 @@ export interface BaseWorkflowSchema {
      * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
      */
     isUsingDataset?: boolean;
+    /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
     /**
      * Array of workflows with the same schema as the current one.
      */
@@ -61135,10 +61139,6 @@ export interface Subworkflow {
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
     isDraft?: boolean;
-    /**
-     * Defines whether the subworkflow is for a multi-material simulation
-     */
-    isMultiMaterial?: boolean;
     /**
      * system name of the subworkflow
      */
@@ -66291,10 +66291,6 @@ export interface WorkflowSchema {
          */
         isDraft?: boolean;
         /**
-         * Defines whether the subworkflow is for a multi-material simulation
-         */
-        isMultiMaterial?: boolean;
-        /**
          * system name of the subworkflow
          */
         systemName?: string;
@@ -68029,6 +68025,10 @@ export interface WorkflowSchema {
      * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
      */
     isUsingDataset?: boolean;
+    /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
     /**
      * Array of workflows with the same schema as the current one.
      */

@@ -2727,10 +2727,6 @@
                                 "type": "boolean",
                                 "default": false
                             },
-                            "isMultiMaterial": {
-                                "description": "Defines whether the subworkflow is for a multi-material simulation",
-                                "type": "boolean"
-                            },
                             "systemName": {
                                 "description": "system name of the subworkflow",
                                 "type": "string"
@@ -6090,6 +6086,10 @@
                 },
                 "isUsingDataset": {
                     "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
+                    "type": "boolean"
+                },
+                "isMultiMaterial": {
+                    "description": "Defines whether the workflow is for a multi-material simulation",
                     "type": "boolean"
                 },
                 "workflows": {

@@ -1159,10 +1159,6 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    isMultiMaterial: Optional[bool] = None
-    """
-    Defines whether the subworkflow is for a multi-material simulation
-    """
     systemName: Optional[str] = None
     """
     system name of the subworkflow
@@ -2173,6 +2169,10 @@ class WorkflowPropertySchema(BaseModel):
     isUsingDataset: Optional[bool] = None
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+    """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the workflow is for a multi-material simulation
     """
     workflows: Optional[List[Dict[str, Any]]] = None
     """
