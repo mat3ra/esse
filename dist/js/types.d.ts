@@ -8703,7 +8703,7 @@ export interface JobSchema {
          */
         workflows?: {}[];
         /**
-         * information about the simulation engine/application.
+         * information about the main application used for workflow categorization by application in standata.
          */
         application?: {
             /**
@@ -51177,7 +51177,7 @@ export interface WorkflowPropertySchema {
      */
     workflows?: {}[];
     /**
-     * information about the simulation engine/application.
+     * information about the main application used for workflow categorization by application in standata.
      */
     application?: {
         /**
@@ -55685,7 +55685,7 @@ export interface PropertyHolderSchema {
          */
         workflows?: {}[];
         /**
-         * information about the simulation engine/application.
+         * information about the main application used for workflow categorization by application in standata.
          */
         application?: {
             /**
@@ -58236,7 +58236,7 @@ export interface BaseWorkflowSchema {
      */
     workflows?: {}[];
     /**
-     * information about the simulation engine/application.
+     * information about the main application used for workflow categorization by application in standata.
      */
     application?: {
         /**
@@ -68034,7 +68034,7 @@ export interface WorkflowSchema {
      */
     workflows?: {}[];
     /**
-     * information about the simulation engine/application.
+     * information about the main application used for workflow categorization by application in standata.
      */
     application?: {
         /**

@@ -2172,7 +2172,7 @@ class WorkflowSchema(BaseModel):
     """
     application: Optional[Application] = None
     """
-    information about the simulation engine/application.
+    information about the main application used for workflow categorization by application in standata.
     """
     tags: Optional[List[str]] = None
     """

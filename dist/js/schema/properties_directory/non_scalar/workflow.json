@@ -6097,7 +6097,7 @@
             }
         },
         "application": {
-            "description": "information about the simulation engine/application.",
+            "description": "information about the main application used for workflow categorization by application in standata.",
             "type": "object",
             "properties": {
                 "name": {
