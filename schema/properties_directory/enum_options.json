@@ -1,0 +1,89 @@
+{
+    "$id": "properties-directory/enum-options",
+    "definitions": {
+        "ExternalSource": {
+            "type": "string",
+            "enum": [
+                "ICSD",
+                "MaterialsProject",
+                "MaterialsProjectLegacy"
+            ]
+        },
+        "PropertyType": {
+            "type": "string",
+            "enum": [
+                "scalar",
+                "non-scalar",
+                "tensor",
+                "object"
+            ]
+        },
+        "ScalarPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "fermi_energy",
+                "ionization_potential",
+                "pressure",
+                "reaction_energy_barrier",
+                "surface_energy",
+                "total_energy",
+                "total_force",
+                "valence_band_offset",
+                "zero_point_energy"
+            ]
+        },
+        "NonScalarPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "average_potential_profile",
+                "band_gaps",
+                "band_structure",
+                "charge_density_profile",
+                "convergence_electronic",
+                "convergence_ionic",
+                "density_of_states",
+                "dielectric_tensor",
+                "file_content",
+                "final_structure",
+                "hubbard_u",
+                "hubbard_v",
+                "hubbard_v_nn",
+                "is_relaxed",
+                "jupyter_notebook_endpoint",
+                "phonon_dispersions",
+                "phonon_dos",
+                "potential_profile",
+                "reaction_energy_profile",
+                "wavefunction_amplitude",
+                "workflow:pyml_predict"
+            ]
+        },
+        "TensorPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "atomic_forces",
+                "magnetic_moments",
+                "stress_tensor"
+            ]
+        },
+        "ObjectPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "total_energy_contributions"
+            ]
+        },
+        "ProtoPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "atomic_constraints",
+                "boundary_conditions"
+            ]
+        },
+        "MetaPropertyEnum": {
+            "type": "string",
+            "enum": [
+                "pseudopotential"
+            ]
+        }
+    }
+}
