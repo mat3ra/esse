@@ -1,0 +1,143 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "compute/nodes/cluster",
+    "description": "Cluster Node - extends cloud node with compute-specific properties",
+    "type": "object",
+    "title": "cluster node",
+    "required": [
+        "hostname"
+    ],
+    "properties": {
+        "nodes": {
+            "type": "array",
+            "description": "List of compute nodes in the cluster",
+            "items": {
+                "type": "object"
+            }
+        },
+        "queues": {
+            "type": "array",
+            "title": "Queues",
+            "description": "Available job submission queues on this cluster",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "Queue schema",
+                "type": "object",
+                "required": [
+                    "name",
+                    "maxPPN",
+                    "maxNodes",
+                    "availableNodes",
+                    "currentNodes"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
+                        "type": "string",
+                        "enum": [
+                            "D",
+                            "OR",
+                            "OF",
+                            "OFplus",
+                            "SR",
+                            "SF",
+                            "SFplus",
+                            "GPOF",
+                            "GP2OF",
+                            "GP4OF",
+                            "GPSF",
+                            "GP2SF",
+                            "GP4SF",
+                            "OR4",
+                            "OR8",
+                            "OR16",
+                            "SR4",
+                            "SR8",
+                            "SR16",
+                            "GOF",
+                            "G4OF",
+                            "G8OF",
+                            "GSF",
+                            "G4SF",
+                            "G8SF"
+                        ]
+                    },
+                    "maxPPN": {
+                        "description": "Maximum processors per node.",
+                        "type": "integer"
+                    },
+                    "maxNodes": {
+                        "description": "Maximum number of nodes allowed for this queue.",
+                        "type": "integer"
+                    },
+                    "availableNodes": {
+                        "description": "Number of nodes currently available.",
+                        "type": "integer"
+                    },
+                    "currentNodes": {
+                        "description": "Number of nodes currently in use.",
+                        "type": "integer"
+                    },
+                    "capacity": {
+                        "description": "Capacity status of the queue.",
+                        "type": "string",
+                        "enum": [
+                            "FULL",
+                            "DEGRADED",
+                            "UNAVAILABLE"
+                        ]
+                    },
+                    "displayName": {
+                        "type": "string",
+                        "title": "Display name"
+                    }
+                }
+            }
+        },
+        "hostname": {
+            "type": "string",
+            "title": "Hostname",
+            "description": "Fully qualified domain name of the node"
+        },
+        "alias": {
+            "type": "string",
+            "title": "Alias",
+            "description": "Human-readable display name for the node"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "Unix timestamp of last heartbeat from the node"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "cluster",
+                "gold",
+                "login"
+            ],
+            "description": "Type of cloud node: cluster (compute), gold (billing), or login (SSH access)"
+        },
+        "isDefault": {
+            "type": "boolean",
+            "description": "Whether this is the default node for its type"
+        },
+        "diskSpace": {
+            "type": "array",
+            "description": "Disk space information for mounted filesystems",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "number"
+                    },
+                    "avail": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}

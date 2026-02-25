@@ -1,0 +1,57 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "compute/nodes/base",
+    "description": "Cloud Node - base schema for all backend node types",
+    "type": "object",
+    "title": "cloud node",
+    "required": [
+        "hostname"
+    ],
+    "properties": {
+        "hostname": {
+            "type": "string",
+            "title": "Hostname",
+            "description": "Fully qualified domain name of the node"
+        },
+        "alias": {
+            "type": "string",
+            "title": "Alias",
+            "description": "Human-readable display name for the node"
+        },
+        "timestamp": {
+            "type": "number",
+            "description": "Unix timestamp of last heartbeat from the node"
+        },
+        "type": {
+            "type": "string",
+            "enum": [
+                "cluster",
+                "gold",
+                "login"
+            ],
+            "description": "Type of cloud node: cluster (compute), gold (billing), or login (SSH access)"
+        },
+        "isDefault": {
+            "type": "boolean",
+            "description": "Whether this is the default node for its type"
+        },
+        "diskSpace": {
+            "type": "array",
+            "description": "Disk space information for mounted filesystems",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "size": {
+                        "type": "number"
+                    },
+                    "avail": {
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}
