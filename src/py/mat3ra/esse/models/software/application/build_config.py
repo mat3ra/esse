@@ -6,13 +6,10 @@ from __future__ import annotations
 
 from typing import Any, Dict, List, Optional
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel
 
 
 class ApplicationVersionsWithBuildConfigSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     bio: Optional[str] = None
     """
     The bio description used for the module files.

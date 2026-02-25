@@ -31,6 +31,5 @@
             "description": "Environment variables to be exported before running the application, containing the key and value pairs.",
             "type": "object"
         }
-    },
-    "additionalProperties": true
+    }
 }
