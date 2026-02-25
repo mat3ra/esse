@@ -46679,34 +46679,34 @@ export type ExternalSource = "ICSD" | "MaterialsProject" | "MaterialsProjectLega
 export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "ScalarPropertyName".
+ * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyName = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "NonScalarPropertyName".
+ * via the `definition` "NonScalarPropertyEnum".
  */
-export type NonScalarPropertyName = "average_potential_profile" | "band_gaps" | "band_structure" | "charge_density_profile" | "convergence_electronic" | "convergence_ionic" | "density_of_states" | "dielectric_tensor" | "file_content" | "final_structure" | "hubbard_u" | "hubbard_v" | "hubbard_v_nn" | "is_relaxed" | "jupyter_notebook_endpoint" | "phonon_dispersions" | "phonon_dos" | "potential_profile" | "reaction_energy_profile" | "wavefunction_amplitude" | "workflow:pyml_predict";
+export type NonScalarPropertyEnum = "average_potential_profile" | "band_gaps" | "band_structure" | "charge_density_profile" | "convergence_electronic" | "convergence_ionic" | "density_of_states" | "dielectric_tensor" | "file_content" | "final_structure" | "hubbard_u" | "hubbard_v" | "hubbard_v_nn" | "is_relaxed" | "jupyter_notebook_endpoint" | "phonon_dispersions" | "phonon_dos" | "potential_profile" | "reaction_energy_profile" | "wavefunction_amplitude" | "workflow:pyml_predict";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "TensorPropertyName".
+ * via the `definition` "TensorPropertyEnum".
  */
-export type TensorPropertyName = "atomic_forces" | "magnetic_moments" | "stress_tensor";
+export type TensorPropertyEnum = "atomic_forces" | "magnetic_moments" | "stress_tensor";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "ObjectPropertyName".
+ * via the `definition` "ObjectPropertyEnum".
  */
-export type ObjectPropertyName = "total_energy_contributions";
+export type ObjectPropertyEnum = "total_energy_contributions";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "ProtoPropertyName".
+ * via the `definition` "ProtoPropertyEnum".
  */
-export type ProtoPropertyName = "atomic_constraints" | "boundary_conditions";
+export type ProtoPropertyEnum = "atomic_constraints" | "boundary_conditions";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
- * via the `definition` "MetaPropertyName".
+ * via the `definition` "MetaPropertyEnum".
  */
-export type MetaPropertyName = "pseudopotential";
+export type MetaPropertyEnum = "pseudopotential";
 export interface PropertiesDirectoryEnumOptions {
     [k: string]: unknown;
 }

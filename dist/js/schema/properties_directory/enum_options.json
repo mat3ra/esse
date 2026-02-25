@@ -18,7 +18,7 @@
                 "object"
             ]
         },
-        "ScalarPropertyName": {
+        "ScalarPropertyEnum": {
             "type": "string",
             "enum": [
                 "fermi_energy",
@@ -32,7 +32,7 @@
                 "zero_point_energy"
             ]
         },
-        "NonScalarPropertyName": {
+        "NonScalarPropertyEnum": {
             "type": "string",
             "enum": [
                 "average_potential_profile",
@@ -58,7 +58,7 @@
                 "workflow:pyml_predict"
             ]
         },
-        "TensorPropertyName": {
+        "TensorPropertyEnum": {
             "type": "string",
             "enum": [
                 "atomic_forces",
@@ -66,20 +66,20 @@
                 "stress_tensor"
             ]
         },
-        "ObjectPropertyName": {
+        "ObjectPropertyEnum": {
             "type": "string",
             "enum": [
                 "total_energy_contributions"
             ]
         },
-        "ProtoPropertyName": {
+        "ProtoPropertyEnum": {
             "type": "string",
             "enum": [
                 "atomic_constraints",
                 "boundary_conditions"
             ]
         },
-        "MetaPropertyName": {
+        "MetaPropertyEnum": {
             "type": "string",
             "enum": [
                 "pseudopotential"

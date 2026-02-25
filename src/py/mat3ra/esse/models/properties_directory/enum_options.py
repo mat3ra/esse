@@ -27,7 +27,7 @@ class PropertyType(Enum):
     object = "object"
 
 
-class ScalarPropertyName(Enum):
+class ScalarPropertyEnum(Enum):
     fermi_energy = "fermi_energy"
     ionization_potential = "ionization_potential"
     pressure = "pressure"
@@ -39,7 +39,7 @@ class ScalarPropertyName(Enum):
     zero_point_energy = "zero_point_energy"
 
 
-class NonScalarPropertyName(Enum):
+class NonScalarPropertyEnum(Enum):
     average_potential_profile = "average_potential_profile"
     band_gaps = "band_gaps"
     band_structure = "band_structure"
@@ -63,20 +63,20 @@ class NonScalarPropertyName(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
-class TensorPropertyName(Enum):
+class TensorPropertyEnum(Enum):
     atomic_forces = "atomic_forces"
     magnetic_moments = "magnetic_moments"
     stress_tensor = "stress_tensor"
 
 
-class ObjectPropertyName(Enum):
+class ObjectPropertyEnum(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
-class ProtoPropertyName(Enum):
+class ProtoPropertyEnum(Enum):
     atomic_constraints = "atomic_constraints"
     boundary_conditions = "boundary_conditions"
 
 
-class MetaPropertyName(Enum):
+class MetaPropertyEnum(Enum):
     pseudopotential = "pseudopotential"
