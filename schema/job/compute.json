@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
         "queue": {
-            "$ref": "queue.json#/properties/name"
+            "$ref": "../compute/queue.json#properties/name"
         },
         "nodes": {
             "description": "number of nodes used for the job inside the RMS.",

@@ -1,5 +1,5 @@
 {
-    "$id": "job/queue",
+    "$id": "compute/queue",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "Queue schema",
     "type": "object",
@@ -35,7 +35,7 @@
                 "G8SF"
             ]
         },
-        "maxPpn": {
+        "maxPPN": {
             "description": "Maximum processors per node.",
             "type": "integer"
         },
@@ -59,14 +59,17 @@
                 "DEGRADED",
                 "UNAVAILABLE"
             ]
+        },
+        "displayName": {
+            "type": "string",
+            "title": "Display name"
         }
     },
     "required": [
         "name",
-        "maxPpn",
+        "maxPPN",
         "maxNodes",
         "availableNodes",
         "currentNodes"
     ]
 }
-
