@@ -40,7 +40,6 @@ class ApplicationWithBuildConfigSchema(BaseModel):
     build_config: Optional[ApplicationVersionsWithBuildConfigSchema] = Field(
         None, title="application versions with build config schema"
     )
-    additionalProperties: Optional[Any] = None
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe

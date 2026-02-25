@@ -13,7 +13,6 @@
             "description": "Build configuration for the application.",
             "type": "object",
             "$ref": "application/build_config.json"
-        },
-        "additionalProperties": true
+        }
     }
 }

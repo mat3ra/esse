@@ -56309,7 +56309,6 @@ export interface ApplicationWithBuildConfigSchema {
          */
         environment_variables?: {};
     };
-    additionalProperties?: unknown;
     /**
      * The short name of the application. e.g. qe
      */
