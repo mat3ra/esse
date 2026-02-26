@@ -84,7 +84,7 @@ class DiskSpaceItem(BaseModel):
     avail: Optional[float] = None
 
 
-class ClusterNode(BaseModel):
+class ClusterNodeSchema(BaseModel):
     nodes: Optional[List[Dict[str, Any]]] = None
     """
     List of compute nodes in the cluster

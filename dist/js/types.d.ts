@@ -2837,7 +2837,7 @@ export interface PymatgenSlabGeneratorParametersSchema {
 /**
  * Cloud Node - base schema for all backend node types
  */
-export interface CloudNode {
+export interface CloudNodeSchema {
     /**
      * Fully qualified domain name of the node
      */
@@ -2871,7 +2871,7 @@ export interface CloudNode {
 /**
  * Cluster Node - extends cloud node with compute-specific properties
  */
-export interface ClusterNode {
+export interface ClusterNodeSchema {
     /**
      * List of compute nodes in the cluster
      */

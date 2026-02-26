@@ -22,7 +22,7 @@ class DiskSpaceItem(BaseModel):
     avail: Optional[float] = None
 
 
-class CloudNode(BaseModel):
+class CloudNodeSchema(BaseModel):
     hostname: str = Field(..., title="Hostname")
     """
     Fully qualified domain name of the node

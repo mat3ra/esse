@@ -3,7 +3,7 @@
     "$id": "compute/nodes/cluster",
     "description": "Cluster Node - extends cloud node with compute-specific properties",
     "type": "object",
-    "title": "cluster node",
+    "title": "cluster node schema",
     "required": [
         "hostname"
     ],

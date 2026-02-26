@@ -3,7 +3,7 @@
     "$id": "compute/nodes/base",
     "description": "Cloud Node - base schema for all backend node types",
     "type": "object",
-    "title": "cloud node",
+    "title": "cloud node schema",
     "required": [
         "hostname"
     ],
