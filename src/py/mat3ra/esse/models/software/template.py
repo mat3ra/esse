@@ -6,21 +6,16 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
-    """
-    filetype: Optional[str] = None
-    """
-    Type of result file, e.g. image, text
-    """
-    basename: Optional[str] = None
-    """
-    Base filename of the result file
     """
 
 

@@ -5173,14 +5173,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -5190,14 +5183,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -5207,14 +5193,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -5224,14 +5203,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/job/base.json */
@@ -5687,14 +5659,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -5704,14 +5669,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -5721,14 +5679,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -5738,14 +5689,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -5830,14 +5774,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -5847,14 +5784,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -5864,14 +5794,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -5881,14 +5804,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -5989,14 +5905,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -6006,14 +5915,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -6023,14 +5925,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -6040,14 +5935,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -6123,14 +6011,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -6140,14 +6021,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -6157,14 +6031,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -6174,14 +6041,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -6287,14 +6147,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the post-processors for this calculation
@@ -6304,14 +6157,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the monitors for this calculation
@@ -6321,14 +6167,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the results for this calculation
@@ -6338,14 +6177,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                 };
                 flavor?: {
@@ -6402,14 +6234,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the post-processors for this calculation
@@ -6419,14 +6244,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the monitors for this calculation
@@ -6436,14 +6254,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the results for this calculation
@@ -6453,14 +6264,7 @@ export interface JobSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                 };
                 /**
@@ -6520,14 +6324,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -6537,14 +6334,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -6554,14 +6344,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -6571,14 +6354,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -6667,14 +6443,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -6684,14 +6453,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -6701,14 +6463,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -6718,14 +6473,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -6808,14 +6556,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -6825,14 +6566,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -6842,14 +6576,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -6859,14 +6586,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -7216,14 +6936,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -7233,14 +6946,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -7250,14 +6956,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -7267,14 +6966,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -7359,14 +7051,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -7376,14 +7061,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -7393,14 +7071,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -7410,14 +7081,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -7518,14 +7182,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -7535,14 +7192,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -7552,14 +7202,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -7569,14 +7212,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -7652,14 +7288,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -7669,14 +7298,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -7686,14 +7308,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -7703,14 +7318,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -7816,14 +7424,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -7833,14 +7434,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -7850,14 +7444,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -7867,14 +7454,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             flavor?: {
@@ -7931,14 +7511,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -7948,14 +7521,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -7965,14 +7531,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -7982,14 +7541,7 @@ export interface JobSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             /**
@@ -8049,14 +7601,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -8066,14 +7611,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -8083,14 +7621,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -8100,14 +7631,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -8196,14 +7720,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -8213,14 +7730,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -8230,14 +7740,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -8247,14 +7750,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -8337,14 +7833,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -8354,14 +7843,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -8371,14 +7853,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -8388,14 +7863,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -8489,14 +7957,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -8506,14 +7967,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -8523,14 +7977,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -8540,14 +7987,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -8615,14 +8055,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -8632,14 +8065,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -8649,14 +8075,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -8666,14 +8085,7 @@ export interface JobSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -48205,14 +47617,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -48222,14 +47627,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -48239,14 +47637,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -48256,14 +47647,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -48348,14 +47732,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -48365,14 +47742,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -48382,14 +47752,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -48399,14 +47762,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -48507,14 +47863,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -48524,14 +47873,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -48541,14 +47883,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -48558,14 +47893,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -48641,14 +47969,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -48658,14 +47979,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -48675,14 +47989,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -48692,14 +47999,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -48805,14 +48105,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -48822,14 +48115,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -48839,14 +48125,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -48856,14 +48135,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             flavor?: {
@@ -48920,14 +48192,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -48937,14 +48202,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -48954,14 +48212,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -48971,14 +48222,7 @@ export interface WorkflowPropertySchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             /**
@@ -49038,14 +48282,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -49055,14 +48292,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -49072,14 +48302,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -49089,14 +48312,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -49185,14 +48401,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -49202,14 +48411,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -49219,14 +48421,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -49236,14 +48431,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -49326,14 +48514,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -49343,14 +48524,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -49360,14 +48534,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -49377,14 +48544,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -49734,14 +48894,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -49751,14 +48904,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -49768,14 +48914,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -49785,14 +48924,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -49877,14 +49009,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -49894,14 +49019,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -49911,14 +49029,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -49928,14 +49039,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -50036,14 +49140,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -50053,14 +49150,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -50070,14 +49160,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -50087,14 +49170,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -50170,14 +49246,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -50187,14 +49256,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -50204,14 +49266,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -50221,14 +49276,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -50334,14 +49382,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -50351,14 +49392,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -50368,14 +49402,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -50385,14 +49412,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         flavor?: {
@@ -50449,14 +49469,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -50466,14 +49479,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -50483,14 +49489,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -50500,14 +49499,7 @@ export interface WorkflowPropertySchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         /**
@@ -50567,14 +49559,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -50584,14 +49569,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -50601,14 +49579,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -50618,14 +49589,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -50714,14 +49678,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -50731,14 +49688,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -50748,14 +49698,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -50765,14 +49708,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -50855,14 +49791,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -50872,14 +49801,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -50889,14 +49811,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -50906,14 +49821,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -51007,14 +49915,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -51024,14 +49925,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -51041,14 +49935,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -51058,14 +49945,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -51133,14 +50013,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -51150,14 +50023,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -51167,14 +50033,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -51184,14 +50043,7 @@ export interface WorkflowPropertySchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -52713,14 +51565,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -52730,14 +51575,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -52747,14 +51585,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -52764,14 +51595,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -52856,14 +51680,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -52873,14 +51690,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -52890,14 +51700,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -52907,14 +51710,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -53015,14 +51811,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -53032,14 +51821,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -53049,14 +51831,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -53066,14 +51841,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -53149,14 +51917,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -53166,14 +51927,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -53183,14 +51937,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -53200,14 +51947,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -53313,14 +52053,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the post-processors for this calculation
@@ -53330,14 +52063,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the monitors for this calculation
@@ -53347,14 +52073,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the results for this calculation
@@ -53364,14 +52083,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                 };
                 flavor?: {
@@ -53428,14 +52140,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the post-processors for this calculation
@@ -53445,14 +52150,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the monitors for this calculation
@@ -53462,14 +52160,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                     /**
                      * names of the results for this calculation
@@ -53479,14 +52170,7 @@ export interface PropertyHolderSchema {
                          * The name of this item. e.g. scf_accuracy
                          */
                         name: string;
-                        /**
-                         * Type of result file, e.g. image, text
-                         */
-                        filetype?: string;
-                        /**
-                         * Base filename of the result file
-                         */
-                        basename?: string;
+                        [k: string]: unknown;
                     } | string)[];
                 };
                 /**
@@ -53546,14 +52230,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -53563,14 +52240,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -53580,14 +52250,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -53597,14 +52260,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -53693,14 +52349,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -53710,14 +52359,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -53727,14 +52369,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -53744,14 +52379,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -53834,14 +52462,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -53851,14 +52472,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -53868,14 +52482,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -53885,14 +52492,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * entity tags
@@ -54242,14 +52842,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -54259,14 +52852,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -54276,14 +52862,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -54293,14 +52872,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -54385,14 +52957,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -54402,14 +52967,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -54419,14 +52977,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -54436,14 +52987,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -54544,14 +53088,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -54561,14 +53098,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -54578,14 +53108,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -54595,14 +53118,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -54678,14 +53194,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -54695,14 +53204,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -54712,14 +53214,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -54729,14 +53224,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -54842,14 +53330,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -54859,14 +53340,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -54876,14 +53350,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -54893,14 +53360,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             flavor?: {
@@ -54957,14 +53417,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -54974,14 +53427,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -54991,14 +53437,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -55008,14 +53447,7 @@ export interface PropertyHolderSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             /**
@@ -55075,14 +53507,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -55092,14 +53517,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -55109,14 +53527,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -55126,14 +53537,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -55222,14 +53626,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -55239,14 +53636,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -55256,14 +53646,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -55273,14 +53656,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -55363,14 +53739,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -55380,14 +53749,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -55397,14 +53759,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -55414,14 +53769,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -55515,14 +53863,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -55532,14 +53873,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -55549,14 +53883,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -55566,14 +53893,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -55641,14 +53961,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -55658,14 +53971,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -55675,14 +53981,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -55692,14 +53991,7 @@ export interface PropertyHolderSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -56398,14 +54690,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -56415,14 +54700,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -56432,14 +54710,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -56449,14 +54720,7 @@ export interface ExecutableSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/software/flavor.json */
@@ -56514,14 +54778,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -56531,14 +54788,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -56548,14 +54798,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -56565,14 +54808,7 @@ export interface FlavorSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/software/template.json */
@@ -56585,14 +54821,7 @@ export interface TemplateSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     }[];
     isManuallyChanged?: boolean;
     /**
@@ -56843,14 +55072,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -56860,14 +55082,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -56877,14 +55092,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -56894,14 +55102,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     flavor?: {
@@ -56958,14 +55159,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -56975,14 +55169,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -56992,14 +55179,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -57009,14 +55189,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     /**
@@ -57094,14 +55267,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -57111,14 +55277,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -57128,14 +55287,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -57145,14 +55297,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -57480,14 +55625,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -57497,14 +55635,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -57514,14 +55645,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -57531,14 +55655,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     flavor?: {
@@ -57595,14 +55712,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -57612,14 +55722,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -57629,14 +55732,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -57646,14 +55742,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     /**
@@ -57731,14 +55820,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -57748,14 +55830,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -57765,14 +55840,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -57782,14 +55850,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -58578,14 +56639,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -58595,14 +56649,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -58612,14 +56659,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -58629,14 +56669,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -58721,14 +56754,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -58738,14 +56764,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -58755,14 +56774,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -58772,14 +56784,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -58880,14 +56885,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -58897,14 +56895,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -58914,14 +56905,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -58931,14 +56915,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -59014,14 +56991,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -59031,14 +57001,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -59048,14 +57011,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -59065,14 +57021,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -59178,14 +57127,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -59195,14 +57137,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -59212,14 +57147,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -59229,14 +57157,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     flavor?: {
@@ -59293,14 +57214,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -59310,14 +57224,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -59327,14 +57234,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -59344,14 +57244,7 @@ export type WorkflowSubworkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     /**
@@ -59411,14 +57304,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -59428,14 +57314,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -59445,14 +57324,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -59462,14 +57334,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -59558,14 +57423,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -59575,14 +57433,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -59592,14 +57443,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -59609,14 +57453,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -59699,14 +57536,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -59716,14 +57546,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -59733,14 +57556,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -59750,14 +57566,7 @@ export type WorkflowSubworkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -59908,14 +57717,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -59925,14 +57727,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -59942,14 +57737,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -59959,14 +57747,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -60051,14 +57832,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -60068,14 +57842,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -60085,14 +57852,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -60102,14 +57862,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -60210,14 +57963,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -60227,14 +57973,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -60244,14 +57983,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -60261,14 +57993,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -60344,14 +58069,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -60361,14 +58079,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -60378,14 +58089,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -60395,14 +58099,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -60508,14 +58205,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -60525,14 +58215,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -60542,14 +58225,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -60559,14 +58235,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         flavor?: {
@@ -60623,14 +58292,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -60640,14 +58302,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -60657,14 +58312,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -60674,14 +58322,7 @@ export interface Subworkflow {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         /**
@@ -60741,14 +58382,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -60758,14 +58392,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -60775,14 +58402,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -60792,14 +58412,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -60888,14 +58501,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -60905,14 +58511,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -60922,14 +58521,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -60939,14 +58531,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -61029,14 +58614,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -61046,14 +58624,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -61063,14 +58634,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -61080,14 +58644,7 @@ export interface Subworkflow {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -61366,14 +58923,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -61383,14 +58933,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -61400,14 +58943,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -61417,14 +58953,7 @@ export interface AssertionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -61515,14 +59044,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -61532,14 +59054,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -61549,14 +59064,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -61566,14 +59074,7 @@ export interface AssignmentUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -61644,14 +59145,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -61661,14 +59155,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -61678,14 +59165,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -61695,14 +59175,7 @@ export interface WorkflowBaseUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -61805,14 +59278,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -61822,14 +59288,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -61839,14 +59298,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -61856,14 +59308,7 @@ export interface ConditionUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -61971,14 +59416,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -61988,14 +59426,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -62005,14 +59436,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -62022,14 +59446,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     flavor?: {
@@ -62086,14 +59503,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -62103,14 +59513,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -62120,14 +59523,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -62137,14 +59533,7 @@ export interface ExecutionUnitSchemaBase {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     /**
@@ -62204,14 +59593,7 @@ export interface ExecutionUnitSchemaBase {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -62221,14 +59603,7 @@ export interface ExecutionUnitSchemaBase {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -62238,14 +59613,7 @@ export interface ExecutionUnitSchemaBase {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -62255,14 +59623,7 @@ export interface ExecutionUnitSchemaBase {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -62560,14 +59921,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -62577,14 +59931,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -62594,14 +59941,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -62611,14 +59951,7 @@ export interface DataIOUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -62714,14 +60047,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -62731,14 +60057,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -62748,14 +60067,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -62765,14 +60077,7 @@ export interface MapUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -62856,14 +60161,7 @@ export interface ProcessingUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -62873,14 +60171,7 @@ export interface ProcessingUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -62890,14 +60181,7 @@ export interface ProcessingUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -62907,14 +60191,7 @@ export interface ProcessingUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63001,14 +60278,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63018,14 +60288,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63035,14 +60298,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63052,14 +60308,7 @@ export interface ReduceUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63085,14 +60334,7 @@ export interface NameResultSchema {
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
-    /**
-     * Type of result file, e.g. image, text
-     */
-    filetype?: string;
-    /**
-     * Base filename of the result file
-     */
-    basename?: string;
+    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/runtime/_runtime_item_string.json */
 /**
@@ -63105,14 +60347,7 @@ export type RuntimeItemSchema = {
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
-    /**
-     * Type of result file, e.g. image, text
-     */
-    filetype?: string;
-    /**
-     * Base filename of the result file
-     */
-    basename?: string;
+    [k: string]: unknown;
 } | string;
 /** Schema dist/js/schema/workflow/unit/runtime/runtime_items.json */
 export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
@@ -63124,14 +60359,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63141,14 +60369,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63158,14 +60379,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63175,14 +60389,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/workflow/unit/subworkflow.json */
@@ -63242,14 +60449,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63259,14 +60459,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63276,14 +60469,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63293,14 +60479,7 @@ export interface SubworkflowUnitSchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63447,14 +60626,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63464,14 +60636,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63481,14 +60646,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63498,14 +60656,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63590,14 +60741,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63607,14 +60751,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63624,14 +60761,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63641,14 +60771,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63749,14 +60872,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63766,14 +60882,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63783,14 +60892,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63800,14 +60902,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -63883,14 +60978,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -63900,14 +60988,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -63917,14 +60998,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -63934,14 +61008,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -64047,14 +61114,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -64064,14 +61124,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -64081,14 +61134,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -64098,14 +61144,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     flavor?: {
@@ -64162,14 +61201,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -64179,14 +61211,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -64196,14 +61221,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -64213,14 +61231,7 @@ export type WorkflowUnitSchema = {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
     };
     /**
@@ -64280,14 +61291,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -64297,14 +61301,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -64314,14 +61311,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -64331,14 +61321,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -64427,14 +61410,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -64444,14 +61420,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -64461,14 +61430,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -64478,14 +61440,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -64568,14 +61523,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -64585,14 +61533,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -64602,14 +61543,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -64619,14 +61553,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -64720,14 +61647,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -64737,14 +61657,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -64754,14 +61667,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -64771,14 +61677,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -64846,14 +61745,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -64863,14 +61755,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -64880,14 +61765,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -64897,14 +61775,7 @@ export type WorkflowUnitSchema = {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
-        /**
-         * Type of result file, e.g. image, text
-         */
-        filetype?: string;
-        /**
-         * Base filename of the result file
-         */
-        basename?: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * entity tags
@@ -65059,14 +61930,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -65076,14 +61940,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -65093,14 +61950,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -65110,14 +61960,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -65202,14 +62045,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -65219,14 +62055,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -65236,14 +62065,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -65253,14 +62075,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -65361,14 +62176,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -65378,14 +62186,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -65395,14 +62196,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -65412,14 +62206,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -65495,14 +62282,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -65512,14 +62292,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -65529,14 +62302,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -65546,14 +62312,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -65659,14 +62418,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -65676,14 +62428,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -65693,14 +62438,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -65710,14 +62448,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             flavor?: {
@@ -65774,14 +62505,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the post-processors for this calculation
@@ -65791,14 +62515,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the monitors for this calculation
@@ -65808,14 +62525,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
                 /**
                  * names of the results for this calculation
@@ -65825,14 +62535,7 @@ export interface WorkflowSchema {
                      * The name of this item. e.g. scf_accuracy
                      */
                     name: string;
-                    /**
-                     * Type of result file, e.g. image, text
-                     */
-                    filetype?: string;
-                    /**
-                     * Base filename of the result file
-                     */
-                    basename?: string;
+                    [k: string]: unknown;
                 } | string)[];
             };
             /**
@@ -65892,14 +62595,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -65909,14 +62605,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -65926,14 +62615,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -65943,14 +62625,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -66039,14 +62714,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -66056,14 +62724,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -66073,14 +62734,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -66090,14 +62744,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -66180,14 +62827,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -66197,14 +62837,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -66214,14 +62847,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -66231,14 +62857,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * entity tags
@@ -66588,14 +63207,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -66605,14 +63217,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -66622,14 +63227,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -66639,14 +63237,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -66731,14 +63322,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -66748,14 +63332,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -66765,14 +63342,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -66782,14 +63352,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -66890,14 +63453,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -66907,14 +63463,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -66924,14 +63473,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -66941,14 +63483,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67024,14 +63559,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -67041,14 +63569,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -67058,14 +63579,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -67075,14 +63589,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67188,14 +63695,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -67205,14 +63705,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -67222,14 +63715,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -67239,14 +63725,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         flavor?: {
@@ -67303,14 +63782,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the post-processors for this calculation
@@ -67320,14 +63792,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the monitors for this calculation
@@ -67337,14 +63802,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
             /**
              * names of the results for this calculation
@@ -67354,14 +63812,7 @@ export interface WorkflowSchema {
                  * The name of this item. e.g. scf_accuracy
                  */
                 name: string;
-                /**
-                 * Type of result file, e.g. image, text
-                 */
-                filetype?: string;
-                /**
-                 * Base filename of the result file
-                 */
-                basename?: string;
+                [k: string]: unknown;
             } | string)[];
         };
         /**
@@ -67421,14 +63872,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -67438,14 +63882,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -67455,14 +63892,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -67472,14 +63902,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67568,14 +63991,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -67585,14 +64001,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -67602,14 +64011,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -67619,14 +64021,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67709,14 +64104,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -67726,14 +64114,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -67743,14 +64124,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -67760,14 +64134,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67861,14 +64228,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -67878,14 +64238,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -67895,14 +64248,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -67912,14 +64258,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags
@@ -67987,14 +64326,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the post-processors for this calculation
@@ -68004,14 +64336,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the monitors for this calculation
@@ -68021,14 +64346,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * names of the results for this calculation
@@ -68038,14 +64356,7 @@ export interface WorkflowSchema {
              * The name of this item. e.g. scf_accuracy
              */
             name: string;
-            /**
-             * Type of result file, e.g. image, text
-             */
-            filetype?: string;
-            /**
-             * Base filename of the result file
-             */
-            basename?: string;
+            [k: string]: unknown;
         } | string)[];
         /**
          * entity tags

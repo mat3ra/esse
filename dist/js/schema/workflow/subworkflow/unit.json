@@ -238,16 +238,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -276,16 +269,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -314,16 +300,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -352,16 +331,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -523,16 +495,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -561,16 +526,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -599,16 +557,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -637,16 +588,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -826,16 +770,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -864,16 +801,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -902,16 +832,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -940,16 +863,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1091,16 +1007,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1129,16 +1038,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1167,16 +1069,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1205,16 +1100,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1394,16 +1282,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1432,16 +1313,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1470,16 +1344,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1508,16 +1375,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1619,16 +1479,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1657,16 +1510,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1695,16 +1541,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1733,16 +1572,9 @@
                                             "name": {
                                                 "description": "The name of this item. e.g. scf_accuracy",
                                                 "type": "string"
-                                            },
-                                            "filetype": {
-                                                "description": "Type of result file, e.g. image, text",
-                                                "type": "string"
-                                            },
-                                            "basename": {
-                                                "description": "Base filename of the result file",
-                                                "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1834,16 +1666,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1872,16 +1697,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1910,16 +1728,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1948,16 +1759,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2133,16 +1937,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2171,16 +1968,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2209,16 +1999,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2247,16 +2030,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2405,16 +2181,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2443,16 +2212,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2481,16 +2243,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2519,16 +2274,9 @@
                                     "name": {
                                         "description": "The name of this item. e.g. scf_accuracy",
                                         "type": "string"
-                                    },
-                                    "filetype": {
-                                        "description": "Type of result file, e.g. image, text",
-                                        "type": "string"
-                                    },
-                                    "basename": {
-                                        "description": "Base filename of the result file",
-                                        "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
