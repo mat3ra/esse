@@ -6,35 +6,7 @@
     "type": "object",
     "properties": {
         "queue": {
-            "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
-            "type": "string",
-            "enum": [
-                "D",
-                "OR",
-                "OF",
-                "OFplus",
-                "SR",
-                "SF",
-                "SFplus",
-                "GPOF",
-                "GP2OF",
-                "GP4OF",
-                "GPSF",
-                "GP2SF",
-                "GP4SF",
-                "OR4",
-                "OR8",
-                "OR16",
-                "SR4",
-                "SR8",
-                "SR16",
-                "GOF",
-                "G4OF",
-                "G8OF",
-                "GSF",
-                "G4SF",
-                "G8SF"
-            ]
+            "$ref": "../compute/queue.json#properties/name"
         },
         "nodes": {
             "description": "number of nodes used for the job inside the RMS.",

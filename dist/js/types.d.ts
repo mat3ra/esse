@@ -2833,6 +2833,136 @@ export interface PymatgenSlabGeneratorParametersSchema {
      */
     symmetrize?: boolean;
 }
+/** Schema dist/js/schema/compute/nodes/base.json */
+/**
+ * Cloud Node - base schema for all backend node types
+ */
+export interface CloudNodeSchema {
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/nodes/cluster.json */
+/**
+ * Cluster Node - extends cloud node with compute-specific properties
+ */
+export interface ClusterNodeSchema {
+    /**
+     * List of compute nodes in the cluster
+     */
+    nodes?: {}[];
+    /**
+     * Available job submission queues on this cluster
+     */
+    queues?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * Maximum processors per node.
+         */
+        maxPPN: number;
+        /**
+         * Maximum number of nodes allowed for this queue.
+         */
+        maxNodes: number;
+        /**
+         * Number of nodes currently available.
+         */
+        availableNodes: number;
+        /**
+         * Number of nodes currently in use.
+         */
+        currentNodes: number;
+        /**
+         * Capacity status of the queue.
+         */
+        capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+        displayName?: string;
+    }[];
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/queue.json */
+export interface QueueSchema {
+    /**
+     * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+     */
+    name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    /**
+     * Maximum processors per node.
+     */
+    maxPPN: number;
+    /**
+     * Maximum number of nodes allowed for this queue.
+     */
+    maxNodes: number;
+    /**
+     * Number of nodes currently available.
+     */
+    availableNodes: number;
+    /**
+     * Number of nodes currently in use.
+     */
+    currentNodes: number;
+    /**
+     * Capacity status of the queue.
+     */
+    capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+    displayName?: string;
+}
 /** Schema dist/js/schema/context_provider.json */
 export interface ContextProviderSchema {
     name: Name;
@@ -5231,7 +5361,7 @@ export interface JobBaseSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -5419,7 +5549,7 @@ export interface ComputeArgumentsSchema {
     /**
      * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
      */
-    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
     /**
      * number of nodes used for the job inside the RMS.
      */
@@ -6702,7 +6832,7 @@ export interface JobSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -8173,7 +8303,7 @@ export interface JobSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -48660,7 +48790,7 @@ export interface WorkflowPropertySchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -52608,7 +52738,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -56398,7 +56528,7 @@ export interface BaseFlow {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -58760,7 +58890,7 @@ export interface Subworkflow {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -62973,7 +63103,7 @@ export interface WorkflowSchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
