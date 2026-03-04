@@ -54705,7 +54705,7 @@ export interface ApplicationSchemaBase {
 }
 /** Schema dist/js/schema/software/application_with_build_config.json */
 export interface ApplicationWithBuildConfigSchema {
-    build_config?: {
+    buildConfig?: {
         /**
          * The bio description used for the module files.
          */

@@ -37,7 +37,7 @@ class ApplicationVersionsWithBuildConfigSchema(BaseModel):
 
 
 class ApplicationWithBuildConfigSchema(BaseModel):
-    build_config: Optional[ApplicationVersionsWithBuildConfigSchema] = Field(
+    buildConfig: Optional[ApplicationVersionsWithBuildConfigSchema] = Field(
         None, title="application versions with build config schema"
     )
     shortName: Optional[str] = None

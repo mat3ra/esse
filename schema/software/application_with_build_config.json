@@ -9,7 +9,7 @@
         }
     ],
     "properties": {
-        "build_config": {
+        "buildConfig": {
             "description": "Build configuration for the application.",
             "type": "object",
             "$ref": "application/build_config.json"

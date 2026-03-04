@@ -4,7 +4,7 @@
     "title": "application with build config schema",
     "type": "object",
     "properties": {
-        "build_config": {
+        "buildConfig": {
             "$schema": "http://json-schema.org/draft-07/schema#",
             "title": "application versions with build config schema",
             "type": "object",
