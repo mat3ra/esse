@@ -13,15 +13,15 @@
                     "description": "The bio description used for the module files.",
                     "type": "string"
                 },
-                "module_name": {
+                "moduleName": {
                     "description": "Modulefile name specific to application version and build type.",
                     "type": "string"
                 },
-                "image_name": {
+                "imageName": {
                     "description": "Apptainer image name.",
                     "type": "string"
                 },
-                "image_tag": {
+                "imageTag": {
                     "description": "Apptainer image tag.",
                     "type": "string"
                 },
@@ -32,7 +32,7 @@
                         "type": "string"
                     }
                 },
-                "environment_variables": {
+                "environmentVariables": {
                     "description": "Environment variables to be exported before running the application, containing the key and value pairs.",
                     "type": "object"
                 }

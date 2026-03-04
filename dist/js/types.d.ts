@@ -54637,15 +54637,15 @@ export interface ApplicationVersionsWithBuildConfigSchema {
     /**
      * Modulefile name specific to application version and build type.
      */
-    module_name?: string;
+    moduleName?: string;
     /**
      * Apptainer image name.
      */
-    image_name?: string;
+    imageName?: string;
     /**
      * Apptainer image tag.
      */
-    image_tag?: string;
+    imageTag?: string;
     /**
      * List of modulefile dependencies.
      */
@@ -54653,7 +54653,7 @@ export interface ApplicationVersionsWithBuildConfigSchema {
     /**
      * Environment variables to be exported before running the application, containing the key and value pairs.
      */
-    environment_variables?: {};
+    environmentVariables?: {};
 }
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
@@ -54713,15 +54713,15 @@ export interface ApplicationWithBuildConfigSchema {
         /**
          * Modulefile name specific to application version and build type.
          */
-        module_name?: string;
+        moduleName?: string;
         /**
          * Apptainer image name.
          */
-        image_name?: string;
+        imageName?: string;
         /**
          * Apptainer image tag.
          */
-        image_tag?: string;
+        imageTag?: string;
         /**
          * List of modulefile dependencies.
          */
@@ -54729,7 +54729,7 @@ export interface ApplicationWithBuildConfigSchema {
         /**
          * Environment variables to be exported before running the application, containing the key and value pairs.
          */
-        environment_variables?: {};
+        environmentVariables?: {};
     };
     /**
      * The short name of the application. e.g. qe

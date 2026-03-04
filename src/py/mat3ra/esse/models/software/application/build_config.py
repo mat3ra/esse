@@ -14,15 +14,15 @@ class ApplicationVersionsWithBuildConfigSchema(BaseModel):
     """
     The bio description used for the module files.
     """
-    module_name: Optional[str] = None
+    moduleName: Optional[str] = None
     """
     Modulefile name specific to application version and build type.
     """
-    image_name: Optional[str] = None
+    imageName: Optional[str] = None
     """
     Apptainer image name.
     """
-    image_tag: Optional[str] = None
+    imageTag: Optional[str] = None
     """
     Apptainer image tag.
     """
@@ -30,7 +30,7 @@ class ApplicationVersionsWithBuildConfigSchema(BaseModel):
     """
     List of modulefile dependencies.
     """
-    environment_variables: Optional[Dict[str, Any]] = None
+    environmentVariables: Optional[Dict[str, Any]] = None
     """
     Environment variables to be exported before running the application, containing the key and value pairs.
     """
