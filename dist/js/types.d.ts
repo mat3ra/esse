@@ -54654,6 +54654,10 @@ export interface ApplicationVersionsWithBuildConfigSchema {
      * Environment variables to be exported before running the application, containing the key and value pairs.
      */
     environmentVariables?: {};
+    /**
+     * Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.
+     */
+    prependVariables?: {};
 }
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchemaBase {
@@ -54730,6 +54734,10 @@ export interface ApplicationWithBuildConfigSchema {
          * Environment variables to be exported before running the application, containing the key and value pairs.
          */
         environmentVariables?: {};
+        /**
+         * Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.
+         */
+        prependVariables?: {};
     };
     /**
      * The short name of the application. e.g. qe

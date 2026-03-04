@@ -34,3 +34,7 @@ class ApplicationVersionsWithBuildConfigSchema(BaseModel):
     """
     Environment variables to be exported before running the application, containing the key and value pairs.
     """
+    prependVariables: Optional[Dict[str, Any]] = None
+    """
+    Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.
+    """
