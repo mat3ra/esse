@@ -235,6 +235,7 @@
                                 "type": "string"
                             }
                         },
+                        "additionalProperties": true,
                         "required": [
                             "name"
                         ]
@@ -265,6 +266,7 @@
                                 "type": "string"
                             }
                         },
+                        "additionalProperties": true,
                         "required": [
                             "name"
                         ]
@@ -295,6 +297,7 @@
                                 "type": "string"
                             }
                         },
+                        "additionalProperties": true,
                         "required": [
                             "name"
                         ]
@@ -325,6 +328,7 @@
                                 "type": "string"
                             }
                         },
+                        "additionalProperties": true,
                         "required": [
                             "name"
                         ]
