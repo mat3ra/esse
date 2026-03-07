@@ -48,7 +48,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

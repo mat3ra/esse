@@ -1364,7 +1364,7 @@ export interface NISTJARVISDbEntrySchema {
 }
 /** Schema dist/js/schema/apse/db/third_party_sources.json */
 export interface ThirdPartySources {
-    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
 }
 /** Schema dist/js/schema/apse/file/applications/espresso/7.2/pw.x/atomic_positions.json */
 /**
@@ -2832,6 +2832,136 @@ export interface PymatgenSlabGeneratorParametersSchema {
      * Whether to symmetrize the slab
      */
     symmetrize?: boolean;
+}
+/** Schema dist/js/schema/compute/nodes/base.json */
+/**
+ * Cloud Node - base schema for all backend node types
+ */
+export interface CloudNodeSchema {
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/nodes/cluster.json */
+/**
+ * Cluster Node - extends cloud node with compute-specific properties
+ */
+export interface ClusterNodeSchema {
+    /**
+     * List of compute nodes in the cluster
+     */
+    nodes?: {}[];
+    /**
+     * Available job submission queues on this cluster
+     */
+    queues?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * Maximum processors per node.
+         */
+        maxPPN: number;
+        /**
+         * Maximum number of nodes allowed for this queue.
+         */
+        maxNodes: number;
+        /**
+         * Number of nodes currently available.
+         */
+        availableNodes: number;
+        /**
+         * Number of nodes currently in use.
+         */
+        currentNodes: number;
+        /**
+         * Capacity status of the queue.
+         */
+        capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+        displayName?: string;
+    }[];
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/queue.json */
+export interface QueueSchema {
+    /**
+     * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+     */
+    name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    /**
+     * Maximum processors per node.
+     */
+    maxPPN: number;
+    /**
+     * Maximum number of nodes allowed for this queue.
+     */
+    maxNodes: number;
+    /**
+     * Number of nodes currently available.
+     */
+    availableNodes: number;
+    /**
+     * Number of nodes currently in use.
+     */
+    currentNodes: number;
+    /**
+     * Capacity status of the queue.
+     */
+    capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+    displayName?: string;
 }
 /** Schema dist/js/schema/context_provider.json */
 export interface ContextProviderSchema {
@@ -5227,7 +5357,7 @@ export interface JobBaseSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -5415,7 +5545,7 @@ export interface ComputeArgumentsSchema {
     /**
      * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
      */
-    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
     /**
      * number of nodes used for the job inside the RMS.
      */
@@ -6096,6 +6226,10 @@ export interface JobSchema {
                      */
                     applicationId?: string[];
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName?: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -6656,7 +6790,7 @@ export interface JobSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -7330,6 +7464,10 @@ export interface JobSchema {
                  * _ids of the application this executable belongs to
                  */
                 applicationId?: string[];
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -8063,7 +8201,7 @@ export interface JobSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -8434,7 +8572,7 @@ export interface MaterialSchema {
         /**
          * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
          */
-        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
         /**
          * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
          */
@@ -8736,7 +8874,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -9009,7 +9147,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -9330,7 +9468,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -9603,7 +9741,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -9913,7 +10051,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -10186,7 +10324,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -10507,7 +10645,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -10780,7 +10918,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -11091,7 +11229,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -11364,7 +11502,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -11685,7 +11823,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -11958,7 +12096,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -12268,7 +12406,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -12541,7 +12679,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -12862,7 +13000,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -13135,7 +13273,7 @@ export interface InterfaceConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -13423,7 +13561,7 @@ export interface InterfaceConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -13752,7 +13890,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -14025,7 +14163,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -14346,7 +14484,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -14619,7 +14757,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -14929,7 +15067,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -15202,7 +15340,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -15523,7 +15661,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -15796,7 +15934,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -16146,7 +16284,7 @@ export interface AdatomDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -16419,7 +16557,7 @@ export interface AdatomDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -16699,7 +16837,7 @@ export interface AdatomDefectConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -16981,7 +17119,7 @@ export interface AdatomDefectConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -17307,7 +17445,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -17580,7 +17718,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -17901,7 +18039,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -18174,7 +18312,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -18484,7 +18622,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -18757,7 +18895,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -19078,7 +19216,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -19351,7 +19489,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -19662,7 +19800,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -19935,7 +20073,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -20256,7 +20394,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -20529,7 +20667,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -20839,7 +20977,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -21112,7 +21250,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -21433,7 +21571,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -21706,7 +21844,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -21994,7 +22132,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -22317,7 +22455,7 @@ export interface IslandDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -22590,7 +22728,7 @@ export interface IslandDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -22906,7 +23044,7 @@ export interface IslandDefectConfigurationSchema {
                                     /**
                                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                                      */
-                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                                     /**
                                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                                      */
@@ -23179,7 +23317,7 @@ export interface IslandDefectConfigurationSchema {
                                     /**
                                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                                      */
-                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                                     /**
                                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                                      */
@@ -23459,7 +23597,7 @@ export interface IslandDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -23789,7 +23927,7 @@ export interface IslandDefectConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -24109,7 +24247,7 @@ export interface TerraceDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -24382,7 +24520,7 @@ export interface TerraceDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -24698,7 +24836,7 @@ export interface TerraceDefectConfigurationSchema {
                                     /**
                                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                                      */
-                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                                     /**
                                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                                      */
@@ -24971,7 +25109,7 @@ export interface TerraceDefectConfigurationSchema {
                                     /**
                                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                                      */
-                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                                     /**
                                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                                      */
@@ -25251,7 +25389,7 @@ export interface TerraceDefectConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -25581,7 +25719,7 @@ export interface TerraceDefectConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -25874,7 +26012,7 @@ export interface PointDefectBaseConfigurationSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -26147,7 +26285,7 @@ export interface InterstitialPointDefectSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -26407,7 +26545,7 @@ export interface InterstitialPointDefectSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -26693,7 +26831,7 @@ export interface SubstitutionalPointDefectSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -26953,7 +27091,7 @@ export interface SubstitutionalPointDefectSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -27239,7 +27377,7 @@ export interface VacancyPointDefectSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -27511,7 +27649,7 @@ export interface IdealCrystalSchema {
         /**
          * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
          */
-        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
         /**
          * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
          */
@@ -27828,7 +27966,7 @@ export interface NanoribbonConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -28101,7 +28239,7 @@ export interface NanoribbonConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -28389,7 +28527,7 @@ export interface NanoribbonConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -28720,7 +28858,7 @@ export interface NanoTapeConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -28993,7 +29131,7 @@ export interface NanoTapeConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -29307,7 +29445,7 @@ export interface SlabConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -29580,7 +29718,7 @@ export interface SlabConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -29906,7 +30044,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -30179,7 +30317,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -30464,7 +30602,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -30723,7 +30861,7 @@ export interface PassivationConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -30993,7 +31131,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -31252,7 +31390,7 @@ export interface PassivationConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -31522,7 +31660,7 @@ export interface PassivationConfigurationSchema {
                 /**
                  * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                  */
-                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                 /**
                  * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                  */
@@ -31781,7 +31919,7 @@ export interface PassivationConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -32121,7 +32259,7 @@ export interface CrystalSiteSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -32391,7 +32529,7 @@ export interface PointDefectSiteSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -32669,7 +32807,7 @@ export interface VoidRegionSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -32985,7 +33123,7 @@ export interface CrystalSchema {
         /**
          * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
          */
-        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+        source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
         /**
          * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
          */
@@ -33323,7 +33461,7 @@ export interface VacuumConfigurationSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -33612,7 +33750,7 @@ export interface CrystalLatticeLinesSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -33922,7 +34060,7 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -34191,7 +34329,7 @@ export interface CrystalLatticeBaseSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -34468,7 +34606,7 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -34738,7 +34876,7 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -35007,7 +35145,7 @@ export interface SupercellConfigurationSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -35311,7 +35449,7 @@ export interface AtomicLayersSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -35614,7 +35752,7 @@ export interface AtomicLayersUniqueSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -35907,7 +36045,7 @@ export interface AtomicLayersUniqueRepeatedSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -36183,7 +36321,7 @@ export interface CrystalLatticePlanesSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -36488,7 +36626,7 @@ export interface SlabStackConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -36761,7 +36899,7 @@ export interface SlabStackConfigurationSchema {
                             /**
                              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                              */
-                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                             /**
                              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                              */
@@ -37050,7 +37188,7 @@ export interface SlabStackConfigurationSchema {
                     /**
                      * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
                      */
-                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+                    source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
                     /**
                      * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
                      */
@@ -37371,7 +37509,7 @@ export interface PerturbationSchema {
             /**
              * Third party source name, e.g. materials project, 2dmatpedia, ICSD, etc.
              */
-            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia";
+            source: "MaterialsProject" | "MaterialsProjectLegacy" | "ICSD" | "2dmatpedia" | "MaterialsVirtualLab";
             /**
              * Deprecated. To be removed. A flag that is true when material is initially imported from a third party * (as opposed to being independently designed from scratch).
              */
@@ -46658,6 +46796,50 @@ export interface IonizationPotentialElementalPropertySchema {
     units: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/enum_options.json */
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ExternalSource".
+ */
+export type ExternalSource = "ICSD" | "MaterialsProject" | "MaterialsProjectLegacy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "PropertyType".
+ */
+export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ScalarPropertyEnum".
+ */
+export type ScalarPropertyEnum = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "NonScalarPropertyEnum".
+ */
+export type NonScalarPropertyEnum = "average_potential_profile" | "band_gaps" | "band_structure" | "charge_density_profile" | "convergence_electronic" | "convergence_ionic" | "density_of_states" | "dielectric_tensor" | "file_content" | "final_structure" | "hubbard_u" | "hubbard_v" | "hubbard_v_nn" | "is_relaxed" | "jupyter_notebook_endpoint" | "phonon_dispersions" | "phonon_dos" | "potential_profile" | "reaction_energy_profile" | "wavefunction_amplitude" | "workflow:pyml_predict";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "TensorPropertyEnum".
+ */
+export type TensorPropertyEnum = "atomic_forces" | "magnetic_moments" | "stress_tensor";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ObjectPropertyEnum".
+ */
+export type ObjectPropertyEnum = "total_energy_contributions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ProtoPropertyEnum".
+ */
+export type ProtoPropertyEnum = "atomic_constraints" | "boundary_conditions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "MetaPropertyEnum".
+ */
+export type MetaPropertyEnum = "pseudopotential";
+export interface PropertiesDirectoryEnumOptions {
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/properties_directory/jupyter_notebook_endpoint.json */
 export interface JupyterNotebookEndpointPropertySchema {
     name: "jupyter_notebook_endpoint";
@@ -47288,6 +47470,35 @@ export interface VibrationalSpectrumPropertySchema {
     xDataArray: (number | number[])[];
     yDataSeries: [number, ...number[]][];
 }
+/** Schema dist/js/schema/properties_directory/non_scalar/wavefunction_amplitude.json */
+export interface WavefunctionAmplitudePropertySchema {
+    xAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "coordinate";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    yAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "amplitude";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    name: "wavefunction_amplitude";
+    /**
+     * array containing values of x Axis
+     */
+    xDataArray: (number | number[])[];
+    yDataSeries: [number, ...number[]][];
+}
 /** Schema dist/js/schema/properties_directory/non_scalar/workflow.json */
 export interface WorkflowPropertySchema {
     /**
@@ -47875,6 +48086,10 @@ export interface WorkflowPropertySchema {
                  */
                 applicationId?: string[];
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -48435,7 +48650,7 @@ export interface WorkflowPropertySchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -49109,6 +49324,10 @@ export interface WorkflowPropertySchema {
              * _ids of the application this executable belongs to
              */
             applicationId?: string[];
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
             /**
              * Whether advanced compute options are present
              */
@@ -50846,6 +51065,33 @@ export interface PropertyHolderSchema {
             /**
              * label of an axis object
              */
+            label: "coordinate";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        yAxis: {
+            /**
+             * label of an axis object
+             */
+            label: "amplitude";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        name: "wavefunction_amplitude";
+        /**
+         * array containing values of x Axis
+         */
+        xDataArray: (number | number[])[];
+        yDataSeries: [number, ...number[]][];
+    } | {
+        xAxis: {
+            /**
+             * label of an axis object
+             */
             label: "reaction coordinate";
             /**
              * units for an axis
@@ -51690,6 +51936,10 @@ export interface PropertyHolderSchema {
                      */
                     applicationId?: string[];
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName?: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52250,7 +52500,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -52924,6 +53174,10 @@ export interface PropertyHolderSchema {
                  * _ids of the application this executable belongs to
                  */
                 applicationId?: string[];
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -54136,6 +54390,10 @@ export interface ExecutableSchema {
      */
     applicationId?: string[];
     /**
+     * name of the application this executable belongs to
+     */
+    applicationName?: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54557,6 +54815,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55099,6 +55361,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55872,7 +56138,7 @@ export interface BaseFlow {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -56553,6 +56819,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -57593,6 +57863,10 @@ export interface Subworkflow {
              */
             applicationId?: string[];
             /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -58153,7 +58427,7 @@ export interface Subworkflow {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -58761,6 +59035,10 @@ export interface ExecutionUnitSchemaBase {
          * _ids of the application this executable belongs to
          */
         applicationId?: string[];
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
         /**
          * Whether advanced compute options are present
          */
@@ -60403,6 +60681,10 @@ export type WorkflowUnitSchema = {
          */
         applicationId?: string[];
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName?: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61660,6 +61942,10 @@ export interface WorkflowSchema {
                  */
                 applicationId?: string[];
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName?: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -62220,7 +62506,7 @@ export interface WorkflowSchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -62894,6 +63180,10 @@ export interface WorkflowSchema {
              * _ids of the application this executable belongs to
              */
             applicationId?: string[];
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName?: string;
             /**
              * Whether advanced compute options are present
              */

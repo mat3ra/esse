@@ -95,7 +95,7 @@
     },
     "exports": {
         "./dist/js/schema/*.json": "./dist/js/schema/*.json",
-        "./dist/js/example/*": "./dist/js/example/*.js",
+        "./dist/js/example/*": "./dist/js/example/*",
         "./dist/js/utils/*": "./dist/js/utils/*.js",
         "./dist/js/esse/*": "./dist/js/esse/*.js",
         "./dist/js/json_include/*": "./dist/js/json_include/*.js",

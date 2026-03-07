@@ -34,7 +34,7 @@ class ValenceBandOffsetPropertySchema(BaseModel):
     value: float
 
 
-class Name477(Enum):
+class Name478(Enum):
     zero_point_energy = "zero_point_energy"
 
 
@@ -58,7 +58,7 @@ class ZeroPointEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name478(Enum):
+class Name479(Enum):
     pressure = "pressure"
 
 
@@ -73,7 +73,7 @@ class PressurePropertySchema(BaseModel):
     value: float
 
 
-class Name479(Enum):
+class Name480(Enum):
     reaction_energy_barrier = "reaction_energy_barrier"
 
 
@@ -97,7 +97,7 @@ class ReactionEnergyBarrierPropertySchema(BaseModel):
     value: float
 
 
-class Name480(Enum):
+class Name481(Enum):
     surface_energy = "surface_energy"
 
 
@@ -121,7 +121,7 @@ class SurfaceEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name481(Enum):
+class Name482(Enum):
     total_energy = "total_energy"
 
 
@@ -145,7 +145,7 @@ class TotalEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name482(Enum):
+class Name483(Enum):
     total_force = "total_force"
 
 
@@ -164,7 +164,7 @@ class TotalForcesPropertySchema(BaseModel):
     value: float
 
 
-class Name483(Enum):
+class Name484(Enum):
     fermi_energy = "fermi_energy"
 
 
@@ -188,7 +188,7 @@ class FermiEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name484(Enum):
+class Name485(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -216,7 +216,7 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
-class Name485(Enum):
+class Name486(Enum):
     stress_tensor = "stress_tensor"
 
 
@@ -231,7 +231,7 @@ class StressTensorPropertySchema(BaseModel):
     units: Units207
 
 
-class Name486(Enum):
+class Name487(Enum):
     band_gaps = "band_gaps"
 
 
@@ -339,7 +339,7 @@ class AxisSchema12(BaseModel):
     """
 
 
-class Name487(Enum):
+class Name488(Enum):
     band_structure = "band_structure"
 
 
@@ -404,7 +404,7 @@ class AxisSchema14(BaseModel):
     """
 
 
-class Name488(Enum):
+class Name489(Enum):
     phonon_dispersions = "phonon_dispersions"
 
 
@@ -419,133 +419,133 @@ class PhononBandStructurePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name489(Enum):
+class Name490(Enum):
     temperature_entropy = "temperature_entropy"
 
 
 class ScalarSchema(BaseModel):
-    name: Optional[Name489] = None
-    value: float
-
-
-class Name490(Enum):
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema58(BaseModel):
     name: Optional[Name490] = None
     value: float
 
 
 class Name491(Enum):
-    smearing = "smearing"
+    harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema59(BaseModel):
+class ScalarSchema58(BaseModel):
     name: Optional[Name491] = None
     value: float
 
 
 class Name492(Enum):
-    one_electron = "one_electron"
+    smearing = "smearing"
 
 
-class ScalarSchema60(BaseModel):
+class ScalarSchema59(BaseModel):
     name: Optional[Name492] = None
     value: float
 
 
 class Name493(Enum):
-    hartree = "hartree"
+    one_electron = "one_electron"
 
 
-class ScalarSchema61(BaseModel):
+class ScalarSchema60(BaseModel):
     name: Optional[Name493] = None
     value: float
 
 
 class Name494(Enum):
-    exchange = "exchange"
+    hartree = "hartree"
 
 
-class ScalarSchema62(BaseModel):
+class ScalarSchema61(BaseModel):
     name: Optional[Name494] = None
     value: float
 
 
 class Name495(Enum):
-    exchange_correlation = "exchange_correlation"
+    exchange = "exchange"
 
 
-class ScalarSchema63(BaseModel):
+class ScalarSchema62(BaseModel):
     name: Optional[Name495] = None
     value: float
 
 
 class Name496(Enum):
-    ewald = "ewald"
+    exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema64(BaseModel):
+class ScalarSchema63(BaseModel):
     name: Optional[Name496] = None
     value: float
 
 
 class Name497(Enum):
-    alphaZ = "alphaZ"
+    ewald = "ewald"
 
 
-class ScalarSchema65(BaseModel):
+class ScalarSchema64(BaseModel):
     name: Optional[Name497] = None
     value: float
 
 
 class Name498(Enum):
-    atomic_energy = "atomic_energy"
+    alphaZ = "alphaZ"
 
 
-class ScalarSchema66(BaseModel):
+class ScalarSchema65(BaseModel):
     name: Optional[Name498] = None
     value: float
 
 
 class Name499(Enum):
-    eigenvalues = "eigenvalues"
+    atomic_energy = "atomic_energy"
 
 
-class ScalarSchema67(BaseModel):
+class ScalarSchema66(BaseModel):
     name: Optional[Name499] = None
     value: float
 
 
 class Name500(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    eigenvalues = "eigenvalues"
 
 
-class ScalarSchema68(BaseModel):
+class ScalarSchema67(BaseModel):
     name: Optional[Name500] = None
     value: float
 
 
 class Name501(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema69(BaseModel):
+class ScalarSchema68(BaseModel):
     name: Optional[Name501] = None
     value: float
 
 
 class Name502(Enum):
-    hartree_fock = "hartree_fock"
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
 
 
-class ScalarSchema70(BaseModel):
+class ScalarSchema69(BaseModel):
     name: Optional[Name502] = None
     value: float
 
 
 class Name503(Enum):
+    hartree_fock = "hartree_fock"
+
+
+class ScalarSchema70(BaseModel):
+    name: Optional[Name503] = None
+    value: float
+
+
+class Name504(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -658,7 +658,7 @@ class AxisSchema16(BaseModel):
     """
 
 
-class Name504(Enum):
+class Name505(Enum):
     phonon_dos = "phonon_dos"
 
 
@@ -713,7 +713,7 @@ class AxisSchema18(BaseModel):
     """
 
 
-class Name505(Enum):
+class Name506(Enum):
     potential_profile = "potential_profile"
 
 
@@ -729,7 +729,7 @@ class PotentialProfilePropertySchema(BaseModel):
 
 
 class Label16(Enum):
-    reaction_coordinate = "reaction coordinate"
+    coordinate = "coordinate"
 
 
 class AxisSchema19(BaseModel):
@@ -744,7 +744,7 @@ class AxisSchema19(BaseModel):
 
 
 class Label17(Enum):
-    energy = "energy"
+    amplitude = "amplitude"
 
 
 class AxisSchema20(BaseModel):
@@ -752,17 +752,17 @@ class AxisSchema20(BaseModel):
     """
     label of an axis object
     """
-    units: Optional[Units216] = None
+    units: Optional[str] = None
     """
     units for an axis
     """
 
 
-class Name506(Enum):
-    reaction_energy_profile = "reaction_energy_profile"
+class Name507(Enum):
+    wavefunction_amplitude = "wavefunction_amplitude"
 
 
-class ReactionEnergyProfilePropertySchema(BaseModel):
+class WavefunctionAmplitudePropertySchema(BaseModel):
     xAxis: AxisSchema19 = Field(..., title="axis schema")
     yAxis: AxisSchema20 = Field(..., title="axis schema")
     name: Literal["16#-datamodel-code-generator-#-object-#-special-#"]
@@ -773,8 +773,27 @@ class ReactionEnergyProfilePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
+class Label18(Enum):
+    reaction_coordinate = "reaction coordinate"
+
+
 class AxisSchema21(BaseModel):
-    label: Label17
+    label: Label18
+    """
+    label of an axis object
+    """
+    units: Optional[str] = None
+    """
+    units for an axis
+    """
+
+
+class Label19(Enum):
+    energy = "energy"
+
+
+class AxisSchema22(BaseModel):
+    label: Label19
     """
     label of an axis object
     """
@@ -784,7 +803,33 @@ class AxisSchema21(BaseModel):
     """
 
 
-class Label19(Enum):
+class Name508(Enum):
+    reaction_energy_profile = "reaction_energy_profile"
+
+
+class ReactionEnergyProfilePropertySchema(BaseModel):
+    xAxis: AxisSchema21 = Field(..., title="axis schema")
+    yAxis: AxisSchema22 = Field(..., title="axis schema")
+    name: Literal["17#-datamodel-code-generator-#-object-#-special-#"]
+    xDataArray: List[Union[float, List[float]]]
+    """
+    array containing values of x Axis
+    """
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+
+
+class AxisSchema23(BaseModel):
+    label: Label19
+    """
+    label of an axis object
+    """
+    units: Optional[Units216] = None
+    """
+    units for an axis
+    """
+
+
+class Label21(Enum):
     density_of_states = "density of states"
 
 
@@ -792,8 +837,8 @@ class Units219(Enum):
     states_unitcell = "states/unitcell"
 
 
-class AxisSchema22(BaseModel):
-    label: Label19
+class AxisSchema24(BaseModel):
+    label: Label21
     """
     label of an axis object
     """
@@ -803,7 +848,7 @@ class AxisSchema22(BaseModel):
     """
 
 
-class Name507(Enum):
+class Name509(Enum):
     density_of_states = "density_of_states"
 
 
@@ -832,9 +877,9 @@ class LegendItem(BaseModel):
 
 
 class DensityOfStatesPropertySchema(BaseModel):
-    xAxis: AxisSchema21 = Field(..., title="axis schema")
-    yAxis: AxisSchema22 = Field(..., title="axis schema")
-    name: Literal["17#-datamodel-code-generator-#-object-#-special-#"]
+    xAxis: AxisSchema23 = Field(..., title="axis schema")
+    yAxis: AxisSchema24 = Field(..., title="axis schema")
+    name: Literal["18#-datamodel-code-generator-#-object-#-special-#"]
     legend: List[LegendItem]
     xDataArray: List[Union[float, List[float]]]
     """
@@ -843,7 +888,7 @@ class DensityOfStatesPropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name508(Enum):
+class Name510(Enum):
     dielectric_tensor = "dielectric_tensor"
 
 
@@ -869,11 +914,11 @@ class DielectricTensor(BaseModel):
 
 
 class DielectricTensorPropertySchema(BaseModel):
-    name: Literal["18#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["19#-datamodel-code-generator-#-object-#-special-#"]
     values: List[DielectricTensor]
 
 
-class Name509(Enum):
+class Name511(Enum):
     file_content = "file_content"
 
 
@@ -911,7 +956,7 @@ class ObjectStorageContainerData(BaseModel):
 
 
 class FileContentPropertySchema(BaseModel):
-    name: Literal["19#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["20#-datamodel-code-generator-#-object-#-special-#"]
     filetype: Filetype
     """
     What kind of file this is, e.g. image / text
@@ -927,7 +972,7 @@ class FileContentPropertySchema(BaseModel):
     """
 
 
-class Name510(Enum):
+class Name512(Enum):
     hubbard_u = "hubbard_u"
 
 
@@ -952,12 +997,12 @@ class AtomicDataPerOrbitalNumeric(BaseModel):
 
 
 class HubbardUParametersPropertySchema(BaseModel):
-    name: Literal["20#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["21#-datamodel-code-generator-#-object-#-special-#"]
     units: Units220
     values: List[AtomicDataPerOrbitalNumeric]
 
 
-class Name511(Enum):
+class Name513(Enum):
     hubbard_v = "hubbard_v"
 
 
@@ -991,22 +1036,22 @@ class AtomicDataPerOrbitalPairNumeric(BaseModel):
 
 
 class HubbardVParametersPropertySchema(BaseModel):
-    name: Literal["21#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units220
-    values: List[AtomicDataPerOrbitalPairNumeric]
-
-
-class Name512(Enum):
-    hubbard_v_nn = "hubbard_v_nn"
-
-
-class HubbardVNNParametersPropertySchema(BaseModel):
     name: Literal["22#-datamodel-code-generator-#-object-#-special-#"]
     units: Units220
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
-class Label20(Enum):
+class Name514(Enum):
+    hubbard_v_nn = "hubbard_v_nn"
+
+
+class HubbardVNNParametersPropertySchema(BaseModel):
+    name: Literal["23#-datamodel-code-generator-#-object-#-special-#"]
+    units: Units220
+    values: List[AtomicDataPerOrbitalPairNumeric]
+
+
+class Label22(Enum):
     z_coordinate = "z coordinate"
 
 
@@ -1023,8 +1068,8 @@ class Units223(Enum):
     pm = "pm"
 
 
-class AxisSchema23(BaseModel):
-    label: Label20
+class AxisSchema25(BaseModel):
+    label: Label22
     """
     label of an axis object
     """
@@ -1034,7 +1079,7 @@ class AxisSchema23(BaseModel):
     """
 
 
-class Label21(Enum):
+class Label23(Enum):
     energy = "energy"
 
 
@@ -1048,8 +1093,8 @@ class Units224(Enum):
     eV_atom = "eV/atom"
 
 
-class AxisSchema24(BaseModel):
-    label: Label21
+class AxisSchema26(BaseModel):
+    label: Label23
     """
     label of an axis object
     """
@@ -1059,60 +1104,11 @@ class AxisSchema24(BaseModel):
     """
 
 
-class Name513(Enum):
+class Name515(Enum):
     average_potential_profile = "average_potential_profile"
 
 
 class AveragePotentialProfilePropertySchema(BaseModel):
-    xAxis: AxisSchema23 = Field(..., title="axis schema")
-    yAxis: AxisSchema24 = Field(..., title="axis schema")
-    name: Literal["23#-datamodel-code-generator-#-object-#-special-#"]
-    xDataArray: List[Union[float, List[float]]]
-    """
-    array containing values of x Axis
-    """
-    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
-
-
-class Label22(Enum):
-    z_coordinate = "z coordinate"
-
-
-class AxisSchema25(BaseModel):
-    label: Label22
-    """
-    label of an axis object
-    """
-    units: Optional[str] = None
-    """
-    units for an axis
-    """
-
-
-class Label23(Enum):
-    charge_density = "charge density"
-
-
-class Units225(Enum):
-    e_A = "e/A"
-
-
-class AxisSchema26(BaseModel):
-    label: Label23
-    """
-    label of an axis object
-    """
-    units: Optional[Units225] = None
-    """
-    units for an axis
-    """
-
-
-class Name514(Enum):
-    charge_density_profile = "charge_density_profile"
-
-
-class ChargeDensityProfilePropertySchema(BaseModel):
     xAxis: AxisSchema25 = Field(..., title="axis schema")
     yAxis: AxisSchema26 = Field(..., title="axis schema")
     name: Literal["24#-datamodel-code-generator-#-object-#-special-#"]
@@ -1123,12 +1119,57 @@ class ChargeDensityProfilePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-class Name515(Enum):
+class Label24(Enum):
+    z_coordinate = "z coordinate"
+
+
+class AxisSchema27(BaseModel):
+    label: Label24
+    """
+    label of an axis object
+    """
+    units: Optional[str] = None
+    """
+    units for an axis
+    """
+
+
+class Label25(Enum):
+    charge_density = "charge density"
+
+
+class Units225(Enum):
+    e_A = "e/A"
+
+
+class AxisSchema28(BaseModel):
+    label: Label25
+    """
+    label of an axis object
+    """
+    units: Optional[Units225] = None
+    """
+    units for an axis
+    """
+
+
+class Name516(Enum):
+    charge_density_profile = "charge_density_profile"
+
+
+class ChargeDensityProfilePropertySchema(BaseModel):
+    xAxis: AxisSchema27 = Field(..., title="axis schema")
+    yAxis: AxisSchema28 = Field(..., title="axis schema")
+    name: Literal["25#-datamodel-code-generator-#-object-#-special-#"]
+    xDataArray: List[Union[float, List[float]]]
+    """
+    array containing values of x Axis
+    """
+    yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
+
+
+class Name517(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
-
-
-class Type20(Enum):
-    io = "io"
 
 
 class Subtype(Enum):
@@ -1246,7 +1287,7 @@ class DataIOUnitSchema(BaseModel):
             ObjectStorageIoSchema,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1310,10 +1351,6 @@ class DataIOUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type21(Enum):
-    reduce = "reduce"
 
 
 class InputItem(BaseModel):
@@ -1343,7 +1380,7 @@ class ReduceUnitSchema(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1407,10 +1444,6 @@ class ReduceUnitSchema(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type22(Enum):
-    condition = "condition"
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -1456,7 +1489,7 @@ class ConditionUnitSchema(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1522,10 +1555,6 @@ class ConditionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type23(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1542,7 +1571,7 @@ class AssertionUnitSchema(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1608,10 +1637,6 @@ class AssertionUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type24(Enum):
-    execution = "execution"
-
-
 class ApplicationSchemaBase(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1640,7 +1665,7 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1672,11 +1697,15 @@ class ExecutableSchema(BaseModel):
     """
     _ids of the application this executable belongs to
     """
+    applicationName: Optional[str] = None
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1743,7 +1772,7 @@ class FlavorSchema(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1797,7 +1826,7 @@ class ExecutionUnitSchemaBase(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1863,10 +1892,6 @@ class ExecutionUnitSchemaBase(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type25(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1887,7 +1912,7 @@ class AssignmentUnitSchema(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1954,10 +1979,6 @@ class AssignmentUnitSchema(BaseModel):
     scope: Optional[str] = None
 
 
-class Type26(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -1978,7 +1999,7 @@ class ProcessingUnitSchema(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2110,12 +2131,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -2264,7 +2279,7 @@ class Subworkflow(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """
@@ -2280,10 +2295,6 @@ class Subworkflow(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-
-
-class Type27(Enum):
-    io = "io"
 
 
 class DataIODatabaseInputOutputSchema4(BaseModel):
@@ -2350,7 +2361,7 @@ class DataIOUnitSchema1(BaseModel):
             ObjectStorageIoSchema1,
         ]
     ]
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2414,10 +2425,6 @@ class DataIOUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type28(Enum):
-    reduce = "reduce"
 
 
 class ReduceUnitSchema1(BaseModel):
@@ -2436,7 +2443,7 @@ class ReduceUnitSchema1(BaseModel):
     """
     input information for reduce unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2500,10 +2507,6 @@ class ReduceUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type29(Enum):
-    condition = "condition"
 
 
 class ConditionUnitSchema2(BaseModel):
@@ -2538,7 +2541,7 @@ class ConditionUnitSchema2(BaseModel):
     """
     Throw exception on reaching to maximum occurence.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2604,10 +2607,6 @@ class ConditionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type30(Enum):
-    assertion = "assertion"
-
-
 class AssertionUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2624,7 +2623,7 @@ class AssertionUnitSchema2(BaseModel):
     """
     The error message to be displayed if the assertion fails
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2690,10 +2689,6 @@ class AssertionUnitSchema2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type31(Enum):
-    execution = "execution"
-
-
 class ExecutableSchema5(BaseModel):
     name: str
     """
@@ -2703,11 +2698,15 @@ class ExecutableSchema5(BaseModel):
     """
     _ids of the application this executable belongs to
     """
+    applicationName: Optional[str] = None
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2762,7 +2761,7 @@ class FlavorSchema5(BaseModel):
     """
     list of application versions this flavor supports
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2816,7 +2815,7 @@ class ExecutionUnitSchemaBase2(BaseModel):
     """
     unit input (type to be specified by the application's execution unit)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2882,10 +2881,6 @@ class ExecutionUnitSchemaBase2(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type32(Enum):
-    assignment = "assignment"
-
-
 class AssignmentUnitSchema2(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2906,7 +2901,7 @@ class AssignmentUnitSchema2(BaseModel):
     """
     Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -2973,10 +2968,6 @@ class AssignmentUnitSchema2(BaseModel):
     scope: Optional[str] = None
 
 
-class Type33(Enum):
-    processing = "processing"
-
-
 class ProcessingUnitSchema1(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -2997,7 +2988,7 @@ class ProcessingUnitSchema1(BaseModel):
     """
     unit input (type to be specified by the child units)
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3061,10 +3052,6 @@ class ProcessingUnitSchema1(BaseModel):
     entity tags
     """
     statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class Type34(Enum):
-    map = "map"
 
 
 class Input(BaseModel):
@@ -3103,7 +3090,7 @@ class MapUnitSchema(BaseModel):
     """
     Input information for map.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3169,10 +3156,6 @@ class MapUnitSchema(BaseModel):
     statusTrack: Optional[List[StatusTrackItem]] = None
 
 
-class Type35(Enum):
-    subworkflow = "subworkflow"
-
-
 class SubworkflowUnitSchema(BaseModel):
     model_config = ConfigDict(
         extra="allow",
@@ -3181,7 +3164,7 @@ class SubworkflowUnitSchema(BaseModel):
     """
     type of the unit
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3276,7 +3259,7 @@ class WorkflowUnitSchema(
 
 
 class WorkflowPropertySchema(BaseModel):
-    name: Literal["25#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["26#-datamodel-code-generator-#-object-#-special-#"]
     """
     entity name
     """
@@ -3300,7 +3283,7 @@ class WorkflowPropertySchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -3320,7 +3303,7 @@ class WorkflowPropertySchema(BaseModel):
     metadata: Optional[Dict[str, Any]] = None
 
 
-class Name516(Enum):
+class Name518(Enum):
     magnetic_moments = "magnetic_moments"
 
 
@@ -3340,12 +3323,12 @@ class Units226(Enum):
 
 
 class MagneticMomentsPropertySchema(BaseModel):
-    name: Literal["26#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["27#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
     units: Units226
 
 
-class Name517(Enum):
+class Name519(Enum):
     atomic_forces = "atomic_forces"
 
 
@@ -3359,12 +3342,12 @@ class Units227(Enum):
 
 
 class AtomicForcesPropertySchema(BaseModel):
-    name: Literal["27#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["28#-datamodel-code-generator-#-object-#-special-#"]
     values: List[AtomicVectorSchema] = Field(..., title="atomic vectors schema")
     units: Units227
 
 
-class Name518(Enum):
+class Name520(Enum):
     convergence_electronic = "convergence_electronic"
 
 
@@ -3375,12 +3358,12 @@ class Units228(Enum):
 
 
 class ConvergenceElectronicPropertySchema(BaseModel):
-    name: Literal["28#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["29#-datamodel-code-generator-#-object-#-special-#"]
     units: Units228
     data: List[List[float]]
 
 
-class Name519(Enum):
+class Name521(Enum):
     convergence_ionic = "convergence_ionic"
 
 
@@ -3418,7 +3401,7 @@ class Datum(BaseModel):
 
 
 class ConvergenceIonicPropertySchema(BaseModel):
-    name: Literal["29#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
     tolerance: Optional[Any] = None
     """
     for ionic convergence tolerance shows force tolerance
@@ -3433,12 +3416,12 @@ class ConvergenceIonicPropertySchema(BaseModel):
     """
 
 
-class Name520(Enum):
+class Name522(Enum):
     is_relaxed = "is_relaxed"
 
 
 class IsRelaxedPropertySchema(BaseModel):
-    name: Literal["30#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["31#-datamodel-code-generator-#-object-#-special-#"]
     value: bool
     materialId: str
     """
@@ -3446,12 +3429,12 @@ class IsRelaxedPropertySchema(BaseModel):
     """
 
 
-class Name521(Enum):
+class Name523(Enum):
     final_structure = "final_structure"
 
 
 class FinalStructurePropertySchema(BaseModel):
-    name: Literal["31#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["32#-datamodel-code-generator-#-object-#-special-#"]
     isRelaxed: bool
     materialId: str
     """
@@ -3459,12 +3442,12 @@ class FinalStructurePropertySchema(BaseModel):
     """
 
 
-class Name522(Enum):
+class Name524(Enum):
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
 
 
 class JupyterNotebookEndpointPropertySchema(BaseModel):
-    name: Literal["32#-datamodel-code-generator-#-object-#-special-#"]
+    name: Literal["33#-datamodel-code-generator-#-object-#-special-#"]
     host: str
     port: float
     token: str
@@ -3521,6 +3504,7 @@ class PropertyHolderSchema(BaseModel):
         TotalEnergyContributionsPropertySchema,
         PhononDensityOfStatesPropertySchema,
         PotentialProfilePropertySchema,
+        WavefunctionAmplitudePropertySchema,
         ReactionEnergyProfilePropertySchema,
         DensityOfStatesPropertySchema,
         DielectricTensorPropertySchema,
@@ -3553,7 +3537,7 @@ class PropertyHolderSchema(BaseModel):
     property system tags, marks property system characteristics, values refined or best (could be both)
     """
     repetition: float
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

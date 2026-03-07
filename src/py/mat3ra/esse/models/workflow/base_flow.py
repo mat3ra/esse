@@ -18,12 +18,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -162,7 +156,7 @@ class ComputeArgumentsSchema(BaseModel):
 
 
 class BaseFlow(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     subworkflow identity
     """

@@ -427,7 +427,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name684(Enum):
+class Name686(Enum):
     density = "density"
 
 
@@ -450,7 +450,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name685(Enum):
+class Name687(Enum):
     symmetry = "symmetry"
 
 
@@ -470,7 +470,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name686(Enum):
+class Name688(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -483,7 +483,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name687(Enum):
+class Name689(Enum):
     p_norm = "p-norm"
 
 
@@ -496,7 +496,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name688(Enum):
+class Name690(Enum):
     inchi = "inchi"
 
 
@@ -505,7 +505,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name689(Enum):
+class Name691(Enum):
     inchi_key = "inchi_key"
 
 
@@ -543,6 +543,7 @@ class Source(Enum):
     MaterialsProjectLegacy = "MaterialsProjectLegacy"
     ICSD = "ICSD"
     field_2dmatpedia = "2dmatpedia"
+    MaterialsVirtualLab = "MaterialsVirtualLab"
 
 
 class DatabaseSourceSchema(BaseModel):
@@ -591,7 +592,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name690(Enum):
+class Name692(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -604,7 +605,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name690
+    name: Name692
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -655,7 +656,7 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -910,7 +911,7 @@ class LatticeSchema73(BaseModel):
     )
 
 
-class Name691(Enum):
+class Name693(Enum):
     volume = "volume"
 
 
@@ -924,7 +925,7 @@ class VolumeSchema73(BaseModel):
     value: float
 
 
-class Name692(Enum):
+class Name694(Enum):
     density = "density"
 
 
@@ -947,7 +948,7 @@ class ScalarSchema89(BaseModel):
     value: float
 
 
-class Name693(Enum):
+class Name695(Enum):
     symmetry = "symmetry"
 
 
@@ -967,7 +968,7 @@ class SymmetrySchema73(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name694(Enum):
+class Name696(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -980,7 +981,7 @@ class ElementalRatio74(BaseModel):
     """
 
 
-class Name695(Enum):
+class Name697(Enum):
     p_norm = "p-norm"
 
 
@@ -993,7 +994,7 @@ class PNorm74(BaseModel):
     value: float
 
 
-class Name696(Enum):
+class Name698(Enum):
     inchi = "inchi"
 
 
@@ -1002,7 +1003,7 @@ class InChIRepresentationSchema74(BaseModel):
     value: str
 
 
-class Name697(Enum):
+class Name699(Enum):
     inchi_key = "inchi_key"
 
 
@@ -1062,14 +1063,14 @@ class DatabaseSourceSchema73(BaseModel):
     """
 
 
-class Name698(Enum):
+class Name700(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema73(BaseModel):
-    name: Name698
+    name: Name700
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -1120,7 +1121,7 @@ class CrystalSchema68(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema73]] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

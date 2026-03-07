@@ -31,12 +31,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -175,7 +169,7 @@ class ComputeArgumentsSchema(BaseModel):
 
 
 class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -220,8 +214,8 @@ class JobBaseSchema(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-    field_project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
-    field_material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
+    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
+    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
     parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
     runtimeContext: Optional[Dict[str, Any]] = None
     """
@@ -231,7 +225,7 @@ class JobBaseSchema(BaseModel):
     """
     history of the workflow scope on each update
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

@@ -10,9 +10,7 @@
     ],
     "properties": {
         "type": {
-            "enum": [
-                "assertion"
-            ]
+            "const": "assertion"
         },
         "statement": {
             "type": "string",

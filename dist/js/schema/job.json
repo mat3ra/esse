@@ -55,9 +55,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "io"
-                                                    ],
+                                                    "const": "io",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -425,9 +423,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "reduce"
-                                                    ],
+                                                    "const": "reduce",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -683,9 +679,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "condition"
-                                                    ],
+                                                    "const": "condition",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -953,9 +947,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "assertion"
-                                                    ],
+                                                    "const": "assertion",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -1188,9 +1180,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "execution"
-                                                    ],
+                                                    "const": "execution",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -1269,6 +1259,10 @@
                                                             "items": {
                                                                 "type": "string"
                                                             }
+                                                        },
+                                                        "applicationName": {
+                                                            "description": "name of the application this executable belongs to",
+                                                            "type": "string"
                                                         },
                                                         "hasAdvancedComputeOptions": {
                                                             "description": "Whether advanced compute options are present",
@@ -1835,9 +1829,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "assignment"
-                                                    ],
+                                                    "const": "assignment",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -2107,9 +2099,7 @@
                                             "additionalProperties": true,
                                             "properties": {
                                                 "type": {
-                                                    "enum": [
-                                                        "processing"
-                                                    ],
+                                                    "const": "processing",
                                                     "description": "type of the unit",
                                                     "type": "string"
                                                 },
@@ -2490,12 +2480,6 @@
                                             "SR",
                                             "SF",
                                             "SFplus",
-                                            "GPOF",
-                                            "GP2OF",
-                                            "GP4OF",
-                                            "GPSF",
-                                            "GP2SF",
-                                            "GP4SF",
                                             "OR4",
                                             "OR8",
                                             "OR16",
@@ -2669,9 +2653,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "io"
-                                        ],
+                                        "const": "io",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -3039,9 +3021,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "reduce"
-                                        ],
+                                        "const": "reduce",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -3297,9 +3277,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "condition"
-                                        ],
+                                        "const": "condition",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -3567,9 +3545,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "assertion"
-                                        ],
+                                        "const": "assertion",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -3802,9 +3778,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "execution"
-                                        ],
+                                        "const": "execution",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -3883,6 +3857,10 @@
                                                 "items": {
                                                     "type": "string"
                                                 }
+                                            },
+                                            "applicationName": {
+                                                "description": "name of the application this executable belongs to",
+                                                "type": "string"
                                             },
                                             "hasAdvancedComputeOptions": {
                                                 "description": "Whether advanced compute options are present",
@@ -4449,9 +4427,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "assignment"
-                                        ],
+                                        "const": "assignment",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -4721,9 +4697,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "processing"
-                                        ],
+                                        "const": "processing",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -4959,9 +4933,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "map"
-                                        ],
+                                        "const": "map",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -5229,9 +5201,7 @@
                                 "additionalProperties": true,
                                 "properties": {
                                     "type": {
-                                        "enum": [
-                                            "subworkflow"
-                                        ],
+                                        "const": "subworkflow",
                                         "description": "type of the unit",
                                         "type": "string"
                                     },
@@ -5558,12 +5528,6 @@
                         "SR",
                         "SF",
                         "SFplus",
-                        "GPOF",
-                        "GP2OF",
-                        "GP4OF",
-                        "GPSF",
-                        "GP2SF",
-                        "GP4SF",
                         "OR4",
                         "OR8",
                         "OR16",

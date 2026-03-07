@@ -25,11 +25,15 @@ class ExecutableSchema(BaseModel):
     """
     _ids of the application this executable belongs to
     """
+    applicationName: Optional[str] = None
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

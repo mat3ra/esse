@@ -12,9 +12,7 @@
     "additionalProperties": true,
     "properties": {
         "type": {
-            "enum": [
-                "execution"
-            ],
+            "const": "execution",
             "description": "type of the unit",
             "type": "string"
         },
@@ -93,6 +91,10 @@
                     "items": {
                         "type": "string"
                     }
+                },
+                "applicationName": {
+                    "description": "name of the application this executable belongs to",
+                    "type": "string"
                 },
                 "hasAdvancedComputeOptions": {
                     "description": "Whether advanced compute options are present",
