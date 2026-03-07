@@ -123,6 +123,9 @@ class Status(Enum):
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -503,9 +506,6 @@ class AssertionUnitSchema(BaseModel):
 
 
 class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -521,6 +521,10 @@ class ApplicationSchemaBase(BaseModel):
     build: Optional[str] = None
     """
     Application build. e.g. VTST
+    """
+    isDefault: Optional[bool] = False
+    """
+    Whether the build is the default build
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
@@ -546,10 +550,6 @@ class ApplicationSchemaBase(BaseModel):
     name: Optional[str] = None
     """
     entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """
 
 
@@ -1143,6 +1143,10 @@ class Subworkflow(BaseModel):
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
+    """
+    systemName: Optional[str] = None
+    """
+    system name of the subworkflow
     """
     id: Optional[str] = Field(None, alias="_id")
     """

@@ -25,6 +25,10 @@
             "description": "Application build. e.g. VTST",
             "type": "string"
         },
+        "isDefault": {
+            "description": "Whether the build is the default build",
+            "type": "boolean"
+        },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",
             "type": "boolean"
@@ -33,6 +37,5 @@
             "description": "Whether licensing is present",
             "type": "boolean"
         }
-    },
-    "additionalProperties": true
+    }
 }

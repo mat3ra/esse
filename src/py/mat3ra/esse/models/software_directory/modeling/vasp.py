@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
@@ -33,9 +33,6 @@ class Exec(Enum):
 
 
 class ViennaAbInitoSimulationPackage(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     name: Optional[Name] = None
     """
     entity name
@@ -58,6 +55,10 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefault: Optional[bool] = False
+    """
+    Whether the build is the default build
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -78,8 +79,4 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """

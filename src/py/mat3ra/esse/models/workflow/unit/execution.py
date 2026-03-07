@@ -11,9 +11,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -29,6 +26,10 @@ class ApplicationSchemaBase(BaseModel):
     build: Optional[str] = None
     """
     Application build. e.g. VTST
+    """
+    isDefault: Optional[bool] = False
+    """
+    Whether the build is the default build
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
@@ -55,13 +56,12 @@ class ApplicationSchemaBase(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy

@@ -240,6 +240,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -270,6 +271,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -300,6 +302,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -330,6 +333,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -493,6 +497,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -523,6 +528,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -553,6 +559,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -583,6 +590,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -764,6 +772,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -794,6 +803,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -824,6 +834,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -854,6 +865,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -997,6 +1009,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1027,6 +1040,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1057,6 +1071,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1087,6 +1102,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1151,7 +1167,6 @@
                     "$schema": "http://json-schema.org/draft-07/schema#",
                     "title": "application schema (base)",
                     "type": "object",
-                    "additionalProperties": true,
                     "properties": {
                         "shortName": {
                             "description": "The short name of the application. e.g. qe",
@@ -1168,6 +1183,11 @@
                         "build": {
                             "description": "Application build. e.g. VTST",
                             "type": "string"
+                        },
+                        "isDefault": {
+                            "description": "Whether the build is the default build",
+                            "type": "boolean",
+                            "default": false
                         },
                         "hasAdvancedComputeOptions": {
                             "description": "Whether advanced compute options are present",
@@ -1196,11 +1216,6 @@
                         "name": {
                             "description": "entity name",
                             "type": "string"
-                        },
-                        "isDefault": {
-                            "description": "Identifies that entity is defaultable",
-                            "type": "boolean",
-                            "default": false
                         }
                     }
                 },
@@ -1269,6 +1284,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1299,6 +1315,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1329,6 +1346,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1359,6 +1377,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1462,6 +1481,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1492,6 +1512,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1522,6 +1543,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1552,6 +1574,7 @@
                                                 "type": "string"
                                             }
                                         },
+                                        "additionalProperties": true,
                                         "required": [
                                             "name"
                                         ]
@@ -1645,6 +1668,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1675,6 +1699,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1705,6 +1730,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1735,6 +1761,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1912,6 +1939,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1942,6 +1970,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -1972,6 +2001,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2002,6 +2032,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2152,6 +2183,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2182,6 +2214,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2212,6 +2245,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2242,6 +2276,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2422,6 +2457,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2452,6 +2488,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2482,6 +2519,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2512,6 +2550,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2645,6 +2684,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2675,6 +2715,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2705,6 +2746,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]
@@ -2735,6 +2777,7 @@
                                         "type": "string"
                                     }
                                 },
+                                "additionalProperties": true,
                                 "required": [
                                     "name"
                                 ]

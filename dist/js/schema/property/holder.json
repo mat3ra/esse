@@ -2372,6 +2372,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2402,6 +2403,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2432,6 +2434,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2462,6 +2465,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2625,6 +2629,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2655,6 +2660,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2685,6 +2691,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2715,6 +2722,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2896,6 +2904,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2926,6 +2935,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2956,6 +2966,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -2986,6 +2997,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3129,6 +3141,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3159,6 +3172,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3189,6 +3203,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3219,6 +3234,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3283,7 +3299,6 @@
                                                             "$schema": "http://json-schema.org/draft-07/schema#",
                                                             "title": "application schema (base)",
                                                             "type": "object",
-                                                            "additionalProperties": true,
                                                             "properties": {
                                                                 "shortName": {
                                                                     "description": "The short name of the application. e.g. qe",
@@ -3300,6 +3315,11 @@
                                                                 "build": {
                                                                     "description": "Application build. e.g. VTST",
                                                                     "type": "string"
+                                                                },
+                                                                "isDefault": {
+                                                                    "description": "Whether the build is the default build",
+                                                                    "type": "boolean",
+                                                                    "default": false
                                                                 },
                                                                 "hasAdvancedComputeOptions": {
                                                                     "description": "Whether advanced compute options are present",
@@ -3328,11 +3348,6 @@
                                                                 "name": {
                                                                     "description": "entity name",
                                                                     "type": "string"
-                                                                },
-                                                                "isDefault": {
-                                                                    "description": "Identifies that entity is defaultable",
-                                                                    "type": "boolean",
-                                                                    "default": false
                                                                 }
                                                             }
                                                         },
@@ -3401,6 +3416,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3431,6 +3447,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3461,6 +3478,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3491,6 +3509,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3594,6 +3613,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3624,6 +3644,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3654,6 +3675,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3684,6 +3706,7 @@
                                                                                         "type": "string"
                                                                                     }
                                                                                 },
+                                                                                "additionalProperties": true,
                                                                                 "required": [
                                                                                     "name"
                                                                                 ]
@@ -3777,6 +3800,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3807,6 +3831,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3837,6 +3862,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -3867,6 +3893,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4044,6 +4071,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4074,6 +4102,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4104,6 +4133,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4134,6 +4164,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4284,6 +4315,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4314,6 +4346,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4344,6 +4377,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4374,6 +4408,7 @@
                                                                                 "type": "string"
                                                                             }
                                                                         },
+                                                                        "additionalProperties": true,
                                                                         "required": [
                                                                             "name"
                                                                         ]
@@ -4478,7 +4513,6 @@
                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                         "title": "application schema (base)",
                                         "type": "object",
-                                        "additionalProperties": true,
                                         "properties": {
                                             "shortName": {
                                                 "description": "The short name of the application. e.g. qe",
@@ -4495,6 +4529,11 @@
                                             "build": {
                                                 "description": "Application build. e.g. VTST",
                                                 "type": "string"
+                                            },
+                                            "isDefault": {
+                                                "description": "Whether the build is the default build",
+                                                "type": "boolean",
+                                                "default": false
                                             },
                                             "hasAdvancedComputeOptions": {
                                                 "description": "Whether advanced compute options are present",
@@ -4523,11 +4562,6 @@
                                             "name": {
                                                 "description": "entity name",
                                                 "type": "string"
-                                            },
-                                            "isDefault": {
-                                                "description": "Identifies that entity is defaultable",
-                                                "type": "boolean",
-                                                "default": false
                                             }
                                         }
                                     },
@@ -4535,6 +4569,10 @@
                                         "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
                                         "type": "boolean",
                                         "default": false
+                                    },
+                                    "systemName": {
+                                        "description": "system name of the subworkflow",
+                                        "type": "string"
                                     },
                                     "_id": {
                                         "description": "subworkflow identity",
@@ -4970,6 +5008,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5000,6 +5039,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5030,6 +5070,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5060,6 +5101,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5223,6 +5265,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5253,6 +5296,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5283,6 +5327,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5313,6 +5358,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5494,6 +5540,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5524,6 +5571,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5554,6 +5602,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5584,6 +5633,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5727,6 +5777,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5757,6 +5808,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5787,6 +5839,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5817,6 +5870,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -5881,7 +5935,6 @@
                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                 "title": "application schema (base)",
                                                 "type": "object",
-                                                "additionalProperties": true,
                                                 "properties": {
                                                     "shortName": {
                                                         "description": "The short name of the application. e.g. qe",
@@ -5898,6 +5951,11 @@
                                                     "build": {
                                                         "description": "Application build. e.g. VTST",
                                                         "type": "string"
+                                                    },
+                                                    "isDefault": {
+                                                        "description": "Whether the build is the default build",
+                                                        "type": "boolean",
+                                                        "default": false
                                                     },
                                                     "hasAdvancedComputeOptions": {
                                                         "description": "Whether advanced compute options are present",
@@ -5926,11 +5984,6 @@
                                                     "name": {
                                                         "description": "entity name",
                                                         "type": "string"
-                                                    },
-                                                    "isDefault": {
-                                                        "description": "Identifies that entity is defaultable",
-                                                        "type": "boolean",
-                                                        "default": false
                                                     }
                                                 }
                                             },
@@ -5999,6 +6052,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6029,6 +6083,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6059,6 +6114,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6089,6 +6145,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6192,6 +6249,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6222,6 +6280,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6252,6 +6311,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6282,6 +6342,7 @@
                                                                             "type": "string"
                                                                         }
                                                                     },
+                                                                    "additionalProperties": true,
                                                                     "required": [
                                                                         "name"
                                                                     ]
@@ -6375,6 +6436,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6405,6 +6467,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6435,6 +6498,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6465,6 +6529,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6642,6 +6707,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6672,6 +6738,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6702,6 +6769,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6732,6 +6800,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6882,6 +6951,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6912,6 +6982,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6942,6 +7013,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -6972,6 +7044,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7152,6 +7225,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7182,6 +7256,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7212,6 +7287,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7242,6 +7318,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7375,6 +7452,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7405,6 +7483,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7435,6 +7514,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7465,6 +7545,7 @@
                                                                     "type": "string"
                                                                 }
                                                             },
+                                                            "additionalProperties": true,
                                                             "required": [
                                                                 "name"
                                                             ]
@@ -7536,11 +7617,32 @@
                             "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
                             "type": "boolean"
                         },
+                        "isMultiMaterial": {
+                            "description": "Defines whether the workflow is for a multi-material simulation",
+                            "type": "boolean"
+                        },
                         "workflows": {
                             "description": "Array of workflows with the same schema as the current one.",
                             "type": "array",
                             "items": {
                                 "type": "object"
+                            }
+                        },
+                        "application": {
+                            "description": "information about the main application used for workflow categorization by application in standata.",
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "description": "name of the application",
+                                    "type": "string"
+                                }
+                            }
+                        },
+                        "tags": {
+                            "description": "tags for the workflow",
+                            "type": "array",
+                            "items": {
+                                "type": "string"
                             }
                         },
                         "_id": {
