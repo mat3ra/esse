@@ -39,6 +39,9 @@ class Status(Enum):
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy

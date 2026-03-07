@@ -37,28 +37,44 @@ const ajvConfig = {
 
 const ajvValidator = new Ajv({ ...ajvConfig });
 const ajvValidatorAndCleaner = new Ajv({ ...ajvConfig, removeAdditional: true });
+const ajvValidatorAndCleanerNoDefaults = new Ajv({
+    ...ajvConfig,
+    removeAdditional: true,
+    useDefaults: false,
+});
 const ajvValidatorAndCleanerWithCoercingTypes = new Ajv({
     ...ajvConfig,
     removeAdditional: true,
     coerceTypes: true,
 });
+const ajvValidatorAndCleanerWithCoercingTypesNoDefaults = new Ajv({
+    ...ajvConfig,
+    removeAdditional: true,
+    coerceTypes: true,
+    useDefaults: false,
+});
 
 addFormats(ajvValidator);
 addFormats(ajvValidatorAndCleaner);
+addFormats(ajvValidatorAndCleanerNoDefaults);
 addFormats(ajvValidatorAndCleanerWithCoercingTypes);
+addFormats(ajvValidatorAndCleanerWithCoercingTypesNoDefaults);
 
 interface AjvInstanceOptions {
     clean: boolean;
     coerceTypes: boolean;
+    useDefaults: boolean;
 }
 
-function getAjvInstance({ clean, coerceTypes }: AjvInstanceOptions) {
+function getAjvInstance({ clean, coerceTypes, useDefaults }: AjvInstanceOptions) {
     if (clean && coerceTypes) {
-        return ajvValidatorAndCleanerWithCoercingTypes;
+        return useDefaults
+            ? ajvValidatorAndCleanerWithCoercingTypes
+            : ajvValidatorAndCleanerWithCoercingTypesNoDefaults;
     }
 
     if (clean) {
-        return ajvValidatorAndCleaner;
+        return useDefaults ? ajvValidatorAndCleaner : ajvValidatorAndCleanerNoDefaults;
     }
 
     return ajvValidator;
@@ -66,10 +82,14 @@ function getAjvInstance({ clean, coerceTypes }: AjvInstanceOptions) {
 
 export function getValidator(
     jsonSchema: SchemaObject,
-    { clean, coerceTypes }: AjvInstanceOptions,
+    {
+        clean,
+        coerceTypes,
+        useDefaults = true,
+    }: Omit<AjvInstanceOptions, "useDefaults"> & Partial<Pick<AjvInstanceOptions, "useDefaults">>,
 ): AnyValidateFunction {
     const schemaKey = jsonSchema.$id as string;
-    const ajv = getAjvInstance({ clean, coerceTypes });
+    const ajv = getAjvInstance({ clean, coerceTypes, useDefaults });
     let validate = ajv.getSchema(schemaKey);
 
     if (!validate) {
@@ -111,9 +131,9 @@ export function validate(data: AnyObject, jsonSchema: SchemaObject) {
 export function validateAndClean(
     data: AnyObject,
     jsonSchema: SchemaObject,
-    { coerceTypes = false },
+    { coerceTypes = false, useDefaults = true } = {},
 ) {
-    const validator = getValidator(jsonSchema, { clean: true, coerceTypes });
+    const validator = getValidator(jsonSchema, { clean: true, coerceTypes, useDefaults });
     const isValid = validator(data);
 
     return {

@@ -6,6 +6,7 @@
     "required": [
         "name"
     ],
+    "additionalProperties": true,
     "properties": {
         "name": {
             "description": "The name of this item. e.g. scf_accuracy",

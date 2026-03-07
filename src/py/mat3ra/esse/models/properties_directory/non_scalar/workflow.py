@@ -127,6 +127,9 @@ class Status(Enum):
 
 
 class NameResultSchema(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -507,9 +510,6 @@ class AssertionUnitSchema(BaseModel):
 
 
 class ApplicationSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
     shortName: Optional[str] = None
     """
     The short name of the application. e.g. qe
@@ -525,6 +525,10 @@ class ApplicationSchemaBase(BaseModel):
     build: Optional[str] = None
     """
     Application build. e.g. VTST
+    """
+    isDefault: Optional[bool] = False
+    """
+    Whether the build is the default build
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
@@ -550,10 +554,6 @@ class ApplicationSchemaBase(BaseModel):
     name: Optional[str] = None
     """
     entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """
 
 
@@ -1147,6 +1147,10 @@ class Subworkflow(BaseModel):
     isDraft: Optional[bool] = False
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
+    """
+    systemName: Optional[str] = None
+    """
+    system name of the subworkflow
     """
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -2127,6 +2131,13 @@ class WorkflowUnitSchema(
     ] = Field(..., discriminator="type", title="workflow unit schema")
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class WorkflowPropertySchema(BaseModel):
     name: Name
     """
@@ -2148,9 +2159,21 @@ class WorkflowPropertySchema(BaseModel):
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
     """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the workflow is for a multi-material simulation
+    """
     workflows: Optional[List[Dict[str, Any]]] = None
     """
     Array of workflows with the same schema as the current one.
+    """
+    application: Optional[Application] = None
+    """
+    information about the main application used for workflow categorization by application in standata.
+    """
+    tags: Optional[List[str]] = None
+    """
+    tags for the workflow
     """
     id: Optional[str] = Field(None, alias="_id")
     """

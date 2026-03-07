@@ -9,6 +9,13 @@ from typing import Any, Dict, List, Optional, Union
 from pydantic import BaseModel, Field
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class BaseWorkflowSchema(BaseModel):
     properties: Optional[List[Union[str, Dict[str, Any]]]] = None
     """
@@ -18,9 +25,21 @@ class BaseWorkflowSchema(BaseModel):
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
     """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the workflow is for a multi-material simulation
+    """
     workflows: Optional[List[Dict[str, Any]]] = None
     """
     Array of workflows with the same schema as the current one.
+    """
+    application: Optional[Application] = None
+    """
+    information about the main application used for workflow categorization by application in standata.
+    """
+    tags: Optional[List[str]] = None
+    """
+    tags for the workflow
     """
     id: Optional[str] = Field(None, alias="_id")
     """
