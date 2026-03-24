@@ -1,0 +1,69 @@
+{
+    "$id": "compute/queue",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Queue schema",
+    "type": "object",
+    "properties": {
+        "name": {
+            "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
+            "type": "string",
+            "enum": [
+                "D",
+                "OR",
+                "OF",
+                "OFplus",
+                "SR",
+                "SF",
+                "SFplus",
+                "OR4",
+                "OR8",
+                "OR16",
+                "SR4",
+                "SR8",
+                "SR16",
+                "GOF",
+                "G4OF",
+                "G8OF",
+                "GSF",
+                "G4SF",
+                "G8SF"
+            ]
+        },
+        "maxPPN": {
+            "description": "Maximum processors per node.",
+            "type": "integer"
+        },
+        "maxNodes": {
+            "description": "Maximum number of nodes allowed for this queue.",
+            "type": "integer"
+        },
+        "availableNodes": {
+            "description": "Number of nodes currently available.",
+            "type": "integer"
+        },
+        "currentNodes": {
+            "description": "Number of nodes currently in use.",
+            "type": "integer"
+        },
+        "capacity": {
+            "description": "Capacity status of the queue.",
+            "type": "string",
+            "enum": [
+                "FULL",
+                "DEGRADED",
+                "UNAVAILABLE"
+            ]
+        },
+        "displayName": {
+            "type": "string",
+            "title": "Display name"
+        }
+    },
+    "required": [
+        "name",
+        "maxPPN",
+        "maxNodes",
+        "availableNodes",
+        "currentNodes"
+    ]
+}

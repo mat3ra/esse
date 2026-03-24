@@ -1,0 +1,102 @@
+{
+    "$id": "software/application-with-build-config",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "application with build config schema",
+    "type": "object",
+    "required": [
+        "build",
+        "name",
+        "shortName",
+        "summary",
+        "version"
+    ],
+    "properties": {
+        "buildConfig": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "application versions with build config schema",
+            "type": "object",
+            "properties": {
+                "bio": {
+                    "description": "The bio description used for the module files.",
+                    "type": "string"
+                },
+                "moduleName": {
+                    "description": "Modulefile name specific to application version and build type.",
+                    "type": "string"
+                },
+                "imageName": {
+                    "description": "Apptainer image name.",
+                    "type": "string"
+                },
+                "imageTag": {
+                    "description": "Apptainer image tag.",
+                    "type": "string"
+                },
+                "dependencies": {
+                    "description": "List of modulefile dependencies.",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "environmentVariables": {
+                    "description": "Environment variables to be exported before running the application, containing the key and value pairs.",
+                    "type": "object"
+                },
+                "prependVariables": {
+                    "description": "Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.",
+                    "type": "object"
+                }
+            }
+        },
+        "_id": {
+            "description": "entity identity",
+            "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "shortName": {
+            "description": "The short name of the application. e.g. qe",
+            "type": "string"
+        },
+        "summary": {
+            "description": "Application's short description.",
+            "type": "string"
+        },
+        "version": {
+            "description": "Application version. e.g. 5.3.5",
+            "type": "string"
+        },
+        "build": {
+            "description": "Application build. e.g. VTST",
+            "type": "string"
+        },
+        "hasAdvancedComputeOptions": {
+            "description": "Whether advanced compute options are present",
+            "type": "boolean"
+        },
+        "isLicensed": {
+            "description": "Whether licensing is present",
+            "type": "boolean"
+        }
+    }
+}

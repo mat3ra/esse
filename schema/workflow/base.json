@@ -16,6 +16,10 @@
             "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
             "type": "boolean"
         },
+        "isMultiMaterial": {
+            "description": "Defines whether the workflow is for a multi-material simulation",
+            "type": "boolean"
+        },
         "subworkflows": {
             "description": "Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting",
             "type": "array",
@@ -30,8 +34,22 @@
                 "$ref": "unit.json"
             }
         },
-        "isMultiMaterial": {
-            "type": "boolean"
+        "application": {
+            "description": "information about the main application used for workflow categorization by application in standata.",
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "name of the application",
+                    "type": "string"
+                }
+            }
+        },
+        "tags": {
+            "description": "tags for the workflow",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
         }
     },
     "required": [

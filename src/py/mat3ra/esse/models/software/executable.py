@@ -17,7 +17,7 @@ class RuntimeItemNameObjectSchema(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -54,9 +54,9 @@ class ExecutableSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    applicationId: List[str]
+    applicationName: str
     """
-    _ids of the application this executable belongs to
+    name of the application this executable belongs to
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """

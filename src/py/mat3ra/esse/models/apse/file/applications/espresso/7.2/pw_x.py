@@ -1634,15 +1634,15 @@ class Value(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    X: Optional[str] = None
+    X: str
     """
     label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
     """
-    Mass_X: Optional[float] = None
+    Mass_X: float
     """
     mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
     """
-    PseudoPot_X: Optional[str] = None
+    PseudoPot_X: str
     """
     PseudoPot_X
     """
@@ -1975,11 +1975,11 @@ class PwxMainSchema(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
-    field_CONTROL: Optional[ControlSchema] = Field(None, alias="&CONTROL", title="control schema")
-    field_SYSTEM: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, alias="&SYSTEM", title="system schema")
-    field_ELECTRONS: Optional[ElectronsSchema] = Field(None, alias="&ELECTRONS", title="electrons schema")
-    field_IONS: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = Field(None, alias="&IONS")
-    field_CELL: Optional[Union[CellSchema, CellSchema3]] = Field(None, alias="&CELL")
+    CONTROL: Optional[ControlSchema] = Field(None, alias="&CONTROL", title="control schema")
+    SYSTEM: Optional[Union[SystemSchema, SystemSchema1]] = Field(None, alias="&SYSTEM", title="system schema")
+    ELECTRONS: Optional[ElectronsSchema] = Field(None, alias="&ELECTRONS", title="electrons schema")
+    IONS: Optional[Union[IonsSchema, IonsSchema5, IonsSchema6, IonsSchema7]] = Field(None, alias="&IONS")
+    CELL: Optional[Union[CellSchema, CellSchema3]] = Field(None, alias="&CELL")
     ATOMIC_SPECIES: Optional[AtomicSpeciesSchema] = Field(None, title="atomic species schema")
     ATOMIC_POSITIONS: Optional[AtomicPositionsSchema] = Field(None, title="atomic positions schema")
     """

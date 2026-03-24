@@ -1,0 +1,18 @@
+{
+    "$id": "software/application-with-build-config",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "application with build config schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "application.json"
+        }
+    ],
+    "properties": {
+        "buildConfig": {
+            "description": "Build configuration for the application.",
+            "type": "object",
+            "$ref": "application/build_config.json"
+        }
+    }
+}

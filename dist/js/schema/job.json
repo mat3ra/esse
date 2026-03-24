@@ -70,6 +70,10 @@
                     "description": "Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.",
                     "type": "boolean"
                 },
+                "isMultiMaterial": {
+                    "description": "Defines whether the workflow is for a multi-material simulation",
+                    "type": "boolean"
+                },
                 "subworkflows": {
                     "description": "Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting",
                     "type": "array",
@@ -94,7 +98,8 @@
                                 "type": "string"
                             },
                             "systemName": {
-                                "type": "string"
+                                "type": "string",
+                                "description": "system name of the subworkflow"
                             },
                             "schemaVersion": {
                                 "description": "entity's schema version. Used to distinct between different schemas.",
@@ -136,12 +141,6 @@
                                             "SR",
                                             "SF",
                                             "SFplus",
-                                            "GPOF",
-                                            "GP2OF",
-                                            "GP4OF",
-                                            "GPSF",
-                                            "GP2SF",
-                                            "GP4SF",
                                             "OR4",
                                             "OR8",
                                             "OR16",
@@ -1245,6 +1244,7 @@
                                                     "title": "Named defaultable in-memory entity schema",
                                                     "type": "object",
                                                     "required": [
+                                                        "applicationName",
                                                         "monitors",
                                                         "name",
                                                         "postProcessors",
@@ -1275,6 +1275,10 @@
                                                             "description": "Identifies that entity is defaultable",
                                                             "type": "boolean",
                                                             "default": false
+                                                        },
+                                                        "applicationName": {
+                                                            "description": "name of the application this executable belongs to",
+                                                            "type": "string"
                                                         },
                                                         "hasAdvancedComputeOptions": {
                                                             "description": "Whether advanced compute options are present",
@@ -4585,8 +4589,22 @@
                         ]
                     }
                 },
-                "isMultiMaterial": {
-                    "type": "boolean"
+                "application": {
+                    "description": "information about the main application used for workflow categorization by application in standata.",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "description": "name of the application",
+                            "type": "string"
+                        }
+                    }
+                },
+                "tags": {
+                    "description": "tags for the workflow",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -4769,12 +4787,6 @@
                         "SR",
                         "SF",
                         "SFplus",
-                        "GPOF",
-                        "GP2OF",
-                        "GP4OF",
-                        "GPSF",
-                        "GP2SF",
-                        "GP4SF",
                         "OR4",
                         "OR8",
                         "OR16",

@@ -41,12 +41,6 @@
                         "SR",
                         "SF",
                         "SFplus",
-                        "GPOF",
-                        "GP2OF",
-                        "GP4OF",
-                        "GPSF",
-                        "GP2SF",
-                        "GP4SF",
                         "OR4",
                         "OR8",
                         "OR16",
@@ -1150,6 +1144,7 @@
                                 "title": "Named defaultable in-memory entity schema",
                                 "type": "object",
                                 "required": [
+                                    "applicationName",
                                     "monitors",
                                     "name",
                                     "postProcessors",
@@ -1180,6 +1175,10 @@
                                         "description": "Identifies that entity is defaultable",
                                         "type": "boolean",
                                         "default": false
+                                    },
+                                    "applicationName": {
+                                        "description": "name of the application this executable belongs to",
+                                        "type": "string"
                                     },
                                     "hasAdvancedComputeOptions": {
                                         "description": "Whether advanced compute options are present",
@@ -3864,6 +3863,10 @@
             "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
             "type": "boolean",
             "default": false
+        },
+        "systemName": {
+            "description": "system name of the subworkflow",
+            "type": "string"
         }
     }
 }

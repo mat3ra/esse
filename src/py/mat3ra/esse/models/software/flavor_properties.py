@@ -22,10 +22,6 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorPropertiesSchema(BaseModel):
-    executableId: str
-    """
-    _id of the executable this flavor belongs to
-    """
     executableName: Optional[str] = None
     """
     name of the executable this flavor belongs to

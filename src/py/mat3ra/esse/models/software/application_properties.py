@@ -26,6 +26,10 @@ class ApplicationPropertiesSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefault: Optional[bool] = None
+    """
+    Whether the build is the default build
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present

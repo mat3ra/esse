@@ -3,10 +3,19 @@
     "applicationId": [
         "eaJepm4AWfqpaCw59"
     ],
+    "applicationName": "Quantum ESPRESSO",
     "isDefault": true,
-    "monitors": [ { "name": "standard_output" } ],
+    "monitors": [
+        {
+            "name": "standard_output"
+        }
+    ],
     "name": "pw.x",
     "postProcessors": [],
     "preProcessors": [],
-    "results": [ { "name": "atomic_forces" } ]
+    "results": [
+        {
+            "name": "atomic_forces"
+        }
+    ]
 }

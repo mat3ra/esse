@@ -29,7 +29,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorSchema(BaseModel):
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -65,10 +65,6 @@ class FlavorSchema(BaseModel):
     results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
-    """
-    executableId: str
-    """
-    _id of the executable this flavor belongs to
     """
     executableName: Optional[str] = None
     """

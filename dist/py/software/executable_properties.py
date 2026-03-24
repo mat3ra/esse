@@ -10,9 +10,9 @@ from pydantic import BaseModel
 
 
 class ExecutablePropertiesSchema(BaseModel):
-    name: str
+    applicationName: str
     """
-    The name of the executable. e.g. pw.x
+    name of the application this executable belongs to
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """

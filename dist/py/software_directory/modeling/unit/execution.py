@@ -101,6 +101,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    applicationName: str
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -630,7 +634,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name478(Enum):
+class Name479(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -645,7 +649,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name478
+    name: Name479
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.

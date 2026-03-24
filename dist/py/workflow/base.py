@@ -18,12 +18,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -586,6 +580,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    applicationName: str
+    """
+    name of the application this executable belongs to
     """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
@@ -1637,7 +1635,7 @@ class DFTModelSchema5(BaseModel):
     method: BaseMethod7 = Field(..., title="base method")
 
 
-class Type8(Enum):
+class Type9(Enum):
     ml = "ml"
 
 
@@ -1670,7 +1668,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod8 = Field(..., title="base method")
 
 
-class Type9(Enum):
+class Type10(Enum):
     unknown = "unknown"
 
 
@@ -1713,6 +1711,9 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
+    """
+    system name of the subworkflow
+    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2007,6 +2008,13 @@ class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, Subwor
     )
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class BaseWorkflowSchema(BaseModel):
     properties: List[str]
     """
@@ -2016,6 +2024,10 @@ class BaseWorkflowSchema(BaseModel):
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
     """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the workflow is for a multi-material simulation
+    """
     subworkflows: List[SubworkflowSchema]
     """
     Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
@@ -2024,4 +2036,11 @@ class BaseWorkflowSchema(BaseModel):
     """
     Contains the Units of the Workflow
     """
-    isMultiMaterial: Optional[bool] = None
+    application: Optional[Application] = None
+    """
+    information about the main application used for workflow categorization by application in standata.
+    """
+    tags: Optional[List[str]] = None
+    """
+    tags for the workflow
+    """

@@ -33,26 +33,41 @@ const ajvConfig = {
 };
 const ajvValidator = new ajv_1.default({ ...ajvConfig });
 const ajvValidatorAndCleaner = new ajv_1.default({ ...ajvConfig, removeAdditional: true });
+const ajvValidatorAndCleanerNoDefaults = new ajv_1.default({
+    ...ajvConfig,
+    removeAdditional: true,
+    useDefaults: false,
+});
 const ajvValidatorAndCleanerWithCoercingTypes = new ajv_1.default({
     ...ajvConfig,
     removeAdditional: true,
     coerceTypes: true,
 });
+const ajvValidatorAndCleanerWithCoercingTypesNoDefaults = new ajv_1.default({
+    ...ajvConfig,
+    removeAdditional: true,
+    coerceTypes: true,
+    useDefaults: false,
+});
 (0, ajv_formats_1.default)(ajvValidator);
 (0, ajv_formats_1.default)(ajvValidatorAndCleaner);
+(0, ajv_formats_1.default)(ajvValidatorAndCleanerNoDefaults);
 (0, ajv_formats_1.default)(ajvValidatorAndCleanerWithCoercingTypes);
-function getAjvInstance({ clean, coerceTypes }) {
+(0, ajv_formats_1.default)(ajvValidatorAndCleanerWithCoercingTypesNoDefaults);
+function getAjvInstance({ clean, coerceTypes, useDefaults }) {
     if (clean && coerceTypes) {
-        return ajvValidatorAndCleanerWithCoercingTypes;
+        return useDefaults
+            ? ajvValidatorAndCleanerWithCoercingTypes
+            : ajvValidatorAndCleanerWithCoercingTypesNoDefaults;
     }
     if (clean) {
-        return ajvValidatorAndCleaner;
+        return useDefaults ? ajvValidatorAndCleaner : ajvValidatorAndCleanerNoDefaults;
     }
     return ajvValidator;
 }
-function getValidator(jsonSchema, { clean, coerceTypes }) {
+function getValidator(jsonSchema, { clean, coerceTypes, useDefaults = true, }) {
     const schemaKey = jsonSchema.$id;
-    const ajv = getAjvInstance({ clean, coerceTypes });
+    const ajv = getAjvInstance({ clean, coerceTypes, useDefaults });
     let validate = ajv.getSchema(schemaKey);
     if (!validate) {
         // properties that were not defined in schema will be ignored when clean = false
@@ -87,8 +102,8 @@ exports.validate = validate;
  * @param schema schema to validate the example with.
  * @returns whether example is valid.
  */
-function validateAndClean(data, jsonSchema, { coerceTypes = false }) {
-    const validator = getValidator(jsonSchema, { clean: true, coerceTypes });
+function validateAndClean(data, jsonSchema, { coerceTypes = false, useDefaults = true } = {}) {
+    const validator = getValidator(jsonSchema, { clean: true, coerceTypes, useDefaults });
     const isValid = validator(data);
     return {
         isValid,

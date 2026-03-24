@@ -2833,6 +2833,136 @@ export interface PymatgenSlabGeneratorParametersSchema {
      */
     symmetrize?: boolean;
 }
+/** Schema dist/js/schema/compute/nodes/base.json */
+/**
+ * Cloud Node - base schema for all backend node types
+ */
+export interface CloudNodeSchema {
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/nodes/cluster.json */
+/**
+ * Cluster Node - extends cloud node with compute-specific properties
+ */
+export interface ClusterNodeSchema {
+    /**
+     * List of compute nodes in the cluster
+     */
+    nodes?: {}[];
+    /**
+     * Available job submission queues on this cluster
+     */
+    queues?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * Maximum processors per node.
+         */
+        maxPPN: number;
+        /**
+         * Maximum number of nodes allowed for this queue.
+         */
+        maxNodes: number;
+        /**
+         * Number of nodes currently available.
+         */
+        availableNodes: number;
+        /**
+         * Number of nodes currently in use.
+         */
+        currentNodes: number;
+        /**
+         * Capacity status of the queue.
+         */
+        capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+        displayName?: string;
+    }[];
+    /**
+     * Fully qualified domain name of the node
+     */
+    hostname: string;
+    /**
+     * Human-readable display name for the node
+     */
+    alias?: string;
+    /**
+     * Unix timestamp of last heartbeat from the node
+     */
+    timestamp?: number;
+    /**
+     * Type of cloud node: cluster (compute), gold (billing), or login (SSH access)
+     */
+    type?: "cluster" | "gold" | "login";
+    /**
+     * Whether this is the default node for its type
+     */
+    isDefault?: boolean;
+    /**
+     * Disk space information for mounted filesystems
+     */
+    diskSpace?: {
+        name?: string;
+        size?: number;
+        avail?: number;
+    }[];
+}
+/** Schema dist/js/schema/compute/queue.json */
+export interface QueueSchema {
+    /**
+     * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+     */
+    name: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    /**
+     * Maximum processors per node.
+     */
+    maxPPN: number;
+    /**
+     * Maximum number of nodes allowed for this queue.
+     */
+    maxNodes: number;
+    /**
+     * Number of nodes currently available.
+     */
+    availableNodes: number;
+    /**
+     * Number of nodes currently in use.
+     */
+    currentNodes: number;
+    /**
+     * Capacity status of the queue.
+     */
+    capacity?: "FULL" | "DEGRADED" | "UNAVAILABLE";
+    displayName?: string;
+}
 /** Schema dist/js/schema/context_provider.json */
 export interface ContextProviderSchema {
     name: Name;
@@ -5248,6 +5378,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -5257,6 +5388,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -5266,6 +5398,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -5275,6 +5408,7 @@ export interface NamedDefaultableRuntimeItemsInMemoryEntitySchema {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/job/base.json */
@@ -5384,7 +5518,7 @@ export interface JobBaseSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -5490,7 +5624,7 @@ export interface ComputeArgumentsSchema {
     /**
      * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
      */
-    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+    queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
     /**
      * number of nodes used for the job inside the RMS.
      */
@@ -5596,7 +5730,7 @@ export interface ComputePropertySchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -5732,6 +5866,10 @@ export interface JobSchema {
          */
         isUsingDataset?: boolean;
         /**
+         * Defines whether the workflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
+        /**
          * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
          */
         subworkflows: {
@@ -5743,6 +5881,9 @@ export interface JobSchema {
              * entity slug
              */
             slug?: string;
+            /**
+             * system name of the subworkflow
+             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -5763,7 +5904,7 @@ export interface JobSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -6402,6 +6543,10 @@ export interface JobSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
+                    /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -7752,7 +7897,19 @@ export interface JobSchema {
              */
             enableRender?: boolean;
         })[];
-        isMultiMaterial?: boolean;
+        /**
+         * information about the main application used for workflow categorization by application in standata.
+         */
+        application?: {
+            /**
+             * name of the application
+             */
+            name?: string;
+        };
+        /**
+         * tags for the workflow
+         */
+        tags?: string[];
     };
     /**
      * Identity used to track jobs originated from command-line
@@ -7859,7 +8016,7 @@ export interface JobSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -47414,6 +47571,50 @@ export interface IonizationPotentialElementalPropertySchema {
     units: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/enum_options.json */
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ExternalSource".
+ */
+export type ExternalSource = "ICSD" | "MaterialsProject" | "MaterialsProjectLegacy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "PropertyType".
+ */
+export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ScalarPropertyEnum".
+ */
+export type ScalarPropertyEnum = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "NonScalarPropertyEnum".
+ */
+export type NonScalarPropertyEnum = "average_potential_profile" | "band_gaps" | "band_structure" | "charge_density_profile" | "convergence_electronic" | "convergence_ionic" | "density_of_states" | "dielectric_tensor" | "file_content" | "final_structure" | "hubbard_u" | "hubbard_v" | "hubbard_v_nn" | "is_relaxed" | "jupyter_notebook_endpoint" | "phonon_dispersions" | "phonon_dos" | "potential_profile" | "reaction_energy_profile" | "wavefunction_amplitude" | "workflow:pyml_predict";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "TensorPropertyEnum".
+ */
+export type TensorPropertyEnum = "atomic_forces" | "magnetic_moments" | "stress_tensor";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ObjectPropertyEnum".
+ */
+export type ObjectPropertyEnum = "total_energy_contributions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "ProtoPropertyEnum".
+ */
+export type ProtoPropertyEnum = "atomic_constraints" | "boundary_conditions";
+/**
+ * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
+ * via the `definition` "MetaPropertyEnum".
+ */
+export type MetaPropertyEnum = "pseudopotential";
+export interface PropertiesDirectoryEnumOptions {
+    [k: string]: unknown;
+}
 /** Schema dist/js/schema/properties_directory/jupyter_notebook_endpoint.json */
 export interface JupyterNotebookEndpointPropertySchema {
     name: "jupyter_notebook_endpoint";
@@ -48044,6 +48245,35 @@ export interface VibrationalSpectrumPropertySchema {
     xDataArray: (number | number[])[];
     yDataSeries: [number, ...number[]][];
 }
+/** Schema dist/js/schema/properties_directory/non_scalar/wavefunction_amplitude.json */
+export interface WavefunctionAmplitudePropertySchema {
+    xAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "coordinate";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    yAxis: {
+        /**
+         * label of an axis object
+         */
+        label: "amplitude";
+        /**
+         * units for an axis
+         */
+        units?: string;
+    };
+    name: "wavefunction_amplitude";
+    /**
+     * array containing values of x Axis
+     */
+    xDataArray: (number | number[])[];
+    yDataSeries: [number, ...number[]][];
+}
 /** Schema dist/js/schema/properties_directory/non_scalar/workflow.json */
 export interface WorkflowPropertySchema {
     /**
@@ -48081,6 +48311,10 @@ export interface WorkflowPropertySchema {
      */
     isUsingDataset?: boolean;
     /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
+    /**
      * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
     subworkflows: {
@@ -48092,6 +48326,9 @@ export interface WorkflowPropertySchema {
          * entity slug
          */
         slug?: string;
+        /**
+         * system name of the subworkflow
+         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -48112,7 +48349,7 @@ export interface WorkflowPropertySchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -48751,6 +48988,10 @@ export interface WorkflowPropertySchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -50101,7 +50342,19 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
     })[];
-    isMultiMaterial?: boolean;
+    /**
+     * information about the main application used for workflow categorization by application in standata.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
+    /**
+     * tags for the workflow
+     */
+    tags?: string[];
 }
 /** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
 /**
@@ -51134,6 +51387,33 @@ export interface PropertyHolderSchema {
             /**
              * label of an axis object
              */
+            label: "coordinate";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        yAxis: {
+            /**
+             * label of an axis object
+             */
+            label: "amplitude";
+            /**
+             * units for an axis
+             */
+            units?: string;
+        };
+        name: "wavefunction_amplitude";
+        /**
+         * array containing values of x Axis
+         */
+        xDataArray: (number | number[])[];
+        yDataSeries: [number, ...number[]][];
+    } | {
+        xAxis: {
+            /**
+             * label of an axis object
+             */
             label: "reaction coordinate";
             /**
              * units for an axis
@@ -51428,6 +51708,10 @@ export interface PropertyHolderSchema {
          */
         isUsingDataset?: boolean;
         /**
+         * Defines whether the workflow is for a multi-material simulation
+         */
+        isMultiMaterial?: boolean;
+        /**
          * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
          */
         subworkflows: {
@@ -51439,6 +51723,9 @@ export interface PropertyHolderSchema {
              * entity slug
              */
             slug?: string;
+            /**
+             * system name of the subworkflow
+             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -51459,7 +51746,7 @@ export interface PropertyHolderSchema {
                 /**
                  * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
                  */
-                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+                queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
                 /**
                  * number of nodes used for the job inside the RMS.
                  */
@@ -52098,6 +52385,10 @@ export interface PropertyHolderSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
+                    /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -53448,7 +53739,19 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
         })[];
-        isMultiMaterial?: boolean;
+        /**
+         * information about the main application used for workflow categorization by application in standata.
+         */
+        application?: {
+            /**
+             * name of the application
+             */
+            name?: string;
+        };
+        /**
+         * tags for the workflow
+         */
+        tags?: string[];
     } | {
         name: "magnetic_moments";
         values: {
@@ -53896,6 +54199,37 @@ export interface PropertySourceSchema {
         }[];
     };
 }
+/** Schema dist/js/schema/software/application/build_config.json */
+export interface ApplicationVersionsWithBuildConfigSchema {
+    /**
+     * The bio description used for the module files.
+     */
+    bio?: string;
+    /**
+     * Modulefile name specific to application version and build type.
+     */
+    moduleName?: string;
+    /**
+     * Apptainer image name.
+     */
+    imageName?: string;
+    /**
+     * Apptainer image tag.
+     */
+    imageTag?: string;
+    /**
+     * List of modulefile dependencies.
+     */
+    dependencies?: string[];
+    /**
+     * Environment variables to be exported before running the application, containing the key and value pairs.
+     */
+    environmentVariables?: {};
+    /**
+     * Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.
+     */
+    prependVariables?: {};
+}
 /** Schema dist/js/schema/software/application.json */
 export interface ApplicationSchema {
     /**
@@ -53946,6 +54280,88 @@ export interface ApplicationSchema {
 }
 /** Schema dist/js/schema/software/application_properties.json */
 export interface ApplicationPropertiesSchema {
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Application's short description.
+     */
+    summary: string;
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version: string;
+    /**
+     * Application build. e.g. VTST
+     */
+    build: string;
+    /**
+     * Whether the build is the default build
+     */
+    isDefault?: boolean;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
+}
+/** Schema dist/js/schema/software/application_with_build_config.json */
+export interface ApplicationWithBuildConfigSchema {
+    buildConfig?: {
+        /**
+         * The bio description used for the module files.
+         */
+        bio?: string;
+        /**
+         * Modulefile name specific to application version and build type.
+         */
+        moduleName?: string;
+        /**
+         * Apptainer image name.
+         */
+        imageName?: string;
+        /**
+         * Apptainer image tag.
+         */
+        imageTag?: string;
+        /**
+         * List of modulefile dependencies.
+         */
+        dependencies?: string[];
+        /**
+         * Environment variables to be exported before running the application, containing the key and value pairs.
+         */
+        environmentVariables?: {};
+        /**
+         * Variables to be prepended to the existing environment variable before running the application, containing the key and value pairs, e.g., PATH, LD_LIBRARY_PATH, etc.
+         */
+        prependVariables?: {};
+    };
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
     /**
      * The short name of the application. e.g. qe
      */
@@ -54031,6 +54447,10 @@ export interface ExecutableSchema {
         name: string;
     }[];
     /**
+     * name of the application this executable belongs to
+     */
+    applicationName: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54038,9 +54458,9 @@ export interface ExecutableSchema {
 /** Schema dist/js/schema/software/executable_properties.json */
 export interface ExecutablePropertiesSchema {
     /**
-     * The name of the executable. e.g. pw.x
+     * name of the application this executable belongs to
      */
-    name: string;
+    applicationName: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54481,6 +54901,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55606,6 +56030,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
         /**
          * Whether advanced compute options are present
          */
@@ -56866,6 +57294,10 @@ export interface BaseWorkflowSchema {
      */
     isUsingDataset?: boolean;
     /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
+    /**
      * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
     subworkflows: {
@@ -56877,6 +57309,9 @@ export interface BaseWorkflowSchema {
          * entity slug
          */
         slug?: string;
+        /**
+         * system name of the subworkflow
+         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -56897,7 +57332,7 @@ export interface BaseWorkflowSchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -57536,6 +57971,10 @@ export interface BaseWorkflowSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -58886,7 +59325,19 @@ export interface BaseWorkflowSchema {
          */
         enableRender?: boolean;
     })[];
-    isMultiMaterial?: boolean;
+    /**
+     * information about the main application used for workflow categorization by application in standata.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
+    /**
+     * tags for the workflow
+     */
+    tags?: string[];
 }
 /** Schema dist/js/schema/workflow/base_flow.json */
 export interface BaseFlow {
@@ -58909,7 +59360,7 @@ export interface BaseFlow {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -59029,7 +59480,7 @@ export interface SubworkflowMixinSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -59668,6 +60119,10 @@ export interface SubworkflowMixinSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName: string;
             /**
              * Whether advanced compute options are present
              */
@@ -60694,6 +61149,10 @@ export interface SubworkflowMixinSchema {
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
     isDraft?: boolean;
+    /**
+     * system name of the subworkflow
+     */
+    systemName?: string;
 }
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
@@ -61235,6 +61694,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
+        /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
         /**
          * Whether advanced compute options are present
          */
@@ -62095,6 +62558,9 @@ export interface SubworkflowSchema {
      * entity slug
      */
     slug?: string;
+    /**
+     * system name of the subworkflow
+     */
     systemName?: string;
     /**
      * entity's schema version. Used to distinct between different schemas.
@@ -62115,7 +62581,7 @@ export interface SubworkflowSchema {
         /**
          * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
          */
-        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
         /**
          * number of nodes used for the job inside the RMS.
          */
@@ -62754,6 +63220,10 @@ export interface SubworkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
+            /**
+             * name of the application this executable belongs to
+             */
+            applicationName: string;
             /**
              * Whether advanced compute options are present
              */
@@ -65598,6 +66068,10 @@ export interface ExecutionUnitSchema {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -66984,6 +67458,10 @@ export interface ExecutionUnitMixinSchema {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -67981,6 +68459,7 @@ export interface NameResultSchema {
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
+    [k: string]: unknown;
 }
 /** Schema dist/js/schema/workflow/unit/runtime/_runtime_item_string.json */
 /**
@@ -67993,6 +68472,7 @@ export type RuntimeItemSchema = {
      * The name of this item. e.g. scf_accuracy
      */
     name: string;
+    [k: string]: unknown;
 } | string;
 /** Schema dist/js/schema/workflow/unit/runtime/runtime_items.json */
 export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
@@ -68004,6 +68484,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the post-processors for this calculation
@@ -68013,6 +68494,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the monitors for this calculation
@@ -68022,6 +68504,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
     /**
      * names of the results for this calculation
@@ -68031,6 +68514,7 @@ export interface RuntimeItemsSchemaPrePostProcessorsMonitorsResults {
          * The name of this item. e.g. scf_accuracy
          */
         name: string;
+        [k: string]: unknown;
     } | string)[];
 }
 /** Schema dist/js/schema/workflow/unit/subworkflow.json */
@@ -68485,6 +68969,10 @@ export interface WorkflowSchema {
      */
     isUsingDataset?: boolean;
     /**
+     * Defines whether the workflow is for a multi-material simulation
+     */
+    isMultiMaterial?: boolean;
+    /**
      * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
     subworkflows: {
@@ -68496,6 +68984,9 @@ export interface WorkflowSchema {
          * entity slug
          */
         slug?: string;
+        /**
+         * system name of the subworkflow
+         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -68516,7 +69007,7 @@ export interface WorkflowSchema {
             /**
              * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
              */
-            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
             /**
              * number of nodes used for the job inside the RMS.
              */
@@ -69155,6 +69646,10 @@ export interface WorkflowSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
+                /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -70505,5 +71000,17 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
     })[];
-    isMultiMaterial?: boolean;
+    /**
+     * information about the main application used for workflow categorization by application in standata.
+     */
+    application?: {
+        /**
+         * name of the application
+         */
+        name?: string;
+    };
+    /**
+     * tags for the workflow
+     */
+    tags?: string[];
 }

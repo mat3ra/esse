@@ -285,7 +285,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-class Name385(Enum):
+class Name388(Enum):
     density = "density"
 
 
@@ -308,7 +308,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-class Name386(Enum):
+class Name389(Enum):
     symmetry = "symmetry"
 
 
@@ -328,7 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name387(Enum):
+class Name390(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -341,7 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-class Name388(Enum):
+class Name391(Enum):
     p_norm = "p-norm"
 
 
@@ -354,7 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-class Name389(Enum):
+class Name392(Enum):
     inchi = "inchi"
 
 
@@ -363,7 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-class Name390(Enum):
+class Name393(Enum):
     inchi_key = "inchi_key"
 
 
@@ -450,7 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-class Name391(Enum):
+class Name394(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -463,7 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-    name: Name391
+    name: Name394
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -534,7 +534,7 @@ class MaterialSchema(BaseModel):
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
     metadata: Optional[Metadata] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -759,7 +759,7 @@ class LatticeSchema48(BaseModel):
     )
 
 
-class Name392(Enum):
+class Name395(Enum):
     volume = "volume"
 
 
@@ -773,7 +773,7 @@ class VolumeSchema48(BaseModel):
     value: float
 
 
-class Name393(Enum):
+class Name396(Enum):
     density = "density"
 
 
@@ -796,7 +796,7 @@ class ScalarSchema49(BaseModel):
     value: float
 
 
-class Name394(Enum):
+class Name397(Enum):
     symmetry = "symmetry"
 
 
@@ -816,7 +816,7 @@ class SymmetrySchema48(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-class Name395(Enum):
+class Name398(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -829,7 +829,7 @@ class ElementalRatio48(BaseModel):
     """
 
 
-class Name396(Enum):
+class Name399(Enum):
     p_norm = "p-norm"
 
 
@@ -842,7 +842,7 @@ class PNorm48(BaseModel):
     value: float
 
 
-class Name397(Enum):
+class Name400(Enum):
     inchi = "inchi"
 
 
@@ -851,7 +851,7 @@ class InChIRepresentationSchema48(BaseModel):
     value: str
 
 
-class Name398(Enum):
+class Name401(Enum):
     inchi_key = "inchi_key"
 
 
@@ -911,14 +911,14 @@ class DatabaseSourceSchema48(BaseModel):
     """
 
 
-class Name399(Enum):
+class Name402(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
 
 
 class MaterialConsistencyCheckSchema48(BaseModel):
-    name: Name399
+    name: Name402
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """
@@ -982,7 +982,7 @@ class CrystalSchema(BaseModel):
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema48]] = None
     metadata: Optional[Metadata48] = None
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """

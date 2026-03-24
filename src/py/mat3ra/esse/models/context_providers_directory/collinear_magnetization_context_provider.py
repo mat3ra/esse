@@ -12,6 +12,7 @@ from pydantic import BaseModel, Field, confloat
 class StartingMagnetizationItem(BaseModel):
     atomicSpecies: str = Field(..., title="Atomic species")
     value: confloat(ge=-1.0, le=1.0) = Field(..., title="Starting magnetization")
+    index: int = Field(..., title="Index")
 
 
 class CollinearMagnetizationContextProviderSchema(BaseModel):

@@ -246,6 +246,7 @@
             "title": "Named defaultable in-memory entity schema",
             "type": "object",
             "required": [
+                "applicationName",
                 "monitors",
                 "name",
                 "postProcessors",
@@ -276,6 +277,10 @@
                     "description": "Identifies that entity is defaultable",
                     "type": "boolean",
                     "default": false
+                },
+                "applicationName": {
+                    "description": "name of the application this executable belongs to",
+                    "type": "string"
                 },
                 "hasAdvancedComputeOptions": {
                     "description": "Whether advanced compute options are present",

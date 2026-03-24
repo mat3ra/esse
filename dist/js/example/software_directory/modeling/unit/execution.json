@@ -41,6 +41,7 @@
         "applicationId": [
             "eaJepm4AWfqpaCw59"
         ],
+        "applicationName": "Quantum ESPRESSO",
         "isDefault": true,
         "monitors": [
             {

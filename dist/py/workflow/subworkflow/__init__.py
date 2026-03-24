@@ -18,12 +18,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -587,6 +581,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    applicationName: str
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -1070,7 +1068,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name753(Enum):
+class Name756(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1085,7 +1083,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name753
+    name: Name756
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -1637,7 +1635,7 @@ class DFTModelSchema20(BaseModel):
     method: BaseMethod36 = Field(..., title="base method")
 
 
-class Type131(Enum):
+class Type133(Enum):
     ml = "ml"
 
 
@@ -1670,7 +1668,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod37 = Field(..., title="base method")
 
 
-class Type132(Enum):
+class Type134(Enum):
     unknown = "unknown"
 
 
@@ -1713,6 +1711,9 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
+    """
+    system name of the subworkflow
+    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.

@@ -23,6 +23,31 @@ class Status(Enum):
     timeout = "timeout"
 
 
+class EntityReferenceSchema(BaseModel):
+    id: str = Field(..., alias="_id")
+    """
+    entity identity
+    """
+    cls: Optional[str] = None
+    """
+    entity class
+    """
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+
+
+class WorkflowScopeSchema(BaseModel):
+    global_: Dict[str, Any] = Field(..., alias="global")
+    local: Dict[str, Any]
+
+
+class ScopeTrackItem(BaseModel):
+    repetition: Optional[float] = None
+    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
+
+
 class Queue(Enum):
     D = "D"
     OR = "OR"
@@ -31,12 +56,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -174,31 +193,6 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
-class EntityReferenceSchema(BaseModel):
-    field_id: str = Field(..., alias="_id")
-    """
-    entity identity
-    """
-    cls: Optional[str] = None
-    """
-    entity class
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-
-
-class WorkflowScopeSchema(BaseModel):
-    global_: Dict[str, Any] = Field(..., alias="global")
-    local: Dict[str, Any]
-
-
-class ScopeTrackItem(BaseModel):
-    repetition: Optional[float] = None
-    scope: Optional[WorkflowScopeSchema] = Field(None, title="workflow scope schema")
-
-
 class JobBaseSchema(BaseModel):
     rmsId: Optional[str] = None
     """
@@ -216,12 +210,8 @@ class JobBaseSchema(BaseModel):
     """
     The path to the working directory of this job, when the job originates from command-line
     """
-    compute: ComputeArgumentsSchema = Field(..., title="compute arguments schema")
-    """
-    Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
-    """
-    field_project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
-    field_material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
+    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
+    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
     parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
     runtimeContext: Optional[Dict[str, Any]] = None
     """
@@ -231,7 +221,7 @@ class JobBaseSchema(BaseModel):
     """
     history of the workflow scope on each update
     """
-    field_id: Optional[str] = Field(None, alias="_id")
+    id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -253,3 +243,7 @@ class JobBaseSchema(BaseModel):
     Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
+    compute: ComputeArgumentsSchema = Field(..., title="compute arguments schema")
+    """
+    Compute schema
+    """

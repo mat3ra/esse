@@ -22,12 +22,6 @@ class Queue(Enum):
     SR = "SR"
     SF = "SF"
     SFplus = "SFplus"
-    GPOF = "GPOF"
-    GP2OF = "GP2OF"
-    GP4OF = "GP4OF"
-    GPSF = "GPSF"
-    GP2SF = "GP2SF"
-    GP4SF = "GP4SF"
     OR4 = "OR4"
     OR8 = "OR8"
     OR16 = "OR16"
@@ -591,6 +585,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
+    applicationName: str
+    """
+    name of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -1044,7 +1042,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name814(Enum):
+class Name818(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1065,7 +1063,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name814
+    name: Name818
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -1074,7 +1072,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name815(Enum):
+class Name819(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1089,7 +1087,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name815
+    name: Name819
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
@@ -1641,7 +1639,7 @@ class DFTModelSchema26(BaseModel):
     method: BaseMethod47 = Field(..., title="base method")
 
 
-class Type143(Enum):
+class Type145(Enum):
     ml = "ml"
 
 
@@ -1674,7 +1672,7 @@ class MLModelSchema(BaseModel):
     method: BaseMethod48 = Field(..., title="base method")
 
 
-class Type144(Enum):
+class Type146(Enum):
     unknown = "unknown"
 
 
@@ -1717,6 +1715,9 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
+    """
+    system name of the subworkflow
+    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -2011,6 +2012,13 @@ class WorkflowUnitSchema(RootModel[Union[MapUnitSchema, ReduceUnitSchema, Subwor
     )
 
 
+class Application(BaseModel):
+    name: Optional[str] = None
+    """
+    name of the application
+    """
+
+
 class WorkflowPropertySchema(BaseModel):
     name: Name
     """
@@ -2046,6 +2054,10 @@ class WorkflowPropertySchema(BaseModel):
     """
     Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
     """
+    isMultiMaterial: Optional[bool] = None
+    """
+    Defines whether the workflow is for a multi-material simulation
+    """
     subworkflows: List[SubworkflowSchema]
     """
     Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
@@ -2054,4 +2066,11 @@ class WorkflowPropertySchema(BaseModel):
     """
     Contains the Units of the Workflow
     """
-    isMultiMaterial: Optional[bool] = None
+    application: Optional[Application] = None
+    """
+    information about the main application used for workflow categorization by application in standata.
+    """
+    tags: Optional[List[str]] = None
+    """
+    tags for the workflow
+    """

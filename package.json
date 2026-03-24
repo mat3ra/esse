@@ -58,7 +58,7 @@
     },
     "license": "Apache-2.0",
     "dependencies": {
-        "@mat3ra/utils": "^2025.11.20-0",
+        "@mat3ra/utils": "2026.3.7-0",
         "@babel/cli": "^7.27.0",
         "@babel/core": "^7.26.10",
         "@babel/eslint-parser": "^7.27.0",
@@ -95,7 +95,7 @@
     },
     "exports": {
         "./dist/js/schema/*.json": "./dist/js/schema/*.json",
-        "./dist/js/example/*": "./dist/js/example/*.js",
+        "./dist/js/example/*": "./dist/js/example/*",
         "./dist/js/utils/*": "./dist/js/utils/*.js",
         "./dist/js/esse/*": "./dist/js/esse/*.js",
         "./dist/js/json_include/*": "./dist/js/json_include/*.js",

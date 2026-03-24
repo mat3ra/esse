@@ -19,7 +19,7 @@ class ParentJobEntityReferenceSchema(BaseModel):
     """
     Job class
     """
-    field_id: str = Field(..., alias="_id")
+    id: str = Field(..., alias="_id")
     """
     entity identity
     """

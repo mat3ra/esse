@@ -67,6 +67,9 @@
                     "$ref": "../properties_directory/non-scalar/potential_profile.json"
                 },
                 {
+                    "$ref": "../properties_directory/non-scalar/wavefunction_amplitude.json"
+                },
+                {
                     "$ref": "../properties_directory/non-scalar/reaction_energy_profile.json"
                 },
                 {
