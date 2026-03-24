@@ -1,0 +1,42 @@
+{
+    "$id": "system/runtime-items",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "runtime items schema",
+    "type": "object",
+    "properties": {
+        "preProcessors": {
+            "description": "names of the pre-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$ref": "runtime_item.json"
+            }
+        },
+        "postProcessors": {
+            "description": "names of the post-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$ref": "runtime_item.json"
+            }
+        },
+        "monitors": {
+            "description": "names of the monitors for this calculation",
+            "type": "array",
+            "items": {
+                "$ref": "runtime_item.json"
+            }
+        },
+        "results": {
+            "description": "names of the results for this calculation",
+            "type": "array",
+            "items": {
+                "$ref": "runtime_item.json"
+            }
+        }
+    },
+    "required": [
+        "preProcessors",
+        "postProcessors",
+        "monitors",
+        "results"
+    ]
+}
