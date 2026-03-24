@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/scalar/lumo-energy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "LUMO energy property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "lumo_energy"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
