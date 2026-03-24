@@ -1,0 +1,20 @@
+{
+    "$id": "workflow/unit/context/item/hubbard-v",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "hubbard_v context item schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../_base.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "hubbard_v"
+        },
+        "data": {
+            "$ref": "../../../../context_providers_directory/hubbard_v_context_provider.json"
+        }
+    }
+}

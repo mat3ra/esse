@@ -21,6 +21,7 @@
             "...": "include(workflow/subworkflow.json)"
         }
     ],
+    "workflows": [],
     "tags": [
         "workflow"
     ],

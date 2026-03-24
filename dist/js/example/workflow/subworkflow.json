@@ -17,7 +17,8 @@
             "type": "pseudopotential"
         },
         "subtype": "gga",
-        "type": "dft"
+        "type": "dft",
+        "functional": "pbe"
     },
     "name": "Band Structure",
     "properties": [
@@ -107,7 +108,8 @@
                 }
             ],
             "status": "idle",
-            "type": "execution"
+            "type": "execution",
+            "context": []
         }
     ]
 }

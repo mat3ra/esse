@@ -24,12 +24,14 @@
             }
         },
         "model": {
-            "description": "Model used inside the subworkflow",
-            "$ref": "../../model.json"
+            "$ref": "../../models_directory/legacy/any.json"
         },
         "application": {
             "description": "information about the simulation engine/application.",
             "$ref": "../../software/application.json"
+        },
+        "isMultiMaterial": {
+            "type": "boolean"
         },
         "isDraft": {
             "description": "Defines whether to store the results/properties extracted in this unit to properties collection",
@@ -39,6 +41,7 @@
     },
     "required": [
         "model",
+        "properties",
         "application",
         "units"
     ]

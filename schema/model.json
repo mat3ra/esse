@@ -16,7 +16,6 @@
             "$ref": "method.json"
         }
     },
-    "additionalProperties": true,
     "required": [
         "type",
         "subtype",

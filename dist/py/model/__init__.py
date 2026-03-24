@@ -9,6 +9,13 @@ from typing import Any, Dict, Optional
 from pydantic import BaseModel, ConfigDict, Field
 
 
+class Data(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    searchText: Optional[str] = None
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -22,16 +29,13 @@ class BaseMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    data: Optional[Dict[str, Any]] = None
+    data: Optional[Data] = None
     """
     additional data specific to method, eg. array of pseudopotentials
     """
 
 
-class BaseModel1(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class BaseModelModel(BaseModel):
     type: str
     """
     general type of the model, eg. `dft`

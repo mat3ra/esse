@@ -9,7 +9,7 @@ from typing import List, Literal
 from pydantic import BaseModel
 
 
-class DataIODatabaseIdsInputOutputSchema(BaseModel):
+class DataIODatabaseIdsInputOutputSchemaNotUsed(BaseModel):
     type: Literal["db_ids"]
     ids: List[str]
     """

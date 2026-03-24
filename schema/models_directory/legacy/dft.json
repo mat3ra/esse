@@ -1,12 +1,9 @@
 {
     "$id": "models-directory/legacy/dft",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "legacy model density functional theory",
+    "title": "DFT model schema",
     "type": "object",
     "allOf": [
-        {
-            "$ref": "../../model.json"
-        },
         {
             "oneOf": [
                 {
@@ -18,17 +15,38 @@
                 {
                     "$ref": "#/definitions/hybrid"
                 }
+            ],
+            "discriminator": {
+                "propertyName": "subtype"
+            }
+        },
+        {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "const": "dft"
+                },
+                "subtype": {
+                    "type": "string"
+                },
+                "functional": {
+                    "type": "string"
+                },
+                "method": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "type"
             ]
         }
     ],
-    "properties": {
-        "type": {
-            "const": "dft"
-        }
-    },
     "definitions": {
         "lda": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "lda"
                 },
@@ -39,11 +57,23 @@
                         "vwn",
                         "other"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional",
+                "method"
+            ]
         },
         "gga": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "gga"
                 },
@@ -54,11 +84,23 @@
                         "pw91",
                         "other"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional",
+                "method"
+            ]
         },
         "hybrid": {
             "properties": {
+                "type": {
+                    "const": "dft"
+                },
                 "subtype": {
                     "const": "hybrid"
                 },
@@ -67,8 +109,17 @@
                         "b3lyp",
                         "hse06"
                     ]
+                },
+                "method": {
+                    "$ref": "../../method.json"
                 }
-            }
+            },
+            "required": [
+                "type",
+                "subtype",
+                "functional",
+                "method"
+            ]
         }
     }
 }

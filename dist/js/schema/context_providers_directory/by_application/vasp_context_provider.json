@@ -6,7 +6,8 @@
     "type": "object",
     "required": [
         "POSCAR",
-        "POSCAR_WITH_CONSTRAINTS"
+        "POSCAR_WITH_CONSTRAINTS",
+        "contextProviderName"
     ],
     "properties": {
         "POSCAR": {
@@ -16,6 +17,11 @@
         "POSCAR_WITH_CONSTRAINTS": {
             "type": "string",
             "description": "POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented."
+        },
+        "contextProviderName": {
+            "type": "string",
+            "const": "vasp",
+            "description": "Descriminator for AJV validator"
         }
     }
 }

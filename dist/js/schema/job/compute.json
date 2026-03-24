@@ -2,7 +2,7 @@
     "$id": "job/compute",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "compute arguments schema",
-    "description": "Custom keywords prefixed with validate correspond to custom validation methods implemented downstream",
+    "description": "Compute schema",
     "type": "object",
     "required": [
         "queue",

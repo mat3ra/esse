@@ -4,6 +4,9 @@
     "title": "data IO rest API input schema",
     "type": "object",
     "properties": {
+        "type": {
+            "const": "api"
+        },
         "endpoint": {
             "description": "rest API endpoint",
             "type": "string"
@@ -18,8 +21,8 @@
         }
     },
     "required": [
+        "type",
         "endpoint",
         "endpoint_options"
-    ],
-    "additionalProperties": true
+    ]
 }

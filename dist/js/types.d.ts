@@ -2905,6 +2905,10 @@ export interface BoundaryConditionsDataProviderSchema {
  */
 export interface NWChemTotalEnergyContextProviderSchema {
     /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "nwchem-total-energy";
+    /**
      * Total charge of the system.
      */
     CHARGE: number;
@@ -3100,6 +3104,10 @@ export interface QENEBContextProviderSchema {
         "if_pos(2)"?: number;
         "if_pos(3)"?: number;
     }[][];
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "qe-neb";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/qe_pwx_base_context_provider.json */
 /**
@@ -3280,6 +3288,10 @@ export interface QEPwxContextProviderSchema {
          */
         v3?: [number, number, number];
     };
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "qe-pwx";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/vasp_context_provider.json */
 /**
@@ -3294,6 +3306,10 @@ export interface VASPContextProviderSchema {
      * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
      */
     POSCAR_WITH_CONSTRAINTS: string;
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "vasp";
 }
 /** Schema dist/js/schema/context_providers_directory/by_application/vasp_neb_context_provider.json */
 /**
@@ -3312,6 +3328,10 @@ export interface VASPNEBContextProviderSchema {
      * POSCAR contents with constraints for all intermediate NEB images.
      */
     INTERMEDIATE_IMAGES: string[];
+    /**
+     * Descriminator for AJV validator
+     */
+    contextProviderName: "vasp-neb";
 }
 /** Schema dist/js/schema/context_providers_directory/collinear_magnetization_context_provider.json */
 /**
@@ -3512,11 +3532,7 @@ export interface PlanewaveCutoffsContextProviderSchema {
  * 3D grid with shifts for k-point or q-point sampling.
  */
 export interface PointsGridDataProviderSchema {
-    /**
-     * @minItems 3
-     * @maxItems 3
-     */
-    dimensions: [number, number, number];
+    dimensions: [number, number, number] | [string, string, string];
     /**
      * @minItems 3
      * @maxItems 3
@@ -5279,8 +5295,90 @@ export interface JobBaseSchema {
      * The path to the working directory of this job, when the job originates from command-line
      */
     workDir?: string;
+    _project: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
+    _material?: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
+    parent?: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
     /**
-     * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+     * Context variables that the job will have access to at runtime
+     */
+    runtimeContext?: {};
+    /**
+     * history of the workflow scope on each update
+     */
+    scopeTrack?: {
+        repetition?: number;
+        scope?: {
+            global: {
+                [k: string]: unknown;
+            };
+            local: {
+                [k: string]: unknown;
+            };
+        };
+    }[];
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    metadata?: {};
+    /**
+     * Compute schema
      */
     compute: {
         /**
@@ -5383,92 +5481,10 @@ export interface JobBaseSchema {
          */
         excludeFilesPattern?: string;
     };
-    _project: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    _material?: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    parent?: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    /**
-     * Context variables that the job will have access to at runtime
-     */
-    runtimeContext?: {};
-    /**
-     * history of the workflow scope on each update
-     */
-    scopeTrack?: {
-        repetition?: number;
-        scope?: {
-            global: {
-                [k: string]: unknown;
-            };
-            local: {
-                [k: string]: unknown;
-            };
-        };
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/job/compute.json */
 /**
- * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+ * Compute schema
  */
 export interface ComputeArgumentsSchema {
     /**
@@ -5571,9 +5587,150 @@ export interface ComputeArgumentsSchema {
      */
     excludeFilesPattern?: string;
 }
+/** Schema dist/js/schema/job/compute_property.json */
+export interface ComputePropertySchema {
+    /**
+     * Compute schema
+     */
+    compute: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * number of nodes used for the job inside the RMS.
+         */
+        nodes: number;
+        /**
+         * number of CPUs used for the job inside the RMS.
+         */
+        ppn: number;
+        /**
+         * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+         */
+        timeLimit: string;
+        /**
+         * Convention to use when reasoning about time limits
+         */
+        timeLimitType?: "per single attempt" | "compound";
+        /**
+         * Job is allowed to restart on termination.
+         */
+        isRestartable?: boolean;
+        /**
+         * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+         */
+        notify?: string;
+        /**
+         * Email address to notify about job execution.
+         */
+        email?: string;
+        /**
+         * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+         */
+        maxCPU?: number;
+        /**
+         * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+         */
+        arguments?: {
+            /**
+             * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+             */
+            nimage?: number;
+            /**
+             * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+             */
+            npools?: number;
+            /**
+             * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+             */
+            nband?: number;
+            /**
+             * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+             */
+            ntg?: number;
+            /**
+             * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+             */
+            ndiag?: number;
+        };
+        /**
+         * Cluster where the job is executed. Optional on create. Required on job submission.
+         */
+        cluster?: {
+            /**
+             * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+             */
+            fqdn?: string;
+            /**
+             * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+             */
+            jid?: string;
+        };
+        /**
+         * Computation error. Optional. Appears only if something happens on jobs execution.
+         */
+        errors?: {
+            /**
+             * Domain of the error appearance (internal).
+             */
+            domain?: "rupy" | "alfred" | "celim" | "webapp";
+            /**
+             * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+             */
+            reason?: string;
+            /**
+             * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+             */
+            message?: string;
+            /**
+             * Full machine-readable error traceback. e.g. FileNotFound
+             */
+            traceback?: string;
+        }[];
+        /**
+         * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+         */
+        excludeFilesPattern?: string;
+    };
+}
 /** Schema dist/js/schema/job.json */
 export interface JobSchema {
     workflow: {
+        /**
+         * Array of workflows with the same schema as the current one.
+         */
+        workflows: {}[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+        /**
+         * Array of characteristic properties calculated by this workflow (TODO: add enums)
+         */
+        properties: string[];
+        /**
+         * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+         */
+        isUsingDataset?: boolean;
         /**
          * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
          */
@@ -5598,9 +5755,9 @@ export interface JobSchema {
             /**
              * Array of characteristic properties calculated by this subworkflow
              */
-            properties?: string[];
+            properties: string[];
             /**
-             * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+             * Compute schema
              */
             compute?: {
                 /**
@@ -5799,23 +5956,21 @@ export interface JobSchema {
                  */
                 enableRender?: boolean;
                 subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
+                source: "api" | "object_storage";
                 input: ({
-                    type: "db_ids";
+                    type: "api";
                     /**
-                     * IDs of item to retrieve from db
+                     * rest API endpoint
                      */
-                    ids: string[];
-                } | {
-                    type: "db_collection";
+                    endpoint: string;
                     /**
-                     * db collection name
+                     * rest API endpoint options
                      */
-                    collection: string;
+                    endpoint_options: {};
                     /**
-                     * whether the result should be saved as draft
+                     * the name of the variable in local scope to save the data under
                      */
-                    draft: boolean;
+                    name?: string;
                 } | {
                     type: "object_storage";
                     objectData: {
@@ -5861,115 +6016,6 @@ export interface JobSchema {
                      */
                     filetype?: string;
                 })[];
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
             } | {
                 /**
                  * entity identity
@@ -6334,7 +6380,7 @@ export interface JobSchema {
                      */
                     isLicensed?: boolean;
                 };
-                executable?: {
+                executable: {
                     /**
                      * entity identity
                      */
@@ -6356,52 +6402,39 @@ export interface JobSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId: string[];
                     /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                 };
-                flavor?: {
+                flavor: {
                     /**
                      * entity identity
                      */
@@ -6459,10 +6492,6 @@ export interface JobSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -6520,12 +6549,594 @@ export interface JobSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: {
-                    name: ContextProviderNameEnum;
+                context: ({
+                    name: "input";
+                    data: {
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "nwchem-total-energy";
+                        /**
+                         * Total charge of the system.
+                         */
+                        CHARGE: number;
+                        /**
+                         * Spin multiplicity of the system.
+                         */
+                        MULT: number;
+                        /**
+                         * Basis set label used in the calculation (e.g., '6-31G').
+                         */
+                        BASIS: string;
+                        /**
+                         * Number of atoms in the system.
+                         */
+                        NAT: number;
+                        /**
+                         * Number of unique atomic species in the system.
+                         */
+                        NTYP: number;
+                        /**
+                         * Formatted text block with atomic positions including constraints.
+                         */
+                        ATOMIC_POSITIONS: string;
+                        /**
+                         * Formatted text block with atomic positions without constraints.
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                        /**
+                         * Formatted text block for atomic species, including element symbols and masses.
+                         */
+                        ATOMIC_SPECIES: string;
+                        /**
+                         * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                         */
+                        FUNCTIONAL: string;
+                        /**
+                         * Whether atomic positions are expressed in cartesian coordinates.
+                         */
+                        CARTESIAN: boolean;
+                    } | {
+                        IBRAV: number;
+                        RESTART_MODE: "from_scratch" | "restart";
+                        ATOMIC_SPECIES: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        ATOMIC_SPECIES_WITH_LABELS: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        /**
+                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                         */
+                        NAT: number;
+                        /**
+                         * number of types of atoms in the unit cell
+                         */
+                        NTYP: number;
+                        /**
+                         * Number of different atomic species including labels
+                         */
+                        NTYP_WITH_LABELS: number;
+                        ATOMIC_POSITIONS?: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                        CELL_PARAMETERS: {
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v1?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v2?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v3?: [number, number, number];
+                        };
+                        FIRST_IMAGE: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        LAST_IMAGE: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                         */
+                        INTERMEDIATE_IMAGES: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[][];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-neb";
+                    } | {
+                        IBRAV: number;
+                        RESTART_MODE: "from_scratch" | "restart";
+                        ATOMIC_SPECIES: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        ATOMIC_SPECIES_WITH_LABELS: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        /**
+                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                         */
+                        NAT: number;
+                        /**
+                         * number of types of atoms in the unit cell
+                         */
+                        NTYP: number;
+                        /**
+                         * Number of different atomic species including labels
+                         */
+                        NTYP_WITH_LABELS: number;
+                        ATOMIC_POSITIONS: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                        CELL_PARAMETERS: {
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v1?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v2?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v3?: [number, number, number];
+                        };
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-pwx";
+                    } | {
+                        /**
+                         * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                         */
+                        POSCAR: string;
+                        /**
+                         * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                         */
+                        POSCAR_WITH_CONSTRAINTS: string;
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp";
+                    } | {
+                        /**
+                         * POSCAR content with constraints for the first NEB image.
+                         */
+                        FIRST_IMAGE: string;
+                        /**
+                         * POSCAR content with constraints for the last NEB image.
+                         */
+                        LAST_IMAGE: string;
+                        /**
+                         * POSCAR contents with constraints for all intermediate NEB images.
+                         */
+                        INTERMEDIATE_IMAGES: string[];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp-neb";
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
                     isEdited: boolean;
-                    data: {};
-                    extraData?: {};
-                }[];
+                } | {
+                    name: "cutoffs";
+                    /**
+                     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                     */
+                    data: {
+                        wavefunction?: number;
+                        density?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "kgrid" | "qgrid" | "igrid";
+                    /**
+                     * 3D grid with shifts for k-point or q-point sampling.
+                     */
+                    data: {
+                        dimensions: [number, number, number] | [string, string, string];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        shifts?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        reciprocalVectorRatios?: [number, number, number];
+                        gridMetricType: "KPPRA" | "spacing";
+                        gridMetricValue: number;
+                        preferGridMetric?: boolean;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                    /**
+                     * Path in reciprocal space for band structure calculations.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        },
+                        ...{
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        }[]
+                    ];
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_j";
+                    /**
+                     * Hubbard parameters for DFT+U+J calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        },
+                        ...{
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "hubbard_u";
+                    /**
+                     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                     */
+                    data: {
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        hubbardUValue?: number;
+                    }[];
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_v";
+                    /**
+                     * Hubbard V parameters for DFT+U+V calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "hubbard_legacy";
+                    /**
+                     * Hubbard parameters for DFT+U calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "neb";
+                    /**
+                     * Number of intermediate NEB images.
+                     */
+                    data: {
+                        nImages?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "boundaryConditions";
+                    data: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type?: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset?: number;
+                        electricField?: number;
+                        targetFermiEnergy?: number;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlSettings";
+                    /**
+                     * Settings important to machine learning runs.
+                     */
+                    data: {
+                        target_column_name?: string;
+                        problem_category?: "regression" | "classification" | "clustering";
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "mlTrainTestSplit";
+                    /**
+                     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                     */
+                    data: {
+                        fraction_held_as_test_set?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "dynamics";
+                    /**
+                     * Important parameters for molecular dynamics calculation
+                     */
+                    data: {
+                        numberOfSteps?: number;
+                        timeStep?: number;
+                        electronMass?: number;
+                        temperature?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "collinearMagnetization";
+                    /**
+                     * Set starting magnetization, can have values in the range [-1, +1].
+                     */
+                    data: {
+                        startingMagnetization: {
+                            atomicSpecies: string;
+                            value: number;
+                            index: number;
+                        }[];
+                        isTotalMagnetization: boolean;
+                        totalMagnetization: number;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "nonCollinearMagnetization";
+                    /**
+                     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                     */
+                    data: {
+                        isExistingChargeDensity?: boolean;
+                        isStartingMagnetization?: boolean;
+                        startingMagnetization?: {
+                            index?: number;
+                            atomicSpecies?: string;
+                            value?: number;
+                        }[];
+                        isArbitrarySpinAngle?: boolean;
+                        isArbitrarySpinDirection?: boolean;
+                        lforcet?: boolean;
+                        spinAngles?: {
+                            index?: number;
+                            atomicSpecies?: string;
+                            angle1?: number;
+                            angle2?: number;
+                        }[];
+                        isConstrainedMagnetization?: boolean;
+                        constrainedMagnetization?: {
+                            constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                            lambda?: number;
+                        };
+                        isFixedMagnetization?: boolean;
+                        fixedMagnetization?: {
+                            x?: number;
+                            y?: number;
+                            z?: number;
+                        };
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                })[];
             } | {
                 /**
                  * entity identity
@@ -6640,122 +7251,11 @@ export interface JobSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * Contains information about the operation used.
-                 */
-                operation: string;
-                /**
-                 * Contains information about the specific type of the operation used.
-                 */
-                operationType: string;
-                /**
-                 * unit input (type to be specified by the child units)
-                 */
-                inputData: {
-                    [k: string]: unknown;
-                };
             })[];
-            model: {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
-                type: string;
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
-                subtype: string;
+            model: ({
+                type: "dft";
+                subtype: "lda";
+                functional: "pz" | "pw" | "vwn" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -6772,9 +7272,109 @@ export interface JobSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
-                [k: string]: unknown;
+            } | {
+                type: "dft";
+                subtype: "gga";
+                functional: "pbe" | "pbesol" | "pw91" | "other";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            } | {
+                type: "dft";
+                subtype: "hybrid";
+                functional: "b3lyp" | "hse06";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            }) | {
+                type: "ml";
+                subtype: "re";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            } | {
+                type: "unknown";
+                subtype: "unknown";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
             };
             application: {
                 /**
@@ -6823,6 +7423,7 @@ export interface JobSchema {
                  */
                 isLicensed?: boolean;
             };
+            isMultiMaterial?: boolean;
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
              */
@@ -6832,1046 +7433,6 @@ export interface JobSchema {
          * Contains the Units of the Workflow
          */
         units: ({
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "io";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
-            input: ({
-                type: "db_ids";
-                /**
-                 * IDs of item to retrieve from db
-                 */
-                ids: string[];
-            } | {
-                type: "db_collection";
-                /**
-                 * db collection name
-                 */
-                collection: string;
-                /**
-                 * whether the result should be saved as draft
-                 */
-                draft: boolean;
-            } | {
-                type: "object_storage";
-                objectData: {
-                    /**
-                     * Object storage container for the file
-                     */
-                    CONTAINER?: string;
-                    /**
-                     * Name of the file inside the object storage bucket
-                     */
-                    NAME?: string;
-                    /**
-                     * Object storage provider
-                     */
-                    PROVIDER?: string;
-                    /**
-                     * Region for the object container specified in Container
-                     */
-                    REGION?: string;
-                    /**
-                     * Size of the file in bytes
-                     */
-                    SIZE?: number;
-                    /**
-                     * Unix timestamp showing when the file was last modified
-                     */
-                    TIMESTAMP?: string;
-                };
-                /**
-                 * if a file with the same filename already exists, whether to overwrite the old file
-                 */
-                overwrite?: boolean;
-                /**
-                 * Relative path to the directory that contains the file.
-                 */
-                pathname?: string;
-                /**
-                 * Basename of the file
-                 */
-                basename?: string;
-                /**
-                 * What kind of file this is, e.g. image / text
-                 */
-                filetype?: string;
-            })[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Input information for condition.
-             */
-            input: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-             */
-            statement: string;
-            /**
-             * Flowchart ID reference for `then` part of the condition.
-             */
-            then: string;
-            /**
-             * Flowchart ID reference for `else` part of the condition.
-             */
-            else: string;
-            /**
-             * Maximum occurrence of the condition, usable for loops.
-             */
-            maxOccurrences: number;
-            /**
-             * Throw exception on reaching to maximum occurence.
-             */
-            throwException?: boolean;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * The statement to be evaluated
-             */
-            statement: string;
-            /**
-             * The error message to be displayed if the assertion fails
-             */
-            errorMessage?: string;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            application: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName: string;
-                /**
-                 * Application's short description.
-                 */
-                summary: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-            };
-            executable?: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-            };
-            flavor?: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
-                /**
-                 * name of the executable this flavor belongs to
-                 */
-                executableName?: string;
-                /**
-                 * name of the application this flavor belongs to
-                 */
-                applicationName?: string;
-                input: {
-                    templateId?: string;
-                    templateName?: string;
-                    /**
-                     * name of the resulting input file, if different than template name
-                     */
-                    name?: string;
-                }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
-            };
-            input: {
-                template: {
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
-                    executableName: string;
-                    contextProviders: {
-                        name: ContextProviderNameEnum;
-                    }[];
-                    /**
-                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
-                     */
-                    content: string;
-                };
-                /**
-                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                rendered: string;
-                isManuallyChanged: boolean;
-            }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
-                data: {};
-                extraData?: {};
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            scope?: string;
-            /**
-             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-             */
-            input?: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Name of the global variable. e.g. 'x'
-             */
-            operand: string;
-            /**
-             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-             */
-            value: string | boolean | number;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
-        } | {
             /**
              * entity identity
              */
@@ -8064,6 +7625,115 @@ export interface JobSchema {
             /**
              * type of the unit
              */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
             type: "subworkflow";
             /**
              * Whether this unit is the first one to be executed.
@@ -8082,40 +7752,7 @@ export interface JobSchema {
              */
             enableRender?: boolean;
         })[];
-        /**
-         * Array of characteristic properties calculated by this workflow (TODO: add enums)
-         */
-        properties?: (string | {})[];
-        /**
-         * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
-         */
-        isUsingDataset?: boolean;
-        /**
-         * Array of workflows with the same schema as the current one.
-         */
-        workflows?: {}[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        metadata?: {};
+        isMultiMaterial?: boolean;
     };
     /**
      * Identity used to track jobs originated from command-line
@@ -8133,8 +7770,90 @@ export interface JobSchema {
      * The path to the working directory of this job, when the job originates from command-line
      */
     workDir?: string;
+    _project: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
+    _material?: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
+    parent?: {
+        /**
+         * entity identity
+         */
+        _id: string;
+        /**
+         * entity class
+         */
+        cls?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+    };
     /**
-     * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+     * Context variables that the job will have access to at runtime
+     */
+    runtimeContext?: {};
+    /**
+     * history of the workflow scope on each update
+     */
+    scopeTrack?: {
+        repetition?: number;
+        scope?: {
+            global: {
+                [k: string]: unknown;
+            };
+            local: {
+                [k: string]: unknown;
+            };
+        };
+    }[];
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    metadata?: {};
+    /**
+     * Compute schema
      */
     compute: {
         /**
@@ -8237,88 +7956,6 @@ export interface JobSchema {
          */
         excludeFilesPattern?: string;
     };
-    _project: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    _material?: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    parent?: {
-        /**
-         * entity identity
-         */
-        _id: string;
-        /**
-         * entity class
-         */
-        cls?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-    };
-    /**
-     * Context variables that the job will have access to at runtime
-     */
-    runtimeContext?: {};
-    /**
-     * history of the workflow scope on each update
-     */
-    scopeTrack?: {
-        repetition?: number;
-        scope?: {
-            global: {
-                [k: string]: unknown;
-            };
-            local: {
-                [k: string]: unknown;
-            };
-        };
-    }[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    metadata?: {};
 }
 /** Schema dist/js/schema/material/consistency_check.json */
 /**
@@ -38588,7 +38225,10 @@ export interface BaseMethod {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_category/mathematical/diff/enum_options.json */
 export interface MethodsCategoryMathematicalDiffEnumOptions {
@@ -42742,7 +42382,10 @@ export interface LegacyMethodLocalorbital {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/legacy/pseudopotential.json */
 export interface LegacyMethodPseudopotential {
@@ -42761,7 +42404,10 @@ export interface LegacyMethodPseudopotential {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/legacy/regression.json */
 export interface LegacyMethodRegression {
@@ -42860,6 +42506,8 @@ export interface LegacyMethodRegression {
                 [k: string]: unknown;
             };
         };
+        searchText?: string;
+        [k: string]: unknown;
     };
 }
 /** Schema dist/js/schema/methods_directory/legacy/unknown.json */
@@ -42879,7 +42527,10 @@ export interface LegacyMethodUnknown {
     /**
      * additional data specific to method, eg. array of pseudopotentials
      */
-    data?: {};
+    data?: {
+        searchText?: string;
+        [k: string]: unknown;
+    };
 }
 /** Schema dist/js/schema/methods_directory/mathematical/cg.json */
 /**
@@ -44952,9 +44603,11 @@ export interface BaseModel {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
-    [k: string]: unknown;
 }
 /** Schema dist/js/schema/models_category/enum_options.json */
 export interface ModelsCategoryEnumOptions {
@@ -46966,16 +46619,11 @@ export interface ModelLocalDensityApproximation {
      */
     tags?: string[];
 }
-/** Schema dist/js/schema/models_directory/legacy/dft.json */
-export type LegacyModelDensityFunctionalTheory = {
-    /**
-     * general type of the model, eg. `dft`
-     */
+/** Schema dist/js/schema/models_directory/legacy/any.json */
+export type AnyModelSchema = ({
     type: "dft";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
-    subtype: string;
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
     method: {
         /**
          * general type of this method, eg. `pseudopotential`
@@ -46992,52 +46640,63 @@ export type LegacyModelDensityFunctionalTheory = {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
-    [k: string]: unknown;
-} & ({
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
 } | {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
 } | {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
-});
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "lda".
- */
-export interface Lda {
-    subtype?: "lda";
-    functional?: "pz" | "pw" | "vwn" | "other";
-}
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "gga".
- */
-export interface Gga {
-    subtype?: "gga";
-    functional?: "pbe" | "pbesol" | "pw91" | "other";
-}
-/**
- * This interface was referenced by `undefined`'s JSON-Schema
- * via the `definition` "hybrid".
- */
-export interface Hybrid {
-    subtype?: "hybrid";
-    functional?: "b3lyp" | "hse06";
-}
-/** Schema dist/js/schema/models_directory/legacy/ml.json */
-export interface LegacyModelRegression {
-    /**
-     * general type of the model, eg. `dft`
-     */
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}) | {
     type: "ml";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
     subtype: "re";
     method: {
         /**
@@ -47055,19 +46714,13 @@ export interface LegacyModelRegression {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
-    [k: string]: unknown;
-}
-/** Schema dist/js/schema/models_directory/legacy/unknown.json */
-export interface LegacyModelUnknown {
-    /**
-     * general type of the model, eg. `dft`
-     */
+} | {
     type: "unknown";
-    /**
-     * general subtype of the model, eg. `lda`
-     */
     subtype: "unknown";
     method: {
         /**
@@ -47085,9 +46738,235 @@ export interface LegacyModelUnknown {
         /**
          * additional data specific to method, eg. array of pseudopotentials
          */
-        data?: {};
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
     };
-    [k: string]: unknown;
+};
+/** Schema dist/js/schema/models_directory/legacy/dft.json */
+export type DFTModelSchema = {
+    type: "dft";
+    subtype?: string;
+    functional?: string;
+    method?: {};
+} & ({
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+} | {
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+} | {
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+});
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema
+ * via the `definition` "lda".
+ */
+export interface Lda {
+    type: "dft";
+    subtype: "lda";
+    functional: "pz" | "pw" | "vwn" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema
+ * via the `definition` "gga".
+ */
+export interface Gga {
+    type: "dft";
+    subtype: "gga";
+    functional: "pbe" | "pbesol" | "pw91" | "other";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}
+/**
+ * This interface was referenced by `undefined`'s JSON-Schema
+ * via the `definition` "hybrid".
+ */
+export interface Hybrid {
+    type: "dft";
+    subtype: "hybrid";
+    functional: "b3lyp" | "hse06";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}
+/** Schema dist/js/schema/models_directory/legacy/ml.json */
+export interface MLModelSchema {
+    type: "ml";
+    subtype: "re";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
+}
+/** Schema dist/js/schema/models_directory/legacy/unknown.json */
+export interface UnknownModelSchema {
+    type: "unknown";
+    subtype: "unknown";
+    method: {
+        /**
+         * general type of this method, eg. `pseudopotential`
+         */
+        type: string;
+        /**
+         * general subtype of this method, eg. `ultra-soft`
+         */
+        subtype: string;
+        /**
+         * Object showing the actual possible precision based on theory and implementation
+         */
+        precision?: {};
+        /**
+         * additional data specific to method, eg. array of pseudopotentials
+         */
+        data?: {
+            searchText?: string;
+            [k: string]: unknown;
+        };
+    };
 }
 /** Schema dist/js/schema/models_directory/mgga.json */
 export interface ModelMetaGeneralizedGradientApproximation {
@@ -48172,6 +48051,36 @@ export interface WorkflowPropertySchema {
      */
     name: "workflow:pyml_predict";
     /**
+     * Array of workflows with the same schema as the current one.
+     */
+    workflows: {}[];
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    metadata?: {};
+    /**
+     * Array of characteristic properties calculated by this workflow (TODO: add enums)
+     */
+    properties: string[];
+    /**
+     * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+     */
+    isUsingDataset?: boolean;
+    /**
      * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
     subworkflows: {
@@ -48195,9 +48104,9 @@ export interface WorkflowPropertySchema {
         /**
          * Array of characteristic properties calculated by this subworkflow
          */
-        properties?: string[];
+        properties: string[];
         /**
-         * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+         * Compute schema
          */
         compute?: {
             /**
@@ -48396,23 +48305,21 @@ export interface WorkflowPropertySchema {
              */
             enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
+            source: "api" | "object_storage";
             input: ({
-                type: "db_ids";
+                type: "api";
                 /**
-                 * IDs of item to retrieve from db
+                 * rest API endpoint
                  */
-                ids: string[];
-            } | {
-                type: "db_collection";
+                endpoint: string;
                 /**
-                 * db collection name
+                 * rest API endpoint options
                  */
-                collection: string;
+                endpoint_options: {};
                 /**
-                 * whether the result should be saved as draft
+                 * the name of the variable in local scope to save the data under
                  */
-                draft: boolean;
+                name?: string;
             } | {
                 type: "object_storage";
                 objectData: {
@@ -48458,115 +48365,6 @@ export interface WorkflowPropertySchema {
                  */
                 filetype?: string;
             })[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
         } | {
             /**
              * entity identity
@@ -48931,7 +48729,7 @@ export interface WorkflowPropertySchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -48953,52 +48751,39 @@ export interface WorkflowPropertySchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -49056,10 +48841,6 @@ export interface WorkflowPropertySchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -49117,12 +48898,594 @@ export interface WorkflowPropertySchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
+            context: ({
+                name: "input";
+                data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
+                    /**
+                     * Total charge of the system.
+                     */
+                    CHARGE: number;
+                    /**
+                     * Spin multiplicity of the system.
+                     */
+                    MULT: number;
+                    /**
+                     * Basis set label used in the calculation (e.g., '6-31G').
+                     */
+                    BASIS: string;
+                    /**
+                     * Number of atoms in the system.
+                     */
+                    NAT: number;
+                    /**
+                     * Number of unique atomic species in the system.
+                     */
+                    NTYP: number;
+                    /**
+                     * Formatted text block with atomic positions including constraints.
+                     */
+                    ATOMIC_POSITIONS: string;
+                    /**
+                     * Formatted text block with atomic positions without constraints.
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    /**
+                     * Formatted text block for atomic species, including element symbols and masses.
+                     */
+                    ATOMIC_SPECIES: string;
+                    /**
+                     * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                     */
+                    FUNCTIONAL: string;
+                    /**
+                     * Whether atomic positions are expressed in cartesian coordinates.
+                     */
+                    CARTESIAN: boolean;
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS?: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    FIRST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    LAST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
+                } | {
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                     */
+                    POSCAR: string;
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                     */
+                    POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
+                } | {
+                    /**
+                     * POSCAR content with constraints for the first NEB image.
+                     */
+                    FIRST_IMAGE: string;
+                    /**
+                     * POSCAR content with constraints for the last NEB image.
+                     */
+                    LAST_IMAGE: string;
+                    /**
+                     * POSCAR contents with constraints for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
+                };
+                extraData: {
+                    materialHash: string;
+                };
                 isEdited: boolean;
-                data: {};
-                extraData?: {};
-            }[];
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
+                    startingMagnetization: {
+                        atomicSpecies: string;
+                        value: number;
+                        index: number;
+                    }[];
+                    isTotalMagnetization: boolean;
+                    totalMagnetization: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
+                    isExistingChargeDensity?: boolean;
+                    isStartingMagnetization?: boolean;
+                    startingMagnetization?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        value?: number;
+                    }[];
+                    isArbitrarySpinAngle?: boolean;
+                    isArbitrarySpinDirection?: boolean;
+                    lforcet?: boolean;
+                    spinAngles?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        angle1?: number;
+                        angle2?: number;
+                    }[];
+                    isConstrainedMagnetization?: boolean;
+                    constrainedMagnetization?: {
+                        constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                        lambda?: number;
+                    };
+                    isFixedMagnetization?: boolean;
+                    fixedMagnetization?: {
+                        x?: number;
+                        y?: number;
+                        z?: number;
+                    };
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -49237,122 +49600,11 @@ export interface WorkflowPropertySchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
         })[];
-        model: {
-            /**
-             * general type of the model, eg. `dft`
-             */
-            type: string;
-            /**
-             * general subtype of the model, eg. `lda`
-             */
-            subtype: string;
+        model: ({
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -49369,9 +49621,109 @@ export interface WorkflowPropertySchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
-            [k: string]: unknown;
+        } | {
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        }) | {
+            type: "ml";
+            subtype: "re";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "unknown";
+            subtype: "unknown";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
         };
         application: {
             /**
@@ -49420,6 +49772,7 @@ export interface WorkflowPropertySchema {
              */
             isLicensed?: boolean;
         };
+        isMultiMaterial?: boolean;
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
@@ -49429,1046 +49782,6 @@ export interface WorkflowPropertySchema {
      * Contains the Units of the Workflow
      */
     units: ({
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "io";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
-        input: ({
-            type: "db_ids";
-            /**
-             * IDs of item to retrieve from db
-             */
-            ids: string[];
-        } | {
-            type: "db_collection";
-            /**
-             * db collection name
-             */
-            collection: string;
-            /**
-             * whether the result should be saved as draft
-             */
-            draft: boolean;
-        } | {
-            type: "object_storage";
-            objectData: {
-                /**
-                 * Object storage container for the file
-                 */
-                CONTAINER?: string;
-                /**
-                 * Name of the file inside the object storage bucket
-                 */
-                NAME?: string;
-                /**
-                 * Object storage provider
-                 */
-                PROVIDER?: string;
-                /**
-                 * Region for the object container specified in Container
-                 */
-                REGION?: string;
-                /**
-                 * Size of the file in bytes
-                 */
-                SIZE?: number;
-                /**
-                 * Unix timestamp showing when the file was last modified
-                 */
-                TIMESTAMP?: string;
-            };
-            /**
-             * if a file with the same filename already exists, whether to overwrite the old file
-             */
-            overwrite?: boolean;
-            /**
-             * Relative path to the directory that contains the file.
-             */
-            pathname?: string;
-            /**
-             * Basename of the file
-             */
-            basename?: string;
-            /**
-             * What kind of file this is, e.g. image / text
-             */
-            filetype?: string;
-        })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "condition";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Input information for condition.
-         */
-        input: {
-            /**
-             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-             */
-            scope: string;
-            /**
-             * Name of the input data. e.g. total_energy
-             */
-            name: string;
-        }[];
-        /**
-         * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-         */
-        statement: string;
-        /**
-         * Flowchart ID reference for `then` part of the condition.
-         */
-        then: string;
-        /**
-         * Flowchart ID reference for `else` part of the condition.
-         */
-        else: string;
-        /**
-         * Maximum occurrence of the condition, usable for loops.
-         */
-        maxOccurrences: number;
-        /**
-         * Throw exception on reaching to maximum occurence.
-         */
-        throwException?: boolean;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assertion";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * The statement to be evaluated
-         */
-        statement: string;
-        /**
-         * The error message to be displayed if the assertion fails
-         */
-        errorMessage?: string;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        application: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName: string;
-            /**
-             * Application's short description.
-             */
-            summary: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
-        };
-        executable?: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-        };
-        flavor?: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
-            /**
-             * name of the executable this flavor belongs to
-             */
-            executableName?: string;
-            /**
-             * name of the application this flavor belongs to
-             */
-            applicationName?: string;
-            input: {
-                templateId?: string;
-                templateName?: string;
-                /**
-                 * name of the resulting input file, if different than template name
-                 */
-                name?: string;
-            }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
-        };
-        input: {
-            template: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                applicationName: string;
-                applicationVersion?: string;
-                executableName: string;
-                contextProviders: {
-                    name: ContextProviderNameEnum;
-                }[];
-                /**
-                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
-            };
-            /**
-             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-             */
-            rendered: string;
-            isManuallyChanged: boolean;
-        }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
-            data: {};
-            extraData?: {};
-        }[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assignment";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        scope?: string;
-        /**
-         * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-         */
-        input?: {
-            /**
-             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-             */
-            scope: string;
-            /**
-             * Name of the input data. e.g. total_energy
-             */
-            name: string;
-        }[];
-        /**
-         * Name of the global variable. e.g. 'x'
-         */
-        operand: string;
-        /**
-         * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-         */
-        value: string | boolean | number;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "processing";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Contains information about the operation used.
-         */
-        operation: string;
-        /**
-         * Contains information about the specific type of the operation used.
-         */
-        operationType: string;
-        /**
-         * unit input (type to be specified by the child units)
-         */
-        inputData: {
-            [k: string]: unknown;
-        };
-    } | {
         /**
          * entity identity
          */
@@ -50661,6 +49974,115 @@ export interface WorkflowPropertySchema {
         /**
          * type of the unit
          */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
         type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
@@ -50679,36 +50101,7 @@ export interface WorkflowPropertySchema {
          */
         enableRender?: boolean;
     })[];
-    /**
-     * Array of characteristic properties calculated by this workflow (TODO: add enums)
-     */
-    properties?: (string | {})[];
-    /**
-     * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
-     */
-    isUsingDataset?: boolean;
-    /**
-     * Array of workflows with the same schema as the current one.
-     */
-    workflows?: {}[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    metadata?: {};
+    isMultiMaterial?: boolean;
 }
 /** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
 /**
@@ -52005,6 +51398,36 @@ export interface PropertyHolderSchema {
          */
         name: "workflow:pyml_predict";
         /**
+         * Array of workflows with the same schema as the current one.
+         */
+        workflows: {}[];
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        metadata?: {};
+        /**
+         * Array of characteristic properties calculated by this workflow (TODO: add enums)
+         */
+        properties: string[];
+        /**
+         * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+         */
+        isUsingDataset?: boolean;
+        /**
          * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
          */
         subworkflows: {
@@ -52028,9 +51451,9 @@ export interface PropertyHolderSchema {
             /**
              * Array of characteristic properties calculated by this subworkflow
              */
-            properties?: string[];
+            properties: string[];
             /**
-             * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+             * Compute schema
              */
             compute?: {
                 /**
@@ -52229,23 +51652,21 @@ export interface PropertyHolderSchema {
                  */
                 enableRender?: boolean;
                 subtype: "input" | "output" | "dataFrame";
-                source: "api" | "db" | "object_storage";
+                source: "api" | "object_storage";
                 input: ({
-                    type: "db_ids";
+                    type: "api";
                     /**
-                     * IDs of item to retrieve from db
+                     * rest API endpoint
                      */
-                    ids: string[];
-                } | {
-                    type: "db_collection";
+                    endpoint: string;
                     /**
-                     * db collection name
+                     * rest API endpoint options
                      */
-                    collection: string;
+                    endpoint_options: {};
                     /**
-                     * whether the result should be saved as draft
+                     * the name of the variable in local scope to save the data under
                      */
-                    draft: boolean;
+                    name?: string;
                 } | {
                     type: "object_storage";
                     objectData: {
@@ -52291,115 +51712,6 @@ export interface PropertyHolderSchema {
                      */
                     filetype?: string;
                 })[];
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "reduce";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * corresponding map unit flowchart ID
-                 */
-                mapFlowchartId: string;
-                /**
-                 * input information for reduce unit
-                 */
-                input: {
-                    /**
-                     * reduce operation, e.g. aggregate
-                     */
-                    operation: string;
-                    /**
-                     * arguments which are passed to reduce operation function
-                     */
-                    arguments: string[];
-                }[];
             } | {
                 /**
                  * entity identity
@@ -52764,7 +52076,7 @@ export interface PropertyHolderSchema {
                      */
                     isLicensed?: boolean;
                 };
-                executable?: {
+                executable: {
                     /**
                      * entity identity
                      */
@@ -52786,52 +52098,39 @@ export interface PropertyHolderSchema {
                      * Identifies that entity is defaultable
                      */
                     isDefault?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the results for this calculation
-                     */
-                    results: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * _ids of the application this executable belongs to
-                     */
-                    applicationId: string[];
                     /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
+                    /**
+                     * names of the pre-processors for this calculation
+                     */
+                    preProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the post-processors for this calculation
+                     */
+                    postProcessors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
+                    /**
+                     * names of the monitors for this calculation
+                     */
+                    monitors: {
+                        /**
+                         * The name of this item. e.g. scf_accuracy
+                         */
+                        name: string;
+                    }[];
                 };
-                flavor?: {
+                flavor: {
                     /**
                      * entity identity
                      */
@@ -52889,10 +52188,6 @@ export interface PropertyHolderSchema {
                          */
                         name: string;
                     }[];
-                    /**
-                     * _id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                     /**
                      * name of the executable this flavor belongs to
                      */
@@ -52950,12 +52245,594 @@ export interface PropertyHolderSchema {
                     rendered: string;
                     isManuallyChanged: boolean;
                 }[];
-                context?: {
-                    name: ContextProviderNameEnum;
+                context: ({
+                    name: "input";
+                    data: {
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "nwchem-total-energy";
+                        /**
+                         * Total charge of the system.
+                         */
+                        CHARGE: number;
+                        /**
+                         * Spin multiplicity of the system.
+                         */
+                        MULT: number;
+                        /**
+                         * Basis set label used in the calculation (e.g., '6-31G').
+                         */
+                        BASIS: string;
+                        /**
+                         * Number of atoms in the system.
+                         */
+                        NAT: number;
+                        /**
+                         * Number of unique atomic species in the system.
+                         */
+                        NTYP: number;
+                        /**
+                         * Formatted text block with atomic positions including constraints.
+                         */
+                        ATOMIC_POSITIONS: string;
+                        /**
+                         * Formatted text block with atomic positions without constraints.
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                        /**
+                         * Formatted text block for atomic species, including element symbols and masses.
+                         */
+                        ATOMIC_SPECIES: string;
+                        /**
+                         * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                         */
+                        FUNCTIONAL: string;
+                        /**
+                         * Whether atomic positions are expressed in cartesian coordinates.
+                         */
+                        CARTESIAN: boolean;
+                    } | {
+                        IBRAV: number;
+                        RESTART_MODE: "from_scratch" | "restart";
+                        ATOMIC_SPECIES: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        ATOMIC_SPECIES_WITH_LABELS: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        /**
+                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                         */
+                        NAT: number;
+                        /**
+                         * number of types of atoms in the unit cell
+                         */
+                        NTYP: number;
+                        /**
+                         * Number of different atomic species including labels
+                         */
+                        NTYP_WITH_LABELS: number;
+                        ATOMIC_POSITIONS?: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                        CELL_PARAMETERS: {
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v1?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v2?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v3?: [number, number, number];
+                        };
+                        FIRST_IMAGE: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        LAST_IMAGE: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                         */
+                        INTERMEDIATE_IMAGES: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[][];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-neb";
+                    } | {
+                        IBRAV: number;
+                        RESTART_MODE: "from_scratch" | "restart";
+                        ATOMIC_SPECIES: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        ATOMIC_SPECIES_WITH_LABELS: {
+                            /**
+                             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                             */
+                            X: string;
+                            /**
+                             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                             */
+                            Mass_X: number;
+                            /**
+                             * PseudoPot_X
+                             */
+                            PseudoPot_X: string;
+                        }[];
+                        /**
+                         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                         */
+                        NAT: number;
+                        /**
+                         * number of types of atoms in the unit cell
+                         */
+                        NTYP: number;
+                        /**
+                         * Number of different atomic species including labels
+                         */
+                        NTYP_WITH_LABELS: number;
+                        ATOMIC_POSITIONS: {
+                            /**
+                             * label of the atom as specified in ATOMIC_SPECIES
+                             */
+                            X?: string;
+                            /**
+                             * atomic positions
+                             */
+                            x: number;
+                            /**
+                             * atomic positions
+                             */
+                            y: number;
+                            /**
+                             * atomic positions
+                             */
+                            z: number;
+                            "if_pos(1)"?: number;
+                            "if_pos(2)"?: number;
+                            "if_pos(3)"?: number;
+                        }[];
+                        /**
+                         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                         */
+                        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                        CELL_PARAMETERS: {
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v1?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v2?: [number, number, number];
+                            /**
+                             * @minItems 3
+                             * @maxItems 3
+                             */
+                            v3?: [number, number, number];
+                        };
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "qe-pwx";
+                    } | {
+                        /**
+                         * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                         */
+                        POSCAR: string;
+                        /**
+                         * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                         */
+                        POSCAR_WITH_CONSTRAINTS: string;
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp";
+                    } | {
+                        /**
+                         * POSCAR content with constraints for the first NEB image.
+                         */
+                        FIRST_IMAGE: string;
+                        /**
+                         * POSCAR content with constraints for the last NEB image.
+                         */
+                        LAST_IMAGE: string;
+                        /**
+                         * POSCAR contents with constraints for all intermediate NEB images.
+                         */
+                        INTERMEDIATE_IMAGES: string[];
+                        /**
+                         * Descriminator for AJV validator
+                         */
+                        contextProviderName: "vasp-neb";
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
                     isEdited: boolean;
-                    data: {};
-                    extraData?: {};
-                }[];
+                } | {
+                    name: "cutoffs";
+                    /**
+                     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                     */
+                    data: {
+                        wavefunction?: number;
+                        density?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "kgrid" | "qgrid" | "igrid";
+                    /**
+                     * 3D grid with shifts for k-point or q-point sampling.
+                     */
+                    data: {
+                        dimensions: [number, number, number] | [string, string, string];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        shifts?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        reciprocalVectorRatios?: [number, number, number];
+                        gridMetricType: "KPPRA" | "spacing";
+                        gridMetricValue: number;
+                        preferGridMetric?: boolean;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                    /**
+                     * Path in reciprocal space for band structure calculations.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        },
+                        ...{
+                            point?: string;
+                            steps: number;
+                            coordinates: number[];
+                        }[]
+                    ];
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_j";
+                    /**
+                     * Hubbard parameters for DFT+U+J calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        },
+                        ...{
+                            paramType?: "U" | "J" | "B" | "E2" | "E3";
+                            atomicSpecies?: string;
+                            atomicOrbital?: string;
+                            value?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "hubbard_u";
+                    /**
+                     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                     */
+                    data: {
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        hubbardUValue?: number;
+                    }[];
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "hubbard_v";
+                    /**
+                     * Hubbard V parameters for DFT+U+V calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            siteIndex?: number;
+                            atomicOrbital?: string;
+                            atomicSpecies2?: string;
+                            siteIndex2?: number;
+                            atomicOrbital2?: string;
+                            hubbardVValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "hubbard_legacy";
+                    /**
+                     * Hubbard parameters for DFT+U calculation.
+                     *
+                     * @minItems 1
+                     */
+                    data: [
+                        {
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        },
+                        ...{
+                            atomicSpecies?: string;
+                            atomicSpeciesIndex?: number;
+                            hubbardUValue?: number;
+                        }[]
+                    ];
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "neb";
+                    /**
+                     * Number of intermediate NEB images.
+                     */
+                    data: {
+                        nImages?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "boundaryConditions";
+                    data: {
+                        /**
+                         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                         */
+                        type?: "pbc" | "bc1" | "bc2" | "bc3";
+                        offset?: number;
+                        electricField?: number;
+                        targetFermiEnergy?: number;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "mlSettings";
+                    /**
+                     * Settings important to machine learning runs.
+                     */
+                    data: {
+                        target_column_name?: string;
+                        problem_category?: "regression" | "classification" | "clustering";
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "mlTrainTestSplit";
+                    /**
+                     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                     */
+                    data: {
+                        fraction_held_as_test_set?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "dynamics";
+                    /**
+                     * Important parameters for molecular dynamics calculation
+                     */
+                    data: {
+                        numberOfSteps?: number;
+                        timeStep?: number;
+                        electronMass?: number;
+                        temperature?: number;
+                    };
+                    isEdited: boolean;
+                    extraData: {};
+                } | {
+                    name: "collinearMagnetization";
+                    /**
+                     * Set starting magnetization, can have values in the range [-1, +1].
+                     */
+                    data: {
+                        startingMagnetization: {
+                            atomicSpecies: string;
+                            value: number;
+                            index: number;
+                        }[];
+                        isTotalMagnetization: boolean;
+                        totalMagnetization: number;
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                } | {
+                    name: "nonCollinearMagnetization";
+                    /**
+                     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                     */
+                    data: {
+                        isExistingChargeDensity?: boolean;
+                        isStartingMagnetization?: boolean;
+                        startingMagnetization?: {
+                            index?: number;
+                            atomicSpecies?: string;
+                            value?: number;
+                        }[];
+                        isArbitrarySpinAngle?: boolean;
+                        isArbitrarySpinDirection?: boolean;
+                        lforcet?: boolean;
+                        spinAngles?: {
+                            index?: number;
+                            atomicSpecies?: string;
+                            angle1?: number;
+                            angle2?: number;
+                        }[];
+                        isConstrainedMagnetization?: boolean;
+                        constrainedMagnetization?: {
+                            constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                            lambda?: number;
+                        };
+                        isFixedMagnetization?: boolean;
+                        fixedMagnetization?: {
+                            x?: number;
+                            y?: number;
+                            z?: number;
+                        };
+                    };
+                    extraData: {
+                        materialHash: string;
+                    };
+                    isEdited: boolean;
+                })[];
             } | {
                 /**
                  * entity identity
@@ -53070,122 +52947,11 @@ export interface PropertyHolderSchema {
                  * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
                  */
                 value: string | boolean | number;
-            } | {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * entity tags
-                 */
-                tags?: string[];
-                /**
-                 * Status of the unit.
-                 */
-                status?: "idle" | "active" | "warning" | "error" | "finished";
-                statusTrack?: {
-                    trackedAt: number;
-                    status: string;
-                    repetition?: number;
-                }[];
-                isDraft?: boolean;
-                /**
-                 * type of the unit
-                 */
-                type: "processing";
-                /**
-                 * Whether this unit is the first one to be executed.
-                 */
-                head?: boolean;
-                /**
-                 * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-                 */
-                flowchartId: string;
-                /**
-                 * Next unit's flowchartId. If empty, the current unit is the last.
-                 */
-                next?: string;
-                /**
-                 * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-                 */
-                enableRender?: boolean;
-                /**
-                 * Contains information about the operation used.
-                 */
-                operation: string;
-                /**
-                 * Contains information about the specific type of the operation used.
-                 */
-                operationType: string;
-                /**
-                 * unit input (type to be specified by the child units)
-                 */
-                inputData: {
-                    [k: string]: unknown;
-                };
             })[];
-            model: {
-                /**
-                 * general type of the model, eg. `dft`
-                 */
-                type: string;
-                /**
-                 * general subtype of the model, eg. `lda`
-                 */
-                subtype: string;
+            model: ({
+                type: "dft";
+                subtype: "lda";
+                functional: "pz" | "pw" | "vwn" | "other";
                 method: {
                     /**
                      * general type of this method, eg. `pseudopotential`
@@ -53202,9 +52968,109 @@ export interface PropertyHolderSchema {
                     /**
                      * additional data specific to method, eg. array of pseudopotentials
                      */
-                    data?: {};
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
                 };
-                [k: string]: unknown;
+            } | {
+                type: "dft";
+                subtype: "gga";
+                functional: "pbe" | "pbesol" | "pw91" | "other";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            } | {
+                type: "dft";
+                subtype: "hybrid";
+                functional: "b3lyp" | "hse06";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            }) | {
+                type: "ml";
+                subtype: "re";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
+            } | {
+                type: "unknown";
+                subtype: "unknown";
+                method: {
+                    /**
+                     * general type of this method, eg. `pseudopotential`
+                     */
+                    type: string;
+                    /**
+                     * general subtype of this method, eg. `ultra-soft`
+                     */
+                    subtype: string;
+                    /**
+                     * Object showing the actual possible precision based on theory and implementation
+                     */
+                    precision?: {};
+                    /**
+                     * additional data specific to method, eg. array of pseudopotentials
+                     */
+                    data?: {
+                        searchText?: string;
+                        [k: string]: unknown;
+                    };
+                };
             };
             application: {
                 /**
@@ -53253,6 +53119,7 @@ export interface PropertyHolderSchema {
                  */
                 isLicensed?: boolean;
             };
+            isMultiMaterial?: boolean;
             /**
              * Defines whether to store the results/properties extracted in this unit to properties collection
              */
@@ -53262,1046 +53129,6 @@ export interface PropertyHolderSchema {
          * Contains the Units of the Workflow
          */
         units: ({
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "io";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
-            input: ({
-                type: "db_ids";
-                /**
-                 * IDs of item to retrieve from db
-                 */
-                ids: string[];
-            } | {
-                type: "db_collection";
-                /**
-                 * db collection name
-                 */
-                collection: string;
-                /**
-                 * whether the result should be saved as draft
-                 */
-                draft: boolean;
-            } | {
-                type: "object_storage";
-                objectData: {
-                    /**
-                     * Object storage container for the file
-                     */
-                    CONTAINER?: string;
-                    /**
-                     * Name of the file inside the object storage bucket
-                     */
-                    NAME?: string;
-                    /**
-                     * Object storage provider
-                     */
-                    PROVIDER?: string;
-                    /**
-                     * Region for the object container specified in Container
-                     */
-                    REGION?: string;
-                    /**
-                     * Size of the file in bytes
-                     */
-                    SIZE?: number;
-                    /**
-                     * Unix timestamp showing when the file was last modified
-                     */
-                    TIMESTAMP?: string;
-                };
-                /**
-                 * if a file with the same filename already exists, whether to overwrite the old file
-                 */
-                overwrite?: boolean;
-                /**
-                 * Relative path to the directory that contains the file.
-                 */
-                pathname?: string;
-                /**
-                 * Basename of the file
-                 */
-                basename?: string;
-                /**
-                 * What kind of file this is, e.g. image / text
-                 */
-                filetype?: string;
-            })[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "condition";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Input information for condition.
-             */
-            input: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-             */
-            statement: string;
-            /**
-             * Flowchart ID reference for `then` part of the condition.
-             */
-            then: string;
-            /**
-             * Flowchart ID reference for `else` part of the condition.
-             */
-            else: string;
-            /**
-             * Maximum occurrence of the condition, usable for loops.
-             */
-            maxOccurrences: number;
-            /**
-             * Throw exception on reaching to maximum occurence.
-             */
-            throwException?: boolean;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assertion";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * The statement to be evaluated
-             */
-            statement: string;
-            /**
-             * The error message to be displayed if the assertion fails
-             */
-            errorMessage?: string;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "execution";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            application: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * The short name of the application. e.g. qe
-                 */
-                shortName: string;
-                /**
-                 * Application's short description.
-                 */
-                summary: string;
-                /**
-                 * Application version. e.g. 5.3.5
-                 */
-                version: string;
-                /**
-                 * Application build. e.g. VTST
-                 */
-                build: string;
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-                /**
-                 * Whether licensing is present
-                 */
-                isLicensed?: boolean;
-            };
-            executable?: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
-                /**
-                 * Whether advanced compute options are present
-                 */
-                hasAdvancedComputeOptions?: boolean;
-            };
-            flavor?: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                /**
-                 * Identifies that entity is defaultable
-                 */
-                isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
-                /**
-                 * name of the executable this flavor belongs to
-                 */
-                executableName?: string;
-                /**
-                 * name of the application this flavor belongs to
-                 */
-                applicationName?: string;
-                input: {
-                    templateId?: string;
-                    templateName?: string;
-                    /**
-                     * name of the resulting input file, if different than template name
-                     */
-                    name?: string;
-                }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
-            };
-            input: {
-                template: {
-                    /**
-                     * entity identity
-                     */
-                    _id?: string;
-                    /**
-                     * entity slug
-                     */
-                    slug?: string;
-                    systemName?: string;
-                    /**
-                     * entity's schema version. Used to distinct between different schemas.
-                     */
-                    schemaVersion?: string;
-                    /**
-                     * entity name
-                     */
-                    name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
-                    executableName: string;
-                    contextProviders: {
-                        name: ContextProviderNameEnum;
-                    }[];
-                    /**
-                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
-                     */
-                    content: string;
-                };
-                /**
-                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-                 */
-                rendered: string;
-                isManuallyChanged: boolean;
-            }[];
-            context?: {
-                name: ContextProviderNameEnum;
-                isEdited: boolean;
-                data: {};
-                extraData?: {};
-            }[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "assignment";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            scope?: string;
-            /**
-             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-             */
-            input?: {
-                /**
-                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-                 */
-                scope: string;
-                /**
-                 * Name of the input data. e.g. total_energy
-                 */
-                name: string;
-            }[];
-            /**
-             * Name of the global variable. e.g. 'x'
-             */
-            operand: string;
-            /**
-             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-             */
-            value: string | boolean | number;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
-        } | {
             /**
              * entity identity
              */
@@ -54494,6 +53321,115 @@ export interface PropertyHolderSchema {
             /**
              * type of the unit
              */
+            type: "reduce";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * corresponding map unit flowchart ID
+             */
+            mapFlowchartId: string;
+            /**
+             * input information for reduce unit
+             */
+            input: {
+                /**
+                 * reduce operation, e.g. aggregate
+                 */
+                operation: string;
+                /**
+                 * arguments which are passed to reduce operation function
+                 */
+                arguments: string[];
+            }[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
             type: "subworkflow";
             /**
              * Whether this unit is the first one to be executed.
@@ -54512,36 +53448,7 @@ export interface PropertyHolderSchema {
              */
             enableRender?: boolean;
         })[];
-        /**
-         * Array of characteristic properties calculated by this workflow (TODO: add enums)
-         */
-        properties?: (string | {})[];
-        /**
-         * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
-         */
-        isUsingDataset?: boolean;
-        /**
-         * Array of workflows with the same schema as the current one.
-         */
-        workflows?: {}[];
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        metadata?: {};
+        isMultiMaterial?: boolean;
     } | {
         name: "magnetic_moments";
         values: {
@@ -55124,10 +54031,6 @@ export interface ExecutableSchema {
         name: string;
     }[];
     /**
-     * _ids of the application this executable belongs to
-     */
-    applicationId: string[];
-    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55138,10 +54041,6 @@ export interface ExecutablePropertiesSchema {
      * The name of the executable. e.g. pw.x
      */
     name: string;
-    /**
-     * _ids of the application this executable belongs to
-     */
-    applicationId: string[];
     /**
      * Whether advanced compute options are present
      */
@@ -55207,10 +54106,6 @@ export interface FlavorSchema {
         name: string;
     }[];
     /**
-     * _id of the executable this flavor belongs to
-     */
-    executableId: string;
-    /**
      * name of the executable this flavor belongs to
      */
     executableName?: string;
@@ -55233,10 +54128,6 @@ export interface FlavorSchema {
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
 export interface FlavorPropertiesSchema {
-    /**
-     * _id of the executable this flavor belongs to
-     */
-    executableId: string;
     /**
      * name of the executable this flavor belongs to
      */
@@ -55568,7 +54459,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -55590,52 +54481,39 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -55693,10 +54571,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -55761,12 +54635,594 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         name?: string;
     })[];
-    context?: {
-        name: ContextProviderNameEnum;
+    context: ({
+        name: "input";
+        data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
+            /**
+             * Total charge of the system.
+             */
+            CHARGE: number;
+            /**
+             * Spin multiplicity of the system.
+             */
+            MULT: number;
+            /**
+             * Basis set label used in the calculation (e.g., '6-31G').
+             */
+            BASIS: string;
+            /**
+             * Number of atoms in the system.
+             */
+            NAT: number;
+            /**
+             * Number of unique atomic species in the system.
+             */
+            NTYP: number;
+            /**
+             * Formatted text block with atomic positions including constraints.
+             */
+            ATOMIC_POSITIONS: string;
+            /**
+             * Formatted text block with atomic positions without constraints.
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            /**
+             * Formatted text block for atomic species, including element symbols and masses.
+             */
+            ATOMIC_SPECIES: string;
+            /**
+             * Exchange-correlation functional identifier (e.g., 'B3LYP').
+             */
+            FUNCTIONAL: string;
+            /**
+             * Whether atomic positions are expressed in cartesian coordinates.
+             */
+            CARTESIAN: boolean;
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS?: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            FIRST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            LAST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
+        } | {
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints.
+             */
+            POSCAR: string;
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+             */
+            POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
+        } | {
+            /**
+             * POSCAR content with constraints for the first NEB image.
+             */
+            FIRST_IMAGE: string;
+            /**
+             * POSCAR content with constraints for the last NEB image.
+             */
+            LAST_IMAGE: string;
+            /**
+             * POSCAR contents with constraints for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
+        };
+        extraData: {
+            materialHash: string;
+        };
         isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
+            startingMagnetization: {
+                atomicSpecies: string;
+                value: number;
+                index: number;
+            }[];
+            isTotalMagnetization: boolean;
+            totalMagnetization: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
+            isExistingChargeDensity?: boolean;
+            isStartingMagnetization?: boolean;
+            startingMagnetization?: {
+                index?: number;
+                atomicSpecies?: string;
+                value?: number;
+            }[];
+            isArbitrarySpinAngle?: boolean;
+            isArbitrarySpinDirection?: boolean;
+            lforcet?: boolean;
+            spinAngles?: {
+                index?: number;
+                atomicSpecies?: string;
+                angle1?: number;
+                angle2?: number;
+            }[];
+            isConstrainedMagnetization?: boolean;
+            constrainedMagnetization?: {
+                constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                lambda?: number;
+            };
+            isFixedMagnetization?: boolean;
+            fixedMagnetization?: {
+                x?: number;
+                y?: number;
+                z?: number;
+            };
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/software_directory/modeling/vasp.json */
 export interface ViennaAbInitoSimulationPackage {
@@ -56128,7 +55584,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -56150,52 +55606,39 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -56253,10 +55696,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -56321,12 +55760,594 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         name?: string;
     })[];
-    context?: {
-        name: ContextProviderNameEnum;
+    context: ({
+        name: "input";
+        data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
+            /**
+             * Total charge of the system.
+             */
+            CHARGE: number;
+            /**
+             * Spin multiplicity of the system.
+             */
+            MULT: number;
+            /**
+             * Basis set label used in the calculation (e.g., '6-31G').
+             */
+            BASIS: string;
+            /**
+             * Number of atoms in the system.
+             */
+            NAT: number;
+            /**
+             * Number of unique atomic species in the system.
+             */
+            NTYP: number;
+            /**
+             * Formatted text block with atomic positions including constraints.
+             */
+            ATOMIC_POSITIONS: string;
+            /**
+             * Formatted text block with atomic positions without constraints.
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            /**
+             * Formatted text block for atomic species, including element symbols and masses.
+             */
+            ATOMIC_SPECIES: string;
+            /**
+             * Exchange-correlation functional identifier (e.g., 'B3LYP').
+             */
+            FUNCTIONAL: string;
+            /**
+             * Whether atomic positions are expressed in cartesian coordinates.
+             */
+            CARTESIAN: boolean;
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS?: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            FIRST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            LAST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
+        } | {
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints.
+             */
+            POSCAR: string;
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+             */
+            POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
+        } | {
+            /**
+             * POSCAR content with constraints for the first NEB image.
+             */
+            FIRST_IMAGE: string;
+            /**
+             * POSCAR content with constraints for the last NEB image.
+             */
+            LAST_IMAGE: string;
+            /**
+             * POSCAR contents with constraints for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
+        };
+        extraData: {
+            materialHash: string;
+        };
         isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
+            startingMagnetization: {
+                atomicSpecies: string;
+                value: number;
+                index: number;
+            }[];
+            isTotalMagnetization: boolean;
+            totalMagnetization: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
+            isExistingChargeDensity?: boolean;
+            isStartingMagnetization?: boolean;
+            startingMagnetization?: {
+                index?: number;
+                atomicSpecies?: string;
+                value?: number;
+            }[];
+            isArbitrarySpinAngle?: boolean;
+            isArbitrarySpinDirection?: boolean;
+            lforcet?: boolean;
+            spinAngles?: {
+                index?: number;
+                atomicSpecies?: string;
+                angle1?: number;
+                angle2?: number;
+            }[];
+            isConstrainedMagnetization?: boolean;
+            constrainedMagnetization?: {
+                constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                lambda?: number;
+            };
+            isFixedMagnetization?: boolean;
+            fixedMagnetization?: {
+                x?: number;
+                y?: number;
+                z?: number;
+            };
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/system/_material.json */
 export interface MaterialEntityReferenceSchema {
@@ -56839,37 +56860,2033 @@ export interface BaseWorkflowSchema {
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
      */
-    properties?: (string | {})[];
+    properties: string[];
     /**
      * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
      */
     isUsingDataset?: boolean;
     /**
-     * Array of workflows with the same schema as the current one.
+     * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
-    workflows?: {}[];
+    subworkflows: {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Array of characteristic properties calculated by this subworkflow
+         */
+        properties: string[];
+        /**
+         * Compute schema
+         */
+        compute?: {
+            /**
+             * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+             */
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "GPOF" | "GP2OF" | "GP4OF" | "GPSF" | "GP2SF" | "GP4SF" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            /**
+             * number of nodes used for the job inside the RMS.
+             */
+            nodes: number;
+            /**
+             * number of CPUs used for the job inside the RMS.
+             */
+            ppn: number;
+            /**
+             * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+             */
+            timeLimit: string;
+            /**
+             * Convention to use when reasoning about time limits
+             */
+            timeLimitType?: "per single attempt" | "compound";
+            /**
+             * Job is allowed to restart on termination.
+             */
+            isRestartable?: boolean;
+            /**
+             * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+             */
+            notify?: string;
+            /**
+             * Email address to notify about job execution.
+             */
+            email?: string;
+            /**
+             * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+             */
+            maxCPU?: number;
+            /**
+             * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+             */
+            arguments?: {
+                /**
+                 * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+                 */
+                nimage?: number;
+                /**
+                 * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+                 */
+                npools?: number;
+                /**
+                 * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+                 */
+                nband?: number;
+                /**
+                 * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+                 */
+                ntg?: number;
+                /**
+                 * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+                 */
+                ndiag?: number;
+            };
+            /**
+             * Cluster where the job is executed. Optional on create. Required on job submission.
+             */
+            cluster?: {
+                /**
+                 * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+                 */
+                fqdn?: string;
+                /**
+                 * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+                 */
+                jid?: string;
+            };
+            /**
+             * Computation error. Optional. Appears only if something happens on jobs execution.
+             */
+            errors?: {
+                /**
+                 * Domain of the error appearance (internal).
+                 */
+                domain?: "rupy" | "alfred" | "celim" | "webapp";
+                /**
+                 * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+                 */
+                reason?: string;
+                /**
+                 * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+                 */
+                message?: string;
+                /**
+                 * Full machine-readable error traceback. e.g. FileNotFound
+                 */
+                traceback?: string;
+            }[];
+            /**
+             * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+             */
+            excludeFilesPattern?: string;
+        };
+        /**
+         * Contains the Units of the subworkflow
+         */
+        units: ({
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "io";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            subtype: "input" | "output" | "dataFrame";
+            source: "api" | "object_storage";
+            input: ({
+                type: "api";
+                /**
+                 * rest API endpoint
+                 */
+                endpoint: string;
+                /**
+                 * rest API endpoint options
+                 */
+                endpoint_options: {};
+                /**
+                 * the name of the variable in local scope to save the data under
+                 */
+                name?: string;
+            } | {
+                type: "object_storage";
+                objectData: {
+                    /**
+                     * Object storage container for the file
+                     */
+                    CONTAINER?: string;
+                    /**
+                     * Name of the file inside the object storage bucket
+                     */
+                    NAME?: string;
+                    /**
+                     * Object storage provider
+                     */
+                    PROVIDER?: string;
+                    /**
+                     * Region for the object container specified in Container
+                     */
+                    REGION?: string;
+                    /**
+                     * Size of the file in bytes
+                     */
+                    SIZE?: number;
+                    /**
+                     * Unix timestamp showing when the file was last modified
+                     */
+                    TIMESTAMP?: string;
+                };
+                /**
+                 * if a file with the same filename already exists, whether to overwrite the old file
+                 */
+                overwrite?: boolean;
+                /**
+                 * Relative path to the directory that contains the file.
+                 */
+                pathname?: string;
+                /**
+                 * Basename of the file
+                 */
+                basename?: string;
+                /**
+                 * What kind of file this is, e.g. image / text
+                 */
+                filetype?: string;
+            })[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "condition";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * Input information for condition.
+             */
+            input: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
+             */
+            statement: string;
+            /**
+             * Flowchart ID reference for `then` part of the condition.
+             */
+            then: string;
+            /**
+             * Flowchart ID reference for `else` part of the condition.
+             */
+            else: string;
+            /**
+             * Maximum occurrence of the condition, usable for loops.
+             */
+            maxOccurrences: number;
+            /**
+             * Throw exception on reaching to maximum occurence.
+             */
+            throwException?: boolean;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assertion";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            /**
+             * The statement to be evaluated
+             */
+            statement: string;
+            /**
+             * The error message to be displayed if the assertion fails
+             */
+            errorMessage?: string;
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "execution";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            application: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * The short name of the application. e.g. qe
+                 */
+                shortName: string;
+                /**
+                 * Application's short description.
+                 */
+                summary: string;
+                /**
+                 * Application version. e.g. 5.3.5
+                 */
+                version: string;
+                /**
+                 * Application build. e.g. VTST
+                 */
+                build: string;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * Whether licensing is present
+                 */
+                isLicensed?: boolean;
+            };
+            executable: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * Whether advanced compute options are present
+                 */
+                hasAdvancedComputeOptions?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+            };
+            flavor: {
+                /**
+                 * entity identity
+                 */
+                _id?: string;
+                /**
+                 * entity slug
+                 */
+                slug?: string;
+                systemName?: string;
+                /**
+                 * entity's schema version. Used to distinct between different schemas.
+                 */
+                schemaVersion?: string;
+                /**
+                 * entity name
+                 */
+                name: string;
+                /**
+                 * Identifies that entity is defaultable
+                 */
+                isDefault?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the results for this calculation
+                 */
+                results: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName?: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName?: string;
+                input: {
+                    templateId?: string;
+                    templateName?: string;
+                    /**
+                     * name of the resulting input file, if different than template name
+                     */
+                    name?: string;
+                }[];
+                /**
+                 * list of application versions this flavor supports
+                 */
+                supportedApplicationVersions?: string[];
+            };
+            input: {
+                template: {
+                    /**
+                     * entity identity
+                     */
+                    _id?: string;
+                    /**
+                     * entity slug
+                     */
+                    slug?: string;
+                    systemName?: string;
+                    /**
+                     * entity's schema version. Used to distinct between different schemas.
+                     */
+                    schemaVersion?: string;
+                    /**
+                     * entity name
+                     */
+                    name: string;
+                    applicationName: string;
+                    applicationVersion?: string;
+                    executableName: string;
+                    contextProviders: {
+                        name: ContextProviderNameEnum;
+                    }[];
+                    /**
+                     * Content of the template. e.g. &CONTROL    calculation='scf' ...
+                     */
+                    content: string;
+                };
+                /**
+                 * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
+                 */
+                rendered: string;
+                isManuallyChanged: boolean;
+            }[];
+            context: ({
+                name: "input";
+                data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
+                    /**
+                     * Total charge of the system.
+                     */
+                    CHARGE: number;
+                    /**
+                     * Spin multiplicity of the system.
+                     */
+                    MULT: number;
+                    /**
+                     * Basis set label used in the calculation (e.g., '6-31G').
+                     */
+                    BASIS: string;
+                    /**
+                     * Number of atoms in the system.
+                     */
+                    NAT: number;
+                    /**
+                     * Number of unique atomic species in the system.
+                     */
+                    NTYP: number;
+                    /**
+                     * Formatted text block with atomic positions including constraints.
+                     */
+                    ATOMIC_POSITIONS: string;
+                    /**
+                     * Formatted text block with atomic positions without constraints.
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    /**
+                     * Formatted text block for atomic species, including element symbols and masses.
+                     */
+                    ATOMIC_SPECIES: string;
+                    /**
+                     * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                     */
+                    FUNCTIONAL: string;
+                    /**
+                     * Whether atomic positions are expressed in cartesian coordinates.
+                     */
+                    CARTESIAN: boolean;
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS?: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    FIRST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    LAST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
+                } | {
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                     */
+                    POSCAR: string;
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                     */
+                    POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
+                } | {
+                    /**
+                     * POSCAR content with constraints for the first NEB image.
+                     */
+                    FIRST_IMAGE: string;
+                    /**
+                     * POSCAR content with constraints for the last NEB image.
+                     */
+                    LAST_IMAGE: string;
+                    /**
+                     * POSCAR contents with constraints for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
+                    startingMagnetization: {
+                        atomicSpecies: string;
+                        value: number;
+                        index: number;
+                    }[];
+                    isTotalMagnetization: boolean;
+                    totalMagnetization: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
+                    isExistingChargeDensity?: boolean;
+                    isStartingMagnetization?: boolean;
+                    startingMagnetization?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        value?: number;
+                    }[];
+                    isArbitrarySpinAngle?: boolean;
+                    isArbitrarySpinDirection?: boolean;
+                    lforcet?: boolean;
+                    spinAngles?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        angle1?: number;
+                        angle2?: number;
+                    }[];
+                    isConstrainedMagnetization?: boolean;
+                    constrainedMagnetization?: {
+                        constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                        lambda?: number;
+                    };
+                    isFixedMagnetization?: boolean;
+                    fixedMagnetization?: {
+                        x?: number;
+                        y?: number;
+                        z?: number;
+                    };
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            })[];
+        } | {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the results for this calculation
+             */
+            results: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * entity tags
+             */
+            tags?: string[];
+            /**
+             * Status of the unit.
+             */
+            status?: "idle" | "active" | "warning" | "error" | "finished";
+            statusTrack?: {
+                trackedAt: number;
+                status: string;
+                repetition?: number;
+            }[];
+            isDraft?: boolean;
+            /**
+             * type of the unit
+             */
+            type: "assignment";
+            /**
+             * Whether this unit is the first one to be executed.
+             */
+            head?: boolean;
+            /**
+             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+             */
+            flowchartId: string;
+            /**
+             * Next unit's flowchartId. If empty, the current unit is the last.
+             */
+            next?: string;
+            /**
+             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+             */
+            enableRender?: boolean;
+            scope?: string;
+            /**
+             * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+             */
+            input?: {
+                /**
+                 * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
+                 */
+                scope: string;
+                /**
+                 * Name of the input data. e.g. total_energy
+                 */
+                name: string;
+            }[];
+            /**
+             * Name of the global variable. e.g. 'x'
+             */
+            operand: string;
+            /**
+             * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+             */
+            value: string | boolean | number;
+        })[];
+        model: ({
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        }) | {
+            type: "ml";
+            subtype: "re";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "unknown";
+            subtype: "unknown";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        };
+        application: {
+            /**
+             * entity identity
+             */
+            _id?: string;
+            /**
+             * entity slug
+             */
+            slug?: string;
+            systemName?: string;
+            /**
+             * entity's schema version. Used to distinct between different schemas.
+             */
+            schemaVersion?: string;
+            /**
+             * entity name
+             */
+            name: string;
+            /**
+             * Identifies that entity is defaultable
+             */
+            isDefault?: boolean;
+            /**
+             * The short name of the application. e.g. qe
+             */
+            shortName: string;
+            /**
+             * Application's short description.
+             */
+            summary: string;
+            /**
+             * Application version. e.g. 5.3.5
+             */
+            version: string;
+            /**
+             * Application build. e.g. VTST
+             */
+            build: string;
+            /**
+             * Whether advanced compute options are present
+             */
+            hasAdvancedComputeOptions?: boolean;
+            /**
+             * Whether licensing is present
+             */
+            isLicensed?: boolean;
+        };
+        isMultiMaterial?: boolean;
+        /**
+         * Defines whether to store the results/properties extracted in this unit to properties collection
+         */
+        isDraft?: boolean;
+    }[];
     /**
-     * entity identity
+     * Contains the Units of the Workflow
      */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    metadata?: {};
+    units: ({
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "map";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * Id of workflow to run inside map
+         */
+        workflowId: string;
+        /**
+         * Input information for map.
+         */
+        input: {
+            /**
+             * Name of the target variable to substitute using the values below. e.g. K_POINTS
+             */
+            target: string;
+            /**
+             * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
+             */
+            scope?: string;
+            /**
+             * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
+             */
+            name?: string;
+            /**
+             * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
+             */
+            values?: (string | number | {})[];
+            useValues?: boolean;
+        };
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
+        type: "subworkflow";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+    })[];
+    isMultiMaterial?: boolean;
 }
 /** Schema dist/js/schema/workflow/base_flow.json */
 export interface BaseFlow {
@@ -56886,7 +58903,7 @@ export interface BaseFlow {
      */
     properties?: string[];
     /**
-     * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+     * Compute schema
      */
     compute?: {
         /**
@@ -57004,9 +59021,9 @@ export interface SubworkflowMixinSchema {
     /**
      * Array of characteristic properties calculated by this subworkflow
      */
-    properties?: string[];
+    properties: string[];
     /**
-     * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+     * Compute schema
      */
     compute?: {
         /**
@@ -57205,23 +59222,21 @@ export interface SubworkflowMixinSchema {
          */
         enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
+        source: "api" | "object_storage";
         input: ({
-            type: "db_ids";
+            type: "api";
             /**
-             * IDs of item to retrieve from db
+             * rest API endpoint
              */
-            ids: string[];
-        } | {
-            type: "db_collection";
+            endpoint: string;
             /**
-             * db collection name
+             * rest API endpoint options
              */
-            collection: string;
+            endpoint_options: {};
             /**
-             * whether the result should be saved as draft
+             * the name of the variable in local scope to save the data under
              */
-            draft: boolean;
+            name?: string;
         } | {
             type: "object_storage";
             objectData: {
@@ -57267,115 +59282,6 @@ export interface SubworkflowMixinSchema {
              */
             filetype?: string;
         })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
     } | {
         /**
          * entity identity
@@ -57740,7 +59646,7 @@ export interface SubworkflowMixinSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -57762,52 +59668,39 @@ export interface SubworkflowMixinSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
             /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -57865,10 +59758,6 @@ export interface SubworkflowMixinSchema {
                  */
                 name: string;
             }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -57926,12 +59815,594 @@ export interface SubworkflowMixinSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
+        context: ({
+            name: "input";
+            data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
+                /**
+                 * Total charge of the system.
+                 */
+                CHARGE: number;
+                /**
+                 * Spin multiplicity of the system.
+                 */
+                MULT: number;
+                /**
+                 * Basis set label used in the calculation (e.g., '6-31G').
+                 */
+                BASIS: string;
+                /**
+                 * Number of atoms in the system.
+                 */
+                NAT: number;
+                /**
+                 * Number of unique atomic species in the system.
+                 */
+                NTYP: number;
+                /**
+                 * Formatted text block with atomic positions including constraints.
+                 */
+                ATOMIC_POSITIONS: string;
+                /**
+                 * Formatted text block with atomic positions without constraints.
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                /**
+                 * Formatted text block for atomic species, including element symbols and masses.
+                 */
+                ATOMIC_SPECIES: string;
+                /**
+                 * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                 */
+                FUNCTIONAL: string;
+                /**
+                 * Whether atomic positions are expressed in cartesian coordinates.
+                 */
+                CARTESIAN: boolean;
+            } | {
+                IBRAV: number;
+                RESTART_MODE: "from_scratch" | "restart";
+                ATOMIC_SPECIES: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                ATOMIC_SPECIES_WITH_LABELS: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                /**
+                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                 */
+                NAT: number;
+                /**
+                 * number of types of atoms in the unit cell
+                 */
+                NTYP: number;
+                /**
+                 * Number of different atomic species including labels
+                 */
+                NTYP_WITH_LABELS: number;
+                ATOMIC_POSITIONS?: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                CELL_PARAMETERS: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v1?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v2?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v3?: [number, number, number];
+                };
+                FIRST_IMAGE: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                LAST_IMAGE: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                 */
+                INTERMEDIATE_IMAGES: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
+            } | {
+                IBRAV: number;
+                RESTART_MODE: "from_scratch" | "restart";
+                ATOMIC_SPECIES: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                ATOMIC_SPECIES_WITH_LABELS: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                /**
+                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                 */
+                NAT: number;
+                /**
+                 * number of types of atoms in the unit cell
+                 */
+                NTYP: number;
+                /**
+                 * Number of different atomic species including labels
+                 */
+                NTYP_WITH_LABELS: number;
+                ATOMIC_POSITIONS: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                CELL_PARAMETERS: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v1?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v2?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v3?: [number, number, number];
+                };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
+            } | {
+                /**
+                 * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                 */
+                POSCAR: string;
+                /**
+                 * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                 */
+                POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
+            } | {
+                /**
+                 * POSCAR content with constraints for the first NEB image.
+                 */
+                FIRST_IMAGE: string;
+                /**
+                 * POSCAR content with constraints for the last NEB image.
+                 */
+                LAST_IMAGE: string;
+                /**
+                 * POSCAR contents with constraints for all intermediate NEB images.
+                 */
+                INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
+            };
+            extraData: {
+                materialHash: string;
+            };
             isEdited: boolean;
-            data: {};
-            extraData?: {};
-        }[];
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                dimensions: [number, number, number] | [string, string, string];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
+                startingMagnetization: {
+                    atomicSpecies: string;
+                    value: number;
+                    index: number;
+                }[];
+                isTotalMagnetization: boolean;
+                totalMagnetization: number;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
+                isExistingChargeDensity?: boolean;
+                isStartingMagnetization?: boolean;
+                startingMagnetization?: {
+                    index?: number;
+                    atomicSpecies?: string;
+                    value?: number;
+                }[];
+                isArbitrarySpinAngle?: boolean;
+                isArbitrarySpinDirection?: boolean;
+                lforcet?: boolean;
+                spinAngles?: {
+                    index?: number;
+                    atomicSpecies?: string;
+                    angle1?: number;
+                    angle2?: number;
+                }[];
+                isConstrainedMagnetization?: boolean;
+                constrainedMagnetization?: {
+                    constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                    lambda?: number;
+                };
+                isFixedMagnetization?: boolean;
+                fixedMagnetization?: {
+                    x?: number;
+                    y?: number;
+                    z?: number;
+                };
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -58046,122 +60517,11 @@ export interface SubworkflowMixinSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "processing";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Contains information about the operation used.
-         */
-        operation: string;
-        /**
-         * Contains information about the specific type of the operation used.
-         */
-        operationType: string;
-        /**
-         * unit input (type to be specified by the child units)
-         */
-        inputData: {
-            [k: string]: unknown;
-        };
     })[];
-    model: {
-        /**
-         * general type of the model, eg. `dft`
-         */
-        type: string;
-        /**
-         * general subtype of the model, eg. `lda`
-         */
-        subtype: string;
+    model: ({
+        type: "dft";
+        subtype: "lda";
+        functional: "pz" | "pw" | "vwn" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -58178,9 +60538,109 @@ export interface SubworkflowMixinSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
-        [k: string]: unknown;
+    } | {
+        type: "dft";
+        subtype: "gga";
+        functional: "pbe" | "pbesol" | "pw91" | "other";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    } | {
+        type: "dft";
+        subtype: "hybrid";
+        functional: "b3lyp" | "hse06";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    }) | {
+        type: "ml";
+        subtype: "re";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    } | {
+        type: "unknown";
+        subtype: "unknown";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
     };
     application: {
         /**
@@ -58229,6 +60689,7 @@ export interface SubworkflowMixinSchema {
          */
         isLicensed?: boolean;
     };
+    isMultiMaterial?: boolean;
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
@@ -58328,23 +60789,21 @@ export type WorkflowSubworkflowUnitSchema = {
      */
     enableRender?: boolean;
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -58390,115 +60849,6 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         filetype?: string;
     })[];
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "reduce";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * corresponding map unit flowchart ID
-     */
-    mapFlowchartId: string;
-    /**
-     * input information for reduce unit
-     */
-    input: {
-        /**
-         * reduce operation, e.g. aggregate
-         */
-        operation: string;
-        /**
-         * arguments which are passed to reduce operation function
-         */
-        arguments: string[];
-    }[];
 } | {
     /**
      * entity identity
@@ -58863,7 +61213,7 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -58885,52 +61235,39 @@ export type WorkflowSubworkflowUnitSchema = {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -58988,10 +61325,6 @@ export type WorkflowSubworkflowUnitSchema = {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -59049,12 +61382,594 @@ export type WorkflowSubworkflowUnitSchema = {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
+    context: ({
+        name: "input";
+        data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
+            /**
+             * Total charge of the system.
+             */
+            CHARGE: number;
+            /**
+             * Spin multiplicity of the system.
+             */
+            MULT: number;
+            /**
+             * Basis set label used in the calculation (e.g., '6-31G').
+             */
+            BASIS: string;
+            /**
+             * Number of atoms in the system.
+             */
+            NAT: number;
+            /**
+             * Number of unique atomic species in the system.
+             */
+            NTYP: number;
+            /**
+             * Formatted text block with atomic positions including constraints.
+             */
+            ATOMIC_POSITIONS: string;
+            /**
+             * Formatted text block with atomic positions without constraints.
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            /**
+             * Formatted text block for atomic species, including element symbols and masses.
+             */
+            ATOMIC_SPECIES: string;
+            /**
+             * Exchange-correlation functional identifier (e.g., 'B3LYP').
+             */
+            FUNCTIONAL: string;
+            /**
+             * Whether atomic positions are expressed in cartesian coordinates.
+             */
+            CARTESIAN: boolean;
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS?: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            FIRST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            LAST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
+        } | {
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints.
+             */
+            POSCAR: string;
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+             */
+            POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
+        } | {
+            /**
+             * POSCAR content with constraints for the first NEB image.
+             */
+            FIRST_IMAGE: string;
+            /**
+             * POSCAR content with constraints for the last NEB image.
+             */
+            LAST_IMAGE: string;
+            /**
+             * POSCAR contents with constraints for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
+        };
+        extraData: {
+            materialHash: string;
+        };
         isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
+            startingMagnetization: {
+                atomicSpecies: string;
+                value: number;
+                index: number;
+            }[];
+            isTotalMagnetization: boolean;
+            totalMagnetization: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
+            isExistingChargeDensity?: boolean;
+            isStartingMagnetization?: boolean;
+            startingMagnetization?: {
+                index?: number;
+                atomicSpecies?: string;
+                value?: number;
+            }[];
+            isArbitrarySpinAngle?: boolean;
+            isArbitrarySpinDirection?: boolean;
+            lforcet?: boolean;
+            spinAngles?: {
+                index?: number;
+                atomicSpecies?: string;
+                angle1?: number;
+                angle2?: number;
+            }[];
+            isConstrainedMagnetization?: boolean;
+            constrainedMagnetization?: {
+                constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                lambda?: number;
+            };
+            isFixedMagnetization?: boolean;
+            fixedMagnetization?: {
+                x?: number;
+                y?: number;
+                z?: number;
+            };
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    })[];
 } | {
     /**
      * entity identity
@@ -59169,112 +62084,6 @@ export type WorkflowSubworkflowUnitSchema = {
      * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
      */
     value: string | boolean | number;
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
 };
 /** Schema dist/js/schema/workflow/subworkflow.json */
 export interface SubworkflowSchema {
@@ -59298,9 +62107,9 @@ export interface SubworkflowSchema {
     /**
      * Array of characteristic properties calculated by this subworkflow
      */
-    properties?: string[];
+    properties: string[];
     /**
-     * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+     * Compute schema
      */
     compute?: {
         /**
@@ -59499,23 +62308,21 @@ export interface SubworkflowSchema {
          */
         enableRender?: boolean;
         subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
+        source: "api" | "object_storage";
         input: ({
-            type: "db_ids";
+            type: "api";
             /**
-             * IDs of item to retrieve from db
+             * rest API endpoint
              */
-            ids: string[];
-        } | {
-            type: "db_collection";
+            endpoint: string;
             /**
-             * db collection name
+             * rest API endpoint options
              */
-            collection: string;
+            endpoint_options: {};
             /**
-             * whether the result should be saved as draft
+             * the name of the variable in local scope to save the data under
              */
-            draft: boolean;
+            name?: string;
         } | {
             type: "object_storage";
             objectData: {
@@ -59561,115 +62368,6 @@ export interface SubworkflowSchema {
              */
             filetype?: string;
         })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
     } | {
         /**
          * entity identity
@@ -60034,7 +62732,7 @@ export interface SubworkflowSchema {
              */
             isLicensed?: boolean;
         };
-        executable?: {
+        executable: {
             /**
              * entity identity
              */
@@ -60056,52 +62754,39 @@ export interface SubworkflowSchema {
              * Identifies that entity is defaultable
              */
             isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
             /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
+            /**
+             * names of the pre-processors for this calculation
+             */
+            preProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the post-processors for this calculation
+             */
+            postProcessors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
+            /**
+             * names of the monitors for this calculation
+             */
+            monitors: {
+                /**
+                 * The name of this item. e.g. scf_accuracy
+                 */
+                name: string;
+            }[];
         };
-        flavor?: {
+        flavor: {
             /**
              * entity identity
              */
@@ -60159,10 +62844,6 @@ export interface SubworkflowSchema {
                  */
                 name: string;
             }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
             /**
              * name of the executable this flavor belongs to
              */
@@ -60220,12 +62901,594 @@ export interface SubworkflowSchema {
             rendered: string;
             isManuallyChanged: boolean;
         }[];
-        context?: {
-            name: ContextProviderNameEnum;
+        context: ({
+            name: "input";
+            data: {
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "nwchem-total-energy";
+                /**
+                 * Total charge of the system.
+                 */
+                CHARGE: number;
+                /**
+                 * Spin multiplicity of the system.
+                 */
+                MULT: number;
+                /**
+                 * Basis set label used in the calculation (e.g., '6-31G').
+                 */
+                BASIS: string;
+                /**
+                 * Number of atoms in the system.
+                 */
+                NAT: number;
+                /**
+                 * Number of unique atomic species in the system.
+                 */
+                NTYP: number;
+                /**
+                 * Formatted text block with atomic positions including constraints.
+                 */
+                ATOMIC_POSITIONS: string;
+                /**
+                 * Formatted text block with atomic positions without constraints.
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                /**
+                 * Formatted text block for atomic species, including element symbols and masses.
+                 */
+                ATOMIC_SPECIES: string;
+                /**
+                 * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                 */
+                FUNCTIONAL: string;
+                /**
+                 * Whether atomic positions are expressed in cartesian coordinates.
+                 */
+                CARTESIAN: boolean;
+            } | {
+                IBRAV: number;
+                RESTART_MODE: "from_scratch" | "restart";
+                ATOMIC_SPECIES: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                ATOMIC_SPECIES_WITH_LABELS: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                /**
+                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                 */
+                NAT: number;
+                /**
+                 * number of types of atoms in the unit cell
+                 */
+                NTYP: number;
+                /**
+                 * Number of different atomic species including labels
+                 */
+                NTYP_WITH_LABELS: number;
+                ATOMIC_POSITIONS?: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                CELL_PARAMETERS: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v1?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v2?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v3?: [number, number, number];
+                };
+                FIRST_IMAGE: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                LAST_IMAGE: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                 */
+                INTERMEDIATE_IMAGES: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[][];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-neb";
+            } | {
+                IBRAV: number;
+                RESTART_MODE: "from_scratch" | "restart";
+                ATOMIC_SPECIES: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                ATOMIC_SPECIES_WITH_LABELS: {
+                    /**
+                     * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                     */
+                    X: string;
+                    /**
+                     * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                     */
+                    Mass_X: number;
+                    /**
+                     * PseudoPot_X
+                     */
+                    PseudoPot_X: string;
+                }[];
+                /**
+                 * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                 */
+                NAT: number;
+                /**
+                 * number of types of atoms in the unit cell
+                 */
+                NTYP: number;
+                /**
+                 * Number of different atomic species including labels
+                 */
+                NTYP_WITH_LABELS: number;
+                ATOMIC_POSITIONS: {
+                    /**
+                     * label of the atom as specified in ATOMIC_SPECIES
+                     */
+                    X?: string;
+                    /**
+                     * atomic positions
+                     */
+                    x: number;
+                    /**
+                     * atomic positions
+                     */
+                    y: number;
+                    /**
+                     * atomic positions
+                     */
+                    z: number;
+                    "if_pos(1)"?: number;
+                    "if_pos(2)"?: number;
+                    "if_pos(3)"?: number;
+                }[];
+                /**
+                 * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                 */
+                ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                CELL_PARAMETERS: {
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v1?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v2?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    v3?: [number, number, number];
+                };
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "qe-pwx";
+            } | {
+                /**
+                 * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                 */
+                POSCAR: string;
+                /**
+                 * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                 */
+                POSCAR_WITH_CONSTRAINTS: string;
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp";
+            } | {
+                /**
+                 * POSCAR content with constraints for the first NEB image.
+                 */
+                FIRST_IMAGE: string;
+                /**
+                 * POSCAR content with constraints for the last NEB image.
+                 */
+                LAST_IMAGE: string;
+                /**
+                 * POSCAR contents with constraints for all intermediate NEB images.
+                 */
+                INTERMEDIATE_IMAGES: string[];
+                /**
+                 * Descriminator for AJV validator
+                 */
+                contextProviderName: "vasp-neb";
+            };
+            extraData: {
+                materialHash: string;
+            };
             isEdited: boolean;
-            data: {};
-            extraData?: {};
-        }[];
+        } | {
+            name: "cutoffs";
+            /**
+             * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+             */
+            data: {
+                wavefunction?: number;
+                density?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "kgrid" | "qgrid" | "igrid";
+            /**
+             * 3D grid with shifts for k-point or q-point sampling.
+             */
+            data: {
+                dimensions: [number, number, number] | [string, string, string];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                shifts?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                reciprocalVectorRatios?: [number, number, number];
+                gridMetricType: "KPPRA" | "spacing";
+                gridMetricValue: number;
+                preferGridMetric?: boolean;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+            /**
+             * Path in reciprocal space for band structure calculations.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                },
+                ...{
+                    point?: string;
+                    steps: number;
+                    coordinates: number[];
+                }[]
+            ];
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_j";
+            /**
+             * Hubbard parameters for DFT+U+J calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                },
+                ...{
+                    paramType?: "U" | "J" | "B" | "E2" | "E3";
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    value?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "hubbard_u";
+            /**
+             * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+             */
+            data: {
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                hubbardUValue?: number;
+            }[];
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "hubbard_v";
+            /**
+             * Hubbard V parameters for DFT+U+V calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    siteIndex?: number;
+                    atomicOrbital?: string;
+                    atomicSpecies2?: string;
+                    siteIndex2?: number;
+                    atomicOrbital2?: string;
+                    hubbardVValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "hubbard_legacy";
+            /**
+             * Hubbard parameters for DFT+U calculation.
+             *
+             * @minItems 1
+             */
+            data: [
+                {
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                },
+                ...{
+                    atomicSpecies?: string;
+                    atomicSpeciesIndex?: number;
+                    hubbardUValue?: number;
+                }[]
+            ];
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "neb";
+            /**
+             * Number of intermediate NEB images.
+             */
+            data: {
+                nImages?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "boundaryConditions";
+            data: {
+                /**
+                 * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                 */
+                type?: "pbc" | "bc1" | "bc2" | "bc3";
+                offset?: number;
+                electricField?: number;
+                targetFermiEnergy?: number;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "mlSettings";
+            /**
+             * Settings important to machine learning runs.
+             */
+            data: {
+                target_column_name?: string;
+                problem_category?: "regression" | "classification" | "clustering";
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "mlTrainTestSplit";
+            /**
+             * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+             */
+            data: {
+                fraction_held_as_test_set?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "dynamics";
+            /**
+             * Important parameters for molecular dynamics calculation
+             */
+            data: {
+                numberOfSteps?: number;
+                timeStep?: number;
+                electronMass?: number;
+                temperature?: number;
+            };
+            isEdited: boolean;
+            extraData: {};
+        } | {
+            name: "collinearMagnetization";
+            /**
+             * Set starting magnetization, can have values in the range [-1, +1].
+             */
+            data: {
+                startingMagnetization: {
+                    atomicSpecies: string;
+                    value: number;
+                    index: number;
+                }[];
+                isTotalMagnetization: boolean;
+                totalMagnetization: number;
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        } | {
+            name: "nonCollinearMagnetization";
+            /**
+             * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+             */
+            data: {
+                isExistingChargeDensity?: boolean;
+                isStartingMagnetization?: boolean;
+                startingMagnetization?: {
+                    index?: number;
+                    atomicSpecies?: string;
+                    value?: number;
+                }[];
+                isArbitrarySpinAngle?: boolean;
+                isArbitrarySpinDirection?: boolean;
+                lforcet?: boolean;
+                spinAngles?: {
+                    index?: number;
+                    atomicSpecies?: string;
+                    angle1?: number;
+                    angle2?: number;
+                }[];
+                isConstrainedMagnetization?: boolean;
+                constrainedMagnetization?: {
+                    constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                    lambda?: number;
+                };
+                isFixedMagnetization?: boolean;
+                fixedMagnetization?: {
+                    x?: number;
+                    y?: number;
+                    z?: number;
+                };
+            };
+            extraData: {
+                materialHash: string;
+            };
+            isEdited: boolean;
+        })[];
     } | {
         /**
          * entity identity
@@ -60340,122 +63603,11 @@ export interface SubworkflowSchema {
          * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
          */
         value: string | boolean | number;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "processing";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Contains information about the operation used.
-         */
-        operation: string;
-        /**
-         * Contains information about the specific type of the operation used.
-         */
-        operationType: string;
-        /**
-         * unit input (type to be specified by the child units)
-         */
-        inputData: {
-            [k: string]: unknown;
-        };
     })[];
-    model: {
-        /**
-         * general type of the model, eg. `dft`
-         */
-        type: string;
-        /**
-         * general subtype of the model, eg. `lda`
-         */
-        subtype: string;
+    model: ({
+        type: "dft";
+        subtype: "lda";
+        functional: "pz" | "pw" | "vwn" | "other";
         method: {
             /**
              * general type of this method, eg. `pseudopotential`
@@ -60472,9 +63624,109 @@ export interface SubworkflowSchema {
             /**
              * additional data specific to method, eg. array of pseudopotentials
              */
-            data?: {};
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
         };
-        [k: string]: unknown;
+    } | {
+        type: "dft";
+        subtype: "gga";
+        functional: "pbe" | "pbesol" | "pw91" | "other";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    } | {
+        type: "dft";
+        subtype: "hybrid";
+        functional: "b3lyp" | "hse06";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    }) | {
+        type: "ml";
+        subtype: "re";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
+    } | {
+        type: "unknown";
+        subtype: "unknown";
+        method: {
+            /**
+             * general type of this method, eg. `pseudopotential`
+             */
+            type: string;
+            /**
+             * general subtype of this method, eg. `ultra-soft`
+             */
+            subtype: string;
+            /**
+             * Object showing the actual possible precision based on theory and implementation
+             */
+            precision?: {};
+            /**
+             * additional data specific to method, eg. array of pseudopotentials
+             */
+            data?: {
+                searchText?: string;
+                [k: string]: unknown;
+            };
+        };
     };
     application: {
         /**
@@ -60523,6 +63775,7 @@ export interface SubworkflowSchema {
          */
         isLicensed?: boolean;
     };
+    isMultiMaterial?: boolean;
     /**
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
@@ -60967,8 +64220,1223 @@ export interface ConditionUnitSchema {
      */
     throwException?: boolean;
 }
+/** Schema dist/js/schema/workflow/unit/context/_base.json */
+export interface BaseContextItemSchema {
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/_extra_data_material_hash.json */
+export interface ExtraDataWithMaterialHashSchema {
+    materialHash: string;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/boundaryConditions.json */
+export interface BoundaryConditionsContextItemSchema {
+    name: "boundaryConditions";
+    data: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type?: "pbc" | "bc1" | "bc2" | "bc3";
+        offset?: number;
+        electricField?: number;
+        targetFermiEnergy?: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/collinearMagnetization.json */
+export interface CollinearMagnetizationContextItemSchema {
+    name: "collinearMagnetization";
+    /**
+     * Set starting magnetization, can have values in the range [-1, +1].
+     */
+    data: {
+        startingMagnetization: {
+            atomicSpecies: string;
+            value: number;
+            index: number;
+        }[];
+        isTotalMagnetization: boolean;
+        totalMagnetization: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/cutoffs.json */
+export interface CutoffsContextItemSchema {
+    name: "cutoffs";
+    /**
+     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+     */
+    data: {
+        wavefunction?: number;
+        density?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/dynamics.json */
+export interface DynamicsContextItemSchema {
+    name: "dynamics";
+    /**
+     * Important parameters for molecular dynamics calculation
+     */
+    data: {
+        numberOfSteps?: number;
+        timeStep?: number;
+        electronMass?: number;
+        temperature?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/grid.json */
+export interface GridContextItemSchema {
+    name: "kgrid" | "qgrid" | "igrid";
+    /**
+     * 3D grid with shifts for k-point or q-point sampling.
+     */
+    data: {
+        dimensions: [number, number, number] | [string, string, string];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        shifts?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        reciprocalVectorRatios?: [number, number, number];
+        gridMetricType: "KPPRA" | "spacing";
+        gridMetricValue: number;
+        preferGridMetric?: boolean;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/hubbard_j.json */
+export interface HubbardJContextItemSchema {
+    name: "hubbard_j";
+    /**
+     * Hubbard parameters for DFT+U+J calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        },
+        ...{
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/hubbard_legacy.json */
+export interface HubbardLegacyContextItemSchema {
+    name: "hubbard_legacy";
+    /**
+     * Hubbard parameters for DFT+U calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/hubbard_u.json */
+export interface HubbardUContextItemSchema {
+    name: "hubbard_u";
+    /**
+     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+     */
+    data: {
+        atomicSpecies?: string;
+        atomicOrbital?: string;
+        hubbardUValue?: number;
+    }[];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/hubbard_v.json */
+export interface HubbardVContextItemSchema {
+    name: "hubbard_v";
+    /**
+     * Hubbard V parameters for DFT+U+V calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/input.json */
+export interface InputContextItemSchema {
+    name: "input";
+    data: {
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "nwchem-total-energy";
+        /**
+         * Total charge of the system.
+         */
+        CHARGE: number;
+        /**
+         * Spin multiplicity of the system.
+         */
+        MULT: number;
+        /**
+         * Basis set label used in the calculation (e.g., '6-31G').
+         */
+        BASIS: string;
+        /**
+         * Number of atoms in the system.
+         */
+        NAT: number;
+        /**
+         * Number of unique atomic species in the system.
+         */
+        NTYP: number;
+        /**
+         * Formatted text block with atomic positions including constraints.
+         */
+        ATOMIC_POSITIONS: string;
+        /**
+         * Formatted text block with atomic positions without constraints.
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        /**
+         * Formatted text block for atomic species, including element symbols and masses.
+         */
+        ATOMIC_SPECIES: string;
+        /**
+         * Exchange-correlation functional identifier (e.g., 'B3LYP').
+         */
+        FUNCTIONAL: string;
+        /**
+         * Whether atomic positions are expressed in cartesian coordinates.
+         */
+        CARTESIAN: boolean;
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+        FIRST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        LAST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[][];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-neb";
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-pwx";
+    } | {
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints.
+         */
+        POSCAR: string;
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+         */
+        POSCAR_WITH_CONSTRAINTS: string;
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp";
+    } | {
+        /**
+         * POSCAR content with constraints for the first NEB image.
+         */
+        FIRST_IMAGE: string;
+        /**
+         * POSCAR content with constraints for the last NEB image.
+         */
+        LAST_IMAGE: string;
+        /**
+         * POSCAR contents with constraints for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: string[];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp-neb";
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/mlSettings.json */
+export interface MlSettingsContextItemSchema {
+    name: "mlSettings";
+    /**
+     * Settings important to machine learning runs.
+     */
+    data: {
+        target_column_name?: string;
+        problem_category?: "regression" | "classification" | "clustering";
+    };
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/mlTrainTestSplit.json */
+export interface MlTrainTestSplitContextItemSchema {
+    name: "mlTrainTestSplit";
+    /**
+     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+     */
+    data: {
+        fraction_held_as_test_set?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/neb.json */
+export interface NebContextItemSchema {
+    name: "neb";
+    /**
+     * Number of intermediate NEB images.
+     */
+    data: {
+        nImages?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+}
+/** Schema dist/js/schema/workflow/unit/context/item/nonCollinearMagnetization.json */
+export interface NonCollinearMagnetizationContextItemSchema {
+    name: "nonCollinearMagnetization";
+    /**
+     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+     */
+    data: {
+        isExistingChargeDensity?: boolean;
+        isStartingMagnetization?: boolean;
+        startingMagnetization?: {
+            index?: number;
+            atomicSpecies?: string;
+            value?: number;
+        }[];
+        isArbitrarySpinAngle?: boolean;
+        isArbitrarySpinDirection?: boolean;
+        lforcet?: boolean;
+        spinAngles?: {
+            index?: number;
+            atomicSpecies?: string;
+            angle1?: number;
+            angle2?: number;
+        }[];
+        isConstrainedMagnetization?: boolean;
+        constrainedMagnetization?: {
+            constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+            lambda?: number;
+        };
+        isFixedMagnetization?: boolean;
+        fixedMagnetization?: {
+            x?: number;
+            y?: number;
+            z?: number;
+        };
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item/path.json */
+export interface PathContextItemSchema {
+    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+    /**
+     * Path in reciprocal space for band structure calculations.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        },
+        ...{
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        }[]
+    ];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+}
+/** Schema dist/js/schema/workflow/unit/context/item.json */
+export type ContextItemSchema = {
+    name: "input";
+    data: {
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "nwchem-total-energy";
+        /**
+         * Total charge of the system.
+         */
+        CHARGE: number;
+        /**
+         * Spin multiplicity of the system.
+         */
+        MULT: number;
+        /**
+         * Basis set label used in the calculation (e.g., '6-31G').
+         */
+        BASIS: string;
+        /**
+         * Number of atoms in the system.
+         */
+        NAT: number;
+        /**
+         * Number of unique atomic species in the system.
+         */
+        NTYP: number;
+        /**
+         * Formatted text block with atomic positions including constraints.
+         */
+        ATOMIC_POSITIONS: string;
+        /**
+         * Formatted text block with atomic positions without constraints.
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        /**
+         * Formatted text block for atomic species, including element symbols and masses.
+         */
+        ATOMIC_SPECIES: string;
+        /**
+         * Exchange-correlation functional identifier (e.g., 'B3LYP').
+         */
+        FUNCTIONAL: string;
+        /**
+         * Whether atomic positions are expressed in cartesian coordinates.
+         */
+        CARTESIAN: boolean;
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS?: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+        FIRST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        LAST_IMAGE: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[][];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-neb";
+    } | {
+        IBRAV: number;
+        RESTART_MODE: "from_scratch" | "restart";
+        ATOMIC_SPECIES: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        ATOMIC_SPECIES_WITH_LABELS: {
+            /**
+             * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+             */
+            X: string;
+            /**
+             * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+             */
+            Mass_X: number;
+            /**
+             * PseudoPot_X
+             */
+            PseudoPot_X: string;
+        }[];
+        /**
+         * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+         */
+        NAT: number;
+        /**
+         * number of types of atoms in the unit cell
+         */
+        NTYP: number;
+        /**
+         * Number of different atomic species including labels
+         */
+        NTYP_WITH_LABELS: number;
+        ATOMIC_POSITIONS: {
+            /**
+             * label of the atom as specified in ATOMIC_SPECIES
+             */
+            X?: string;
+            /**
+             * atomic positions
+             */
+            x: number;
+            /**
+             * atomic positions
+             */
+            y: number;
+            /**
+             * atomic positions
+             */
+            z: number;
+            "if_pos(1)"?: number;
+            "if_pos(2)"?: number;
+            "if_pos(3)"?: number;
+        }[];
+        /**
+         * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+         */
+        ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+        CELL_PARAMETERS: {
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v1?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v2?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            v3?: [number, number, number];
+        };
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "qe-pwx";
+    } | {
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints.
+         */
+        POSCAR: string;
+        /**
+         * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+         */
+        POSCAR_WITH_CONSTRAINTS: string;
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp";
+    } | {
+        /**
+         * POSCAR content with constraints for the first NEB image.
+         */
+        FIRST_IMAGE: string;
+        /**
+         * POSCAR content with constraints for the last NEB image.
+         */
+        LAST_IMAGE: string;
+        /**
+         * POSCAR contents with constraints for all intermediate NEB images.
+         */
+        INTERMEDIATE_IMAGES: string[];
+        /**
+         * Descriminator for AJV validator
+         */
+        contextProviderName: "vasp-neb";
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "cutoffs";
+    /**
+     * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+     */
+    data: {
+        wavefunction?: number;
+        density?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "kgrid" | "qgrid" | "igrid";
+    /**
+     * 3D grid with shifts for k-point or q-point sampling.
+     */
+    data: {
+        dimensions: [number, number, number] | [string, string, string];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        shifts?: [number, number, number];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        reciprocalVectorRatios?: [number, number, number];
+        gridMetricType: "KPPRA" | "spacing";
+        gridMetricValue: number;
+        preferGridMetric?: boolean;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+    /**
+     * Path in reciprocal space for band structure calculations.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        },
+        ...{
+            point?: string;
+            steps: number;
+            coordinates: number[];
+        }[]
+    ];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "hubbard_j";
+    /**
+     * Hubbard parameters for DFT+U+J calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        },
+        ...{
+            paramType?: "U" | "J" | "B" | "E2" | "E3";
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            value?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "hubbard_u";
+    /**
+     * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+     */
+    data: {
+        atomicSpecies?: string;
+        atomicOrbital?: string;
+        hubbardUValue?: number;
+    }[];
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "hubbard_v";
+    /**
+     * Hubbard V parameters for DFT+U+V calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            siteIndex?: number;
+            atomicOrbital?: string;
+            atomicSpecies2?: string;
+            siteIndex2?: number;
+            atomicOrbital2?: string;
+            hubbardVValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "hubbard_legacy";
+    /**
+     * Hubbard parameters for DFT+U calculation.
+     *
+     * @minItems 1
+     */
+    data: [
+        {
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        },
+        ...{
+            atomicSpecies?: string;
+            atomicSpeciesIndex?: number;
+            hubbardUValue?: number;
+        }[]
+    ];
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "neb";
+    /**
+     * Number of intermediate NEB images.
+     */
+    data: {
+        nImages?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "boundaryConditions";
+    data: {
+        /**
+         * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+         */
+        type?: "pbc" | "bc1" | "bc2" | "bc3";
+        offset?: number;
+        electricField?: number;
+        targetFermiEnergy?: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "mlSettings";
+    /**
+     * Settings important to machine learning runs.
+     */
+    data: {
+        target_column_name?: string;
+        problem_category?: "regression" | "classification" | "clustering";
+    };
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "mlTrainTestSplit";
+    /**
+     * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+     */
+    data: {
+        fraction_held_as_test_set?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "dynamics";
+    /**
+     * Important parameters for molecular dynamics calculation
+     */
+    data: {
+        numberOfSteps?: number;
+        timeStep?: number;
+        electronMass?: number;
+        temperature?: number;
+    };
+    isEdited: boolean;
+    extraData: {};
+} | {
+    name: "collinearMagnetization";
+    /**
+     * Set starting magnetization, can have values in the range [-1, +1].
+     */
+    data: {
+        startingMagnetization: {
+            atomicSpecies: string;
+            value: number;
+            index: number;
+        }[];
+        isTotalMagnetization: boolean;
+        totalMagnetization: number;
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+} | {
+    name: "nonCollinearMagnetization";
+    /**
+     * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+     */
+    data: {
+        isExistingChargeDensity?: boolean;
+        isStartingMagnetization?: boolean;
+        startingMagnetization?: {
+            index?: number;
+            atomicSpecies?: string;
+            value?: number;
+        }[];
+        isArbitrarySpinAngle?: boolean;
+        isArbitrarySpinDirection?: boolean;
+        lforcet?: boolean;
+        spinAngles?: {
+            index?: number;
+            atomicSpecies?: string;
+            angle1?: number;
+            angle2?: number;
+        }[];
+        isConstrainedMagnetization?: boolean;
+        constrainedMagnetization?: {
+            constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+            lambda?: number;
+        };
+        isFixedMagnetization?: boolean;
+        fixedMagnetization?: {
+            x?: number;
+            y?: number;
+            z?: number;
+        };
+    };
+    extraData: {
+        materialHash: string;
+    };
+    isEdited: boolean;
+};
 /** Schema dist/js/schema/workflow/unit/execution.json */
-export interface ExecutionUnitSchemaBase {
+export interface ExecutionUnitSchema {
     /**
      * entity identity
      */
@@ -61107,7 +65575,7 @@ export interface ExecutionUnitSchemaBase {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -61129,52 +65597,39 @@ export interface ExecutionUnitSchemaBase {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -61232,10 +65687,6 @@ export interface ExecutionUnitSchemaBase {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -61293,12 +65744,594 @@ export interface ExecutionUnitSchemaBase {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
+    context: ({
+        name: "input";
+        data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
+            /**
+             * Total charge of the system.
+             */
+            CHARGE: number;
+            /**
+             * Spin multiplicity of the system.
+             */
+            MULT: number;
+            /**
+             * Basis set label used in the calculation (e.g., '6-31G').
+             */
+            BASIS: string;
+            /**
+             * Number of atoms in the system.
+             */
+            NAT: number;
+            /**
+             * Number of unique atomic species in the system.
+             */
+            NTYP: number;
+            /**
+             * Formatted text block with atomic positions including constraints.
+             */
+            ATOMIC_POSITIONS: string;
+            /**
+             * Formatted text block with atomic positions without constraints.
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            /**
+             * Formatted text block for atomic species, including element symbols and masses.
+             */
+            ATOMIC_SPECIES: string;
+            /**
+             * Exchange-correlation functional identifier (e.g., 'B3LYP').
+             */
+            FUNCTIONAL: string;
+            /**
+             * Whether atomic positions are expressed in cartesian coordinates.
+             */
+            CARTESIAN: boolean;
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS?: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            FIRST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            LAST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
+        } | {
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints.
+             */
+            POSCAR: string;
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+             */
+            POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
+        } | {
+            /**
+             * POSCAR content with constraints for the first NEB image.
+             */
+            FIRST_IMAGE: string;
+            /**
+             * POSCAR content with constraints for the last NEB image.
+             */
+            LAST_IMAGE: string;
+            /**
+             * POSCAR contents with constraints for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
+        };
+        extraData: {
+            materialHash: string;
+        };
         isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
+            startingMagnetization: {
+                atomicSpecies: string;
+                value: number;
+                index: number;
+            }[];
+            isTotalMagnetization: boolean;
+            totalMagnetization: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
+            isExistingChargeDensity?: boolean;
+            isStartingMagnetization?: boolean;
+            startingMagnetization?: {
+                index?: number;
+                atomicSpecies?: string;
+                value?: number;
+            }[];
+            isArbitrarySpinAngle?: boolean;
+            isArbitrarySpinDirection?: boolean;
+            lforcet?: boolean;
+            spinAngles?: {
+                index?: number;
+                atomicSpecies?: string;
+                angle1?: number;
+                angle2?: number;
+            }[];
+            isConstrainedMagnetization?: boolean;
+            constrainedMagnetization?: {
+                constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                lambda?: number;
+            };
+            isFixedMagnetization?: boolean;
+            fixedMagnetization?: {
+                x?: number;
+                y?: number;
+                z?: number;
+            };
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_input.json */
 export interface ExecutionUnitInputSchema {
@@ -61417,6 +66450,7 @@ export interface UnitMapInputSchema {
 }
 /** Schema dist/js/schema/workflow/unit/io/api.json */
 export interface DataIORestAPIInputSchema {
+    type: "api";
     /**
      * rest API endpoint
      */
@@ -61429,28 +66463,9 @@ export interface DataIORestAPIInputSchema {
      * the name of the variable in local scope to save the data under
      */
     name?: string;
-    [k: string]: unknown;
 }
-/** Schema dist/js/schema/workflow/unit/io/db.json */
-export type DataIODatabaseInputOutputSchema = {
-    /**
-     * IDs of item to retrieve from db
-     */
-    ids: string[];
-    [k: string]: unknown;
-} | {
-    /**
-     * db collection name
-     */
-    collection: string;
-    /**
-     * whether the result should be saved as draft
-     */
-    draft: boolean;
-    [k: string]: unknown;
-};
 /** Schema dist/js/schema/workflow/unit/io/db_collection.json */
-export interface DataIODatabaseCollectionInputOutputSchema {
+export interface DataIODatabaseCollectionInputOutputSchemaNotUsed {
     type: "db_collection";
     /**
      * db collection name
@@ -61462,7 +66477,7 @@ export interface DataIODatabaseCollectionInputOutputSchema {
     draft: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/io/db_ids.json */
-export interface DataIODatabaseIdsInputOutputSchema {
+export interface DataIODatabaseIdsInputOutputSchemaNotUsed {
     type: "db_ids";
     /**
      * IDs of item to retrieve from db
@@ -61609,23 +66624,21 @@ export interface DataIOUnitSchema {
      */
     enableRender?: boolean;
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -61900,7 +66913,7 @@ export interface ConditionUnitMixinSchema {
 }
 /** Schema dist/js/schema/workflow/unit/mixins/execution.json */
 export interface ExecutionUnitMixinSchema {
-    type?: "execution";
+    type: "execution";
     application: {
         /**
          * entity identity
@@ -61948,7 +66961,7 @@ export interface ExecutionUnitMixinSchema {
          */
         isLicensed?: boolean;
     };
-    executable?: {
+    executable: {
         /**
          * entity identity
          */
@@ -61970,52 +66983,39 @@ export interface ExecutionUnitMixinSchema {
          * Identifies that entity is defaultable
          */
         isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
         /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
     };
-    flavor?: {
+    flavor: {
         /**
          * entity identity
          */
@@ -62073,10 +67073,6 @@ export interface ExecutionUnitMixinSchema {
              */
             name: string;
         }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
         /**
          * name of the executable this flavor belongs to
          */
@@ -62134,34 +67130,614 @@ export interface ExecutionUnitMixinSchema {
         rendered: string;
         isManuallyChanged: boolean;
     }[];
-    context?: {
-        name: ContextProviderNameEnum;
+    context: ({
+        name: "input";
+        data: {
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "nwchem-total-energy";
+            /**
+             * Total charge of the system.
+             */
+            CHARGE: number;
+            /**
+             * Spin multiplicity of the system.
+             */
+            MULT: number;
+            /**
+             * Basis set label used in the calculation (e.g., '6-31G').
+             */
+            BASIS: string;
+            /**
+             * Number of atoms in the system.
+             */
+            NAT: number;
+            /**
+             * Number of unique atomic species in the system.
+             */
+            NTYP: number;
+            /**
+             * Formatted text block with atomic positions including constraints.
+             */
+            ATOMIC_POSITIONS: string;
+            /**
+             * Formatted text block with atomic positions without constraints.
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            /**
+             * Formatted text block for atomic species, including element symbols and masses.
+             */
+            ATOMIC_SPECIES: string;
+            /**
+             * Exchange-correlation functional identifier (e.g., 'B3LYP').
+             */
+            FUNCTIONAL: string;
+            /**
+             * Whether atomic positions are expressed in cartesian coordinates.
+             */
+            CARTESIAN: boolean;
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS?: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            FIRST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            LAST_IMAGE: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[][];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-neb";
+        } | {
+            IBRAV: number;
+            RESTART_MODE: "from_scratch" | "restart";
+            ATOMIC_SPECIES: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            ATOMIC_SPECIES_WITH_LABELS: {
+                /**
+                 * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                 */
+                X: string;
+                /**
+                 * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                 */
+                Mass_X: number;
+                /**
+                 * PseudoPot_X
+                 */
+                PseudoPot_X: string;
+            }[];
+            /**
+             * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+             */
+            NAT: number;
+            /**
+             * number of types of atoms in the unit cell
+             */
+            NTYP: number;
+            /**
+             * Number of different atomic species including labels
+             */
+            NTYP_WITH_LABELS: number;
+            ATOMIC_POSITIONS: {
+                /**
+                 * label of the atom as specified in ATOMIC_SPECIES
+                 */
+                X?: string;
+                /**
+                 * atomic positions
+                 */
+                x: number;
+                /**
+                 * atomic positions
+                 */
+                y: number;
+                /**
+                 * atomic positions
+                 */
+                z: number;
+                "if_pos(1)"?: number;
+                "if_pos(2)"?: number;
+                "if_pos(3)"?: number;
+            }[];
+            /**
+             * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+             */
+            ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+            CELL_PARAMETERS: {
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v1?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v2?: [number, number, number];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                v3?: [number, number, number];
+            };
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "qe-pwx";
+        } | {
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints.
+             */
+            POSCAR: string;
+            /**
+             * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+             */
+            POSCAR_WITH_CONSTRAINTS: string;
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp";
+        } | {
+            /**
+             * POSCAR content with constraints for the first NEB image.
+             */
+            FIRST_IMAGE: string;
+            /**
+             * POSCAR content with constraints for the last NEB image.
+             */
+            LAST_IMAGE: string;
+            /**
+             * POSCAR contents with constraints for all intermediate NEB images.
+             */
+            INTERMEDIATE_IMAGES: string[];
+            /**
+             * Descriminator for AJV validator
+             */
+            contextProviderName: "vasp-neb";
+        };
+        extraData: {
+            materialHash: string;
+        };
         isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
+    } | {
+        name: "cutoffs";
+        /**
+         * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+         */
+        data: {
+            wavefunction?: number;
+            density?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "kgrid" | "qgrid" | "igrid";
+        /**
+         * 3D grid with shifts for k-point or q-point sampling.
+         */
+        data: {
+            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            shifts?: [number, number, number];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            reciprocalVectorRatios?: [number, number, number];
+            gridMetricType: "KPPRA" | "spacing";
+            gridMetricValue: number;
+            preferGridMetric?: boolean;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+        /**
+         * Path in reciprocal space for band structure calculations.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            },
+            ...{
+                point?: string;
+                steps: number;
+                coordinates: number[];
+            }[]
+        ];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_j";
+        /**
+         * Hubbard parameters for DFT+U+J calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            },
+            ...{
+                paramType?: "U" | "J" | "B" | "E2" | "E3";
+                atomicSpecies?: string;
+                atomicOrbital?: string;
+                value?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_u";
+        /**
+         * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+         */
+        data: {
+            atomicSpecies?: string;
+            atomicOrbital?: string;
+            hubbardUValue?: number;
+        }[];
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "hubbard_v";
+        /**
+         * Hubbard V parameters for DFT+U+V calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                siteIndex?: number;
+                atomicOrbital?: string;
+                atomicSpecies2?: string;
+                siteIndex2?: number;
+                atomicOrbital2?: string;
+                hubbardVValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "hubbard_legacy";
+        /**
+         * Hubbard parameters for DFT+U calculation.
+         *
+         * @minItems 1
+         */
+        data: [
+            {
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            },
+            ...{
+                atomicSpecies?: string;
+                atomicSpeciesIndex?: number;
+                hubbardUValue?: number;
+            }[]
+        ];
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "neb";
+        /**
+         * Number of intermediate NEB images.
+         */
+        data: {
+            nImages?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "boundaryConditions";
+        data: {
+            /**
+             * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+             */
+            type?: "pbc" | "bc1" | "bc2" | "bc3";
+            offset?: number;
+            electricField?: number;
+            targetFermiEnergy?: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "mlSettings";
+        /**
+         * Settings important to machine learning runs.
+         */
+        data: {
+            target_column_name?: string;
+            problem_category?: "regression" | "classification" | "clustering";
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "mlTrainTestSplit";
+        /**
+         * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+         */
+        data: {
+            fraction_held_as_test_set?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "dynamics";
+        /**
+         * Important parameters for molecular dynamics calculation
+         */
+        data: {
+            numberOfSteps?: number;
+            timeStep?: number;
+            electronMass?: number;
+            temperature?: number;
+        };
+        isEdited: boolean;
+        extraData: {};
+    } | {
+        name: "collinearMagnetization";
+        /**
+         * Set starting magnetization, can have values in the range [-1, +1].
+         */
+        data: {
+            startingMagnetization: {
+                atomicSpecies: string;
+                value: number;
+                index: number;
+            }[];
+            isTotalMagnetization: boolean;
+            totalMagnetization: number;
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    } | {
+        name: "nonCollinearMagnetization";
+        /**
+         * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+         */
+        data: {
+            isExistingChargeDensity?: boolean;
+            isStartingMagnetization?: boolean;
+            startingMagnetization?: {
+                index?: number;
+                atomicSpecies?: string;
+                value?: number;
+            }[];
+            isArbitrarySpinAngle?: boolean;
+            isArbitrarySpinDirection?: boolean;
+            lforcet?: boolean;
+            spinAngles?: {
+                index?: number;
+                atomicSpecies?: string;
+                angle1?: number;
+                angle2?: number;
+            }[];
+            isConstrainedMagnetization?: boolean;
+            constrainedMagnetization?: {
+                constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                lambda?: number;
+            };
+            isFixedMagnetization?: boolean;
+            fixedMagnetization?: {
+                x?: number;
+                y?: number;
+                z?: number;
+            };
+        };
+        extraData: {
+            materialHash: string;
+        };
+        isEdited: boolean;
+    })[];
 }
 /** Schema dist/js/schema/workflow/unit/mixins/io.json */
 export interface DataIOUnitMixinSchema {
     type?: "io";
     subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
+    source: "api" | "object_storage";
     input: ({
-        type: "db_ids";
+        type: "api";
         /**
-         * IDs of item to retrieve from db
+         * rest API endpoint
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        endpoint: string;
         /**
-         * db collection name
+         * rest API endpoint options
          */
-        collection: string;
+        endpoint_options: {};
         /**
-         * whether the result should be saved as draft
+         * the name of the variable in local scope to save the data under
          */
-        draft: boolean;
+        name?: string;
     } | {
         type: "object_storage";
         objectData: {
@@ -62280,114 +67856,6 @@ export interface ReduceUnitMixinSchema {
 /** Schema dist/js/schema/workflow/unit/mixins/subworkflow.json */
 export interface SubworkflowUnitMixinSchema {
     type?: "subworkflow";
-}
-/** Schema dist/js/schema/workflow/unit/processing.json */
-export interface ProcessingUnitSchema {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
 }
 /** Schema dist/js/schema/workflow/unit/reduce.json */
 export interface ReduceUnitSchema {
@@ -62735,7 +68203,7 @@ export type WorkflowUnitSchema = {
     /**
      * type of the unit
      */
-    type: "io";
+    type: "map";
     /**
      * Whether this unit is the first one to be executed.
      */
@@ -62752,69 +68220,32 @@ export type WorkflowUnitSchema = {
      * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
      */
     enableRender?: boolean;
-    subtype: "input" | "output" | "dataFrame";
-    source: "api" | "db" | "object_storage";
-    input: ({
-        type: "db_ids";
+    /**
+     * Id of workflow to run inside map
+     */
+    workflowId: string;
+    /**
+     * Input information for map.
+     */
+    input: {
         /**
-         * IDs of item to retrieve from db
+         * Name of the target variable to substitute using the values below. e.g. K_POINTS
          */
-        ids: string[];
-    } | {
-        type: "db_collection";
+        target: string;
         /**
-         * db collection name
+         * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
          */
-        collection: string;
+        scope?: string;
         /**
-         * whether the result should be saved as draft
+         * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
          */
-        draft: boolean;
-    } | {
-        type: "object_storage";
-        objectData: {
-            /**
-             * Object storage container for the file
-             */
-            CONTAINER?: string;
-            /**
-             * Name of the file inside the object storage bucket
-             */
-            NAME?: string;
-            /**
-             * Object storage provider
-             */
-            PROVIDER?: string;
-            /**
-             * Region for the object container specified in Container
-             */
-            REGION?: string;
-            /**
-             * Size of the file in bytes
-             */
-            SIZE?: number;
-            /**
-             * Unix timestamp showing when the file was last modified
-             */
-            TIMESTAMP?: string;
-        };
+        name?: string;
         /**
-         * if a file with the same filename already exists, whether to overwrite the old file
+         * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
          */
-        overwrite?: boolean;
-        /**
-         * Relative path to the directory that contains the file.
-         */
-        pathname?: string;
-        /**
-         * Basename of the file
-         */
-        basename?: string;
-        /**
-         * What kind of file this is, e.g. image / text
-         */
-        filetype?: string;
-    })[];
+        values?: (string | number | {})[];
+        useValues?: boolean;
+    };
 } | {
     /**
      * entity identity
@@ -62999,900 +68430,6 @@ export type WorkflowUnitSchema = {
     /**
      * type of the unit
      */
-    type: "condition";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * Input information for condition.
-     */
-    input: {
-        /**
-         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-         */
-        scope: string;
-        /**
-         * Name of the input data. e.g. total_energy
-         */
-        name: string;
-    }[];
-    /**
-     * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-     */
-    statement: string;
-    /**
-     * Flowchart ID reference for `then` part of the condition.
-     */
-    then: string;
-    /**
-     * Flowchart ID reference for `else` part of the condition.
-     */
-    else: string;
-    /**
-     * Maximum occurrence of the condition, usable for loops.
-     */
-    maxOccurrences: number;
-    /**
-     * Throw exception on reaching to maximum occurence.
-     */
-    throwException?: boolean;
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assertion";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * The statement to be evaluated
-     */
-    statement: string;
-    /**
-     * The error message to be displayed if the assertion fails
-     */
-    errorMessage?: string;
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "execution";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    application: {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * The short name of the application. e.g. qe
-         */
-        shortName: string;
-        /**
-         * Application's short description.
-         */
-        summary: string;
-        /**
-         * Application version. e.g. 5.3.5
-         */
-        version: string;
-        /**
-         * Application build. e.g. VTST
-         */
-        build: string;
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-        /**
-         * Whether licensing is present
-         */
-        isLicensed?: boolean;
-    };
-    executable?: {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _ids of the application this executable belongs to
-         */
-        applicationId: string[];
-        /**
-         * Whether advanced compute options are present
-         */
-        hasAdvancedComputeOptions?: boolean;
-    };
-    flavor?: {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * _id of the executable this flavor belongs to
-         */
-        executableId: string;
-        /**
-         * name of the executable this flavor belongs to
-         */
-        executableName?: string;
-        /**
-         * name of the application this flavor belongs to
-         */
-        applicationName?: string;
-        input: {
-            templateId?: string;
-            templateName?: string;
-            /**
-             * name of the resulting input file, if different than template name
-             */
-            name?: string;
-        }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
-    };
-    input: {
-        template: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            applicationName: string;
-            applicationVersion?: string;
-            executableName: string;
-            contextProviders: {
-                name: ContextProviderNameEnum;
-            }[];
-            /**
-             * Content of the template. e.g. &CONTROL    calculation='scf' ...
-             */
-            content: string;
-        };
-        /**
-         * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-         */
-        rendered: string;
-        isManuallyChanged: boolean;
-    }[];
-    context?: {
-        name: ContextProviderNameEnum;
-        isEdited: boolean;
-        data: {};
-        extraData?: {};
-    }[];
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "assignment";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    scope?: string;
-    /**
-     * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-     */
-    input?: {
-        /**
-         * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-         */
-        scope: string;
-        /**
-         * Name of the input data. e.g. total_energy
-         */
-        name: string;
-    }[];
-    /**
-     * Name of the global variable. e.g. 'x'
-     */
-    operand: string;
-    /**
-     * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-     */
-    value: string | boolean | number;
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "processing";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * Contains information about the operation used.
-     */
-    operation: string;
-    /**
-     * Contains information about the specific type of the operation used.
-     */
-    operationType: string;
-    /**
-     * unit input (type to be specified by the child units)
-     */
-    inputData: {
-        [k: string]: unknown;
-    };
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
-    type: "map";
-    /**
-     * Whether this unit is the first one to be executed.
-     */
-    head?: boolean;
-    /**
-     * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-     */
-    flowchartId: string;
-    /**
-     * Next unit's flowchartId. If empty, the current unit is the last.
-     */
-    next?: string;
-    /**
-     * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-     */
-    enableRender?: boolean;
-    /**
-     * Id of workflow to run inside map
-     */
-    workflowId: string;
-    /**
-     * Input information for map.
-     */
-    input: {
-        /**
-         * Name of the target variable to substitute using the values below. e.g. K_POINTS
-         */
-        target: string;
-        /**
-         * Scope to retrieve `values` from, global or flowchartId. Optional if `values` is given.
-         */
-        scope?: string;
-        /**
-         * Name of the variable inside the scope to retrieve `values` from. Optional if `values` is given.
-         */
-        name?: string;
-        /**
-         * Sequence of values for the target Jinja variable. Optional if `scope` and `name` are given. This can be used for map-reduce type parallel execution
-         */
-        values?: (string | number | {})[];
-        useValues?: boolean;
-    };
-} | {
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    /**
-     * names of the pre-processors for this calculation
-     */
-    preProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the post-processors for this calculation
-     */
-    postProcessors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the monitors for this calculation
-     */
-    monitors: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * names of the results for this calculation
-     */
-    results: {
-        /**
-         * The name of this item. e.g. scf_accuracy
-         */
-        name: string;
-    }[];
-    /**
-     * entity tags
-     */
-    tags?: string[];
-    /**
-     * Status of the unit.
-     */
-    status?: "idle" | "active" | "warning" | "error" | "finished";
-    statusTrack?: {
-        trackedAt: number;
-        status: string;
-        repetition?: number;
-    }[];
-    isDraft?: boolean;
-    /**
-     * type of the unit
-     */
     type: "subworkflow";
     /**
      * Whether this unit is the first one to be executed.
@@ -63913,6 +68450,40 @@ export type WorkflowUnitSchema = {
 };
 /** Schema dist/js/schema/workflow.json */
 export interface WorkflowSchema {
+    /**
+     * Array of workflows with the same schema as the current one.
+     */
+    workflows: {}[];
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * entity name
+     */
+    name: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    metadata?: {};
+    /**
+     * Array of characteristic properties calculated by this workflow (TODO: add enums)
+     */
+    properties: string[];
+    /**
+     * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
+     */
+    isUsingDataset?: boolean;
     /**
      * Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting
      */
@@ -63937,9 +68508,9 @@ export interface WorkflowSchema {
         /**
          * Array of characteristic properties calculated by this subworkflow
          */
-        properties?: string[];
+        properties: string[];
         /**
-         * Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
+         * Compute schema
          */
         compute?: {
             /**
@@ -64138,23 +68709,21 @@ export interface WorkflowSchema {
              */
             enableRender?: boolean;
             subtype: "input" | "output" | "dataFrame";
-            source: "api" | "db" | "object_storage";
+            source: "api" | "object_storage";
             input: ({
-                type: "db_ids";
+                type: "api";
                 /**
-                 * IDs of item to retrieve from db
+                 * rest API endpoint
                  */
-                ids: string[];
-            } | {
-                type: "db_collection";
+                endpoint: string;
                 /**
-                 * db collection name
+                 * rest API endpoint options
                  */
-                collection: string;
+                endpoint_options: {};
                 /**
-                 * whether the result should be saved as draft
+                 * the name of the variable in local scope to save the data under
                  */
-                draft: boolean;
+                name?: string;
             } | {
                 type: "object_storage";
                 objectData: {
@@ -64200,115 +68769,6 @@ export interface WorkflowSchema {
                  */
                 filetype?: string;
             })[];
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "reduce";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * corresponding map unit flowchart ID
-             */
-            mapFlowchartId: string;
-            /**
-             * input information for reduce unit
-             */
-            input: {
-                /**
-                 * reduce operation, e.g. aggregate
-                 */
-                operation: string;
-                /**
-                 * arguments which are passed to reduce operation function
-                 */
-                arguments: string[];
-            }[];
         } | {
             /**
              * entity identity
@@ -64673,7 +69133,7 @@ export interface WorkflowSchema {
                  */
                 isLicensed?: boolean;
             };
-            executable?: {
+            executable: {
                 /**
                  * entity identity
                  */
@@ -64695,52 +69155,39 @@ export interface WorkflowSchema {
                  * Identifies that entity is defaultable
                  */
                 isDefault?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the results for this calculation
-                 */
-                results: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * _ids of the application this executable belongs to
-                 */
-                applicationId: string[];
                 /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
+                /**
+                 * names of the pre-processors for this calculation
+                 */
+                preProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the post-processors for this calculation
+                 */
+                postProcessors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
+                /**
+                 * names of the monitors for this calculation
+                 */
+                monitors: {
+                    /**
+                     * The name of this item. e.g. scf_accuracy
+                     */
+                    name: string;
+                }[];
             };
-            flavor?: {
+            flavor: {
                 /**
                  * entity identity
                  */
@@ -64798,10 +69245,6 @@ export interface WorkflowSchema {
                      */
                     name: string;
                 }[];
-                /**
-                 * _id of the executable this flavor belongs to
-                 */
-                executableId: string;
                 /**
                  * name of the executable this flavor belongs to
                  */
@@ -64859,12 +69302,594 @@ export interface WorkflowSchema {
                 rendered: string;
                 isManuallyChanged: boolean;
             }[];
-            context?: {
-                name: ContextProviderNameEnum;
+            context: ({
+                name: "input";
+                data: {
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "nwchem-total-energy";
+                    /**
+                     * Total charge of the system.
+                     */
+                    CHARGE: number;
+                    /**
+                     * Spin multiplicity of the system.
+                     */
+                    MULT: number;
+                    /**
+                     * Basis set label used in the calculation (e.g., '6-31G').
+                     */
+                    BASIS: string;
+                    /**
+                     * Number of atoms in the system.
+                     */
+                    NAT: number;
+                    /**
+                     * Number of unique atomic species in the system.
+                     */
+                    NTYP: number;
+                    /**
+                     * Formatted text block with atomic positions including constraints.
+                     */
+                    ATOMIC_POSITIONS: string;
+                    /**
+                     * Formatted text block with atomic positions without constraints.
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    /**
+                     * Formatted text block for atomic species, including element symbols and masses.
+                     */
+                    ATOMIC_SPECIES: string;
+                    /**
+                     * Exchange-correlation functional identifier (e.g., 'B3LYP').
+                     */
+                    FUNCTIONAL: string;
+                    /**
+                     * Whether atomic positions are expressed in cartesian coordinates.
+                     */
+                    CARTESIAN: boolean;
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS?: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS?: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    FIRST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    LAST_IMAGE: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[][];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-neb";
+                } | {
+                    IBRAV: number;
+                    RESTART_MODE: "from_scratch" | "restart";
+                    ATOMIC_SPECIES: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    ATOMIC_SPECIES_WITH_LABELS: {
+                        /**
+                         * label of the atom. Acceptable syntax: chemical symbol X (1 or 2 characters, case-insensitive) or chemical symbol plus a number or a letter, as in "Xn" (e.g. Fe1) or "X_*" or "X-*" (e.g. C1, C_h; max total length cannot exceed 3 characters)
+                         */
+                        X: string;
+                        /**
+                         * mass of the atomic species [amu: mass of C = 12]. Used only when performing Molecular Dynamics run or structural optimization runs using Damped MD. Not actually used in all other cases (but stored in data files, so phonon calculations will use these values unless other values are provided)
+                         */
+                        Mass_X: number;
+                        /**
+                         * PseudoPot_X
+                         */
+                        PseudoPot_X: string;
+                    }[];
+                    /**
+                     * number of atoms in the unit cell (ALL atoms, except if space_group is set, in which case, INEQUIVALENT atoms)
+                     */
+                    NAT: number;
+                    /**
+                     * number of types of atoms in the unit cell
+                     */
+                    NTYP: number;
+                    /**
+                     * Number of different atomic species including labels
+                     */
+                    NTYP_WITH_LABELS: number;
+                    ATOMIC_POSITIONS: {
+                        /**
+                         * label of the atom as specified in ATOMIC_SPECIES
+                         */
+                        X?: string;
+                        /**
+                         * atomic positions
+                         */
+                        x: number;
+                        /**
+                         * atomic positions
+                         */
+                        y: number;
+                        /**
+                         * atomic positions
+                         */
+                        z: number;
+                        "if_pos(1)"?: number;
+                        "if_pos(2)"?: number;
+                        "if_pos(3)"?: number;
+                    }[];
+                    /**
+                     * Formatted text block for ATOMIC_POSITIONS card WITHOUT constraints. Format: 'X x y z' per line
+                     */
+                    ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS: string;
+                    CELL_PARAMETERS: {
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v1?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v2?: [number, number, number];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        v3?: [number, number, number];
+                    };
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "qe-pwx";
+                } | {
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints.
+                     */
+                    POSCAR: string;
+                    /**
+                     * POSCAR content for VASP including lattice, atom types, positions and constraints. May differ in how constraints are represented.
+                     */
+                    POSCAR_WITH_CONSTRAINTS: string;
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp";
+                } | {
+                    /**
+                     * POSCAR content with constraints for the first NEB image.
+                     */
+                    FIRST_IMAGE: string;
+                    /**
+                     * POSCAR content with constraints for the last NEB image.
+                     */
+                    LAST_IMAGE: string;
+                    /**
+                     * POSCAR contents with constraints for all intermediate NEB images.
+                     */
+                    INTERMEDIATE_IMAGES: string[];
+                    /**
+                     * Descriminator for AJV validator
+                     */
+                    contextProviderName: "vasp-neb";
+                };
+                extraData: {
+                    materialHash: string;
+                };
                 isEdited: boolean;
-                data: {};
-                extraData?: {};
-            }[];
+            } | {
+                name: "cutoffs";
+                /**
+                 * Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
+                 */
+                data: {
+                    wavefunction?: number;
+                    density?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "kgrid" | "qgrid" | "igrid";
+                /**
+                 * 3D grid with shifts for k-point or q-point sampling.
+                 */
+                data: {
+                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    shifts?: [number, number, number];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    reciprocalVectorRatios?: [number, number, number];
+                    gridMetricType: "KPPRA" | "spacing";
+                    gridMetricValue: number;
+                    preferGridMetric?: boolean;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
+                /**
+                 * Path in reciprocal space for band structure calculations.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    },
+                    ...{
+                        point?: string;
+                        steps: number;
+                        coordinates: number[];
+                    }[]
+                ];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_j";
+                /**
+                 * Hubbard parameters for DFT+U+J calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    },
+                    ...{
+                        paramType?: "U" | "J" | "B" | "E2" | "E3";
+                        atomicSpecies?: string;
+                        atomicOrbital?: string;
+                        value?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_u";
+                /**
+                 * Hubbard U parameters for DFT+U or DFT+U+V calculation.
+                 */
+                data: {
+                    atomicSpecies?: string;
+                    atomicOrbital?: string;
+                    hubbardUValue?: number;
+                }[];
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "hubbard_v";
+                /**
+                 * Hubbard V parameters for DFT+U+V calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        siteIndex?: number;
+                        atomicOrbital?: string;
+                        atomicSpecies2?: string;
+                        siteIndex2?: number;
+                        atomicOrbital2?: string;
+                        hubbardVValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "hubbard_legacy";
+                /**
+                 * Hubbard parameters for DFT+U calculation.
+                 *
+                 * @minItems 1
+                 */
+                data: [
+                    {
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    },
+                    ...{
+                        atomicSpecies?: string;
+                        atomicSpeciesIndex?: number;
+                        hubbardUValue?: number;
+                    }[]
+                ];
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "neb";
+                /**
+                 * Number of intermediate NEB images.
+                 */
+                data: {
+                    nImages?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "boundaryConditions";
+                data: {
+                    /**
+                     * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+                     */
+                    type?: "pbc" | "bc1" | "bc2" | "bc3";
+                    offset?: number;
+                    electricField?: number;
+                    targetFermiEnergy?: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "mlSettings";
+                /**
+                 * Settings important to machine learning runs.
+                 */
+                data: {
+                    target_column_name?: string;
+                    problem_category?: "regression" | "classification" | "clustering";
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "mlTrainTestSplit";
+                /**
+                 * Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
+                 */
+                data: {
+                    fraction_held_as_test_set?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "dynamics";
+                /**
+                 * Important parameters for molecular dynamics calculation
+                 */
+                data: {
+                    numberOfSteps?: number;
+                    timeStep?: number;
+                    electronMass?: number;
+                    temperature?: number;
+                };
+                isEdited: boolean;
+                extraData: {};
+            } | {
+                name: "collinearMagnetization";
+                /**
+                 * Set starting magnetization, can have values in the range [-1, +1].
+                 */
+                data: {
+                    startingMagnetization: {
+                        atomicSpecies: string;
+                        value: number;
+                        index: number;
+                    }[];
+                    isTotalMagnetization: boolean;
+                    totalMagnetization: number;
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            } | {
+                name: "nonCollinearMagnetization";
+                /**
+                 * Non-collinear magnetization parameters including starting magnetization, spin angles, and constraints.
+                 */
+                data: {
+                    isExistingChargeDensity?: boolean;
+                    isStartingMagnetization?: boolean;
+                    startingMagnetization?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        value?: number;
+                    }[];
+                    isArbitrarySpinAngle?: boolean;
+                    isArbitrarySpinDirection?: boolean;
+                    lforcet?: boolean;
+                    spinAngles?: {
+                        index?: number;
+                        atomicSpecies?: string;
+                        angle1?: number;
+                        angle2?: number;
+                    }[];
+                    isConstrainedMagnetization?: boolean;
+                    constrainedMagnetization?: {
+                        constrainType?: "none" | "total" | "atomic" | "total direction" | "atomic direction";
+                        lambda?: number;
+                    };
+                    isFixedMagnetization?: boolean;
+                    fixedMagnetization?: {
+                        x?: number;
+                        y?: number;
+                        z?: number;
+                    };
+                };
+                extraData: {
+                    materialHash: string;
+                };
+                isEdited: boolean;
+            })[];
         } | {
             /**
              * entity identity
@@ -64979,122 +70004,11 @@ export interface WorkflowSchema {
              * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
              */
             value: string | boolean | number;
-        } | {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * entity tags
-             */
-            tags?: string[];
-            /**
-             * Status of the unit.
-             */
-            status?: "idle" | "active" | "warning" | "error" | "finished";
-            statusTrack?: {
-                trackedAt: number;
-                status: string;
-                repetition?: number;
-            }[];
-            isDraft?: boolean;
-            /**
-             * type of the unit
-             */
-            type: "processing";
-            /**
-             * Whether this unit is the first one to be executed.
-             */
-            head?: boolean;
-            /**
-             * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-             */
-            flowchartId: string;
-            /**
-             * Next unit's flowchartId. If empty, the current unit is the last.
-             */
-            next?: string;
-            /**
-             * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-             */
-            enableRender?: boolean;
-            /**
-             * Contains information about the operation used.
-             */
-            operation: string;
-            /**
-             * Contains information about the specific type of the operation used.
-             */
-            operationType: string;
-            /**
-             * unit input (type to be specified by the child units)
-             */
-            inputData: {
-                [k: string]: unknown;
-            };
         })[];
-        model: {
-            /**
-             * general type of the model, eg. `dft`
-             */
-            type: string;
-            /**
-             * general subtype of the model, eg. `lda`
-             */
-            subtype: string;
+        model: ({
+            type: "dft";
+            subtype: "lda";
+            functional: "pz" | "pw" | "vwn" | "other";
             method: {
                 /**
                  * general type of this method, eg. `pseudopotential`
@@ -65111,9 +70025,109 @@ export interface WorkflowSchema {
                 /**
                  * additional data specific to method, eg. array of pseudopotentials
                  */
-                data?: {};
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
             };
-            [k: string]: unknown;
+        } | {
+            type: "dft";
+            subtype: "gga";
+            functional: "pbe" | "pbesol" | "pw91" | "other";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "dft";
+            subtype: "hybrid";
+            functional: "b3lyp" | "hse06";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        }) | {
+            type: "ml";
+            subtype: "re";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
+        } | {
+            type: "unknown";
+            subtype: "unknown";
+            method: {
+                /**
+                 * general type of this method, eg. `pseudopotential`
+                 */
+                type: string;
+                /**
+                 * general subtype of this method, eg. `ultra-soft`
+                 */
+                subtype: string;
+                /**
+                 * Object showing the actual possible precision based on theory and implementation
+                 */
+                precision?: {};
+                /**
+                 * additional data specific to method, eg. array of pseudopotentials
+                 */
+                data?: {
+                    searchText?: string;
+                    [k: string]: unknown;
+                };
+            };
         };
         application: {
             /**
@@ -65162,6 +70176,7 @@ export interface WorkflowSchema {
              */
             isLicensed?: boolean;
         };
+        isMultiMaterial?: boolean;
         /**
          * Defines whether to store the results/properties extracted in this unit to properties collection
          */
@@ -65171,1046 +70186,6 @@ export interface WorkflowSchema {
      * Contains the Units of the Workflow
      */
     units: ({
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "io";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        subtype: "input" | "output" | "dataFrame";
-        source: "api" | "db" | "object_storage";
-        input: ({
-            type: "db_ids";
-            /**
-             * IDs of item to retrieve from db
-             */
-            ids: string[];
-        } | {
-            type: "db_collection";
-            /**
-             * db collection name
-             */
-            collection: string;
-            /**
-             * whether the result should be saved as draft
-             */
-            draft: boolean;
-        } | {
-            type: "object_storage";
-            objectData: {
-                /**
-                 * Object storage container for the file
-                 */
-                CONTAINER?: string;
-                /**
-                 * Name of the file inside the object storage bucket
-                 */
-                NAME?: string;
-                /**
-                 * Object storage provider
-                 */
-                PROVIDER?: string;
-                /**
-                 * Region for the object container specified in Container
-                 */
-                REGION?: string;
-                /**
-                 * Size of the file in bytes
-                 */
-                SIZE?: number;
-                /**
-                 * Unix timestamp showing when the file was last modified
-                 */
-                TIMESTAMP?: string;
-            };
-            /**
-             * if a file with the same filename already exists, whether to overwrite the old file
-             */
-            overwrite?: boolean;
-            /**
-             * Relative path to the directory that contains the file.
-             */
-            pathname?: string;
-            /**
-             * Basename of the file
-             */
-            basename?: string;
-            /**
-             * What kind of file this is, e.g. image / text
-             */
-            filetype?: string;
-        })[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "reduce";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * corresponding map unit flowchart ID
-         */
-        mapFlowchartId: string;
-        /**
-         * input information for reduce unit
-         */
-        input: {
-            /**
-             * reduce operation, e.g. aggregate
-             */
-            operation: string;
-            /**
-             * arguments which are passed to reduce operation function
-             */
-            arguments: string[];
-        }[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "condition";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Input information for condition.
-         */
-        input: {
-            /**
-             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-             */
-            scope: string;
-            /**
-             * Name of the input data. e.g. total_energy
-             */
-            name: string;
-        }[];
-        /**
-         * Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-         */
-        statement: string;
-        /**
-         * Flowchart ID reference for `then` part of the condition.
-         */
-        then: string;
-        /**
-         * Flowchart ID reference for `else` part of the condition.
-         */
-        else: string;
-        /**
-         * Maximum occurrence of the condition, usable for loops.
-         */
-        maxOccurrences: number;
-        /**
-         * Throw exception on reaching to maximum occurence.
-         */
-        throwException?: boolean;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assertion";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * The statement to be evaluated
-         */
-        statement: string;
-        /**
-         * The error message to be displayed if the assertion fails
-         */
-        errorMessage?: string;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "execution";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        application: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * The short name of the application. e.g. qe
-             */
-            shortName: string;
-            /**
-             * Application's short description.
-             */
-            summary: string;
-            /**
-             * Application version. e.g. 5.3.5
-             */
-            version: string;
-            /**
-             * Application build. e.g. VTST
-             */
-            build: string;
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-            /**
-             * Whether licensing is present
-             */
-            isLicensed?: boolean;
-        };
-        executable?: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _ids of the application this executable belongs to
-             */
-            applicationId: string[];
-            /**
-             * Whether advanced compute options are present
-             */
-            hasAdvancedComputeOptions?: boolean;
-        };
-        flavor?: {
-            /**
-             * entity identity
-             */
-            _id?: string;
-            /**
-             * entity slug
-             */
-            slug?: string;
-            systemName?: string;
-            /**
-             * entity's schema version. Used to distinct between different schemas.
-             */
-            schemaVersion?: string;
-            /**
-             * entity name
-             */
-            name: string;
-            /**
-             * Identifies that entity is defaultable
-             */
-            isDefault?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the results for this calculation
-             */
-            results: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * _id of the executable this flavor belongs to
-             */
-            executableId: string;
-            /**
-             * name of the executable this flavor belongs to
-             */
-            executableName?: string;
-            /**
-             * name of the application this flavor belongs to
-             */
-            applicationName?: string;
-            input: {
-                templateId?: string;
-                templateName?: string;
-                /**
-                 * name of the resulting input file, if different than template name
-                 */
-                name?: string;
-            }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
-        };
-        input: {
-            template: {
-                /**
-                 * entity identity
-                 */
-                _id?: string;
-                /**
-                 * entity slug
-                 */
-                slug?: string;
-                systemName?: string;
-                /**
-                 * entity's schema version. Used to distinct between different schemas.
-                 */
-                schemaVersion?: string;
-                /**
-                 * entity name
-                 */
-                name: string;
-                applicationName: string;
-                applicationVersion?: string;
-                executableName: string;
-                contextProviders: {
-                    name: ContextProviderNameEnum;
-                }[];
-                /**
-                 * Content of the template. e.g. &CONTROL    calculation='scf' ...
-                 */
-                content: string;
-            };
-            /**
-             * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
-             */
-            rendered: string;
-            isManuallyChanged: boolean;
-        }[];
-        context?: {
-            name: ContextProviderNameEnum;
-            isEdited: boolean;
-            data: {};
-            extraData?: {};
-        }[];
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "assignment";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        scope?: string;
-        /**
-         * Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-         */
-        input?: {
-            /**
-             * Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-             */
-            scope: string;
-            /**
-             * Name of the input data. e.g. total_energy
-             */
-            name: string;
-        }[];
-        /**
-         * Name of the global variable. e.g. 'x'
-         */
-        operand: string;
-        /**
-         * Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-         */
-        value: string | boolean | number;
-    } | {
-        /**
-         * entity identity
-         */
-        _id?: string;
-        /**
-         * entity slug
-         */
-        slug?: string;
-        systemName?: string;
-        /**
-         * entity's schema version. Used to distinct between different schemas.
-         */
-        schemaVersion?: string;
-        /**
-         * entity name
-         */
-        name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the results for this calculation
-         */
-        results: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * entity tags
-         */
-        tags?: string[];
-        /**
-         * Status of the unit.
-         */
-        status?: "idle" | "active" | "warning" | "error" | "finished";
-        statusTrack?: {
-            trackedAt: number;
-            status: string;
-            repetition?: number;
-        }[];
-        isDraft?: boolean;
-        /**
-         * type of the unit
-         */
-        type: "processing";
-        /**
-         * Whether this unit is the first one to be executed.
-         */
-        head?: boolean;
-        /**
-         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-         */
-        flowchartId: string;
-        /**
-         * Next unit's flowchartId. If empty, the current unit is the last.
-         */
-        next?: string;
-        /**
-         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-         */
-        enableRender?: boolean;
-        /**
-         * Contains information about the operation used.
-         */
-        operation: string;
-        /**
-         * Contains information about the specific type of the operation used.
-         */
-        operationType: string;
-        /**
-         * unit input (type to be specified by the child units)
-         */
-        inputData: {
-            [k: string]: unknown;
-        };
-    } | {
         /**
          * entity identity
          */
@@ -66403,6 +70378,115 @@ export interface WorkflowSchema {
         /**
          * type of the unit
          */
+        type: "reduce";
+        /**
+         * Whether this unit is the first one to be executed.
+         */
+        head?: boolean;
+        /**
+         * Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
+         */
+        flowchartId: string;
+        /**
+         * Next unit's flowchartId. If empty, the current unit is the last.
+         */
+        next?: string;
+        /**
+         * Whether Rupy should attempt to use Jinja templating to add context variables into the unit
+         */
+        enableRender?: boolean;
+        /**
+         * corresponding map unit flowchart ID
+         */
+        mapFlowchartId: string;
+        /**
+         * input information for reduce unit
+         */
+        input: {
+            /**
+             * reduce operation, e.g. aggregate
+             */
+            operation: string;
+            /**
+             * arguments which are passed to reduce operation function
+             */
+            arguments: string[];
+        }[];
+    } | {
+        /**
+         * entity identity
+         */
+        _id?: string;
+        /**
+         * entity slug
+         */
+        slug?: string;
+        systemName?: string;
+        /**
+         * entity's schema version. Used to distinct between different schemas.
+         */
+        schemaVersion?: string;
+        /**
+         * entity name
+         */
+        name: string;
+        /**
+         * Identifies that entity is defaultable
+         */
+        isDefault?: boolean;
+        /**
+         * names of the pre-processors for this calculation
+         */
+        preProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the post-processors for this calculation
+         */
+        postProcessors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the monitors for this calculation
+         */
+        monitors: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * names of the results for this calculation
+         */
+        results: {
+            /**
+             * The name of this item. e.g. scf_accuracy
+             */
+            name: string;
+        }[];
+        /**
+         * entity tags
+         */
+        tags?: string[];
+        /**
+         * Status of the unit.
+         */
+        status?: "idle" | "active" | "warning" | "error" | "finished";
+        statusTrack?: {
+            trackedAt: number;
+            status: string;
+            repetition?: number;
+        }[];
+        isDraft?: boolean;
+        /**
+         * type of the unit
+         */
         type: "subworkflow";
         /**
          * Whether this unit is the first one to be executed.
@@ -66421,38 +70505,5 @@ export interface WorkflowSchema {
          */
         enableRender?: boolean;
     })[];
-    /**
-     * Array of characteristic properties calculated by this workflow (TODO: add enums)
-     */
-    properties?: (string | {})[];
-    /**
-     * Whether to use the dataset tab in the job designer. Mutually exclusive with using the materials tab.
-     */
-    isUsingDataset?: boolean;
-    /**
-     * Array of workflows with the same schema as the current one.
-     */
-    workflows?: {}[];
-    /**
-     * entity identity
-     */
-    _id?: string;
-    /**
-     * entity slug
-     */
-    slug?: string;
-    systemName?: string;
-    /**
-     * entity's schema version. Used to distinct between different schemas.
-     */
-    schemaVersion?: string;
-    /**
-     * entity name
-     */
-    name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
-    metadata?: {};
+    isMultiMaterial?: boolean;
 }

@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional
+from typing import List, Literal, Optional
 
 from pydantic import BaseModel, ConfigDict, Field, conint
 
@@ -188,4 +188,8 @@ class QENEBContextProviderSchema(BaseModel):
     INTERMEDIATE_IMAGES: List[List[INTERMEDIATEIMAGE]]
     """
     Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.
+    """
+    contextProviderName: Literal["qe-neb"]
+    """
+    Descriminator for AJV validator
     """

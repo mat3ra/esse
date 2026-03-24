@@ -2,11 +2,10 @@
     "$id": "job/compute",
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "compute arguments schema",
-    "description": "Custom keywords prefixed with validate correspond to custom validation methods implemented downstream",
+    "description": "Compute schema",
     "type": "object",
     "properties": {
         "queue": {
-            "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
             "type": "string",
             "enum": [
                 "D",

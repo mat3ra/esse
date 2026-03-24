@@ -9,7 +9,7 @@ from typing import Literal
 from pydantic import BaseModel
 
 
-class DataIODatabaseCollectionInputOutputSchema(BaseModel):
+class DataIODatabaseCollectionInputOutputSchemaNotUsed(BaseModel):
     type: Literal["db_collection"]
     collection: str
     """

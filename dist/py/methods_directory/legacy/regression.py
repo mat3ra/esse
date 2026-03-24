@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Any, List, Optional, Union
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, ConfigDict, Field
 
 
 class Type(Enum):
@@ -92,11 +92,15 @@ class DataSet(BaseModel):
 
 
 class RegressionData(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
     perProperty: Optional[List[Union[LinearRegressionParametersSchema, KernelRidgeRegressionParametersSchema]]] = None
     dataSet: Optional[DataSet] = None
     """
     dataset for ml
     """
+    searchText: Optional[str] = None
 
 
 class LegacyMethodRegression(BaseModel):

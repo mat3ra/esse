@@ -1,0 +1,20 @@
+{
+    "$id": "models-directory/legacy/any",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Any model schema",
+    "type": "object",
+    "oneOf": [
+        {
+            "$ref": "../../models_directory/legacy/dft.json"
+        },
+        {
+            "$ref": "../../models_directory/legacy/ml.json"
+        },
+        {
+            "$ref": "../../models_directory/legacy/unknown.json"
+        }
+    ],
+    "discriminator": {
+        "propertyName": "type"
+    }
+}

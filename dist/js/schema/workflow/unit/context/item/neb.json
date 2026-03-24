@@ -1,0 +1,35 @@
+{
+    "$id": "workflow/unit/context/item/neb",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "neb context item schema",
+    "type": "object",
+    "required": [
+        "name",
+        "isEdited",
+        "data",
+        "extraData"
+    ],
+    "properties": {
+        "name": {
+            "type": "string",
+            "const": "neb"
+        },
+        "data": {
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "NEB Data Provider Schema",
+            "description": "Number of intermediate NEB images.",
+            "type": "object",
+            "properties": {
+                "nImages": {
+                    "type": "number"
+                }
+            }
+        },
+        "isEdited": {
+            "type": "boolean"
+        },
+        "extraData": {
+            "type": "object"
+        }
+    }
+}

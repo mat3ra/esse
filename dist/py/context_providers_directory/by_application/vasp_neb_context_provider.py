@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Literal
 
 from pydantic import BaseModel
 
@@ -21,4 +21,8 @@ class VASPNEBContextProviderSchema(BaseModel):
     INTERMEDIATE_IMAGES: List[str]
     """
     POSCAR contents with constraints for all intermediate NEB images.
+    """
+    contextProviderName: Literal["vasp-neb"]
+    """
+    Descriminator for AJV validator
     """

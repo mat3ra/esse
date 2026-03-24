@@ -7,7 +7,8 @@
     "required": [
         "FIRST_IMAGE",
         "LAST_IMAGE",
-        "INTERMEDIATE_IMAGES"
+        "INTERMEDIATE_IMAGES",
+        "contextProviderName"
     ],
     "properties": {
         "FIRST_IMAGE": {
@@ -24,6 +25,11 @@
             "items": {
                 "type": "string"
             }
+        },
+        "contextProviderName": {
+            "type": "string",
+            "const": "vasp-neb",
+            "description": "Descriminator for AJV validator"
         }
     }
 }
