@@ -4,5 +4,6 @@
     "name": "python",
     "shortName": "py",
     "summary": "Python Script",
-    "version": "2.7.5"
+    "version": "2.7.5",
+    "build": "GNU"
 }

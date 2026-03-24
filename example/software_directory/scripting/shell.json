@@ -4,5 +4,6 @@
     "name": "shell",
     "shortName": "sh",
     "summary": "Shell Script",
-    "version": "4.2.46"
+    "version": "4.2.46",
+    "build": "GNU"
 }

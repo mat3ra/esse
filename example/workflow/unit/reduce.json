@@ -12,5 +12,9 @@
     "mapFlowchartId": "1",
     "name": "reduce",
     "status": "idle",
-    "type": "reduce"
+    "type": "reduce",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }
