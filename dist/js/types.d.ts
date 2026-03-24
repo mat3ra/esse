@@ -51003,7 +51003,15 @@ export interface PropertyHolderSchema {
         units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
+        name: "homo_energy";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
         name: "ionization_potential";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
+        name: "lumo_energy";
         units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
