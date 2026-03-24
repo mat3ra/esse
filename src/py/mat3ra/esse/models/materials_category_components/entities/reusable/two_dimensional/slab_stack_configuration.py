@@ -615,6 +615,25 @@ class MaterialConsistencyCheckSchema(BaseModel):
     """
 
 
+class Type(Enum):
+    pbc = "pbc"
+    bc1 = "bc1"
+    bc2 = "bc2"
+    bc3 = "bc3"
+
+
+class BoundaryConditions(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions] = None
+
+
 class CrystalSchema(BaseModel):
     formula: Optional[str] = None
     """
@@ -648,7 +667,8 @@ class CrystalSchema(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema]] = None
-    id: Optional[str] = Field(None, alias="_id")
+    metadata: Optional[Metadata] = None
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -661,7 +681,7 @@ class CrystalSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -669,7 +689,6 @@ class CrystalSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class AtomicLayersUniqueRepeatedSchema(BaseModel):
@@ -1080,6 +1099,18 @@ class MaterialConsistencyCheckSchema70(BaseModel):
     """
 
 
+class BoundaryConditions69(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata69(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions69] = None
+
+
 class CrystalSchema65(BaseModel):
     formula: Optional[str] = None
     """
@@ -1113,7 +1144,8 @@ class CrystalSchema65(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema70]] = None
-    id: Optional[str] = Field(None, alias="_id")
+    metadata: Optional[Metadata69] = None
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1126,7 +1158,7 @@ class CrystalSchema65(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -1134,7 +1166,6 @@ class CrystalSchema65(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class VacuumConfigurationSchema(BaseModel):
@@ -1556,6 +1587,18 @@ class MaterialConsistencyCheckSchema71(BaseModel):
     """
 
 
+class BoundaryConditions70(BaseModel):
+    type: Optional[Type] = "pbc"
+    """
+    If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
+    """
+    offset: float
+
+
+class Metadata70(BaseModel):
+    boundaryConditions: Optional[BoundaryConditions70] = None
+
+
 class CrystalSchema66(BaseModel):
     formula: Optional[str] = None
     """
@@ -1589,7 +1632,8 @@ class CrystalSchema66(BaseModel):
     Whether to work in the finite molecular picture (usually with atomic orbital basis)
     """
     consistencyChecks: Optional[List[MaterialConsistencyCheckSchema71]] = None
-    id: Optional[str] = Field(None, alias="_id")
+    metadata: Optional[Metadata70] = None
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -1602,7 +1646,7 @@ class CrystalSchema66(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -1610,7 +1654,6 @@ class CrystalSchema66(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    metadata: Optional[Dict[str, Any]] = None
 
 
 class VacuumConfigurationSchema28(BaseModel):

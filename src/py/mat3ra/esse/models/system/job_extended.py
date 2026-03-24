@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 
 class EntityReferenceSchema(BaseModel):
-    id: str = Field(..., alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -27,8 +27,10 @@ class EntityReferenceSchema(BaseModel):
 class ExtendedJobSchema(BaseModel):
     mode: Optional[str] = None
     isExternal: Optional[bool] = None
-    materials: Optional[List[EntityReferenceSchema]] = Field(None, alias="_materials")
-    materialsSet: Optional[EntityReferenceSchema] = Field(None, alias="_materialsSet", title="entity reference schema")
+    field_materials: Optional[List[EntityReferenceSchema]] = Field(None, alias="_materials")
+    field_materialsSet: Optional[EntityReferenceSchema] = Field(
+        None, alias="_materialsSet", title="entity reference schema"
+    )
     purged: Optional[bool] = None
     purgedAt: Optional[float] = None
     dataset: Optional[Dict[str, Any]] = None

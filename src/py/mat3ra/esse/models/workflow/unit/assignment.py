@@ -5,9 +5,30 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import List, Literal, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
 
 
 class WorkflowUnitInputSchema(BaseModel):
@@ -21,59 +42,57 @@ class WorkflowUnitInputSchema(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["assignment"]
-    """
-    type of the unit
-    """
-    input: Optional[List[WorkflowUnitInputSchema]] = None
-    """
-    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-    """
-    operand: str
-    """
-    Name of the global variable. e.g. 'x'
-    """
-    value: Union[str, bool, float]
-    """
-    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
+    slug: Optional[str] = None
+    """
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
     name: str
     """
-    name of the unit. e.g. pw_scf
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["assignment"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -91,39 +110,16 @@ class AssignmentUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
     scope: Optional[str] = None
+    input: Optional[List[WorkflowUnitInputSchema]] = None
+    """
+    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
+    """
+    operand: str
+    """
+    Name of the global variable. e.g. 'x'
+    """
+    value: Union[str, bool, float]
+    """
+    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
+    """

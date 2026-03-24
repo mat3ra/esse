@@ -7,7 +7,7 @@ from __future__ import annotations
 from enum import Enum
 from typing import Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class Name(Enum):
@@ -33,40 +33,21 @@ class Exec(Enum):
 
 
 class ViennaAbInitoSimulationPackage(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    name: Optional[Name] = None
+    name: Name
     """
     entity name
     """
-    summary: Optional[Summary] = None
+    summary: Summary
     """
     Application's short description.
     """
     flavor: Optional[Flavor] = None
-    version: Optional[Version] = None
+    version: Version
     """
     Application version. e.g. 5.3.5
     """
     exec: Optional[Exec] = None
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -82,4 +63,20 @@ class ViennaAbInitoSimulationPackage(BaseModel):
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
+    """
+    shortName: str
+    """
+    The short name of the application. e.g. qe
+    """
+    build: str
+    """
+    Application build. e.g. VTST
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
+    """
+    isLicensed: Optional[bool] = None
+    """
+    Whether licensing is present
     """

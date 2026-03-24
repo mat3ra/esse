@@ -175,7 +175,7 @@ class ComputeArgumentsSchema(BaseModel):
 
 
 class EntityReferenceSchema(BaseModel):
-    id: str = Field(..., alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     entity identity
     """
@@ -220,8 +220,8 @@ class JobBaseSchema(BaseModel):
     """
     Custom keywords prefixed with validate correspond to custom validation methods implemented downstream
     """
-    project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
-    material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
+    field_project: EntityReferenceSchema = Field(..., alias="_project", title="entity reference schema")
+    field_material: Optional[EntityReferenceSchema] = Field(None, alias="_material", title="entity reference schema")
     parent: Optional[EntityReferenceSchema] = Field(None, title="entity reference schema")
     runtimeContext: Optional[Dict[str, Any]] = None
     """
@@ -231,7 +231,7 @@ class JobBaseSchema(BaseModel):
     """
     history of the workflow scope on each update
     """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -244,7 +244,7 @@ class JobBaseSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

@@ -4,9 +4,16 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
@@ -21,34 +28,8 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
     """
 
 
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class FlavorSchema(BaseModel):
-    executableId: Optional[str] = None
-    """
-    _id of the executable this flavor belongs to
-    """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
-    )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -61,7 +42,7 @@ class FlavorSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
@@ -69,19 +50,38 @@ class FlavorSchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
+    """
+    executableId: str
+    """
+    _id of the executable this flavor belongs to
+    """
+    executableName: Optional[str] = None
+    """
+    name of the executable this flavor belongs to
+    """
+    applicationName: Optional[str] = None
+    """
+    name of the application this flavor belongs to
+    """
+    input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
+        ..., title="execution unit input schema"
+    )
+    supportedApplicationVersions: Optional[List[str]] = None
+    """
+    list of application versions this flavor supports
     """

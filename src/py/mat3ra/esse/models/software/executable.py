@@ -4,12 +4,12 @@
 
 from __future__ import annotations
 
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
 
-class NameResultSchema(BaseModel):
+class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
     The name of this item. e.g. scf_accuracy
@@ -17,19 +17,7 @@ class NameResultSchema(BaseModel):
 
 
 class ExecutableSchema(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
-    """
-    _ids of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -42,23 +30,35 @@ class ExecutableSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
+    name: str
+    """
+    entity name
+    """
     isDefault: Optional[bool] = False
     """
     Identifies that entity is defaultable
     """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    preProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the pre-processors for this calculation
     """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
+    postProcessors: List[RuntimeItemNameObjectSchema]
     """
     names of the post-processors for this calculation
     """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
+    monitors: List[RuntimeItemNameObjectSchema]
     """
     names of the monitors for this calculation
     """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
+    results: List[RuntimeItemNameObjectSchema]
     """
     names of the results for this calculation
+    """
+    applicationId: List[str]
+    """
+    _ids of the application this executable belongs to
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
+    """
+    Whether advanced compute options are present
     """

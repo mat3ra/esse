@@ -21,7 +21,7 @@ class Probe(Enum):
 
 
 class Entity(BaseModel):
-    id: str = Field(..., alias="_id")
+    field_id: str = Field(..., alias="_id")
     """
     job identifier
     """

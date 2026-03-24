@@ -10,7 +10,7 @@ from pydantic import BaseModel, Field
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -23,7 +23,7 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """

@@ -5,9 +5,30 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import Any, Dict, List, Literal, Optional, Union
+from typing import List, Literal, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
+    """
+    The name of this item. e.g. scf_accuracy
+    """
+
+
+class Status(Enum):
+    idle = "idle"
+    active = "active"
+    warning = "warning"
+    error = "error"
+    finished = "finished"
+
+
+class StatusTrackItem(BaseModel):
+    trackedAt: float
+    status: str
+    repetition: Optional[float] = None
 
 
 class InputItem(BaseModel):
@@ -21,55 +42,57 @@ class InputItem(BaseModel):
     """
 
 
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class NameResultSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
 class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["reduce"]
-    """
-    type of the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
+    slug: Optional[str] = None
     """
-    name of the unit. e.g. pw_scf
+    entity slug
+    """
+    systemName: Optional[str] = None
+    schemaVersion: Optional[str] = "2022.8.16"
+    """
+    entity's schema version. Used to distinct between different schemas.
+    """
+    name: str
+    """
+    entity name
+    """
+    isDefault: Optional[bool] = False
+    """
+    Identifies that entity is defaultable
+    """
+    preProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the pre-processors for this calculation
+    """
+    postProcessors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the post-processors for this calculation
+    """
+    monitors: List[RuntimeItemNameObjectSchema]
+    """
+    names of the monitors for this calculation
+    """
+    results: List[RuntimeItemNameObjectSchema]
+    """
+    names of the results for this calculation
+    """
+    tags: Optional[List[str]] = None
+    """
+    entity tags
     """
     status: Optional[Status] = None
     """
     Status of the unit.
+    """
+    statusTrack: Optional[List[StatusTrackItem]] = None
+    isDraft: Optional[bool] = None
+    type: Literal["reduce"]
+    """
+    type of the unit
     """
     head: Optional[bool] = None
     """
@@ -87,38 +110,11 @@ class ReduceUnitSchema(BaseModel):
     """
     Whether Rupy should attempt to use Jinja templating to add context variables into the unit
     """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
+    mapFlowchartId: str
     """
-    entity slug
+    corresponding map unit flowchart ID
     """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
+    input: List[InputItem]
     """
-    entity's schema version. Used to distinct between different schemas.
+    input information for reduce unit
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None

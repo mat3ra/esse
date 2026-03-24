@@ -22,7 +22,7 @@ class BaseWorkflowSchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
-    id: Optional[str] = Field(None, alias="_id")
+    field_id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
     """
@@ -35,7 +35,7 @@ class BaseWorkflowSchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    name: Optional[str] = None
+    name: str
     """
     entity name
     """
