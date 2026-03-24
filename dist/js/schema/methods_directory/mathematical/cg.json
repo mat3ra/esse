@@ -5,7 +5,8 @@
     "description": "conjugate gradient method schema",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "properties": {
         "categories": {

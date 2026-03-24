@@ -4,7 +4,8 @@
     "title": "unit method tetrahedron",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "properties": {
         "categories": {

@@ -4,6 +4,11 @@
     "title": "Points Grid Data Provider Schema",
     "description": "3D grid with shifts for k-point or q-point sampling.",
     "type": "object",
+    "required": [
+        "dimensions",
+        "gridMetricType",
+        "gridMetricValue"
+    ],
     "properties": {
         "dimensions": {
             "type": "array",

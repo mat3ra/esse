@@ -3,6 +3,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "base workflow schema",
     "type": "object",
+    "required": [
+        "name"
+    ],
     "properties": {
         "properties": {
             "description": "Array of characteristic properties calculated by this workflow (TODO: add enums)",

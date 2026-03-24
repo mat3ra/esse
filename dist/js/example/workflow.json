@@ -28,6 +28,7 @@
                 "shortName": "qe",
                 "summary": "Quantum Espresso",
                 "version": "5.1.1",
+                "build": "GNU",
                 "hasAdvancedComputeOptions": true
             },
             "model": {
@@ -52,6 +53,7 @@
                         "shortName": "qe",
                         "summary": "Quantum Espresso",
                         "version": "5.1.1",
+                        "build": "GNU",
                         "hasAdvancedComputeOptions": true
                     },
                     "compute": null,
@@ -82,14 +84,32 @@
                                 "templateId": "dJ7HYz5pQ4AuN5qc9"
                             }
                         ],
-                        "name": "pw_scf"
+                        "name": "pw_scf",
+                        "postProcessors": [],
+                        "preProcessors": [],
+                        "monitors": [],
+                        "results": []
                     },
                     "flowchartId": "execution",
                     "head": true,
                     "input": [
                         {
-                            "content": "K_POINTS automatic\n2 2 2 0 0 0",
-                            "name": "pw_scf.in"
+                            "template": {
+                                "applicationName": "espresso",
+                                "applicationVersions": [
+                                    "6.0"
+                                ],
+                                "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
+                                "contextProviders": [
+                                    {
+                                        "name": "KGridManagerMixin"
+                                    }
+                                ],
+                                "executableName": "pw.x",
+                                "name": "kpoints_grid"
+                            },
+                            "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
+                            "isManuallyChanged": false
                         }
                     ],
                     "monitors": [
@@ -123,7 +143,11 @@
             "_id": "LCthJ6E2QabYCZqf4",
             "flowchartId": "05c362dc27ff1bb98d16fd60",
             "type": "subworkflow",
-            "name": "subworkflow unit"
+            "name": "subworkflow unit",
+            "preProcessors": [],
+            "postProcessors": [],
+            "monitors": [],
+            "results": []
         }
     ]
 }

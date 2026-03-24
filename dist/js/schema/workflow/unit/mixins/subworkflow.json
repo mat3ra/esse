@@ -1,0 +1,11 @@
+{
+    "$id": "workflow/unit/mixins/subworkflow",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "subworkflow unit mixin schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "subworkflow"
+        }
+    }
+}

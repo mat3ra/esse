@@ -4,9 +4,10 @@
     "title": "job base schema",
     "type": "object",
     "required": [
-        "status",
+        "_project",
         "compute",
-        "_project"
+        "name",
+        "status"
     ],
     "properties": {
         "rmsId": {

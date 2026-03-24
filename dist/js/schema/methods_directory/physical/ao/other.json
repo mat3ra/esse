@@ -5,7 +5,8 @@
     "description": "Other (neither Pople nor Dunning) basis set unit method",
     "type": "object",
     "required": [
-        "categories"
+        "categories",
+        "name"
     ],
     "definitions": {
         "ao-basis-other": {
