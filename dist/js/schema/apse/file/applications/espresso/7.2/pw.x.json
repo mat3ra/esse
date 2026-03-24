@@ -1325,6 +1325,11 @@
                     "type": "array",
                     "items": {
                         "type": "object",
+                        "required": [
+                            "X",
+                            "Mass_X",
+                            "PseudoPot_X"
+                        ],
                         "additionalProperties": false,
                         "properties": {
                             "X": {

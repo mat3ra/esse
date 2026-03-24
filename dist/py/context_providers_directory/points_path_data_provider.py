@@ -4,13 +4,13 @@
 
 from __future__ import annotations
 
-from typing import List
+from typing import List, Optional
 
 from pydantic import BaseModel, Field, RootModel
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: str
+    point: Optional[str] = None
     steps: int
     coordinates: List[float]
 

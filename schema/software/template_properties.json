@@ -17,7 +17,16 @@
             "type": "array",
             "items": {
                 "description": "render context provider names",
-                "$ref": "../system/runtime_item.json"
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "tsType": "ContextProviderNameEnum"
+                    }
+                },
+                "required": [
+                    "name"
+                ]
             }
         },
         "content": {

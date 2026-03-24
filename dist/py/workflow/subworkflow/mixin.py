@@ -784,6 +784,10 @@ class FlavorSchema(BaseModel):
     """
 
 
+class ContextProvider(BaseModel):
+    name: str
+
+
 class TemplateSchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -805,7 +809,7 @@ class TemplateSchema(BaseModel):
     applicationName: str
     applicationVersion: Optional[str] = None
     executableName: str
-    contextProviders: List[RuntimeItemNameObjectSchema]
+    contextProviders: List[ContextProvider]
     content: str
     """
     Content of the template. e.g. &CONTROL    calculation='scf' ...
