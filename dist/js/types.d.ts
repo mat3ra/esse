@@ -46913,7 +46913,7 @@ export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyEnum = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "NonScalarPropertyEnum".
@@ -50287,9 +50287,21 @@ export interface FormationEnergyPropertySchema {
     units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/scalar/homo_energy.json */
+export interface HOMOEnergyPropertySchema {
+    name: "homo_energy";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
 /** Schema dist/js/schema/properties_directory/scalar/ionization_potential.json */
 export interface IonizationPotentialScalarPropertySchema {
     name: "ionization_potential";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
+/** Schema dist/js/schema/properties_directory/scalar/lumo_energy.json */
+export interface LUMOEnergyPropertySchema {
+    name: "lumo_energy";
     units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
