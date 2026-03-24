@@ -6,7 +6,6 @@
     "type": "object",
     "properties": {
         "queue": {
-            "description": "Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.",
             "type": "string",
             "enum": [
                 "D",
