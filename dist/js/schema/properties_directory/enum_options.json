@@ -22,7 +22,9 @@
             "type": "string",
             "enum": [
                 "fermi_energy",
+                "homo_energy",
                 "ionization_potential",
+                "lumo_energy",
                 "pressure",
                 "reaction_energy_barrier",
                 "surface_energy",
