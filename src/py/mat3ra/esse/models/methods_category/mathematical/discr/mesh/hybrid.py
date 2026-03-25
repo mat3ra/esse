@@ -25,11 +25,11 @@ class SlugifiedEntryOrSlug(Enum):
     hybrid = "hybrid"
 
 
-class SlugifiedEntryOrSlug111(Enum):
+class SlugifiedEntryOrSlug106(Enum):
     mesh = "mesh"
 
 
-class SlugifiedEntryOrSlug112(Enum):
+class SlugifiedEntryOrSlug107(Enum):
     discr = "discr"
 
 
@@ -38,11 +38,11 @@ class HybridMeshingCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug111]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug106]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug112]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug107]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """

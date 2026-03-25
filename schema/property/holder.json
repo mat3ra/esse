@@ -43,7 +43,13 @@
                     "$ref": "../properties_directory/scalar/fermi_energy.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/homo_energy.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/ionization_potential.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/lumo_energy.json"
                 },
                 {
                     "$ref": "../properties_directory/non-scalar/stress_tensor.json"

@@ -35,6 +35,18 @@ fermi_energy:
   schemaId: properties-directory/scalar/fermi-energy
   isResult: true
 
+homo_energy:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/homo-energy
+  isResult: true
+
+lumo_energy:
+  defaults:
+    units: eV
+  schemaId: properties-directory/scalar/lumo-energy
+  isResult: true
+
 total_force:
   defaults:
     units: eV/angstrom

@@ -25,19 +25,19 @@ class SlugifiedEntryOrSlug(Enum):
     lda = "lda"
 
 
-class SlugifiedEntryOrSlug129(Enum):
+class SlugifiedEntryOrSlug124(Enum):
     ksdft = "ksdft"
 
 
-class SlugifiedEntryOrSlug130(Enum):
+class SlugifiedEntryOrSlug125(Enum):
     dft = "dft"
 
 
-class SlugifiedEntryOrSlug131(Enum):
+class SlugifiedEntryOrSlug126(Enum):
     qm = "qm"
 
 
-class SlugifiedEntryOrSlug132(Enum):
+class SlugifiedEntryOrSlug127(Enum):
     pb = "pb"
 
 
@@ -46,19 +46,19 @@ class DFTLDAFunctionalCategorySchema(BaseModel):
     """
     contains either object with slugified entry or slug only as a string
     """
-    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug129]] = Field(None, title="slugified entry or slug")
+    type: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug124]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug130]] = Field(None, title="slugified entry or slug")
+    tier3: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug125]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug131]] = Field(None, title="slugified entry or slug")
+    tier2: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug126]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
-    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug132]] = Field(None, title="slugified entry or slug")
+    tier1: Optional[Union[SlugifiedEntry, SlugifiedEntryOrSlug127]] = Field(None, title="slugified entry or slug")
     """
     contains either object with slugified entry or slug only as a string
     """
