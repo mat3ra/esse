@@ -1042,7 +1042,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name818(Enum):
+class Name823(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1063,7 +1063,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name818
+    name: Name823
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -1072,7 +1072,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name819(Enum):
+class Name824(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1087,7 +1087,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name819
+    name: Name824
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.

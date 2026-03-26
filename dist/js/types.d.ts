@@ -47586,7 +47586,7 @@ export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyEnum = "fermi_energy" | "ionization_potential" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "NonScalarPropertyEnum".
@@ -50409,9 +50409,21 @@ export interface FormationEnergyPropertySchema {
     units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
+/** Schema dist/js/schema/properties_directory/scalar/homo_energy.json */
+export interface HOMOEnergyPropertySchema {
+    name: "homo_energy";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
 /** Schema dist/js/schema/properties_directory/scalar/ionization_potential.json */
 export interface IonizationPotentialScalarPropertySchema {
     name: "ionization_potential";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    value: number;
+}
+/** Schema dist/js/schema/properties_directory/scalar/lumo_energy.json */
+export interface LUMOEnergyPropertySchema {
+    name: "lumo_energy";
     units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
@@ -51113,7 +51125,15 @@ export interface PropertyHolderSchema {
         units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
+        name: "homo_energy";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
         name: "ionization_potential";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        value: number;
+    } | {
+        name: "lumo_energy";
         units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
@@ -54689,6 +54709,55 @@ export interface EspressoAppSchema {
     name?: "espresso";
     summary?: "Quantum Espresso";
     version?: "5.2.1" | "5.4.0" | "6.0.0" | "6.3" | "6.4.1" | "6.5.0" | "6.6.0" | "6.7.0" | "6.8.0" | "7.0" | "7.2" | "7.3";
+}
+/** Schema dist/js/schema/software_directory/modeling/lammps.json */
+export interface LAMMPS {
+    /**
+     * entity name
+     */
+    name: "lammps";
+    /**
+     * Application's short description.
+     */
+    summary: "LAMMPS";
+    /**
+     * Application version. e.g. 5.3.5
+     */
+    version: "2025.07.22.2";
+    /**
+     * Application build. e.g. VTST
+     */
+    build: "GNU" | "Intel" | "CUDA";
+    exec?: "lmp";
+    /**
+     * entity identity
+     */
+    _id?: string;
+    /**
+     * entity slug
+     */
+    slug?: string;
+    systemName?: string;
+    /**
+     * entity's schema version. Used to distinct between different schemas.
+     */
+    schemaVersion?: string;
+    /**
+     * Identifies that entity is defaultable
+     */
+    isDefault?: boolean;
+    /**
+     * The short name of the application. e.g. qe
+     */
+    shortName: string;
+    /**
+     * Whether advanced compute options are present
+     */
+    hasAdvancedComputeOptions?: boolean;
+    /**
+     * Whether licensing is present
+     */
+    isLicensed?: boolean;
 }
 /** Schema dist/js/schema/software_directory/modeling/nwchem.json */
 export interface NWChem {

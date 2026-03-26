@@ -923,7 +923,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name785(Enum):
+class Name790(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -938,7 +938,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name785
+    name: Name790
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
