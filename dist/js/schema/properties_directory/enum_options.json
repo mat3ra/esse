@@ -22,12 +22,14 @@
             "type": "string",
             "enum": [
                 "fermi_energy",
+                "heat_capacity_cv",
                 "homo_energy",
                 "ionization_potential",
                 "lumo_energy",
                 "pressure",
                 "reaction_energy_barrier",
                 "surface_energy",
+                "total_entropy",
                 "total_energy",
                 "total_force",
                 "valence_band_offset",
@@ -71,6 +73,9 @@
         "ObjectPropertyEnum": {
             "type": "string",
             "enum": [
+                "heat_capacity_cv_contributions",
+                "thermal_corrections",
+                "total_entropy_contributions",
                 "total_energy_contributions"
             ]
         },

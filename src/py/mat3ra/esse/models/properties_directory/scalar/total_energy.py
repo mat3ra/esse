@@ -15,6 +15,7 @@ class Name(Enum):
 
 
 class Units(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -24,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units332(Enum):
+class Units340(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class TotalEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units332]
+    units: Union[Units, Units340]
     value: float

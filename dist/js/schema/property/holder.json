@@ -38,6 +38,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -79,6 +80,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -147,6 +149,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -188,6 +191,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -202,6 +206,56 @@
                                         "eV/A^2"
                                     ]
                                 }
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Total entropy property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "total_entropy"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "cal/mol-K"
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Heat capacity Cv property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "heat_capacity_cv"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "cal/mol-K"
                             ]
                         },
                         "value": {
@@ -229,6 +283,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -300,6 +355,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -341,6 +397,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -382,6 +439,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -423,6 +481,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -548,6 +607,7 @@
                                     },
                                     "units": {
                                         "enum": [
+                                            "kcal/mol",
                                             "kJ/mol",
                                             "eV",
                                             "J/mol",
@@ -664,6 +724,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1102,6 +1163,7 @@
                         },
                         "units": {
                             "enum": [
+                                "kcal/mol",
                                 "kJ/mol",
                                 "eV",
                                 "J/mol",
@@ -1109,6 +1171,225 @@
                                 "cm-1",
                                 "Ry",
                                 "eV/atom"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thermal corrections property schema",
+                    "type": "object",
+                    "properties": {
+                        "to_energy": {
+                            "description": "thermal correction to energy",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "to_energy"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "to_enthalpy": {
+                            "description": "thermal correction to enthalpy",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "to_enthalpy"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "name": {
+                            "enum": [
+                                "thermal_corrections"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "kcal/mol",
+                                "kJ/mol",
+                                "eV",
+                                "J/mol",
+                                "hartree",
+                                "cm-1",
+                                "Ry",
+                                "eV/atom"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Total entropy contributions property schema",
+                    "type": "object",
+                    "properties": {
+                        "translational": {
+                            "description": "translational contribution to entropy",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "translational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "rotational": {
+                            "description": "rotational contribution to entropy",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "rotational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "vibrational": {
+                            "description": "vibrational contribution to entropy",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "vibrational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "name": {
+                            "enum": [
+                                "total_entropy_contributions"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "cal/mol-K"
+                            ]
+                        }
+                    },
+                    "required": [
+                        "name"
+                    ]
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Heat capacity Cv contributions property schema",
+                    "type": "object",
+                    "properties": {
+                        "translational": {
+                            "description": "translational contribution to heat capacity Cv",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "translational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "rotational": {
+                            "description": "rotational contribution to heat capacity Cv",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "rotational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "vibrational": {
+                            "description": "vibrational contribution to heat capacity Cv",
+                            "type": "object",
+                            "$schema": "http://json-schema.org/draft-07/schema#",
+                            "title": "scalar schema",
+                            "required": [
+                                "value"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "enum": [
+                                        "vibrational"
+                                    ]
+                                },
+                                "value": {
+                                    "type": "number"
+                                }
+                            }
+                        },
+                        "name": {
+                            "enum": [
+                                "heat_capacity_cv_contributions"
+                            ]
+                        },
+                        "units": {
+                            "enum": [
+                                "cal/mol-K"
                             ]
                         }
                     },
@@ -1266,6 +1547,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1455,6 +1737,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1534,6 +1817,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -2037,6 +2321,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",

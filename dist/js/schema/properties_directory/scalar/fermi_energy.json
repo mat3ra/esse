@@ -19,6 +19,7 @@
             "oneOf": [
                 {
                     "enum": [
+                        "kcal/mol",
                         "kJ/mol",
                         "eV",
                         "J/mol",

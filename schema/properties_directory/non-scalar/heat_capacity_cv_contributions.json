@@ -1,0 +1,67 @@
+{
+    "$id": "properties-directory/non-scalar/heat-capacity-cv-contributions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Heat capacity Cv contributions property schema",
+    "type": "object",
+    "properties": {
+        "translational": {
+            "description": "translational contribution to heat capacity Cv",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "translational"
+                    ]
+                }
+            }
+        },
+        "rotational": {
+            "description": "rotational contribution to heat capacity Cv",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "rotational"
+                    ]
+                }
+            }
+        },
+        "vibrational": {
+            "description": "vibrational contribution to heat capacity Cv",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "vibrational"
+                    ]
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "heat_capacity_cv_contributions"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/heatCapacity"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

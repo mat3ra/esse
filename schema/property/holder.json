@@ -34,6 +34,12 @@
                     "$ref": "../properties_directory/scalar/surface_energy.json"
                 },
                 {
+                    "$ref": "../properties_directory/scalar/total_entropy.json"
+                },
+                {
+                    "$ref": "../properties_directory/scalar/heat_capacity_cv.json"
+                },
+                {
                     "$ref": "../properties_directory/scalar/total_energy.json"
                 },
                 {
@@ -65,6 +71,15 @@
                 },
                 {
                     "$ref": "../properties_directory/non-scalar/total_energy_contributions.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/thermal_corrections.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/total_entropy_contributions.json"
+                },
+                {
+                    "$ref": "../properties_directory/non-scalar/heat_capacity_cv_contributions.json"
                 },
                 {
                     "$ref": "../properties_directory/non-scalar/phonon_dos.json"
