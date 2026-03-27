@@ -45,6 +45,7 @@
     },
     "energy": {
         "enum": [
+            "kcal/mol",
             "kJ/mol",
             "eV",
             "J/mol",
@@ -104,6 +105,16 @@
         "enum": [
             "kbar",
             "pa"
+        ]
+    },
+    "entropy": {
+        "enum": [
+            "cal/mol-K"
+        ]
+    },
+    "heatCapacity": {
+        "enum": [
+            "cal/mol-K"
         ]
     },
     "phononDOS": {

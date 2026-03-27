@@ -1,0 +1,51 @@
+{
+    "$id": "properties-directory/non-scalar/thermal-corrections",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Thermal corrections property schema",
+    "type": "object",
+    "properties": {
+        "to_energy": {
+            "description": "thermal correction to energy",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "to_energy"
+                    ]
+                }
+            }
+        },
+        "to_enthalpy": {
+            "description": "thermal correction to enthalpy",
+            "type": "object",
+            "allOf": [
+                {
+                    "$ref": "../../core/primitive/scalar.json"
+                }
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "to_enthalpy"
+                    ]
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "thermal_corrections"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/energy"
+        }
+    },
+    "required": [
+        "name"
+    ]
+}

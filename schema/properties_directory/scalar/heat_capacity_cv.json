@@ -1,0 +1,25 @@
+{
+    "$id": "properties-directory/scalar/heat-capacity-cv",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Heat capacity Cv property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/primitive/scalar.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "heat_capacity_cv"
+            ]
+        },
+        "units": {
+            "$ref": "../../definitions/units.json#/heatCapacity"
+        }
+    },
+    "required": [
+        "name",
+        "units"
+    ]
+}
