@@ -35,6 +35,8 @@ class ScalarPropertyEnum(Enum):
     pressure = "pressure"
     reaction_energy_barrier = "reaction_energy_barrier"
     surface_energy = "surface_energy"
+    thermal_correction_to_energy = "thermal_correction_to_energy"
+    thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
     total_energy = "total_energy"
     total_force = "total_force"
     valence_band_offset = "valence_band_offset"
