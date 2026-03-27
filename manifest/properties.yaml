@@ -59,6 +59,18 @@ zero_point_energy:
   schemaId: properties-directory/scalar/zero-point-energy
   isResult: true
 
+total_entropy:
+  defaults:
+    units: cal/mol-K
+  schemaId: properties-directory/scalar/total-entropy
+  isResult: true
+
+heat_capacity_cv:
+  defaults:
+    units: cal/mol-K
+  schemaId: properties-directory/scalar/heat-capacity-cv
+  isResult: true
+
 reaction_energy_barrier:
   defaults:
     units: eV
@@ -109,6 +121,24 @@ total_energy_contributions:
   defaults:
     units: eV
   schemaId: properties-directory/non-scalar/total-energy-contributions
+  isResult: true
+
+thermal_corrections:
+  defaults:
+    units: kcal/mol
+  schemaId: properties-directory/non-scalar/thermal-corrections
+  isResult: true
+
+total_entropy_contributions:
+  defaults:
+    units: cal/mol-K
+  schemaId: properties-directory/non-scalar/total-entropy-contributions
+  isResult: true
+
+heat_capacity_cv_contributions:
+  defaults:
+    units: cal/mol-K
+  schemaId: properties-directory/non-scalar/heat-capacity-cv-contributions
   isResult: true
 
 band_gaps:

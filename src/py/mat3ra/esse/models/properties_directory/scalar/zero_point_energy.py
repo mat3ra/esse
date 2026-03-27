@@ -15,6 +15,7 @@ class Name(Enum):
 
 
 class Units(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -24,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units350(Enum):
+class Units360(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class ZeroPointEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units350]
+    units: Union[Units, Units360]
     value: float

@@ -1,0 +1,78 @@
+{
+    "$id": "properties-directory/non-scalar/total-entropy-contributions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Total entropy contributions property schema",
+    "type": "object",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "translational": {
+            "description": "translational contribution to entropy",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "translational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "rotational": {
+            "description": "rotational contribution to entropy",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "rotational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "vibrational": {
+            "description": "vibrational contribution to entropy",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "vibrational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "total_entropy_contributions"
+            ]
+        },
+        "units": {
+            "enum": [
+                "cal/mol-K"
+            ]
+        }
+    }
+}

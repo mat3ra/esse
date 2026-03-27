@@ -1,0 +1,78 @@
+{
+    "$id": "properties-directory/non-scalar/heat-capacity-cv-contributions",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Heat capacity Cv contributions property schema",
+    "type": "object",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "translational": {
+            "description": "translational contribution to heat capacity Cv",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "translational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "rotational": {
+            "description": "rotational contribution to heat capacity Cv",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "rotational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "vibrational": {
+            "description": "vibrational contribution to heat capacity Cv",
+            "type": "object",
+            "$schema": "http://json-schema.org/draft-07/schema#",
+            "title": "scalar schema",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "name": {
+                    "enum": [
+                        "vibrational"
+                    ]
+                },
+                "value": {
+                    "type": "number"
+                }
+            }
+        },
+        "name": {
+            "enum": [
+                "heat_capacity_cv_contributions"
+            ]
+        },
+        "units": {
+            "enum": [
+                "cal/mol-K"
+            ]
+        }
+    }
+}

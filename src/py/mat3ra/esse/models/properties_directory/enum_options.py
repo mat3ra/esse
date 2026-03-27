@@ -29,12 +29,14 @@ class PropertyType(Enum):
 
 class ScalarPropertyEnum(Enum):
     fermi_energy = "fermi_energy"
+    heat_capacity_cv = "heat_capacity_cv"
     homo_energy = "homo_energy"
     ionization_potential = "ionization_potential"
     lumo_energy = "lumo_energy"
     pressure = "pressure"
     reaction_energy_barrier = "reaction_energy_barrier"
     surface_energy = "surface_energy"
+    total_entropy = "total_entropy"
     total_energy = "total_energy"
     total_force = "total_force"
     valence_band_offset = "valence_band_offset"
@@ -72,6 +74,9 @@ class TensorPropertyEnum(Enum):
 
 
 class ObjectPropertyEnum(Enum):
+    heat_capacity_cv_contributions = "heat_capacity_cv_contributions"
+    thermal_corrections = "thermal_corrections"
+    total_entropy_contributions = "total_entropy_contributions"
     total_energy_contributions = "total_energy_contributions"
 
 
