@@ -18,25 +18,6 @@
                 },
                 {
                     "$ref": "../../../software/executable_properties.json"
-                },
-                {
-                    "type": "object",
-                    "properties": {
-                        "preProcessors": {
-                            "$ref": "../../../system/runtime_items.json#/properties/preProcessors"
-                        },
-                        "postProcessors": {
-                            "$ref": "../../../system/runtime_items.json#/properties/postProcessors"
-                        },
-                        "monitors": {
-                            "$ref": "../../../system/runtime_items.json#/properties/monitors"
-                        }
-                    },
-                    "required": [
-                        "preProcessors",
-                        "postProcessors",
-                        "monitors"
-                    ]
                 }
             ]
         },

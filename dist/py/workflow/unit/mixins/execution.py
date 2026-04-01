@@ -58,13 +58,6 @@ class ApplicationSchema(BaseModel):
     """
 
 
-class RuntimeItemNameObjectSchema(BaseModel):
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
     id: Optional[str] = Field(None, alias="_id")
     """
@@ -95,17 +88,12 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     Whether advanced compute options are present
     """
-    preProcessors: List[RuntimeItemNameObjectSchema]
+
+
+class RuntimeItemNameObjectSchema(BaseModel):
+    name: str
     """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
+    The name of this item. e.g. scf_accuracy
     """
 
 
