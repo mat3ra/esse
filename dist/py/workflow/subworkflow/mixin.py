@@ -1711,7 +1711,3 @@ class SubworkflowMixinSchema(BaseModel):
     """
     Defines whether to store the results/properties extracted in this unit to properties collection
     """
-    systemName: Optional[str] = None
-    """
-    system name of the subworkflow
-    """

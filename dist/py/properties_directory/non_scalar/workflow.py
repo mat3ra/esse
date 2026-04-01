@@ -1703,9 +1703,6 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    """
-    system name of the subworkflow
-    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
