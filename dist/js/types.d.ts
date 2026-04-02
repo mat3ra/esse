@@ -56785,7 +56785,7 @@ export interface CreatorEntityReferenceSchema {
     /**
      * Creator class
      */
-    cls?: "User";
+    cls: "User";
     /**
      * entity identity
      */
@@ -56797,7 +56797,7 @@ export interface CreatorEntityReferenceSchema {
 }
 /** Schema dist/js/schema/system/creator_account.json */
 export interface CreatorAccountSchema {
-    creatorAccount?: {
+    creatorAccount: {
         /**
          * entity identity
          */
@@ -56954,7 +56954,7 @@ export declare enum Action {
 }
 /** Schema dist/js/schema/system/in_set.json */
 export interface SystemInSetSchema {
-    inSet?: {
+    inSet: {
         /**
          * entity identity
          */
@@ -57069,7 +57069,7 @@ export interface EntityOwnerReferenceSchema {
     /**
      * Entity owner class
      */
-    cls?: "Account";
+    cls: "Account";
     /**
      * entity identity
      */

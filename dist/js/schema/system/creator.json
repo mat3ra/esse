@@ -4,7 +4,8 @@
     "title": "Creator entity reference schema",
     "type": "object",
     "required": [
-        "_id"
+        "_id",
+        "cls"
     ],
     "properties": {
         "cls": {
