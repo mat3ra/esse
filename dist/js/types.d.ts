@@ -56752,11 +56752,11 @@ export interface BankableSchema {
     /**
      * Identity of the corresponding bank entity
      */
-    exabyteId?: string;
+    exabyteId: string;
     /**
      * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
      */
-    hash?: string;
+    hash: string;
 }
 /** Schema dist/js/schema/system/consistency_check.json */
 /**
