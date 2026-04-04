@@ -56732,6 +56732,19 @@ export interface WorkflowScopeSchema {
         [k: string]: unknown;
     };
 }
+/** Schema dist/js/schema/workflow/subworkflow/convergence/enum_options.json */
+export interface WorkflowSubworkflowConvergenceEnumOptions {
+    [k: string]: unknown;
+}
+/**
+ * This interface was referenced by `WorkflowSubworkflowConvergenceEnumOptions`'s JSON-Schema
+ * via the `definition` "ConvergenceParameterNameEnum".
+ */
+export declare enum ConvergenceParameterNameEnum {
+    N_k = "N_k",
+    N_k_nonuniform = "N_k_nonuniform",
+    N_k_nonuniform_2D = "N_k_nonuniform_2D"
+}
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
     /**
