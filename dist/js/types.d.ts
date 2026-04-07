@@ -5852,10 +5852,6 @@ export interface JobSchema {
          * entity name
          */
         name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -48267,10 +48263,6 @@ export interface WorkflowPropertySchema {
      * entity's schema version. Used to distinct between different schemas.
      */
     schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -51654,10 +51646,6 @@ export interface PropertyHolderSchema {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -68708,10 +68696,6 @@ export interface WorkflowSchema {
      * entity name
      */
     name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)

@@ -3205,10 +3205,6 @@ class WorkflowPropertySchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
     metadata: Optional[Dict[str, Any]] = None
     properties: List[str]
     """

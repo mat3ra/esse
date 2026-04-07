@@ -2022,10 +2022,6 @@ class WorkflowSchema(BaseModel):
     """
     entity name
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
     metadata: Optional[Dict[str, Any]] = None
     properties: List[str]
     """

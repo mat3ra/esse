@@ -50,11 +50,6 @@
                     "description": "entity name",
                     "type": "string"
                 },
-                "isDefault": {
-                    "description": "Identifies that entity is defaultable",
-                    "type": "boolean",
-                    "default": false
-                },
                 "metadata": {
                     "type": "object"
                 },
