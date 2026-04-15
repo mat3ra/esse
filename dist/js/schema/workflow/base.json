@@ -2252,12 +2252,24 @@
                                                                 ],
                                                                 "properties": {
                                                                     "dimensions": {
-                                                                        "type": "array",
-                                                                        "minItems": 3,
-                                                                        "maxItems": 3,
-                                                                        "items": {
-                                                                            "type": "string"
-                                                                        }
+                                                                        "oneOf": [
+                                                                            {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "type": "number"
+                                                                                },
+                                                                                "minItems": 3,
+                                                                                "maxItems": 3
+                                                                            },
+                                                                            {
+                                                                                "type": "array",
+                                                                                "items": {
+                                                                                    "type": "string"
+                                                                                },
+                                                                                "minItems": 3,
+                                                                                "maxItems": 3
+                                                                            }
+                                                                        ]
                                                                     },
                                                                     "shifts": {
                                                                         "type": "array",
