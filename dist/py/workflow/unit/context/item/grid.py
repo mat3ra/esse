@@ -5,7 +5,7 @@
 from __future__ import annotations
 
 from enum import Enum
-from typing import List, Optional, Union
+from typing import List, Optional
 
 from pydantic import BaseModel, Field
 
@@ -22,7 +22,7 @@ class GridMetricType(Enum):
 
 
 class PointsGridDataProviderSchema(BaseModel):
-    dimensions: Union[List[float], List[str]]
+    dimensions: List[float] = Field(..., max_length=3, min_length=3)
     shifts: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     reciprocalVectorRatios: Optional[List[float]] = Field(None, max_length=3, min_length=3)
     gridMetricType: GridMetricType

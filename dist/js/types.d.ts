@@ -3662,7 +3662,11 @@ export interface PlanewaveCutoffsContextProviderSchema {
  * 3D grid with shifts for k-point or q-point sampling.
  */
 export interface PointsGridDataProviderSchema {
-    dimensions: [number, number, number] | [string, string, string];
+    /**
+     * @minItems 3
+     * @maxItems 3
+     */
+    dimensions: [number, number, number];
     /**
      * @minItems 3
      * @maxItems 3
@@ -7003,7 +7007,11 @@ export interface JobSchema {
                      * 3D grid with shifts for k-point or q-point sampling.
                      */
                     data: {
-                        dimensions: [number, number, number] | [string, string, string];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        dimensions: [number, number, number];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -49414,7 +49422,11 @@ export interface WorkflowPropertySchema {
                  * 3D grid with shifts for k-point or q-point sampling.
                  */
                 data: {
-                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -52797,7 +52809,11 @@ export interface PropertyHolderSchema {
                      * 3D grid with shifts for k-point or q-point sampling.
                      */
                     data: {
-                        dimensions: [number, number, number] | [string, string, string];
+                        /**
+                         * @minItems 3
+                         * @maxItems 3
+                         */
+                        dimensions: [number, number, number];
                         /**
                          * @minItems 3
                          * @maxItems 3
@@ -55342,7 +55358,11 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * 3D grid with shifts for k-point or q-point sampling.
          */
         data: {
-            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -56444,7 +56464,11 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * 3D grid with shifts for k-point or q-point sampling.
          */
         data: {
-            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -58348,7 +58372,11 @@ export interface BaseWorkflowSchema {
                  * 3D grid with shifts for k-point or q-point sampling.
                  */
                 data: {
-                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3
@@ -60469,7 +60497,11 @@ export interface SubworkflowMixinSchema {
              * 3D grid with shifts for k-point or q-point sampling.
              */
             data: {
-                dimensions: [number, number, number] | [string, string, string];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -62013,7 +62045,11 @@ export type WorkflowSubworkflowUnitSchema = {
          * 3D grid with shifts for k-point or q-point sampling.
          */
         data: {
-            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -63509,7 +63545,11 @@ export interface SubworkflowSchema {
              * 3D grid with shifts for k-point or q-point sampling.
              */
             data: {
-                dimensions: [number, number, number] | [string, string, string];
+                /**
+                 * @minItems 3
+                 * @maxItems 3
+                 */
+                dimensions: [number, number, number];
                 /**
                  * @minItems 3
                  * @maxItems 3
@@ -64566,7 +64606,11 @@ export interface GridContextItemSchema {
      * 3D grid with shifts for k-point or q-point sampling.
      */
     data: {
-        dimensions: [number, number, number] | [string, string, string];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        dimensions: [number, number, number];
         /**
          * @minItems 3
          * @maxItems 3
@@ -65455,7 +65499,11 @@ export type ContextItemSchema = {
      * 3D grid with shifts for k-point or q-point sampling.
      */
     data: {
-        dimensions: [number, number, number] | [string, string, string];
+        /**
+         * @minItems 3
+         * @maxItems 3
+         */
+        dimensions: [number, number, number];
         /**
          * @minItems 3
          * @maxItems 3
@@ -66329,7 +66377,11 @@ export interface ExecutionUnitSchema {
          * 3D grid with shifts for k-point or q-point sampling.
          */
         data: {
-            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -67692,7 +67744,11 @@ export interface ExecutionUnitMixinSchema {
          * 3D grid with shifts for k-point or q-point sampling.
          */
         data: {
-            dimensions: [number, number, number] | [string, string, string];
+            /**
+             * @minItems 3
+             * @maxItems 3
+             */
+            dimensions: [number, number, number];
             /**
              * @minItems 3
              * @maxItems 3
@@ -69847,7 +69903,11 @@ export interface WorkflowSchema {
                  * 3D grid with shifts for k-point or q-point sampling.
                  */
                 data: {
-                    dimensions: [number, number, number] | [string, string, string];
+                    /**
+                     * @minItems 3
+                     * @maxItems 3
+                     */
+                    dimensions: [number, number, number];
                     /**
                      * @minItems 3
                      * @maxItems 3

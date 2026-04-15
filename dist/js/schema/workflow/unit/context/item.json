@@ -781,24 +781,12 @@
                     ],
                     "properties": {
                         "dimensions": {
-                            "oneOf": [
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "number"
-                                    },
-                                    "minItems": 3,
-                                    "maxItems": 3
-                                },
-                                {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    },
-                                    "minItems": 3,
-                                    "maxItems": 3
-                                }
-                            ]
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "type": "number"
+                            }
                         },
                         "shifts": {
                             "type": "array",
