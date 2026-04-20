@@ -4727,7 +4727,7 @@ export interface BandGapSchema {
     eigenvalueValence?: number;
     spin?: number;
     type: "direct" | "indirect";
-    units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/categories.json */
@@ -4969,7 +4969,7 @@ export interface DielectricTensor {
 /** Schema dist/js/schema/core/reusable/energy.json */
 export interface EnergySchema {
     name: string;
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/core/reusable/energy_accuracy_levels.json */
@@ -5117,7 +5117,7 @@ export interface ElementSchema {
         value: number;
     } | {
         name: "ionization_potential";
-        units: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         value: number;
     })[];
 }
@@ -46895,7 +46895,7 @@ export interface Electronegativity {
 /** Schema dist/js/schema/properties_directory/elemental/ionization_potential.json */
 export interface IonizationPotentialElementalPropertySchema {
     name: "ionization_potential";
-    units: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+    units: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/enum_options.json */
@@ -46913,7 +46913,7 @@ export type PropertyType = "scalar" | "non-scalar" | "tensor" | "object";
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "ScalarPropertyEnum".
  */
-export type ScalarPropertyEnum = "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "thermal_correction_to_energy" | "thermal_correction_to_enthalpy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
+export type ScalarPropertyEnum = "fermi_energy" | "homo_energy" | "ionization_potential" | "lumo_energy" | "pressure" | "reaction_energy_barrier" | "surface_energy" | "total_energy" | "total_force" | "valence_band_offset" | "zero_point_energy";
 /**
  * This interface was referenced by `PropertiesDirectoryEnumOptions`'s JSON-Schema
  * via the `definition` "NonScalarPropertyEnum".
@@ -46969,7 +46969,7 @@ export interface AveragePotentialProfilePropertySchema {
         /**
          * units for an axis
          */
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name: "average_potential_profile";
     /**
@@ -47009,7 +47009,7 @@ export interface BandGapsPropertySchema {
         eigenvalueValence?: number;
         spin?: number;
         type: "direct" | "indirect";
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         value: number;
     }[];
     eigenvalues?: {
@@ -47048,7 +47048,7 @@ export interface BandStructurePropertySchema {
         /**
          * units for an axis
          */
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name: "band_structure";
     /**
@@ -47100,7 +47100,7 @@ export interface DensityOfStatesPropertySchema {
         /**
          * units for an axis
          */
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     yAxis: {
         /**
@@ -47392,7 +47392,7 @@ export interface PotentialProfilePropertySchema {
         /**
          * units for an axis
          */
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name: "potential_profile";
     /**
@@ -47421,7 +47421,7 @@ export interface ReactionEnergyProfilePropertySchema {
         /**
          * units for an axis
          */
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     };
     name: "reaction_energy_profile";
     /**
@@ -47541,7 +47541,7 @@ export interface TotalEnergyContributionsPropertySchema {
         value: number;
     };
     name: "total_energy_contributions";
-    units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+    units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
 }
 /** Schema dist/js/schema/properties_directory/non_scalar/vibrational_spectrum.json */
 export interface VibrationalSpectrumPropertySchema {
@@ -50272,37 +50272,37 @@ export interface HubbardParametersReusableSchema {
 /** Schema dist/js/schema/properties_directory/scalar/electron_affinity.json */
 export interface ElectronAffinityPropertySchema {
     name: "electron_affinity";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/fermi_energy.json */
 export interface FermiEnergyPropertySchema {
     name: "fermi_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/formation_energy.json */
 export interface FormationEnergyPropertySchema {
     name: "formation_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/homo_energy.json */
 export interface HOMOEnergyPropertySchema {
     name: "homo_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/ionization_potential.json */
 export interface IonizationPotentialScalarPropertySchema {
     name: "ionization_potential";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/lumo_energy.json */
 export interface LUMOEnergyPropertySchema {
     name: "lumo_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/pressure.json */
@@ -50317,31 +50317,19 @@ export interface PressurePropertySchema {
 /** Schema dist/js/schema/properties_directory/scalar/reaction_energy_barrier.json */
 export interface ReactionEnergyBarrierPropertySchema {
     name: "reaction_energy_barrier";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/surface_energy.json */
 export interface SurfaceEnergyPropertySchema {
     name: "surface_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
-    value: number;
-}
-/** Schema dist/js/schema/properties_directory/scalar/thermal_correction_to_energy.json */
-export interface ThermalCorrectionToEnergyPropertySchema {
-    name: "thermal_correction_to_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
-    value: number;
-}
-/** Schema dist/js/schema/properties_directory/scalar/thermal_correction_to_enthalpy.json */
-export interface ThermalCorrectionToEnthalpyPropertySchema {
-    name: "thermal_correction_to_enthalpy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/total_energy.json */
 export interface TotalEnergyPropertySchema {
     name: "total_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/total_force.json */
@@ -50353,13 +50341,13 @@ export interface TotalForcesPropertySchema {
 /** Schema dist/js/schema/properties_directory/scalar/valence_band_offset.json */
 export interface ValenceBandOffsetPropertySchema {
     name: "valence_band_offset";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/scalar/zero_point_energy.json */
 export interface ZeroPointEnergyPropertySchema {
     name: "zero_point_energy";
-    units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+    units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
     value: number;
 }
 /** Schema dist/js/schema/properties_directory/structural/atomic_forces.json */
@@ -50984,11 +50972,11 @@ export interface PropertyHolderSchema {
      */
     data: {
         name: "valence_band_offset";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "zero_point_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "pressure";
@@ -50996,23 +50984,15 @@ export interface PropertyHolderSchema {
         value: number;
     } | {
         name: "reaction_energy_barrier";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "surface_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
-        value: number;
-    } | {
-        name: "thermal_correction_to_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
-        value: number;
-    } | {
-        name: "thermal_correction_to_enthalpy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "total_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "total_force";
@@ -51020,19 +51000,19 @@ export interface PropertyHolderSchema {
         value: number;
     } | {
         name: "fermi_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "homo_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "ionization_potential";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         name: "lumo_energy";
-        units: ("kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
+        units: ("kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom") | "eV/A^2";
         value: number;
     } | {
         /**
@@ -51069,7 +51049,7 @@ export interface PropertyHolderSchema {
             eigenvalueValence?: number;
             spin?: number;
             type: "direct" | "indirect";
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
             value: number;
         }[];
         eigenvalues?: {
@@ -51106,7 +51086,7 @@ export interface PropertyHolderSchema {
             /**
              * units for an axis
              */
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         };
         name: "band_structure";
         /**
@@ -51245,7 +51225,7 @@ export interface PropertyHolderSchema {
             value: number;
         };
         name: "total_energy_contributions";
-        units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+        units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
     } | {
         xAxis: {
             /**
@@ -51292,7 +51272,7 @@ export interface PropertyHolderSchema {
             /**
              * units for an axis
              */
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         };
         name: "potential_profile";
         /**
@@ -51346,7 +51326,7 @@ export interface PropertyHolderSchema {
             /**
              * units for an axis
              */
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         };
         name: "reaction_energy_profile";
         /**
@@ -51363,7 +51343,7 @@ export interface PropertyHolderSchema {
             /**
              * units for an axis
              */
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         };
         yAxis: {
             /**
@@ -51555,7 +51535,7 @@ export interface PropertyHolderSchema {
             /**
              * units for an axis
              */
-            units?: "kcal/mol" | "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
+            units?: "kJ/mol" | "eV" | "J/mol" | "hartree" | "cm-1" | "Ry" | "eV/atom";
         };
         name: "average_potential_profile";
         /**
@@ -56731,19 +56711,6 @@ export interface WorkflowScopeSchema {
     local: {
         [k: string]: unknown;
     };
-}
-/** Schema dist/js/schema/workflow/subworkflow/convergence/enum_options.json */
-export interface WorkflowSubworkflowConvergenceEnumOptions {
-    [k: string]: unknown;
-}
-/**
- * This interface was referenced by `WorkflowSubworkflowConvergenceEnumOptions`'s JSON-Schema
- * via the `definition` "ConvergenceParameterNameEnum".
- */
-export declare enum ConvergenceParameterNameEnum {
-    N_k = "N_k",
-    N_k_nonuniform = "N_k_nonuniform",
-    N_k_nonuniform_2D = "N_k_nonuniform_2D"
 }
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
