@@ -23,6 +23,7 @@
         "input": {
             "type": "array",
             "items": {
+                "type": "object",
                 "oneOf": [
                     {
                         "$ref": "../io/api.json"
