@@ -587,14 +587,13 @@ class Name473(Enum):
 class PointsPathDataProviderSchemaItem(BaseModel):
     point: str
     steps: int
-    coordinates: List[float]
 
 
 class PathContextItemSchema(BaseModel):
     name: Name473
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool

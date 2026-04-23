@@ -12,11 +12,10 @@ from pydantic import BaseModel, Field, RootModel
 class PointsPathDataProviderSchemaItem(BaseModel):
     point: str
     steps: int
-    coordinates: List[float]
 
 
 class PointsPathDataProviderSchema(RootModel[List[PointsPathDataProviderSchemaItem]]):
     root: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """

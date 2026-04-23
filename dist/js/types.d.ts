@@ -3679,11 +3679,27 @@ export interface PointsGridDataProviderSchema {
 }
 /** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
 /**
- * Path in reciprocal space for band structure calculations.
+ * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
  *
  * @minItems 1
  */
 export type PointsPathDataProviderSchema = [
+    {
+        point: string;
+        steps: number;
+    },
+    ...{
+        point: string;
+        steps: number;
+    }[]
+];
+/** Schema dist/js/schema/context_providers_directory/points_path_data_provider_rendering.json */
+/**
+ * Path in reciprocal space including derived Cartesian/fractional coordinates for template rendering. Not persisted on the context item.
+ *
+ * @minItems 1
+ */
+export type PointsPathDataProviderRenderingSchema = [
     {
         point: string;
         steps: number;
@@ -7025,7 +7041,7 @@ export interface JobSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
@@ -7033,12 +7049,10 @@ export interface JobSchema {
                         {
                             point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
                             point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -49436,7 +49450,7 @@ export interface WorkflowPropertySchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
@@ -49444,12 +49458,10 @@ export interface WorkflowPropertySchema {
                     {
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -52819,7 +52831,7 @@ export interface PropertyHolderSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
@@ -52827,12 +52839,10 @@ export interface PropertyHolderSchema {
                         {
                             point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
                             point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -55364,7 +55374,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
@@ -55372,12 +55382,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
             {
                 point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
                 point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -56466,7 +56474,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
@@ -56474,12 +56482,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
             {
                 point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
                 point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -58370,7 +58376,7 @@ export interface BaseWorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
@@ -58378,12 +58384,10 @@ export interface BaseWorkflowSchema {
                     {
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -60491,7 +60495,7 @@ export interface SubworkflowMixinSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
@@ -60499,12 +60503,10 @@ export interface SubworkflowMixinSchema {
                 {
                     point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
                     point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -62035,7 +62037,7 @@ export type WorkflowSubworkflowUnitSchema = {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
@@ -62043,12 +62045,10 @@ export type WorkflowSubworkflowUnitSchema = {
             {
                 point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
                 point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -63531,7 +63531,7 @@ export interface SubworkflowSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
@@ -63539,12 +63539,10 @@ export interface SubworkflowSchema {
                 {
                     point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
                     point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -65090,7 +65088,7 @@ export interface NonCollinearMagnetizationContextItemSchema {
 export interface PathContextItemSchema {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
@@ -65098,12 +65096,10 @@ export interface PathContextItemSchema {
         {
             point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
             point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -65477,7 +65473,7 @@ export type ContextItemSchema = {
 } | {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
@@ -65485,12 +65481,10 @@ export type ContextItemSchema = {
         {
             point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
             point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -66351,7 +66345,7 @@ export interface ExecutionUnitSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
@@ -66359,12 +66353,10 @@ export interface ExecutionUnitSchema {
             {
                 point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
                 point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -67714,7 +67706,7 @@ export interface ExecutionUnitMixinSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
@@ -67722,12 +67714,10 @@ export interface ExecutionUnitMixinSchema {
             {
                 point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
                 point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -69869,7 +69859,7 @@ export interface WorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
@@ -69877,12 +69867,10 @@ export interface WorkflowSchema {
                     {
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
                         point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
