@@ -2396,7 +2396,9 @@
                                                                         "coordinates": {
                                                                             "type": "array",
                                                                             "items": {
-                                                                                "type": "number"
+                                                                                "type": "number",
+                                                                                "minItems": 3,
+                                                                                "maxItems": 3
                                                                             }
                                                                         }
                                                                     }
