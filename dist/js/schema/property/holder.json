@@ -5273,7 +5273,10 @@
                                                                             }
                                                                         }
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "discriminator": {
+                                                                    "propertyName": "name"
+                                                                }
                                                             }
                                                         }
                                                     }

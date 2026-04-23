@@ -2182,7 +2182,7 @@ class ExtraDataWithMaterialHashSchema(BaseModel):
 
 
 class InputContextItemSchema(BaseModel):
-    name: Literal["input"]
+    name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
         QENEBContextProviderSchema,
@@ -2200,7 +2200,7 @@ class PlanewaveCutoffsContextProviderSchema(BaseModel):
 
 
 class CutoffsContextItemSchema(BaseModel):
-    name: Literal["cutoffs"]
+    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
@@ -2230,7 +2230,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name531
+    name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -2253,7 +2253,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name532
+    name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
@@ -2278,7 +2278,7 @@ class HubbardJContextProviderSchemaItem(BaseModel):
 
 
 class HubbardJContextItemSchema(BaseModel):
-    name: Literal["hubbard_j"]
+    name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.
@@ -2294,7 +2294,7 @@ class HubbardUContextProviderSchemaItem(BaseModel):
 
 
 class HubbardUContextItemSchema(BaseModel):
-    name: Literal["hubbard_u"]
+    name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.
@@ -2314,7 +2314,7 @@ class HubbardVContextProviderSchemaItem(BaseModel):
 
 
 class HubbardVContextItemSchema(BaseModel):
-    name: Literal["hubbard_v"]
+    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
     Hubbard V parameters for DFT+U+V calculation.
@@ -2330,7 +2330,7 @@ class HubbardLegacyContextProviderSchemaItem(BaseModel):
 
 
 class HubbardLegacyContextItemSchema(BaseModel):
-    name: Literal["hubbard_legacy"]
+    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
     )
@@ -2346,7 +2346,7 @@ class NEBDataProviderSchema(BaseModel):
 
 
 class NebContextItemSchema(BaseModel):
-    name: Literal["neb"]
+    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
     Number of intermediate NEB images.
@@ -2373,7 +2373,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
 
 
 class BoundaryConditionsContextItemSchema(BaseModel):
-    name: Literal["boundaryConditions"]
+    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
     data: BoundaryConditionsDataProviderSchema = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -2391,7 +2391,7 @@ class MLSettingsContextProviderSchema(BaseModel):
 
 
 class MlSettingsContextItemSchema(BaseModel):
-    name: Literal["mlSettings"]
+    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
     data: MLSettingsContextProviderSchema = Field(..., title="ML Settings Context Provider Schema")
     """
     Settings important to machine learning runs.
@@ -2405,7 +2405,7 @@ class MLTrainTestSplitContextProviderSchema(BaseModel):
 
 
 class MlTrainTestSplitContextItemSchema(BaseModel):
-    name: Literal["mlTrainTestSplit"]
+    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
@@ -2422,7 +2422,7 @@ class IonDynamicsContextProviderSchema(BaseModel):
 
 
 class DynamicsContextItemSchema(BaseModel):
-    name: Literal["dynamics"]
+    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
     Important parameters for molecular dynamics calculation
@@ -2444,7 +2444,7 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class CollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["collinearMagnetization"]
+    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
     data: CollinearMagnetizationContextProviderSchema = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
     )
@@ -2504,7 +2504,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class NonCollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["nonCollinearMagnetization"]
+    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
     data: NonCollinearMagnetizationContextProviderSchema = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
     )
@@ -2513,6 +2513,46 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
+
+
+class ContextItemSchema(
+    RootModel[
+        Union[
+            InputContextItemSchema,
+            CutoffsContextItemSchema,
+            GridContextItemSchema,
+            PathContextItemSchema,
+            HubbardJContextItemSchema,
+            HubbardUContextItemSchema,
+            HubbardVContextItemSchema,
+            HubbardLegacyContextItemSchema,
+            NebContextItemSchema,
+            BoundaryConditionsContextItemSchema,
+            MlSettingsContextItemSchema,
+            MlTrainTestSplitContextItemSchema,
+            DynamicsContextItemSchema,
+            CollinearMagnetizationContextItemSchema,
+            NonCollinearMagnetizationContextItemSchema,
+        ]
+    ]
+):
+    root: Union[
+        InputContextItemSchema,
+        CutoffsContextItemSchema,
+        GridContextItemSchema,
+        PathContextItemSchema,
+        HubbardJContextItemSchema,
+        HubbardUContextItemSchema,
+        HubbardVContextItemSchema,
+        HubbardLegacyContextItemSchema,
+        NebContextItemSchema,
+        BoundaryConditionsContextItemSchema,
+        MlSettingsContextItemSchema,
+        MlTrainTestSplitContextItemSchema,
+        DynamicsContextItemSchema,
+        CollinearMagnetizationContextItemSchema,
+        NonCollinearMagnetizationContextItemSchema,
+    ] = Field(..., discriminator="name", title="context item schema")
 
 
 class ExecutionUnitSchema(BaseModel):
@@ -2587,25 +2627,7 @@ class ExecutionUnitSchema(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
-    context: List[
-        Union[
-            InputContextItemSchema,
-            CutoffsContextItemSchema,
-            GridContextItemSchema,
-            PathContextItemSchema,
-            HubbardJContextItemSchema,
-            HubbardUContextItemSchema,
-            HubbardVContextItemSchema,
-            HubbardLegacyContextItemSchema,
-            NebContextItemSchema,
-            BoundaryConditionsContextItemSchema,
-            MlSettingsContextItemSchema,
-            MlTrainTestSplitContextItemSchema,
-            DynamicsContextItemSchema,
-            CollinearMagnetizationContextItemSchema,
-            NonCollinearMagnetizationContextItemSchema,
-        ]
-    ]
+    context: List[ContextItemSchema]
 
 
 class AssignmentUnitSchema(BaseModel):

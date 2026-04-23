@@ -2213,7 +2213,10 @@
                             }
                         }
                     }
-                ]
+                ],
+                "discriminator": {
+                    "propertyName": "name"
+                }
             }
         }
     }

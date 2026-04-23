@@ -1586,5 +1586,8 @@
                 }
             }
         }
-    ]
+    ],
+    "discriminator": {
+        "propertyName": "name"
+    }
 }

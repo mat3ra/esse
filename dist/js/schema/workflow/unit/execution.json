@@ -2109,7 +2109,10 @@
                             }
                         }
                     }
-                ]
+                ],
+                "discriminator": {
+                    "propertyName": "name"
+                }
             }
         }
     }

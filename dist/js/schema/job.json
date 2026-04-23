@@ -3102,7 +3102,10 @@
                                                                     }
                                                                 }
                                                             }
-                                                        ]
+                                                        ],
+                                                        "discriminator": {
+                                                            "propertyName": "name"
+                                                        }
                                                     }
                                                 }
                                             }

@@ -3093,7 +3093,10 @@
                                                             }
                                                         }
                                                     }
-                                                ]
+                                                ],
+                                                "discriminator": {
+                                                    "propertyName": "name"
+                                                }
                                             }
                                         }
                                     }
