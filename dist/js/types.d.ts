@@ -3685,12 +3685,12 @@ export interface PointsGridDataProviderSchema {
  */
 export type PointsPathDataProviderSchema = [
     {
-        point?: string;
+        point: string;
         steps: number;
         coordinates: number[];
     },
     ...{
-        point?: string;
+        point: string;
         steps: number;
         coordinates: number[];
     }[]
@@ -7031,12 +7031,12 @@ export interface JobSchema {
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
                             coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
                             coordinates: number[];
                         }[]
@@ -49442,12 +49442,12 @@ export interface WorkflowPropertySchema {
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     }[]
@@ -52825,12 +52825,12 @@ export interface PropertyHolderSchema {
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
                             coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
                             coordinates: number[];
                         }[]
@@ -55370,12 +55370,12 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             }[]
@@ -56472,12 +56472,12 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             }[]
@@ -58376,12 +58376,12 @@ export interface BaseWorkflowSchema {
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     }[]
@@ -60497,12 +60497,12 @@ export interface SubworkflowMixinSchema {
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
                     coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
                     coordinates: number[];
                 }[]
@@ -62041,12 +62041,12 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             }[]
@@ -63537,12 +63537,12 @@ export interface SubworkflowSchema {
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
                     coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
                     coordinates: number[];
                 }[]
@@ -65096,12 +65096,12 @@ export interface PathContextItemSchema {
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
             coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
             coordinates: number[];
         }[]
@@ -65483,12 +65483,12 @@ export type ContextItemSchema = {
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
             coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
             coordinates: number[];
         }[]
@@ -66357,12 +66357,12 @@ export interface ExecutionUnitSchema {
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             }[]
@@ -67720,12 +67720,12 @@ export interface ExecutionUnitMixinSchema {
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
                 coordinates: number[];
             }[]
@@ -69875,12 +69875,12 @@ export interface WorkflowSchema {
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
                         coordinates: number[];
                     }[]

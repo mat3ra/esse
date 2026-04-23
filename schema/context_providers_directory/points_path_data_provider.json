@@ -24,6 +24,7 @@
             }
         },
         "required": [
+            "point",
             "steps",
             "coordinates"
         ]

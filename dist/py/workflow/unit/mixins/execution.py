@@ -571,7 +571,7 @@ class Name475(Enum):
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: Optional[str] = None
+    point: str
     steps: int
     coordinates: List[float]
 

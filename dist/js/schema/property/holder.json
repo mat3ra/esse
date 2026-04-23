@@ -4566,6 +4566,7 @@
                                                                                 "items": {
                                                                                     "type": "object",
                                                                                     "required": [
+                                                                                        "point",
                                                                                         "steps",
                                                                                         "coordinates"
                                                                                     ],
