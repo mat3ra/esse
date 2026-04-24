@@ -39,6 +39,10 @@ class ApplicationSchemaBase(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

@@ -71,6 +71,10 @@
             "description": "Whether licensing is present",
             "type": "boolean"
         },
+        "isUsingMaterial": {
+            "description": "Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.",
+            "type": "boolean"
+        },
         "_id": {
             "description": "entity identity",
             "type": "string"
