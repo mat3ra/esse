@@ -11,7 +11,7 @@ from pydantic import BaseModel, Field, RootModel
 
 class PointsPathDataProviderSchemaItem(BaseModel):
     point: str
-    steps: int
+    steps: float
 
 
 class PointsPathDataProviderSchema(RootModel[List[PointsPathDataProviderSchemaItem]]):

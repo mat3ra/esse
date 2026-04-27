@@ -2116,7 +2116,7 @@
                                                     "type": "string"
                                                 },
                                                 "steps": {
-                                                    "type": "integer"
+                                                    "type": "number"
                                                 }
                                             }
                                         }

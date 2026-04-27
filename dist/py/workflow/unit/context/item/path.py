@@ -20,7 +20,7 @@ class Name(Enum):
 
 class PointsPathDataProviderSchemaItem(BaseModel):
     point: str
-    steps: int
+    steps: float
 
 
 class ExtraDataWithMaterialHashSchema(BaseModel):

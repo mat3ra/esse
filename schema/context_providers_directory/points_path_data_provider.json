@@ -12,9 +12,12 @@
                 "type": "string"
             },
             "steps": {
-                "type": "integer"
+                "type": "number"
             }
         },
-        "required": ["point", "steps"]
+        "required": [
+            "point",
+            "steps"
+        ]
     }
 }

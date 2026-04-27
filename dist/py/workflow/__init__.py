@@ -1066,7 +1066,7 @@ class Name821(Enum):
 
 class PointsPathDataProviderSchemaItem(BaseModel):
     point: str
-    steps: int
+    steps: float
 
 
 class PathContextItemSchema(BaseModel):
