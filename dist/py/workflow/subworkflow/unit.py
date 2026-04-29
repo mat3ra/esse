@@ -412,6 +412,10 @@ class ApplicationSchema(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
@@ -911,7 +915,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name790(Enum):
+class Name794(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"

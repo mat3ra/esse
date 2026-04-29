@@ -38,6 +38,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -79,6 +80,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -147,6 +149,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -188,6 +191,91 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
+                                        "kJ/mol",
+                                        "eV",
+                                        "J/mol",
+                                        "hartree",
+                                        "cm-1",
+                                        "Ry",
+                                        "eV/atom"
+                                    ]
+                                },
+                                {
+                                    "enum": [
+                                        "eV/A^2"
+                                    ]
+                                }
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thermal correction to energy property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "thermal_correction_to_energy"
+                            ],
+                            "type": "string"
+                        },
+                        "units": {
+                            "oneOf": [
+                                {
+                                    "enum": [
+                                        "kcal/mol",
+                                        "kJ/mol",
+                                        "eV",
+                                        "J/mol",
+                                        "hartree",
+                                        "cm-1",
+                                        "Ry",
+                                        "eV/atom"
+                                    ]
+                                },
+                                {
+                                    "enum": [
+                                        "eV/A^2"
+                                    ]
+                                }
+                            ]
+                        },
+                        "value": {
+                            "type": "number"
+                        }
+                    }
+                },
+                {
+                    "$schema": "http://json-schema.org/draft-07/schema#",
+                    "title": "Thermal correction to enthalpy property schema",
+                    "type": "object",
+                    "required": [
+                        "name",
+                        "units",
+                        "value"
+                    ],
+                    "properties": {
+                        "name": {
+                            "enum": [
+                                "thermal_correction_to_enthalpy"
+                            ],
+                            "type": "string"
+                        },
+                        "units": {
+                            "oneOf": [
+                                {
+                                    "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -229,6 +317,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -300,6 +389,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -341,6 +431,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -382,6 +473,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -423,6 +515,7 @@
                             "oneOf": [
                                 {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -548,6 +641,7 @@
                                     },
                                     "units": {
                                         "enum": [
+                                            "kcal/mol",
                                             "kJ/mol",
                                             "eV",
                                             "J/mol",
@@ -664,6 +758,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1102,6 +1197,7 @@
                         },
                         "units": {
                             "enum": [
+                                "kcal/mol",
                                 "kJ/mol",
                                 "eV",
                                 "J/mol",
@@ -1266,6 +1362,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1455,6 +1552,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -1534,6 +1632,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -2037,6 +2136,7 @@
                                 },
                                 "units": {
                                     "enum": [
+                                        "kcal/mol",
                                         "kJ/mol",
                                         "eV",
                                         "J/mol",
@@ -3401,6 +3501,10 @@
                                                                 },
                                                                 "isLicensed": {
                                                                     "description": "Whether licensing is present",
+                                                                    "type": "boolean"
+                                                                },
+                                                                "isUsingMaterial": {
+                                                                    "description": "Whether the application is using (being passed during a downstream processing routine) a material structure.",
                                                                     "type": "boolean"
                                                                 }
                                                             }
@@ -6058,6 +6162,10 @@
                                             },
                                             "isLicensed": {
                                                 "description": "Whether licensing is present",
+                                                "type": "boolean"
+                                            },
+                                            "isUsingMaterial": {
+                                                "description": "Whether the application is using (being passed during a downstream processing routine) a material structure.",
                                                 "type": "boolean"
                                             }
                                         }

@@ -35,6 +35,7 @@ class Label3(Enum):
 
 
 class Units16(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"

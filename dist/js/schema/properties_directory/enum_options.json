@@ -28,6 +28,8 @@
                 "pressure",
                 "reaction_energy_barrier",
                 "surface_energy",
+                "thermal_correction_to_energy",
+                "thermal_correction_to_enthalpy",
                 "total_energy",
                 "total_force",
                 "valence_band_offset",

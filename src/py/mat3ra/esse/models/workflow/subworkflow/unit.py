@@ -412,9 +412,16 @@ class ApplicationSchema(BaseModel):
     """
     Whether licensing is present
     """
+<<<<<<< HEAD
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
+=======
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
+>>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

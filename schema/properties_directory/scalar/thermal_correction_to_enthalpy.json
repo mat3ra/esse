@@ -1,0 +1,21 @@
+{
+    "$id": "properties-directory/scalar/thermal-correction-to-enthalpy",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Thermal correction to enthalpy property schema",
+    "type": "object",
+    "allOf": [
+        {
+            "$ref": "../../core/reusable/energy.json"
+        }
+    ],
+    "properties": {
+        "name": {
+            "enum": [
+                "thermal_correction_to_enthalpy"
+            ]
+        }
+    },
+    "required": [
+        "name"
+    ]
+}
