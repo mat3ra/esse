@@ -27,8 +27,9 @@
                 "name": "espresso",
                 "shortName": "qe",
                 "summary": "Quantum Espresso",
-                "version": "5.1.1",
-                "hasAdvancedComputeOptions": true
+                "version": "6.3",
+                "hasAdvancedComputeOptions": true,
+                "isUsingMaterial": true
             },
             "model": {
                 "method": {
@@ -51,8 +52,9 @@
                         "name": "espresso",
                         "shortName": "qe",
                         "summary": "Quantum Espresso",
-                        "version": "5.1.1",
-                        "hasAdvancedComputeOptions": true
+                        "version": "6.3",
+                        "hasAdvancedComputeOptions": true,
+                        "isUsingMaterial": true
                     },
                     "compute": null,
                     "executable": {
