@@ -6218,7 +6218,7 @@ export interface JobSchema {
                      */
                     isLicensed?: boolean;
                     /**
-                     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                     * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
                     /**
@@ -6792,7 +6792,7 @@ export interface JobSchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -7503,7 +7503,7 @@ export interface JobSchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -48188,7 +48188,7 @@ export interface WorkflowPropertySchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -48762,7 +48762,7 @@ export interface WorkflowPropertySchema {
              */
             isLicensed?: boolean;
             /**
-             * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
             /**
@@ -49473,7 +49473,7 @@ export interface WorkflowPropertySchema {
              */
             isLicensed?: boolean;
             /**
-             * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
             /**
@@ -52188,7 +52188,7 @@ export interface PropertyHolderSchema {
                      */
                     isLicensed?: boolean;
                     /**
-                     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                     * Whether the application is using (being passed during a downstream processing routine) a material structure.
                      */
                     isUsingMaterial?: boolean;
                     /**
@@ -52762,7 +52762,7 @@ export interface PropertyHolderSchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -53473,7 +53473,7 @@ export interface PropertyHolderSchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -54766,7 +54766,7 @@ export interface ApplicationSchemaBase {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -54848,7 +54848,7 @@ export interface ApplicationWithBuildConfigSchema {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55108,7 +55108,7 @@ export interface DeePMDAppSchema {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55190,7 +55190,7 @@ export interface LAMMPS {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55243,7 +55243,7 @@ export interface NWChem {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55296,7 +55296,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -55634,7 +55634,7 @@ export interface ViennaAbInitoSimulationPackage {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55688,7 +55688,7 @@ export interface JupyterLabApplicationSchema {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55754,7 +55754,7 @@ export interface PythonProgramingLanguageSchema {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55816,7 +55816,7 @@ export interface ShellScriptingLanguageSchema {
      */
     isLicensed?: boolean;
     /**
-     * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
      */
     isUsingMaterial?: boolean;
     /**
@@ -55869,7 +55869,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -57388,7 +57388,7 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -58470,7 +58470,7 @@ export interface Subworkflow {
              */
             isLicensed?: boolean;
             /**
-             * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
             /**
@@ -59044,7 +59044,7 @@ export interface Subworkflow {
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -59689,7 +59689,7 @@ export interface ExecutionUnitSchemaBase {
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -61391,7 +61391,7 @@ export type WorkflowUnitSchema = {
          */
         isLicensed?: boolean;
         /**
-         * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
          */
         isUsingMaterial?: boolean;
         /**
@@ -62699,7 +62699,7 @@ export interface WorkflowSchema {
                  */
                 isLicensed?: boolean;
                 /**
-                 * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
                  */
                 isUsingMaterial?: boolean;
                 /**
@@ -63273,7 +63273,7 @@ export interface WorkflowSchema {
              */
             isLicensed?: boolean;
             /**
-             * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
             /**
@@ -63984,7 +63984,7 @@ export interface WorkflowSchema {
              */
             isLicensed?: boolean;
             /**
-             * Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
              */
             isUsingMaterial?: boolean;
             /**

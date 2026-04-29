@@ -81,7 +81,7 @@ class ShellScriptingLanguageSchema(BaseModel):
     """
     isUsingMaterial: Optional[bool] = None
     """
-    Whether the application is used for materials processing. This is used in ADE to determine if material(s) are shown in the job designer that use this application.
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
     """
     id: Optional[str] = Field(None, alias="_id")
     """
