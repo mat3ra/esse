@@ -27,4 +27,4 @@ class EntityReferenceSchema(BaseModel):
 
 
 class SystemInSetSchema(BaseModel):
-    inSet: Optional[List[EntityReferenceSchema]] = None
+    inSet: List[EntityReferenceSchema]

@@ -285,11 +285,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name792(Enum):
-=======
-class Name772(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name796(Enum):
     density = "density"
 
 
@@ -312,11 +308,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name793(Enum):
-=======
-class Name773(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name797(Enum):
     symmetry = "symmetry"
 
 
@@ -336,11 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-<<<<<<< HEAD
-class Name794(Enum):
-=======
-class Name774(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name798(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -353,11 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name795(Enum):
-=======
-class Name775(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name799(Enum):
     p_norm = "p-norm"
 
 
@@ -370,11 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name796(Enum):
-=======
-class Name776(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name800(Enum):
     inchi = "inchi"
 
 
@@ -383,11 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-<<<<<<< HEAD
-class Name797(Enum):
-=======
-class Name777(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name801(Enum):
     inchi_key = "inchi_key"
 
 
@@ -474,11 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name798(Enum):
-=======
-class Name778(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name802(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -491,11 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-<<<<<<< HEAD
-    name: Name798
-=======
-    name: Name778
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+    name: Name802
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

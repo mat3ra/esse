@@ -42,33 +42,6 @@ class DeePMDAppSchema(BaseModel):
     Application version. e.g. 5.3.5
     """
     exec: Optional[Exec] = None
-<<<<<<< HEAD
-=======
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    isDefault: Optional[bool] = False
-    """
-    Whether the build is the default build
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    isUsingMaterial: Optional[bool] = None
-    """
-    Whether the application is using (being passed during a downstream processing routine) a material structure.
-    """
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -101,4 +74,8 @@ class DeePMDAppSchema(BaseModel):
     isLicensed: Optional[bool] = None
     """
     Whether licensing is present
+    """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
     """

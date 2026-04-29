@@ -285,11 +285,7 @@ class VolumeSchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name763(Enum):
-=======
-class Name743(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name765(Enum):
     density = "density"
 
 
@@ -312,11 +308,7 @@ class ScalarSchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name764(Enum):
-=======
-class Name744(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name766(Enum):
     symmetry = "symmetry"
 
 
@@ -336,11 +328,7 @@ class SymmetrySchema(BaseModel):
     name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
 
 
-<<<<<<< HEAD
-class Name765(Enum):
-=======
-class Name745(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name767(Enum):
     elemental_ratio = "elemental_ratio"
 
 
@@ -353,11 +341,7 @@ class ElementalRatio(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name766(Enum):
-=======
-class Name746(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name768(Enum):
     p_norm = "p-norm"
 
 
@@ -370,11 +354,7 @@ class PNorm(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
-class Name767(Enum):
-=======
-class Name747(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name769(Enum):
     inchi = "inchi"
 
 
@@ -383,11 +363,7 @@ class InChIRepresentationSchema(BaseModel):
     value: str
 
 
-<<<<<<< HEAD
-class Name768(Enum):
-=======
-class Name748(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name770(Enum):
     inchi_key = "inchi_key"
 
 
@@ -474,11 +450,7 @@ class FileSourceSchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name769(Enum):
-=======
-class Name749(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name771(Enum):
     default = "default"
     atomsTooClose = "atomsTooClose"
     atomsOverlap = "atomsOverlap"
@@ -491,11 +463,7 @@ class Severity(Enum):
 
 
 class MaterialConsistencyCheckSchema(BaseModel):
-<<<<<<< HEAD
-    name: Name769
-=======
-    name: Name749
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+    name: Name771
     """
     Name of the consistency check that is performed, which is listed in an enum.
     """

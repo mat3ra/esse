@@ -170,6 +170,24 @@ When developing in python the following should be taken into account:
     python build_schemas.py
     ```
 
+    To regenerate the generated Pydantic model classes under `src/py/mat3ra/esse/models`, first make sure the resolved JS schemas in `dist/js/schema` are up to date, then run:
+
+    ```bash
+    .venv/bin/datamodel-codegen \
+        --input ./dist/js/schema/ \
+        --input-file-type jsonschema \
+        --output ./src/py/mat3ra/esse/models \
+        --output-model-type pydantic_v2.BaseModel \
+        --use-field-description \
+        --use-double-quotes \
+        --enable-version-header \
+        --use-title-as-name \
+        --class-name ESSE \
+        --disable-timestamp \
+        --use-default \
+        --remove-special-field-name-prefix
+    ```
+
 2. Tests can be run using the following commands:
 
     ```bash

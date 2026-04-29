@@ -125,13 +125,8 @@ class SurfaceEnergyPropertySchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
 class Name493(Enum):
-    total_energy = "total_energy"
-=======
-class Name482(Enum):
     thermal_correction_to_energy = "thermal_correction_to_energy"
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
 
 
 class Units200(Enum):
@@ -155,13 +150,8 @@ class ThermalCorrectionToEnergyPropertySchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
 class Name494(Enum):
-    total_force = "total_force"
-=======
-class Name483(Enum):
     thermal_correction_to_enthalpy = "thermal_correction_to_enthalpy"
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
 
 
 class Units202(Enum):
@@ -185,7 +175,7 @@ class ThermalCorrectionToEnthalpyPropertySchema(BaseModel):
     value: float
 
 
-class Name484(Enum):
+class Name495(Enum):
     total_energy = "total_energy"
 
 
@@ -210,7 +200,7 @@ class TotalEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name485(Enum):
+class Name496(Enum):
     total_force = "total_force"
 
 
@@ -224,69 +214,13 @@ class Units206(Enum):
 
 
 class TotalForcesPropertySchema(BaseModel):
-<<<<<<< HEAD
-    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    units: Units202
-    value: float
-
-
-class Name495(Enum):
-    fermi_energy = "fermi_energy"
-
-
-class Units203(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
-    hartree = "hartree"
-    cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
-
-
-class Units204(Enum):
-    eV_A_2 = "eV/A^2"
-
-
-class FermiEnergyPropertySchema(BaseModel):
-    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
-    units: Union[Units203, Units204]
-    value: float
-
-
-class Name496(Enum):
-    homo_energy = "homo_energy"
-
-
-class Units205(Enum):
-    kJ_mol = "kJ/mol"
-    eV = "eV"
-    J_mol = "J/mol"
-    hartree = "hartree"
-    cm_1 = "cm-1"
-    Ry = "Ry"
-    eV_atom = "eV/atom"
-
-
-class Units206(Enum):
-    eV_A_2 = "eV/A^2"
-
-
-class HOMOEnergyPropertySchema(BaseModel):
-=======
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
     name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     units: Units206
     value: float
 
 
-<<<<<<< HEAD
 class Name497(Enum):
-    ionization_potential = "ionization_potential"
-=======
-class Name486(Enum):
     fermi_energy = "fermi_energy"
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
 
 
 class Units207(Enum):
@@ -310,13 +244,8 @@ class FermiEnergyPropertySchema(BaseModel):
     value: float
 
 
-<<<<<<< HEAD
 class Name498(Enum):
-    lumo_energy = "lumo_energy"
-=======
-class Name487(Enum):
     homo_energy = "homo_energy"
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
 
 
 class Units209(Enum):
@@ -340,7 +269,7 @@ class HOMOEnergyPropertySchema(BaseModel):
     value: float
 
 
-class Name488(Enum):
+class Name499(Enum):
     ionization_potential = "ionization_potential"
 
 
@@ -365,7 +294,7 @@ class IonizationPotentialScalarPropertySchema(BaseModel):
     value: float
 
 
-class Name489(Enum):
+class Name500(Enum):
     lumo_energy = "lumo_energy"
 
 
@@ -394,11 +323,7 @@ class ArrayOf3NumberElementsSchema(RootModel[List[float]]):
     root: List[float] = Field(..., title="array of 3 number elements schema")
 
 
-<<<<<<< HEAD
-class Name499(Enum):
-=======
-class Name490(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name501(Enum):
     stress_tensor = "stress_tensor"
 
 
@@ -413,11 +338,7 @@ class StressTensorPropertySchema(BaseModel):
     units: Units215
 
 
-<<<<<<< HEAD
-class Name500(Enum):
-=======
-class Name491(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name502(Enum):
     band_gaps = "band_gaps"
 
 
@@ -527,11 +448,7 @@ class AxisSchema12(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name501(Enum):
-=======
-class Name492(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name503(Enum):
     band_structure = "band_structure"
 
 
@@ -596,11 +513,7 @@ class AxisSchema14(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name502(Enum):
-=======
-class Name493(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name504(Enum):
     phonon_dispersions = "phonon_dispersions"
 
 
@@ -615,252 +528,133 @@ class PhononBandStructurePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-<<<<<<< HEAD
-class Name503(Enum):
-=======
-class Name494(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name505(Enum):
     temperature_entropy = "temperature_entropy"
 
 
 class ScalarSchema(BaseModel):
-<<<<<<< HEAD
-=======
-    name: Optional[Name494] = None
-    value: float
-
-
-class Name495(Enum):
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema58(BaseModel):
-    name: Optional[Name495] = None
-    value: float
-
-
-class Name496(Enum):
-    smearing = "smearing"
-
-
-class ScalarSchema59(BaseModel):
-    name: Optional[Name496] = None
-    value: float
-
-
-class Name497(Enum):
-    one_electron = "one_electron"
-
-
-class ScalarSchema60(BaseModel):
-    name: Optional[Name497] = None
-    value: float
-
-
-class Name498(Enum):
-    hartree = "hartree"
-
-
-class ScalarSchema61(BaseModel):
-    name: Optional[Name498] = None
-    value: float
-
-
-class Name499(Enum):
-    exchange = "exchange"
-
-
-class ScalarSchema62(BaseModel):
-    name: Optional[Name499] = None
-    value: float
-
-
-class Name500(Enum):
-    exchange_correlation = "exchange_correlation"
-
-
-class ScalarSchema63(BaseModel):
-    name: Optional[Name500] = None
-    value: float
-
-
-class Name501(Enum):
-    ewald = "ewald"
-
-
-class ScalarSchema64(BaseModel):
-    name: Optional[Name501] = None
-    value: float
-
-
-class Name502(Enum):
-    alphaZ = "alphaZ"
-
-
-class ScalarSchema65(BaseModel):
-    name: Optional[Name502] = None
-    value: float
-
-
-class Name503(Enum):
-    atomic_energy = "atomic_energy"
-
-
-class ScalarSchema66(BaseModel):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
-    name: Optional[Name503] = None
-    value: float
-
-
-class Name504(Enum):
-<<<<<<< HEAD
-    harris_foulkes = "harris_foulkes"
-
-
-class ScalarSchema58(BaseModel):
-=======
-    eigenvalues = "eigenvalues"
-
-
-class ScalarSchema67(BaseModel):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
-    name: Optional[Name504] = None
-    value: float
-
-
-class Name505(Enum):
-<<<<<<< HEAD
-    smearing = "smearing"
-
-
-class ScalarSchema59(BaseModel):
-=======
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
-
-
-class ScalarSchema68(BaseModel):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
     name: Optional[Name505] = None
     value: float
 
 
 class Name506(Enum):
-<<<<<<< HEAD
-    one_electron = "one_electron"
+    harris_foulkes = "harris_foulkes"
 
 
-class ScalarSchema60(BaseModel):
-=======
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
-
-
-class ScalarSchema69(BaseModel):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class ScalarSchema58(BaseModel):
     name: Optional[Name506] = None
     value: float
 
 
 class Name507(Enum):
-<<<<<<< HEAD
-    hartree = "hartree"
+    smearing = "smearing"
 
 
-class ScalarSchema61(BaseModel):
-=======
-    hartree_fock = "hartree_fock"
-
-
-class ScalarSchema70(BaseModel):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class ScalarSchema59(BaseModel):
     name: Optional[Name507] = None
     value: float
 
 
 class Name508(Enum):
-<<<<<<< HEAD
-    exchange = "exchange"
+    one_electron = "one_electron"
 
 
-class ScalarSchema62(BaseModel):
+class ScalarSchema60(BaseModel):
     name: Optional[Name508] = None
     value: float
 
 
 class Name509(Enum):
-    exchange_correlation = "exchange_correlation"
+    hartree = "hartree"
 
 
-class ScalarSchema63(BaseModel):
+class ScalarSchema61(BaseModel):
     name: Optional[Name509] = None
     value: float
 
 
 class Name510(Enum):
-    ewald = "ewald"
+    exchange = "exchange"
 
 
-class ScalarSchema64(BaseModel):
+class ScalarSchema62(BaseModel):
     name: Optional[Name510] = None
     value: float
 
 
 class Name511(Enum):
-    alphaZ = "alphaZ"
+    exchange_correlation = "exchange_correlation"
 
 
-class ScalarSchema65(BaseModel):
+class ScalarSchema63(BaseModel):
     name: Optional[Name511] = None
     value: float
 
 
 class Name512(Enum):
-    atomic_energy = "atomic_energy"
+    ewald = "ewald"
 
 
-class ScalarSchema66(BaseModel):
+class ScalarSchema64(BaseModel):
     name: Optional[Name512] = None
     value: float
 
 
 class Name513(Enum):
-    eigenvalues = "eigenvalues"
+    alphaZ = "alphaZ"
 
 
-class ScalarSchema67(BaseModel):
+class ScalarSchema65(BaseModel):
     name: Optional[Name513] = None
     value: float
 
 
 class Name514(Enum):
-    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
+    atomic_energy = "atomic_energy"
 
 
-class ScalarSchema68(BaseModel):
+class ScalarSchema66(BaseModel):
     name: Optional[Name514] = None
     value: float
 
 
 class Name515(Enum):
-    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+    eigenvalues = "eigenvalues"
 
 
-class ScalarSchema69(BaseModel):
+class ScalarSchema67(BaseModel):
     name: Optional[Name515] = None
     value: float
 
 
 class Name516(Enum):
-    hartree_fock = "hartree_fock"
+    PAW_double_counting_correction_2 = "PAW_double-counting_correction_2"
 
 
-class ScalarSchema70(BaseModel):
+class ScalarSchema68(BaseModel):
     name: Optional[Name516] = None
     value: float
 
 
 class Name517(Enum):
-=======
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+    PAW_double_counting_correction_3 = "PAW_double-counting_correction_3"
+
+
+class ScalarSchema69(BaseModel):
+    name: Optional[Name517] = None
+    value: float
+
+
+class Name518(Enum):
+    hartree_fock = "hartree_fock"
+
+
+class ScalarSchema70(BaseModel):
+    name: Optional[Name518] = None
+    value: float
+
+
+class Name519(Enum):
     total_energy_contributions = "total_energy_contributions"
 
 
@@ -974,11 +768,7 @@ class AxisSchema16(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name518(Enum):
-=======
-class Name509(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name520(Enum):
     phonon_dos = "phonon_dos"
 
 
@@ -1034,11 +824,7 @@ class AxisSchema18(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name519(Enum):
-=======
-class Name510(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name521(Enum):
     potential_profile = "potential_profile"
 
 
@@ -1083,11 +869,7 @@ class AxisSchema20(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name520(Enum):
-=======
-class Name511(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name522(Enum):
     wavefunction_amplitude = "wavefunction_amplitude"
 
 
@@ -1132,11 +914,7 @@ class AxisSchema22(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name521(Enum):
-=======
-class Name512(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name523(Enum):
     reaction_energy_profile = "reaction_energy_profile"
 
 
@@ -1181,11 +959,7 @@ class AxisSchema24(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name522(Enum):
-=======
-class Name513(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name524(Enum):
     density_of_states = "density_of_states"
 
 
@@ -1225,11 +999,7 @@ class DensityOfStatesPropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-<<<<<<< HEAD
-class Name523(Enum):
-=======
-class Name514(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name525(Enum):
     dielectric_tensor = "dielectric_tensor"
 
 
@@ -1259,11 +1029,7 @@ class DielectricTensorPropertySchema(BaseModel):
     values: List[DielectricTensor]
 
 
-<<<<<<< HEAD
-class Name524(Enum):
-=======
-class Name515(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name526(Enum):
     file_content = "file_content"
 
 
@@ -1317,11 +1083,7 @@ class FileContentPropertySchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name525(Enum):
-=======
-class Name516(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name527(Enum):
     hubbard_u = "hubbard_u"
 
 
@@ -1351,11 +1113,7 @@ class HubbardUParametersPropertySchema(BaseModel):
     values: List[AtomicDataPerOrbitalNumeric]
 
 
-<<<<<<< HEAD
-class Name526(Enum):
-=======
-class Name517(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name528(Enum):
     hubbard_v = "hubbard_v"
 
 
@@ -1394,11 +1152,7 @@ class HubbardVParametersPropertySchema(BaseModel):
     values: List[AtomicDataPerOrbitalPairNumeric]
 
 
-<<<<<<< HEAD
-class Name527(Enum):
-=======
-class Name518(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name529(Enum):
     hubbard_v_nn = "hubbard_v_nn"
 
 
@@ -1462,11 +1216,7 @@ class AxisSchema26(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name528(Enum):
-=======
-class Name519(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name530(Enum):
     average_potential_profile = "average_potential_profile"
 
 
@@ -1515,11 +1265,7 @@ class AxisSchema28(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name529(Enum):
-=======
-class Name520(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name531(Enum):
     charge_density_profile = "charge_density_profile"
 
 
@@ -1534,972 +1280,10 @@ class ChargeDensityProfilePropertySchema(BaseModel):
     yDataSeries: List[List[float]] = Field(..., title="1 dimension data series schema")
 
 
-<<<<<<< HEAD
-class Name530(Enum):
+class Name532(Enum):
     workflow_pyml_predict = "workflow:pyml_predict"
 
 
-=======
-class Name521(Enum):
-    workflow_pyml_predict = "workflow:pyml_predict"
-
-
-class Subtype(Enum):
-    input = "input"
-    output = "output"
-    dataFrame = "dataFrame"
-
-
-class Source(Enum):
-    api = "api"
-    db = "db"
-    object_storage = "object_storage"
-
-
-class DataIORestAPIInputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    endpoint: str
-    """
-    rest API endpoint
-    """
-    endpoint_options: Dict[str, Any]
-    """
-    rest API endpoint options
-    """
-    name: Optional[str] = None
-    """
-    the name of the variable in local scope to save the data under
-    """
-
-
-class DataIODatabaseInputOutputSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    ids: List[str]
-    """
-    IDs of item to retrieve from db
-    """
-
-
-class DataIODatabaseInputOutputSchema3(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    collection: str
-    """
-    db collection name
-    """
-    draft: bool
-    """
-    whether the result should be saved as draft
-    """
-
-
-class ObjectStorageIoSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    objectData: ObjectStorageContainerData = Field(..., title="Object Storage Container Data")
-    overwrite: Optional[bool] = None
-    """
-    if a file with the same filename already exists, whether to overwrite the old file
-    """
-    pathname: Optional[str] = None
-    """
-    Relative path to the directory that contains the file.
-    """
-    basename: Optional[str] = None
-    """
-    Basename of the file
-    """
-    filetype: Optional[str] = None
-    """
-    What kind of file this is, e.g. image / text
-    """
-
-
-class Status(Enum):
-    idle = "idle"
-    active = "active"
-    warning = "warning"
-    error = "error"
-    finished = "finished"
-
-
-class NameResultSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    name: str
-    """
-    The name of this item. e.g. scf_accuracy
-    """
-
-
-class StatusTrackItem(BaseModel):
-    trackedAt: float
-    status: str
-    repetition: Optional[float] = None
-
-
-class DataIOUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    subtype: Subtype
-    source: Source
-    input: List[
-        Union[
-            DataIORestAPIInputSchema,
-            Union[DataIODatabaseInputOutputSchema, DataIODatabaseInputOutputSchema3],
-            ObjectStorageIoSchema,
-        ]
-    ]
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class InputItem(BaseModel):
-    operation: str
-    """
-    reduce operation, e.g. aggregate
-    """
-    arguments: List[str]
-    """
-    arguments which are passed to reduce operation function
-    """
-
-
-class ReduceUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    mapFlowchartId: str
-    """
-    corresponding map unit flowchart ID
-    """
-    input: List[InputItem]
-    """
-    input information for reduce unit
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class WorkflowUnitInputSchema(BaseModel):
-    scope: str
-    """
-    Scope of the variable. e.g. 'global' or 'flowchart_id_2'
-    """
-    name: str
-    """
-    Name of the input data. e.g. total_energy
-    """
-
-
-class ConditionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for condition.
-    """
-    statement: str
-    """
-    Condition statement. e.g. 'abs(x-total_energy) < 1e-5'
-    """
-    then: str
-    """
-    Flowchart ID reference for `then` part of the condition.
-    """
-    else_: str = Field(..., alias="else")
-    """
-    Flowchart ID reference for `else` part of the condition.
-    """
-    maxOccurrences: int
-    """
-    Maximum occurrence of the condition, usable for loops.
-    """
-    throwException: Optional[bool] = None
-    """
-    Throw exception on reaching to maximum occurence.
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: Optional[str] = None
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssertionUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    statement: str
-    """
-    The statement to be evaluated
-    """
-    errorMessage: Optional[str] = None
-    """
-    The error message to be displayed if the assertion fails
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class ApplicationSchemaBase(BaseModel):
-    shortName: Optional[str] = None
-    """
-    The short name of the application. e.g. qe
-    """
-    summary: Optional[str] = None
-    """
-    Application's short description.
-    """
-    version: Optional[str] = None
-    """
-    Application version. e.g. 5.3.5
-    """
-    build: Optional[str] = None
-    """
-    Application build. e.g. VTST
-    """
-    isDefault: Optional[bool] = False
-    """
-    Whether the build is the default build
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    isLicensed: Optional[bool] = None
-    """
-    Whether licensing is present
-    """
-    isUsingMaterial: Optional[bool] = None
-    """
-    Whether the application is using (being passed during a downstream processing routine) a material structure.
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-
-
-class ExecutableSchema(BaseModel):
-    name: str
-    """
-    The name of the executable. e.g. pw.x
-    """
-    applicationId: Optional[List[str]] = None
-    """
-    _ids of the application this executable belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
-    """
-    Whether advanced compute options are present
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-
-
-class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
-    """
-    name of the resulting input file, if different than template name
-    """
-
-
-class FlavorSchema(BaseModel):
-    executableId: Optional[str] = None
-    """
-    _id of the executable this flavor belongs to
-    """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
-    input: Optional[List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines]] = Field(
-        None, title="execution unit input schema"
-    )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    name: Optional[str] = None
-    """
-    entity name
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-
-
-class ExecutionUnitSchemaBase(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    application: ApplicationSchemaBase = Field(..., title="application schema (base)")
-    executable: Optional[ExecutableSchema] = Field(None, title="executable schema")
-    flavor: Optional[FlavorSchema] = Field(None, title="flavor schema")
-    input: Any
-    """
-    unit input (type to be specified by the application's execution unit)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class AssignmentUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    input: List[WorkflowUnitInputSchema]
-    """
-    Input information for assignment. if omitted, means that it is an initialization unit, otherwise it is an assignment.
-    """
-    operand: str
-    """
-    Name of the global variable. e.g. 'x'
-    """
-    value: Union[str, bool, float]
-    """
-    Value of the variable. The value content could be a simple integer, string or a python expression. e.g. '0' (initialization), 'sin(x)+1' (expression)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-    scope: Optional[str] = None
-
-
-class ProcessingUnitSchema(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
-    """
-    type of the unit
-    """
-    operation: str
-    """
-    Contains information about the operation used.
-    """
-    operationType: str
-    """
-    Contains information about the specific type of the operation used.
-    """
-    inputData: Any
-    """
-    unit input (type to be specified by the child units)
-    """
-    id: Optional[str] = Field(None, alias="_id")
-    """
-    entity identity
-    """
-    isDraft: Optional[bool] = None
-    name: str
-    """
-    name of the unit. e.g. pw_scf
-    """
-    status: Optional[Status] = None
-    """
-    Status of the unit.
-    """
-    head: Optional[bool] = None
-    """
-    Whether this unit is the first one to be executed.
-    """
-    flowchartId: str
-    """
-    Identity of the unit in the workflow. Used to trace the execution flow of the workflow.
-    """
-    next: Optional[str] = None
-    """
-    Next unit's flowchartId. If empty, the current unit is the last.
-    """
-    enableRender: Optional[bool] = None
-    """
-    Whether Rupy should attempt to use Jinja templating to add context variables into the unit
-    """
-    context: Optional[Dict[str, Any]] = None
-    slug: Optional[str] = None
-    """
-    entity slug
-    """
-    systemName: Optional[str] = None
-    schemaVersion: Optional[str] = "2022.8.16"
-    """
-    entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
-    preProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the monitors for this calculation
-    """
-    results: Optional[List[Union[NameResultSchema, str]]] = None
-    """
-    names of the results for this calculation
-    """
-    tags: Optional[List[str]] = None
-    """
-    entity tags
-    """
-    statusTrack: Optional[List[StatusTrackItem]] = None
-
-
-class WorkflowSubworkflowUnitSchema(
-    RootModel[
-        Union[
-            DataIOUnitSchema,
-            ReduceUnitSchema,
-            ConditionUnitSchema,
-            AssertionUnitSchema,
-            ExecutionUnitSchemaBase,
-            AssignmentUnitSchema,
-            ProcessingUnitSchema,
-        ]
-    ]
-):
-    root: Union[
-        DataIOUnitSchema,
-        ReduceUnitSchema,
-        ConditionUnitSchema,
-        AssertionUnitSchema,
-        ExecutionUnitSchemaBase,
-        AssignmentUnitSchema,
-        ProcessingUnitSchema,
-    ] = Field(..., discriminator="type", title="workflow subworkflow unit schema")
-
-
-class BaseMethod(BaseModel):
-    type: str
-    """
-    general type of this method, eg. `pseudopotential`
-    """
-    subtype: str
-    """
-    general subtype of this method, eg. `ultra-soft`
-    """
-    precision: Optional[Dict[str, Any]] = None
-    """
-    Object showing the actual possible precision based on theory and implementation
-    """
-    data: Optional[Dict[str, Any]] = None
-    """
-    additional data specific to method, eg. array of pseudopotentials
-    """
-
-
-class BaseModelModel(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
-    type: str
-    """
-    general type of the model, eg. `dft`
-    """
-    subtype: str
-    """
-    general subtype of the model, eg. `lda`
-    """
-    method: BaseMethod = Field(..., title="base method")
-
-
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
 class Queue(Enum):
     D = "D"
     OR = "OR"
@@ -3020,6 +1804,10 @@ class ApplicationSchema(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
@@ -3051,18 +1839,6 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
-    """
-    preProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the pre-processors for this calculation
-    """
-    postProcessors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the post-processors for this calculation
-    """
-    monitors: List[RuntimeItemNameObjectSchema]
-    """
-    names of the monitors for this calculation
     """
 
 
@@ -3167,7 +1943,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
@@ -3474,7 +2250,7 @@ class ExtraDataWithMaterialHashSchema(BaseModel):
 
 
 class InputContextItemSchema(BaseModel):
-    name: Literal["input"]
+    name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
         QENEBContextProviderSchema,
@@ -3492,7 +2268,7 @@ class PlanewaveCutoffsContextProviderSchema(BaseModel):
 
 
 class CutoffsContextItemSchema(BaseModel):
-    name: Literal["cutoffs"]
+    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
@@ -3501,7 +2277,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name531(Enum):
+class Name533(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -3522,7 +2298,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name531
+    name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -3531,7 +2307,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name532(Enum):
+class Name534(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -3540,16 +2316,15 @@ class Name532(Enum):
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: Optional[str] = None
-    steps: int
-    coordinates: List[float]
+    point: str
+    steps: float
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name532
+    name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -3571,7 +2346,7 @@ class HubbardJContextProviderSchemaItem(BaseModel):
 
 
 class HubbardJContextItemSchema(BaseModel):
-    name: Literal["hubbard_j"]
+    name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.
@@ -3587,7 +2362,7 @@ class HubbardUContextProviderSchemaItem(BaseModel):
 
 
 class HubbardUContextItemSchema(BaseModel):
-    name: Literal["hubbard_u"]
+    name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.
@@ -3607,7 +2382,7 @@ class HubbardVContextProviderSchemaItem(BaseModel):
 
 
 class HubbardVContextItemSchema(BaseModel):
-    name: Literal["hubbard_v"]
+    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
     Hubbard V parameters for DFT+U+V calculation.
@@ -3623,7 +2398,7 @@ class HubbardLegacyContextProviderSchemaItem(BaseModel):
 
 
 class HubbardLegacyContextItemSchema(BaseModel):
-    name: Literal["hubbard_legacy"]
+    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
     )
@@ -3639,7 +2414,7 @@ class NEBDataProviderSchema(BaseModel):
 
 
 class NebContextItemSchema(BaseModel):
-    name: Literal["neb"]
+    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
     Number of intermediate NEB images.
@@ -3666,7 +2441,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
 
 
 class BoundaryConditionsContextItemSchema(BaseModel):
-    name: Literal["boundaryConditions"]
+    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
     data: BoundaryConditionsDataProviderSchema = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -3684,7 +2459,7 @@ class MLSettingsContextProviderSchema(BaseModel):
 
 
 class MlSettingsContextItemSchema(BaseModel):
-    name: Literal["mlSettings"]
+    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
     data: MLSettingsContextProviderSchema = Field(..., title="ML Settings Context Provider Schema")
     """
     Settings important to machine learning runs.
@@ -3698,7 +2473,7 @@ class MLTrainTestSplitContextProviderSchema(BaseModel):
 
 
 class MlTrainTestSplitContextItemSchema(BaseModel):
-    name: Literal["mlTrainTestSplit"]
+    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
@@ -3715,7 +2490,7 @@ class IonDynamicsContextProviderSchema(BaseModel):
 
 
 class DynamicsContextItemSchema(BaseModel):
-    name: Literal["dynamics"]
+    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
     Important parameters for molecular dynamics calculation
@@ -3737,7 +2512,7 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class CollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["collinearMagnetization"]
+    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
     data: CollinearMagnetizationContextProviderSchema = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
     )
@@ -3797,7 +2572,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class NonCollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["nonCollinearMagnetization"]
+    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
     data: NonCollinearMagnetizationContextProviderSchema = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
     )
@@ -3806,6 +2581,46 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
+
+
+class ContextItemSchema(
+    RootModel[
+        Union[
+            InputContextItemSchema,
+            CutoffsContextItemSchema,
+            GridContextItemSchema,
+            PathContextItemSchema,
+            HubbardJContextItemSchema,
+            HubbardUContextItemSchema,
+            HubbardVContextItemSchema,
+            HubbardLegacyContextItemSchema,
+            NebContextItemSchema,
+            BoundaryConditionsContextItemSchema,
+            MlSettingsContextItemSchema,
+            MlTrainTestSplitContextItemSchema,
+            DynamicsContextItemSchema,
+            CollinearMagnetizationContextItemSchema,
+            NonCollinearMagnetizationContextItemSchema,
+        ]
+    ]
+):
+    root: Union[
+        InputContextItemSchema,
+        CutoffsContextItemSchema,
+        GridContextItemSchema,
+        PathContextItemSchema,
+        HubbardJContextItemSchema,
+        HubbardUContextItemSchema,
+        HubbardVContextItemSchema,
+        HubbardLegacyContextItemSchema,
+        NebContextItemSchema,
+        BoundaryConditionsContextItemSchema,
+        MlSettingsContextItemSchema,
+        MlTrainTestSplitContextItemSchema,
+        DynamicsContextItemSchema,
+        CollinearMagnetizationContextItemSchema,
+        NonCollinearMagnetizationContextItemSchema,
+    ] = Field(..., discriminator="name", title="context item schema")
 
 
 class ExecutionUnitSchema(BaseModel):
@@ -3880,25 +2695,7 @@ class ExecutionUnitSchema(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
-    context: List[
-        Union[
-            InputContextItemSchema,
-            CutoffsContextItemSchema,
-            GridContextItemSchema,
-            PathContextItemSchema,
-            HubbardJContextItemSchema,
-            HubbardUContextItemSchema,
-            HubbardVContextItemSchema,
-            HubbardLegacyContextItemSchema,
-            NebContextItemSchema,
-            BoundaryConditionsContextItemSchema,
-            MlSettingsContextItemSchema,
-            MlTrainTestSplitContextItemSchema,
-            DynamicsContextItemSchema,
-            CollinearMagnetizationContextItemSchema,
-            NonCollinearMagnetizationContextItemSchema,
-        ]
-    ]
+    context: List[ContextItemSchema]
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -4174,9 +2971,6 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    """
-    system name of the subworkflow
-    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -4500,10 +3294,6 @@ class WorkflowPropertySchema(BaseModel):
     """
     entity's schema version. Used to distinct between different schemas.
     """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
-    """
     metadata: Optional[Dict[str, Any]] = None
     properties: List[str]
     """
@@ -4535,11 +3325,7 @@ class WorkflowPropertySchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name533(Enum):
-=======
-class Name522(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name535(Enum):
     magnetic_moments = "magnetic_moments"
 
 
@@ -4564,11 +3350,7 @@ class MagneticMomentsPropertySchema(BaseModel):
     units: Units234
 
 
-<<<<<<< HEAD
-class Name534(Enum):
-=======
-class Name523(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name536(Enum):
     atomic_forces = "atomic_forces"
 
 
@@ -4587,11 +3369,7 @@ class AtomicForcesPropertySchema(BaseModel):
     units: Units235
 
 
-<<<<<<< HEAD
-class Name535(Enum):
-=======
-class Name524(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name537(Enum):
     convergence_electronic = "convergence_electronic"
 
 
@@ -4607,11 +3385,7 @@ class ConvergenceElectronicPropertySchema(BaseModel):
     data: List[List[float]]
 
 
-<<<<<<< HEAD
-class Name536(Enum):
-=======
-class Name525(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name538(Enum):
     convergence_ionic = "convergence_ionic"
 
 
@@ -4664,11 +3438,7 @@ class ConvergenceIonicPropertySchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name537(Enum):
-=======
-class Name526(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name539(Enum):
     is_relaxed = "is_relaxed"
 
 
@@ -4681,11 +3451,7 @@ class IsRelaxedPropertySchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name538(Enum):
-=======
-class Name527(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name540(Enum):
     final_structure = "final_structure"
 
 
@@ -4698,11 +3464,7 @@ class FinalStructurePropertySchema(BaseModel):
     """
 
 
-<<<<<<< HEAD
-class Name539(Enum):
-=======
-class Name528(Enum):
->>>>>>> 2b0a111c7c55c4da1c23d8089d1c18db24a26ce3
+class Name541(Enum):
     jupyter_notebook_endpoint = "jupyter_notebook_endpoint"
 
 
