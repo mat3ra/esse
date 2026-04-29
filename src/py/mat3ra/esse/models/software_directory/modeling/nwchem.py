@@ -63,6 +63,10 @@ class NWChem(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity

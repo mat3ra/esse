@@ -6218,6 +6218,10 @@ export interface JobSchema {
                      */
                     isLicensed?: boolean;
                     /**
+                     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                     */
+                    isUsingMaterial?: boolean;
+                    /**
                      * entity identity
                      */
                     _id?: string;
@@ -6787,6 +6791,10 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+                /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
                 /**
                  * entity identity
                  */
@@ -7494,6 +7502,10 @@ export interface JobSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+                /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
                 /**
                  * entity identity
                  */
@@ -48176,6 +48188,10 @@ export interface WorkflowPropertySchema {
                  */
                 isLicensed?: boolean;
                 /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
+                /**
                  * entity identity
                  */
                 _id?: string;
@@ -48745,6 +48761,10 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+            /**
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
+             */
+            isUsingMaterial?: boolean;
             /**
              * entity identity
              */
@@ -49452,6 +49472,10 @@ export interface WorkflowPropertySchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+            /**
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
+             */
+            isUsingMaterial?: boolean;
             /**
              * entity identity
              */
@@ -52164,6 +52188,10 @@ export interface PropertyHolderSchema {
                      */
                     isLicensed?: boolean;
                     /**
+                     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                     */
+                    isUsingMaterial?: boolean;
+                    /**
                      * entity identity
                      */
                     _id?: string;
@@ -52733,6 +52761,10 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+                /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
                 /**
                  * entity identity
                  */
@@ -53440,6 +53472,10 @@ export interface PropertyHolderSchema {
                  * Whether licensing is present
                  */
                 isLicensed?: boolean;
+                /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
                 /**
                  * entity identity
                  */
@@ -54730,6 +54766,10 @@ export interface ApplicationSchemaBase {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -54807,6 +54847,10 @@ export interface ApplicationWithBuildConfigSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
+    /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
     /**
      * entity identity
      */
@@ -55064,6 +55108,10 @@ export interface DeePMDAppSchema {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55142,6 +55190,10 @@ export interface LAMMPS {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55191,6 +55243,10 @@ export interface NWChem {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55239,6 +55295,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether licensing is present
          */
         isLicensed?: boolean;
+        /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
         /**
          * entity identity
          */
@@ -55574,6 +55634,10 @@ export interface ViennaAbInitoSimulationPackage {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55623,6 +55687,10 @@ export interface JupyterLabApplicationSchema {
      * Whether licensing is present
      */
     isLicensed?: boolean;
+    /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
     /**
      * entity identity
      */
@@ -55686,6 +55754,10 @@ export interface PythonProgramingLanguageSchema {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55744,6 +55816,10 @@ export interface ShellScriptingLanguageSchema {
      */
     isLicensed?: boolean;
     /**
+     * Whether the application is using (being passed during a downstream processing routine) a material structure.
+     */
+    isUsingMaterial?: boolean;
+    /**
      * entity identity
      */
     _id?: string;
@@ -55792,6 +55868,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+        /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
         /**
          * entity identity
          */
@@ -57308,6 +57388,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isLicensed?: boolean;
         /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
+        /**
          * entity identity
          */
         _id?: string;
@@ -58386,6 +58470,10 @@ export interface Subworkflow {
              */
             isLicensed?: boolean;
             /**
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
+             */
+            isUsingMaterial?: boolean;
+            /**
              * entity identity
              */
             _id?: string;
@@ -58955,6 +59043,10 @@ export interface Subworkflow {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+        /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
         /**
          * entity identity
          */
@@ -59596,6 +59688,10 @@ export interface ExecutionUnitSchemaBase {
          * Whether licensing is present
          */
         isLicensed?: boolean;
+        /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
         /**
          * entity identity
          */
@@ -61295,6 +61391,10 @@ export type WorkflowUnitSchema = {
          */
         isLicensed?: boolean;
         /**
+         * Whether the application is using (being passed during a downstream processing routine) a material structure.
+         */
+        isUsingMaterial?: boolean;
+        /**
          * entity identity
          */
         _id?: string;
@@ -62599,6 +62699,10 @@ export interface WorkflowSchema {
                  */
                 isLicensed?: boolean;
                 /**
+                 * Whether the application is using (being passed during a downstream processing routine) a material structure.
+                 */
+                isUsingMaterial?: boolean;
+                /**
                  * entity identity
                  */
                 _id?: string;
@@ -63168,6 +63272,10 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+            /**
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
+             */
+            isUsingMaterial?: boolean;
             /**
              * entity identity
              */
@@ -63875,6 +63983,10 @@ export interface WorkflowSchema {
              * Whether licensing is present
              */
             isLicensed?: boolean;
+            /**
+             * Whether the application is using (being passed during a downstream processing routine) a material structure.
+             */
+            isUsingMaterial?: boolean;
             /**
              * entity identity
              */

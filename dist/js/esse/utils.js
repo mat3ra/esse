@@ -3,7 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.applyPatchTree = exports.applyPatchWithDotNotation = exports.parseIncludeReferenceStatementsByDir = exports.parseIncludeReferenceStatements = void 0;
+exports.parseIncludeReferenceStatements = parseIncludeReferenceStatements;
+exports.parseIncludeReferenceStatementsByDir = parseIncludeReferenceStatementsByDir;
+exports.applyPatchWithDotNotation = applyPatchWithDotNotation;
+exports.applyPatchTree = applyPatchTree;
 // @ts-ignore
 const json_schema_deref_sync_1 = __importDefault(require("json-schema-deref-sync"));
 const path_1 = __importDefault(require("path"));
@@ -30,7 +33,6 @@ function parseIncludeReferenceStatements(filePath) {
     }
     return dereferenced;
 }
-exports.parseIncludeReferenceStatements = parseIncludeReferenceStatements;
 /**
  * Resolves `include` and `$ref` statements for all the JSON files inside a given directory.
  * @param dirPath directory to parse.
@@ -58,7 +60,6 @@ function parseIncludeReferenceStatementsByDir(dirPath, wrapInDataAndPath = false
     });
     return wrapInDataAndPath ? schemasWithPath : schemas;
 }
-exports.parseIncludeReferenceStatementsByDir = parseIncludeReferenceStatementsByDir;
 function isPlainObject(value) {
     return value !== null && typeof value === "object" && !Array.isArray(value);
 }
@@ -86,7 +87,6 @@ function applyPatchWithDotNotation(target, path, patchValue) {
     }
     // If existingValue is undefined, we skip;
 }
-exports.applyPatchWithDotNotation = applyPatchWithDotNotation;
 function applyPatchTree(schema, patchNode, pathPrefix) {
     Object.entries(patchNode).forEach(([key, value]) => {
         if (key.includes(".")) {
@@ -107,4 +107,3 @@ function applyPatchTree(schema, patchNode, pathPrefix) {
         }
     });
 }
-exports.applyPatchTree = applyPatchTree;
