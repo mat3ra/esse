@@ -6673,7 +6673,7 @@ export interface JobSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -49082,7 +49082,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -52463,7 +52463,7 @@ export interface PropertyHolderSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -54999,7 +54999,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -56099,7 +56099,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -58008,7 +58008,7 @@ export interface BaseWorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -60127,7 +60127,7 @@ export interface SubworkflowMixinSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -61669,7 +61669,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -63163,7 +63163,7 @@ export interface SubworkflowSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -65977,7 +65977,7 @@ export interface ExecutionUnitSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -66602,7 +66602,7 @@ export interface ExecutionUnitInputSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -66647,7 +66647,7 @@ export interface ExecutionUnitInputItemSchema {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered: string;
+    rendered?: string;
     isManuallyChanged: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
@@ -67338,7 +67338,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -69491,7 +69491,7 @@ export interface WorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({

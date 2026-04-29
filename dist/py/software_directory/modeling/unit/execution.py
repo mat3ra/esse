@@ -212,7 +212,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
@@ -252,7 +252,7 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines8(BaseModel)
         extra="forbid",
     )
     template: TemplateSchema8 = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """

@@ -442,7 +442,6 @@
                 "title": "execution unit input item schema",
                 "type": "object",
                 "required": [
-                    "rendered",
                     "isManuallyChanged",
                     "template"
                 ],
@@ -525,7 +524,6 @@
                             }
                         },
                         "required": [
-                            "rendered",
                             "isManuallyChanged",
                             "template"
                         ]

@@ -547,7 +547,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
