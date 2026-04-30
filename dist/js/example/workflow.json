@@ -61,18 +61,17 @@
                     },
                     "compute": null,
                     "executable": {
-                        "advancedComputeOptions": true,
+                        "name": "pw.x",
                         "applicationId": [
                             "eaJepm4AWfqpaCw59"
                         ],
-                        "applicationName": "Quantum ESPRESSO",
+                        "advancedComputeOptions": true,
                         "isDefault": true,
                         "monitors": [
                             {
                                 "name": "standard_output"
                             }
                         ],
-                        "name": "pw.x",
                         "postProcessors": [],
                         "preProcessors": [],
                         "results": [
@@ -82,13 +81,13 @@
                         ]
                     },
                     "flavor": {
+                        "name": "pw_scf",
                         "executableId": "4987JFJ3kKbwvFSG7",
                         "input": [
                             {
                                 "templateId": "dJ7HYz5pQ4AuN5qc9"
                             }
                         ],
-                        "name": "pw_scf",
                         "postProcessors": [],
                         "preProcessors": [],
                         "monitors": [],
@@ -99,18 +98,14 @@
                     "input": [
                         {
                             "template": {
-                                "applicationName": "espresso",
-                                "applicationVersions": [
-                                    "6.0"
-                                ],
+                                "name": "kpoints_grid",
+                                "executableId": "4987JFJ3kKbwvFSG7",
                                 "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
                                 "contextProviders": [
                                     {
                                         "name": "KGridManagerMixin"
                                     }
-                                ],
-                                "executableName": "pw.x",
-                                "name": "kpoints_grid"
+                                ]
                             },
                             "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
                             "isManuallyChanged": false

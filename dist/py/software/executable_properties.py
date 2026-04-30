@@ -4,17 +4,17 @@
 
 from __future__ import annotations
 
-from typing import Optional
+from typing import List, Optional
 
 from pydantic import BaseModel
 
 
 class ExecutablePropertiesSchema(BaseModel):
-    applicationName: str
-    """
-    name of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    hasAdvancedComputeOptions: Optional[bool] = False
     """
     Whether advanced compute options are present
+    """
+    applicationId: List[str]
+    """
+    ids of the applications this executable belongs to
     """

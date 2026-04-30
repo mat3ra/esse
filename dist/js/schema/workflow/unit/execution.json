@@ -250,7 +250,7 @@
             "title": "Named defaultable in-memory entity schema",
             "type": "object",
             "required": [
-                "applicationName",
+                "applicationId",
                 "name"
             ],
             "properties": {
@@ -279,13 +279,17 @@
                     "type": "boolean",
                     "default": false
                 },
-                "applicationName": {
-                    "description": "name of the application this executable belongs to",
-                    "type": "string"
-                },
                 "hasAdvancedComputeOptions": {
                     "description": "Whether advanced compute options are present",
-                    "type": "boolean"
+                    "type": "boolean",
+                    "default": false
+                },
+                "applicationId": {
+                    "description": "ids of the applications this executable belongs to",
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 }
             }
         },
@@ -294,6 +298,7 @@
             "title": "flavor schema",
             "type": "object",
             "required": [
+                "executableId",
                 "input",
                 "monitors",
                 "name",
@@ -399,14 +404,6 @@
                         }
                     }
                 },
-                "executableName": {
-                    "description": "name of the executable this flavor belongs to",
-                    "type": "string"
-                },
-                "applicationName": {
-                    "description": "name of the application this flavor belongs to",
-                    "type": "string"
-                },
                 "input": {
                     "title": "execution unit input schema",
                     "type": "array",
@@ -429,12 +426,9 @@
                         }
                     }
                 },
-                "supportedApplicationVersions": {
-                    "description": "list of application versions this flavor supports",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
+                "executableId": {
+                    "description": "id of the executable this flavor belongs to",
+                    "type": "string"
                 }
             }
         },
@@ -454,10 +448,9 @@
                         "title": "template schema",
                         "type": "object",
                         "required": [
-                            "applicationName",
                             "content",
                             "contextProviders",
-                            "executableName",
+                            "executableId",
                             "name"
                         ],
                         "properties": {
@@ -481,13 +474,8 @@
                                 "description": "entity name",
                                 "type": "string"
                             },
-                            "applicationName": {
-                                "type": "string"
-                            },
-                            "applicationVersion": {
-                                "type": "string"
-                            },
-                            "executableName": {
+                            "executableId": {
+                                "description": "id of the executable this template belongs to",
                                 "type": "string"
                             },
                             "contextProviders": {

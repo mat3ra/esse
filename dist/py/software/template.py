@@ -31,9 +31,10 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
-    executableName: str
+    executableId: str
+    """
+    id of the executable this template belongs to
+    """
     contextProviders: List[ContextProvider]
     content: str
     """

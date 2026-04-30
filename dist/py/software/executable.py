@@ -54,11 +54,11 @@ class ExecutableSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    applicationName: str
-    """
-    name of the application this executable belongs to
-    """
-    hasAdvancedComputeOptions: Optional[bool] = None
+    hasAdvancedComputeOptions: Optional[bool] = False
     """
     Whether advanced compute options are present
+    """
+    applicationId: List[str]
+    """
+    ids of the applications this executable belongs to
     """

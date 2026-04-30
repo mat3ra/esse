@@ -1,16 +1,15 @@
 {
-    "advancedComputeOptions": true,
+    "name": "pw.x",
     "applicationId": [
         "eaJepm4AWfqpaCw59"
     ],
-    "applicationName": "Quantum ESPRESSO",
+    "advancedComputeOptions": true,
     "isDefault": true,
     "monitors": [
         {
             "name": "standard_output"
         }
     ],
-    "name": "pw.x",
     "postProcessors": [],
     "preProcessors": [],
     "results": [

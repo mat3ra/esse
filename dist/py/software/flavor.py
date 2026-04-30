@@ -66,18 +66,10 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableName: Optional[str] = None
-    """
-    name of the executable this flavor belongs to
-    """
-    applicationName: Optional[str] = None
-    """
-    name of the application this flavor belongs to
-    """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
+    executableId: str
     """
-    list of application versions this flavor supports
+    id of the executable this flavor belongs to
     """
