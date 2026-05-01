@@ -11,9 +11,8 @@
     "compute": null,
     "executable": {
         "name": "pw.x",
-        "applicationId": [
-            "eaJepm4AWfqpaCw59"
-        ],
+        "applicationName": "pw.x",
+        "applicationVersion": "7.0",
         "advancedComputeOptions": true,
         "isDefault": true,
         "monitors": [
@@ -31,7 +30,9 @@
     },
     "flavor": {
         "name": "pw_scf",
-        "executableId": "4987JFJ3kKbwvFSG7",
+        "executableName": "pw.x",
+        "applicationName": "pw.x",
+        "applicationVersion": "7.0",
         "input": [
             {
                 "templateId": "dJ7HYz5pQ4AuN5qc9"
@@ -48,7 +49,9 @@
         {
             "template": {
                 "name": "kpoints_grid",
-                "executableId": "4987JFJ3kKbwvFSG7",
+                "executableName": "pw.x",
+                "applicationName": "pw.x",
+                "applicationVersion": "7.0",
                 "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
                 "contextProviders": [
                     {

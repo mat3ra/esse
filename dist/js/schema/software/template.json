@@ -4,9 +4,11 @@
     "title": "template schema",
     "type": "object",
     "required": [
+        "applicationName",
+        "applicationVersion",
         "content",
         "contextProviders",
-        "executableId",
+        "executableName",
         "name"
     ],
     "properties": {
@@ -30,8 +32,13 @@
             "description": "entity name",
             "type": "string"
         },
-        "executableId": {
-            "description": "id of the executable this template belongs to",
+        "executableName": {
+            "type": "string"
+        },
+        "applicationName": {
+            "type": "string"
+        },
+        "applicationVersion": {
             "type": "string"
         },
         "contextProviders": {

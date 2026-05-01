@@ -6557,13 +6557,17 @@ export interface JobSchema {
                      */
                     isDefault?: boolean;
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * ids of the applications this executable belongs to
-                     */
-                    applicationId: string[];
                 };
                 flavor: {
                     /**
@@ -6623,6 +6627,18 @@ export interface JobSchema {
                          */
                         name: string;
                     }[];
+                    /**
+                     * name of the executable this flavor belongs to
+                     */
+                    executableName: string;
+                    /**
+                     * name of the application this flavor belongs to
+                     */
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
@@ -6631,10 +6647,6 @@ export interface JobSchema {
                          */
                         name?: string;
                     }[];
-                    /**
-                     * id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                 };
                 input: {
                     template: {
@@ -6655,10 +6667,9 @@ export interface JobSchema {
                          * entity name
                          */
                         name: string;
-                        /**
-                         * id of the executable this template belongs to
-                         */
-                        executableId: string;
+                        executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -48967,13 +48978,17 @@ export interface WorkflowPropertySchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * ids of the applications this executable belongs to
-                 */
-                applicationId: string[];
             };
             flavor: {
                 /**
@@ -49033,6 +49048,18 @@ export interface WorkflowPropertySchema {
                      */
                     name: string;
                 }[];
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
@@ -49041,10 +49068,6 @@ export interface WorkflowPropertySchema {
                      */
                     name?: string;
                 }[];
-                /**
-                 * id of the executable this flavor belongs to
-                 */
-                executableId: string;
             };
             input: {
                 template: {
@@ -49065,10 +49088,9 @@ export interface WorkflowPropertySchema {
                      * entity name
                      */
                     name: string;
-                    /**
-                     * id of the executable this template belongs to
-                     */
-                    executableId: string;
+                    executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -52369,13 +52391,17 @@ export interface PropertyHolderSchema {
                      */
                     isDefault?: boolean;
                     /**
+                     * name of the application this executable belongs to
+                     */
+                    applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * ids of the applications this executable belongs to
-                     */
-                    applicationId: string[];
                 };
                 flavor: {
                     /**
@@ -52435,6 +52461,18 @@ export interface PropertyHolderSchema {
                          */
                         name: string;
                     }[];
+                    /**
+                     * name of the executable this flavor belongs to
+                     */
+                    executableName: string;
+                    /**
+                     * name of the application this flavor belongs to
+                     */
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
@@ -52443,10 +52481,6 @@ export interface PropertyHolderSchema {
                          */
                         name?: string;
                     }[];
-                    /**
-                     * id of the executable this flavor belongs to
-                     */
-                    executableId: string;
                 };
                 input: {
                     template: {
@@ -52467,10 +52501,9 @@ export interface PropertyHolderSchema {
                          * entity name
                          */
                         name: string;
-                        /**
-                         * id of the executable this template belongs to
-                         */
-                        executableId: string;
+                        executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -54410,24 +54443,32 @@ export interface ExecutableSchema {
         name: string;
     }[];
     /**
+     * name of the application this executable belongs to
+     */
+    applicationName: string;
+    /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
-    /**
-     * ids of the applications this executable belongs to
-     */
-    applicationId: string[];
 }
 /** Schema dist/js/schema/software/executable_properties.json */
 export interface ExecutablePropertiesSchema {
     /**
+     * name of the application this executable belongs to
+     */
+    applicationName: string;
+    /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
-    /**
-     * ids of the applications this executable belongs to
-     */
-    applicationId: string[];
 }
 /** Schema dist/js/schema/software/flavor.json */
 export interface FlavorSchema {
@@ -54488,6 +54529,18 @@ export interface FlavorSchema {
          */
         name: string;
     }[];
+    /**
+     * name of the executable this flavor belongs to
+     */
+    executableName: string;
+    /**
+     * name of the application this flavor belongs to
+     */
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
@@ -54496,13 +54549,21 @@ export interface FlavorSchema {
          */
         name?: string;
     }[];
-    /**
-     * id of the executable this flavor belongs to
-     */
-    executableId: string;
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
 export interface FlavorPropertiesSchema {
+    /**
+     * name of the executable this flavor belongs to
+     */
+    executableName: string;
+    /**
+     * name of the application this flavor belongs to
+     */
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
@@ -54511,10 +54572,6 @@ export interface FlavorPropertiesSchema {
          */
         name?: string;
     }[];
-    /**
-     * id of the executable this flavor belongs to
-     */
-    executableId: string;
 }
 /** Schema dist/js/schema/software/template.json */
 export interface TemplateSchema {
@@ -54535,10 +54592,9 @@ export interface TemplateSchema {
      * entity name
      */
     name: string;
-    /**
-     * id of the executable this template belongs to
-     */
-    executableId: string;
+    executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54549,10 +54605,9 @@ export interface TemplateSchema {
 }
 /** Schema dist/js/schema/software/template_properties.json */
 export interface TemplatePropertiesSchema {
-    /**
-     * id of the executable this template belongs to
-     */
-    executableId: string;
+    executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54916,13 +54971,17 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * ids of the applications this executable belongs to
-         */
-        applicationId: string[];
     };
     flavor: {
         /**
@@ -54982,6 +55041,18 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              */
             name: string;
         }[];
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
@@ -54990,10 +55061,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              */
             name?: string;
         }[];
-        /**
-         * id of the executable this flavor belongs to
-         */
-        executableId: string;
     };
     input: ({
         template: {
@@ -55014,10 +55081,9 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -56029,13 +56095,17 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * ids of the applications this executable belongs to
-         */
-        applicationId: string[];
     };
     flavor: {
         /**
@@ -56095,6 +56165,18 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name: string;
         }[];
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
@@ -56103,10 +56185,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              */
             name?: string;
         }[];
-        /**
-         * id of the executable this flavor belongs to
-         */
-        executableId: string;
     };
     input: ({
         template: {
@@ -56127,10 +56205,9 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -57935,13 +58012,17 @@ export interface BaseWorkflowSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * ids of the applications this executable belongs to
-                 */
-                applicationId: string[];
             };
             flavor: {
                 /**
@@ -58001,6 +58082,18 @@ export interface BaseWorkflowSchema {
                      */
                     name: string;
                 }[];
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
@@ -58009,10 +58102,6 @@ export interface BaseWorkflowSchema {
                      */
                     name?: string;
                 }[];
-                /**
-                 * id of the executable this flavor belongs to
-                 */
-                executableId: string;
             };
             input: {
                 template: {
@@ -58033,10 +58122,9 @@ export interface BaseWorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    /**
-                     * id of the executable this template belongs to
-                     */
-                    executableId: string;
+                    executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -60068,13 +60156,17 @@ export interface SubworkflowMixinSchema {
              */
             isDefault?: boolean;
             /**
+             * name of the application this executable belongs to
+             */
+            applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
-            /**
-             * ids of the applications this executable belongs to
-             */
-            applicationId: string[];
         };
         flavor: {
             /**
@@ -60134,6 +60226,18 @@ export interface SubworkflowMixinSchema {
                  */
                 name: string;
             }[];
+            /**
+             * name of the executable this flavor belongs to
+             */
+            executableName: string;
+            /**
+             * name of the application this flavor belongs to
+             */
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
@@ -60142,10 +60246,6 @@ export interface SubworkflowMixinSchema {
                  */
                 name?: string;
             }[];
-            /**
-             * id of the executable this flavor belongs to
-             */
-            executableId: string;
         };
         input: {
             template: {
@@ -60166,10 +60266,9 @@ export interface SubworkflowMixinSchema {
                  * entity name
                  */
                 name: string;
-                /**
-                 * id of the executable this template belongs to
-                 */
-                executableId: string;
+                executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -61611,13 +61710,17 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * ids of the applications this executable belongs to
-         */
-        applicationId: string[];
     };
     flavor: {
         /**
@@ -61677,6 +61780,18 @@ export type WorkflowSubworkflowUnitSchema = {
              */
             name: string;
         }[];
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
@@ -61685,10 +61800,6 @@ export type WorkflowSubworkflowUnitSchema = {
              */
             name?: string;
         }[];
-        /**
-         * id of the executable this flavor belongs to
-         */
-        executableId: string;
     };
     input: {
         template: {
@@ -61709,10 +61820,9 @@ export type WorkflowSubworkflowUnitSchema = {
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -63102,13 +63212,17 @@ export interface SubworkflowSchema {
              */
             isDefault?: boolean;
             /**
+             * name of the application this executable belongs to
+             */
+            applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
-            /**
-             * ids of the applications this executable belongs to
-             */
-            applicationId: string[];
         };
         flavor: {
             /**
@@ -63168,6 +63282,18 @@ export interface SubworkflowSchema {
                  */
                 name: string;
             }[];
+            /**
+             * name of the executable this flavor belongs to
+             */
+            executableName: string;
+            /**
+             * name of the application this flavor belongs to
+             */
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
@@ -63176,10 +63302,6 @@ export interface SubworkflowSchema {
                  */
                 name?: string;
             }[];
-            /**
-             * id of the executable this flavor belongs to
-             */
-            executableId: string;
         };
         input: {
             template: {
@@ -63200,10 +63322,9 @@ export interface SubworkflowSchema {
                  * entity name
                  */
                 name: string;
-                /**
-                 * id of the executable this template belongs to
-                 */
-                executableId: string;
+                executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -65917,13 +66038,17 @@ export interface ExecutionUnitSchema {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * ids of the applications this executable belongs to
-         */
-        applicationId: string[];
     };
     flavor: {
         /**
@@ -65983,6 +66108,18 @@ export interface ExecutionUnitSchema {
              */
             name: string;
         }[];
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
@@ -65991,10 +66128,6 @@ export interface ExecutionUnitSchema {
              */
             name?: string;
         }[];
-        /**
-         * id of the executable this flavor belongs to
-         */
-        executableId: string;
     };
     input: {
         template: {
@@ -66015,10 +66148,9 @@ export interface ExecutionUnitSchema {
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66641,10 +66773,9 @@ export interface ExecutionUnitInputSchema {
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66687,10 +66818,9 @@ export interface ExecutionUnitInputItemSchema {
          * entity name
          */
         name: string;
-        /**
-         * id of the executable this template belongs to
-         */
-        executableId: string;
+        executableName: string;
+        applicationName: string;
+        applicationVersion: string;
         contextProviders: {
             name: ContextProviderNameEnum;
         }[];
@@ -67277,13 +67407,17 @@ export interface ExecutionUnitMixinSchema {
          */
         isDefault?: boolean;
         /**
+         * name of the application this executable belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * ids of the applications this executable belongs to
-         */
-        applicationId: string[];
     };
     flavor: {
         /**
@@ -67343,6 +67477,18 @@ export interface ExecutionUnitMixinSchema {
              */
             name: string;
         }[];
+        /**
+         * name of the executable this flavor belongs to
+         */
+        executableName: string;
+        /**
+         * name of the application this flavor belongs to
+         */
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
@@ -67351,10 +67497,6 @@ export interface ExecutionUnitMixinSchema {
              */
             name?: string;
         }[];
-        /**
-         * id of the executable this flavor belongs to
-         */
-        executableId: string;
     };
     input: {
         template: {
@@ -67375,10 +67517,9 @@ export interface ExecutionUnitMixinSchema {
              * entity name
              */
             name: string;
-            /**
-             * id of the executable this template belongs to
-             */
-            executableId: string;
+            executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -69427,13 +69568,17 @@ export interface WorkflowSchema {
                  */
                 isDefault?: boolean;
                 /**
+                 * name of the application this executable belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * ids of the applications this executable belongs to
-                 */
-                applicationId: string[];
             };
             flavor: {
                 /**
@@ -69493,6 +69638,18 @@ export interface WorkflowSchema {
                      */
                     name: string;
                 }[];
+                /**
+                 * name of the executable this flavor belongs to
+                 */
+                executableName: string;
+                /**
+                 * name of the application this flavor belongs to
+                 */
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
@@ -69501,10 +69658,6 @@ export interface WorkflowSchema {
                      */
                     name?: string;
                 }[];
-                /**
-                 * id of the executable this flavor belongs to
-                 */
-                executableId: string;
             };
             input: {
                 template: {
@@ -69525,10 +69678,9 @@ export interface WorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    /**
-                     * id of the executable this template belongs to
-                     */
-                    executableId: string;
+                    executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];

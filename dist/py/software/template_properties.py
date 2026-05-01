@@ -14,10 +14,9 @@ class ContextProvider(BaseModel):
 
 
 class TemplatePropertiesSchema(BaseModel):
-    executableId: str
-    """
-    id of the executable this template belongs to
-    """
+    executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """

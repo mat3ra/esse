@@ -4,8 +4,13 @@
     "title": "template properties schema",
     "type": "object",
     "properties": {
-        "executableId": {
-            "description": "id of the executable this template belongs to",
+        "executableName": {
+            "type": "string"
+        },
+        "applicationName": {
+            "type": "string"
+        },
+        "applicationVersion": {
             "type": "string"
         },
         "contextProviders": {
@@ -32,6 +37,8 @@
     "required": [
         "contextProviders",
         "content",
-        "executableId"
+        "executableName",
+        "applicationName",
+        "applicationVersion"
     ]
 }

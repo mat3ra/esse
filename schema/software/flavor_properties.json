@@ -4,20 +4,30 @@
     "title": "flavor properties schema",
     "type": "object",
     "properties": {
+        "executableName": {
+            "description": "name of the executable this flavor belongs to",
+            "type": "string"
+        },
+        "applicationName": {
+            "description": "name of the application this flavor belongs to",
+            "type": "string"
+        },
+        "applicationVersion": {
+            "description": "version of the application this flavor belongs to",
+            "type": "string"
+        },
         "input": {
             "title": "execution unit input schema",
             "type": "array",
             "items": {
                 "$ref": "../workflow/unit/input/_inputItemId.json"
             }
-        },
-        "executableId": {
-            "description": "id of the executable this flavor belongs to",
-            "type": "string"
         }
     },
     "required": [
         "input",
-        "executableId"
+        "executableName",
+        "applicationName",
+        "applicationVersion"
     ]
 }

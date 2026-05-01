@@ -22,10 +22,18 @@ class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
 
 
 class FlavorPropertiesSchema(BaseModel):
+    executableName: str
+    """
+    name of the executable this flavor belongs to
+    """
+    applicationName: str
+    """
+    name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
+    """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    executableId: str
-    """
-    id of the executable this flavor belongs to
-    """

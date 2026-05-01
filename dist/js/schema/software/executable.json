@@ -4,7 +4,8 @@
     "title": "executable schema",
     "type": "object",
     "required": [
-        "applicationId",
+        "applicationName",
+        "applicationVersion",
         "monitors",
         "name",
         "postProcessors",
@@ -109,17 +110,17 @@
                 }
             }
         },
+        "applicationName": {
+            "description": "name of the application this executable belongs to",
+            "type": "string"
+        },
+        "applicationVersion": {
+            "description": "version of the application this executable belongs to",
+            "type": "string"
+        },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",
-            "type": "boolean",
-            "default": false
-        },
-        "applicationId": {
-            "description": "ids of the applications this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
+            "type": "boolean"
         }
     }
 }

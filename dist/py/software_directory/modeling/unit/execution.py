@@ -105,13 +105,17 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     Identifies that entity is defaultable
     """
-    hasAdvancedComputeOptions: Optional[bool] = False
+    applicationName: str
+    """
+    name of the application this executable belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this executable belongs to
+    """
+    hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
-    """
-    applicationId: List[str]
-    """
-    ids of the applications this executable belongs to
     """
 
 
@@ -165,13 +169,21 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
+    executableName: str
+    """
+    name of the executable this flavor belongs to
+    """
+    applicationName: str
+    """
+    name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
+    """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    executableId: str
-    """
-    id of the executable this flavor belongs to
-    """
 
 
 class ContextProvider(BaseModel):
@@ -196,10 +208,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    executableId: str
-    """
-    id of the executable this template belongs to
-    """
+    executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """
@@ -234,10 +245,9 @@ class TemplateSchema8(BaseModel):
     """
     entity name
     """
-    executableId: str
-    """
-    id of the executable this template belongs to
-    """
+    executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """

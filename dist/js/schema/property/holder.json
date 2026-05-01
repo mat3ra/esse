@@ -3514,7 +3514,8 @@
                                                             "title": "Named defaultable in-memory entity schema",
                                                             "type": "object",
                                                             "required": [
-                                                                "applicationId",
+                                                                "applicationName",
+                                                                "applicationVersion",
                                                                 "name"
                                                             ],
                                                             "properties": {
@@ -3543,17 +3544,17 @@
                                                                     "type": "boolean",
                                                                     "default": false
                                                                 },
+                                                                "applicationName": {
+                                                                    "description": "name of the application this executable belongs to",
+                                                                    "type": "string"
+                                                                },
+                                                                "applicationVersion": {
+                                                                    "description": "version of the application this executable belongs to",
+                                                                    "type": "string"
+                                                                },
                                                                 "hasAdvancedComputeOptions": {
                                                                     "description": "Whether advanced compute options are present",
-                                                                    "type": "boolean",
-                                                                    "default": false
-                                                                },
-                                                                "applicationId": {
-                                                                    "description": "ids of the applications this executable belongs to",
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
+                                                                    "type": "boolean"
                                                                 }
                                                             }
                                                         },
@@ -3562,7 +3563,9 @@
                                                             "title": "flavor schema",
                                                             "type": "object",
                                                             "required": [
-                                                                "executableId",
+                                                                "applicationName",
+                                                                "applicationVersion",
+                                                                "executableName",
                                                                 "input",
                                                                 "monitors",
                                                                 "name",
@@ -3668,6 +3671,18 @@
                                                                         }
                                                                     }
                                                                 },
+                                                                "executableName": {
+                                                                    "description": "name of the executable this flavor belongs to",
+                                                                    "type": "string"
+                                                                },
+                                                                "applicationName": {
+                                                                    "description": "name of the application this flavor belongs to",
+                                                                    "type": "string"
+                                                                },
+                                                                "applicationVersion": {
+                                                                    "description": "version of the application this flavor belongs to",
+                                                                    "type": "string"
+                                                                },
                                                                 "input": {
                                                                     "title": "execution unit input schema",
                                                                     "type": "array",
@@ -3689,10 +3704,6 @@
                                                                             }
                                                                         }
                                                                     }
-                                                                },
-                                                                "executableId": {
-                                                                    "description": "id of the executable this flavor belongs to",
-                                                                    "type": "string"
                                                                 }
                                                             }
                                                         },
@@ -3712,9 +3723,11 @@
                                                                         "title": "template schema",
                                                                         "type": "object",
                                                                         "required": [
+                                                                            "applicationName",
+                                                                            "applicationVersion",
                                                                             "content",
                                                                             "contextProviders",
-                                                                            "executableId",
+                                                                            "executableName",
                                                                             "name"
                                                                         ],
                                                                         "properties": {
@@ -3738,8 +3751,13 @@
                                                                                 "description": "entity name",
                                                                                 "type": "string"
                                                                             },
-                                                                            "executableId": {
-                                                                                "description": "id of the executable this template belongs to",
+                                                                            "executableName": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "applicationName": {
+                                                                                "type": "string"
+                                                                            },
+                                                                            "applicationVersion": {
                                                                                 "type": "string"
                                                                             },
                                                                             "contextProviders": {

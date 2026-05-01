@@ -1,6 +1,8 @@
 {
     "name": "kpoints_grid",
-    "executableId": "4987JFJ3kKbwvFSG7",
+    "executableName": "pw.x",
+    "applicationName": "pw.x",
+    "applicationVersion": "7.0",
     "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
     "contextProviders": [
         {

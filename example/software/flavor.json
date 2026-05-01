@@ -1,6 +1,8 @@
 {
     "name": "pw_scf",
-    "executableId": "4987JFJ3kKbwvFSG7",
+    "executableName": "pw.x",
+    "applicationName": "pw.x",
+    "applicationVersion": "7.0",
     "input": [
         {
             "templateId": "dJ7HYz5pQ4AuN5qc9"

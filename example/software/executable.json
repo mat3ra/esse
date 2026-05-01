@@ -1,8 +1,7 @@
 {
     "name": "pw.x",
-    "applicationId": [
-        "eaJepm4AWfqpaCw59"
-    ],
+    "applicationName": "pw.x",
+    "applicationVersion": "7.0",
     "advancedComputeOptions": true,
     "isDefault": true,
     "monitors": [
