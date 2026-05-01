@@ -455,7 +455,8 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    templateName: str
+    templateId: Optional[str] = None
+    templateName: Optional[str] = None
     name: str
     """
     name of the resulting input file, if different than template name

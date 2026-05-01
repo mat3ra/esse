@@ -1347,10 +1347,12 @@
                                             "title": "execution unit input id item schema for physics-based simulation engines",
                                             "type": "object",
                                             "required": [
-                                                "name",
-                                                "templateName"
+                                                "name"
                                             ],
                                             "properties": {
+                                                "templateId": {
+                                                    "type": "string"
+                                                },
                                                 "templateName": {
                                                     "type": "string"
                                                 },
