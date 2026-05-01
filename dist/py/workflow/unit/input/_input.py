@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class ContextProvider(BaseModel):
@@ -51,12 +51,8 @@ class ExecutionUnitInputItemSchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
+    templateName: str
+    name: str
     """
     name of the resulting input file, if different than template name
     """

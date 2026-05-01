@@ -120,12 +120,8 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
+    templateName: str
+    name: str
     """
     name of the resulting input file, if different than template name
     """
@@ -256,18 +252,14 @@ class TemplateSchema6(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines6(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     template: TemplateSchema6 = Field(..., title="template schema")
     rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
     isManuallyChanged: Optional[bool] = False
-    templateId: Optional[str] = None
-    templateName: Optional[str] = None
-    name: Optional[str] = None
+    templateName: str
+    name: str
     """
     name of the resulting input file, if different than template name
     """

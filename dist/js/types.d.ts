@@ -6640,12 +6640,11 @@ export interface JobSchema {
                      */
                     applicationVersion: string;
                     input: {
-                        templateId?: string;
-                        templateName?: string;
+                        templateName: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
                 };
                 input: {
@@ -49061,12 +49060,11 @@ export interface WorkflowPropertySchema {
                  */
                 applicationVersion: string;
                 input: {
-                    templateId?: string;
-                    templateName?: string;
+                    templateName: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
             };
             input: {
@@ -52474,12 +52472,11 @@ export interface PropertyHolderSchema {
                      */
                     applicationVersion: string;
                     input: {
-                        templateId?: string;
-                        templateName?: string;
+                        templateName: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
                 };
                 input: {
@@ -54542,12 +54539,11 @@ export interface FlavorSchema {
      */
     applicationVersion: string;
     input: {
-        templateId?: string;
-        templateName?: string;
+        templateName: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
@@ -54565,12 +54561,11 @@ export interface FlavorPropertiesSchema {
      */
     applicationVersion: string;
     input: {
-        templateId?: string;
-        templateName?: string;
+        templateName: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
 }
 /** Schema dist/js/schema/software/template.json */
@@ -55054,12 +55049,11 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         applicationVersion: string;
         input: {
-            templateId?: string;
-            templateName?: string;
+            templateName: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
     };
     input: ({
@@ -55098,12 +55092,11 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         rendered?: string;
         isManuallyChanged: boolean;
     } | {
-        templateId?: string;
-        templateName?: string;
+        templateName: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -56178,12 +56171,11 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         applicationVersion: string;
         input: {
-            templateId?: string;
-            templateName?: string;
+            templateName: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
     };
     input: ({
@@ -56222,12 +56214,11 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         rendered?: string;
         isManuallyChanged: boolean;
     } | {
-        templateId?: string;
-        templateName?: string;
+        templateName: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -58095,12 +58086,11 @@ export interface BaseWorkflowSchema {
                  */
                 applicationVersion: string;
                 input: {
-                    templateId?: string;
-                    templateName?: string;
+                    templateName: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
             };
             input: {
@@ -60239,12 +60229,11 @@ export interface SubworkflowMixinSchema {
              */
             applicationVersion: string;
             input: {
-                templateId?: string;
-                templateName?: string;
+                templateName: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
         };
         input: {
@@ -61793,12 +61782,11 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         applicationVersion: string;
         input: {
-            templateId?: string;
-            templateName?: string;
+            templateName: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
     };
     input: {
@@ -63295,12 +63283,11 @@ export interface SubworkflowSchema {
              */
             applicationVersion: string;
             input: {
-                templateId?: string;
-                templateName?: string;
+                templateName: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
         };
         input: {
@@ -66121,12 +66108,11 @@ export interface ExecutionUnitSchema {
          */
         applicationVersion: string;
         input: {
-            templateId?: string;
-            templateName?: string;
+            templateName: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
     };
     input: {
@@ -66790,12 +66776,11 @@ export interface ExecutionUnitInputSchema {
         rendered?: string;
         isManuallyChanged: boolean;
     } | {
-        templateId?: string;
-        templateName?: string;
+        templateName: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
@@ -66837,12 +66822,11 @@ export interface ExecutionUnitInputItemSchema {
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
 export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines {
-    templateId?: string;
-    templateName?: string;
+    templateName: string;
     /**
      * name of the resulting input file, if different than template name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemScope.json */
 export interface WorkflowUnitInputSchema {
@@ -67490,12 +67474,11 @@ export interface ExecutionUnitMixinSchema {
          */
         applicationVersion: string;
         input: {
-            templateId?: string;
-            templateName?: string;
+            templateName: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
     };
     input: {
@@ -69651,12 +69634,11 @@ export interface WorkflowSchema {
                  */
                 applicationVersion: string;
                 input: {
-                    templateId?: string;
-                    templateName?: string;
+                    templateName: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
             };
             input: {
