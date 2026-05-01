@@ -84,6 +84,10 @@ class PythonProgramingLanguageSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present

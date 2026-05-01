@@ -71,6 +71,10 @@
             "description": "The short name of the application. e.g. qe",
             "type": "string"
         },
+        "isDefaultVersion": {
+            "description": "Whether the version is the default version",
+            "type": "boolean"
+        },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",
             "type": "boolean"

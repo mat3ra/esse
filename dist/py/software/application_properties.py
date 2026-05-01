@@ -30,6 +30,10 @@ class ApplicationPropertiesSchema(BaseModel):
     """
     Whether the build is the default build
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present

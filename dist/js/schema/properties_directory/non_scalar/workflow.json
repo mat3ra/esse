@@ -1215,6 +1215,10 @@
                                                     "description": "Application build. e.g. VTST",
                                                     "type": "string"
                                                 },
+                                                "isDefaultVersion": {
+                                                    "description": "Whether the version is the default version",
+                                                    "type": "boolean"
+                                                },
                                                 "hasAdvancedComputeOptions": {
                                                     "description": "Whether advanced compute options are present",
                                                     "type": "boolean"
@@ -3883,6 +3887,10 @@
                             "build": {
                                 "description": "Application build. e.g. VTST",
                                 "type": "string"
+                            },
+                            "isDefaultVersion": {
+                                "description": "Whether the version is the default version",
+                                "type": "boolean"
                             },
                             "hasAdvancedComputeOptions": {
                                 "description": "Whether advanced compute options are present",
