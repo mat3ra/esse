@@ -18,6 +18,13 @@ class Subtype(Enum):
     unknown = "unknown"
 
 
+class Data(BaseModel):
+    model_config = ConfigDict(
+        extra="allow",
+    )
+    searchText: Optional[str] = None
+
+
 class BaseMethod(BaseModel):
     type: str
     """
@@ -31,22 +38,13 @@ class BaseMethod(BaseModel):
     """
     Object showing the actual possible precision based on theory and implementation
     """
-    data: Optional[Dict[str, Any]] = None
+    data: Optional[Data] = None
     """
     additional data specific to method, eg. array of pseudopotentials
     """
 
 
-class LegacyModelUnknown(BaseModel):
-    model_config = ConfigDict(
-        extra="allow",
-    )
+class UnknownModelSchema(BaseModel):
     type: Type
-    """
-    general type of the model, eg. `dft`
-    """
     subtype: Subtype
-    """
-    general subtype of the model, eg. `lda`
-    """
     method: BaseMethod = Field(..., title="base method")

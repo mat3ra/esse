@@ -1,0 +1,19 @@
+{
+    "$id": "software/executable-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "executable properties schema",
+    "type": "object",
+    "required": [
+        "applicationName"
+    ],
+    "properties": {
+        "applicationName": {
+            "description": "name of the application this executable belongs to",
+            "type": "string"
+        },
+        "hasAdvancedComputeOptions": {
+            "description": "Whether advanced compute options are present",
+            "type": "boolean"
+        }
+    }
+}

@@ -6,11 +6,9 @@
     "allOf": [
         {
             "$ref": "./base.json"
+        },
+        {
+            "$ref": "./mixins/subworkflow.json"
         }
-    ],
-    "properties": {
-        "type": {
-            "const": "subworkflow"
-        }
-    }
+    ]
 }

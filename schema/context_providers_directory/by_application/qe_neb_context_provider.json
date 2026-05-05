@@ -11,19 +11,24 @@
             "type": "object",
             "properties": {
                 "FIRST_IMAGE": {
-                    "type": "string",
-                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the first NEB image."
+                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the first NEB image.",
+                    "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
                 },
                 "LAST_IMAGE": {
-                    "type": "string",
-                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the last NEB image."
+                    "description": "Atomic positions block (ATOMIC_POSITIONS) for the last NEB image.",
+                    "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
                 },
                 "INTERMEDIATE_IMAGES": {
                     "type": "array",
                     "description": "Atomic positions blocks (ATOMIC_POSITIONS) for all intermediate NEB images.",
                     "items": {
-                        "type": "string"
+                        "$ref": "../../apse/file/applications/espresso/7.2/pw.x/atomic_positions.json#/properties/values"
                     }
+                },
+                "contextProviderName": {
+                    "type": "string",
+                    "const": "qe-neb",
+                    "description": "Descriminator for AJV validator"
                 }
             },
             "required": [
@@ -37,7 +42,8 @@
                 "CELL_PARAMETERS",
                 "FIRST_IMAGE",
                 "LAST_IMAGE",
-                "INTERMEDIATE_IMAGES"
+                "INTERMEDIATE_IMAGES",
+                "contextProviderName"
             ]
         }
     ]

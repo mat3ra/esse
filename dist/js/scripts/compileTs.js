@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = compileTS;
 const fs_1 = __importDefault(require("fs"));
 const json_schema_to_typescript_1 = require("json-schema-to-typescript");
 const schemaUtils_1 = require("../esse/schemaUtils");
@@ -78,3 +77,4 @@ async function compileTS(schemaPath, savePath) {
         await fs_1.default.promises.appendFile(savePath, `${compiledSchema} \n`, { flag: "a+" });
     });
 }
+exports.default = compileTS;

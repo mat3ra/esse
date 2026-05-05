@@ -3,28 +3,71 @@
         "name": "espresso",
         "shortName": "qe",
         "summary": "Quantum Espresso",
-        "version": "7.2"
+        "version": "7.2",
+        "build": "GNU"
     },
     "flowchartId": "modeling",
     "head": true,
     "input": [
         {
-            "applicationName": "espresso",
-            "applicationVersions": [
-                "6.0"
-            ],
-            "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
-            "rendered": "K_POINTS automatic\n10 10 10 0 0 0",
-            "contextProviders": [
-                {
-                    "name": "KGridManagerMixin"
-                }
-            ],
-            "executableName": "pw.x",
-            "name": "kpoints_grid"
+            "template": {
+                "applicationName": "espresso",
+                "applicationVersions": [
+                    "6.0"
+                ],
+                "content": "K_POINTS automatic\n{{nkx}} {{nky}} {{nkz}} 0 0 0",
+                "contextProviders": [
+                    {
+                        "name": "KGridManagerMixin"
+                    }
+                ],
+                "executableName": "pw.x",
+                "name": "kpoints_grid"
+            },
+            "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
+            "isManuallyChanged": false
         }
     ],
     "name": "modeling",
     "status": "idle",
-    "type": "execution"
+    "type": "execution",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": [],
+    "context": [],
+    "executable": {
+        "advancedComputeOptions": true,
+        "applicationId": [
+            "eaJepm4AWfqpaCw59"
+        ],
+        "applicationName": "Quantum ESPRESSO",
+        "isDefault": true,
+        "monitors": [
+            {
+                "name": "standard_output"
+            }
+        ],
+        "name": "pw.x",
+        "postProcessors": [],
+        "preProcessors": [],
+        "results": [
+            {
+                "name": "atomic_forces"
+            }
+        ]
+    },
+    "flavor": {
+        "executableId": "4987JFJ3kKbwvFSG7",
+        "input": [
+            {
+                "templateId": "dJ7HYz5pQ4AuN5qc9"
+            }
+        ],
+        "name": "pw_scf",
+        "postProcessors": [],
+        "preProcessors": [],
+        "monitors": [],
+        "results": []
+    }
 }

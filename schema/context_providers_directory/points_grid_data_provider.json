@@ -6,12 +6,24 @@
     "type": "object",
     "properties": {
         "dimensions": {
-            "type": "array",
-            "items": {
-                "type": "number"
-            },
-            "minItems": 3,
-            "maxItems": 3
+            "oneOf": [
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "number"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "minItems": 3,
+                    "maxItems": 3
+                }
+            ]
         },
         "shifts": {
             "type": "array",
@@ -42,5 +54,10 @@
         "preferGridMetric": {
             "type": "boolean"
         }
-    }
+    },
+    "required": [
+        "dimensions",
+        "gridMetricType",
+        "gridMetricValue"
+    ]
 }

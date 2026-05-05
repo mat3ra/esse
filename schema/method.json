@@ -18,7 +18,13 @@
         },
         "data": {
             "description": "additional data specific to method, eg. array of pseudopotentials",
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "searchText": {
+                    "type": "string"
+                }
+            },
+            "additionalProperties": true
         }
     },
     "required": [

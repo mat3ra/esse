@@ -1,0 +1,15 @@
+{
+    "$id": "job/compute-property",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Compute Property Schema",
+    "type": "object",
+    "properties": {
+        "compute": {
+            "description": "Job's compute parameters",
+            "$ref": "./compute.json"
+        }
+    },
+    "required": [
+        "compute"
+    ]
+}

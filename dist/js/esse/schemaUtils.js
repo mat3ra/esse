@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mapObjectDeep = mapObjectDeep;
+exports.mapObjectDeep = void 0;
 function mapObjectDeep(object, mapValue) {
     if (typeof object !== "object" || object === null) {
         return object;
@@ -14,3 +14,4 @@ function mapObjectDeep(object, mapValue) {
     });
     return Object.fromEntries(entries);
 }
+exports.mapObjectDeep = mapObjectDeep;

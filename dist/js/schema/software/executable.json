@@ -4,28 +4,14 @@
     "title": "executable schema",
     "type": "object",
     "required": [
-        "name"
+        "applicationName",
+        "monitors",
+        "name",
+        "postProcessors",
+        "preProcessors",
+        "results"
     ],
     "properties": {
-        "name": {
-            "description": "The name of the executable. e.g. pw.x",
-            "type": "string"
-        },
-        "applicationId": {
-            "description": "_ids of the application this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "applicationName": {
-            "description": "name of the application this executable belongs to",
-            "type": "string"
-        },
-        "hasAdvancedComputeOptions": {
-            "description": "Whether advanced compute options are present",
-            "type": "boolean"
-        },
         "_id": {
             "description": "entity identity",
             "type": "string"
@@ -42,6 +28,10 @@
             "type": "string",
             "default": "2022.8.16"
         },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
         "isDefault": {
             "description": "Identifies that entity is defaultable",
             "type": "boolean",
@@ -52,30 +42,17 @@
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
                         "type": "string"
                     }
-                ]
+                }
             }
         },
         "postProcessors": {
@@ -83,30 +60,17 @@
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
                         "type": "string"
                     }
-                ]
+                }
             }
         },
         "monitors": {
@@ -114,30 +78,17 @@
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
                         "type": "string"
                     }
-                ]
+                }
             }
         },
         "results": {
@@ -145,31 +96,26 @@
             "type": "array",
             "items": {
                 "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
                         "type": "string"
                     }
-                ]
+                }
             }
+        },
+        "applicationName": {
+            "description": "name of the application this executable belongs to",
+            "type": "string"
+        },
+        "hasAdvancedComputeOptions": {
+            "description": "Whether advanced compute options are present",
+            "type": "boolean"
         }
     }
 }

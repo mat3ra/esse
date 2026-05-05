@@ -1,0 +1,52 @@
+{
+    "$id": "workflow/unit/context/item",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "context item schema",
+    "oneOf": [
+        {
+            "$ref": "item/input.json"
+        },
+        {
+            "$ref": "item/cutoffs.json"
+        },
+        {
+            "$ref": "item/grid.json"
+        },
+        {
+            "$ref": "item/path.json"
+        },
+        {
+            "$ref": "item/hubbard_j.json"
+        },
+        {
+            "$ref": "item/hubbard_u.json"
+        },
+        {
+            "$ref": "item/hubbard_v.json"
+        },
+        {
+            "$ref": "item/hubbard_legacy.json"
+        },
+        {
+            "$ref": "item/neb.json"
+        },
+        {
+            "$ref": "item/boundaryConditions.json"
+        },
+        {
+            "$ref": "item/mlSettings.json"
+        },
+        {
+            "$ref": "item/mlTrainTestSplit.json"
+        },
+        {
+            "$ref": "item/dynamics.json"
+        },
+        {
+            "$ref": "item/collinearMagnetization.json"
+        },
+        {
+            "$ref": "item/nonCollinearMagnetization.json"
+        }
+    ]
+}

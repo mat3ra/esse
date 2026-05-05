@@ -9,6 +9,13 @@
         },
         {
             "type": "object",
+            "properties": {
+                "contextProviderName": {
+                    "type": "string",
+                    "const": "qe-pwx",
+                    "description": "Descriminator for AJV validator"
+                }
+            },
             "required": [
                 "IBRAV",
                 "RESTART_MODE",
@@ -19,8 +26,10 @@
                 "NTYP_WITH_LABELS",
                 "ATOMIC_POSITIONS",
                 "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
-                "CELL_PARAMETERS"
+                "CELL_PARAMETERS",
+                "contextProviderName"
             ]
         }
     ]
+    
 }

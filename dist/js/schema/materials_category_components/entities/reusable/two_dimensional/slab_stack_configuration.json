@@ -220,7 +220,8 @@
                                             "type": "object",
                                             "required": [
                                                 "basis",
-                                                "lattice"
+                                                "lattice",
+                                                "name"
                                             ],
                                             "properties": {
                                                 "formula": {
@@ -946,6 +947,34 @@
                                                         }
                                                     }
                                                 },
+                                                "metadata": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "boundaryConditions": {
+                                                            "type": "object",
+                                                            "required": [
+                                                                "type",
+                                                                "offset"
+                                                            ],
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "pbc",
+                                                                        "bc1",
+                                                                        "bc2",
+                                                                        "bc3"
+                                                                    ],
+                                                                    "default": "pbc",
+                                                                    "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                                                                },
+                                                                "offset": {
+                                                                    "type": "number"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -970,9 +999,6 @@
                                                     "description": "Identifies that entity is defaultable",
                                                     "type": "boolean",
                                                     "default": false
-                                                },
-                                                "metadata": {
-                                                    "type": "object"
                                                 }
                                             }
                                         },
@@ -1018,7 +1044,8 @@
                                             "type": "object",
                                             "required": [
                                                 "basis",
-                                                "lattice"
+                                                "lattice",
+                                                "name"
                                             ],
                                             "properties": {
                                                 "formula": {
@@ -1744,6 +1771,34 @@
                                                         }
                                                     }
                                                 },
+                                                "metadata": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "boundaryConditions": {
+                                                            "type": "object",
+                                                            "required": [
+                                                                "type",
+                                                                "offset"
+                                                            ],
+                                                            "properties": {
+                                                                "type": {
+                                                                    "type": "string",
+                                                                    "enum": [
+                                                                        "pbc",
+                                                                        "bc1",
+                                                                        "bc2",
+                                                                        "bc3"
+                                                                    ],
+                                                                    "default": "pbc",
+                                                                    "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                                                                },
+                                                                "offset": {
+                                                                    "type": "number"
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                },
                                                 "_id": {
                                                     "description": "entity identity",
                                                     "type": "string"
@@ -1768,9 +1823,6 @@
                                                     "description": "Identifies that entity is defaultable",
                                                     "type": "boolean",
                                                     "default": false
-                                                },
-                                                "metadata": {
-                                                    "type": "object"
                                                 }
                                             }
                                         }
@@ -1854,7 +1906,8 @@
                             "type": "object",
                             "required": [
                                 "basis",
-                                "lattice"
+                                "lattice",
+                                "name"
                             ],
                             "properties": {
                                 "formula": {
@@ -2580,6 +2633,34 @@
                                         }
                                     }
                                 },
+                                "metadata": {
+                                    "type": "object",
+                                    "properties": {
+                                        "boundaryConditions": {
+                                            "type": "object",
+                                            "required": [
+                                                "type",
+                                                "offset"
+                                            ],
+                                            "properties": {
+                                                "type": {
+                                                    "type": "string",
+                                                    "enum": [
+                                                        "pbc",
+                                                        "bc1",
+                                                        "bc2",
+                                                        "bc3"
+                                                    ],
+                                                    "default": "pbc",
+                                                    "description": "If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab."
+                                                },
+                                                "offset": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                                },
                                 "_id": {
                                     "description": "entity identity",
                                     "type": "string"
@@ -2604,9 +2685,6 @@
                                     "description": "Identifies that entity is defaultable",
                                     "type": "boolean",
                                     "default": false
-                                },
-                                "metadata": {
-                                    "type": "object"
                                 }
                             }
                         }

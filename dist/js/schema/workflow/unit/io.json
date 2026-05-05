@@ -6,16 +6,175 @@
     "required": [
         "flowchartId",
         "input",
+        "monitors",
+        "name",
+        "postProcessors",
+        "preProcessors",
+        "results",
         "source",
         "subtype",
         "type"
     ],
-    "additionalProperties": true,
     "properties": {
-        "type": {
-            "const": "io",
-            "description": "type of the unit",
+        "_id": {
+            "description": "entity identity",
             "type": "string"
+        },
+        "slug": {
+            "description": "entity slug",
+            "type": "string"
+        },
+        "systemName": {
+            "type": "string"
+        },
+        "schemaVersion": {
+            "description": "entity's schema version. Used to distinct between different schemas.",
+            "type": "string",
+            "default": "2022.8.16"
+        },
+        "name": {
+            "description": "entity name",
+            "type": "string"
+        },
+        "isDefault": {
+            "description": "Identifies that entity is defaultable",
+            "type": "boolean",
+            "default": false
+        },
+        "preProcessors": {
+            "description": "names of the pre-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "postProcessors": {
+            "description": "names of the post-processors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "monitors": {
+            "description": "names of the monitors for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "results": {
+            "description": "names of the results for this calculation",
+            "type": "array",
+            "items": {
+                "$schema": "http://json-schema.org/draft-07/schema#",
+                "title": "runtime item name object schema",
+                "type": "object",
+                "required": [
+                    "name"
+                ],
+                "properties": {
+                    "name": {
+                        "description": "The name of this item. e.g. scf_accuracy",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "tags": {
+            "description": "entity tags",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "status": {
+            "type": "string",
+            "description": "Status of the unit.",
+            "enum": [
+                "idle",
+                "active",
+                "warning",
+                "error",
+                "finished"
+            ]
+        },
+        "statusTrack": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "required": [
+                    "trackedAt",
+                    "status"
+                ],
+                "properties": {
+                    "trackedAt": {
+                        "type": "number"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "repetition": {
+                        "type": "number"
+                    }
+                }
+            }
+        },
+        "isDraft": {
+            "type": "boolean"
+        },
+        "type": {
+            "description": "type of the unit",
+            "type": "string",
+            "const": "io"
+        },
+        "head": {
+            "description": "Whether this unit is the first one to be executed.",
+            "type": "boolean"
+        },
+        "flowchartId": {
+            "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
+            "type": "string"
+        },
+        "next": {
+            "description": "Next unit's flowchartId. If empty, the current unit is the last.",
+            "type": "string"
+        },
+        "enableRender": {
+            "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
+            "type": "boolean"
         },
         "subtype": {
             "enum": [
@@ -27,19 +186,22 @@
         "source": {
             "enum": [
                 "api",
-                "db",
                 "object_storage"
             ]
         },
         "input": {
             "type": "array",
             "items": {
+                "type": "object",
                 "oneOf": [
                     {
                         "$schema": "http://json-schema.org/draft-07/schema#",
                         "title": "data IO rest API input schema",
                         "type": "object",
                         "properties": {
+                            "type": {
+                                "const": "api"
+                            },
                             "endpoint": {
                                 "description": "rest API endpoint",
                                 "type": "string"
@@ -54,48 +216,9 @@
                             }
                         },
                         "required": [
+                            "type",
                             "endpoint",
                             "endpoint_options"
-                        ],
-                        "additionalProperties": true
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "data IO database input/output schema",
-                        "type": "object",
-                        "oneOf": [
-                            {
-                                "properties": {
-                                    "ids": {
-                                        "description": "IDs of item to retrieve from db",
-                                        "type": "array",
-                                        "items": {
-                                            "type": "string"
-                                        }
-                                    }
-                                },
-                                "required": [
-                                    "ids"
-                                ],
-                                "additionalProperties": true
-                            },
-                            {
-                                "properties": {
-                                    "collection": {
-                                        "description": "db collection name",
-                                        "type": "string"
-                                    },
-                                    "draft": {
-                                        "description": "whether the result should be saved as draft",
-                                        "type": "boolean"
-                                    }
-                                },
-                                "required": [
-                                    "collection",
-                                    "draft"
-                                ],
-                                "additionalProperties": true
-                            }
                         ]
                     },
                     {
@@ -103,10 +226,13 @@
                         "title": "object_storage io schema",
                         "type": "object",
                         "required": [
+                            "type",
                             "objectData"
                         ],
-                        "additionalProperties": true,
                         "properties": {
+                            "type": {
+                                "const": "object_storage"
+                            },
                             "objectData": {
                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                 "title": "Object Storage Container Data",
@@ -157,216 +283,9 @@
                             }
                         }
                     }
-                ]
-            }
-        },
-        "_id": {
-            "type": "string",
-            "description": "entity identity"
-        },
-        "isDraft": {
-            "type": "boolean"
-        },
-        "name": {
-            "description": "name of the unit. e.g. pw_scf",
-            "type": "string"
-        },
-        "status": {
-            "description": "Status of the unit.",
-            "type": "string",
-            "enum": [
-                "idle",
-                "active",
-                "warning",
-                "error",
-                "finished"
-            ]
-        },
-        "head": {
-            "description": "Whether this unit is the first one to be executed.",
-            "type": "boolean"
-        },
-        "flowchartId": {
-            "description": "Identity of the unit in the workflow. Used to trace the execution flow of the workflow.",
-            "type": "string"
-        },
-        "next": {
-            "description": "Next unit's flowchartId. If empty, the current unit is the last.",
-            "type": "string"
-        },
-        "enableRender": {
-            "description": "Whether Rupy should attempt to use Jinja templating to add context variables into the unit",
-            "type": "boolean"
-        },
-        "context": {
-            "type": "object"
-        },
-        "slug": {
-            "description": "entity slug",
-            "type": "string"
-        },
-        "systemName": {
-            "type": "string"
-        },
-        "schemaVersion": {
-            "description": "entity's schema version. Used to distinct between different schemas.",
-            "type": "string",
-            "default": "2022.8.16"
-        },
-        "isDefault": {
-            "description": "Identifies that entity is defaultable",
-            "type": "boolean",
-            "default": false
-        },
-        "preProcessors": {
-            "description": "names of the pre-processors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "postProcessors": {
-            "description": "names of the post-processors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "monitors": {
-            "description": "names of the monitors for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "results": {
-            "description": "names of the results for this calculation",
-            "type": "array",
-            "items": {
-                "$schema": "http://json-schema.org/draft-07/schema#",
-                "title": "runtime item schema",
-                "oneOf": [
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "name result schema",
-                        "type": "object",
-                        "properties": {
-                            "name": {
-                                "description": "The name of this item. e.g. scf_accuracy",
-                                "type": "string"
-                            }
-                        },
-                        "additionalProperties": true,
-                        "required": [
-                            "name"
-                        ]
-                    },
-                    {
-                        "$schema": "http://json-schema.org/draft-07/schema#",
-                        "title": "RuntimeItemString",
-                        "description": "name of runtime item in shortened notation",
-                        "type": "string"
-                    }
-                ]
-            }
-        },
-        "tags": {
-            "description": "entity tags",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "statusTrack": {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "required": [
-                    "trackedAt",
-                    "status"
                 ],
-                "properties": {
-                    "trackedAt": {
-                        "type": "number"
-                    },
-                    "status": {
-                        "type": "string"
-                    },
-                    "repetition": {
-                        "type": "number"
-                    }
+                "discriminator": {
+                    "propertyName": "type"
                 }
             }
         }

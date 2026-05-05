@@ -7,12 +7,22 @@
     "minItems": 1,
     "items": {
         "type": "object",
+        "required": [
+            "steps",
+            "coordinates"
+        ],
         "properties": {
             "point": {
                 "type": "string"
             },
             "steps": {
                 "type": "integer"
+            },
+            "coordinates": {
+                "type": "array",
+                "items": {
+                    "type": "number"
+                }
             }
         }
     }

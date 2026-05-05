@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = setSchemaIds;
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const filesystem_1 = require("../utils/filesystem");
@@ -17,6 +16,7 @@ function setSchemaIds(schemaDir) {
             return;
         }
         const fileContents = fs_1.default.readFileSync(filePath);
+        console.log(filePath);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { $id, ...schema } = JSON.parse(fileContents.toString());
         const schemaId = filePath.replace(schemaDir, "").replace(".json", "").replace(/_/g, "-");
@@ -27,3 +27,4 @@ function setSchemaIds(schemaDir) {
         }
     });
 }
+exports.default = setSchemaIds;

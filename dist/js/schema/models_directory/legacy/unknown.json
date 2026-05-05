@@ -1,28 +1,23 @@
 {
     "$id": "models-directory/legacy/unknown",
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "legacy model unknown",
+    "title": "Unknown model schema",
     "type": "object",
     "required": [
         "type",
         "subtype",
         "method"
     ],
-    "additionalProperties": true,
     "properties": {
         "type": {
             "enum": [
                 "unknown"
-            ],
-            "description": "general type of the model, eg. `dft`",
-            "type": "string"
+            ]
         },
         "subtype": {
             "enum": [
                 "unknown"
-            ],
-            "description": "general subtype of the model, eg. `lda`",
-            "type": "string"
+            ]
         },
         "method": {
             "$schema": "http://json-schema.org/draft-07/schema#",
@@ -47,7 +42,13 @@
                 },
                 "data": {
                     "description": "additional data specific to method, eg. array of pseudopotentials",
-                    "type": "object"
+                    "type": "object",
+                    "additionalProperties": true,
+                    "properties": {
+                        "searchText": {
+                            "type": "string"
+                        }
+                    }
                 }
             }
         }

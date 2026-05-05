@@ -5,31 +5,13 @@
     "type": "object",
     "allOf": [
         {
-            "$ref": "../in_memory_entity/named_defaultable_runtime_items.json"
+            "$ref": "../in_memory_entity/named_defaultable.json"
+        },
+        {
+            "$ref": "../system/runtime_items.json"
+        },
+        {
+            "$ref": "executable_properties.json"
         }
-    ],
-    "properties": {
-        "name": {
-            "description": "The name of the executable. e.g. pw.x",
-            "type": "string"
-        },
-        "applicationId": {
-            "description": "_ids of the application this executable belongs to",
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-        },
-        "applicationName": {
-            "description": "name of the application this executable belongs to",
-            "type": "string"
-        },
-        "hasAdvancedComputeOptions": {
-            "description": "Whether advanced compute options are present",
-            "type": "boolean"
-        }
-    },
-    "required": [
-        "name"
     ]
 }

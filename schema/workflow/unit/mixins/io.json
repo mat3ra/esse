@@ -1,0 +1,46 @@
+{
+    "$id": "workflow/unit/mixins/io",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "data IO unit mixin schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "const": "io"
+        },
+        "subtype": {
+            "enum": [
+                "input",
+                "output",
+                "dataFrame"
+            ]
+        },
+        "source": {
+            "enum": [
+                "api",
+                "object_storage"
+            ]
+        },
+        "input": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "oneOf": [
+                    {
+                        "$ref": "../io/api.json"
+                    },
+                    {
+                        "$ref": "../io/object_storage.json"
+                    }
+                ],
+                "discriminator": {
+                    "propertyName": "type"
+                }
+            }
+        }
+    },
+    "required": [
+        "subtype",
+        "source",
+        "input"
+    ]
+}

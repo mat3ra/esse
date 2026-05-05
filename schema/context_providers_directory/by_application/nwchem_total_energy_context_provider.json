@@ -5,6 +5,11 @@
     "description": "Schema for NWChemTotalEnergyContextProvider that generates context data for NWChem total energy input.",
     "type": "object",
     "properties": {
+        "contextProviderName": {
+            "type": "string",
+            "const": "nwchem-total-energy",
+            "description": "Descriminator for AJV validator"
+        },
         "CHARGE": {
             "type": "integer",
             "description": "Total charge of the system."
@@ -56,7 +61,8 @@
         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
         "ATOMIC_SPECIES",
         "FUNCTIONAL",
-        "CARTESIAN"
+        "CARTESIAN",
+        "contextProviderName"
     ]
 }
 

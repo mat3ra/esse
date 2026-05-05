@@ -14,9 +14,15 @@
         "ATOMIC_POSITIONS_WITHOUT_CONSTRAINTS",
         "ATOMIC_SPECIES",
         "FUNCTIONAL",
-        "CARTESIAN"
+        "CARTESIAN",
+        "contextProviderName"
     ],
     "properties": {
+        "contextProviderName": {
+            "type": "string",
+            "const": "nwchem-total-energy",
+            "description": "Descriminator for AJV validator"
+        },
         "CHARGE": {
             "type": "integer",
             "description": "Total charge of the system."

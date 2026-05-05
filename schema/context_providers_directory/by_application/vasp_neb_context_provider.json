@@ -19,12 +19,18 @@
             "items": {
                 "type": "string"
             }
+        },
+        "contextProviderName": {
+            "type": "string",
+            "const": "vasp-neb",
+            "description": "Descriminator for AJV validator"
         }
     },
     "required": [
         "FIRST_IMAGE",
         "LAST_IMAGE",
-        "INTERMEDIATE_IMAGES"
+        "INTERMEDIATE_IMAGES",
+        "contextProviderName"
     ]
 }
 

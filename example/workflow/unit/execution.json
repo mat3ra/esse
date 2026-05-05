@@ -13,8 +13,11 @@
     "head": true,
     "input": [
         {
-            "content": "K_POINTS automatic\n2 2 2 0 0 0",
-            "name": "pw_scf.in"
+            "template": {
+                "...": "include(../../software/template.json)"
+            },
+            "rendered": "K_POINTS automatic\n2 2 2 0 0 0",
+            "isManuallyChanged": false
         }
     ],
     "monitors": [
@@ -35,5 +38,6 @@
         }
     ],
     "status": "idle",
-    "type": "execution"
+    "type": "execution",
+    "context": []
 }

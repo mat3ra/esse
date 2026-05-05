@@ -3,25 +3,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "base workflow schema",
     "type": "object",
-    "allOf": [
-        {
-            "$ref": "../in_memory_entity/named_defaultable_has_metadata.json"
-        }
-    ],
     "properties": {
         "properties": {
             "description": "Array of characteristic properties calculated by this workflow (TODO: add enums)",
             "type": "array",
             "items": {
                 "description": "property names, eg. `band_gaps`, `band_structure`",
-                "oneOf": [
-                    {
-                        "type": "string"
-                    },
-                    {
-                        "type": "object"
-                    }
-                ]
+                "type": "string"
             }
         },
         "isUsingDataset": {
@@ -32,11 +20,18 @@
             "description": "Defines whether the workflow is for a multi-material simulation",
             "type": "boolean"
         },
-        "workflows": {
-            "description": "Array of workflows with the same schema as the current one.",
+        "subworkflows": {
+            "description": "Array of subworkflows. Subworkflow can be an instance of workflow to allow for nesting",
             "type": "array",
             "items": {
-                "type": "object"
+                "$ref": "subworkflow.json"
+            }
+        },
+        "units": {
+            "description": "Contains the Units of the Workflow",
+            "type": "array",
+            "items": {
+                "$ref": "unit.json"
             }
         },
         "application": {
@@ -56,5 +51,10 @@
                 "type": "string"
             }
         }
-    }
+    },
+    "required": [
+        "properties",
+        "units",
+        "subworkflows"
+    ]
 }

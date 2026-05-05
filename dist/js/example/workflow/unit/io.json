@@ -3,6 +3,21 @@
     "head": true,
     "input": [
         {
+            "basename": "index.html",
+            "overwrite": true,
+            "objectData": {
+                "CONTAINER": "production-20160630-cluster-001",
+                "NAME": "/cluster-001-home/jrd101/data/jrd101-default/kernel-train-Cxmkj97aXKZeaRZov/Cxmkj97aXKZeaRZov.json",
+                "PROVIDER": "aws",
+                "REGION": "us-east-1",
+                "SIZE": 6582,
+                "TIMESTAMP": "1614217411"
+            },
+            "filetype": "text/html",
+            "type": "object_storage"
+        },
+        {
+            "type": "api",
             "endpoint": "data-frame",
             "endpoint_options": {
                 "data": {
@@ -30,12 +45,17 @@
                         "formula": "SiGe"
                     }
                 }
-            }
+            },
+            "name": "DATA"
         }
     ],
     "name": "io",
     "source": "api",
     "status": "idle",
     "subtype": "input",
-    "type": "io"
+    "type": "io",
+    "preProcessors": [],
+    "postProcessors": [],
+    "monitors": [],
+    "results": []
 }

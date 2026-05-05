@@ -1,0 +1,33 @@
+{
+    "$id": "software/flavor-properties",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "flavor properties schema",
+    "type": "object",
+    "properties": {
+        "executableName": {
+            "description": "name of the executable this flavor belongs to",
+            "type": "string"
+        },
+        "applicationName": {
+            "description": "name of the application this flavor belongs to",
+            "type": "string"
+        },
+        "input": {
+            "title": "execution unit input schema",
+            "type": "array",
+            "items": {
+                "$ref": "../workflow/unit/input/_inputItemId.json"
+            }
+        },
+        "supportedApplicationVersions": {
+            "description": "list of application versions this flavor supports",
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    },
+    "required": [
+        "input"
+    ]
+}
