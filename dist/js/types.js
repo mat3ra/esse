@@ -1,7 +1,7 @@
 "use strict";
 /** Schema dist/js/schema/apse/db/materials_project/2025.9.25/summary.json */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Action = exports.Type = exports.ContextProviderNameEnum = exports.Name = void 0;
+exports.ConvergenceParameterNameEnum = exports.Action = exports.Type = exports.ContextProviderNameEnum = exports.Name = void 0;
 var Name;
 (function (Name) {
     Name["PlanewaveCutoffDataManager"] = "PlanewaveCutoffDataManager";
@@ -79,3 +79,13 @@ var Action;
     Action["getData"] = "get-data";
     Action["info"] = "info";
 })(Action = exports.Action || (exports.Action = {}));
+/**
+ * This interface was referenced by `WorkflowSubworkflowConvergenceEnumOptions`'s JSON-Schema
+ * via the `definition` "ConvergenceParameterNameEnum".
+ */
+var ConvergenceParameterNameEnum;
+(function (ConvergenceParameterNameEnum) {
+    ConvergenceParameterNameEnum["N_k"] = "N_k";
+    ConvergenceParameterNameEnum["N_k_nonuniform"] = "N_k_nonuniform";
+    ConvergenceParameterNameEnum["N_k_nonuniform_2D"] = "N_k_nonuniform_2D";
+})(ConvergenceParameterNameEnum = exports.ConvergenceParameterNameEnum || (exports.ConvergenceParameterNameEnum = {}));

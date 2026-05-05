@@ -168,6 +168,7 @@ class Name469(Enum):
 
 
 class Units184(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"

@@ -3,9 +3,9 @@
         "name": "espresso",
         "shortName": "qe",
         "summary": "Quantum Espresso",
-        "version": "5.1.1",
-        "build": "GNU",
-        "hasAdvancedComputeOptions": true
+        "version": "6.3",
+        "hasAdvancedComputeOptions": true,
+        "isUsingMaterial": true
     },
     "compute": null,
     "executable": {

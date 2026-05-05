@@ -52,6 +52,36 @@ from mat3ra.esse import ESSE
 
 helper = ESSE()
 schema = helper.get_schema_by_id("material")
+
+# standalone schema validation and cleaning
+from mat3ra.esse import validate_and_clean
+
+data = {"a": "x", "b": 1, "c": "drop"}
+schema = {
+    "type": "object",
+    "properties": {
+        "a": {"type": "string"},
+        "b": {"type": "integer"}
+    }
+}
+
+validate_and_clean(data, schema)
+print(data) # {"a": "x", "b": 1}
+
+# alternative: schema-aware cleaning via generated pydantic models
+# also see how it is used in ade: https://github.com/Exabyte-io/ade/blob/main/src/py/mat3ra/ade/application.py
+from pydantic import ConfigDict
+from mat3ra.esse.models.software.application import ApplicationSchemaBase
+
+
+class Application(ApplicationSchemaBase):
+    # drop keys the schema doesn't declare at construction time
+    model_config = ConfigDict(extra="ignore")
+
+
+config = {"name": "espresso", "version": "6.3", "buildConfig": {"moduleName": "6.3-gnu"}}
+app = Application(**config)
+print(app.model_dump(exclude_none=True)) # {"name": "espresso", "version": "6.3", ...}
 ```
 
 ### 2.2. Usage in Node/JS/TS
@@ -61,6 +91,21 @@ const { ESSE } = require("@mat3ra/esse/lib/js/esse");
 
 const helper = new ESSE();
 const schema = helper.getSchemaById("material");
+
+# schema validation and cleaning
+const { validateAndClean } = require("@mat3ra/esse/lib/js/esse");
+
+const data = {"a": "x", "b": 1, "c": "drop"};
+const schema = {
+    "type": "object",
+    "properties": {
+        "a": {"type": "string"},
+        "b": {"type": "integer"}
+    }
+}
+
+const result = validateAndClean(data, schema);
+console.log(result); // {"a": "x", "b": 1}
 ```
 
 ## 3. Directory Structure
@@ -116,7 +161,7 @@ When developing in python the following should be taken into account:
 1. The modules containing the schemas and examples are generated using the [build-schemas.py](./build_schemas.py) script. There is a setup for it to be run automatically on every commit, but it is recommended to run it manually before committing to make sure that the changes are reflected in the modules. This can be done with `pre-commit run --all-files`. The pre-commit package can be installed with `pip install pre-commit`. To rebuild schemas manually, run (note `-e` in install):
 
     ```bash
-    python -m venv .venv  
+    python -m venv .venv
     source .venv/bin/activate
     pip install -e ".[tests]"
     pip install pre-commit
@@ -128,7 +173,7 @@ When developing in python the following should be taken into account:
 2. Tests can be run using the following commands:
 
     ```bash
-    python -m venv .venv  
+    python -m venv .venv
     source .venv/bin/activate
     pip install ".[tests]"
     python -m unittest discover --verbose --catch --start-directory tests/py/esse/

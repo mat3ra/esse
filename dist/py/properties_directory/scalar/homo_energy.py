@@ -15,6 +15,7 @@ class Name(Enum):
 
 
 class Units(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"
@@ -24,11 +25,11 @@ class Units(Enum):
     eV_atom = "eV/atom"
 
 
-class Units236(Enum):
+class Units240(Enum):
     eV_A_2 = "eV/A^2"
 
 
 class HOMOEnergyPropertySchema(BaseModel):
     name: Name
-    units: Union[Units, Units236]
+    units: Union[Units, Units240]
     value: float

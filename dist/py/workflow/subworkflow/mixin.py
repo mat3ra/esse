@@ -557,6 +557,10 @@ class ApplicationSchema(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
@@ -1056,7 +1060,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name594(Enum):
+class Name596(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1071,7 +1075,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name594
+    name: Name596
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.

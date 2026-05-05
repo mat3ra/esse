@@ -16,6 +16,7 @@ class Type(Enum):
 
 
 class Units(Enum):
+    kcal_mol = "kcal/mol"
     kJ_mol = "kJ/mol"
     eV = "eV"
     J_mol = "J/mol"

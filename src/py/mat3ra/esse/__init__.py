@@ -3,6 +3,9 @@ import jsonschema
 from .data.examples import EXAMPLES
 from .data.schemas import SCHEMAS
 from .data.properties import PROPERTIES_MANIFEST
+from .utils import validate_and_clean
+
+__all__ = ["ESSE", "validate_and_clean"]
 
 
 class ESSE(object):

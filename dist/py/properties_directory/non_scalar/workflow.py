@@ -561,6 +561,10 @@ class ApplicationSchema(BaseModel):
     """
     Whether licensing is present
     """
+    isUsingMaterial: Optional[bool] = None
+    """
+    Whether the application is using (being passed during a downstream processing routine) a material structure.
+    """
 
 
 class NamedDefaultableInMemoryEntitySchema(BaseModel):
@@ -1030,7 +1034,7 @@ class CutoffsContextItemSchema(BaseModel):
     extraData: Dict[str, Any]
 
 
-class Name823(Enum):
+class Name827(Enum):
     kgrid = "kgrid"
     qgrid = "qgrid"
     igrid = "igrid"
@@ -1051,7 +1055,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name823
+    name: Name827
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -1060,7 +1064,7 @@ class GridContextItemSchema(BaseModel):
     isEdited: bool
 
 
-class Name824(Enum):
+class Name828(Enum):
     qpath = "qpath"
     ipath = "ipath"
     kpath = "kpath"
@@ -1075,7 +1079,7 @@ class PointsPathDataProviderSchemaItem(BaseModel):
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name824
+    name: Name828
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
     Path in reciprocal space for band structure calculations.
