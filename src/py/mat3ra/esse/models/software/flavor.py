@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import List, Optional
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class RuntimeItemNameObjectSchema(BaseModel):
@@ -17,12 +17,9 @@ class RuntimeItemNameObjectSchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """
@@ -66,18 +63,18 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableName: Optional[str] = None
+    executableName: str
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    applicationName: str
     """
     name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
     """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """

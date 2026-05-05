@@ -30,6 +30,10 @@
             "description": "Whether the build is the default build",
             "type": "boolean"
         },
+        "isDefaultVersion": {
+            "description": "Whether the version is the default version",
+            "type": "boolean"
+        },
         "hasAdvancedComputeOptions": {
             "description": "Whether advanced compute options are present",
             "type": "boolean"

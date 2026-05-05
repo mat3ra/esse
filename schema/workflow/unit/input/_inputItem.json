@@ -18,7 +18,6 @@
         }
     },
     "required": [
-        "rendered",
         "isManuallyChanged",
         "template"
     ]

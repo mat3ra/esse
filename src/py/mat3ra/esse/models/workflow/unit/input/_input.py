@@ -6,7 +6,7 @@ from __future__ import annotations
 
 from typing import List, Optional, Union
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, Field
 
 
 class ContextProvider(BaseModel):
@@ -31,9 +31,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """
@@ -43,7 +43,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
@@ -51,12 +51,9 @@ class ExecutionUnitInputItemSchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """

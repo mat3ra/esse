@@ -5,6 +5,7 @@
     "type": "object",
     "required": [
         "applicationName",
+        "applicationVersion",
         "monitors",
         "name",
         "postProcessors",
@@ -111,6 +112,10 @@
         },
         "applicationName": {
             "description": "name of the application this executable belongs to",
+            "type": "string"
+        },
+        "applicationVersion": {
+            "description": "version of the application this executable belongs to",
             "type": "string"
         },
         "hasAdvancedComputeOptions": {

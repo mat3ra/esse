@@ -31,9 +31,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """

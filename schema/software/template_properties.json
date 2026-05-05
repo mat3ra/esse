@@ -4,13 +4,13 @@
     "title": "template properties schema",
     "type": "object",
     "properties": {
+        "executableName": {
+            "type": "string"
+        },
         "applicationName": {
             "type": "string"
         },
         "applicationVersion": {
-            "type": "string"
-        },
-        "executableName": {
             "type": "string"
         },
         "contextProviders": {
@@ -35,9 +35,10 @@
         }
     },
     "required": [
-        "applicationName",
-        "executableName",
         "contextProviders",
-        "content"
+        "content",
+        "executableName",
+        "applicationName",
+        "applicationVersion"
     ]
 }

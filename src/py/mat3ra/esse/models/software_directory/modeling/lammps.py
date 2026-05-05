@@ -71,6 +71,10 @@ class LAMMPS(BaseModel):
     """
     The short name of the application. e.g. qe
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present

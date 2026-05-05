@@ -3,6 +3,9 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "title": "creator account schema",
     "type": "object",
+    "required": [
+        "creatorAccount"
+    ],
     "properties": {
         "creatorAccount": {
             "$schema": "http://json-schema.org/draft-07/schema#",

@@ -4,17 +4,15 @@
 
 from __future__ import annotations
 
-from typing import Optional
-
 from pydantic import BaseModel
 
 
 class BankableSchema(BaseModel):
-    exabyteId: Optional[str] = None
+    exabyteId: str
     """
     Identity of the corresponding bank entity
     """
-    hash: Optional[str] = None
+    hash: str
     """
     Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
     """

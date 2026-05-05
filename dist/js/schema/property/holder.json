@@ -2321,11 +2321,6 @@
                             "type": "string",
                             "default": "2022.8.16"
                         },
-                        "isDefault": {
-                            "description": "Identifies that entity is defaultable",
-                            "type": "boolean",
-                            "default": false
-                        },
                         "metadata": {
                             "type": "object"
                         },
@@ -2369,8 +2364,7 @@
                                         "type": "string"
                                     },
                                     "systemName": {
-                                        "type": "string",
-                                        "description": "system name of the subworkflow"
+                                        "type": "string"
                                     },
                                     "schemaVersion": {
                                         "description": "entity's schema version. Used to distinct between different schemas.",
@@ -3501,6 +3495,10 @@
                                                                     "description": "Application build. e.g. VTST",
                                                                     "type": "string"
                                                                 },
+                                                                "isDefaultVersion": {
+                                                                    "description": "Whether the version is the default version",
+                                                                    "type": "boolean"
+                                                                },
                                                                 "hasAdvancedComputeOptions": {
                                                                     "description": "Whether advanced compute options are present",
                                                                     "type": "boolean"
@@ -3521,6 +3519,7 @@
                                                             "type": "object",
                                                             "required": [
                                                                 "applicationName",
+                                                                "applicationVersion",
                                                                 "name"
                                                             ],
                                                             "properties": {
@@ -3553,6 +3552,10 @@
                                                                     "description": "name of the application this executable belongs to",
                                                                     "type": "string"
                                                                 },
+                                                                "applicationVersion": {
+                                                                    "description": "version of the application this executable belongs to",
+                                                                    "type": "string"
+                                                                },
                                                                 "hasAdvancedComputeOptions": {
                                                                     "description": "Whether advanced compute options are present",
                                                                     "type": "boolean"
@@ -3564,6 +3567,9 @@
                                                             "title": "flavor schema",
                                                             "type": "object",
                                                             "required": [
+                                                                "applicationName",
+                                                                "applicationVersion",
+                                                                "executableName",
                                                                 "input",
                                                                 "monitors",
                                                                 "name",
@@ -3677,6 +3683,10 @@
                                                                     "description": "name of the application this flavor belongs to",
                                                                     "type": "string"
                                                                 },
+                                                                "applicationVersion": {
+                                                                    "description": "version of the application this flavor belongs to",
+                                                                    "type": "string"
+                                                                },
                                                                 "input": {
                                                                     "title": "execution unit input schema",
                                                                     "type": "array",
@@ -3684,7 +3694,9 @@
                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
                                                                         "title": "execution unit input id item schema for physics-based simulation engines",
                                                                         "type": "object",
-                                                                        "additionalProperties": false,
+                                                                        "required": [
+                                                                            "name"
+                                                                        ],
                                                                         "properties": {
                                                                             "templateId": {
                                                                                 "type": "string"
@@ -3698,13 +3710,6 @@
                                                                             }
                                                                         }
                                                                     }
-                                                                },
-                                                                "supportedApplicationVersions": {
-                                                                    "description": "list of application versions this flavor supports",
-                                                                    "type": "array",
-                                                                    "items": {
-                                                                        "type": "string"
-                                                                    }
                                                                 }
                                                             }
                                                         },
@@ -3715,7 +3720,6 @@
                                                                 "title": "execution unit input item schema",
                                                                 "type": "object",
                                                                 "required": [
-                                                                    "rendered",
                                                                     "isManuallyChanged",
                                                                     "template"
                                                                 ],
@@ -3726,6 +3730,7 @@
                                                                         "type": "object",
                                                                         "required": [
                                                                             "applicationName",
+                                                                            "applicationVersion",
                                                                             "content",
                                                                             "contextProviders",
                                                                             "executableName",
@@ -3752,13 +3757,13 @@
                                                                                 "description": "entity name",
                                                                                 "type": "string"
                                                                             },
+                                                                            "executableName": {
+                                                                                "type": "string"
+                                                                            },
                                                                             "applicationName": {
                                                                                 "type": "string"
                                                                             },
                                                                             "applicationVersion": {
-                                                                                "type": "string"
-                                                                            },
-                                                                            "executableName": {
                                                                                 "type": "string"
                                                                             },
                                                                             "contextProviders": {
@@ -3816,6 +3821,7 @@
                                                                                 "const": "input"
                                                                             },
                                                                             "data": {
+                                                                                "type": "object",
                                                                                 "oneOf": [
                                                                                     {
                                                                                         "$schema": "http://json-schema.org/draft-07/schema#",
@@ -4670,27 +4676,21 @@
                                                                             "data": {
                                                                                 "$schema": "http://json-schema.org/draft-07/schema#",
                                                                                 "title": "Points Path Data Provider Schema",
-                                                                                "description": "Path in reciprocal space for band structure calculations.",
+                                                                                "description": "Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).",
                                                                                 "type": "array",
                                                                                 "minItems": 1,
                                                                                 "items": {
                                                                                     "type": "object",
                                                                                     "required": [
-                                                                                        "steps",
-                                                                                        "coordinates"
+                                                                                        "point",
+                                                                                        "steps"
                                                                                     ],
                                                                                     "properties": {
                                                                                         "point": {
                                                                                             "type": "string"
                                                                                         },
                                                                                         "steps": {
-                                                                                            "type": "integer"
-                                                                                        },
-                                                                                        "coordinates": {
-                                                                                            "type": "array",
-                                                                                            "items": {
-                                                                                                "type": "number"
-                                                                                            }
+                                                                                            "type": "number"
                                                                                         }
                                                                                     }
                                                                                 }
@@ -5389,7 +5389,10 @@
                                                                             }
                                                                         }
                                                                     }
-                                                                ]
+                                                                ],
+                                                                "discriminator": {
+                                                                    "propertyName": "name"
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -6164,6 +6167,10 @@
                                             "build": {
                                                 "description": "Application build. e.g. VTST",
                                                 "type": "string"
+                                            },
+                                            "isDefaultVersion": {
+                                                "description": "Whether the version is the default version",
+                                                "type": "boolean"
                                             },
                                             "hasAdvancedComputeOptions": {
                                                 "description": "Whether advanced compute options are present",

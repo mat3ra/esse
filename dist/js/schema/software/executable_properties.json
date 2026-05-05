@@ -4,11 +4,16 @@
     "title": "executable properties schema",
     "type": "object",
     "required": [
-        "applicationName"
+        "applicationName",
+        "applicationVersion"
     ],
     "properties": {
         "applicationName": {
             "description": "name of the application this executable belongs to",
+            "type": "string"
+        },
+        "applicationVersion": {
+            "description": "version of the application this executable belongs to",
             "type": "string"
         },
         "hasAdvancedComputeOptions": {

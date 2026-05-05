@@ -58,6 +58,10 @@ class ExecutableSchema(BaseModel):
     """
     name of the application this executable belongs to
     """
+    applicationVersion: str
+    """
+    version of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present

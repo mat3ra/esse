@@ -3679,18 +3679,34 @@ export interface PointsGridDataProviderSchema {
 }
 /** Schema dist/js/schema/context_providers_directory/points_path_data_provider.json */
 /**
- * Path in reciprocal space for band structure calculations.
+ * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
  *
  * @minItems 1
  */
 export type PointsPathDataProviderSchema = [
     {
-        point?: string;
+        point: string;
+        steps: number;
+    },
+    ...{
+        point: string;
+        steps: number;
+    }[]
+];
+/** Schema dist/js/schema/context_providers_directory/points_path_data_provider_rendering.json */
+/**
+ * Path in reciprocal space including derived Cartesian/fractional coordinates for template rendering. Not persisted on the context item.
+ *
+ * @minItems 1
+ */
+export type PointsPathDataProviderRenderingSchema = [
+    {
+        point: string;
         steps: number;
         coordinates: number[];
     },
     ...{
-        point?: string;
+        point: string;
         steps: number;
         coordinates: number[];
     }[]
@@ -5852,10 +5868,6 @@ export interface JobSchema {
          * entity name
          */
         name: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -5881,9 +5893,6 @@ export interface JobSchema {
              * entity slug
              */
             slug?: string;
-            /**
-             * system name of the subworkflow
-             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -6513,6 +6522,10 @@ export interface JobSchema {
                      */
                     build: string;
                     /**
+                     * Whether the version is the default version
+                     */
+                    isDefaultVersion?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -6551,6 +6564,10 @@ export interface JobSchema {
                      * name of the application this executable belongs to
                      */
                     applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -6617,23 +6634,23 @@ export interface JobSchema {
                     /**
                      * name of the executable this flavor belongs to
                      */
-                    executableName?: string;
+                    executableName: string;
                     /**
                      * name of the application this flavor belongs to
                      */
-                    applicationName?: string;
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
                 };
                 input: {
                     template: {
@@ -6654,9 +6671,9 @@ export interface JobSchema {
                          * entity name
                          */
                         name: string;
-                        applicationName: string;
-                        applicationVersion?: string;
                         executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -6668,7 +6685,7 @@ export interface JobSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -7036,20 +7053,18 @@ export interface JobSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -7536,6 +7551,10 @@ export interface JobSchema {
                  * Application build. e.g. VTST
                  */
                 build: string;
+                /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -48278,10 +48297,6 @@ export interface WorkflowPropertySchema {
      * entity's schema version. Used to distinct between different schemas.
      */
     schemaVersion?: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -48307,9 +48322,6 @@ export interface WorkflowPropertySchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -48939,6 +48951,10 @@ export interface WorkflowPropertySchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -48977,6 +48993,10 @@ export interface WorkflowPropertySchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -49043,23 +49063,23 @@ export interface WorkflowPropertySchema {
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -49080,9 +49100,9 @@ export interface WorkflowPropertySchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -49094,7 +49114,7 @@ export interface WorkflowPropertySchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -49462,20 +49482,18 @@ export interface WorkflowPropertySchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -49962,6 +49980,10 @@ export interface WorkflowPropertySchema {
              * Application build. e.g. VTST
              */
             build: string;
+            /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
             /**
              * Whether advanced compute options are present
              */
@@ -51696,10 +51718,6 @@ export interface PropertyHolderSchema {
          * entity's schema version. Used to distinct between different schemas.
          */
         schemaVersion?: string;
-        /**
-         * Identifies that entity is defaultable
-         */
-        isDefault?: boolean;
         metadata?: {};
         /**
          * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -51725,9 +51743,6 @@ export interface PropertyHolderSchema {
              * entity slug
              */
             slug?: string;
-            /**
-             * system name of the subworkflow
-             */
             systemName?: string;
             /**
              * entity's schema version. Used to distinct between different schemas.
@@ -52357,6 +52372,10 @@ export interface PropertyHolderSchema {
                      */
                     build: string;
                     /**
+                     * Whether the version is the default version
+                     */
+                    isDefaultVersion?: boolean;
+                    /**
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
@@ -52395,6 +52414,10 @@ export interface PropertyHolderSchema {
                      * name of the application this executable belongs to
                      */
                     applicationName: string;
+                    /**
+                     * version of the application this executable belongs to
+                     */
+                    applicationVersion: string;
                     /**
                      * Whether advanced compute options are present
                      */
@@ -52461,23 +52484,23 @@ export interface PropertyHolderSchema {
                     /**
                      * name of the executable this flavor belongs to
                      */
-                    executableName?: string;
+                    executableName: string;
                     /**
                      * name of the application this flavor belongs to
                      */
-                    applicationName?: string;
+                    applicationName: string;
+                    /**
+                     * version of the application this flavor belongs to
+                     */
+                    applicationVersion: string;
                     input: {
                         templateId?: string;
                         templateName?: string;
                         /**
                          * name of the resulting input file, if different than template name
                          */
-                        name?: string;
+                        name: string;
                     }[];
-                    /**
-                     * list of application versions this flavor supports
-                     */
-                    supportedApplicationVersions?: string[];
                 };
                 input: {
                     template: {
@@ -52498,9 +52521,9 @@ export interface PropertyHolderSchema {
                          * entity name
                          */
                         name: string;
-                        applicationName: string;
-                        applicationVersion?: string;
                         executableName: string;
+                        applicationName: string;
+                        applicationVersion: string;
                         contextProviders: {
                             name: ContextProviderNameEnum;
                         }[];
@@ -52512,7 +52535,7 @@ export interface PropertyHolderSchema {
                     /**
                      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                      */
-                    rendered: string;
+                    rendered?: string;
                     isManuallyChanged: boolean;
                 }[];
                 context: ({
@@ -52880,20 +52903,18 @@ export interface PropertyHolderSchema {
                 } | {
                     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                     /**
-                     * Path in reciprocal space for band structure calculations.
+                     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                      *
                      * @minItems 1
                      */
                     data: [
                         {
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         },
                         ...{
-                            point?: string;
+                            point: string;
                             steps: number;
-                            coordinates: number[];
                         }[]
                     ];
                     extraData: {
@@ -53380,6 +53401,10 @@ export interface PropertyHolderSchema {
                  * Application build. e.g. VTST
                  */
                 build: string;
+                /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -54253,6 +54278,10 @@ export interface ApplicationSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54287,6 +54316,10 @@ export interface ApplicationPropertiesSchema {
      * Whether the build is the default build
      */
     isDefault?: boolean;
+    /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54370,6 +54403,10 @@ export interface ApplicationWithBuildConfigSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54446,6 +54483,10 @@ export interface ExecutableSchema {
      */
     applicationName: string;
     /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54456,6 +54497,10 @@ export interface ExecutablePropertiesSchema {
      * name of the application this executable belongs to
      */
     applicationName: string;
+    /**
+     * version of the application this executable belongs to
+     */
+    applicationVersion: string;
     /**
      * Whether advanced compute options are present
      */
@@ -54523,46 +54568,46 @@ export interface FlavorSchema {
     /**
      * name of the executable this flavor belongs to
      */
-    executableName?: string;
+    executableName: string;
     /**
      * name of the application this flavor belongs to
      */
-    applicationName?: string;
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
-    /**
-     * list of application versions this flavor supports
-     */
-    supportedApplicationVersions?: string[];
 }
 /** Schema dist/js/schema/software/flavor_properties.json */
 export interface FlavorPropertiesSchema {
     /**
      * name of the executable this flavor belongs to
      */
-    executableName?: string;
+    executableName: string;
     /**
      * name of the application this flavor belongs to
      */
-    applicationName?: string;
+    applicationName: string;
+    /**
+     * version of the application this flavor belongs to
+     */
+    applicationVersion: string;
     input: {
         templateId?: string;
         templateName?: string;
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     }[];
-    /**
-     * list of application versions this flavor supports
-     */
-    supportedApplicationVersions?: string[];
 }
 /** Schema dist/js/schema/software/template.json */
 export interface TemplateSchema {
@@ -54583,9 +54628,9 @@ export interface TemplateSchema {
      * entity name
      */
     name: string;
-    applicationName: string;
-    applicationVersion?: string;
     executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54596,9 +54641,9 @@ export interface TemplateSchema {
 }
 /** Schema dist/js/schema/software/template_properties.json */
 export interface TemplatePropertiesSchema {
-    applicationName: string;
-    applicationVersion?: string;
     executableName: string;
+    applicationName: string;
+    applicationVersion: string;
     contextProviders: {
         name: ContextProviderNameEnum;
     }[];
@@ -54647,6 +54692,10 @@ export interface DeePMDAppSchema {
      * Application build. e.g. VTST
      */
     build: string;
+    /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54730,6 +54779,10 @@ export interface LAMMPS {
      */
     shortName: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -54782,6 +54835,10 @@ export interface NWChem {
      * Application build. e.g. VTST
      */
     build: string;
+    /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -54927,6 +54984,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -54965,6 +55026,10 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -55031,23 +55096,23 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: ({
         template: {
@@ -55068,9 +55133,9 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -55082,7 +55147,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -55090,7 +55155,7 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -55457,20 +55522,18 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -55723,6 +55786,10 @@ export interface ViennaAbInitoSimulationPackage {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55776,6 +55843,10 @@ export interface JupyterLabApplicationSchema {
      * Application build. e.g. VTST
      */
     build: string;
+    /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -55843,6 +55914,10 @@ export interface PythonProgramingLanguageSchema {
      */
     build: string;
     /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
+    /**
      * Whether advanced compute options are present
      */
     hasAdvancedComputeOptions?: boolean;
@@ -55904,6 +55979,10 @@ export interface ShellScriptingLanguageSchema {
      * Application build. e.g. VTST
      */
     build: string;
+    /**
+     * Whether the version is the default version
+     */
+    isDefaultVersion?: boolean;
     /**
      * Whether advanced compute options are present
      */
@@ -56049,6 +56128,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -56087,6 +56170,10 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -56153,23 +56240,23 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: ({
         template: {
@@ -56190,9 +56277,9 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -56204,7 +56291,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -56212,7 +56299,7 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
     context: ({
         name: "input";
@@ -56579,20 +56666,18 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -56853,11 +56938,11 @@ export interface BankableSchema {
     /**
      * Identity of the corresponding bank entity
      */
-    exabyteId?: string;
+    exabyteId: string;
     /**
      * Hash string which is calculated based on the meaningful fields of the entity. Used to identify equal entities.
      */
-    hash?: string;
+    hash: string;
 }
 /** Schema dist/js/schema/system/consistency_check.json */
 /**
@@ -56886,7 +56971,7 @@ export interface CreatorEntityReferenceSchema {
     /**
      * Creator class
      */
-    cls?: "User";
+    cls: "User";
     /**
      * entity identity
      */
@@ -56898,7 +56983,7 @@ export interface CreatorEntityReferenceSchema {
 }
 /** Schema dist/js/schema/system/creator_account.json */
 export interface CreatorAccountSchema {
-    creatorAccount?: {
+    creatorAccount: {
         /**
          * entity identity
          */
@@ -57055,7 +57140,7 @@ export declare enum Action {
 }
 /** Schema dist/js/schema/system/in_set.json */
 export interface SystemInSetSchema {
-    inSet?: {
+    inSet: {
         /**
          * entity identity
          */
@@ -57170,7 +57255,7 @@ export interface EntityOwnerReferenceSchema {
     /**
      * Entity owner class
      */
-    cls?: "Account";
+    cls: "Account";
     /**
      * entity identity
      */
@@ -57335,9 +57420,6 @@ export interface BaseWorkflowSchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -57967,6 +58049,10 @@ export interface BaseWorkflowSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -58005,6 +58091,10 @@ export interface BaseWorkflowSchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -58071,23 +58161,23 @@ export interface BaseWorkflowSchema {
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -58108,9 +58198,9 @@ export interface BaseWorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -58122,7 +58212,7 @@ export interface BaseWorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -58490,20 +58580,18 @@ export interface BaseWorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -58990,6 +59078,10 @@ export interface BaseWorkflowSchema {
              * Application build. e.g. VTST
              */
             build: string;
+            /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
             /**
              * Whether advanced compute options are present
              */
@@ -60109,6 +60201,10 @@ export interface SubworkflowMixinSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -60147,6 +60243,10 @@ export interface SubworkflowMixinSchema {
              * name of the application this executable belongs to
              */
             applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
             /**
              * Whether advanced compute options are present
              */
@@ -60213,23 +60313,23 @@ export interface SubworkflowMixinSchema {
             /**
              * name of the executable this flavor belongs to
              */
-            executableName?: string;
+            executableName: string;
             /**
              * name of the application this flavor belongs to
              */
-            applicationName?: string;
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
         };
         input: {
             template: {
@@ -60250,9 +60350,9 @@ export interface SubworkflowMixinSchema {
                  * entity name
                  */
                 name: string;
-                applicationName: string;
-                applicationVersion?: string;
                 executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -60264,7 +60364,7 @@ export interface SubworkflowMixinSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -60632,20 +60732,18 @@ export interface SubworkflowMixinSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -61133,6 +61231,10 @@ export interface SubworkflowMixinSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61150,10 +61252,6 @@ export interface SubworkflowMixinSchema {
      * Defines whether to store the results/properties extracted in this unit to properties collection
      */
     isDraft?: boolean;
-    /**
-     * system name of the subworkflow
-     */
-    systemName?: string;
 }
 /** Schema dist/js/schema/workflow/subworkflow/unit.json */
 export type WorkflowSubworkflowUnitSchema = {
@@ -61665,6 +61763,10 @@ export type WorkflowSubworkflowUnitSchema = {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -61703,6 +61805,10 @@ export type WorkflowSubworkflowUnitSchema = {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -61769,23 +61875,23 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -61806,9 +61912,9 @@ export type WorkflowSubworkflowUnitSchema = {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -61820,7 +61926,7 @@ export type WorkflowSubworkflowUnitSchema = {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -62188,20 +62294,18 @@ export type WorkflowSubworkflowUnitSchema = {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -62536,9 +62640,6 @@ export interface SubworkflowSchema {
      * entity slug
      */
     slug?: string;
-    /**
-     * system name of the subworkflow
-     */
     systemName?: string;
     /**
      * entity's schema version. Used to distinct between different schemas.
@@ -63168,6 +63269,10 @@ export interface SubworkflowSchema {
              */
             build: string;
             /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
+            /**
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
@@ -63206,6 +63311,10 @@ export interface SubworkflowSchema {
              * name of the application this executable belongs to
              */
             applicationName: string;
+            /**
+             * version of the application this executable belongs to
+             */
+            applicationVersion: string;
             /**
              * Whether advanced compute options are present
              */
@@ -63272,23 +63381,23 @@ export interface SubworkflowSchema {
             /**
              * name of the executable this flavor belongs to
              */
-            executableName?: string;
+            executableName: string;
             /**
              * name of the application this flavor belongs to
              */
-            applicationName?: string;
+            applicationName: string;
+            /**
+             * version of the application this flavor belongs to
+             */
+            applicationVersion: string;
             input: {
                 templateId?: string;
                 templateName?: string;
                 /**
                  * name of the resulting input file, if different than template name
                  */
-                name?: string;
+                name: string;
             }[];
-            /**
-             * list of application versions this flavor supports
-             */
-            supportedApplicationVersions?: string[];
         };
         input: {
             template: {
@@ -63309,9 +63418,9 @@ export interface SubworkflowSchema {
                  * entity name
                  */
                 name: string;
-                applicationName: string;
-                applicationVersion?: string;
                 executableName: string;
+                applicationName: string;
+                applicationVersion: string;
                 contextProviders: {
                     name: ContextProviderNameEnum;
                 }[];
@@ -63323,7 +63432,7 @@ export interface SubworkflowSchema {
             /**
              * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
              */
-            rendered: string;
+            rendered?: string;
             isManuallyChanged: boolean;
         }[];
         context: ({
@@ -63691,20 +63800,18 @@ export interface SubworkflowSchema {
         } | {
             name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
             /**
-             * Path in reciprocal space for band structure calculations.
+             * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
              *
              * @minItems 1
              */
             data: [
                 {
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 },
                 ...{
-                    point?: string;
+                    point: string;
                     steps: number;
-                    coordinates: number[];
                 }[]
             ];
             extraData: {
@@ -64191,6 +64298,10 @@ export interface SubworkflowSchema {
          * Application build. e.g. VTST
          */
         build: string;
+        /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
         /**
          * Whether advanced compute options are present
          */
@@ -65254,20 +65365,18 @@ export interface NonCollinearMagnetizationContextItemSchema {
 export interface PathContextItemSchema {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -65641,20 +65750,18 @@ export type ContextItemSchema = {
 } | {
     name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
     /**
-     * Path in reciprocal space for band structure calculations.
+     * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
      *
      * @minItems 1
      */
     data: [
         {
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         },
         ...{
-            point?: string;
+            point: string;
             steps: number;
-            coordinates: number[];
         }[]
     ];
     extraData: {
@@ -65996,6 +66103,10 @@ export interface ExecutionUnitSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -66034,6 +66145,10 @@ export interface ExecutionUnitSchema {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -66100,23 +66215,23 @@ export interface ExecutionUnitSchema {
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -66137,9 +66252,9 @@ export interface ExecutionUnitSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66151,7 +66266,7 @@ export interface ExecutionUnitSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -66519,20 +66634,18 @@ export interface ExecutionUnitSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -66764,9 +66877,9 @@ export interface ExecutionUnitInputSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -66778,7 +66891,7 @@ export interface ExecutionUnitInputSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     } | {
         templateId?: string;
@@ -66786,7 +66899,7 @@ export interface ExecutionUnitInputSchema {
         /**
          * name of the resulting input file, if different than template name
          */
-        name?: string;
+        name: string;
     })[];
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItem.json */
@@ -66809,9 +66922,9 @@ export interface ExecutionUnitInputItemSchema {
          * entity name
          */
         name: string;
-        applicationName: string;
-        applicationVersion?: string;
         executableName: string;
+        applicationName: string;
+        applicationVersion: string;
         contextProviders: {
             name: ContextProviderNameEnum;
         }[];
@@ -66823,7 +66936,7 @@ export interface ExecutionUnitInputItemSchema {
     /**
      * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
      */
-    rendered: string;
+    rendered?: string;
     isManuallyChanged: boolean;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemId.json */
@@ -66833,7 +66946,7 @@ export interface ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines 
     /**
      * name of the resulting input file, if different than template name
      */
-    name?: string;
+    name: string;
 }
 /** Schema dist/js/schema/workflow/unit/input/_inputItemScope.json */
 export interface WorkflowUnitInputSchema {
@@ -67363,6 +67476,10 @@ export interface ExecutionUnitMixinSchema {
          */
         build: string;
         /**
+         * Whether the version is the default version
+         */
+        isDefaultVersion?: boolean;
+        /**
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
@@ -67401,6 +67518,10 @@ export interface ExecutionUnitMixinSchema {
          * name of the application this executable belongs to
          */
         applicationName: string;
+        /**
+         * version of the application this executable belongs to
+         */
+        applicationVersion: string;
         /**
          * Whether advanced compute options are present
          */
@@ -67467,23 +67588,23 @@ export interface ExecutionUnitMixinSchema {
         /**
          * name of the executable this flavor belongs to
          */
-        executableName?: string;
+        executableName: string;
         /**
          * name of the application this flavor belongs to
          */
-        applicationName?: string;
+        applicationName: string;
+        /**
+         * version of the application this flavor belongs to
+         */
+        applicationVersion: string;
         input: {
             templateId?: string;
             templateName?: string;
             /**
              * name of the resulting input file, if different than template name
              */
-            name?: string;
+            name: string;
         }[];
-        /**
-         * list of application versions this flavor supports
-         */
-        supportedApplicationVersions?: string[];
     };
     input: {
         template: {
@@ -67504,9 +67625,9 @@ export interface ExecutionUnitMixinSchema {
              * entity name
              */
             name: string;
-            applicationName: string;
-            applicationVersion?: string;
             executableName: string;
+            applicationName: string;
+            applicationVersion: string;
             contextProviders: {
                 name: ContextProviderNameEnum;
             }[];
@@ -67518,7 +67639,7 @@ export interface ExecutionUnitMixinSchema {
         /**
          * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
          */
-        rendered: string;
+        rendered?: string;
         isManuallyChanged: boolean;
     }[];
     context: ({
@@ -67886,20 +68007,18 @@ export interface ExecutionUnitMixinSchema {
     } | {
         name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
         /**
-         * Path in reciprocal space for band structure calculations.
+         * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
          *
          * @minItems 1
          */
         data: [
             {
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             },
             ...{
-                point?: string;
+                point: string;
                 steps: number;
-                coordinates: number[];
             }[]
         ];
         extraData: {
@@ -68868,10 +68987,6 @@ export interface WorkflowSchema {
      * entity name
      */
     name: string;
-    /**
-     * Identifies that entity is defaultable
-     */
-    isDefault?: boolean;
     metadata?: {};
     /**
      * Array of characteristic properties calculated by this workflow (TODO: add enums)
@@ -68897,9 +69012,6 @@ export interface WorkflowSchema {
          * entity slug
          */
         slug?: string;
-        /**
-         * system name of the subworkflow
-         */
         systemName?: string;
         /**
          * entity's schema version. Used to distinct between different schemas.
@@ -69529,6 +69641,10 @@ export interface WorkflowSchema {
                  */
                 build: string;
                 /**
+                 * Whether the version is the default version
+                 */
+                isDefaultVersion?: boolean;
+                /**
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
@@ -69567,6 +69683,10 @@ export interface WorkflowSchema {
                  * name of the application this executable belongs to
                  */
                 applicationName: string;
+                /**
+                 * version of the application this executable belongs to
+                 */
+                applicationVersion: string;
                 /**
                  * Whether advanced compute options are present
                  */
@@ -69633,23 +69753,23 @@ export interface WorkflowSchema {
                 /**
                  * name of the executable this flavor belongs to
                  */
-                executableName?: string;
+                executableName: string;
                 /**
                  * name of the application this flavor belongs to
                  */
-                applicationName?: string;
+                applicationName: string;
+                /**
+                 * version of the application this flavor belongs to
+                 */
+                applicationVersion: string;
                 input: {
                     templateId?: string;
                     templateName?: string;
                     /**
                      * name of the resulting input file, if different than template name
                      */
-                    name?: string;
+                    name: string;
                 }[];
-                /**
-                 * list of application versions this flavor supports
-                 */
-                supportedApplicationVersions?: string[];
             };
             input: {
                 template: {
@@ -69670,9 +69790,9 @@ export interface WorkflowSchema {
                      * entity name
                      */
                     name: string;
-                    applicationName: string;
-                    applicationVersion?: string;
                     executableName: string;
+                    applicationName: string;
+                    applicationVersion: string;
                     contextProviders: {
                         name: ContextProviderNameEnum;
                     }[];
@@ -69684,7 +69804,7 @@ export interface WorkflowSchema {
                 /**
                  * Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
                  */
-                rendered: string;
+                rendered?: string;
                 isManuallyChanged: boolean;
             }[];
             context: ({
@@ -70052,20 +70172,18 @@ export interface WorkflowSchema {
             } | {
                 name: "qpath" | "ipath" | "kpath" | "explicitKPath" | "explicitKPath2PIBA";
                 /**
-                 * Path in reciprocal space for band structure calculations.
+                 * Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
                  *
                  * @minItems 1
                  */
                 data: [
                     {
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     },
                     ...{
-                        point?: string;
+                        point: string;
                         steps: number;
-                        coordinates: number[];
                     }[]
                 ];
                 extraData: {
@@ -70552,6 +70670,10 @@ export interface WorkflowSchema {
              * Application build. e.g. VTST
              */
             build: string;
+            /**
+             * Whether the version is the default version
+             */
+            isDefaultVersion?: boolean;
             /**
              * Whether advanced compute options are present
              */

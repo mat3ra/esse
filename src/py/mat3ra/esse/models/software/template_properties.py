@@ -4,7 +4,7 @@
 
 from __future__ import annotations
 
-from typing import List, Optional
+from typing import List
 
 from pydantic import BaseModel
 
@@ -14,9 +14,9 @@ class ContextProvider(BaseModel):
 
 
 class TemplatePropertiesSchema(BaseModel):
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """

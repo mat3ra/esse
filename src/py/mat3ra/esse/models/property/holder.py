@@ -1796,6 +1796,10 @@ class ApplicationSchema(BaseModel):
     """
     Application build. e.g. VTST
     """
+    isDefaultVersion: Optional[bool] = None
+    """
+    Whether the version is the default version
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -1836,6 +1840,10 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
     """
     name of the application this executable belongs to
     """
+    applicationVersion: str
+    """
+    version of the application this executable belongs to
+    """
     hasAdvancedComputeOptions: Optional[bool] = None
     """
     Whether advanced compute options are present
@@ -1843,12 +1851,9 @@ class NamedDefaultableInMemoryEntitySchema(BaseModel):
 
 
 class ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines(BaseModel):
-    model_config = ConfigDict(
-        extra="forbid",
-    )
     templateId: Optional[str] = None
     templateName: Optional[str] = None
-    name: Optional[str] = None
+    name: str
     """
     name of the resulting input file, if different than template name
     """
@@ -1892,21 +1897,21 @@ class FlavorSchema(BaseModel):
     """
     names of the results for this calculation
     """
-    executableName: Optional[str] = None
+    executableName: str
     """
     name of the executable this flavor belongs to
     """
-    applicationName: Optional[str] = None
+    applicationName: str
     """
     name of the application this flavor belongs to
+    """
+    applicationVersion: str
+    """
+    version of the application this flavor belongs to
     """
     input: List[ExecutionUnitInputIdItemSchemaForPhysicsBasedSimulationEngines] = Field(
         ..., title="execution unit input schema"
     )
-    supportedApplicationVersions: Optional[List[str]] = None
-    """
-    list of application versions this flavor supports
-    """
 
 
 class ContextProvider(BaseModel):
@@ -1931,9 +1936,9 @@ class TemplateSchema(BaseModel):
     """
     entity name
     """
-    applicationName: str
-    applicationVersion: Optional[str] = None
     executableName: str
+    applicationName: str
+    applicationVersion: str
     contextProviders: List[ContextProvider]
     content: str
     """
@@ -1943,7 +1948,7 @@ class TemplateSchema(BaseModel):
 
 class ExecutionUnitInputItemSchema(BaseModel):
     template: TemplateSchema = Field(..., title="template schema")
-    rendered: str
+    rendered: Optional[str] = None
     """
     Rendered content of the input file. e.g. &CONTROL    calculation='scf' ...
     """
@@ -2250,7 +2255,7 @@ class ExtraDataWithMaterialHashSchema(BaseModel):
 
 
 class InputContextItemSchema(BaseModel):
-    name: Literal["input"]
+    name: Literal["0#-datamodel-code-generator-#-object-#-special-#"]
     data: Union[
         NWChemTotalEnergyContextProviderSchema,
         QENEBContextProviderSchema,
@@ -2268,7 +2273,7 @@ class PlanewaveCutoffsContextProviderSchema(BaseModel):
 
 
 class CutoffsContextItemSchema(BaseModel):
-    name: Literal["cutoffs"]
+    name: Literal["1#-datamodel-code-generator-#-object-#-special-#"]
     data: PlanewaveCutoffsContextProviderSchema = Field(..., title="Planewave Cutoffs Context Provider Schema")
     """
     Planewave cutoff parameters for electronic wavefunctions and density. Units are specific to simulation engine.
@@ -2298,7 +2303,7 @@ class PointsGridDataProviderSchema(BaseModel):
 
 
 class GridContextItemSchema(BaseModel):
-    name: Name533
+    name: Literal["2#-datamodel-code-generator-#-object-#-special-#"]
     data: PointsGridDataProviderSchema = Field(..., title="Points Grid Data Provider Schema")
     """
     3D grid with shifts for k-point or q-point sampling.
@@ -2316,16 +2321,15 @@ class Name534(Enum):
 
 
 class PointsPathDataProviderSchemaItem(BaseModel):
-    point: Optional[str] = None
-    steps: int
-    coordinates: List[float]
+    point: str
+    steps: float
 
 
 class PathContextItemSchema(BaseModel):
-    name: Name534
+    name: Literal["3#-datamodel-code-generator-#-object-#-special-#"]
     data: List[PointsPathDataProviderSchemaItem] = Field(..., min_length=1, title="Points Path Data Provider Schema")
     """
-    Path in reciprocal space for band structure calculations.
+    Path in reciprocal space for band structure calculations. User-editable and persisted fields only (coordinates are derived at render time).
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -2347,7 +2351,7 @@ class HubbardJContextProviderSchemaItem(BaseModel):
 
 
 class HubbardJContextItemSchema(BaseModel):
-    name: Literal["hubbard_j"]
+    name: Literal["4#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardJContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard J Context Provider Schema")
     """
     Hubbard parameters for DFT+U+J calculation.
@@ -2363,7 +2367,7 @@ class HubbardUContextProviderSchemaItem(BaseModel):
 
 
 class HubbardUContextItemSchema(BaseModel):
-    name: Literal["hubbard_u"]
+    name: Literal["5#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardUContextProviderSchemaItem] = Field(..., title="Hubbard U Context Provider Schema")
     """
     Hubbard U parameters for DFT+U or DFT+U+V calculation.
@@ -2383,7 +2387,7 @@ class HubbardVContextProviderSchemaItem(BaseModel):
 
 
 class HubbardVContextItemSchema(BaseModel):
-    name: Literal["hubbard_v"]
+    name: Literal["6#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardVContextProviderSchemaItem] = Field(..., min_length=1, title="Hubbard V Context Provider Schema")
     """
     Hubbard V parameters for DFT+U+V calculation.
@@ -2399,7 +2403,7 @@ class HubbardLegacyContextProviderSchemaItem(BaseModel):
 
 
 class HubbardLegacyContextItemSchema(BaseModel):
-    name: Literal["hubbard_legacy"]
+    name: Literal["7#-datamodel-code-generator-#-object-#-special-#"]
     data: List[HubbardLegacyContextProviderSchemaItem] = Field(
         ..., min_length=1, title="Hubbard Legacy Context Provider Schema"
     )
@@ -2415,7 +2419,7 @@ class NEBDataProviderSchema(BaseModel):
 
 
 class NebContextItemSchema(BaseModel):
-    name: Literal["neb"]
+    name: Literal["8#-datamodel-code-generator-#-object-#-special-#"]
     data: NEBDataProviderSchema = Field(..., title="NEB Data Provider Schema")
     """
     Number of intermediate NEB images.
@@ -2442,7 +2446,7 @@ class BoundaryConditionsDataProviderSchema(BaseModel):
 
 
 class BoundaryConditionsContextItemSchema(BaseModel):
-    name: Literal["boundaryConditions"]
+    name: Literal["9#-datamodel-code-generator-#-object-#-special-#"]
     data: BoundaryConditionsDataProviderSchema = Field(..., title="Boundary Conditions Data Provider Schema")
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
@@ -2460,7 +2464,7 @@ class MLSettingsContextProviderSchema(BaseModel):
 
 
 class MlSettingsContextItemSchema(BaseModel):
-    name: Literal["mlSettings"]
+    name: Literal["10#-datamodel-code-generator-#-object-#-special-#"]
     data: MLSettingsContextProviderSchema = Field(..., title="ML Settings Context Provider Schema")
     """
     Settings important to machine learning runs.
@@ -2474,7 +2478,7 @@ class MLTrainTestSplitContextProviderSchema(BaseModel):
 
 
 class MlTrainTestSplitContextItemSchema(BaseModel):
-    name: Literal["mlTrainTestSplit"]
+    name: Literal["11#-datamodel-code-generator-#-object-#-special-#"]
     data: MLTrainTestSplitContextProviderSchema = Field(..., title="ML Train Test Split Context Provider Schema")
     """
     Fraction held as the test set. For example, a value of 0.2 corresponds to an 80/20 train/test split.
@@ -2491,7 +2495,7 @@ class IonDynamicsContextProviderSchema(BaseModel):
 
 
 class DynamicsContextItemSchema(BaseModel):
-    name: Literal["dynamics"]
+    name: Literal["12#-datamodel-code-generator-#-object-#-special-#"]
     data: IonDynamicsContextProviderSchema = Field(..., title="Ion Dynamics Context Provider Schema")
     """
     Important parameters for molecular dynamics calculation
@@ -2513,7 +2517,7 @@ class CollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class CollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["collinearMagnetization"]
+    name: Literal["13#-datamodel-code-generator-#-object-#-special-#"]
     data: CollinearMagnetizationContextProviderSchema = Field(
         ..., title="Collinear Magnetization Context Provider Schema"
     )
@@ -2573,7 +2577,7 @@ class NonCollinearMagnetizationContextProviderSchema(BaseModel):
 
 
 class NonCollinearMagnetizationContextItemSchema(BaseModel):
-    name: Literal["nonCollinearMagnetization"]
+    name: Literal["14#-datamodel-code-generator-#-object-#-special-#"]
     data: NonCollinearMagnetizationContextProviderSchema = Field(
         ..., title="Non Collinear Magnetization Context Provider Schema"
     )
@@ -2582,6 +2586,46 @@ class NonCollinearMagnetizationContextItemSchema(BaseModel):
     """
     extraData: ExtraDataWithMaterialHashSchema = Field(..., title="extraData with materialHash schema")
     isEdited: bool
+
+
+class ContextItemSchema(
+    RootModel[
+        Union[
+            InputContextItemSchema,
+            CutoffsContextItemSchema,
+            GridContextItemSchema,
+            PathContextItemSchema,
+            HubbardJContextItemSchema,
+            HubbardUContextItemSchema,
+            HubbardVContextItemSchema,
+            HubbardLegacyContextItemSchema,
+            NebContextItemSchema,
+            BoundaryConditionsContextItemSchema,
+            MlSettingsContextItemSchema,
+            MlTrainTestSplitContextItemSchema,
+            DynamicsContextItemSchema,
+            CollinearMagnetizationContextItemSchema,
+            NonCollinearMagnetizationContextItemSchema,
+        ]
+    ]
+):
+    root: Union[
+        InputContextItemSchema,
+        CutoffsContextItemSchema,
+        GridContextItemSchema,
+        PathContextItemSchema,
+        HubbardJContextItemSchema,
+        HubbardUContextItemSchema,
+        HubbardVContextItemSchema,
+        HubbardLegacyContextItemSchema,
+        NebContextItemSchema,
+        BoundaryConditionsContextItemSchema,
+        MlSettingsContextItemSchema,
+        MlTrainTestSplitContextItemSchema,
+        DynamicsContextItemSchema,
+        CollinearMagnetizationContextItemSchema,
+        NonCollinearMagnetizationContextItemSchema,
+    ] = Field(..., discriminator="name", title="context item schema")
 
 
 class ExecutionUnitSchema(BaseModel):
@@ -2656,25 +2700,7 @@ class ExecutionUnitSchema(BaseModel):
     executable: NamedDefaultableInMemoryEntitySchema = Field(..., title="Named defaultable in-memory entity schema")
     flavor: FlavorSchema = Field(..., title="flavor schema")
     input: List[ExecutionUnitInputItemSchema]
-    context: List[
-        Union[
-            InputContextItemSchema,
-            CutoffsContextItemSchema,
-            GridContextItemSchema,
-            PathContextItemSchema,
-            HubbardJContextItemSchema,
-            HubbardUContextItemSchema,
-            HubbardVContextItemSchema,
-            HubbardLegacyContextItemSchema,
-            NebContextItemSchema,
-            BoundaryConditionsContextItemSchema,
-            MlSettingsContextItemSchema,
-            MlTrainTestSplitContextItemSchema,
-            DynamicsContextItemSchema,
-            CollinearMagnetizationContextItemSchema,
-            NonCollinearMagnetizationContextItemSchema,
-        ]
-    ]
+    context: List[ContextItemSchema]
 
 
 class AssignmentUnitSchema(BaseModel):
@@ -2950,9 +2976,6 @@ class SubworkflowSchema(BaseModel):
     entity slug
     """
     systemName: Optional[str] = None
-    """
-    system name of the subworkflow
-    """
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
@@ -3275,10 +3298,6 @@ class WorkflowPropertySchema(BaseModel):
     schemaVersion: Optional[str] = "2022.8.16"
     """
     entity's schema version. Used to distinct between different schemas.
-    """
-    isDefault: Optional[bool] = False
-    """
-    Identifies that entity is defaultable
     """
     metadata: Optional[Dict[str, Any]] = None
     properties: List[str]

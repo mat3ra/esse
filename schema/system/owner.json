@@ -16,5 +16,8 @@
                 "Account"
             ]
         }
-    }
+    },
+    "required": [
+        "cls"
+    ]
 }
