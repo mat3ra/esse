@@ -10,6 +10,7 @@
     ],
     "properties": {
         "type": {
+            "type": "string",
             "const": "api"
         },
         "endpoint": {
