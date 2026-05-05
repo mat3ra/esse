@@ -6551,33 +6551,6 @@ export interface JobSchema {
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
                 };
                 flavor: {
                     /**
@@ -48996,33 +48969,6 @@ export interface WorkflowPropertySchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
             };
             flavor: {
                 /**
@@ -52413,33 +52359,6 @@ export interface PropertyHolderSchema {
                      * Whether advanced compute options are present
                      */
                     hasAdvancedComputeOptions?: boolean;
-                    /**
-                     * names of the pre-processors for this calculation
-                     */
-                    preProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the post-processors for this calculation
-                     */
-                    postProcessors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
-                    /**
-                     * names of the monitors for this calculation
-                     */
-                    monitors: {
-                        /**
-                         * The name of this item. e.g. scf_accuracy
-                         */
-                        name: string;
-                    }[];
                 };
                 flavor: {
                     /**
@@ -54978,33 +54897,6 @@ export interface ExecutionUnitSchemaForPhysicsBasedSimulationEnginesDefinedUsing
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
     };
     flavor: {
         /**
@@ -56107,33 +55999,6 @@ export interface ExecutionUnitSchemaForScriptingBasedApplications {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
     };
     flavor: {
         /**
@@ -58048,33 +57913,6 @@ export interface BaseWorkflowSchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
             };
             flavor: {
                 /**
@@ -60196,33 +60034,6 @@ export interface SubworkflowMixinSchema {
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
         };
         flavor: {
             /**
@@ -61771,33 +61582,6 @@ export type WorkflowSubworkflowUnitSchema = {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
     };
     flavor: {
         /**
@@ -63297,33 +63081,6 @@ export interface SubworkflowSchema {
              * Whether advanced compute options are present
              */
             hasAdvancedComputeOptions?: boolean;
-            /**
-             * names of the pre-processors for this calculation
-             */
-            preProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the post-processors for this calculation
-             */
-            postProcessors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
-            /**
-             * names of the monitors for this calculation
-             */
-            monitors: {
-                /**
-                 * The name of this item. e.g. scf_accuracy
-                 */
-                name: string;
-            }[];
         };
         flavor: {
             /**
@@ -66144,33 +65901,6 @@ export interface ExecutionUnitSchema {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
     };
     flavor: {
         /**
@@ -67534,33 +67264,6 @@ export interface ExecutionUnitMixinSchema {
          * Whether advanced compute options are present
          */
         hasAdvancedComputeOptions?: boolean;
-        /**
-         * names of the pre-processors for this calculation
-         */
-        preProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the post-processors for this calculation
-         */
-        postProcessors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
-        /**
-         * names of the monitors for this calculation
-         */
-        monitors: {
-            /**
-             * The name of this item. e.g. scf_accuracy
-             */
-            name: string;
-        }[];
     };
     flavor: {
         /**
@@ -69723,33 +69426,6 @@ export interface WorkflowSchema {
                  * Whether advanced compute options are present
                  */
                 hasAdvancedComputeOptions?: boolean;
-                /**
-                 * names of the pre-processors for this calculation
-                 */
-                preProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the post-processors for this calculation
-                 */
-                postProcessors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
-                /**
-                 * names of the monitors for this calculation
-                 */
-                monitors: {
-                    /**
-                     * The name of this item. e.g. scf_accuracy
-                     */
-                    name: string;
-                }[];
             };
             flavor: {
                 /**
