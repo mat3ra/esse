@@ -86,6 +86,7 @@
                         "applicationVersion": "7.0",
                         "input": [
                             {
+                                "name": "in.scf",
                                 "templateId": "dJ7HYz5pQ4AuN5qc9"
                             }
                         ],
