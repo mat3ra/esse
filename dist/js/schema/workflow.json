@@ -480,6 +480,7 @@
                                                         "type": "object",
                                                         "properties": {
                                                             "type": {
+                                                                "type": "string",
                                                                 "const": "api"
                                                             },
                                                             "endpoint": {
@@ -511,6 +512,7 @@
                                                         ],
                                                         "properties": {
                                                             "type": {
+                                                                "type": "string",
                                                                 "const": "object_storage"
                                                             },
                                                             "objectData": {
