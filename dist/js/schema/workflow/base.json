@@ -2271,7 +2271,7 @@
                                                                 ],
                                                                 "properties": {
                                                                     "dimensions": {
-                                                                        "oneOf": [
+                                                                        "anyOf": [
                                                                             {
                                                                                 "type": "array",
                                                                                 "items": {
