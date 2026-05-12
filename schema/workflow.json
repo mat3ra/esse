@@ -12,6 +12,12 @@
         },
         {
             "$ref": "workflow/base.json"
+        },
+        {
+            "$ref": "system/description.json"
+        },
+        {
+            "$ref": "system/tags.json"
         }
     ],
     "properties": {
@@ -21,6 +27,10 @@
             "items": {
                 "type": "object"
             }
+        },
+        "compute": {
+            "description": "compute parameters",
+            "$ref": "job/compute.json"
         }
     },
     "required": [

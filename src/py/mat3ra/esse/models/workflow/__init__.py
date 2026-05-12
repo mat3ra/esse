@@ -155,6 +155,80 @@ class ComputeArgumentsSchema(BaseModel):
     """
 
 
+class Error13(BaseModel):
+    domain: Optional[Domain] = None
+    """
+    Domain of the error appearance (internal).
+    """
+    reason: Optional[str] = None
+    """
+    Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+    """
+    message: Optional[str] = None
+    """
+    Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+    """
+    traceback: Optional[str] = None
+    """
+    Full machine-readable error traceback. e.g. FileNotFound
+    """
+
+
+class ComputeArgumentsSchema13(BaseModel):
+    queue: Queue
+    """
+    Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+    """
+    nodes: int
+    """
+    number of nodes used for the job inside the RMS.
+    """
+    ppn: int
+    """
+    number of CPUs used for the job inside the RMS.
+    """
+    timeLimit: str
+    """
+    Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+    """
+    timeLimitType: Optional[TimeLimitType] = "per single attempt"
+    """
+    Convention to use when reasoning about time limits
+    """
+    isRestartable: Optional[bool] = True
+    """
+    Job is allowed to restart on termination.
+    """
+    notify: Optional[str] = None
+    """
+    Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+    """
+    email: Optional[str] = None
+    """
+    Email address to notify about job execution.
+    """
+    maxCPU: Optional[int] = None
+    """
+    Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+    """
+    arguments: Optional[QuantumEspressoArgumentsSchema] = Field({}, title="quantum espresso arguments schema")
+    """
+    Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+    """
+    cluster: Optional[Cluster] = None
+    """
+    Cluster where the job is executed. Optional on create. Required on job submission.
+    """
+    errors: Optional[List[Error13]] = None
+    """
+    Computation error. Optional. Appears only if something happens on jobs execution.
+    """
+    excludeFilesPattern: Optional[str] = None
+    """
+    A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+    """
+
+
 class RuntimeItemNameObjectSchema(BaseModel):
     name: str
     """
@@ -1741,7 +1815,7 @@ class SubworkflowSchema(BaseModel):
     """
     Array of characteristic properties calculated by this subworkflow
     """
-    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
+    compute: Optional[ComputeArgumentsSchema13] = Field(None, title="compute arguments schema")
     """
     Compute schema
     """
@@ -2035,6 +2109,10 @@ class WorkflowSchema(BaseModel):
     """
     Array of workflows with the same schema as the current one.
     """
+    compute: Optional[ComputeArgumentsSchema] = Field(None, title="compute arguments schema")
+    """
+    Compute schema
+    """
     id: Optional[str] = Field(None, alias="_id")
     """
     entity identity
@@ -2081,3 +2159,8 @@ class WorkflowSchema(BaseModel):
     """
     tags for the workflow
     """
+    description: Optional[str] = None
+    """
+    entity description
+    """
+    descriptionObject: Optional[Dict[str, Any]] = None

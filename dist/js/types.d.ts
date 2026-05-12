@@ -5852,6 +5852,110 @@ export interface JobSchema {
          */
         workflows: {}[];
         /**
+         * Compute schema
+         */
+        compute?: {
+            /**
+             * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+             */
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            /**
+             * number of nodes used for the job inside the RMS.
+             */
+            nodes: number;
+            /**
+             * number of CPUs used for the job inside the RMS.
+             */
+            ppn: number;
+            /**
+             * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+             */
+            timeLimit: string;
+            /**
+             * Convention to use when reasoning about time limits
+             */
+            timeLimitType?: "per single attempt" | "compound";
+            /**
+             * Job is allowed to restart on termination.
+             */
+            isRestartable?: boolean;
+            /**
+             * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+             */
+            notify?: string;
+            /**
+             * Email address to notify about job execution.
+             */
+            email?: string;
+            /**
+             * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+             */
+            maxCPU?: number;
+            /**
+             * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+             */
+            arguments?: {
+                /**
+                 * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+                 */
+                nimage?: number;
+                /**
+                 * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+                 */
+                npools?: number;
+                /**
+                 * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+                 */
+                nband?: number;
+                /**
+                 * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+                 */
+                ntg?: number;
+                /**
+                 * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+                 */
+                ndiag?: number;
+            };
+            /**
+             * Cluster where the job is executed. Optional on create. Required on job submission.
+             */
+            cluster?: {
+                /**
+                 * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+                 */
+                fqdn?: string;
+                /**
+                 * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+                 */
+                jid?: string;
+            };
+            /**
+             * Computation error. Optional. Appears only if something happens on jobs execution.
+             */
+            errors?: {
+                /**
+                 * Domain of the error appearance (internal).
+                 */
+                domain?: "rupy" | "alfred" | "celim" | "webapp";
+                /**
+                 * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+                 */
+                reason?: string;
+                /**
+                 * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+                 */
+                message?: string;
+                /**
+                 * Full machine-readable error traceback. e.g. FileNotFound
+                 */
+                traceback?: string;
+            }[];
+            /**
+             * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+             */
+            excludeFilesPattern?: string;
+        };
+        /**
          * entity identity
          */
         _id?: string;
@@ -7910,6 +8014,11 @@ export interface JobSchema {
          * tags for the workflow
          */
         tags?: string[];
+        /**
+         * entity description
+         */
+        description?: string;
+        descriptionObject?: {};
     };
     /**
      * Identity used to track jobs originated from command-line
@@ -48285,6 +48394,110 @@ export interface WorkflowPropertySchema {
      */
     workflows: {}[];
     /**
+     * Compute schema
+     */
+    compute?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * number of nodes used for the job inside the RMS.
+         */
+        nodes: number;
+        /**
+         * number of CPUs used for the job inside the RMS.
+         */
+        ppn: number;
+        /**
+         * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+         */
+        timeLimit: string;
+        /**
+         * Convention to use when reasoning about time limits
+         */
+        timeLimitType?: "per single attempt" | "compound";
+        /**
+         * Job is allowed to restart on termination.
+         */
+        isRestartable?: boolean;
+        /**
+         * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+         */
+        notify?: string;
+        /**
+         * Email address to notify about job execution.
+         */
+        email?: string;
+        /**
+         * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+         */
+        maxCPU?: number;
+        /**
+         * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+         */
+        arguments?: {
+            /**
+             * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+             */
+            nimage?: number;
+            /**
+             * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+             */
+            npools?: number;
+            /**
+             * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+             */
+            nband?: number;
+            /**
+             * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+             */
+            ntg?: number;
+            /**
+             * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+             */
+            ndiag?: number;
+        };
+        /**
+         * Cluster where the job is executed. Optional on create. Required on job submission.
+         */
+        cluster?: {
+            /**
+             * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+             */
+            fqdn?: string;
+            /**
+             * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+             */
+            jid?: string;
+        };
+        /**
+         * Computation error. Optional. Appears only if something happens on jobs execution.
+         */
+        errors?: {
+            /**
+             * Domain of the error appearance (internal).
+             */
+            domain?: "rupy" | "alfred" | "celim" | "webapp";
+            /**
+             * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+             */
+            reason?: string;
+            /**
+             * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+             */
+            message?: string;
+            /**
+             * Full machine-readable error traceback. e.g. FileNotFound
+             */
+            traceback?: string;
+        }[];
+        /**
+         * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+         */
+        excludeFilesPattern?: string;
+    };
+    /**
      * entity identity
      */
     _id?: string;
@@ -50339,6 +50552,11 @@ export interface WorkflowPropertySchema {
      * tags for the workflow
      */
     tags?: string[];
+    /**
+     * entity description
+     */
+    description?: string;
+    descriptionObject?: {};
 }
 /** Schema dist/js/schema/properties_directory/reusable/hubbard_parameters.json */
 /**
@@ -51705,6 +51923,110 @@ export interface PropertyHolderSchema {
          * Array of workflows with the same schema as the current one.
          */
         workflows: {}[];
+        /**
+         * Compute schema
+         */
+        compute?: {
+            /**
+             * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+             */
+            queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+            /**
+             * number of nodes used for the job inside the RMS.
+             */
+            nodes: number;
+            /**
+             * number of CPUs used for the job inside the RMS.
+             */
+            ppn: number;
+            /**
+             * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+             */
+            timeLimit: string;
+            /**
+             * Convention to use when reasoning about time limits
+             */
+            timeLimitType?: "per single attempt" | "compound";
+            /**
+             * Job is allowed to restart on termination.
+             */
+            isRestartable?: boolean;
+            /**
+             * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+             */
+            notify?: string;
+            /**
+             * Email address to notify about job execution.
+             */
+            email?: string;
+            /**
+             * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+             */
+            maxCPU?: number;
+            /**
+             * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+             */
+            arguments?: {
+                /**
+                 * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+                 */
+                nimage?: number;
+                /**
+                 * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+                 */
+                npools?: number;
+                /**
+                 * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+                 */
+                nband?: number;
+                /**
+                 * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+                 */
+                ntg?: number;
+                /**
+                 * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+                 */
+                ndiag?: number;
+            };
+            /**
+             * Cluster where the job is executed. Optional on create. Required on job submission.
+             */
+            cluster?: {
+                /**
+                 * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+                 */
+                fqdn?: string;
+                /**
+                 * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+                 */
+                jid?: string;
+            };
+            /**
+             * Computation error. Optional. Appears only if something happens on jobs execution.
+             */
+            errors?: {
+                /**
+                 * Domain of the error appearance (internal).
+                 */
+                domain?: "rupy" | "alfred" | "celim" | "webapp";
+                /**
+                 * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+                 */
+                reason?: string;
+                /**
+                 * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+                 */
+                message?: string;
+                /**
+                 * Full machine-readable error traceback. e.g. FileNotFound
+                 */
+                traceback?: string;
+            }[];
+            /**
+             * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+             */
+            excludeFilesPattern?: string;
+        };
         /**
          * entity identity
          */
@@ -53760,6 +54082,11 @@ export interface PropertyHolderSchema {
          * tags for the workflow
          */
         tags?: string[];
+        /**
+         * entity description
+         */
+        description?: string;
+        descriptionObject?: {};
     } | {
         name: "magnetic_moments";
         values: {
@@ -68971,6 +69298,110 @@ export interface WorkflowSchema {
      */
     workflows: {}[];
     /**
+     * Compute schema
+     */
+    compute?: {
+        /**
+         * Name of the submission queues: https://docs.mat3ra.com/infrastructure/resource/queues/. Below enums are for Azure, then AWS circa 2022-08, hence the duplication.
+         */
+        queue: "D" | "OR" | "OF" | "OFplus" | "SR" | "SF" | "SFplus" | "OR4" | "OR8" | "OR16" | "SR4" | "SR8" | "SR16" | "GOF" | "G4OF" | "G8OF" | "GSF" | "G4SF" | "G8SF";
+        /**
+         * number of nodes used for the job inside the RMS.
+         */
+        nodes: number;
+        /**
+         * number of CPUs used for the job inside the RMS.
+         */
+        ppn: number;
+        /**
+         * Wallclock time limit for computing a job. Clock format: 'hh:mm:ss'
+         */
+        timeLimit: string;
+        /**
+         * Convention to use when reasoning about time limits
+         */
+        timeLimitType?: "per single attempt" | "compound";
+        /**
+         * Job is allowed to restart on termination.
+         */
+        isRestartable?: boolean;
+        /**
+         * Email notification for the job: n - never, a - job aborted, b - job begins, e - job ends. Last three could be combined.
+         */
+        notify?: string;
+        /**
+         * Email address to notify about job execution.
+         */
+        email?: string;
+        /**
+         * Maximum CPU count per node. This parameter is used to let backend job submission infrastructure know that this job is to be charged for the maximum CPU per node instead of the actual ppn. For premium/fast queues where resources are provisioned on-demand and exclusively per user.
+         */
+        maxCPU?: number;
+        /**
+         * Optional arguments specific to using application - VASP, Quantum Espresso, etc. Specified elsewhere
+         */
+        arguments?: {
+            /**
+             * Processors can be divided into different `images`, each corresponding to a different self-consistent or linear-response calculation, loosely coupled to others.
+             */
+            nimage?: number;
+            /**
+             * Each image can be subpartitioned into `pools`, each taking care of a group of k-points.
+             */
+            npools?: number;
+            /**
+             * Each pool is subpartitioned into `band groups`, each taking care of a group of Kohn-Sham orbitals (also called bands, or wavefunctions).
+             */
+            nband?: number;
+            /**
+             * In order to allow good parallelization of the 3D FFT when the number of processors exceeds the number of FFT planes, FFTs on Kohn-Sham states are redistributed to `task` groups so that each group can process several wavefunctions at the same time.
+             */
+            ntg?: number;
+            /**
+             * A further level of parallelization, independent on PW or k-point parallelization, is the parallelization of subspace diagonalization / iterative orthonormalization. Both operations required the diagonalization of arrays whose dimension is the number of Kohn-Sham states (or a small multiple of it). All such arrays are distributed block-like across the `linear-algebra group`, a subgroup of the pool of processors, organized in a square 2D grid. As a consequence the number of processors in the linear-algebra group is given by n2, where n is an integer; n2 must be smaller than the number of processors in the PW group. The diagonalization is then performed in parallel using standard linear algebra operations.
+             */
+            ndiag?: number;
+        };
+        /**
+         * Cluster where the job is executed. Optional on create. Required on job submission.
+         */
+        cluster?: {
+            /**
+             * FQDN of the cluster. e.g. master-1-staging.exabyte.io
+             */
+            fqdn?: string;
+            /**
+             * Job's identity in RMS. e.g. 1234.master-1-staging.exabyte.io
+             */
+            jid?: string;
+        };
+        /**
+         * Computation error. Optional. Appears only if something happens on jobs execution.
+         */
+        errors?: {
+            /**
+             * Domain of the error appearance (internal).
+             */
+            domain?: "rupy" | "alfred" | "celim" | "webapp";
+            /**
+             * Should be a short, unique, machine-readable error code string. e.g. FileNotFound
+             */
+            reason?: string;
+            /**
+             * Human-readable error message. e.g. 'File Not Found: /home/demo/data/project1/job-123/job-config.json'
+             */
+            message?: string;
+            /**
+             * Full machine-readable error traceback. e.g. FileNotFound
+             */
+            traceback?: string;
+        }[];
+        /**
+         * A Python compatible regex to exclude files from upload. e.g. ^.*.txt& excludes all files with .txt suffix
+         */
+        excludeFilesPattern?: string;
+    };
+    /**
      * entity identity
      */
     _id?: string;
@@ -71029,4 +71460,9 @@ export interface WorkflowSchema {
      * tags for the workflow
      */
     tags?: string[];
+    /**
+     * entity description
+     */
+    description?: string;
+    descriptionObject?: {};
 }
