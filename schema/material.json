@@ -85,6 +85,7 @@
     },
     "required": [
         "basis",
-        "lattice"
+        "lattice",
+        "metadata"
     ]
 }

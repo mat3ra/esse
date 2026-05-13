@@ -343,6 +343,7 @@
             "required": [
                 "basis",
                 "lattice",
+                "metadata",
                 "name"
             ],
             "properties": {

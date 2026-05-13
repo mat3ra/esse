@@ -206,6 +206,7 @@
                             "required": [
                                 "basis",
                                 "lattice",
+                                "metadata",
                                 "name"
                             ],
                             "properties": {
@@ -1030,6 +1031,7 @@
                             "required": [
                                 "basis",
                                 "lattice",
+                                "metadata",
                                 "name"
                             ],
                             "properties": {

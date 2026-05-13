@@ -8483,7 +8483,7 @@ export interface MaterialSchema {
          */
         message: string;
     }[];
-    metadata?: {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -8793,7 +8793,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9074,7 +9074,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9403,7 +9403,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -9684,7 +9684,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10002,7 +10002,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10283,7 +10283,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10612,7 +10612,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -10893,7 +10893,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11212,7 +11212,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11493,7 +11493,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -11822,7 +11822,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12103,7 +12103,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12421,7 +12421,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -12702,7 +12702,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13031,7 +13031,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13312,7 +13312,7 @@ export interface InterfaceConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13608,7 +13608,7 @@ export interface InterfaceConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -13945,7 +13945,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14226,7 +14226,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14555,7 +14555,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -14836,7 +14836,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15154,7 +15154,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15435,7 +15435,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -15764,7 +15764,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16045,7 +16045,7 @@ export interface GrainBoundaryLinearConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16403,7 +16403,7 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16684,7 +16684,7 @@ export interface AdatomDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -16972,7 +16972,7 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17262,7 +17262,7 @@ export interface AdatomDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17596,7 +17596,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -17877,7 +17877,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18206,7 +18206,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18487,7 +18487,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -18805,7 +18805,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19086,7 +19086,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19415,7 +19415,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -19696,7 +19696,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20015,7 +20015,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20296,7 +20296,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20625,7 +20625,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -20906,7 +20906,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21224,7 +21224,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21505,7 +21505,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -21834,7 +21834,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22115,7 +22115,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22411,7 +22411,7 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -22742,7 +22742,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23023,7 +23023,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23347,7 +23347,7 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23628,7 +23628,7 @@ export interface IslandDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -23916,7 +23916,7 @@ export interface IslandDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24254,7 +24254,7 @@ export interface IslandDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24582,7 +24582,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -24863,7 +24863,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25187,7 +25187,7 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25468,7 +25468,7 @@ export interface TerraceDefectConfigurationSchema {
                                      */
                                     message: string;
                                 }[];
-                                metadata?: {
+                                metadata: {
                                     boundaryConditions?: {
                                         /**
                                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -25756,7 +25756,7 @@ export interface TerraceDefectConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26094,7 +26094,7 @@ export interface TerraceDefectConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26395,7 +26395,7 @@ export interface PointDefectBaseConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26676,7 +26676,7 @@ export interface InterstitialPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -26944,7 +26944,7 @@ export interface InterstitialPointDefectSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27238,7 +27238,7 @@ export interface SubstitutionalPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27506,7 +27506,7 @@ export interface SubstitutionalPointDefectSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -27800,7 +27800,7 @@ export interface VacancyPointDefectSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28080,7 +28080,7 @@ export interface IdealCrystalSchema {
          */
         message: string;
     }[];
-    metadata?: {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28405,7 +28405,7 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28686,7 +28686,7 @@ export interface NanoribbonConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -28982,7 +28982,7 @@ export interface NanoribbonConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29321,7 +29321,7 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29602,7 +29602,7 @@ export interface NanoTapeConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -29924,7 +29924,7 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30205,7 +30205,7 @@ export interface SlabConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30539,7 +30539,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -30820,7 +30820,7 @@ export interface SlabStrainedSupercellConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31113,7 +31113,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31380,7 +31380,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31658,7 +31658,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -31925,7 +31925,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32203,7 +32203,7 @@ export interface PassivationConfigurationSchema {
                  */
                 message: string;
             }[];
-            metadata?: {
+            metadata: {
                 boundaryConditions?: {
                     /**
                      * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32470,7 +32470,7 @@ export interface PassivationConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -32818,7 +32818,7 @@ export interface CrystalSiteSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33096,7 +33096,7 @@ export interface PointDefectSiteSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33382,7 +33382,7 @@ export interface VoidRegionSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -33706,7 +33706,7 @@ export interface CrystalSchema {
          */
         message: string;
     }[];
-    metadata?: {
+    metadata: {
         boundaryConditions?: {
             /**
              * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34052,7 +34052,7 @@ export interface VacuumConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34349,7 +34349,7 @@ export interface CrystalLatticeLinesSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34667,7 +34667,7 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -34944,7 +34944,7 @@ export interface CrystalLatticeBaseSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35229,7 +35229,7 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35507,7 +35507,7 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -35784,7 +35784,7 @@ export interface SupercellConfigurationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36096,7 +36096,7 @@ export interface AtomicLayersSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36407,7 +36407,7 @@ export interface AtomicLayersUniqueSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36708,7 +36708,7 @@ export interface AtomicLayersUniqueRepeatedSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -36992,7 +36992,7 @@ export interface CrystalLatticePlanesSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37305,7 +37305,7 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37586,7 +37586,7 @@ export interface SlabStackConfigurationSchema {
                              */
                             message: string;
                         }[];
-                        metadata?: {
+                        metadata: {
                             boundaryConditions?: {
                                 /**
                                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -37883,7 +37883,7 @@ export interface SlabStackConfigurationSchema {
                      */
                     message: string;
                 }[];
-                metadata?: {
+                metadata: {
                     boundaryConditions?: {
                         /**
                          * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
@@ -38212,7 +38212,7 @@ export interface PerturbationSchema {
              */
             message: string;
         }[];
-        metadata?: {
+        metadata: {
             boundaryConditions?: {
                 /**
                  * If assume_isolated = 'esm', determines the boundary conditions used for either side of the slab.
