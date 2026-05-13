@@ -4,7 +4,7 @@ import addFormats from "ajv-formats";
 
 import { mapObjectDeep } from "../esse/schemaUtils";
 import { AnyObject } from "../esse/types";
-import { JSONSchema } from "../esse/utils";
+import type { JSONSchema } from "../esse/utils";
 
 function addAdditionalPropertiesToSchema(schema: JSONSchema, additionalProperties = false) {
     return mapObjectDeep(schema, (object) => {

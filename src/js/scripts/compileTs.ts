@@ -3,7 +3,7 @@ import fs from "fs";
 import { compile } from "json-schema-to-typescript";
 
 import { mapObjectDeep } from "../esse/schemaUtils";
-import { JSONSchema } from "../esse/utils";
+import type { JSONSchema } from "../esse/utils";
 import { walkDir } from "../utils/filesystem";
 
 /**

@@ -1,4 +1,4 @@
-import { JSONSchema } from "./utils";
+import { type JSONSchema } from "./utils";
 export type JSONSchemasInterfaceQuery = {
     [key in keyof JSONSchema]: {
         $regex: string;

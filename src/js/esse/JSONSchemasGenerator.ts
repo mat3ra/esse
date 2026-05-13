@@ -4,8 +4,9 @@ import yaml from "js-yaml";
 import mergeAllOf from "json-schema-merge-allof";
 import path from "path";
 
+import { JSONSchemaWithPath, parseIncludeReferenceStatementsByDir } from "./serverUtils";
 import { EXAMPLES_DIR, PROPERTIES_MANIFEST_PATH, SCHEMAS_DIR } from "./settings";
-import { JSONSchema, JSONSchemaWithPath, parseIncludeReferenceStatementsByDir } from "./utils";
+import type { JSONSchema } from "./utils";
 
 interface JSONSchemasGeneratorConfig {
     schemasDir: string;
