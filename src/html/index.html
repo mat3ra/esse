@@ -488,6 +488,18 @@ function escHtml(s) {
     return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// ── Pre-expand folders up to a given depth ────────────────────────────────────
+function preExpand(node, depth, folderPath, maxDepth) {
+    if (depth >= maxDepth) return;
+    Object.keys(node)
+        .filter(k => k !== '__files')
+        .forEach(key => {
+            const fp = folderPath ? `${folderPath}/${key}` : key;
+            expandedSet.add(fp);
+            preExpand(node[key], depth + 1, fp, maxDepth);
+        });
+}
+
 // ── Rebuild the whole tree pane ───────────────────────────────────────────────
 function rebuildTree(query) {
     const container = document.getElementById('file-tree');
@@ -591,6 +603,9 @@ fetch('files.json')
     .then(r => r.json())
     .then(files => {
         allFiles = files;
+        // Pre-expand to second degree by default
+        const tree = pathsToTree(allFiles);
+        preExpand(tree, 0, '', 2);
         // Handle deep-link hash
         const hash = window.location.hash.slice(1);
         if (hash && allFiles.includes(hash)) {
