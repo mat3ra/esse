@@ -33,6 +33,7 @@ _yardoc
 doc/
 *.idea/
 *.html
+!src/html/*.html
 node_modules/
 
 # 'compiled' json files with inclusions and references resolved
