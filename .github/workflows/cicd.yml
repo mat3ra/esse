@@ -178,6 +178,8 @@ jobs:
         run: |
           # Copy the VS Code-like schema explorer interface
           cp src/html/index.html docs/index.html
+          cp src/html/style.css docs/style.css
+          cp src/html/app.js docs/app.js
 
           # Generate files.json manifest (schema + example files, relative to docs/)
           node -e "
