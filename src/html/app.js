@@ -321,6 +321,22 @@ document.getElementById("search-input").addEventListener("input", function () {
 })();
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+// Load README into the welcome panel
+fetch("README.md")
+    .then((r) => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.text();
+    })
+    .then((text) => {
+        /* global marked */
+        document.getElementById("welcome-readme").innerHTML = marked.parse(text);
+    })
+    .catch(() => {
+        document.getElementById("welcome-readme").innerHTML =
+            "<p>Welcome to ESSEntial Source of Schemas and Examples (ESSE).<br>" +
+            "Select a schema from the explorer on the left, or start typing to search.</p>";
+    });
+
 fetch("files.json")
     .then((r) => r.json())
     .then((files) => {

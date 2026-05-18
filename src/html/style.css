@@ -236,19 +236,55 @@ body {
 #welcome {
     position: absolute;
     inset: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    color: var(--text-muted);
-}
-#welcome h2 {
-    font-size: 22px;
-    font-weight: 300;
+    overflow-y: auto;
+    padding: 40px 60px;
     color: var(--text-secondary);
 }
-#welcome p { font-size: 13px; }
+#welcome::-webkit-scrollbar { width: 6px; }
+#welcome::-webkit-scrollbar-thumb { background: #424242; border-radius: 3px; }
+#welcome::-webkit-scrollbar-track { background: transparent; }
+
+#welcome-readme h1 { font-size: 24px; font-weight: 500; color: var(--text-primary); margin-bottom: 16px; }
+#welcome-readme h2 { font-size: 18px; font-weight: 500; color: var(--text-primary); margin: 24px 0 10px; }
+#welcome-readme h3 { font-size: 15px; font-weight: 600; color: var(--text-primary); margin: 18px 0 8px; }
+#welcome-readme h4 { font-size: 13px; font-weight: 600; color: var(--text-secondary); margin: 14px 0 6px; }
+#welcome-readme p { font-size: 13px; line-height: 1.7; margin-bottom: 10px; }
+#welcome-readme a { color: var(--accent); text-decoration: none; }
+#welcome-readme a:hover { text-decoration: underline; }
+#welcome-readme ul, #welcome-readme ol { font-size: 13px; line-height: 1.7; margin: 0 0 10px 20px; }
+#welcome-readme li { margin-bottom: 4px; }
+#welcome-readme code {
+    font-family: 'Consolas', 'Menlo', monospace;
+    font-size: 12px;
+    background: #2d2d2d;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    padding: 1px 5px;
+    color: #ce9178;
+}
+#welcome-readme pre {
+    background: #1a1a1a;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    margin-bottom: 12px;
+}
+#welcome-readme pre code {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 12px;
+    color: var(--text-primary);
+}
+#welcome-readme img { max-width: 100%; }
+#welcome-readme hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+#welcome-readme blockquote {
+    border-left: 3px solid var(--accent);
+    margin: 0 0 10px;
+    padding: 4px 12px;
+    color: var(--text-muted);
+}
 
 /* Status bar */
 #statusbar {

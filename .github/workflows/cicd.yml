@@ -166,7 +166,7 @@ jobs:
         shell: bash -l {0}
         run: |
           npm install
-          rm -rf docs/README.md
+          cp README.md docs/README.md
           cp -r dist/js/example docs
           cp -r dist/js/schema docs
           cp dist/js/schemas.json docs/schemas.json
