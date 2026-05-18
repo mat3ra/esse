@@ -8491,6 +8491,42 @@ export interface MaterialSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
     };
     /**
      * entity identity
@@ -8801,6 +8837,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -9082,6 +9154,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -9411,6 +9519,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -9692,6 +9836,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -10010,6 +10190,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -10291,6 +10507,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -10620,6 +10872,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -10901,6 +11189,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -11220,6 +11544,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -11501,6 +11861,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -11830,6 +12226,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -12111,6 +12543,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -12429,6 +12897,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -12710,6 +13214,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -13039,6 +13579,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -13320,6 +13896,42 @@ export interface InterfaceConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -13616,6 +14228,42 @@ export interface InterfaceConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -13953,6 +14601,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -14234,6 +14918,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -14563,6 +15283,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -14844,6 +15600,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -15162,6 +15954,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -15443,6 +16271,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -15772,6 +16636,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -16053,6 +16953,42 @@ export interface GrainBoundaryLinearConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -16411,6 +17347,42 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -16692,6 +17664,42 @@ export interface AdatomDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -16980,6 +17988,42 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -17270,6 +18314,42 @@ export interface AdatomDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -17604,6 +18684,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -17885,6 +19001,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -18214,6 +19366,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -18495,6 +19683,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -18813,6 +20037,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -19094,6 +20354,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -19423,6 +20719,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -19704,6 +21036,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -20023,6 +21391,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -20304,6 +21708,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -20633,6 +22073,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -20914,6 +22390,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -21232,6 +22744,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -21513,6 +23061,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -21842,6 +23426,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -22123,6 +23743,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -22419,6 +24075,42 @@ export interface GrainBoundaryPlanarConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -22750,6 +24442,42 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -23031,6 +24759,42 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -23355,6 +25119,42 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
                                 };
                                 /**
                                  * entity identity
@@ -23636,6 +25436,42 @@ export interface IslandDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
                                 };
                                 /**
                                  * entity identity
@@ -23924,6 +25760,42 @@ export interface IslandDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -24262,6 +26134,42 @@ export interface IslandDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -24590,6 +26498,42 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -24871,6 +26815,42 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -25195,6 +27175,42 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
                                 };
                                 /**
                                  * entity identity
@@ -25476,6 +27492,42 @@ export interface TerraceDefectConfigurationSchema {
                                         type: "pbc" | "bc1" | "bc2" | "bc3";
                                         offset: number;
                                     };
+                                    /**
+                                     * Whether the material was created as a surface slab
+                                     */
+                                    isSlab?: boolean;
+                                    /**
+                                     * Miller index h used to generate the slab
+                                     */
+                                    h?: number;
+                                    /**
+                                     * Miller index k used to generate the slab
+                                     */
+                                    k?: number;
+                                    /**
+                                     * Miller index l used to generate the slab
+                                     */
+                                    l?: number;
+                                    /**
+                                     * Slab thickness in number of layers
+                                     */
+                                    thickness?: number;
+                                    /**
+                                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                                     */
+                                    vacuumRatio?: number;
+                                    /**
+                                     * Termination vector component along a
+                                     */
+                                    vx?: number;
+                                    /**
+                                     * Termination vector component along b
+                                     */
+                                    vy?: number;
+                                    /**
+                                     * Source bulk material id used to generate the slab
+                                     */
+                                    bulkId?: string;
                                 };
                                 /**
                                  * entity identity
@@ -25764,6 +27816,42 @@ export interface TerraceDefectConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -26102,6 +28190,42 @@ export interface TerraceDefectConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -26403,6 +28527,42 @@ export interface PointDefectBaseConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -26684,6 +28844,42 @@ export interface InterstitialPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -26952,6 +29148,42 @@ export interface InterstitialPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -27246,6 +29478,42 @@ export interface SubstitutionalPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -27514,6 +29782,42 @@ export interface SubstitutionalPointDefectSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -27808,6 +30112,42 @@ export interface VacancyPointDefectSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -28088,6 +30428,42 @@ export interface IdealCrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
     };
     /**
      * entity identity
@@ -28413,6 +30789,42 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -28694,6 +31106,42 @@ export interface NanoribbonConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -28990,6 +31438,42 @@ export interface NanoribbonConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -29329,6 +31813,42 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -29610,6 +32130,42 @@ export interface NanoTapeConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -29932,6 +32488,42 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -30213,6 +32805,42 @@ export interface SlabConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -30547,6 +33175,42 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -30828,6 +33492,42 @@ export interface SlabStrainedSupercellConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -31121,6 +33821,42 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -31388,6 +34124,42 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -31666,6 +34438,42 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -31933,6 +34741,42 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -32211,6 +35055,42 @@ export interface PassivationConfigurationSchema {
                     type: "pbc" | "bc1" | "bc2" | "bc3";
                     offset: number;
                 };
+                /**
+                 * Whether the material was created as a surface slab
+                 */
+                isSlab?: boolean;
+                /**
+                 * Miller index h used to generate the slab
+                 */
+                h?: number;
+                /**
+                 * Miller index k used to generate the slab
+                 */
+                k?: number;
+                /**
+                 * Miller index l used to generate the slab
+                 */
+                l?: number;
+                /**
+                 * Slab thickness in number of layers
+                 */
+                thickness?: number;
+                /**
+                 * Vacuum fraction used when scaling the out-of-plane lattice vector
+                 */
+                vacuumRatio?: number;
+                /**
+                 * Termination vector component along a
+                 */
+                vx?: number;
+                /**
+                 * Termination vector component along b
+                 */
+                vy?: number;
+                /**
+                 * Source bulk material id used to generate the slab
+                 */
+                bulkId?: string;
             };
             /**
              * entity identity
@@ -32478,6 +35358,42 @@ export interface PassivationConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -32826,6 +35742,42 @@ export interface CrystalSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -33104,6 +36056,42 @@ export interface PointDefectSiteSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -33390,6 +36378,42 @@ export interface VoidRegionSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -33714,6 +36738,42 @@ export interface CrystalSchema {
             type: "pbc" | "bc1" | "bc2" | "bc3";
             offset: number;
         };
+        /**
+         * Whether the material was created as a surface slab
+         */
+        isSlab?: boolean;
+        /**
+         * Miller index h used to generate the slab
+         */
+        h?: number;
+        /**
+         * Miller index k used to generate the slab
+         */
+        k?: number;
+        /**
+         * Miller index l used to generate the slab
+         */
+        l?: number;
+        /**
+         * Slab thickness in number of layers
+         */
+        thickness?: number;
+        /**
+         * Vacuum fraction used when scaling the out-of-plane lattice vector
+         */
+        vacuumRatio?: number;
+        /**
+         * Termination vector component along a
+         */
+        vx?: number;
+        /**
+         * Termination vector component along b
+         */
+        vy?: number;
+        /**
+         * Source bulk material id used to generate the slab
+         */
+        bulkId?: string;
     };
     /**
      * entity identity
@@ -34060,6 +37120,42 @@ export interface VacuumConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -34357,6 +37453,42 @@ export interface CrystalLatticeLinesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -34675,6 +37807,42 @@ export interface CrystalLatticeLinesUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -34952,6 +38120,42 @@ export interface CrystalLatticeBaseSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -35237,6 +38441,42 @@ export interface NonUniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -35515,6 +38755,42 @@ export interface UniformlyStrainedCrystalConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -35792,6 +39068,42 @@ export interface SupercellConfigurationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -36104,6 +39416,42 @@ export interface AtomicLayersSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -36415,6 +39763,42 @@ export interface AtomicLayersUniqueSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -36716,6 +40100,42 @@ export interface AtomicLayersUniqueRepeatedSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -37000,6 +40420,42 @@ export interface CrystalLatticePlanesSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity
@@ -37313,6 +40769,42 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -37594,6 +41086,42 @@ export interface SlabStackConfigurationSchema {
                                 type: "pbc" | "bc1" | "bc2" | "bc3";
                                 offset: number;
                             };
+                            /**
+                             * Whether the material was created as a surface slab
+                             */
+                            isSlab?: boolean;
+                            /**
+                             * Miller index h used to generate the slab
+                             */
+                            h?: number;
+                            /**
+                             * Miller index k used to generate the slab
+                             */
+                            k?: number;
+                            /**
+                             * Miller index l used to generate the slab
+                             */
+                            l?: number;
+                            /**
+                             * Slab thickness in number of layers
+                             */
+                            thickness?: number;
+                            /**
+                             * Vacuum fraction used when scaling the out-of-plane lattice vector
+                             */
+                            vacuumRatio?: number;
+                            /**
+                             * Termination vector component along a
+                             */
+                            vx?: number;
+                            /**
+                             * Termination vector component along b
+                             */
+                            vy?: number;
+                            /**
+                             * Source bulk material id used to generate the slab
+                             */
+                            bulkId?: string;
                         };
                         /**
                          * entity identity
@@ -37891,6 +41419,42 @@ export interface SlabStackConfigurationSchema {
                         type: "pbc" | "bc1" | "bc2" | "bc3";
                         offset: number;
                     };
+                    /**
+                     * Whether the material was created as a surface slab
+                     */
+                    isSlab?: boolean;
+                    /**
+                     * Miller index h used to generate the slab
+                     */
+                    h?: number;
+                    /**
+                     * Miller index k used to generate the slab
+                     */
+                    k?: number;
+                    /**
+                     * Miller index l used to generate the slab
+                     */
+                    l?: number;
+                    /**
+                     * Slab thickness in number of layers
+                     */
+                    thickness?: number;
+                    /**
+                     * Vacuum fraction used when scaling the out-of-plane lattice vector
+                     */
+                    vacuumRatio?: number;
+                    /**
+                     * Termination vector component along a
+                     */
+                    vx?: number;
+                    /**
+                     * Termination vector component along b
+                     */
+                    vy?: number;
+                    /**
+                     * Source bulk material id used to generate the slab
+                     */
+                    bulkId?: string;
                 };
                 /**
                  * entity identity
@@ -38220,6 +41784,42 @@ export interface PerturbationSchema {
                 type: "pbc" | "bc1" | "bc2" | "bc3";
                 offset: number;
             };
+            /**
+             * Whether the material was created as a surface slab
+             */
+            isSlab?: boolean;
+            /**
+             * Miller index h used to generate the slab
+             */
+            h?: number;
+            /**
+             * Miller index k used to generate the slab
+             */
+            k?: number;
+            /**
+             * Miller index l used to generate the slab
+             */
+            l?: number;
+            /**
+             * Slab thickness in number of layers
+             */
+            thickness?: number;
+            /**
+             * Vacuum fraction used when scaling the out-of-plane lattice vector
+             */
+            vacuumRatio?: number;
+            /**
+             * Termination vector component along a
+             */
+            vx?: number;
+            /**
+             * Termination vector component along b
+             */
+            vy?: number;
+            /**
+             * Source bulk material id used to generate the slab
+             */
+            bulkId?: string;
         };
         /**
          * entity identity

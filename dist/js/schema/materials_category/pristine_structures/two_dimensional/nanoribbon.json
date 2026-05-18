@@ -1125,6 +1125,42 @@
                                                                     "type": "number"
                                                                 }
                                                             }
+                                                        },
+                                                        "isSlab": {
+                                                            "description": "Whether the material was created as a surface slab",
+                                                            "type": "boolean"
+                                                        },
+                                                        "h": {
+                                                            "description": "Miller index h used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "k": {
+                                                            "description": "Miller index k used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "l": {
+                                                            "description": "Miller index l used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "thickness": {
+                                                            "description": "Slab thickness in number of layers",
+                                                            "type": "number"
+                                                        },
+                                                        "vacuumRatio": {
+                                                            "description": "Vacuum fraction used when scaling the out-of-plane lattice vector",
+                                                            "type": "number"
+                                                        },
+                                                        "vx": {
+                                                            "description": "Termination vector component along a",
+                                                            "type": "number"
+                                                        },
+                                                        "vy": {
+                                                            "description": "Termination vector component along b",
+                                                            "type": "number"
+                                                        },
+                                                        "bulkId": {
+                                                            "description": "Source bulk material id used to generate the slab",
+                                                            "type": "string"
                                                         }
                                                     }
                                                 },
@@ -1950,6 +1986,42 @@
                                                                     "type": "number"
                                                                 }
                                                             }
+                                                        },
+                                                        "isSlab": {
+                                                            "description": "Whether the material was created as a surface slab",
+                                                            "type": "boolean"
+                                                        },
+                                                        "h": {
+                                                            "description": "Miller index h used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "k": {
+                                                            "description": "Miller index k used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "l": {
+                                                            "description": "Miller index l used to generate the slab",
+                                                            "type": "number"
+                                                        },
+                                                        "thickness": {
+                                                            "description": "Slab thickness in number of layers",
+                                                            "type": "number"
+                                                        },
+                                                        "vacuumRatio": {
+                                                            "description": "Vacuum fraction used when scaling the out-of-plane lattice vector",
+                                                            "type": "number"
+                                                        },
+                                                        "vx": {
+                                                            "description": "Termination vector component along a",
+                                                            "type": "number"
+                                                        },
+                                                        "vy": {
+                                                            "description": "Termination vector component along b",
+                                                            "type": "number"
+                                                        },
+                                                        "bulkId": {
+                                                            "description": "Source bulk material id used to generate the slab",
+                                                            "type": "string"
                                                         }
                                                     }
                                                 },
@@ -2810,6 +2882,42 @@
                                                     "type": "number"
                                                 }
                                             }
+                                        },
+                                        "isSlab": {
+                                            "description": "Whether the material was created as a surface slab",
+                                            "type": "boolean"
+                                        },
+                                        "h": {
+                                            "description": "Miller index h used to generate the slab",
+                                            "type": "number"
+                                        },
+                                        "k": {
+                                            "description": "Miller index k used to generate the slab",
+                                            "type": "number"
+                                        },
+                                        "l": {
+                                            "description": "Miller index l used to generate the slab",
+                                            "type": "number"
+                                        },
+                                        "thickness": {
+                                            "description": "Slab thickness in number of layers",
+                                            "type": "number"
+                                        },
+                                        "vacuumRatio": {
+                                            "description": "Vacuum fraction used when scaling the out-of-plane lattice vector",
+                                            "type": "number"
+                                        },
+                                        "vx": {
+                                            "description": "Termination vector component along a",
+                                            "type": "number"
+                                        },
+                                        "vy": {
+                                            "description": "Termination vector component along b",
+                                            "type": "number"
+                                        },
+                                        "bulkId": {
+                                            "description": "Source bulk material id used to generate the slab",
+                                            "type": "string"
                                         }
                                     }
                                 },

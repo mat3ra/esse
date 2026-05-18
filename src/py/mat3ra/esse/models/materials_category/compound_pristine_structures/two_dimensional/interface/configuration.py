@@ -632,6 +632,42 @@ class BoundaryConditions(BaseModel):
 
 class Metadata(BaseModel):
     boundaryConditions: Optional[BoundaryConditions] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema(BaseModel):
@@ -1109,6 +1145,42 @@ class BoundaryConditions39(BaseModel):
 
 class Metadata39(BaseModel):
     boundaryConditions: Optional[BoundaryConditions39] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema39(BaseModel):
@@ -1618,6 +1690,42 @@ class BoundaryConditions40(BaseModel):
 
 class Metadata40(BaseModel):
     boundaryConditions: Optional[BoundaryConditions40] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema40(BaseModel):
@@ -2089,6 +2197,42 @@ class BoundaryConditions41(BaseModel):
 
 class Metadata41(BaseModel):
     boundaryConditions: Optional[BoundaryConditions41] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema41(BaseModel):
@@ -2591,6 +2735,42 @@ class BoundaryConditions42(BaseModel):
 
 class Metadata42(BaseModel):
     boundaryConditions: Optional[BoundaryConditions42] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema42(BaseModel):
@@ -3062,6 +3242,42 @@ class BoundaryConditions43(BaseModel):
 
 class Metadata43(BaseModel):
     boundaryConditions: Optional[BoundaryConditions43] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema43(BaseModel):
@@ -3552,6 +3768,42 @@ class BoundaryConditions44(BaseModel):
 
 class Metadata44(BaseModel):
     boundaryConditions: Optional[BoundaryConditions44] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema44(BaseModel):
@@ -4023,6 +4275,42 @@ class BoundaryConditions45(BaseModel):
 
 class Metadata45(BaseModel):
     boundaryConditions: Optional[BoundaryConditions45] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema45(BaseModel):
@@ -4512,6 +4800,42 @@ class BoundaryConditions46(BaseModel):
 
 class Metadata46(BaseModel):
     boundaryConditions: Optional[BoundaryConditions46] = None
+    isSlab: Optional[bool] = None
+    """
+    Whether the material was created as a surface slab
+    """
+    h: Optional[float] = None
+    """
+    Miller index h used to generate the slab
+    """
+    k: Optional[float] = None
+    """
+    Miller index k used to generate the slab
+    """
+    l: Optional[float] = None
+    """
+    Miller index l used to generate the slab
+    """
+    thickness: Optional[float] = None
+    """
+    Slab thickness in number of layers
+    """
+    vacuumRatio: Optional[float] = None
+    """
+    Vacuum fraction used when scaling the out-of-plane lattice vector
+    """
+    vx: Optional[float] = None
+    """
+    Termination vector component along a
+    """
+    vy: Optional[float] = None
+    """
+    Termination vector component along b
+    """
+    bulkId: Optional[str] = None
+    """
+    Source bulk material id used to generate the slab
+    """
 
 
 class CrystalSchema46(BaseModel):
