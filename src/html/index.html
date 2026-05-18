@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESSEntial Source of Schemas and Examples (ESSE)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="titlebar">
+    <span class="app-name">ESSEntial Source of Schemas and Examples (ESSE)</span>
+    <span>—</span>
+    <span>schemas.mat3ra.com</span>
+</div>
+
+<div id="workspace">
+
+    <div id="sidebar">
+        <div id="sidebar-title">Explorer</div>
+        <div id="search-wrap">
+            <input id="search-input" type="search" placeholder="Search schemas…" autocomplete="off" spellcheck="false">
+        </div>
+        <div id="file-tree">
+            <div class="tree-msg">Loading…</div>
+        </div>
+    </div>
+
+    <div id="resizer"></div>
+
+    <div id="editor-area">
+        <div id="tabbar"></div>
+        <div id="breadcrumb">ESSEntial Source of Schemas and Examples (ESSE)</div>
+        <div id="editor-wrap">
+            <div id="welcome">
+                <h2>ESSEntial Source of Schemas and Examples (ESSE)</h2>
+                <p>Select a schema from the explorer on the left, or start typing to search.</p>
+            </div>
+            <div id="monaco-editor"></div>
+        </div>
+    </div>
+
+</div>
+
+<div id="statusbar">
+    <span id="status-path">No file selected</span>
+    <span id="status-count"></span>
+</div>
+
+<!-- Monaco Editor (loaded from CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
